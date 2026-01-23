@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -105,10 +106,12 @@ export function AppSidebar() {
                   {currentWorkspace ? (
                     <>
                       {currentWorkspace.image && (
-                        <img
+                        <Image
                           src={currentWorkspace.image}
                           alt={currentWorkspace.name}
-                          className="h-6 w-6 rounded"
+                          width={24}
+                          height={24}
+                          className="rounded"
                         />
                       )}
                       <span className="text-sm font-medium truncate">
