@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/routing';
 import {
   LayoutDashboard,
   Settings,
@@ -39,29 +39,31 @@ import {
   WhenAuthenticated,
 } from '@buildbase/sdk';
 
-const menuItems = [
+type NavKey = 'dashboard' | 'analytics' | 'documents' | 'team' | 'settings';
+
+const menuItems: { navKey: NavKey; url: string; icon: typeof LayoutDashboard }[] = [
   {
-    title: 'Dashboard',
+    navKey: 'dashboard',
     url: '/dashboard',
     icon: LayoutDashboard,
   },
   {
-    title: 'Analytics',
+    navKey: 'analytics',
     url: '/dashboard/analytics',
     icon: BarChart3,
   },
   {
-    title: 'Documents',
+    navKey: 'documents',
     url: '/dashboard/documents',
     icon: FileText,
   },
   {
-    title: 'Team',
+    navKey: 'team',
     url: '/dashboard/team',
     icon: Users,
   },
   {
-    title: 'Settings',
+    navKey: 'settings',
     url: '/dashboard/settings',
     icon: Settings,
   },
@@ -70,6 +72,7 @@ const menuItems = [
 export function AppSidebar() {
   const pathname = usePathname();
   const { user, signOut, openWorkspaceSettings } = useSaaSAuth();
+  const t = useTranslations('common');
 
   const getInitials = (name?: string) => {
     if (!name) return 'U';
@@ -87,7 +90,7 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <Link href="/" className="flex items-center gap-2 px-2 py-1">
-              <span className="text-lg font-semibold">My App</span>
+              <span className="text-lg font-semibold">{t('nav.home')}</span>
             </Link>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -97,7 +100,7 @@ export function AppSidebar() {
               if (isLoading) {
                 return (
                   <div className="flex h-10 items-center rounded-md border px-3 text-sm text-muted-foreground">
-                    Loading...
+                    {t('buttons.loading')}
                   </div>
                 );
               }
@@ -140,20 +143,23 @@ export function AppSidebar() {
           <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === item.url}
-                    tooltip={item.title}
-                  >
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {menuItems.map((item) => {
+                const title = t(`nav.${item.navKey}`);
+                return (
+                  <SidebarMenuItem key={item.navKey}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === item.url}
+                      tooltip={title}
+                    >
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -202,7 +208,7 @@ export function AppSidebar() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={signOut}>
                   <LogOut className="mr-2 h-4 w-4" />
-                  Sign Out
+                  {t('buttons.signOut')}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

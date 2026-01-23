@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useSaaSAuth, useSaaSWorkspaces } from '@buildbase/sdk';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,40 +15,43 @@ import { Badge } from '@/components/ui/badge';
 export default function DashboardPage() {
   const { user } = useSaaSAuth();
   const { currentWorkspace } = useSaaSWorkspaces();
+  const t = useTranslations('dashboard');
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back, {user?.name}!</p>
+        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+        <p className="text-muted-foreground">
+          {t('welcome', { name: user?.name || '' })}
+        </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Current Workspace</CardDescription>
+            <CardDescription>{t('cards.workspace.title')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">
-              {currentWorkspace?.name || 'No workspace selected'}
+              {currentWorkspace?.name || t('cards.workspace.empty')}
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Your Role</CardDescription>
+            <CardDescription>{t('cards.role.title')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold capitalize">
-              {user?.role || 'N/A'}
+              {user?.role || t('cards.role.empty')}
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Email</CardDescription>
+            <CardDescription>{t('cards.email.title')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-lg font-medium truncate">{user?.email}</p>
@@ -56,11 +60,11 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Status</CardDescription>
+            <CardDescription>{t('cards.status.title')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Badge variant="secondary" className="text-sm">
-              Active
+              {t('cards.status.active')}
             </Badge>
           </CardContent>
         </Card>
@@ -68,13 +72,13 @@ export default function DashboardPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle>{t('quickActions.title')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-4">
-            <Button>Create Project</Button>
-            <Button variant="outline">View Reports</Button>
-            <Button variant="outline">Invite Team Member</Button>
+            <Button>{t('quickActions.createProject')}</Button>
+            <Button variant="outline">{t('quickActions.viewReports')}</Button>
+            <Button variant="outline">{t('quickActions.inviteTeam')}</Button>
           </div>
         </CardContent>
       </Card>

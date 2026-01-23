@@ -1,9 +1,10 @@
-import { NextResponse } from 'next/server';
+import createIntlMiddleware from 'next-intl/middleware';
+import { NextRequest, NextResponse } from 'next/server';
+import { routing } from './i18n/routing';
 
-export function middleware() {
-  const response = NextResponse.next();
+const intlMiddleware = createIntlMiddleware(routing);
 
-  // Security Headers
+function addSecurityHeaders(response: NextResponse): NextResponse {
   const cspDirectives = [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
@@ -34,6 +35,14 @@ export function middleware() {
   return response;
 }
 
+export function middleware(request: NextRequest): NextResponse {
+  // Run intl middleware first
+  const response = intlMiddleware(request);
+
+  // Add security headers to the response
+  return addSecurityHeaders(response);
+}
+
 export const config = {
   matcher: [
     /*
@@ -42,7 +51,7 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public folder
+     * - public folder assets
      */
     '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],

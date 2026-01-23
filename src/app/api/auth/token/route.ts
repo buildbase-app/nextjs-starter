@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SYSTEM_SECRET = process.env.SYSTEM_SECRET;
+const SYSTEM_SECRET = process.env.SYSTEM_SECRET as string;
 
 if (!SYSTEM_SECRET) {
   throw new Error('SYSTEM_SECRET environment variable is required');
