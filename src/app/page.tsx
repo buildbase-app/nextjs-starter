@@ -1,17 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 import {
   useSaaSAuth,
   WhenAuthenticated,
@@ -19,11 +11,12 @@ import {
 } from '@buildbase/sdk';
 
 function AuthButton() {
-  const { signIn, signOut, isLoading, status } = useSaaSAuth();
+  const { signIn, isLoading, status } = useSaaSAuth();
 
-  if (status === 'loading' || isLoading) {
+  if (status === 'loading' || status === 'authenticating' || isLoading) {
     return (
       <Button variant="outline" disabled>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         Loading...
       </Button>
     );
@@ -35,54 +28,10 @@ function AuthButton() {
         <Button onClick={signIn}>Sign In</Button>
       </WhenUnauthenticated>
       <WhenAuthenticated>
-        <Button variant="outline" onClick={signOut}>
-          Sign Out
+        <Button asChild>
+          <Link href="/dashboard">Dashboard</Link>
         </Button>
       </WhenAuthenticated>
-    </>
-  );
-}
-
-function DashboardButton() {
-  const { signIn } = useSaaSAuth();
-  const [showLoginDialog, setShowLoginDialog] = useState(false);
-
-  return (
-    <>
-      <WhenAuthenticated>
-        <Button asChild size="lg">
-          <Link href="/dashboard">Go to Dashboard</Link>
-        </Button>
-      </WhenAuthenticated>
-      <WhenUnauthenticated>
-        <Button size="lg" onClick={() => setShowLoginDialog(true)}>
-          Go to Dashboard
-        </Button>
-      </WhenUnauthenticated>
-
-      <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Login Required</DialogTitle>
-            <DialogDescription>
-              You need to sign in to access the dashboard.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setShowLoginDialog(false)}>
-              Cancel
-            </Button>
-            <Button
-              onClick={() => {
-                setShowLoginDialog(false);
-                signIn();
-              }}
-            >
-              Sign In
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }
@@ -106,7 +55,6 @@ export default function Home() {
           Built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, next-themes,
           and BuildBase SDK.
         </p>
-        <DashboardButton />
       </main>
     </div>
   );
