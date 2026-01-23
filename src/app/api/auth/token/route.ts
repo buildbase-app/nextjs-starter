@@ -1,13 +1,39 @@
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SYSTEM_SECRET = process.env.SYSTEM_SECRET || 'system_secret';
+const SYSTEM_SECRET = process.env.SYSTEM_SECRET;
+
+if (!SYSTEM_SECRET) {
+  throw new Error('SYSTEM_SECRET environment variable is required');
+}
 
 export async function POST(request: NextRequest) {
-  const { code } = await request.json();
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { success: false, message: 'Invalid request body' },
+      { status: 400 }
+    );
+  }
 
-  if (!code) {
-    return NextResponse.json({ success: false, message: 'No code provided' });
+  const { code } = body;
+
+  // Input validation
+  if (!code || typeof code !== 'string') {
+    return NextResponse.json(
+      { success: false, message: 'Invalid or missing code parameter' },
+      { status: 400 }
+    );
+  }
+
+  // Validate code format (alphanumeric, reasonable length)
+  if (!/^[a-zA-Z0-9_-]{10,256}$/.test(code)) {
+    return NextResponse.json(
+      { success: false, message: 'Invalid code format' },
+      { status: 400 }
+    );
   }
 
   try {
@@ -28,10 +54,10 @@ export async function POST(request: NextRequest) {
     );
 
     if (!response.ok) {
-      return NextResponse.json({
-        success: false,
-        message: 'Failed to verify token',
-      });
+      return NextResponse.json(
+        { success: false, message: 'Failed to verify token' },
+        { status: 401 }
+      );
     }
 
     const responseData = await response.json();
@@ -55,10 +81,14 @@ export async function POST(request: NextRequest) {
       user: userData,
     });
   } catch (error) {
-    console.error('Auth token exchange error:', error);
-    return NextResponse.json({
-      success: false,
-      message: 'Failed to verify token',
-    });
+    // Log error safely without exposing sensitive details
+    console.error(
+      'Auth token exchange error:',
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+    return NextResponse.json(
+      { success: false, message: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }

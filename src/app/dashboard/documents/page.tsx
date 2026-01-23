@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import {
   Card,
   CardContent,
@@ -5,6 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Documents | Dashboard',
+  description:
+    'Manage your documents and files. Upload, organize, and share documents.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function DocumentsPage() {
   return (

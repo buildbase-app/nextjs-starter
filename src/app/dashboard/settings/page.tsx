@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import {
   Card,
   CardContent,
@@ -5,6 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Settings | Dashboard',
+  description:
+    'Configure your application settings and preferences. Manage account options.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function SettingsPage() {
   return (

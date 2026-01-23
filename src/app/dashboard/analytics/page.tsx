@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import {
   Card,
   CardContent,
@@ -5,6 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Analytics | Dashboard',
+  description:
+    'View your analytics and insights. Track performance metrics and data trends.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function AnalyticsPage() {
   return (

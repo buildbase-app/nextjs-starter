@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import {
   Card,
   CardContent,
@@ -5,6 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Team | Dashboard',
+  description:
+    'Manage your team members and permissions. Invite users and set roles.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function TeamPage() {
   return (

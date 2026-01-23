@@ -34,8 +34,8 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
           onSignOut: async () => {
             localStorage.removeItem('session_token');
           },
-          handleEvent: async (eventType, data) => {
-            console.log('BuildBase Event:', eventType, data);
+          handleEvent: async () => {
+            // Event handling - implement as needed
           },
         },
       }}

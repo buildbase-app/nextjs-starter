@@ -126,8 +126,8 @@ export function AppSidebar() {
                 </div>
               );
             }}
-            onWorkspaceChange={async (workspace) => {
-              console.log('Workspace changed:', workspace);
+            onWorkspaceChange={async () => {
+              // Handle workspace change - implement as needed
             }}
           />
         </WhenAuthenticated>
