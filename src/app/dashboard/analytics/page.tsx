@@ -4,7 +4,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 
 export default function AnalyticsPage() {
   return (
@@ -19,7 +19,9 @@ export default function AnalyticsPage() {
       <Card>
         <CardHeader>
           <CardTitle>Overview</CardTitle>
-          <CardDescription>Your analytics data will appear here.</CardDescription>
+          <CardDescription>
+            Your analytics data will appear here.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">Analytics content goes here.</p>

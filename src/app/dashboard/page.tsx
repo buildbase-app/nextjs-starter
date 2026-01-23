@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useSaaSAuth, useSaaSWorkspaces } from "@buildbase/sdk";
-import { Button } from "@/components/ui/button";
+import { useSaaSAuth, useSaaSWorkspaces } from '@buildbase/sdk';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 export default function DashboardPage() {
   const { user } = useSaaSAuth();
@@ -19,9 +19,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">
-          Welcome back, {user?.name}!
-        </p>
+        <p className="text-muted-foreground">Welcome back, {user?.name}!</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -31,7 +29,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">
-              {currentWorkspace?.name || "No workspace selected"}
+              {currentWorkspace?.name || 'No workspace selected'}
             </p>
           </CardContent>
         </Card>
@@ -42,7 +40,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold capitalize">
-              {user?.role || "N/A"}
+              {user?.role || 'N/A'}
             </p>
           </CardContent>
         </Card>
@@ -52,9 +50,7 @@ export default function DashboardPage() {
             <CardDescription>Email</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-lg font-medium truncate">
-              {user?.email}
-            </p>
+            <p className="text-lg font-medium truncate">{user?.email}</p>
           </CardContent>
         </Card>
 

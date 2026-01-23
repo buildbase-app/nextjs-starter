@@ -4,7 +4,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 
 export default function TeamPage() {
   return (
@@ -22,7 +22,9 @@ export default function TeamPage() {
           <CardDescription>Your team members will appear here.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">Team management content goes here.</p>
+          <p className="text-muted-foreground">
+            Team management content goes here.
+          </p>
         </CardContent>
       </Card>
     </div>

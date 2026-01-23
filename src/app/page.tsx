@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { useState } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/theme-toggle';
 import {
   Dialog,
   DialogContent,
@@ -11,17 +11,17 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   useSaaSAuth,
   WhenAuthenticated,
   WhenUnauthenticated,
-} from "@buildbase/sdk";
+} from '@buildbase/sdk';
 
 function AuthButton() {
   const { signIn, signOut, isLoading, status } = useSaaSAuth();
 
-  if (status === "loading" || isLoading) {
+  if (status === 'loading' || isLoading) {
     return (
       <Button variant="outline" disabled>
         Loading...
@@ -103,8 +103,8 @@ export default function Home() {
           Welcome to My App
         </h2>
         <p className="max-w-md text-center text-muted-foreground">
-          Built with Next.js, TypeScript, Tailwind CSS, shadcn/ui,
-          next-themes, and BuildBase SDK.
+          Built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, next-themes,
+          and BuildBase SDK.
         </p>
         <DashboardButton />
       </main>

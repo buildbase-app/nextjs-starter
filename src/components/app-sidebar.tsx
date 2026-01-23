@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
   Settings,
@@ -10,7 +10,7 @@ import {
   BarChart3,
   LogOut,
   ChevronUp,
-} from "lucide-react";
+} from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -23,45 +23,45 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+} from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   useSaaSAuth,
   WorkspaceSwitcher,
   WhenAuthenticated,
-} from "@buildbase/sdk";
+} from '@buildbase/sdk';
 
 const menuItems = [
   {
-    title: "Dashboard",
-    url: "/dashboard",
+    title: 'Dashboard',
+    url: '/dashboard',
     icon: LayoutDashboard,
   },
   {
-    title: "Analytics",
-    url: "/dashboard/analytics",
+    title: 'Analytics',
+    url: '/dashboard/analytics',
     icon: BarChart3,
   },
   {
-    title: "Documents",
-    url: "/dashboard/documents",
+    title: 'Documents',
+    url: '/dashboard/documents',
     icon: FileText,
   },
   {
-    title: "Team",
-    url: "/dashboard/team",
+    title: 'Team',
+    url: '/dashboard/team',
     icon: Users,
   },
   {
-    title: "Settings",
-    url: "/dashboard/settings",
+    title: 'Settings',
+    url: '/dashboard/settings',
     icon: Settings,
   },
 ];
@@ -71,11 +71,11 @@ export function AppSidebar() {
   const { user, signOut, openWorkspaceSettings } = useSaaSAuth();
 
   const getInitials = (name?: string) => {
-    if (!name) return "U";
+    if (!name) return 'U';
     return name
-      .split(" ")
+      .split(' ')
       .map((n) => n[0])
-      .join("")
+      .join('')
       .toUpperCase()
       .slice(0, 2);
   };
@@ -124,7 +124,7 @@ export function AppSidebar() {
               );
             }}
             onWorkspaceChange={async (workspace) => {
-              console.log("Workspace changed:", workspace);
+              console.log('Workspace changed:', workspace);
             }}
           />
         </WhenAuthenticated>
@@ -184,11 +184,15 @@ export function AppSidebar() {
                 align="start"
                 sideOffset={4}
               >
-                <DropdownMenuItem onClick={() => openWorkspaceSettings("profile")}>
+                <DropdownMenuItem
+                  onClick={() => openWorkspaceSettings('profile')}
+                >
                   <Users className="mr-2 h-4 w-4" />
                   Profile
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => openWorkspaceSettings("general")}>
+                <DropdownMenuItem
+                  onClick={() => openWorkspaceSettings('general')}
+                >
                   <Settings className="mr-2 h-4 w-4" />
                   Workspace Settings
                 </DropdownMenuItem>
