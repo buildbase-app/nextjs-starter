@@ -1,4 +1,12 @@
+import { Metadata } from 'next';
 import { DashboardLayoutClient } from '@/components/dashboard-layout-client';
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function DashboardLayout({
   children,
