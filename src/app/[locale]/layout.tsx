@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SaaSProvider } from '@/components/saas-provider';
 import {
@@ -39,8 +39,14 @@ export async function generateMetadata({
   params,
 }: LocaleLayoutProps): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home' });
+
   const currentPath = locale === defaultLocale ? '' : `/${locale}`;
   const canonicalUrl = `${baseUrl}${currentPath}`;
+
+  // Get localized content for social sharing
+  const title = t('meta.title');
+  const description = t('meta.description');
 
   // Generate alternate language links
   const languages: Record<string, string> = {
@@ -57,18 +63,22 @@ export async function generateMetadata({
       languages,
     },
     openGraph: {
-      title: 'My App',
-      description: 'My Next.js application with shadcn/ui and theme support',
+      title,
+      description,
       type: 'website',
       locale: ogLocaleMap[locale] || 'en_US',
       alternateLocale: Object.values(ogLocaleMap).filter(
         (l) => l !== ogLocaleMap[locale]
       ),
+      url: canonicalUrl,
+      siteName: title,
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'My App',
-      description: 'My Next.js application with shadcn/ui and theme support',
+      title,
+      description,
+      // You can add a default image here
+      // images: [`${baseUrl}/og-image.png`],
     },
     robots: {
       index: true,
