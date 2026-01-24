@@ -44,6 +44,7 @@ const messages: Messages = {
       title: 'Meine App',
       description:
         'Meine Next.js Anwendung mit shadcn/ui und Theme-Unterstützung',
+      tagline: 'Bauen Sie etwas Erstaunliches',
     },
   },
   dashboard: {

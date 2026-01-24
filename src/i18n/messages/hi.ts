@@ -43,6 +43,7 @@ const messages: Messages = {
     meta: {
       title: 'मेरा ऐप',
       description: 'shadcn/ui और थीम सपोर्ट के साथ मेरा Next.js एप्लिकेशन',
+      tagline: 'कुछ अद्भुत बनाएं',
     },
   },
   dashboard: {

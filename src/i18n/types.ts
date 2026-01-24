@@ -43,6 +43,7 @@ export interface HomeMessages {
   meta: {
     title: string;
     description: string;
+    tagline: string;
   };
 }
 

@@ -44,6 +44,7 @@ const messages: Messages = {
       title: 'マイアプリ',
       description:
         'shadcn/uiとテーマサポートを備えた私のNext.jsアプリケーション',
+      tagline: '素晴らしいものを作ろう',
     },
   },
   dashboard: {

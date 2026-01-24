@@ -8,23 +8,13 @@ import {
   locales,
   defaultLocale,
   isRtlLocale,
+  getOgLocale,
+  getAlternateOgLocales,
   type Locale,
 } from '@/i18n/config';
 import '@buildbase/sdk/dist/saas-os.css';
 
 const baseUrl = process.env.SITE_URL || 'https://example.com';
-
-// Map locale codes to OpenGraph locale format
-const ogLocaleMap: Record<string, string> = {
-  en: 'en_US',
-  hi: 'hi_IN',
-  es: 'es_ES',
-  fr: 'fr_FR',
-  de: 'de_DE',
-  ja: 'ja_JP',
-  zh: 'zh_CN',
-  ar: 'ar_SA',
-};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -48,6 +38,12 @@ export async function generateMetadata({
   const title = t('meta.title');
   const description = t('meta.description');
 
+  // Generate dynamic OG image URL with localized text
+  const ogImageUrl = new URL('/api/og', baseUrl);
+  ogImageUrl.searchParams.set('title', title);
+  ogImageUrl.searchParams.set('description', description);
+  ogImageUrl.searchParams.set('locale', locale);
+
   // Generate alternate language links
   const languages: Record<string, string> = {
     'x-default': baseUrl,
@@ -66,19 +62,24 @@ export async function generateMetadata({
       title,
       description,
       type: 'website',
-      locale: ogLocaleMap[locale] || 'en_US',
-      alternateLocale: Object.values(ogLocaleMap).filter(
-        (l) => l !== ogLocaleMap[locale]
-      ),
+      locale: getOgLocale(locale as Locale),
+      alternateLocale: getAlternateOgLocales(locale as Locale),
       url: canonicalUrl,
       siteName: title,
+      images: [
+        {
+          url: ogImageUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      // You can add a default image here
-      // images: [`${baseUrl}/og-image.png`],
+      images: [ogImageUrl.toString()],
     },
     robots: {
       index: true,
