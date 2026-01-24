@@ -67,7 +67,11 @@ export default async function LocaleLayout({
   const isRtl = isRtlLocale(locale as Locale);
 
   return (
-    <html lang={currentLocale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
+    <html
+      lang={currentLocale}
+      dir={isRtl ? 'rtl' : 'ltr'}
+      suppressHydrationWarning
+    >
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable} antialiased`,

@@ -41,7 +41,11 @@ import {
 
 type NavKey = 'dashboard' | 'analytics' | 'documents' | 'team' | 'settings';
 
-const menuItems: { navKey: NavKey; url: string; icon: typeof LayoutDashboard }[] = [
+const menuItems: {
+  navKey: NavKey;
+  url: string;
+  icon: typeof LayoutDashboard;
+}[] = [
   {
     navKey: 'dashboard',
     url: '/dashboard',

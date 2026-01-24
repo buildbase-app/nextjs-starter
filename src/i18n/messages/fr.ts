@@ -42,7 +42,8 @@ const messages: Messages = {
     },
     meta: {
       title: 'Mon App',
-      description: 'Mon application Next.js avec shadcn/ui et support de thèmes',
+      description:
+        'Mon application Next.js avec shadcn/ui et support de thèmes',
     },
   },
   dashboard: {
