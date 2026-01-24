@@ -6,7 +6,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('home');
 
   return {
-    title: t('title'),
+    // Use absolute title for home page to avoid "My App | My App"
+    title: {
+      absolute: t('title'),
+    },
     description: t('hero.description'),
     openGraph: {
       title: t('title'),

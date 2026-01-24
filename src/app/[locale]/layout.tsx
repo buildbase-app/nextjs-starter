@@ -4,33 +4,77 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SaaSProvider } from '@/components/saas-provider';
-import { locales, isRtlLocale, type Locale } from '@/i18n/config';
+import {
+  locales,
+  defaultLocale,
+  isRtlLocale,
+  type Locale,
+} from '@/i18n/config';
 import '@buildbase/sdk/dist/saas-os.css';
+
+const baseUrl = process.env.SITE_URL || 'https://example.com';
+
+// Map locale codes to OpenGraph locale format
+const ogLocaleMap: Record<string, string> = {
+  en: 'en_US',
+  hi: 'hi_IN',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  ja: 'ja_JP',
+  zh: 'zh_CN',
+  ar: 'ar_SA',
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  openGraph: {
-    title: 'My App',
-    description: 'My Next.js application with shadcn/ui and theme support',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'My App',
-    description: 'My Next.js application with shadcn/ui and theme support',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
-
 interface LocaleLayoutProps {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: LocaleLayoutProps): Promise<Metadata> {
+  const { locale } = await params;
+  const currentPath = locale === defaultLocale ? '' : `/${locale}`;
+  const canonicalUrl = `${baseUrl}${currentPath}`;
+
+  // Generate alternate language links
+  const languages: Record<string, string> = {
+    'x-default': baseUrl,
+  };
+  for (const loc of locales) {
+    const locPath = loc === defaultLocale ? '' : `/${loc}`;
+    languages[loc] = `${baseUrl}${locPath}`;
+  }
+
+  return {
+    alternates: {
+      canonical: canonicalUrl,
+      languages,
+    },
+    openGraph: {
+      title: 'My App',
+      description: 'My Next.js application with shadcn/ui and theme support',
+      type: 'website',
+      locale: ogLocaleMap[locale] || 'en_US',
+      alternateLocale: Object.values(ogLocaleMap).filter(
+        (l) => l !== ogLocaleMap[locale]
+      ),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'My App',
+      description: 'My Next.js application with shadcn/ui and theme support',
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
 }
 
 export default async function LocaleLayout({

@@ -4,7 +4,7 @@ import { locales, defaultLocale } from '@/i18n/config';
 const baseUrl = process.env.SITE_URL || 'https://example.com';
 
 // Define your public pages here (pages that should be indexed)
-const publicPages = [
+export const publicPages = [
   '', // home page
   // Add more public pages here as needed
   // '/about',
@@ -16,8 +16,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   for (const page of publicPages) {
-    // Create alternates object for hreflang
-    const languages: Record<string, string> = {};
+    // Create alternates object for hreflang (including x-default)
+    const languages: Record<string, string> = {
+      'x-default': `${baseUrl}${page || '/'}`, // Default/fallback URL
+    };
     for (const locale of locales) {
       const localePath = locale === defaultLocale ? page : `/${locale}${page}`;
       languages[locale] = `${baseUrl}${localePath || '/'}`;
