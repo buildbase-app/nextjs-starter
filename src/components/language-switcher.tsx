@@ -1,9 +1,10 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname, useRouter } from '@/i18n/routing';
 import { Globe } from 'lucide-react';
 import { locales, localeNames, type Locale } from '@/i18n/config';
+import { setLocaleCookie } from '@/i18n/locale-cookie';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,24 +15,15 @@ import {
 
 export function LanguageSwitcher() {
   const locale = useLocale() as Locale;
-  const router = useRouter();
   const pathname = usePathname();
+  const router = useRouter();
   const t = useTranslations('common.language');
 
   const switchLocale = (newLocale: Locale) => {
-    // Get the path without the current locale prefix
-    const segments = pathname.split('/');
-
-    // Check if the first segment is a locale
-    if (locales.includes(segments[1] as Locale)) {
-      segments[1] = newLocale;
-    } else {
-      // If no locale in path, add the new locale
-      segments.splice(1, 0, newLocale);
-    }
-
-    const newPath = segments.join('/') || '/';
-    router.push(newPath);
+    // Persist preference in cookie (1 year expiry)
+    setLocaleCookie(newLocale);
+    // Navigate to same page in new locale
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (
