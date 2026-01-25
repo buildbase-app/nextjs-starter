@@ -8,10 +8,16 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(cuid())
-  email String @unique
-  name  String?
-  role  String @default("user")
+  id            String  @id
+  email         String  @unique
+  name          String?
+  image         String?
+  role          String  @default("user")
+  emailVerified Boolean @default(false)
+  timezone      String?
+  language      String?
+  country       String?
+  currency      String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

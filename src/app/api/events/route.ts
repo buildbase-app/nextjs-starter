@@ -14,9 +14,16 @@ type EventType =
 
 interface IUser {
   _id: string;
+  id?: string;
   name: string;
   email: string;
+  image?: string;
   role: string;
+  emailVerified?: boolean;
+  timezone?: string;
+  language?: string;
+  country?: string;
+  currency?: string;
 }
 
 interface IWorkspace {
@@ -33,18 +40,31 @@ export async function POST(request: NextRequest) {
     switch (eventType) {
       case 'user:created': {
         const { user } = data as { user: IUser };
+        const userId = user.id || user._id;
         await prisma.user.upsert({
-          where: { id: user._id },
+          where: { id: userId },
           update: {
             email: user.email,
             name: user.name,
-            role: user.role,
+            image: user.image || null,
+            role: user.role || 'user',
+            emailVerified: user.emailVerified || false,
+            timezone: user.timezone || null,
+            language: user.language || null,
+            country: user.country || null,
+            currency: user.currency || null,
           },
           create: {
-            id: user._id,
+            id: userId,
             email: user.email,
             name: user.name,
-            role: user.role,
+            image: user.image || null,
+            role: user.role || 'user',
+            emailVerified: user.emailVerified || false,
+            timezone: user.timezone || null,
+            language: user.language || null,
+            country: user.country || null,
+            currency: user.currency || null,
           },
         });
         break;
@@ -52,18 +72,31 @@ export async function POST(request: NextRequest) {
 
       case 'user:updated': {
         const { user } = data as { user: IUser };
+        const userId = user.id || user._id;
         await prisma.user.upsert({
-          where: { id: user._id },
+          where: { id: userId },
           update: {
             email: user.email,
             name: user.name,
-            role: user.role,
+            image: user.image || null,
+            role: user.role || 'user',
+            emailVerified: user.emailVerified || false,
+            timezone: user.timezone || null,
+            language: user.language || null,
+            country: user.country || null,
+            currency: user.currency || null,
           },
           create: {
-            id: user._id,
+            id: userId,
             email: user.email,
             name: user.name,
-            role: user.role,
+            image: user.image || null,
+            role: user.role || 'user',
+            emailVerified: user.emailVerified || false,
+            timezone: user.timezone || null,
+            language: user.language || null,
+            country: user.country || null,
+            currency: user.currency || null,
           },
         });
         break;

@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 const SYSTEM_SECRET = process.env.SYSTEM_SECRET as string;
 
@@ -64,6 +65,34 @@ export async function POST(request: NextRequest) {
     const responseResult = responseData.data;
     const sessionId = responseResult.sessionId;
     const userData = responseResult.user;
+    // Create or update user in database
+    const userId = userData.id || userData._id;
+    await prisma.user.upsert({
+      where: { id: userId },
+      update: {
+        email: userData.email,
+        name: userData.name,
+        image: userData.image || null,
+        role: userData.role || 'user',
+        emailVerified: userData.emailVerified || false,
+        timezone: userData.timezone || null,
+        language: userData.language || null,
+        country: userData.country || null,
+        currency: userData.currency || null,
+      },
+      create: {
+        id: userId,
+        email: userData.email,
+        name: userData.name,
+        image: userData.image || null,
+        role: userData.role || 'user',
+        emailVerified: userData.emailVerified || false,
+        timezone: userData.timezone || null,
+        language: userData.language || null,
+        country: userData.country || null,
+        currency: userData.currency || null,
+      },
+    });
 
     const tokenData = jwt.sign(
       {
