@@ -1,12 +1,6 @@
-import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
-
-const SYSTEM_SECRET = process.env.SYSTEM_SECRET as string;
-
-if (!SYSTEM_SECRET) {
-  throw new Error('SYSTEM_SECRET environment variable is required');
-}
+import { createAuthToken } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
   let body;
@@ -94,19 +88,17 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    const tokenData = jwt.sign(
-      {
-        sessionId: sessionId,
-        user: userData,
-      },
-      SYSTEM_SECRET
-    );
+    const token = createAuthToken({
+      userId,
+      workspaceId: null,
+      userRole: userData.role || 'user',
+    });
 
     return NextResponse.json({
       success: true,
       message: 'Token verified successfully',
       sessionId: sessionId,
-      token: tokenData,
+      token,
       user: userData,
     });
   } catch (error) {
