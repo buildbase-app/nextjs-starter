@@ -1,6 +1,11 @@
 'use client';
 
-import { SaaSOSProvider, ApiVersion } from '@buildbase/sdk';
+import {
+  SaaSOSProvider,
+  ApiVersion,
+  type EventType,
+  type EventData,
+} from '@buildbase/sdk';
 import React from 'react';
 
 const config = {
@@ -34,8 +39,16 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
           onSignOut: async () => {
             localStorage.removeItem('session_token');
           },
-          handleEvent: async () => {
-            // Event handling - implement as needed
+          handleEvent: async (eventType: EventType, data: EventData) => {
+            try {
+              await fetch('/api/events', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ eventType, data }),
+              });
+            } catch (error) {
+              console.error('Failed to sync event:', error);
+            }
           },
         },
       }}
