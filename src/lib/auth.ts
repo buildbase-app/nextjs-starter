@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { cookies } from 'next/headers';
+import { headers } from 'next/headers';
 
 const SYSTEM_SECRET = process.env.SYSTEM_SECRET as string;
 
@@ -30,15 +30,20 @@ export function createAuthToken(params: CreateAuthTokenParams): string {
   );
 }
 
-export async function getAuthToken(): Promise<AuthToken | null> {
+/**
+ * Get auth token from Authorization header (server-side)
+ * Expects: Authorization: Bearer <token>
+ */
+export async function getAuthTokenFromHeader(): Promise<AuthToken | null> {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('auth_token')?.value;
+    const headersList = await headers();
+    const authHeader = headersList.get('authorization');
 
-    if (!token) {
+    if (!authHeader?.startsWith('Bearer ')) {
       return null;
     }
 
+    const token = authHeader.slice(7);
     return jwt.verify(token, SYSTEM_SECRET) as AuthToken;
   } catch {
     return null;
@@ -46,7 +51,7 @@ export async function getAuthToken(): Promise<AuthToken | null> {
 }
 
 export async function getCurrentUser() {
-  const token = await getAuthToken();
+  const token = await getAuthTokenFromHeader();
   if (!token) return null;
 
   return {
@@ -62,4 +67,13 @@ export function verifyAuthToken(token: string): AuthToken | null {
   } catch {
     return null;
   }
+}
+
+/**
+ * Client-side helper to get token from localStorage
+ * Use this in client components
+ */
+export function getClientAuthToken(): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem('auth_token');
 }

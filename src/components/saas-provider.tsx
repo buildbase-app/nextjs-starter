@@ -18,13 +18,11 @@ const config = {
 };
 
 function storeAuthToken(token: string) {
-  console.log('Storing auth token:', token.substring(0, 20) + '...');
-  document.cookie = `auth_token=${token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
-  console.log('Cookie after set:', document.cookie);
+  localStorage.setItem('auth_token', token);
 }
 
 function clearAuthToken() {
-  document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  localStorage.removeItem('auth_token');
 }
 
 async function updateAuthToken(
@@ -32,7 +30,6 @@ async function updateAuthToken(
   workspaceId: string,
   userRole: string
 ) {
-  console.log('updateAuthToken called:', { userId, workspaceId, userRole });
   try {
     const response = await fetch('/api/auth/workspace-token', {
       method: 'POST',
@@ -40,12 +37,9 @@ async function updateAuthToken(
       body: JSON.stringify({ userId, workspaceId, userRole }),
     });
     const data = await response.json();
-    console.log('workspace-token API response:', data);
     if (data.success && data.token) {
       storeAuthToken(data.token);
       return data.token;
-    } else {
-      console.error('API did not return success or token:', data);
     }
   } catch (error) {
     console.error('Failed to update auth token:', error);
@@ -89,7 +83,6 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
 
               // Generate new workspace token on workspace change
               if (eventType === 'workspace:changed') {
-                console.log('workspace:changed event received:', data);
                 const eventData = data as unknown as {
                   workspace: { _id: string };
                   user: { _id: string; id?: string };
@@ -97,14 +90,11 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
                 };
                 if (eventData.workspace && eventData.user) {
                   const userId = eventData.user.id || eventData.user._id;
-                  console.log('Calling updateAuthToken with:', { userId, workspaceId: eventData.workspace._id, userRole: eventData.userRole });
                   await updateAuthToken(
                     userId,
                     eventData.workspace._id,
                     eventData.userRole || 'member'
                   );
-                } else {
-                  console.error('Missing workspace or user in event data:', eventData);
                 }
               }
 

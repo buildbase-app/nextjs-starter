@@ -133,8 +133,32 @@ export function AppSidebar() {
                 </div>
               );
             }}
-            onWorkspaceChange={async () => {
-              // Handle workspace change - implement as needed
+            onWorkspaceChange={async (workspace) => {
+              if (!user?.id || !workspace?._id) return;
+
+              // Find current user's role in this workspace
+              const workspaceUser = workspace.users?.find(
+                (u: { _id: string }) => u._id === user.id
+              );
+              const userRole = workspaceUser?.role || 'member';
+
+              try {
+                const response = await fetch('/api/auth/workspace-token', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    userId: user.id,
+                    workspaceId: workspace._id,
+                    userRole,
+                  }),
+                });
+                const data = await response.json();
+                if (data.success && data.token) {
+                  localStorage.setItem('auth_token', data.token);
+                }
+              } catch (error) {
+                console.error('Failed to update auth token:', error);
+              }
             }}
           />
         </WhenAuthenticated>
