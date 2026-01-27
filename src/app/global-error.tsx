@@ -1,14 +1,14 @@
 'use client';
 
-import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { AlertCircle, RefreshCw } from 'lucide-react';
+import { captureErrorSync } from '@/lib/sentry';
 
 /**
  * Global Error Boundary
  *
- * Catches errors in the root layout and reports them to Sentry.
+ * Catches errors in the root layout and reports them to Sentry (if configured).
  * This is the last line of defense for unhandled errors.
  */
 export default function GlobalError({
@@ -19,14 +19,10 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Report to Sentry
-    Sentry.captureException(error, {
-      tags: {
-        errorBoundary: 'global',
-      },
-      extra: {
-        digest: error.digest,
-      },
+    // Report to Sentry (safe to call even if Sentry not configured)
+    captureErrorSync(error, {
+      tags: { errorBoundary: 'global' },
+      extra: { digest: error.digest },
     });
   }, [error]);
 

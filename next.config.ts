@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import bundleAnalyzer from '@next/bundle-analyzer';
-import { withSentryConfig } from '@sentry/nextjs';
+import { withSentryConfig, type SentryBuildOptions } from '@sentry/nextjs';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
@@ -16,8 +16,11 @@ const nextConfig: NextConfig = {
 // Compose plugins: first intl, then bundle analyzer
 const composedConfig = withBundleAnalyzer(withNextIntl(nextConfig));
 
+// Only wrap with Sentry if DSN is configured
+const isSentryEnabled = !!process.env.NEXT_PUBLIC_SENTRY_DSN;
+
 // Sentry configuration options
-const sentryConfig = {
+const sentryConfig: SentryBuildOptions = {
   // Suppress source map upload logs
   silent: !process.env.CI,
 
@@ -50,5 +53,7 @@ const sentryConfig = {
   autoInstrumentAppDirectory: true,
 };
 
-// Wrap with Sentry
-export default withSentryConfig(composedConfig, sentryConfig);
+// Export with or without Sentry wrapper based on configuration
+export default isSentryEnabled
+  ? withSentryConfig(composedConfig, sentryConfig)
+  : composedConfig;

@@ -1,18 +1,18 @@
 'use client';
 
-import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { AlertCircle, RefreshCw, Home } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { logger } from '@/lib/logger';
+import { captureErrorSync } from '@/lib/sentry';
 
 /**
  * Error Boundary Component
  *
  * Catches runtime errors in the page and displays a user-friendly error page.
- * Automatically logs errors to console and reports to Sentry.
+ * Automatically logs errors and reports to Sentry (if configured).
  */
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -30,14 +30,10 @@ export default function Error({ error, reset }: ErrorProps) {
       stack: error.stack,
     });
 
-    // Report to Sentry
-    Sentry.captureException(error, {
-      tags: {
-        errorBoundary: 'locale',
-      },
-      extra: {
-        digest: error.digest,
-      },
+    // Report to Sentry (safe to call even if Sentry not configured)
+    captureErrorSync(error, {
+      tags: { errorBoundary: 'locale' },
+      extra: { digest: error.digest },
     });
   }, [error]);
 

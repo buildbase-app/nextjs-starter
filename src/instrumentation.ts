@@ -1,4 +1,16 @@
+/**
+ * Next.js Instrumentation
+ *
+ * This file is used to initialize monitoring and observability tools.
+ * Sentry is only loaded if NEXT_PUBLIC_SENTRY_DSN is configured.
+ */
+
 export async function register() {
+  // Only load Sentry if DSN is configured
+  if (!process.env.NEXT_PUBLIC_SENTRY_DSN) {
+    return;
+  }
+
   if (process.env.NEXT_RUNTIME === 'nodejs') {
     await import('../sentry.server.config');
   }
@@ -27,6 +39,11 @@ export const onRequestError = async (
     renderType: 'dynamic' | 'dynamic-resume';
   }
 ) => {
+  // Only report to Sentry if DSN is configured
+  if (!process.env.NEXT_PUBLIC_SENTRY_DSN) {
+    return;
+  }
+
   const Sentry = await import('@sentry/nextjs');
 
   Sentry.captureException(error, {
