@@ -67,6 +67,11 @@ base-repo/
 │   │   ├── db.ts            # Prisma client
 │   │   ├── logger.ts        # Centralized logging utility
 │   │   ├── utils.ts         # Utility functions
+│   │   ├── format/          # Formatting utilities
+│   │   │   ├── index.ts     # Re-exports
+│   │   │   ├── date.ts      # Date/time formatting
+│   │   │   ├── number.ts    # Number/currency formatting
+│   │   │   └── string.ts    # String manipulation
 │   │   └── validation/      # Zod schemas & utilities
 │   │       ├── index.ts     # Re-exports
 │   │       ├── schemas.ts   # All validation schemas
@@ -295,6 +300,28 @@ Workflow: `.github/workflows/ci.yml`
 }
 ```
 
+### Format Utilities
+
+Locale-aware formatting via `src/lib/format/`:
+
+```typescript
+import { formatDate, formatCurrency, slugify } from '@/lib/format';
+
+// Date formatting
+formatDate(new Date(), 'en'); // "January 27, 2024"
+formatRelativeTime(pastDate, 'en'); // "2 days ago"
+
+// Number formatting
+formatCurrency(99.99, 'en', 'USD'); // "$99.99"
+formatCompact(1234567, 'en'); // "1.2M"
+formatBytes(1234567); // "1.18 MB"
+
+// String formatting
+slugify('Hello World!'); // "hello-world"
+truncate('Long text...', 10); // "Long te..."
+initials('John Doe'); // "JD"
+```
+
 ### UI/UX
 
 - **Theme support** (light/dark/system)
@@ -328,20 +355,7 @@ Files to create:
 
 ### Medium Priority
 
-#### 3. Utility Functions Library
-
-Centralized formatting utilities:
-
-```
-src/lib/format/
-├── date.ts      # formatDate, formatRelativeTime
-├── number.ts    # formatCurrency, formatCompact
-└── string.ts    # slugify, truncate, capitalize
-```
-
----
-
-#### 4. API Service Layer
+#### 2. API Service Layer
 
 Type-safe HTTP client for data fetching:
 
