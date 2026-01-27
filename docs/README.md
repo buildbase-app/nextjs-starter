@@ -215,6 +215,26 @@ reqLogger.info('Handling request'); // Automatically includes requestId & userId
 }
 ```
 
+### Health Check Endpoint
+
+- **Basic check**: `GET /api/health` — status, timestamp, version, uptime
+- **Deep check**: `GET /api/health?deep=true` — includes database connectivity
+- **Status codes**: 200 (healthy), 503 (degraded/unhealthy)
+- **Use cases**: Load balancers, uptime monitoring, deployment checks
+
+```json
+// GET /api/health?deep=true
+{
+  "status": "healthy",
+  "timestamp": "2024-01-27T12:00:00.000Z",
+  "version": "0.1.0",
+  "uptime": 3600,
+  "checks": {
+    "database": { "status": "up", "latencyMs": 5 }
+  }
+}
+```
+
 ### Code Quality & Git Hooks
 
 - **Husky** pre-commit hooks
@@ -309,23 +329,7 @@ src/services/
 
 ---
 
-#### 5. Health Check Endpoint
-
-For deployment monitoring:
-
-```typescript
-// src/app/api/health/route.ts
-export async function GET() {
-  return Response.json({
-    status: 'healthy',
-    timestamp: new Date().toISOString(),
-  });
-}
-```
-
----
-
-#### 6. Error Boundaries
+#### 5. Error Boundaries
 
 Global error handling:
 
@@ -334,7 +338,7 @@ Global error handling:
 
 ---
 
-#### 7. Bundle Analyzer
+#### 6. Bundle Analyzer
 
 Analyze and optimize bundle size:
 
