@@ -32,6 +32,11 @@ export const env = createEnv({
       .string()
       .min(1, 'BUILDBASE_CLIENT_SECRET is required'),
 
+    // Sentry (server-side, for source map uploads)
+    SENTRY_ORG: z.string().optional(),
+    SENTRY_PROJECT: z.string().optional(),
+    SENTRY_AUTH_TOKEN: z.string().optional(),
+
     // Node environment
     NODE_ENV: z
       .enum(['development', 'test', 'production'])
@@ -70,6 +75,9 @@ export const env = createEnv({
       .url('NEXT_PUBLIC_BUILDBASE_REDIRECT_URL must be a valid URL')
       .optional()
       .default('http://localhost:3000'),
+
+    // Sentry (client-side)
+    NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
   },
 
   /**
@@ -81,6 +89,9 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     SYSTEM_SECRET: process.env.SYSTEM_SECRET,
     BUILDBASE_CLIENT_SECRET: process.env.BUILDBASE_CLIENT_SECRET,
+    SENTRY_ORG: process.env.SENTRY_ORG,
+    SENTRY_PROJECT: process.env.SENTRY_PROJECT,
+    SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
     NODE_ENV: process.env.NODE_ENV,
 
     // Client
@@ -92,6 +103,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_BUILDBASE_CLIENT_ID,
     NEXT_PUBLIC_BUILDBASE_REDIRECT_URL:
       process.env.NEXT_PUBLIC_BUILDBASE_REDIRECT_URL,
+    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
   },
 
   /**

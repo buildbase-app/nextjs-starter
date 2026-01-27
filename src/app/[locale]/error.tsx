@@ -6,12 +6,13 @@ import { Button } from '@/components/ui/button';
 import { AlertCircle, RefreshCw, Home } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { logger } from '@/lib/logger';
+import { captureErrorSync } from '@/lib/sentry';
 
 /**
  * Error Boundary Component
  *
  * Catches runtime errors in the page and displays a user-friendly error page.
- * Automatically logs errors and provides recovery options.
+ * Automatically logs errors and reports to Sentry (if configured).
  */
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -22,11 +23,17 @@ export default function Error({ error, reset }: ErrorProps) {
   const t = useTranslations('errors');
 
   useEffect(() => {
-    // Log error to monitoring service
+    // Log error locally
     logger.error('Page error caught by error boundary', {
       message: error.message,
       digest: error.digest,
       stack: error.stack,
+    });
+
+    // Report to Sentry (safe to call even if Sentry not configured)
+    captureErrorSync(error, {
+      tags: { errorBoundary: 'locale' },
+      extra: { digest: error.digest },
     });
   }, [error]);
 
@@ -52,7 +59,7 @@ export default function Error({ error, reset }: ErrorProps) {
             <p className="mb-2 text-sm font-medium text-foreground">
               Error Details:
             </p>
-            <code className="text-xs text-muted-foreground break-all">
+            <code className="break-all text-xs text-muted-foreground">
               {error.message}
             </code>
             {error.digest && (
