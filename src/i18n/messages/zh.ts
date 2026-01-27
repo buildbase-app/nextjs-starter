@@ -95,6 +95,19 @@ const messages: Messages = {
       },
     },
   },
+  errors: {
+    generic: {
+      title: '出了点问题',
+      description: '发生了意外错误。请重试，如果问题仍然存在，请联系支持。',
+      tryAgain: '重试',
+      goHome: '返回首页',
+    },
+    notFound: {
+      title: '页面未找到',
+      description: '抱歉，我们找不到您要查找的页面。它可能已被移动或删除。',
+      goBack: '返回',
+    },
+  },
 };
 
 export default messages;

@@ -124,6 +124,15 @@ base-repo/
 - **Main content landmarks** with `id="main-content"`
 - **Semantic HTML** structure
 
+### Error Handling
+
+- **Error boundary** (`src/app/[locale]/error.tsx`) — catches runtime errors
+- **404 page** (`src/app/[locale]/not-found.tsx`) — localized not found page
+- **Localized** error messages in all 8 languages
+- **Dev mode** shows error details; prod mode hides them
+- **Recovery options**: "Try again" and "Go home" buttons
+- **Error logging** via centralized logger
+
 ### Validation (Zod)
 
 - **Type-safe schemas** for all inputs (`src/lib/validation/`)
@@ -329,16 +338,7 @@ src/services/
 
 ---
 
-#### 5. Error Boundaries
-
-Global error handling:
-
-- `src/app/[locale]/error.tsx` - Page-level
-- `src/app/[locale]/not-found.tsx` - Localized 404
-
----
-
-#### 6. Bundle Analyzer
+#### 5. Bundle Analyzer
 
 Analyze and optimize bundle size:
 

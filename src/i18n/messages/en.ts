@@ -95,6 +95,21 @@ const messages: Messages = {
       },
     },
   },
+  errors: {
+    generic: {
+      title: 'Something went wrong',
+      description:
+        'An unexpected error occurred. Please try again or contact support if the problem persists.',
+      tryAgain: 'Try again',
+      goHome: 'Go to homepage',
+    },
+    notFound: {
+      title: 'Page not found',
+      description:
+        "Sorry, we couldn't find the page you're looking for. It may have been moved or deleted.",
+      goBack: 'Go back',
+    },
+  },
 };
 
 export default messages;

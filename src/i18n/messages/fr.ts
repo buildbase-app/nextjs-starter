@@ -96,6 +96,21 @@ const messages: Messages = {
       },
     },
   },
+  errors: {
+    generic: {
+      title: 'Une erreur est survenue',
+      description:
+        "Une erreur inattendue s'est produite. Veuillez réessayer ou contacter le support si le problème persiste.",
+      tryAgain: 'Réessayer',
+      goHome: "Retour à l'accueil",
+    },
+    notFound: {
+      title: 'Page non trouvée',
+      description:
+        "Désolé, nous n'avons pas pu trouver la page que vous recherchez. Elle a peut-être été déplacée ou supprimée.",
+      goBack: 'Retour',
+    },
+  },
 };
 
 export default messages;

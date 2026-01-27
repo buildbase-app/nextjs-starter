@@ -96,6 +96,21 @@ const messages: Messages = {
       },
     },
   },
+  errors: {
+    generic: {
+      title: '問題が発生しました',
+      description:
+        '予期しないエラーが発生しました。もう一度お試しいただくか、問題が解決しない場合はサポートにお問い合わせください。',
+      tryAgain: 'もう一度試す',
+      goHome: 'ホームに戻る',
+    },
+    notFound: {
+      title: 'ページが見つかりません',
+      description:
+        '申し訳ありませんが、お探しのページが見つかりませんでした。移動または削除された可能性があります。',
+      goBack: '戻る',
+    },
+  },
 };
 
 export default messages;
