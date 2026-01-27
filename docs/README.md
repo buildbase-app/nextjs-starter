@@ -244,6 +244,13 @@ reqLogger.info('Handling request'); // Automatically includes requestId & userId
 }
 ```
 
+### Bundle Analyzer
+
+- **Visualize bundle size** with `@next/bundle-analyzer`
+- **Identify large dependencies** for optimization
+- **Run**: `npm run build:analyze`
+- Opens interactive treemap in browser after build
+
 ### Code Quality & Git Hooks
 
 - **Husky** pre-commit hooks
@@ -338,16 +345,6 @@ src/services/
 
 ---
 
-#### 5. Bundle Analyzer
-
-Analyze and optimize bundle size:
-
-```bash
-npm install --save-dev @next/bundle-analyzer
-```
-
----
-
 ### Low Priority
 
 - **RSS Feeds** - For blog/news content
@@ -360,16 +357,17 @@ npm install --save-dev @next/bundle-analyzer
 
 ## 🔧 Scripts
 
-| Script                 | Description                          |
-| ---------------------- | ------------------------------------ |
-| `npm run dev`          | Start development server             |
-| `npm run build`        | Build for production (validates env) |
-| `npm run start`        | Start production server              |
-| `npm run lint`         | Run ESLint                           |
-| `npm run lint:fix`     | Fix ESLint errors                    |
-| `npm run format`       | Format with Prettier                 |
-| `npm run format:check` | Check formatting                     |
-| `npm run check`        | Run lint + format check              |
+| Script                  | Description                          |
+| ----------------------- | ------------------------------------ |
+| `npm run dev`           | Start development server             |
+| `npm run build`         | Build for production (validates env) |
+| `npm run build:analyze` | Build with bundle analyzer           |
+| `npm run start`         | Start production server              |
+| `npm run lint`          | Run ESLint                           |
+| `npm run lint:fix`      | Fix ESLint errors                    |
+| `npm run format`        | Format with Prettier                 |
+| `npm run format:check`  | Check formatting                     |
+| `npm run check`         | Run lint + format check              |
 
 ---
 
