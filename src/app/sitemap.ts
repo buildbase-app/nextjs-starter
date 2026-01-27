@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
 import { locales, defaultLocale } from '@/i18n/config';
+import { siteUrl } from '@/env';
 
-const baseUrl = process.env.SITE_URL || 'https://example.com';
+const baseUrl = siteUrl;
 
 type ChangeFrequency =
   | 'always'

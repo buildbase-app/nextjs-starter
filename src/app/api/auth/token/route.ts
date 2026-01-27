@@ -6,6 +6,7 @@ import {
   validateBody,
   isValidationError,
 } from '@/lib/validation';
+import { env } from '@/env';
 
 export async function POST(request: NextRequest) {
   // Validate request body with Zod
@@ -18,7 +19,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BUILDBASE_SERVER_URL}/api/v1/auth/token`,
+      `${env.NEXT_PUBLIC_BUILDBASE_SERVER_URL}/api/v1/auth/token`,
       {
         method: 'POST',
         headers: {
@@ -26,9 +27,9 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           code,
-          clientId: process.env.NEXT_PUBLIC_BUILDBASE_CLIENT_ID,
-          clientSecret: process.env.BUILDBASE_CLIENT_SECRET,
-          orgId: process.env.NEXT_PUBLIC_BUILDBASE_ORG_ID,
+          clientId: env.NEXT_PUBLIC_BUILDBASE_CLIENT_ID,
+          clientSecret: env.BUILDBASE_CLIENT_SECRET,
+          orgId: env.NEXT_PUBLIC_BUILDBASE_ORG_ID,
         }),
       }
     );

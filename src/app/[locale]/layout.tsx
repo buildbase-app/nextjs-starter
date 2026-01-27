@@ -12,9 +12,10 @@ import {
   getAlternateOgLocales,
   type Locale,
 } from '@/i18n/config';
+import { siteUrl } from '@/env';
 import '@buildbase/sdk/dist/saas-os.css';
 
-const baseUrl = process.env.SITE_URL || 'https://example.com';
+const baseUrl = siteUrl;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
