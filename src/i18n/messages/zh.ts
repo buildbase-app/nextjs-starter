@@ -32,6 +32,9 @@ const messages: Messages = {
       select: '选择语言',
       current: '当前语言',
     },
+    accessibility: {
+      skipToContent: '跳转到内容',
+    },
   },
   home: {
     title: '我的应用',

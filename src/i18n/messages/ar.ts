@@ -32,6 +32,9 @@ const messages: Messages = {
       select: 'اختر اللغة',
       current: 'اللغة الحالية',
     },
+    accessibility: {
+      skipToContent: 'انتقل إلى المحتوى',
+    },
   },
   home: {
     title: 'تطبيقي',

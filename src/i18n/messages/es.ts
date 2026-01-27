@@ -32,6 +32,9 @@ const messages: Messages = {
       select: 'Seleccionar idioma',
       current: 'Idioma actual',
     },
+    accessibility: {
+      skipToContent: 'Saltar al contenido',
+    },
   },
   home: {
     title: 'Mi App',

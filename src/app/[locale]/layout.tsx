@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SaaSProvider } from '@/components/saas-provider';
+import { SkipLink } from '@/components/skip-link';
 import {
   locales,
   defaultLocale,
@@ -113,6 +114,7 @@ export default async function LocaleLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <SkipLink />
             {children}
           </ThemeProvider>
         </SaaSProvider>

@@ -32,6 +32,9 @@ export interface CommonMessages {
     select: string;
     current: string;
   };
+  accessibility: {
+    skipToContent: string;
+  };
 }
 
 export interface HomeMessages {

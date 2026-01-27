@@ -25,7 +25,10 @@ export default async function HomePage() {
     <div className="flex min-h-screen flex-col bg-background">
       <HomeHeader title={t('title')} />
 
-      <main className="flex flex-1 flex-col items-center justify-center gap-6 p-6">
+      <main
+        id="main-content"
+        className="flex flex-1 flex-col items-center justify-center gap-6 p-6"
+      >
         <h2 className="text-4xl font-bold tracking-tight text-foreground">
           {t('hero.heading')}
         </h2>

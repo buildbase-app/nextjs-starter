@@ -32,6 +32,9 @@ const messages: Messages = {
       select: '言語を選択',
       current: '現在の言語',
     },
+    accessibility: {
+      skipToContent: 'コンテンツへスキップ',
+    },
   },
   home: {
     title: 'マイアプリ',

@@ -32,6 +32,9 @@ const messages: Messages = {
       select: 'भाषा चुनें',
       current: 'वर्तमान भाषा',
     },
+    accessibility: {
+      skipToContent: 'मुख्य सामग्री पर जाएं',
+    },
   },
   home: {
     title: 'मेरा ऐप',
