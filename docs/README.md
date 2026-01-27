@@ -251,6 +251,19 @@ reqLogger.info('Handling request'); // Automatically includes requestId & userId
 - **Run**: `npm run build:analyze`
 - Opens interactive treemap in browser after build
 
+### CI/CD - GitHub Actions
+
+- **Runs on every push** to any branch
+- **Code analysis** with detailed summary:
+  - ESLint linting
+  - Prettier formatting check
+  - TypeScript type checking
+  - Build verification
+  - Bundle size analysis
+- **Results visible** in GitHub Actions summary tab
+
+Workflow: `.github/workflows/ci.yml`
+
 ### Code Quality & Git Hooks
 
 - **Husky** pre-commit hooks
@@ -367,7 +380,8 @@ src/services/
 | `npm run lint:fix`      | Fix ESLint errors                    |
 | `npm run format`        | Format with Prettier                 |
 | `npm run format:check`  | Check formatting                     |
-| `npm run check`         | Run lint + format check              |
+| `npm run typecheck`     | Run TypeScript type checking         |
+| `npm run check`         | Run lint + format + typecheck        |
 
 ---
 
