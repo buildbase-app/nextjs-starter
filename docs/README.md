@@ -47,6 +47,9 @@ base-repo/
 │   │   ├── robots.ts        # robots.txt generation
 │   │   └── sitemap.ts       # Sitemap with i18n support
 │   ├── components/
+│   │   ├── seo/             # JSON-LD structured data
+│   │   │   ├── index.ts
+│   │   │   └── json-ld.tsx
 │   │   ├── ui/              # shadcn/ui components
 │   │   ├── app-sidebar.tsx  # Dashboard navigation
 │   │   ├── language-switcher.tsx
@@ -105,6 +108,13 @@ base-repo/
 - **OpenGraph metadata** with locale support
 - **Dynamic OG images** via `/api/og` endpoint
 - **Twitter cards**
+- **JSON-LD structured data** for rich snippets:
+  - `OrganizationJsonLd` - Company/brand info
+  - `WebSiteJsonLd` - Site-wide with search box
+  - `WebPageJsonLd` - Per-page metadata
+  - `BreadcrumbJsonLd` - Navigation breadcrumbs
+  - `FAQJsonLd` - FAQ rich results
+  - `ArticleJsonLd` - Blog posts/articles
 
 ### Security
 
@@ -313,19 +323,6 @@ Files to create:
 - `vitest.config.ts`
 - `src/test/setup.ts`
 - `src/**/*.test.ts`
-
----
-
-#### 2. JSON-LD Structured Data
-
-**Why:** Enables rich snippets in search results.
-
-Schemas to implement:
-
-- `Organization`
-- `WebSite`
-- `BreadcrumbList`
-- `WebPage`
 
 ---
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo';
 import './globals.css';
 
 const geistSans = Geist({
@@ -27,6 +28,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* JSON-LD Structured Data */}
+        <OrganizationJsonLd
+          name="My App"
+          description="My Next.js application with shadcn/ui and theme support"
+          // Add your social links here
+          // sameAs={[
+          //   'https://twitter.com/yourcompany',
+          //   'https://linkedin.com/company/yourcompany',
+          //   'https://github.com/yourcompany',
+          // ]}
+        />
+        <WebSiteJsonLd
+          name="My App"
+          description="My Next.js application with shadcn/ui and theme support"
+          // Uncomment if you have a search page
+          // searchUrl="/search?q={search_term_string}"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-screen`}
       >
