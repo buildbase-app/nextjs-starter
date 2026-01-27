@@ -88,7 +88,7 @@ export const createWorkspaceSchema = z.object({
 export const inviteUserSchema = z.object({
   email: emailSchema,
   role: z.enum(['admin', 'member', 'viewer'], {
-    errorMap: () => ({ message: 'Invalid role' }),
+    message: 'Invalid role',
   }),
 });
 
