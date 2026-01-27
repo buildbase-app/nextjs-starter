@@ -28,29 +28,33 @@ const sentryConfig: SentryBuildOptions = {
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
 
-  // Only upload source maps in production builds
-  disableServerWebpackPlugin: process.env.NODE_ENV !== 'production',
-  disableClientWebpackPlugin: process.env.NODE_ENV !== 'production',
-
   // Route browser requests to Sentry through a Next.js rewrite
   // to circumvent ad-blockers (optional)
   tunnelRoute: '/monitoring',
 
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
-
-  // Automatically tree-shake Sentry logger statements
-  disableLogger: true,
-
-  // Enable component annotations for better error context
-  reactComponentAnnotation: {
-    enabled: true,
+  // Source map options
+  sourcemaps: {
+    // Delete source maps after upload to hide them from clients
+    deleteSourcemapsAfterUpload: true,
   },
 
-  // Automatically instrument API routes
-  autoInstrumentServerFunctions: true,
-  autoInstrumentMiddleware: true,
-  autoInstrumentAppDirectory: true,
+  // Bundle size optimizations
+  bundleSizeOptimizations: {
+    // Tree-shake Sentry debug statements
+    excludeDebugStatements: true,
+  },
+
+  // Webpack-specific options
+  webpack: {
+    // Enable component annotations for better error context
+    reactComponentAnnotation: {
+      enabled: true,
+    },
+    // Automatically instrument API routes
+    autoInstrumentServerFunctions: true,
+    autoInstrumentMiddleware: true,
+    autoInstrumentAppDirectory: true,
+  },
 };
 
 // Export with or without Sentry wrapper based on configuration
