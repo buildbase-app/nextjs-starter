@@ -1,0 +1,139 @@
+name: CI - Code Analysis
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+env:
+  # Skip env validation during CI (no real secrets)
+  SKIP_ENV_VALIDATION: true
+
+jobs:
+  analyze:
+    name: Code Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-
+
+      - name: Run ESLint
+        id: lint
+        run: |
+          echo "## 🔍 ESLint Results" >> $GITHUB_STEP_SUMMARY
+          if npm run lint 2>&1 | tee lint-output.txt; then
+            echo "✅ No linting errors found" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Linting errors found:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat lint-output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Run Prettier Check
+        id: format
+        run: |
+          echo "## 🎨 Prettier Results" >> $GITHUB_STEP_SUMMARY
+          if npm run format:check 2>&1 | tee format-output.txt; then
+            echo "✅ All files are properly formatted" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Formatting issues found:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat format-output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Run \`npm run format\` to fix formatting issues" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: TypeScript Type Check
+        id: typecheck
+        run: |
+          echo "## 📘 TypeScript Results" >> $GITHUB_STEP_SUMMARY
+          if npx tsc --noEmit 2>&1 | tee tsc-output.txt; then
+            echo "✅ No type errors found" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Type errors found:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat tsc-output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Build Application
+        id: build
+        run: |
+          echo "## 🏗️ Build Results" >> $GITHUB_STEP_SUMMARY
+          if npm run build 2>&1 | tee build-output.txt; then
+            echo "✅ Build successful" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Build failed:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -50 build-output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Analyze Bundle Size
+        run: |
+          echo "## 📦 Bundle Size Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Get .next build output sizes
+          if [ -d ".next" ]; then
+            echo "### Server Bundle" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            du -sh .next/server/chunks/*.js 2>/dev/null | sort -rh | head -10 >> $GITHUB_STEP_SUMMARY || echo "No server chunks found" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Static Assets" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            du -sh .next/static/chunks/*.js 2>/dev/null | sort -rh | head -10 >> $GITHUB_STEP_SUMMARY || echo "No static chunks found" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Total Build Size" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            du -sh .next >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Analysis Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| ESLint | ${{ steps.lint.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Prettier | ${{ steps.format.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| TypeScript | ${{ steps.typecheck.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build | ${{ steps.build.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY

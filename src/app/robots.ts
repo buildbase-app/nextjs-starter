@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
+import { siteUrl } from '@/env';
 
-const baseUrl = process.env.SITE_URL || 'https://example.com';
+const baseUrl = siteUrl;
 
 export default function robots(): MetadataRoute.Robots {
   return {

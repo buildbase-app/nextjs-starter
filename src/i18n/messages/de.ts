@@ -32,6 +32,9 @@ const messages: Messages = {
       select: 'Sprache wählen',
       current: 'Aktuelle Sprache',
     },
+    accessibility: {
+      skipToContent: 'Zum Inhalt springen',
+    },
   },
   home: {
     title: 'Meine App',
@@ -91,6 +94,21 @@ const messages: Messages = {
         title: 'Einstellungen',
         description: 'Verwalten Sie Ihre Einstellungen',
       },
+    },
+  },
+  errors: {
+    generic: {
+      title: 'Etwas ist schiefgelaufen',
+      description:
+        'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie den Support, wenn das Problem weiterhin besteht.',
+      tryAgain: 'Erneut versuchen',
+      goHome: 'Zur Startseite',
+    },
+    notFound: {
+      title: 'Seite nicht gefunden',
+      description:
+        'Entschuldigung, wir konnten die gesuchte Seite nicht finden. Sie wurde möglicherweise verschoben oder gelöscht.',
+      goBack: 'Zurück',
     },
   },
 };

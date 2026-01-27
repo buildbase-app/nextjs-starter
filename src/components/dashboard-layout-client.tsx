@@ -59,7 +59,9 @@ export function DashboardLayoutClient({
               <div className="flex-1" />
               <ThemeToggle />
             </header>
-            <main className="flex-1 p-6">{children}</main>
+            <main id="main-content" className="flex-1 p-6">
+              {children}
+            </main>
           </SidebarInset>
         </SidebarProvider>
       </WhenAuthenticated>

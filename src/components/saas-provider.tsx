@@ -7,14 +7,13 @@ import {
   type EventData,
 } from '@buildbase/sdk';
 import React from 'react';
+import { env } from '@/env';
 
 const config = {
-  serverUrl:
-    process.env.NEXT_PUBLIC_BUILDBASE_SERVER_URL || 'https://api.buildbase.app',
-  orgId: process.env.NEXT_PUBLIC_BUILDBASE_ORG_ID || '',
-  clientId: process.env.NEXT_PUBLIC_BUILDBASE_CLIENT_ID || '',
-  redirectUrl:
-    process.env.NEXT_PUBLIC_BUILDBASE_REDIRECT_URL || 'http://localhost:3000',
+  serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
+  orgId: env.NEXT_PUBLIC_BUILDBASE_ORG_ID,
+  clientId: env.NEXT_PUBLIC_BUILDBASE_CLIENT_ID,
+  redirectUrl: env.NEXT_PUBLIC_BUILDBASE_REDIRECT_URL,
 };
 
 function storeAuthToken(token: string) {

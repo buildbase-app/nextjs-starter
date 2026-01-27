@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SaaSProvider } from '@/components/saas-provider';
+import { SkipLink } from '@/components/skip-link';
 import {
   locales,
   defaultLocale,
@@ -12,9 +13,10 @@ import {
   getAlternateOgLocales,
   type Locale,
 } from '@/i18n/config';
+import { siteUrl } from '@/env';
 import '@buildbase/sdk/dist/saas-os.css';
 
-const baseUrl = process.env.SITE_URL || 'https://example.com';
+const baseUrl = siteUrl;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -112,6 +114,7 @@ export default async function LocaleLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <SkipLink />
             {children}
           </ThemeProvider>
         </SaaSProvider>

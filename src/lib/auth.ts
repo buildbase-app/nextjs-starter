@@ -1,11 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { headers } from 'next/headers';
+import { env } from '@/env';
 
-const SYSTEM_SECRET = process.env.SYSTEM_SECRET as string;
-
-if (!SYSTEM_SECRET) {
-  throw new Error('SYSTEM_SECRET environment variable is required');
-}
+const SYSTEM_SECRET = env.SYSTEM_SECRET;
 
 export interface AuthToken {
   userId: string;
@@ -23,11 +20,9 @@ export interface CreateAuthTokenParams {
 
 export function createAuthToken(params: CreateAuthTokenParams): string {
   const { userId, workspaceId = null, userRole = 'member' } = params;
-  return jwt.sign(
-    { userId, workspaceId, userRole },
-    SYSTEM_SECRET,
-    { expiresIn: '7d' }
-  );
+  return jwt.sign({ userId, workspaceId, userRole }, SYSTEM_SECRET, {
+    expiresIn: '7d',
+  });
 }
 
 /**

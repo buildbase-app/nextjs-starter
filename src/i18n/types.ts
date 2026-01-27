@@ -32,6 +32,9 @@ export interface CommonMessages {
     select: string;
     current: string;
   };
+  accessibility: {
+    skipToContent: string;
+  };
 }
 
 export interface HomeMessages {
@@ -94,11 +97,26 @@ export interface DashboardMessages {
   };
 }
 
+export interface ErrorMessages {
+  generic: {
+    title: string;
+    description: string;
+    tryAgain: string;
+    goHome: string;
+  };
+  notFound: {
+    title: string;
+    description: string;
+    goBack: string;
+  };
+}
+
 // Combined messages type
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
   dashboard: DashboardMessages;
+  errors: ErrorMessages;
 }
 
 // For next-intl type inference

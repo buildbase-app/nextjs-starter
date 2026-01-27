@@ -1,39 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { createAuthToken } from '@/lib/auth';
+import {
+  authCodeSchema,
+  validateBody,
+  isValidationError,
+} from '@/lib/validation';
+import { env } from '@/env';
+import { logger } from '@/lib/logger';
 
 export async function POST(request: NextRequest) {
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json(
-      { success: false, message: 'Invalid request body' },
-      { status: 400 }
-    );
+  // Validate request body with Zod
+  const validationResult = await validateBody(request, authCodeSchema);
+  if (isValidationError(validationResult)) {
+    return validationResult;
   }
 
-  const { code } = body;
-
-  // Input validation
-  if (!code || typeof code !== 'string') {
-    return NextResponse.json(
-      { success: false, message: 'Invalid or missing code parameter' },
-      { status: 400 }
-    );
-  }
-
-  // Validate code format (alphanumeric, reasonable length)
-  if (!/^[a-zA-Z0-9_-]{10,256}$/.test(code)) {
-    return NextResponse.json(
-      { success: false, message: 'Invalid code format' },
-      { status: 400 }
-    );
-  }
+  const { code } = validationResult;
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BUILDBASE_SERVER_URL}/api/v1/auth/token`,
+      `${env.NEXT_PUBLIC_BUILDBASE_SERVER_URL}/api/v1/auth/token`,
       {
         method: 'POST',
         headers: {
@@ -41,9 +28,9 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           code,
-          clientId: process.env.NEXT_PUBLIC_BUILDBASE_CLIENT_ID,
-          clientSecret: process.env.BUILDBASE_CLIENT_SECRET,
-          orgId: process.env.NEXT_PUBLIC_BUILDBASE_ORG_ID,
+          clientId: env.NEXT_PUBLIC_BUILDBASE_CLIENT_ID,
+          clientSecret: env.BUILDBASE_CLIENT_SECRET,
+          orgId: env.NEXT_PUBLIC_BUILDBASE_ORG_ID,
         }),
       }
     );
@@ -102,11 +89,9 @@ export async function POST(request: NextRequest) {
       user: userData,
     });
   } catch (error) {
-    // Log error safely without exposing sensitive details
-    console.error(
-      'Auth token exchange error:',
-      error instanceof Error ? error.message : 'Unknown error'
-    );
+    logger.error('Auth token exchange failed', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     return NextResponse.json(
       { success: false, message: 'Internal server error' },
       { status: 500 }

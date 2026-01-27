@@ -32,6 +32,9 @@ const messages: Messages = {
       select: 'Seleccionar idioma',
       current: 'Idioma actual',
     },
+    accessibility: {
+      skipToContent: 'Saltar al contenido',
+    },
   },
   home: {
     title: 'Mi App',
@@ -90,6 +93,21 @@ const messages: Messages = {
         title: 'Configuración',
         description: 'Gestiona tu configuración',
       },
+    },
+  },
+  errors: {
+    generic: {
+      title: 'Algo salió mal',
+      description:
+        'Ocurrió un error inesperado. Por favor, inténtalo de nuevo o contacta con soporte si el problema persiste.',
+      tryAgain: 'Intentar de nuevo',
+      goHome: 'Ir al inicio',
+    },
+    notFound: {
+      title: 'Página no encontrada',
+      description:
+        'Lo sentimos, no pudimos encontrar la página que buscas. Puede haber sido movida o eliminada.',
+      goBack: 'Volver atrás',
     },
   },
 };

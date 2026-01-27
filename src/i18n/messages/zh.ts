@@ -32,6 +32,9 @@ const messages: Messages = {
       select: '选择语言',
       current: '当前语言',
     },
+    accessibility: {
+      skipToContent: '跳转到内容',
+    },
   },
   home: {
     title: '我的应用',
@@ -90,6 +93,19 @@ const messages: Messages = {
         title: '设置',
         description: '管理您的设置',
       },
+    },
+  },
+  errors: {
+    generic: {
+      title: '出了点问题',
+      description: '发生了意外错误。请重试，如果问题仍然存在，请联系支持。',
+      tryAgain: '重试',
+      goHome: '返回首页',
+    },
+    notFound: {
+      title: '页面未找到',
+      description: '抱歉，我们找不到您要查找的页面。它可能已被移动或删除。',
+      goBack: '返回',
     },
   },
 };

@@ -32,6 +32,9 @@ const messages: Messages = {
       select: 'اختر اللغة',
       current: 'اللغة الحالية',
     },
+    accessibility: {
+      skipToContent: 'انتقل إلى المحتوى',
+    },
   },
   home: {
     title: 'تطبيقي',
@@ -90,6 +93,21 @@ const messages: Messages = {
         title: 'الإعدادات',
         description: 'إدارة إعداداتك',
       },
+    },
+  },
+  errors: {
+    generic: {
+      title: 'حدث خطأ ما',
+      description:
+        'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى أو الاتصال بالدعم إذا استمرت المشكلة.',
+      tryAgain: 'حاول مرة أخرى',
+      goHome: 'العودة للرئيسية',
+    },
+    notFound: {
+      title: 'الصفحة غير موجودة',
+      description:
+        'عذراً، لم نتمكن من العثور على الصفحة التي تبحث عنها. ربما تم نقلها أو حذفها.',
+      goBack: 'العودة',
     },
   },
 };
