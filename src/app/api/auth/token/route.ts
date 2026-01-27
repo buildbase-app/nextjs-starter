@@ -1,35 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { createAuthToken } from '@/lib/auth';
+import {
+  authCodeSchema,
+  validateBody,
+  isValidationError,
+} from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json(
-      { success: false, message: 'Invalid request body' },
-      { status: 400 }
-    );
+  // Validate request body with Zod
+  const validationResult = await validateBody(request, authCodeSchema);
+  if (isValidationError(validationResult)) {
+    return validationResult;
   }
 
-  const { code } = body;
-
-  // Input validation
-  if (!code || typeof code !== 'string') {
-    return NextResponse.json(
-      { success: false, message: 'Invalid or missing code parameter' },
-      { status: 400 }
-    );
-  }
-
-  // Validate code format (alphanumeric, reasonable length)
-  if (!/^[a-zA-Z0-9_-]{10,256}$/.test(code)) {
-    return NextResponse.json(
-      { success: false, message: 'Invalid code format' },
-      { status: 400 }
-    );
-  }
+  const { code } = validationResult;
 
   try {
     const response = await fetch(
