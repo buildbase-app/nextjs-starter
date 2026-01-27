@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { logger } from '@/lib/logger';
 
 type EventType =
   | 'user:created'
@@ -230,12 +231,15 @@ export async function POST(request: NextRequest) {
       }
 
       default:
-        console.log('Unknown event type:', eventType);
+        logger.warn('Unknown event type received', { eventType });
     }
 
+    logger.debug('Event processed successfully', { eventType });
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Event handling error:', error);
+    logger.error('Event handling failed', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     return NextResponse.json(
       { success: false, error: 'Failed to process event' },
       { status: 500 }

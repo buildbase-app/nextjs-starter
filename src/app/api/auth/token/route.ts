@@ -7,6 +7,7 @@ import {
   isValidationError,
 } from '@/lib/validation';
 import { env } from '@/env';
+import { logger } from '@/lib/logger';
 
 export async function POST(request: NextRequest) {
   // Validate request body with Zod
@@ -88,11 +89,9 @@ export async function POST(request: NextRequest) {
       user: userData,
     });
   } catch (error) {
-    // Log error safely without exposing sensitive details
-    console.error(
-      'Auth token exchange error:',
-      error instanceof Error ? error.message : 'Unknown error'
-    );
+    logger.error('Auth token exchange failed', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     return NextResponse.json(
       { success: false, message: 'Internal server error' },
       { status: 500 }

@@ -5,6 +5,7 @@ import {
   validateBody,
   isValidationError,
 } from '@/lib/validation';
+import { logger } from '@/lib/logger';
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,15 +19,20 @@ export async function POST(request: NextRequest) {
 
     const token = createAuthToken({ userId, workspaceId, userRole });
 
+    logger.debug('Workspace token generated', {
+      userId,
+      workspaceId,
+      userRole,
+    });
+
     return NextResponse.json({
       success: true,
       token,
     });
   } catch (error) {
-    console.error(
-      'Workspace token error:',
-      error instanceof Error ? error.message : 'Unknown error'
-    );
+    logger.error('Workspace token generation failed', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     return NextResponse.json(
       { success: false, message: 'Failed to generate token' },
       { status: 500 }

@@ -62,6 +62,7 @@ base-repo/
 │   ├── lib/
 │   │   ├── auth.ts          # JWT token utilities
 │   │   ├── db.ts            # Prisma client
+│   │   ├── logger.ts        # Centralized logging utility
 │   │   ├── utils.ts         # Utility functions
 │   │   └── validation/      # Zod schemas & utilities
 │   │       ├── index.ts     # Re-exports
@@ -116,6 +117,13 @@ base-repo/
   - Permissions-Policy
 - **Input validation** with Zod on all API endpoints
 
+### Accessibility
+
+- **Skip-to-content link** for keyboard/screen reader users
+- **Localized** in all 8 languages
+- **Main content landmarks** with `id="main-content"`
+- **Semantic HTML** structure
+
 ### Validation (Zod)
 
 - **Type-safe schemas** for all inputs (`src/lib/validation/`)
@@ -162,6 +170,49 @@ env.BUILDBASE_CLIENT_SECRET;
 // Client-safe (NEXT_PUBLIC_*)
 env.NEXT_PUBLIC_BUILDBASE_ORG_ID;
 env.NEXT_PUBLIC_SITE_URL;
+```
+
+### Logging Utility
+
+- **Centralized logging** via `src/lib/logger.ts`
+- **Environment-aware output**:
+  - **Development**: Colorized, human-readable with timestamps
+  - **Production**: JSON format for log aggregation (CloudWatch, Datadog, etc.)
+- **Log levels**: `debug`, `info`, `warn`, `error`
+- **Configurable** via `LOG_LEVEL` environment variable
+- **Child loggers** for request-scoped context
+
+```typescript
+import { logger, createRequestLogger } from '@/lib/logger';
+
+// Basic usage
+logger.info('Server started', { port: 3000 });
+logger.error('Database connection failed', { error: err.message });
+
+// With context
+logger.debug('Processing request', { userId: '123', action: 'login' });
+
+// Request-scoped logger (includes requestId in all logs)
+const reqLogger = createRequestLogger('req-abc-123', 'user-456');
+reqLogger.info('Handling request'); // Automatically includes requestId & userId
+```
+
+**Dev output:**
+
+```
+14:32:15 [INFO] Server started port=3000
+14:32:16 [ERROR] Database connection failed error="Connection refused"
+```
+
+**Prod output (JSON):**
+
+```json
+{
+  "timestamp": "2024-01-27T09:02:15.123Z",
+  "level": "info",
+  "message": "Server started",
+  "context": { "port": 3000 }
+}
 ```
 
 ### Code Quality & Git Hooks
@@ -229,29 +280,9 @@ Schemas to implement:
 
 ---
 
-#### 3. Skip-to-Content Link
-
-**Why:** Accessibility requirement for keyboard users.
-
-```typescript
-// src/components/skip-link.tsx
-export function SkipLink() {
-  return (
-    <a
-      href="#main-content"
-      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2"
-    >
-      Skip to content
-    </a>
-  );
-}
-```
-
----
-
 ### Medium Priority
 
-#### 4. Utility Functions Library
+#### 3. Utility Functions Library
 
 Centralized formatting utilities:
 
@@ -264,7 +295,7 @@ src/lib/format/
 
 ---
 
-#### 5. API Service Layer
+#### 4. API Service Layer
 
 Type-safe HTTP client for data fetching:
 
@@ -278,7 +309,7 @@ src/services/
 
 ---
 
-#### 6. Health Check Endpoint
+#### 5. Health Check Endpoint
 
 For deployment monitoring:
 
@@ -294,7 +325,7 @@ export async function GET() {
 
 ---
 
-#### 7. Error Boundaries
+#### 6. Error Boundaries
 
 Global error handling:
 
@@ -303,23 +334,7 @@ Global error handling:
 
 ---
 
-#### 8. Logging Utility
-
-Structured logging for dev/prod:
-
-```typescript
-// src/lib/logger.ts
-export const logger = {
-  debug: (msg, data?) => log('debug', msg, data),
-  info: (msg, data?) => log('info', msg, data),
-  warn: (msg, data?) => log('warn', msg, data),
-  error: (msg, data?) => log('error', msg, data),
-};
-```
-
----
-
-#### 9. Bundle Analyzer
+#### 7. Bundle Analyzer
 
 Analyze and optimize bundle size:
 
