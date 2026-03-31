@@ -54,7 +54,7 @@ export default function Error({ error, reset }: ErrorProps) {
           {t('generic.description')}
         </p>
 
-        {process.env.NODE_ENV === 'development' && (
+        {process.env.NODE_ENV === 'development' ? (
           <div className="mb-6 max-w-lg rounded-lg bg-muted p-4 text-left">
             <p className="mb-2 text-sm font-medium text-foreground">
               Error Details:
@@ -62,13 +62,13 @@ export default function Error({ error, reset }: ErrorProps) {
             <code className="break-all text-xs text-muted-foreground">
               {error.message}
             </code>
-            {error.digest && (
+            {error.digest ? (
               <p className="mt-2 text-xs text-muted-foreground">
                 Digest: {error.digest}
               </p>
-            )}
+            ) : null}
           </div>
-        )}
+        ) : null}
 
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Button onClick={reset} variant="default">

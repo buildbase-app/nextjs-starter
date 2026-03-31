@@ -116,7 +116,7 @@ export function AppSidebar() {
                 <div className="flex h-10 cursor-pointer items-center gap-2 rounded-md border px-3 hover:bg-muted">
                   {currentWorkspace ? (
                     <>
-                      {currentWorkspace.image && (
+                      {currentWorkspace.image ? (
                         <Image
                           src={currentWorkspace.image}
                           alt={currentWorkspace.name}
@@ -124,7 +124,7 @@ export function AppSidebar() {
                           height={24}
                           className="rounded"
                         />
-                      )}
+                      ) : null}
                       <span className="text-sm font-medium truncate">
                         {currentWorkspace.name}
                       </span>

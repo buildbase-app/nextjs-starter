@@ -46,7 +46,7 @@ export default function GlobalError({
               working to fix this issue.
             </p>
 
-            {process.env.NODE_ENV === 'development' && (
+            {process.env.NODE_ENV === 'development' ? (
               <div className="mb-6 max-w-lg rounded-lg bg-gray-100 p-4 text-left dark:bg-gray-800">
                 <p className="mb-2 text-sm font-medium text-gray-900 dark:text-gray-100">
                   Error Details:
@@ -54,13 +54,13 @@ export default function GlobalError({
                 <code className="break-all text-xs text-gray-700 dark:text-gray-300">
                   {error.message}
                 </code>
-                {error.digest && (
+                {error.digest ? (
                   <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                     Digest: {error.digest}
                   </p>
-                )}
+                ) : null}
               </div>
-            )}
+            ) : null}
 
             <Button onClick={reset}>
               <RefreshCw className="mr-2 h-4 w-4" />
