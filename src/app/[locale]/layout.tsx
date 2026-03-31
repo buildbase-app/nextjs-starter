@@ -4,7 +4,9 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SaaSProvider } from '@/components/saas-provider';
+import { QueryProvider } from '@/components/query-provider';
 import { SkipLink } from '@/components/skip-link';
+import { Toaster } from 'sonner';
 import {
   locales,
   defaultLocale,
@@ -107,17 +109,20 @@ export default async function LocaleLayout({
   return (
     <div lang={locale} dir={isRtl ? 'rtl' : 'ltr'} className="contents">
       <NextIntlClientProvider messages={messages}>
-        <SaaSProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <SkipLink />
-            {children}
-          </ThemeProvider>
-        </SaaSProvider>
+        <QueryProvider>
+          <SaaSProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <SkipLink />
+              {children}
+              <Toaster richColors position="bottom-right" />
+            </ThemeProvider>
+          </SaaSProvider>
+        </QueryProvider>
       </NextIntlClientProvider>
     </div>
   );
