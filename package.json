@@ -16,7 +16,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@buildbase/sdk": "^0.0.18",
+    "@buildbase/sdk": "^0.0.20",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",

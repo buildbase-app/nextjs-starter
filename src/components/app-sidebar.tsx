@@ -11,6 +11,8 @@ import {
   BarChart3,
   LogOut,
   ChevronUp,
+  CreditCard,
+  User,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -28,7 +30,9 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
@@ -197,15 +201,31 @@ export function AppSidebar() {
                 <DropdownMenuItem
                   onClick={() => openWorkspaceSettings('profile')}
                 >
-                  <Users className="mr-2 h-4 w-4" />
+                  <User className="mr-2 h-4 w-4" />
                   Profile
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => openWorkspaceSettings('general')}
-                >
-                  <Settings className="mr-2 h-4 w-4" />
-                  Workspace Settings
-                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuLabel>Manage Workspace</DropdownMenuLabel>
+                  <DropdownMenuItem
+                    onClick={() => openWorkspaceSettings('general')}
+                  >
+                    <Settings className="mr-2 h-4 w-4" />
+                    General Settings
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => openWorkspaceSettings('users')}
+                  >
+                    <Users className="mr-2 h-4 w-4" />
+                    User Management
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => openWorkspaceSettings('subscription')}
+                  >
+                    <CreditCard className="mr-2 h-4 w-4" />
+                    Billing & Payments
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={signOut}>
                   <LogOut className="mr-2 h-4 w-4" />
