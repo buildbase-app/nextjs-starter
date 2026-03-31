@@ -9,6 +9,13 @@ const messages: Messages = {
       analytics: 'Analytiques',
       team: 'Équipe',
       settings: 'Paramètres',
+      menu: 'Menu',
+      selectWorkspace: "Sélectionner l'espace de travail",
+      profile: 'Profil',
+      manageWorkspace: "Gérer l'espace de travail",
+      generalSettings: 'Paramètres généraux',
+      userManagement: 'Gestion des utilisateurs',
+      billingPayments: 'Facturation et paiements',
     },
     buttons: {
       signIn: 'Se connecter',
@@ -35,6 +42,13 @@ const messages: Messages = {
     accessibility: {
       skipToContent: 'Aller au contenu',
     },
+    theme: {
+      toggle: 'Changer le thème',
+      light: 'Clair',
+      dark: 'Sombre',
+      system: 'Système',
+    },
+    redirecting: 'Redirection...',
   },
   home: {
     title: 'Mon App',
@@ -81,18 +95,22 @@ const messages: Messages = {
       documents: {
         title: 'Documents',
         description: 'Gérez vos documents',
+        placeholder: 'Le contenu des documents va ici.',
       },
       analytics: {
         title: 'Analytiques',
         description: 'Voir vos analytiques',
+        placeholder: "Le contenu d'analytiques va ici.",
       },
       team: {
         title: 'Équipe',
         description: 'Gérez votre équipe',
+        placeholder: "Le contenu de gestion d'équipe va ici.",
       },
       settings: {
         title: 'Paramètres',
         description: 'Gérez vos paramètres',
+        placeholder: 'Le contenu des paramètres va ici.',
       },
     },
   },

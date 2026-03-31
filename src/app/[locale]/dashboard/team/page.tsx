@@ -25,9 +25,7 @@ export default function TeamPage() {
           <CardDescription>{t('description')}</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">
-            Team management content goes here.
-          </p>
+          <p className="text-muted-foreground">{t('placeholder')}</p>
         </CardContent>
       </Card>
     </div>

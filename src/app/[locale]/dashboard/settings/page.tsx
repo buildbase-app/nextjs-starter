@@ -25,7 +25,7 @@ export default function SettingsPage() {
           <CardDescription>{t('description')}</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">Settings content goes here.</p>
+          <p className="text-muted-foreground">{t('placeholder')}</p>
         </CardContent>
       </Card>
     </div>

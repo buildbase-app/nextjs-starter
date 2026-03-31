@@ -131,7 +131,7 @@ export function AppSidebar() {
                     </>
                   ) : (
                     <span className="text-sm text-muted-foreground">
-                      Select workspace
+                      {t('nav.selectWorkspace')}
                     </span>
                   )}
                 </div>
@@ -145,7 +145,7 @@ export function AppSidebar() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupLabel>{t('nav.menu')}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => {
@@ -202,28 +202,30 @@ export function AppSidebar() {
                   onClick={() => openWorkspaceSettings('profile')}
                 >
                   <User className="mr-2 h-4 w-4" />
-                  Profile
+                  {t('nav.profile')}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuLabel>Manage Workspace</DropdownMenuLabel>
+                  <DropdownMenuLabel>
+                    {t('nav.manageWorkspace')}
+                  </DropdownMenuLabel>
                   <DropdownMenuItem
                     onClick={() => openWorkspaceSettings('general')}
                   >
                     <Settings className="mr-2 h-4 w-4" />
-                    General Settings
+                    {t('nav.generalSettings')}
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => openWorkspaceSettings('users')}
                   >
                     <Users className="mr-2 h-4 w-4" />
-                    User Management
+                    {t('nav.userManagement')}
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => openWorkspaceSettings('subscription')}
                   >
                     <CreditCard className="mr-2 h-4 w-4" />
-                    Billing & Payments
+                    {t('nav.billingPayments')}
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />

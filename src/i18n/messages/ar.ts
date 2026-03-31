@@ -9,6 +9,13 @@ const messages: Messages = {
       analytics: 'التحليلات',
       team: 'الفريق',
       settings: 'الإعدادات',
+      menu: 'القائمة',
+      selectWorkspace: 'اختر مساحة العمل',
+      profile: 'الملف الشخصي',
+      manageWorkspace: 'إدارة مساحة العمل',
+      generalSettings: 'الإعدادات العامة',
+      userManagement: 'إدارة المستخدمين',
+      billingPayments: 'الفواتير والمدفوعات',
     },
     buttons: {
       signIn: 'تسجيل الدخول',
@@ -35,6 +42,13 @@ const messages: Messages = {
     accessibility: {
       skipToContent: 'انتقل إلى المحتوى',
     },
+    theme: {
+      toggle: 'تبديل السمة',
+      light: 'فاتح',
+      dark: 'داكن',
+      system: 'النظام',
+    },
+    redirecting: 'جاري إعادة التوجيه...',
   },
   home: {
     title: 'تطبيقي',
@@ -80,18 +94,22 @@ const messages: Messages = {
       documents: {
         title: 'المستندات',
         description: 'إدارة مستنداتك',
+        placeholder: 'محتوى المستندات سيظهر هنا.',
       },
       analytics: {
         title: 'التحليلات',
         description: 'عرض تحليلاتك',
+        placeholder: 'محتوى التحليلات سيظهر هنا.',
       },
       team: {
         title: 'الفريق',
         description: 'إدارة فريقك',
+        placeholder: 'محتوى إدارة الفريق سيظهر هنا.',
       },
       settings: {
         title: 'الإعدادات',
         description: 'إدارة إعداداتك',
+        placeholder: 'محتوى الإعدادات سيظهر هنا.',
       },
     },
   },

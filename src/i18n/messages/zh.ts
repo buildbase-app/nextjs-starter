@@ -9,6 +9,13 @@ const messages: Messages = {
       analytics: '分析',
       team: '团队',
       settings: '设置',
+      menu: '菜单',
+      selectWorkspace: '选择工作区',
+      profile: '个人资料',
+      manageWorkspace: '管理工作区',
+      generalSettings: '常规设置',
+      userManagement: '用户管理',
+      billingPayments: '账单与支付',
     },
     buttons: {
       signIn: '登录',
@@ -35,6 +42,13 @@ const messages: Messages = {
     accessibility: {
       skipToContent: '跳转到内容',
     },
+    theme: {
+      toggle: '切换主题',
+      light: '浅色',
+      dark: '深色',
+      system: '系统',
+    },
+    redirecting: '重定向中...',
   },
   home: {
     title: '我的应用',
@@ -80,18 +94,22 @@ const messages: Messages = {
       documents: {
         title: '文档',
         description: '管理您的文档',
+        placeholder: '文档内容将在此处显示。',
       },
       analytics: {
         title: '分析',
         description: '查看您的分析',
+        placeholder: '分析内容将在此处显示。',
       },
       team: {
         title: '团队',
         description: '管理您的团队',
+        placeholder: '团队管理内容将在此处显示。',
       },
       settings: {
         title: '设置',
         description: '管理您的设置',
+        placeholder: '设置内容将在此处显示。',
       },
     },
   },

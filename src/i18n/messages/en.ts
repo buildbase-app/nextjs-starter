@@ -9,6 +9,13 @@ const messages: Messages = {
       analytics: 'Analytics',
       team: 'Team',
       settings: 'Settings',
+      menu: 'Menu',
+      selectWorkspace: 'Select workspace',
+      profile: 'Profile',
+      manageWorkspace: 'Manage Workspace',
+      generalSettings: 'General Settings',
+      userManagement: 'User Management',
+      billingPayments: 'Billing & Payments',
     },
     buttons: {
       signIn: 'Sign In',
@@ -35,6 +42,13 @@ const messages: Messages = {
     accessibility: {
       skipToContent: 'Skip to content',
     },
+    theme: {
+      toggle: 'Toggle theme',
+      light: 'Light',
+      dark: 'Dark',
+      system: 'System',
+    },
+    redirecting: 'Redirecting...',
   },
   home: {
     title: 'My App',
@@ -80,18 +94,22 @@ const messages: Messages = {
       documents: {
         title: 'Documents',
         description: 'Manage your documents',
+        placeholder: 'Documents content goes here.',
       },
       analytics: {
         title: 'Analytics',
         description: 'View your analytics',
+        placeholder: 'Analytics content goes here.',
       },
       team: {
         title: 'Team',
         description: 'Manage your team',
+        placeholder: 'Team management content goes here.',
       },
       settings: {
         title: 'Settings',
         description: 'Manage your settings',
+        placeholder: 'Settings content goes here.',
       },
     },
   },

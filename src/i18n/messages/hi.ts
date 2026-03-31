@@ -9,6 +9,13 @@ const messages: Messages = {
       analytics: 'एनालिटिक्स',
       team: 'टीम',
       settings: 'सेटिंग्स',
+      menu: 'मेनू',
+      selectWorkspace: 'वर्कस्पेस चुनें',
+      profile: 'प्रोफ़ाइल',
+      manageWorkspace: 'वर्कस्पेस प्रबंधित करें',
+      generalSettings: 'सामान्य सेटिंग्स',
+      userManagement: 'उपयोगकर्ता प्रबंधन',
+      billingPayments: 'बिलिंग और भुगतान',
     },
     buttons: {
       signIn: 'साइन इन करें',
@@ -35,6 +42,13 @@ const messages: Messages = {
     accessibility: {
       skipToContent: 'मुख्य सामग्री पर जाएं',
     },
+    theme: {
+      toggle: 'थीम बदलें',
+      light: 'लाइट',
+      dark: 'डार्क',
+      system: 'सिस्टम',
+    },
+    redirecting: 'रीडायरेक्ट हो रहा है...',
   },
   home: {
     title: 'मेरा ऐप',
@@ -80,18 +94,22 @@ const messages: Messages = {
       documents: {
         title: 'दस्तावेज़',
         description: 'अपने दस्तावेज़ प्रबंधित करें',
+        placeholder: 'दस्तावेज़ सामग्री यहाँ आएगी।',
       },
       analytics: {
         title: 'एनालिटिक्स',
         description: 'अपने एनालिटिक्स देखें',
+        placeholder: 'एनालिटिक्स सामग्री यहाँ आएगी।',
       },
       team: {
         title: 'टीम',
         description: 'अपनी टीम प्रबंधित करें',
+        placeholder: 'टीम प्रबंधन सामग्री यहाँ आएगी।',
       },
       settings: {
         title: 'सेटिंग्स',
         description: 'अपनी सेटिंग्स प्रबंधित करें',
+        placeholder: 'सेटिंग्स सामग्री यहाँ आएगी।',
       },
     },
   },

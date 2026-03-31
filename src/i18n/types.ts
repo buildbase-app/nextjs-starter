@@ -9,6 +9,13 @@ export interface CommonMessages {
     analytics: string;
     team: string;
     settings: string;
+    menu: string;
+    selectWorkspace: string;
+    profile: string;
+    manageWorkspace: string;
+    generalSettings: string;
+    userManagement: string;
+    billingPayments: string;
   };
   buttons: {
     signIn: string;
@@ -35,6 +42,13 @@ export interface CommonMessages {
   accessibility: {
     skipToContent: string;
   };
+  theme: {
+    toggle: string;
+    light: string;
+    dark: string;
+    system: string;
+  };
+  redirecting: string;
 }
 
 export interface HomeMessages {
@@ -81,18 +95,22 @@ export interface DashboardMessages {
     documents: {
       title: string;
       description: string;
+      placeholder: string;
     };
     analytics: {
       title: string;
       description: string;
+      placeholder: string;
     };
     team: {
       title: string;
       description: string;
+      placeholder: string;
     };
     settings: {
       title: string;
       description: string;
+      placeholder: string;
     };
   };
 }

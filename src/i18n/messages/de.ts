@@ -9,6 +9,13 @@ const messages: Messages = {
       analytics: 'Analytik',
       team: 'Team',
       settings: 'Einstellungen',
+      menu: 'Menü',
+      selectWorkspace: 'Arbeitsbereich auswählen',
+      profile: 'Profil',
+      manageWorkspace: 'Arbeitsbereich verwalten',
+      generalSettings: 'Allgemeine Einstellungen',
+      userManagement: 'Benutzerverwaltung',
+      billingPayments: 'Abrechnung und Zahlungen',
     },
     buttons: {
       signIn: 'Anmelden',
@@ -35,6 +42,13 @@ const messages: Messages = {
     accessibility: {
       skipToContent: 'Zum Inhalt springen',
     },
+    theme: {
+      toggle: 'Thema wechseln',
+      light: 'Hell',
+      dark: 'Dunkel',
+      system: 'System',
+    },
+    redirecting: 'Weiterleitung...',
   },
   home: {
     title: 'Meine App',
@@ -81,18 +95,22 @@ const messages: Messages = {
       documents: {
         title: 'Dokumente',
         description: 'Verwalten Sie Ihre Dokumente',
+        placeholder: 'Dokumenteninhalt kommt hier hin.',
       },
       analytics: {
         title: 'Analytik',
         description: 'Ihre Analytik anzeigen',
+        placeholder: 'Analytik-Inhalt kommt hier hin.',
       },
       team: {
         title: 'Team',
         description: 'Verwalten Sie Ihr Team',
+        placeholder: 'Teamverwaltungs-Inhalt kommt hier hin.',
       },
       settings: {
         title: 'Einstellungen',
         description: 'Verwalten Sie Ihre Einstellungen',
+        placeholder: 'Einstellungs-Inhalt kommt hier hin.',
       },
     },
   },

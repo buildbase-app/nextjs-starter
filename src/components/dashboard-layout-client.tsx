@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import {
   useSaaSAuth,
   WhenAuthenticated,
@@ -24,6 +25,7 @@ export function DashboardLayoutClient({
 }) {
   const { isAuthenticated, status } = useSaaSAuth();
   const router = useRouter();
+  const t = useTranslations('common');
 
   useEffect(() => {
     if (status !== 'loading' && !isAuthenticated) {
@@ -46,7 +48,7 @@ export function DashboardLayoutClient({
     <>
       <WhenUnauthenticated>
         <div className="flex min-h-screen items-center justify-center">
-          <div className="text-muted-foreground">Redirecting...</div>
+          <div className="text-muted-foreground">{t('redirecting')}</div>
         </div>
       </WhenUnauthenticated>
       <WhenAuthenticated>

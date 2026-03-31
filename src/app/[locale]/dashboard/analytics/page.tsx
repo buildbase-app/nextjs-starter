@@ -25,7 +25,7 @@ export default function AnalyticsPage() {
           <CardDescription>{t('description')}</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">Analytics content goes here.</p>
+          <p className="text-muted-foreground">{t('placeholder')}</p>
         </CardContent>
       </Card>
     </div>

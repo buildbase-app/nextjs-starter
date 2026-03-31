@@ -9,6 +9,13 @@ const messages: Messages = {
       analytics: '分析',
       team: 'チーム',
       settings: '設定',
+      menu: 'メニュー',
+      selectWorkspace: 'ワークスペースを選択',
+      profile: 'プロフィール',
+      manageWorkspace: 'ワークスペース管理',
+      generalSettings: '一般設定',
+      userManagement: 'ユーザー管理',
+      billingPayments: '請求と支払い',
     },
     buttons: {
       signIn: 'サインイン',
@@ -35,6 +42,13 @@ const messages: Messages = {
     accessibility: {
       skipToContent: 'コンテンツへスキップ',
     },
+    theme: {
+      toggle: 'テーマを切り替え',
+      light: 'ライト',
+      dark: 'ダーク',
+      system: 'システム',
+    },
+    redirecting: 'リダイレクト中...',
   },
   home: {
     title: 'マイアプリ',
@@ -81,18 +95,22 @@ const messages: Messages = {
       documents: {
         title: 'ドキュメント',
         description: 'ドキュメントを管理する',
+        placeholder: 'ドキュメントのコンテンツはここに表示されます。',
       },
       analytics: {
         title: '分析',
         description: '分析を表示する',
+        placeholder: '分析のコンテンツはここに表示されます。',
       },
       team: {
         title: 'チーム',
         description: 'チームを管理する',
+        placeholder: 'チーム管理のコンテンツはここに表示されます。',
       },
       settings: {
         title: '設定',
         description: '設定を管理する',
+        placeholder: '設定のコンテンツはここに表示されます。',
       },
     },
   },
