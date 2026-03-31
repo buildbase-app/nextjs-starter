@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAuthToken } from '@/lib/auth';
-import {
-  workspaceTokenSchema,
-  validateBody,
-  isValidationError,
-} from '@/lib/validation';
+import { workspaceTokenSchema } from '@/lib/validation/schemas';
+import { validateBody, isValidationError } from '@/lib/validation/api';
 import { logger } from '@/lib/logger';
 
 export async function POST(request: NextRequest) {

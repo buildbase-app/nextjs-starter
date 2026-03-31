@@ -1,3 +1,4 @@
+import 'server-only';
 import jwt from 'jsonwebtoken';
 import { headers } from 'next/headers';
 import { env } from '@/env';
@@ -62,13 +63,4 @@ export function verifyAuthToken(token: string): AuthToken | null {
   } catch {
     return null;
   }
-}
-
-/**
- * Client-side helper to get token from localStorage
- * Use this in client components
- */
-export function getClientAuthToken(): string | null {
-  if (typeof window === 'undefined') return null;
-  return localStorage.getItem('auth_token');
 }

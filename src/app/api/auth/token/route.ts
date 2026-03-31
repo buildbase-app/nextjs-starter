@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma, setAuditContext } from '@/lib/db';
 import { createAuthToken } from '@/lib/auth';
-import {
-  authCodeSchema,
-  validateBody,
-  isValidationError,
-} from '@/lib/validation';
+import { authCodeSchema } from '@/lib/validation/schemas';
+import { validateBody, isValidationError } from '@/lib/validation/api';
 import { env } from '@/env';
 import { logger } from '@/lib/logger';
 
