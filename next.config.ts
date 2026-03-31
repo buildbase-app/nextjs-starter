@@ -11,6 +11,8 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig: NextConfig = {
   // Next.js 16+ has instrumentation enabled by default
+  // Enable standalone output for Docker builds (Vercel ignores this)
+  output: process.env.DOCKER_BUILD ? 'standalone' : undefined,
 };
 
 // Compose plugins: first intl, then bundle analyzer
