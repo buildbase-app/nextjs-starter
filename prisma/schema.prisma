@@ -42,3 +42,25 @@ model UserWorkspace {
   @@id([userId, workspaceId])
   @@index([workspaceId])
 }
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  action      String   // create, update, delete, upsert
+  model       String   // User, Workspace, UserWorkspace
+  recordId    String
+  userId      String?
+  workspaceId String?
+  ipAddress   String?
+  userAgent   String?
+  source      String?  // api, event, system
+  before      Json?
+  after       Json?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  @@index([model, recordId])
+  @@index([userId])
+  @@index([workspaceId])
+  @@index([action])
+  @@index([createdAt])
+}

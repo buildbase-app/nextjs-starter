@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+import { prisma, setAuditContext } from '@/lib/db';
 import { logger } from '@/lib/logger';
 
 type EventType =
@@ -37,6 +37,23 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { eventType, data } = body as { eventType: EventType; data: unknown };
+
+    // Set audit context from event data when available
+    const eventData = data as Record<string, unknown>;
+    const eventUser = eventData.user as IUser | undefined;
+    const eventUserId = eventData.userId as string | undefined;
+    const eventWorkspace = eventData.workspace as IWorkspace | undefined;
+    setAuditContext({
+      userId: eventUser?.id || eventUser?._id || eventUserId || undefined,
+      workspaceId:
+        eventWorkspace?._id || (eventData.workspaceId as string) || undefined,
+      ipAddress:
+        request.headers.get('x-forwarded-for') ||
+        request.headers.get('x-real-ip') ||
+        undefined,
+      userAgent: request.headers.get('user-agent') || undefined,
+      source: 'event',
+    });
 
     switch (eventType) {
       case 'user:created': {

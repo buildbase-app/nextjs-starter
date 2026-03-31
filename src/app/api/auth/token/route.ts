@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+import { prisma, setAuditContext } from '@/lib/db';
 import { createAuthToken } from '@/lib/auth';
 import {
   authCodeSchema,
@@ -48,6 +48,15 @@ export async function POST(request: NextRequest) {
     const userData = responseResult.user;
     // Create or update user in database
     const userId = userData.id || userData._id;
+    setAuditContext({
+      userId,
+      ipAddress:
+        request.headers.get('x-forwarded-for') ||
+        request.headers.get('x-real-ip') ||
+        undefined,
+      userAgent: request.headers.get('user-agent') || undefined,
+      source: 'api',
+    });
     await prisma.user.upsert({
       where: { id: userId },
       update: {
