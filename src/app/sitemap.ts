@@ -30,16 +30,16 @@ const staticPages: PageConfig[] = [
     priority: 1.0,
     changeFrequency: 'weekly',
   },
+  {
+    path: '/pricing',
+    priority: 0.9,
+    changeFrequency: 'weekly',
+  },
   // Uncomment and add pages as you create them:
   // {
   //   path: '/about',
   //   priority: 0.8,
   //   changeFrequency: 'monthly',
-  // },
-  // {
-  //   path: '/pricing',
-  //   priority: 0.9,
-  //   changeFrequency: 'weekly',
   // },
   // {
   //   path: '/contact',

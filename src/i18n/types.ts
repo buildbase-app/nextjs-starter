@@ -115,6 +115,31 @@ export interface DashboardMessages {
   };
 }
 
+export interface PricingMessages {
+  title: string;
+  subtitle: string;
+  billing: string;
+  monthly: string;
+  quarterly: string;
+  yearly: string;
+  perMonth: string;
+  perQuarter: string;
+  perYear: string;
+  currency: string;
+  quotas: string;
+  limits: string;
+  features: string;
+  included: string;
+  perUnit: string;
+  loading: string;
+  noPlans: string;
+  error: string;
+  meta: {
+    title: string;
+    description: string;
+  };
+}
+
 export interface ErrorMessages {
   generic: {
     title: string;
@@ -134,6 +159,7 @@ export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
   dashboard: DashboardMessages;
+  pricing: PricingMessages;
   errors: ErrorMessages;
 }
 
