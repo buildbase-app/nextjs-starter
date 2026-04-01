@@ -55,9 +55,9 @@ export async function POST(request: NextRequest) {
       source: 'api',
     });
     await prisma.user.upsert({
-      where: { id: userId },
+      where: { email: userData.email },
       update: {
-        email: userData.email,
+        id: userId,
         name: userData.name,
         image: userData.image || null,
         role: userData.role || 'user',
@@ -95,6 +95,7 @@ export async function POST(request: NextRequest) {
       user: userData,
     });
   } catch (error) {
+    console.log(error);
     logger.error('Auth token exchange failed', {
       error: error instanceof Error ? error.message : 'Unknown error',
     });
