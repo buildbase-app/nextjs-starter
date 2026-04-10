@@ -10,7 +10,7 @@ import {
   useSaaSAuth,
   WhenAuthenticated,
   WhenUnauthenticated,
-} from '@buildbase/sdk';
+} from '@buildbase/sdk/react';
 
 function AuthButton() {
   const { signIn, isLoading, status } = useSaaSAuth();
@@ -27,6 +27,7 @@ function AuthButton() {
 
   return (
     <>
+      <pre>{JSON.stringify({ isLoading, status }, null, 2)}</pre>
       <WhenUnauthenticated>
         <Button onClick={signIn}>{t('buttons.signIn')}</Button>
       </WhenUnauthenticated>
@@ -45,8 +46,8 @@ interface HomeHeaderProps {
 
 export function HomeHeader({ title }: HomeHeaderProps) {
   return (
-    <header className="flex items-center justify-between border-b bg-background px-6 py-4">
-      <h1 className="text-xl font-semibold text-foreground">{title}</h1>
+    <header className="bg-background flex items-center justify-between border-b px-6 py-4">
+      <h1 className="text-foreground text-xl font-semibold">{title}</h1>
       <div className="flex items-center gap-2">
         <LanguageSwitcher />
         <ThemeToggle />

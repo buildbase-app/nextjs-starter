@@ -41,7 +41,7 @@ import {
   useSaaSAuth,
   WorkspaceSwitcher,
   WhenAuthenticated,
-} from '@buildbase/sdk';
+} from '@buildbase/sdk/react';
 
 type NavKey = 'dashboard' | 'analytics' | 'documents' | 'team' | 'settings';
 
@@ -107,13 +107,13 @@ export function AppSidebar() {
             trigger={(isLoading, currentWorkspace) => {
               if (isLoading) {
                 return (
-                  <div className="flex h-10 items-center rounded-md border px-3 text-sm text-muted-foreground">
+                  <div className="text-muted-foreground flex h-10 items-center rounded-md border px-3 text-sm">
                     {t('buttons.loading')}
                   </div>
                 );
               }
               return (
-                <div className="flex h-10 cursor-pointer items-center gap-2 rounded-md border px-3 hover:bg-muted">
+                <div className="hover:bg-muted flex h-10 cursor-pointer items-center gap-2 rounded-md border px-3">
                   {currentWorkspace ? (
                     <>
                       {currentWorkspace.image ? (
@@ -125,12 +125,12 @@ export function AppSidebar() {
                           className="rounded"
                         />
                       ) : null}
-                      <span className="text-sm font-medium truncate">
+                      <span className="truncate text-sm font-medium">
                         {currentWorkspace.name}
                       </span>
                     </>
                   ) : (
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-muted-foreground text-sm">
                       {t('nav.selectWorkspace')}
                     </span>
                   )}
@@ -185,7 +185,7 @@ export function AppSidebar() {
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-semibold">{user?.name}</span>
-                    <span className="truncate text-xs text-muted-foreground">
+                    <span className="text-muted-foreground truncate text-xs">
                       {user?.email}
                     </span>
                   </div>

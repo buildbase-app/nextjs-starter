@@ -16,7 +16,7 @@ import {
   type Locale,
 } from '@/i18n/config';
 import { siteUrl } from '@/env';
-import '@buildbase/sdk/dist/saas-os.css';
+import '@buildbase/sdk/css';
 
 const baseUrl = siteUrl;
 

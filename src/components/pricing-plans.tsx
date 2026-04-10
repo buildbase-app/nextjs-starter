@@ -3,16 +3,13 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Check, X } from 'lucide-react';
-import {
-  PricingPage,
-  getCurrencySymbol,
-  type BillingInterval,
-} from '@buildbase/sdk';
+import { getCurrencySymbol, type BillingInterval } from '@buildbase/sdk';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
+import { PricingPage } from '@buildbase/sdk/react';
 
 interface PricingPlansProps {
   slug?: string;

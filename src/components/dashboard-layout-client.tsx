@@ -7,7 +7,7 @@ import {
   useSaaSAuth,
   WhenAuthenticated,
   WhenUnauthenticated,
-} from '@buildbase/sdk';
+} from '@buildbase/sdk/react';
 import {
   SidebarProvider,
   SidebarInset,

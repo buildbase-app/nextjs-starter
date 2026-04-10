@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useSaaSAuth, useSaaSWorkspaces } from '@buildbase/sdk';
+import { useSaaSAuth, useSaaSWorkspaces } from '@buildbase/sdk/react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -54,7 +54,7 @@ export default function DashboardPage() {
             <CardDescription>{t('cards.email.title')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-lg font-medium truncate">{user?.email}</p>
+            <p className="truncate text-lg font-medium">{user?.email}</p>
           </CardContent>
         </Card>
 

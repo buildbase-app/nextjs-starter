@@ -1,13 +1,9 @@
 'use client';
 
-import {
-  SaaSOSProvider,
-  ApiVersion,
-  type EventType,
-  type EventData,
-} from '@buildbase/sdk';
+import { ApiVersion, type EventType, type EventData } from '@buildbase/sdk';
 import React from 'react';
 import { env } from '@/env';
+import { SaaSOSProvider } from '@buildbase/sdk/react';
 
 const config = {
   serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
@@ -56,6 +52,12 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
         clientId: config.clientId,
         redirectUrl: config.redirectUrl,
         callbacks: {
+          // Called on page refresh to restore session from httpOnly cookie
+          getSession: async () => {
+            const res = await fetch('/api/auth/session');
+            const data = await res.json();
+            return data.sessionId ?? null;
+          },
           handleAuthentication: async (code: string) => {
             const response = await fetch('/api/auth/token', {
               method: 'POST',
@@ -70,6 +72,7 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
           },
           onSignOut: async () => {
             clearAuthToken();
+            await fetch('/api/auth/signout', { method: 'POST' });
           },
           handleEvent: async (eventType: EventType, data: EventData) => {
             try {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma, setAuditContext } from '@/lib/db';
 import { createAuthToken } from '@/lib/auth';
+import { SESSION_COOKIE_NAME } from '@/lib/buildbase';
 import { authCodeSchema } from '@/lib/validation/schemas';
 import { validateBody, isValidationError } from '@/lib/validation/api';
 import { env } from '@/env';
@@ -16,7 +17,7 @@ export async function POST(request: NextRequest) {
   const { code } = validationResult;
 
   try {
-    const response = await fetch(
+    const authResponse = await fetch(
       `${env.NEXT_PUBLIC_BUILDBASE_SERVER_URL}/api/v1/auth/token`,
       {
         method: 'POST',
@@ -32,14 +33,14 @@ export async function POST(request: NextRequest) {
       }
     );
 
-    if (!response.ok) {
+    if (!authResponse.ok) {
       return NextResponse.json(
         { success: false, message: 'Failed to verify token' },
         { status: 401 }
       );
     }
 
-    const responseData = await response.json();
+    const responseData = await authResponse.json();
     const responseResult = responseData.data;
     const sessionId = responseResult.sessionId;
     const userData = responseResult.user;
@@ -87,13 +88,24 @@ export async function POST(request: NextRequest) {
       userRole: userData.role || 'user',
     });
 
-    return NextResponse.json({
+    // Set httpOnly cookie so getSession() can restore the session on page refresh
+    const response = NextResponse.json({
       success: true,
       message: 'Token verified successfully',
       sessionId: sessionId,
       token,
       user: userData,
     });
+
+    response.cookies.set(SESSION_COOKIE_NAME, sessionId, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    });
+
+    return response;
   } catch (error) {
     console.log(error);
     logger.error('Auth token exchange failed', {
