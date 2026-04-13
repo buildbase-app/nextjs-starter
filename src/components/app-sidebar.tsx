@@ -42,6 +42,7 @@ import {
   WorkspaceSwitcher,
   WhenAuthenticated,
 } from '@buildbase/sdk/react';
+import { LanguageSwitcher } from './language-switcher';
 
 type NavKey = 'dashboard' | 'analytics' | 'documents' | 'team' | 'settings';
 
@@ -172,6 +173,9 @@ export function AppSidebar() {
 
       <SidebarFooter>
         <SidebarMenu>
+          <SidebarMenuItem>
+            <LanguageSwitcher />
+          </SidebarMenuItem>
           <SidebarMenuItem>
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>

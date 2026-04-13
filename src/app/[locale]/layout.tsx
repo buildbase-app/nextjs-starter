@@ -17,6 +17,7 @@ import {
 } from '@/i18n/config';
 import { siteUrl } from '@/env';
 import '@buildbase/sdk/css';
+import { LanguageSwitcher } from '@/components/language-switcher';
 
 const baseUrl = siteUrl;
 

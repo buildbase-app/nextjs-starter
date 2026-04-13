@@ -4,6 +4,8 @@ import { ApiVersion, type EventType, type EventData } from '@buildbase/sdk';
 import React from 'react';
 import { env } from '@/env';
 import { SaaSOSProvider } from '@buildbase/sdk/react';
+import { useLocale } from 'next-intl';
+import { Locale } from '@/i18n/config';
 
 const config = {
   serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
@@ -43,11 +45,13 @@ async function updateAuthToken(
 }
 
 export function SaaSProvider({ children }: { children: React.ReactNode }) {
+  const locale = useLocale() as Locale;
   return (
     <SaaSOSProvider
       serverUrl={config.serverUrl}
       version={ApiVersion.V1}
       orgId={config.orgId}
+      locale={locale}
       auth={{
         clientId: config.clientId,
         redirectUrl: config.redirectUrl,
