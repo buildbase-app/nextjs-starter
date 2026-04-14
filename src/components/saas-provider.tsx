@@ -52,6 +52,11 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
       version={ApiVersion.V1}
       orgId={config.orgId}
       locale={locale}
+      defaultPermissions={{
+        admin: ['create', 'share', 'delete'],
+        editor: ['create', 'share'],
+        viewer: ['share'],
+      }}
       auth={{
         clientId: config.clientId,
         redirectUrl: config.redirectUrl,
