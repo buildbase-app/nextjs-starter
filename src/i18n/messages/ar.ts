@@ -8,6 +8,7 @@ const messages: Messages = {
       documents: 'المستندات',
       analytics: 'التحليلات',
       team: 'الفريق',
+      notifications: 'الإشعارات',
       settings: 'الإعدادات',
       menu: 'القائمة',
       selectWorkspace: 'اختر مساحة العمل',

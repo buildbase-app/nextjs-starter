@@ -8,6 +8,7 @@ const messages: Messages = {
       documents: 'Dokumente',
       analytics: 'Analytik',
       team: 'Team',
+      notifications: 'Benachrichtigungen',
       settings: 'Einstellungen',
       menu: 'Menü',
       selectWorkspace: 'Arbeitsbereich auswählen',

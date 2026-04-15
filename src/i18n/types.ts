@@ -8,6 +8,7 @@ export interface CommonMessages {
     documents: string;
     analytics: string;
     team: string;
+    notifications: string;
     settings: string;
     menu: string;
     selectWorkspace: string;

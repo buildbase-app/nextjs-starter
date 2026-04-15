@@ -8,6 +8,7 @@ const messages: Messages = {
       documents: 'Documents',
       analytics: 'Analytics',
       team: 'Team',
+      notifications: 'Notifications',
       settings: 'Settings',
       menu: 'Menu',
       selectWorkspace: 'Select workspace',

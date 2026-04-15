@@ -8,6 +8,7 @@ const messages: Messages = {
       documents: '文档',
       analytics: '分析',
       team: '团队',
+      notifications: '通知',
       settings: '设置',
       menu: '菜单',
       selectWorkspace: '选择工作区',

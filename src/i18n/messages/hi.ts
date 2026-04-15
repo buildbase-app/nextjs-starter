@@ -8,6 +8,7 @@ const messages: Messages = {
       documents: 'दस्तावेज़',
       analytics: 'एनालिटिक्स',
       team: 'टीम',
+      notifications: 'सूचनाएं',
       settings: 'सेटिंग्स',
       menu: 'मेनू',
       selectWorkspace: 'वर्कस्पेस चुनें',

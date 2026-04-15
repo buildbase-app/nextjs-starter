@@ -13,6 +13,7 @@ export const {
   invoices,
   features,
   settings,
+  notification,
   withSession,
   client,
 } = BuildBase({

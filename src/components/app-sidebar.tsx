@@ -9,6 +9,7 @@ import {
   Users,
   FileText,
   BarChart3,
+  Bell,
   LogOut,
   ChevronUp,
   CreditCard,
@@ -44,7 +45,13 @@ import {
 } from '@buildbase/sdk/react';
 import { LanguageSwitcher } from './language-switcher';
 
-type NavKey = 'dashboard' | 'analytics' | 'documents' | 'team' | 'settings';
+type NavKey =
+  | 'dashboard'
+  | 'analytics'
+  | 'documents'
+  | 'team'
+  | 'notifications'
+  | 'settings';
 
 const menuItems: {
   navKey: NavKey;
@@ -70,6 +77,11 @@ const menuItems: {
     navKey: 'team',
     url: '/dashboard/team',
     icon: Users,
+  },
+  {
+    navKey: 'notifications',
+    url: '/dashboard/notifications',
+    icon: Bell,
   },
   {
     navKey: 'settings',
