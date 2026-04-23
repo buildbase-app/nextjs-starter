@@ -38,32 +38,32 @@ export default function Error({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background p-6">
+    <div className="bg-background flex min-h-screen flex-col items-center justify-center p-6">
       <main id="main-content" className="text-center">
         <div className="mb-6 flex justify-center">
-          <div className="rounded-full bg-destructive/10 p-4">
-            <AlertCircle className="h-12 w-12 text-destructive" />
+          <div className="bg-destructive/10 rounded-full p-4">
+            <AlertCircle className="text-destructive h-12 w-12" />
           </div>
         </div>
 
-        <h1 className="mb-2 text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-foreground mb-2 text-3xl font-bold tracking-tight">
           {t('generic.title')}
         </h1>
 
-        <p className="mb-6 max-w-md text-muted-foreground">
+        <p className="text-muted-foreground mb-6 max-w-md">
           {t('generic.description')}
         </p>
 
         {process.env.NODE_ENV === 'development' ? (
-          <div className="mb-6 max-w-lg rounded-lg bg-muted p-4 text-left">
-            <p className="mb-2 text-sm font-medium text-foreground">
+          <div className="bg-muted mb-6 max-w-lg rounded-lg p-4 text-left">
+            <p className="text-foreground mb-2 text-sm font-medium">
               Error Details:
             </p>
-            <code className="break-all text-xs text-muted-foreground">
+            <code className="text-muted-foreground text-xs break-all">
               {error.message}
             </code>
             {error.digest ? (
-              <p className="mt-2 text-xs text-muted-foreground">
+              <p className="text-muted-foreground mt-2 text-xs">
                 Digest: {error.digest}
               </p>
             ) : null}

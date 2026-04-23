@@ -22,17 +22,17 @@ export default async function HomePage() {
   const t = await getTranslations('home');
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="bg-background flex min-h-screen flex-col">
       <HomeHeader title={t('title')} />
 
       <main
         id="main-content"
         className="flex flex-1 flex-col items-center justify-center gap-6 p-6"
       >
-        <h2 className="text-4xl font-bold tracking-tight text-foreground">
+        <h2 className="text-foreground text-4xl font-bold tracking-tight">
           {t('hero.heading')}
         </h2>
-        <p className="max-w-md text-center text-muted-foreground">
+        <p className="text-muted-foreground max-w-md text-center">
           {t('hero.description')}
         </p>
       </main>

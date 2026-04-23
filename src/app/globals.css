@@ -121,9 +121,80 @@
   }
   html,
   body {
-    @apply bg-background text-foreground min-h-screen w-full m-0 p-0;
+    @apply bg-background text-foreground m-0 min-h-screen w-full p-0;
   }
   #saas-os-portal [id^='radix-'] {
     transform: none !important;
+  }
+}
+
+/* Heading anchor links — visible on hover */
+.heading-anchor {
+  text-decoration: none;
+  color: inherit;
+}
+.heading-anchor:hover::after {
+  content: ' #';
+  color: var(--muted-foreground);
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+/* Print-friendly styles for blog posts and docs */
+@media print {
+  /* Hide non-content UI */
+  nav,
+  header:has(> a[href='/blog']),
+  footer,
+  aside,
+  .no-print,
+  [aria-label='Blog pagination'],
+  [aria-label='Close'] {
+    display: none !important;
+  }
+
+  /* Reset backgrounds and colors for printing */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+
+  /* Full-width article */
+  article {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure links show their URL */
+  article a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* Code blocks: border instead of background */
+  pre {
+    border: 1px solid #ccc !important;
+    background: #f8f8f8 !important;
+    page-break-inside: avoid;
+  }
+
+  /* Avoid page breaks inside images and code */
+  img,
+  pre,
+  blockquote,
+  table {
+    page-break-inside: avoid;
+  }
+
+  /* Headings: keep with next content */
+  h1,
+  h2,
+  h3,
+  h4 {
+    page-break-after: avoid;
   }
 }

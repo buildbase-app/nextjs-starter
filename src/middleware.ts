@@ -4,9 +4,17 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createIntlMiddleware(routing);
 
+/**
+ * Canonical host for the production site. Set via CANONICAL_HOST env var.
+ * When set, requests to `www.{host}` are 301-redirected to the apex
+ * domain so search engines consolidate around a single canonical URL.
+ */
+const CANONICAL_HOST = process.env.CANONICAL_HOST;
+
 function addSecurityHeaders(response: NextResponse): NextResponse {
   const cspDirectives = [
     "default-src 'self'",
+    // 'unsafe-eval' required for Contentlayer MDX runtime
     "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https: blob:",
@@ -36,8 +44,35 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
 }
 
 export function middleware(request: NextRequest): NextResponse {
+  const { pathname } = request.nextUrl;
+
+  // --- Canonical host redirect (www → apex) ---
+  if (CANONICAL_HOST) {
+    const host = request.headers.get('host') ?? '';
+    if (host === `www.${CANONICAL_HOST}`) {
+      const url = request.nextUrl.clone();
+      url.host = CANONICAL_HOST;
+      return NextResponse.redirect(url, 301);
+    }
+  }
+
+  // --- X-Robots-Tag for API routes ---
+  // Belt-and-braces: robots.txt already disallows /api/, but this
+  // header prevents accidental indexing if a crawler ignores robots.txt.
+  if (pathname.startsWith('/api/')) {
+    const response = NextResponse.next();
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return response;
+  }
+
+  // --- Propagate request-id for observability ---
+  const requestId = request.headers.get('x-request-id') ?? crypto.randomUUID();
+
   // Run intl middleware first
   const response = intlMiddleware(request);
+
+  // Set request-id header
+  response.headers.set('x-request-id', requestId);
 
   // Add security headers to the response
   return addSecurityHeaders(response);
@@ -47,13 +82,12 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except:
-     * - api routes (they have their own headers)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - sitemap.xml and robots.txt (SEO files)
      * - public folder assets
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|push-sw\\.js|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|push-sw\\.js|sitemap\\.xml|sitemap-\\d+\\.xml|robots\\.txt|llms\\.txt|llms-full\\.txt|\\.well-known/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
   ],
 };

@@ -1,3 +1,5 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { FileQuestion, Home, ArrowLeft } from 'lucide-react';
@@ -13,21 +15,21 @@ export default function NotFound() {
   const t = useTranslations('errors');
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background p-6">
+    <div className="bg-background flex min-h-screen flex-col items-center justify-center p-6">
       <main id="main-content" className="text-center">
         <div className="mb-6 flex justify-center">
-          <div className="rounded-full bg-muted p-4">
-            <FileQuestion className="h-12 w-12 text-muted-foreground" />
+          <div className="bg-muted rounded-full p-4">
+            <FileQuestion className="text-muted-foreground h-12 w-12" />
           </div>
         </div>
 
-        <p className="mb-2 text-6xl font-bold text-foreground">404</p>
+        <p className="text-foreground mb-2 text-6xl font-bold">404</p>
 
-        <h1 className="mb-2 text-2xl font-semibold tracking-tight text-foreground">
+        <h1 className="text-foreground mb-2 text-2xl font-semibold tracking-tight">
           {t('notFound.title')}
         </h1>
 
-        <p className="mb-6 max-w-md text-muted-foreground">
+        <p className="text-muted-foreground mb-6 max-w-md">
           {t('notFound.description')}
         </p>
 

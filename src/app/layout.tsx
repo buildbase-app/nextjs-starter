@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo/json-ld';
+import { seoConfig } from '@/config/seo';
 import './globals.css';
 
 const geistSans = Geist({
@@ -15,10 +16,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'My App',
-    template: '%s | My App',
+    default: seoConfig.brand.name,
+    template: `%s | ${seoConfig.brand.name}`,
   },
-  description: 'My Next.js application with shadcn/ui and theme support',
+  description: seoConfig.brand.description,
+  ...(Object.values(seoConfig.verification).some(Boolean) && {
+    verification: {
+      ...(seoConfig.verification.google && {
+        google: seoConfig.verification.google,
+      }),
+      ...(seoConfig.verification.bing && {
+        other: { 'msvalidate.01': seoConfig.verification.bing },
+      }),
+      ...(seoConfig.verification.yandex && {
+        yandex: seoConfig.verification.yandex,
+      }),
+    },
+  }),
 };
 
 export default function RootLayout({
@@ -41,20 +55,15 @@ export default function RootLayout({
         />
         {/* JSON-LD Structured Data */}
         <OrganizationJsonLd
-          name="My App"
-          description="My Next.js application with shadcn/ui and theme support"
-          // Add your social links here
-          // sameAs={[
-          //   'https://twitter.com/yourcompany',
-          //   'https://linkedin.com/company/yourcompany',
-          //   'https://github.com/yourcompany',
-          // ]}
+          name={seoConfig.brand.name}
+          description={seoConfig.brand.description}
+          logo={seoConfig.brand.logo}
+          sameAs={[...seoConfig.social.sameAs]}
+          contactPoint={seoConfig.contactPoint}
         />
         <WebSiteJsonLd
-          name="My App"
-          description="My Next.js application with shadcn/ui and theme support"
-          // Uncomment if you have a search page
-          // searchUrl="/search?q={search_term_string}"
+          name={seoConfig.brand.name}
+          description={seoConfig.brand.description}
         />
       </head>
       <body

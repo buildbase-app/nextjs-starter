@@ -1,29 +1,44 @@
-'use client';
-
-import { useTranslations } from 'next-intl';
+import type { Metadata } from 'next';
 import { HomeHeader } from '@/components/home-header';
-import { PricingPlans } from '@/components/pricing-plans';
+import { PricingSection } from '@/components/pricing-section';
+import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
+import type { Locale } from '@/i18n/config';
+import { buildMarketingMetadata } from '@/lib/seo/marketing-metadata';
+import { getTranslations } from 'next-intl/server';
 
-export default function PricingPageRoute() {
-  const t = useTranslations('pricing');
-  const tHome = useTranslations('home');
+interface PricingPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: PricingPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'pricing' });
+
+  return buildMarketingMetadata({
+    path: '/pricing',
+    locale: locale as Locale,
+    title: t('title'),
+    description: t('subtitle'),
+  });
+}
+
+export default async function PricingPageRoute({ params }: PricingPageProps) {
+  const { locale } = await params;
+  const [t, tHome] = await Promise.all([
+    getTranslations({ locale, namespace: 'pricing' }),
+    getTranslations({ locale, namespace: 'home' }),
+  ]);
 
   return (
     <div className="bg-background flex min-h-screen flex-col">
       <HomeHeader title={tHome('title')} />
+      <BreadcrumbJsonLd items={[{ name: t('title'), url: '/pricing' }]} />
 
       <main id="main-content" className="flex-1 px-6 py-12">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-10 text-center">
-            <h1 className="text-foreground text-4xl font-bold tracking-tight">
-              {t('title')}
-            </h1>
-            <p className="text-muted-foreground mt-3 text-lg">
-              {t('subtitle')}
-            </p>
-          </div>
-
-          <PricingPlans />
+          <PricingSection title={t('title')} description={t('subtitle')} />
         </div>
       </main>
     </div>

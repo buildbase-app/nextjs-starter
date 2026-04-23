@@ -51,7 +51,7 @@ export default function GlobalError({
                 <p className="mb-2 text-sm font-medium text-gray-900 dark:text-gray-100">
                   Error Details:
                 </p>
-                <code className="break-all text-xs text-gray-700 dark:text-gray-300">
+                <code className="text-xs break-all text-gray-700 dark:text-gray-300">
                   {error.message}
                 </code>
                 {error.digest ? (

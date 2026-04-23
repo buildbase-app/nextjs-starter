@@ -29,7 +29,7 @@ function AuthButton() {
     <>
       <pre>{JSON.stringify({ isLoading, status }, null, 2)}</pre>
       <WhenUnauthenticated>
-        <Button onClick={signIn}>{t('buttons.signIn')}</Button>
+        <Button onClick={() => signIn()}>{t('buttons.signIn')}</Button>
       </WhenUnauthenticated>
       <WhenAuthenticated>
         <Button asChild>

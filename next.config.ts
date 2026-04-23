@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import bundleAnalyzer from '@next/bundle-analyzer';
+import { withContentlayer } from 'next-contentlayer2';
 import { withSentryConfig, type SentryBuildOptions } from '@sentry/nextjs';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
@@ -13,10 +14,16 @@ const nextConfig: NextConfig = {
   // Next.js 16+ has instrumentation enabled by default
   // Enable standalone output for Docker builds (Vercel ignores this)
   output: process.env.DOCKER_BUILD ? 'standalone' : undefined,
+  // Trace MDX files into production bundle for runtime fs access (RSS feeds)
+  outputFileTracingIncludes: {
+    '/**': ['./src/content/**/*.mdx'],
+  },
 };
 
-// Compose plugins: first intl, then bundle analyzer
-const composedConfig = withBundleAnalyzer(withNextIntl(nextConfig));
+// Compose plugins: first intl, then contentlayer, then bundle analyzer
+const composedConfig = withBundleAnalyzer(
+  withContentlayer(withNextIntl(nextConfig))
+);
 
 // Only wrap with Sentry if DSN is configured
 const isSentryEnabled = !!process.env.NEXT_PUBLIC_SENTRY_DSN;

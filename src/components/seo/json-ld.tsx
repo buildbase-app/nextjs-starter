@@ -1,38 +1,25 @@
-import { siteUrl } from '@/env';
+import {
+  BreadcrumbJsonLd as NextSeoBreadcrumbJsonLd,
+  FAQJsonLd as NextSeoFAQJsonLd,
+  JsonLdScript,
+  OrganizationJsonLd as NextSeoOrganizationJsonLd,
+  SoftwareApplicationJsonLd as NextSeoSoftwareApplicationJsonLd,
+} from 'next-seo';
+import { absoluteUrl, brandLogoUrl, seoConfig } from '@/config/seo';
 
 /**
  * JSON-LD Structured Data Components
  *
- * These components add schema.org structured data to pages,
- * enabling rich snippets in search results.
+ * Thin wrappers over `next-seo`'s JSON-LD helpers. They pre-fill brand /
+ * publisher / author defaults from `@/config/seo`, resolve relative paths
+ * to absolute URLs, and keep a simple prop shape for callers.
  *
- * Usage:
- *   <OrganizationJsonLd />           - Add to root layout
- *   <WebSiteJsonLd />                - Add to root layout
- *   <WebPageJsonLd title="..." />    - Add to individual pages
- *   <BreadcrumbJsonLd items={[...]} /> - Add for navigation context
+ * Prefer these wrappers over importing from `next-seo` directly so that
+ * brand identity stays centralised.
  */
-
-interface JsonLdProps {
-  data: Record<string, unknown>;
-}
-
-/**
- * Base component for rendering JSON-LD script tags
- */
-function JsonLd({ data }: JsonLdProps) {
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(data, null, 0),
-      }}
-    />
-  );
-}
 
 // =============================================================================
-// Organization Schema
+// Organization
 // =============================================================================
 
 export interface OrganizationJsonLdProps {
@@ -48,56 +35,37 @@ export interface OrganizationJsonLdProps {
   };
 }
 
-/**
- * Organization structured data
- * Helps Google understand your brand/company
- *
- * @example
- * <OrganizationJsonLd
- *   name="My Company"
- *   logo="/logo.png"
- *   sameAs={["https://twitter.com/mycompany"]}
- * />
- */
 export function OrganizationJsonLd({
-  name = 'My App',
-  url = siteUrl,
+  name = seoConfig.brand.name,
+  url = seoConfig.brand.url,
   logo,
-  description,
-  sameAs = [],
-  contactPoint,
-}: OrganizationJsonLdProps) {
-  const data: Record<string, unknown> = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name,
-    url,
-  };
-
-  if (logo) {
-    data.logo = logo.startsWith('http') ? logo : `${siteUrl}${logo}`;
-  }
-
-  if (description) {
-    data.description = description;
-  }
-
-  if (sameAs.length > 0) {
-    data.sameAs = sameAs;
-  }
-
-  if (contactPoint) {
-    data.contactPoint = {
-      '@type': 'ContactPoint',
-      ...contactPoint,
-    };
-  }
-
-  return <JsonLd data={data} />;
+  description = seoConfig.brand.description,
+  sameAs,
+  contactPoint = seoConfig.contactPoint,
+}: OrganizationJsonLdProps = {}) {
+  const mergedSameAs = [...seoConfig.social.sameAs, ...(sameAs ?? [])].filter(
+    Boolean
+  );
+  return (
+    <NextSeoOrganizationJsonLd
+      name={name}
+      legalName={seoConfig.brand.legalName}
+      url={url}
+      logo={logo ? absoluteUrl(logo) : brandLogoUrl()}
+      description={description}
+      foundingDate={seoConfig.brand.foundingDate}
+      sameAs={mergedSameAs.length > 0 ? mergedSameAs : undefined}
+      contactPoint={
+        contactPoint
+          ? [{ '@type': 'ContactPoint' as const, ...contactPoint }]
+          : undefined
+      }
+    />
+  );
 }
 
 // =============================================================================
-// WebSite Schema
+// WebSite (next-seo has no dedicated component — use raw JSON-LD)
 // =============================================================================
 
 export interface WebSiteJsonLdProps {
@@ -108,51 +76,35 @@ export interface WebSiteJsonLdProps {
   searchQueryInput?: string;
 }
 
-/**
- * WebSite structured data
- * Enables sitelinks search box in Google results
- *
- * @example
- * <WebSiteJsonLd
- *   name="My App"
- *   searchUrl="/search?q={search_term_string}"
- * />
- */
 export function WebSiteJsonLd({
-  name = 'My App',
-  url = siteUrl,
-  description,
+  name = seoConfig.brand.name,
+  url = seoConfig.brand.url,
+  description = seoConfig.brand.description,
   searchUrl,
   searchQueryInput = 'search_term_string',
-}: WebSiteJsonLdProps) {
+}: WebSiteJsonLdProps = {}) {
   const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name,
     url,
+    description,
   };
-
-  if (description) {
-    data.description = description;
-  }
-
-  // Add search action for sitelinks search box
   if (searchUrl) {
     data.potentialAction = {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `${siteUrl}${searchUrl}`,
+        urlTemplate: absoluteUrl(searchUrl),
       },
       'query-input': `required name=${searchQueryInput}`,
     };
   }
-
-  return <JsonLd data={data} />;
+  return <JsonLdScript data={data} scriptKey="website" />;
 }
 
 // =============================================================================
-// WebPage Schema
+// WebPage (next-seo has no dedicated component — use raw JSON-LD)
 // =============================================================================
 
 export interface WebPageJsonLdProps {
@@ -161,24 +113,10 @@ export interface WebPageJsonLdProps {
   url?: string;
   datePublished?: string;
   dateModified?: string;
-  author?: {
-    name: string;
-    url?: string;
-  };
+  author?: { name: string; url?: string };
   image?: string;
 }
 
-/**
- * WebPage structured data
- * Provides context about individual pages
- *
- * @example
- * <WebPageJsonLd
- *   title="About Us"
- *   description="Learn about our company"
- *   url="/about"
- * />
- */
 export function WebPageJsonLd({
   title,
   description,
@@ -188,31 +126,15 @@ export function WebPageJsonLd({
   author,
   image,
 }: WebPageJsonLdProps) {
-  const pageUrl = url
-    ? url.startsWith('http')
-      ? url
-      : `${siteUrl}${url}`
-    : siteUrl;
-
   const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: title,
-    url: pageUrl,
+    url: url ? absoluteUrl(url) : seoConfig.brand.url,
   };
-
-  if (description) {
-    data.description = description;
-  }
-
-  if (datePublished) {
-    data.datePublished = datePublished;
-  }
-
-  if (dateModified) {
-    data.dateModified = dateModified;
-  }
-
+  if (description) data.description = description;
+  if (datePublished) data.datePublished = datePublished;
+  if (dateModified) data.dateModified = dateModified;
   if (author) {
     data.author = {
       '@type': 'Person',
@@ -220,16 +142,12 @@ export function WebPageJsonLd({
       ...(author.url && { url: author.url }),
     };
   }
-
-  if (image) {
-    data.image = image.startsWith('http') ? image : `${siteUrl}${image}`;
-  }
-
-  return <JsonLd data={data} />;
+  if (image) data.image = absoluteUrl(image);
+  return <JsonLdScript data={data} scriptKey={`webpage-${title}`} />;
 }
 
 // =============================================================================
-// Breadcrumb Schema
+// Breadcrumb
 // =============================================================================
 
 export interface BreadcrumbItem {
@@ -241,36 +159,16 @@ export interface BreadcrumbJsonLdProps {
   items: BreadcrumbItem[];
 }
 
-/**
- * BreadcrumbList structured data
- * Shows breadcrumb trail in search results
- *
- * @example
- * <BreadcrumbJsonLd
- *   items={[
- *     { name: "Home", url: "/" },
- *     { name: "Products", url: "/products" },
- *     { name: "Widget", url: "/products/widget" }
- *   ]}
- * />
- */
 export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}`,
-    })),
-  };
-
-  return <JsonLd data={data} />;
+  return (
+    <NextSeoBreadcrumbJsonLd
+      items={items.map((i) => ({ name: i.name, item: absoluteUrl(i.url) }))}
+    />
+  );
 }
 
 // =============================================================================
-// FAQ Schema
+// FAQ
 // =============================================================================
 
 export interface FAQItem {
@@ -282,37 +180,19 @@ export interface FAQJsonLdProps {
   items: FAQItem[];
 }
 
-/**
- * FAQPage structured data
- * Displays FAQ rich results in search
- *
- * @example
- * <FAQJsonLd
- *   items={[
- *     { question: "What is...?", answer: "It is..." },
- *     { question: "How do I...?", answer: "You can..." }
- *   ]}
- * />
- */
 export function FAQJsonLd({ items }: FAQJsonLdProps) {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: items.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
-
-  return <JsonLd data={data} />;
+  return (
+    <NextSeoFAQJsonLd
+      questions={items.map((i) => ({
+        question: i.question,
+        answer: i.answer,
+      }))}
+    />
+  );
 }
 
 // =============================================================================
-// Article Schema
+// Article
 // =============================================================================
 
 export interface ArticleJsonLdProps {
@@ -322,28 +202,18 @@ export interface ArticleJsonLdProps {
   image?: string;
   datePublished: string;
   dateModified?: string;
-  author: {
-    name: string;
-    url?: string;
-  };
-  publisher?: {
-    name: string;
-    logo?: string;
-  };
+  author: { name: string; url?: string; sameAs?: string[] };
+  publisher?: { name: string; logo?: string };
+  /** Word count for schema.org `wordCount`. */
+  wordCount?: number;
+  /** Category for `articleSection`. */
+  articleSection?: string;
+  /** Tags/keywords for `keywords`. */
+  keywords?: string[];
+  /** ISO language code for `inLanguage`. */
+  inLanguage?: string;
 }
 
-/**
- * Article structured data
- * For blog posts and news articles
- *
- * @example
- * <ArticleJsonLd
- *   title="How to..."
- *   url="/blog/how-to"
- *   datePublished="2024-01-01"
- *   author={{ name: "John Doe" }}
- * />
- */
 export function ArticleJsonLd({
   title,
   description,
@@ -352,49 +222,197 @@ export function ArticleJsonLd({
   datePublished,
   dateModified,
   author,
-  publisher,
+  publisher = seoConfig.publisher,
+  wordCount,
+  articleSection,
+  keywords,
+  inLanguage,
 }: ArticleJsonLdProps) {
-  const articleUrl = url.startsWith('http') ? url : `${siteUrl}${url}`;
-
+  // Build a richer schema than next-seo's built-in to include
+  // wordCount, articleSection, keywords, inLanguage, thumbnailUrl.
   const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: title,
-    url: articleUrl,
+    url: absoluteUrl(url),
     datePublished,
+    dateModified: dateModified ?? datePublished,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': absoluteUrl(url),
+    },
     author: {
       '@type': 'Person',
       name: author.name,
       ...(author.url && { url: author.url }),
+      ...(author.sameAs &&
+        author.sameAs.length > 0 && { sameAs: author.sameAs }),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: publisher.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: publisher.logo ? absoluteUrl(publisher.logo) : brandLogoUrl(),
+      },
     },
   };
 
-  if (description) {
-    data.description = description;
-  }
-
+  if (description) data.description = description;
   if (image) {
-    data.image = image.startsWith('http') ? image : `${siteUrl}${image}`;
+    const imageUrl = absoluteUrl(image);
+    data.image = imageUrl;
+    data.thumbnailUrl = imageUrl;
   }
+  if (wordCount) data.wordCount = wordCount;
+  if (articleSection) data.articleSection = articleSection;
+  if (keywords && keywords.length > 0) data.keywords = keywords.join(', ');
+  if (inLanguage) data.inLanguage = inLanguage;
 
-  if (dateModified) {
-    data.dateModified = dateModified;
-  }
+  return <JsonLdScript data={data} scriptKey={`article-${title}`} />;
+}
 
-  if (publisher) {
-    data.publisher = {
+// =============================================================================
+// SoftwareApplication
+// =============================================================================
+
+export interface SoftwareApplicationJsonLdProps {
+  name?: string;
+  description?: string;
+  url?: string;
+  applicationCategory?: string;
+  operatingSystem?: string;
+  offers?: { price: number; priceCurrency: string };
+}
+
+export function SoftwareApplicationJsonLd({
+  name = seoConfig.brand.name,
+  description = seoConfig.brand.description,
+  url = seoConfig.brand.url,
+  applicationCategory = 'BusinessApplication',
+  operatingSystem = 'Web',
+  offers,
+}: SoftwareApplicationJsonLdProps = {}) {
+  return (
+    <NextSeoSoftwareApplicationJsonLd
+      type="WebApplication"
+      name={name}
+      description={description}
+      url={url}
+      applicationCategory={applicationCategory}
+      operatingSystem={operatingSystem}
+      offers={
+        offers
+          ? {
+              '@type': 'Offer',
+              price: offers.price,
+              priceCurrency: offers.priceCurrency,
+            }
+          : undefined
+      }
+    />
+  );
+}
+
+// =============================================================================
+// Blog (collection) — no next-seo built-in, use raw JSON-LD
+// =============================================================================
+
+export interface BlogPostingSummary {
+  slug: string;
+  title: string;
+  description?: string;
+  datePublished: string;
+  dateModified?: string;
+  author?: { name: string; url?: string };
+  image?: string;
+}
+
+export interface BlogJsonLdProps {
+  url?: string;
+  name?: string;
+  description?: string;
+  posts: BlogPostingSummary[];
+}
+
+export function BlogJsonLd({
+  url = '/blog',
+  name = `${seoConfig.brand.name} Blog`,
+  description = seoConfig.brand.description,
+  posts,
+}: BlogJsonLdProps) {
+  const data: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name,
+    url: absoluteUrl(url),
+    description,
+    publisher: {
       '@type': 'Organization',
-      name: publisher.name,
-      ...(publisher.logo && {
-        logo: {
-          '@type': 'ImageObject',
-          url: publisher.logo.startsWith('http')
-            ? publisher.logo
-            : `${siteUrl}${publisher.logo}`,
-        },
-      }),
-    };
+      name: seoConfig.publisher.name,
+      logo: { '@type': 'ImageObject', url: brandLogoUrl() },
+    },
+  };
+
+  if (posts.length > 0) {
+    data.blogPost = posts.map((post) => {
+      const postUrl = absoluteUrl(`/blog/${post.slug}`);
+      const item: Record<string, unknown> = {
+        '@type': 'BlogPosting',
+        headline: post.title,
+        url: postUrl,
+        mainEntityOfPage: postUrl,
+        datePublished: post.datePublished,
+        dateModified: post.dateModified ?? post.datePublished,
+      };
+      if (post.description) item.description = post.description;
+      if (post.image) item.image = absoluteUrl(post.image);
+      if (post.author) {
+        item.author = {
+          '@type': 'Person',
+          name: post.author.name,
+          ...(post.author.url && { url: post.author.url }),
+        };
+      }
+      return item;
+    });
   }
 
-  return <JsonLd data={data} />;
+  return <JsonLdScript data={data} scriptKey="blog" />;
+}
+
+// =============================================================================
+// ItemList (collection / listing pages) — no next-seo built-in
+// =============================================================================
+
+export interface ItemListEntry {
+  name: string;
+  url: string;
+  description?: string;
+}
+
+export interface ItemListJsonLdProps {
+  name?: string;
+  items: ItemListEntry[];
+  url?: string;
+}
+
+export function ItemListJsonLd({ name, items, url }: ItemListJsonLdProps) {
+  if (items.length === 0) return null;
+
+  const data: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      url: absoluteUrl(item.url),
+      ...(item.description ? { description: item.description } : {}),
+    })),
+  };
+  if (name) data.name = name;
+  if (url) data.url = absoluteUrl(url);
+
+  return <JsonLdScript data={data} scriptKey={`itemlist-${name ?? 'list'}`} />;
 }

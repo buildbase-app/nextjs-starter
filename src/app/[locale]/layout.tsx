@@ -7,6 +7,7 @@ import { SaaSProvider } from '@/components/saas-provider';
 import { QueryProvider } from '@/components/query-provider';
 import { SkipLink } from '@/components/skip-link';
 import { Toaster } from 'sonner';
+import { CookieConsent } from '@/components/cookie-consent';
 import {
   locales,
   defaultLocale,
@@ -17,7 +18,6 @@ import {
 } from '@/i18n/config';
 import { siteUrl } from '@/env';
 import '@buildbase/sdk/css';
-import { LanguageSwitcher } from '@/components/language-switcher';
 
 const baseUrl = siteUrl;
 
@@ -121,6 +121,7 @@ export default async function LocaleLayout({
               <SkipLink />
               {children}
               <Toaster richColors position="bottom-right" />
+              <CookieConsent />
             </ThemeProvider>
           </SaaSProvider>
         </QueryProvider>
