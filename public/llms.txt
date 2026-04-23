@@ -1,0 +1,29 @@
+# My App
+
+> My Next.js application with shadcn/ui and theme support.
+
+## About
+
+My App is a SaaS platform that helps teams build and ship products faster.
+
+## Docs
+
+- [Blog](/blog): Latest posts, tutorials, and engineering insights.
+- [Changelog](/changelog): Product updates and release notes.
+- [Pricing](/pricing): Plans and pricing information.
+- [About](/about): Company information and values.
+- [Privacy Policy](/privacy): How we handle your data.
+- [Terms of Service](/terms): Terms and conditions.
+
+## Feeds
+
+- [Blog RSS](/blog/feed.xml): Subscribe to blog updates.
+- [Changelog RSS](/changelog/feed.xml): Subscribe to product updates.
+
+## API
+
+- [Health Check](/api/health): Service health status.
+
+## Contact
+
+- Website: https://example.com

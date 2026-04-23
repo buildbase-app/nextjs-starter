@@ -1,0 +1,84 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "My App API",
+    "description": "Public API endpoints for My App.",
+    "version": "0.1.0",
+    "contact": {
+      "email": "support@example.com"
+    },
+    "license": {
+      "name": "Proprietary"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://example.com",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Health check",
+        "description": "Returns service health status. Optionally performs a deep check including database connectivity.",
+        "operationId": "getHealth",
+        "parameters": [
+          {
+            "name": "deep",
+            "in": "query",
+            "description": "If true, checks database connectivity.",
+            "required": false,
+            "schema": { "type": "boolean", "default": false }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is healthy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "ok" },
+                    "timestamp": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blog/feed.xml": {
+      "get": {
+        "summary": "Blog RSS feed",
+        "description": "Returns an RSS 2.0 feed of blog posts. Locale-aware — the feed returns posts in the locale from the URL path.",
+        "operationId": "getBlogFeed",
+        "responses": {
+          "200": {
+            "description": "RSS 2.0 feed.",
+            "content": {
+              "application/rss+xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/changelog/feed.xml": {
+      "get": {
+        "summary": "Changelog RSS feed",
+        "description": "Returns an RSS 2.0 feed of changelog entries.",
+        "operationId": "getChangelogFeed",
+        "responses": {
+          "200": {
+            "description": "RSS 2.0 feed.",
+            "content": {
+              "application/rss+xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+# My App — Full Documentation for AI Agents
+
+> My Next.js application with shadcn/ui and theme support.
+> Build something great.
+
+## Product Overview
+
+My App is a SaaS platform built with Next.js, TypeScript, and Tailwind CSS.
+It provides authentication, multi-tenant workspaces, team management,
+billing, internationalization (8 languages), and a full blog/changelog CMS.
+
+## Key Features
+
+- **Authentication**: OAuth-based auth with multi-tenant workspace support via BuildBase SDK.
+- **Multi-tenancy**: Workspace creation, switching, and role-based access control (admin, editor, viewer, member).
+- **Internationalization**: 8 languages (English, Hindi, Spanish, French, German, Japanese, Chinese, Arabic) with RTL support.
+- **Blog & CMS**: MDX-powered blog with authors, tags, categories, drafts, search, RSS feeds.
+- **Changelog**: Product update log with highlights, versioning, and RSS feed.
+- **Pricing**: Dynamic pricing plans with multi-currency and billing interval support.
+- **SEO**: Comprehensive schema.org structured data, sitemaps, hreflang, Open Graph.
+- **Theme**: Light/dark/system mode with shadcn/ui component library.
+
+## Pages
+
+### Public Pages
+- `/` — Home page with product overview.
+- `/pricing` — Pricing plans with monthly/quarterly/yearly billing and multi-currency support.
+- `/about` — Company information, mission, and values.
+- `/blog` — Blog index with posts, categories, tags, search, and pagination.
+- `/blog/{slug}` — Individual blog post with table of contents, share buttons, related posts.
+- `/blog/authors/{slug}` — Author profile page with bio and post history.
+- `/blog/tag/{tag}` — Posts filtered by tag.
+- `/blog/category/{category}` — Posts filtered by category.
+- `/changelog` — Product changelog with release highlights.
+- `/changelog/{slug}` — Individual changelog entry with full details.
+- `/privacy` — Privacy policy.
+- `/terms` — Terms of service.
+
+### Protected Pages (require authentication)
+- `/dashboard` — User dashboard with workspace overview.
+- `/dashboard/settings` — User and workspace settings.
+- `/dashboard/team` — Team member management.
+- `/dashboard/documents` — Document management.
+- `/dashboard/analytics` — Analytics and reporting.
+- `/dashboard/notifications` — Notification center.
+
+## Feeds
+
+- `/blog/feed.xml` — Blog RSS 2.0 feed (per-locale).
+- `/changelog/feed.xml` — Changelog RSS 2.0 feed (per-locale).
+
+## API Endpoints
+
+- `GET /api/health` — Health check (returns 200 OK).
+- `POST /api/auth/token` — OAuth token exchange.
+- `GET /api/auth/session` — Current session info.
+- `POST /api/auth/signout` — Sign out.
+- `GET /api/og` — Dynamic Open Graph image generation.
+
+## Technology Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript 5 (strict mode)
+- **Styling**: Tailwind CSS 4, shadcn/ui
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: BuildBase SDK (OAuth 2.0)
+- **Content**: Contentlayer2 (MDX)
+- **Monitoring**: Sentry
+- **Deployment**: Vercel, Docker
+
+## Structured Data
+
+Every page includes schema.org JSON-LD structured data:
+- Organization, WebSite (root layout)
+- BlogPosting, ArticleJsonLd (blog posts, changelog entries)
+- BreadcrumbList (navigation context)
+- Person (author profiles)
+- WebApplication, Product, AggregateOffer (pricing page)
+- ItemList (changelog index)
+- Blog (blog index)
+
+## Internationalization
+
+Supported locales: en, hi, es, fr, de, ja, zh, ar
+Default locale: en (no URL prefix)
+Non-default locales: /{locale}/path (e.g., /es/pricing)
+RTL support: Arabic (ar)
+
+## Contact
+
+- Website: https://example.com

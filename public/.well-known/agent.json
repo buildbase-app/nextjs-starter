@@ -1,0 +1,82 @@
+{
+  "name": "My App",
+  "description": "A SaaS platform that helps teams build and ship products faster.",
+  "url": "https://example.com",
+  "version": "0.1.0",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "id": "get-blog-posts",
+      "name": "Get Blog Posts",
+      "description": "Retrieve blog posts in markdown format. Supports filtering by locale.",
+      "uri": "/api/content/blog/{slug}",
+      "method": "GET",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "The blog post slug (filename without .mdx extension)."
+          }
+        },
+        "required": ["slug"]
+      },
+      "outputContentTypes": ["text/markdown"]
+    },
+    {
+      "id": "get-changelog",
+      "name": "Get Changelog Entry",
+      "description": "Retrieve a changelog entry in markdown format.",
+      "uri": "/api/content/changelog/{slug}",
+      "method": "GET",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "The changelog entry slug."
+          }
+        },
+        "required": ["slug"]
+      },
+      "outputContentTypes": ["text/markdown"]
+    },
+    {
+      "id": "health-check",
+      "name": "Health Check",
+      "description": "Check if the service is running.",
+      "uri": "/api/health",
+      "method": "GET",
+      "outputContentTypes": ["application/json"]
+    },
+    {
+      "id": "get-blog-feed",
+      "name": "Get Blog RSS Feed",
+      "description": "Get the blog RSS feed with all published posts.",
+      "uri": "/blog/feed.xml",
+      "method": "GET",
+      "outputContentTypes": ["application/rss+xml"]
+    },
+    {
+      "id": "get-changelog-feed",
+      "name": "Get Changelog RSS Feed",
+      "description": "Get the changelog RSS feed with all release notes.",
+      "uri": "/changelog/feed.xml",
+      "method": "GET",
+      "outputContentTypes": ["application/rss+xml"]
+    }
+  ],
+  "defaultInputContentTypes": ["application/json"],
+  "defaultOutputContentTypes": ["application/json"],
+  "provider": {
+    "organization": "My App",
+    "url": "https://example.com"
+  },
+  "documentationUrl": "https://example.com/llms-full.txt",
+  "authentication": {
+    "schemes": ["none"]
+  }
+}

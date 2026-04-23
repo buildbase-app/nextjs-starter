@@ -56,6 +56,27 @@ export function middleware(request: NextRequest): NextResponse {
     }
   }
 
+  // --- Markdown content negotiation ---
+  // When an agent requests Accept: text/markdown on a content page,
+  // rewrite to the /api/content/ endpoint which returns raw markdown.
+  const accept = request.headers.get('accept') ?? '';
+  if (accept.includes('text/markdown')) {
+    const blogMatch = pathname.match(/^(?:\/[a-z]{2})?\/blog\/([^/]+)$/);
+    const changelogMatch = pathname.match(
+      /^(?:\/[a-z]{2})?\/changelog\/([^/]+)$/
+    );
+    if (blogMatch) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/api/content/blog/${blogMatch[1]}`;
+      return NextResponse.rewrite(url);
+    }
+    if (changelogMatch) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/api/content/changelog/${changelogMatch[1]}`;
+      return NextResponse.rewrite(url);
+    }
+  }
+
   // --- X-Robots-Tag for API routes ---
   // Belt-and-braces: robots.txt already disallows /api/, but this
   // header prevents accidental indexing if a crawler ignores robots.txt.
@@ -74,6 +95,17 @@ export function middleware(request: NextRequest): NextResponse {
   // Set request-id header
   response.headers.set('x-request-id', requestId);
 
+  // --- Link headers for agent/resource discovery ---
+  const origin = request.nextUrl.origin;
+  response.headers.append(
+    'Link',
+    [
+      `<${origin}/llms.txt>; rel="describedby"; type="text/plain"`,
+      `<${origin}/sitemap.xml>; rel="sitemap"; type="application/xml"`,
+      `<${origin}/blog/feed.xml>; rel="alternate"; type="application/rss+xml"; title="Blog"`,
+    ].join(', ')
+  );
+
   // Add security headers to the response
   return addSecurityHeaders(response);
 }
@@ -88,6 +120,6 @@ export const config = {
      * - sitemap.xml and robots.txt (SEO files)
      * - public folder assets
      */
-    '/((?!_next/static|_next/image|favicon.ico|push-sw\\.js|sitemap\\.xml|sitemap-\\d+\\.xml|robots\\.txt|llms\\.txt|llms-full\\.txt|\\.well-known/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|push-sw\\.js|sitemap\\.xml|sitemap-\\d+\\.xml|robots\\.txt|llms\\.txt|llms-full\\.txt|openapi\\.json|\\.well-known/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
   ],
 };

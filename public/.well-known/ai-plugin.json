@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "My App",
+  "name_for_model": "my_app",
+  "description_for_human": "A SaaS platform that helps teams build and ship products faster.",
+  "description_for_model": "A SaaS platform with authentication, multi-tenant workspaces, team management, billing, blog, changelog, and internationalization. Use this to get information about the product, pricing plans, blog posts, and changelog entries.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://example.com/openapi.json"
+  },
+  "logo_url": "https://example.com/logo.png",
+  "contact_email": "support@example.com",
+  "legal_info_url": "https://example.com/terms"
+}
