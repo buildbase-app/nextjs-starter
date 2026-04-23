@@ -337,7 +337,7 @@ export function PricingPlans({ slug = 'main-pricing' }: PricingPlansProps) {
                                   className="flex items-center gap-2"
                                 >
                                   {enabled ? (
-                                    <Check className="h-4 w-4 shrink-0 text-green-600" />
+                                    <Check className="text-success h-4 w-4 shrink-0" />
                                   ) : (
                                     <X className="text-muted-foreground h-4 w-4 shrink-0" />
                                   )}

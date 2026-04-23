@@ -40,7 +40,7 @@ export function ImageZoom({ alt, ...props }: ComponentPropsWithoutRef<'img'>) {
         >
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+            className="bg-background/20 text-foreground hover:bg-background/40 absolute top-4 right-4 rounded-full p-2 transition-colors"
             aria-label="Close"
           >
             <X className="size-5" />

@@ -20,9 +20,9 @@ export async function generateStaticParams() {
 }
 
 const KIND_TOKENS: Record<string, string> = {
-  New: 'text-green-600',
+  New: 'text-success',
   Improved: 'text-primary',
-  Fixed: 'text-yellow-600',
+  Fixed: 'text-warning',
   Breaking: 'text-destructive',
 };
 

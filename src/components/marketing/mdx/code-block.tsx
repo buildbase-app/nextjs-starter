@@ -30,7 +30,7 @@ export function CodeBlock({ code, children, ...props }: CodeBlockProps) {
         aria-label={copied ? 'Copied!' : 'Copy code'}
       >
         {copied ? (
-          <Check className="size-4 text-green-500" />
+          <Check className="text-success size-4" />
         ) : (
           <Copy className="size-4" />
         )}

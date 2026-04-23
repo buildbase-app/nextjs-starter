@@ -12,9 +12,9 @@ const KIND_CONFIG: Record<
   CalloutKind,
   { icon: React.ComponentType<{ className?: string }>; tone: string }
 > = {
-  info: { icon: Info, tone: 'text-primary' },
-  success: { icon: CheckCircle2, tone: 'text-green-600' },
-  warning: { icon: AlertTriangle, tone: 'text-yellow-600' },
+  info: { icon: Info, tone: 'text-info' },
+  success: { icon: CheckCircle2, tone: 'text-success' },
+  warning: { icon: AlertTriangle, tone: 'text-warning' },
   danger: { icon: Flame, tone: 'text-destructive' },
 };
 
