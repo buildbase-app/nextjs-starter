@@ -32,6 +32,11 @@ export const env = createEnv({
       .string()
       .min(1, 'BUILDBASE_CLIENT_SECRET is required'),
 
+    // BuildBase OAuth2 — used by /api/auth/oauth2-token and /api/auth/oauth2-profile
+    // This is the clientSecret from the OAuth2 auth settings (may differ from the main client secret)
+    BUILDBASE_OAUTH2_CLIENT_ID: z.string().optional(),
+    BUILDBASE_OAUTH2_CLIENT_SECRET: z.string().optional(),
+
     // Sentry (server-side, for source map uploads)
     SENTRY_ORG: z.string().optional(),
     SENTRY_PROJECT: z.string().optional(),
@@ -89,6 +94,8 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     SYSTEM_SECRET: process.env.SYSTEM_SECRET,
     BUILDBASE_CLIENT_SECRET: process.env.BUILDBASE_CLIENT_SECRET,
+    BUILDBASE_OAUTH2_CLIENT_ID: process.env.BUILDBASE_OAUTH2_CLIENT_ID,
+    BUILDBASE_OAUTH2_CLIENT_SECRET: process.env.BUILDBASE_OAUTH2_CLIENT_SECRET,
     SENTRY_ORG: process.env.SENTRY_ORG,
     SENTRY_PROJECT: process.env.SENTRY_PROJECT,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
