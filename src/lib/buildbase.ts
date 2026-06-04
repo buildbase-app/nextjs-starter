@@ -14,6 +14,7 @@ export const {
   features,
   settings,
   notification,
+  credits,
   withSession,
   client,
 } = BuildBase({

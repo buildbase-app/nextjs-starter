@@ -46,3 +46,4 @@ next-env.d.ts
 
 # pagefind (generated at build time)
 public/pagefind
+.yalc/@buildbase/sdk/*

@@ -17,6 +17,9 @@ const messages: Messages = {
       generalSettings: '常规设置',
       userManagement: '用户管理',
       billingPayments: '账单与支付',
+      credits: 'Credits',
+      creditUsage: 'Credit Usage',
+      creditsAvailable: 'Available',
     },
     buttons: {
       signIn: '登录',
@@ -114,6 +117,16 @@ const messages: Messages = {
       },
     },
   },
+  creditStore: {
+    title: 'Credit Packages',
+    subtitle:
+      'Purchase credits to unlock premium features like AI generation, exports, and more.',
+    buy: 'Buy Credits',
+    validFor: 'Valid for {days} days',
+    noExpiry: 'Never expires',
+    noPackages: 'No credit packages available at this time.',
+    error: 'Failed to load credit packages',
+  },
   pricing: {
     title: '定价',
     subtitle: '选择适合您需求的方案',
@@ -127,6 +140,8 @@ const messages: Messages = {
     currency: '货币',
     quotas: '配额',
     limits: '限制',
+    credits: 'AI Credits',
+    creditsPerPeriod: 'credits / period',
     features: '功能',
     included: '包含',
     perUnit: '之后',
@@ -136,6 +151,29 @@ const messages: Messages = {
     meta: {
       title: '定价',
       description: '查看我们的方案和价格',
+    },
+  },
+  credits: {
+    title: 'Credits',
+    description:
+      'Use credits for premium actions. Manage packages in workspace settings.',
+    balance: 'Credit Balance',
+    creditsAvailable: 'credits available',
+    manageCredits: 'Manage Credits',
+    buyCredits: 'Buy Credits',
+    choosePlan: 'Choose Plan',
+    noCredits:
+      'You have no credits remaining. Purchase more to continue using premium features.',
+    buyMore: 'Buy Credits',
+    testConsume: {
+      title: 'Test Credit Consumption',
+      description:
+        'Use these buttons to test consuming credits from your balance.',
+      use: 'Use {amount}',
+      apiDescription: 'Test: consume {amount} credits',
+      success: 'Consumed {amount} credits. Balance: {balance}',
+      insufficient:
+        'Not enough credits. Available: {available}, Requested: {requested}',
     },
   },
   errors: {

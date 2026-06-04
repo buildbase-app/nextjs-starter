@@ -17,6 +17,9 @@ const messages: Messages = {
       generalSettings: '一般設定',
       userManagement: 'ユーザー管理',
       billingPayments: '請求と支払い',
+      credits: 'Credits',
+      creditUsage: 'Credit Usage',
+      creditsAvailable: 'Available',
     },
     buttons: {
       signIn: 'サインイン',
@@ -115,6 +118,16 @@ const messages: Messages = {
       },
     },
   },
+  creditStore: {
+    title: 'Credit Packages',
+    subtitle:
+      'Purchase credits to unlock premium features like AI generation, exports, and more.',
+    buy: 'Buy Credits',
+    validFor: 'Valid for {days} days',
+    noExpiry: 'Never expires',
+    noPackages: 'No credit packages available at this time.',
+    error: 'Failed to load credit packages',
+  },
   pricing: {
     title: '料金プラン',
     subtitle: 'ニーズに合ったプランをお選びください',
@@ -128,6 +141,8 @@ const messages: Messages = {
     currency: '通貨',
     quotas: 'クォータ',
     limits: '制限',
+    credits: 'AI Credits',
+    creditsPerPeriod: 'credits / period',
     features: '機能',
     included: '含まれる',
     perUnit: 'その後',
@@ -137,6 +152,29 @@ const messages: Messages = {
     meta: {
       title: '料金プラン',
       description: 'プランと料金を見る',
+    },
+  },
+  credits: {
+    title: 'Credits',
+    description:
+      'Use credits for premium actions. Manage packages in workspace settings.',
+    balance: 'Credit Balance',
+    creditsAvailable: 'credits available',
+    manageCredits: 'Manage Credits',
+    buyCredits: 'Buy Credits',
+    choosePlan: 'Choose Plan',
+    noCredits:
+      'You have no credits remaining. Purchase more to continue using premium features.',
+    buyMore: 'Buy Credits',
+    testConsume: {
+      title: 'Test Credit Consumption',
+      description:
+        'Use these buttons to test consuming credits from your balance.',
+      use: 'Use {amount}',
+      apiDescription: 'Test: consume {amount} credits',
+      success: 'Consumed {amount} credits. Balance: {balance}',
+      insufficient:
+        'Not enough credits. Available: {available}, Requested: {requested}',
     },
   },
   errors: {

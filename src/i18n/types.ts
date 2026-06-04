@@ -17,6 +17,9 @@ export interface CommonMessages {
     generalSettings: string;
     userManagement: string;
     billingPayments: string;
+    credits: string;
+    creditUsage: string;
+    creditsAvailable: string;
   };
   buttons: {
     signIn: string;
@@ -129,6 +132,8 @@ export interface PricingMessages {
   currency: string;
   quotas: string;
   limits: string;
+  credits: string;
+  creditsPerPeriod: string;
   features: string;
   included: string;
   perUnit: string;
@@ -155,11 +160,43 @@ export interface ErrorMessages {
   };
 }
 
+export interface CreditsMessages {
+  title: string;
+  description: string;
+  balance: string;
+  creditsAvailable: string;
+  manageCredits: string;
+  buyCredits: string;
+  choosePlan: string;
+  noCredits: string;
+  buyMore: string;
+  testConsume: {
+    title: string;
+    description: string;
+    use: string;
+    apiDescription: string;
+    success: string;
+    insufficient: string;
+  };
+}
+
+export interface CreditStoreMessages {
+  title: string;
+  subtitle: string;
+  buy: string;
+  validFor: string;
+  noExpiry: string;
+  noPackages: string;
+  error: string;
+}
+
 // Combined messages type
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
   dashboard: DashboardMessages;
+  credits: CreditsMessages;
+  creditStore: CreditStoreMessages;
   pricing: PricingMessages;
   errors: ErrorMessages;
 }

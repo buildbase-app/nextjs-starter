@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Check, X } from 'lucide-react';
+import { Check, Coins, X } from 'lucide-react';
 import { getCurrencySymbol, type BillingInterval } from '@buildbase/sdk';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -34,6 +34,12 @@ interface PlanData {
   quotas?: Record<string, Record<string, QuotaInterval>>;
   features?: Record<string, boolean>;
   limits?: Record<string, number>;
+  creditGrant?: {
+    enabled: boolean;
+    creditAmount: number | null;
+    packageName: string | null;
+    mode: 'reset' | 'topup';
+  };
 }
 
 // Helper to safely cast SDK plan type to our local shape
@@ -320,6 +326,24 @@ export function PricingPlans({ slug = 'main-pricing' }: PricingPlansProps) {
                               );
                             })}
                           </ul>
+                        </div>
+                      ) : null}
+
+                      {plan.creditGrant?.enabled &&
+                      plan.creditGrant.creditAmount ? (
+                        <div>
+                          <h4 className="text-muted-foreground mb-2 text-xs font-medium tracking-wide uppercase">
+                            {t('credits')}
+                          </h4>
+                          <div className="flex items-center justify-between rounded-lg bg-purple-50 p-3 dark:bg-purple-950/30">
+                            <div className="flex items-center gap-2">
+                              <Coins className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                              <span className="text-sm font-semibold text-purple-700 dark:text-purple-300">
+                                {plan.creditGrant.creditAmount.toLocaleString()}{' '}
+                                {t('creditsPerPeriod')}
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       ) : null}
 

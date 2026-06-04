@@ -13,6 +13,7 @@ import {
   LogOut,
   ChevronUp,
   CreditCard,
+  Coins,
   User,
 } from 'lucide-react';
 import {
@@ -42,6 +43,7 @@ import {
   useSaaSAuth,
   WorkspaceSwitcher,
   WhenAuthenticated,
+  CreditBalance,
 } from '@buildbase/sdk/react';
 import { LanguageSwitcher } from './language-switcher';
 
@@ -49,6 +51,7 @@ type NavKey =
   | 'dashboard'
   | 'analytics'
   | 'documents'
+  | 'credits'
   | 'team'
   | 'notifications'
   | 'settings';
@@ -72,6 +75,11 @@ const menuItems: {
     navKey: 'documents',
     url: '/dashboard/documents',
     icon: FileText,
+  },
+  {
+    navKey: 'credits',
+    url: '/dashboard/credits',
+    icon: Coins,
   },
   {
     navKey: 'team',
@@ -151,6 +159,56 @@ export function AppSidebar() {
               );
             }}
           />
+        </WhenAuthenticated>
+        <WhenAuthenticated>
+          <CreditBalance>
+            {({ balance, loading }) => {
+              const available = balance?.available ?? 0;
+              const granted = balance?.totalGranted ?? 0;
+              const used = granted > 0 ? granted - available : 0;
+              const percent =
+                granted > 0 ? Math.round((used / granted) * 100) : 0;
+              const isLow = granted > 0 && percent >= 80;
+              const isExhausted = granted > 0 && available === 0;
+
+              return (
+                <Link
+                  href="/dashboard/credits"
+                  className="hover:bg-muted/50 block space-y-2 rounded-md border p-3 text-sm transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-foreground font-medium">
+                      {t('nav.creditUsage')}
+                    </span>
+                    <span className="text-muted-foreground text-xs">
+                      {loading ? '...' : `${percent}%`}
+                    </span>
+                  </div>
+                  {/* Progress bar */}
+                  <div className="bg-muted h-2 w-full rounded-full">
+                    <div
+                      className={`h-2 rounded-full transition-all duration-500 ${
+                        isExhausted
+                          ? 'bg-red-500'
+                          : isLow
+                            ? 'bg-amber-500'
+                            : 'bg-green-500'
+                      }`}
+                      style={{ width: `${Math.min(percent, 100)}%` }}
+                    />
+                  </div>
+                  <div className="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>
+                      {loading
+                        ? '...'
+                        : `${available.toLocaleString()} / ${granted.toLocaleString()}`}
+                    </span>
+                    <span>{t('nav.creditsAvailable')}</span>
+                  </div>
+                </Link>
+              );
+            }}
+          </CreditBalance>
         </WhenAuthenticated>
       </SidebarHeader>
 

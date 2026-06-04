@@ -17,6 +17,9 @@ const messages: Messages = {
       generalSettings: 'General Settings',
       userManagement: 'User Management',
       billingPayments: 'Billing & Payments',
+      credits: 'Credits',
+      creditUsage: 'Credit Usage',
+      creditsAvailable: 'Available',
     },
     buttons: {
       signIn: 'Sign In',
@@ -114,6 +117,16 @@ const messages: Messages = {
       },
     },
   },
+  creditStore: {
+    title: 'Credit Packages',
+    subtitle:
+      'Purchase credits to unlock premium features like AI generation, exports, and more.',
+    buy: 'Buy Credits',
+    validFor: 'Valid for {days} days',
+    noExpiry: 'Never expires',
+    noPackages: 'No credit packages available at this time.',
+    error: 'Failed to load credit packages',
+  },
   pricing: {
     title: 'Pricing',
     subtitle: 'Choose the plan that fits your needs',
@@ -127,6 +140,8 @@ const messages: Messages = {
     currency: 'Currency',
     quotas: 'Quotas',
     limits: 'Limits',
+    credits: 'AI Credits',
+    creditsPerPeriod: 'credits / period',
     features: 'Features',
     included: 'Included',
     perUnit: 'after that',
@@ -136,6 +151,29 @@ const messages: Messages = {
     meta: {
       title: 'Pricing',
       description: 'View our plans and pricing',
+    },
+  },
+  credits: {
+    title: 'Credits',
+    description:
+      'Use credits for premium actions. Manage packages in workspace settings.',
+    balance: 'Credit Balance',
+    creditsAvailable: 'credits available',
+    manageCredits: 'Manage Credits',
+    buyCredits: 'Buy Credits',
+    choosePlan: 'Choose Plan',
+    noCredits:
+      'You have no credits remaining. Purchase more to continue using premium features.',
+    buyMore: 'Buy Credits',
+    testConsume: {
+      title: 'Test Credit Consumption',
+      description:
+        'Use these buttons to test consuming credits from your balance.',
+      use: 'Use {amount}',
+      apiDescription: 'Test: consume {amount} credits',
+      success: 'Consumed {amount} credits. Balance: {balance}',
+      insufficient:
+        'Not enough credits. Available: {available}, Requested: {requested}',
     },
   },
   errors: {
