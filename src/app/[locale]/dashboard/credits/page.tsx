@@ -46,8 +46,8 @@ export default function CreditsPage() {
       if (error.code === 'INSUFFICIENT_CREDITS') {
         alert(
           t('testConsume.insufficient', {
-            available: error.available,
-            requested: error.requested,
+            available: error.available ?? 0,
+            requested: error.requested ?? 0,
           })
         );
       } else {
