@@ -19,6 +19,7 @@ import {
   Lock,
   Radio,
   UserCircle,
+  Receipt,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -56,6 +57,7 @@ type NavKey =
   | 'analytics'
   | 'documents'
   | 'credits'
+  | 'invoices'
   | 'usage'
   | 'permissions'
   | 'events'
@@ -88,6 +90,11 @@ const menuItems: {
     navKey: 'credits',
     url: '/dashboard/credits',
     icon: Coins,
+  },
+  {
+    navKey: 'invoices',
+    url: '/dashboard/invoices',
+    icon: Receipt,
   },
   {
     navKey: 'usage',

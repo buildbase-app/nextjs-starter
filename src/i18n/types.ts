@@ -23,6 +23,7 @@ export interface CommonMessages {
     usage: string;
     permissions: string;
     events: string;
+    invoices: string;
   };
   buttons: {
     signIn: string;

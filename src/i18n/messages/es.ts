@@ -23,6 +23,7 @@ const messages: Messages = {
       usage: 'Usage',
       permissions: 'Permissions',
       events: 'Events',
+      invoices: 'Invoices',
     },
     buttons: {
       signIn: 'Iniciar sesión',
