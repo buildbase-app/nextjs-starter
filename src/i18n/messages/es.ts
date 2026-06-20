@@ -22,6 +22,7 @@ const messages: Messages = {
       creditsAvailable: 'Available',
       usage: 'Usage',
       permissions: 'Permissions',
+      events: 'Events',
     },
     buttons: {
       signIn: 'Iniciar sesión',

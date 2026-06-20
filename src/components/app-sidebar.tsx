@@ -17,6 +17,7 @@ import {
   User,
   Gauge,
   Lock,
+  Radio,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -56,6 +57,7 @@ type NavKey =
   | 'credits'
   | 'usage'
   | 'permissions'
+  | 'events'
   | 'team'
   | 'notifications'
   | 'settings';
@@ -94,6 +96,11 @@ const menuItems: {
     navKey: 'permissions',
     url: '/dashboard/permissions',
     icon: Lock,
+  },
+  {
+    navKey: 'events',
+    url: '/dashboard/events',
+    icon: Radio,
   },
   {
     navKey: 'team',
