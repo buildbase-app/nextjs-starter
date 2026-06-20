@@ -6,8 +6,13 @@ import {
   useSaaSWorkspaces,
   useSubscription,
   useTrialStatus,
+  useSeatStatus,
   WhenTrialing,
   WhenTrialEnding,
+  WhenNotTrialing,
+  WhenSubscription,
+  WhenNoSubscription,
+  WhenSubscriptionToPlans,
 } from '@buildbase/sdk/react';
 import { Button } from '@/components/ui/button';
 import {
@@ -18,7 +23,14 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { AlertTriangle, Calendar, CreditCard, Zap } from 'lucide-react';
+import {
+  AlertTriangle,
+  Calendar,
+  CreditCard,
+  Zap,
+  Users,
+  CheckCircle2,
+} from 'lucide-react';
 
 export default function DashboardPage() {
   const { user, openPlanPicker } = useSaaSAuth();
@@ -28,6 +40,7 @@ export default function DashboardPage() {
     currentWorkspace?._id ?? ''
   );
   const { isTrialing, daysRemaining, trialEndsAt } = useTrialStatus();
+  const seatStatus = useSeatStatus(currentWorkspace ?? null);
 
   const plan = subscription?.plan;
 
@@ -61,7 +74,7 @@ export default function DashboardPage() {
         </Card>
       </WhenTrialEnding>
 
-      {/* Active trial banner — only shown when NOT ending soon (avoids double banner) */}
+      {/* Active trial banner — only shown when NOT ending soon */}
       <WhenTrialing>
         <WhenTrialEnding
           daysThreshold={5}
@@ -91,6 +104,25 @@ export default function DashboardPage() {
           {null}
         </WhenTrialEnding>
       </WhenTrialing>
+
+      {/* Not trialing + no subscription → upsell */}
+      <WhenNotTrialing>
+        <WhenNoSubscription fallbackComponent={null}>
+          <Card className="border-dashed">
+            <CardContent className="flex items-center justify-between pt-6">
+              <div>
+                <p className="text-sm font-medium">No active subscription</p>
+                <p className="text-muted-foreground mt-0.5 text-xs">
+                  WhenNoSubscription — subscribe to unlock paid features
+                </p>
+              </div>
+              <Button size="sm" onClick={openPlanPicker}>
+                Choose a plan
+              </Button>
+            </CardContent>
+          </Card>
+        </WhenNoSubscription>
+      </WhenNotTrialing>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
@@ -177,6 +209,104 @@ export default function DashboardPage() {
                 Choose a plan
               </Button>
             </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Subscription gates demo */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">WhenSubscription gate</CardTitle>
+            <CardDescription>
+              Only visible when workspace has an active subscription
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <WhenSubscription
+              fallbackComponent={
+                <p className="text-muted-foreground text-sm">
+                  No subscription active — upgrade to see this content.
+                </p>
+              }
+            >
+              <p className="flex items-center gap-1.5 text-sm text-green-700 dark:text-green-400">
+                <CheckCircle2 className="h-4 w-4" />
+                You have an active subscription — this card is visible.
+              </p>
+            </WhenSubscription>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">
+              WhenSubscriptionToPlans gate
+            </CardTitle>
+            <CardDescription>
+              Only visible when subscribed to a specific plan
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <WhenSubscriptionToPlans
+              plans={['pro', 'enterprise', 'growth']}
+              fallbackComponent={
+                <p className="text-muted-foreground text-sm">
+                  Not on a Pro / Enterprise / Growth plan.
+                </p>
+              }
+            >
+              <p className="flex items-center gap-1.5 text-sm text-green-700 dark:text-green-400">
+                <CheckCircle2 className="h-4 w-4" />
+                You&apos;re on Pro, Enterprise, or Growth — premium content
+                unlocked.
+              </p>
+            </WhenSubscriptionToPlans>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Seat status card */}
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <div>
+            <CardTitle className="text-base">Seat status</CardTitle>
+            <CardDescription>
+              <code className="text-xs">useSeatStatus()</code> — member count vs
+              plan limits
+            </CardDescription>
+          </div>
+          <Users className="text-muted-foreground h-5 w-5" />
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div>
+              <p className="text-muted-foreground text-xs">Members</p>
+              <p className="text-2xl font-bold">{seatStatus.memberCount}</p>
+            </div>
+            <div>
+              <p className="text-muted-foreground text-xs">Included seats</p>
+              <p className="text-2xl font-bold">
+                {seatStatus.includedSeats || '—'}
+              </p>
+            </div>
+            <div>
+              <p className="text-muted-foreground text-xs">Max users</p>
+              <p className="text-2xl font-bold">
+                {seatStatus.maxUsers === 0 ? '∞' : seatStatus.maxUsers}
+              </p>
+            </div>
+            <div>
+              <p className="text-muted-foreground text-xs">Can invite</p>
+              <Badge variant={seatStatus.canInvite ? 'default' : 'destructive'}>
+                {seatStatus.canInvite ? 'Yes' : 'No'}
+              </Badge>
+            </div>
+          </div>
+          {!seatStatus.canInvite && (
+            <p className="mt-3 text-sm text-amber-700 dark:text-amber-400">
+              Seat limit reached — upgrade your plan to invite more members.
+            </p>
           )}
         </CardContent>
       </Card>
