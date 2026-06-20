@@ -4,8 +4,23 @@ import {
   usePermissions,
   WhenWorkspaceRoles,
   WhenPermission,
-  Permission,
 } from '@buildbase/sdk/react';
+
+// Permission slugs from the SDK (Permission constant isn't in the runtime bundle)
+const PERMISSION_SLUGS: [string, string][] = [
+  ['WORKSPACE_SETTINGS_VIEW', 'workspace:settings:view'],
+  ['WORKSPACE_SETTINGS_EDIT', 'workspace:settings:edit'],
+  ['WORKSPACE_DELETE', 'workspace:delete'],
+  ['WORKSPACE_MEMBERS_VIEW', 'workspace:members:view'],
+  ['WORKSPACE_MEMBERS_INVITE', 'workspace:members:invite'],
+  ['WORKSPACE_MEMBERS_REMOVE', 'workspace:members:remove'],
+  ['WORKSPACE_MEMBERS_ROLE_CHANGE', 'workspace:members:role-change'],
+  ['WORKSPACE_FEATURES_VIEW', 'workspace:features:view'],
+  ['WORKSPACE_FEATURES_EDIT', 'workspace:features:edit'],
+  ['WORKSPACE_BILLING_VIEW', 'workspace:billing:view'],
+  ['WORKSPACE_BILLING_MANAGE', 'workspace:billing:manage'],
+  ['WORKSPACE_USAGE_VIEW', 'workspace:usage:view'],
+];
 import {
   Card,
   CardContent,
@@ -15,8 +30,6 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, XCircle, Shield, Users } from 'lucide-react';
-
-const ALL_PERMISSIONS = Object.entries(Permission) as [string, string][];
 
 function PermissionRow({ label, slug }: { label: string; slug: string }) {
   return (
@@ -159,7 +172,7 @@ export default function PermissionsPage() {
         </CardHeader>
         <CardContent>
           <div className="divide-y">
-            {ALL_PERMISSIONS.map(([key, slug]) => (
+            {PERMISSION_SLUGS.map(([key, slug]) => (
               <PermissionRow key={key} label={key} slug={slug} />
             ))}
           </div>
