@@ -176,6 +176,33 @@ const messages: Messages = {
       insufficient:
         'Not enough credits. Available: {available}, Requested: {requested}',
     },
+    lowCredits: {
+      title: 'Credits werden knapp',
+      description:
+        'Ihr Guthaben ist niedrig. Laden Sie jetzt auf, um Unterbrechungen zu vermeiden.',
+    },
+    expiring: {
+      title: 'Ablaufende Credits',
+      description: 'Credits, die in den nächsten 30 Tagen ablaufen',
+      expiresIn: 'Läuft ab am {date}',
+      noExpiring: 'Keine Credits laufen bald ab',
+      days: '{count} Credits',
+    },
+    transactions: {
+      title: 'Transaktionsverlauf',
+      description: 'Letzte Credit-Aufladungen und -Abzüge',
+      empty: 'Noch keine Transaktionen',
+      columns: {
+        type: 'Typ',
+        amount: 'Betrag',
+        balance: 'Saldo danach',
+        description: 'Beschreibung',
+      },
+      types: {
+        credit: 'Gutschrift',
+        debit: 'Belastung',
+      },
+    },
   },
   errors: {
     generic: {

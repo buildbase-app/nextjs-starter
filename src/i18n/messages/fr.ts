@@ -176,6 +176,33 @@ const messages: Messages = {
       insufficient:
         'Not enough credits. Available: {available}, Requested: {requested}',
     },
+    lowCredits: {
+      title: 'Crédits insuffisants',
+      description:
+        'Votre solde de crédits est faible. Rechargez maintenant pour éviter toute interruption.',
+    },
+    expiring: {
+      title: 'Crédits expirants',
+      description: 'Crédits expirant dans les 30 prochains jours',
+      expiresIn: 'Expire le {date}',
+      noExpiring: 'Aucun crédit ne expire bientôt',
+      days: '{count} crédits',
+    },
+    transactions: {
+      title: 'Historique des transactions',
+      description: 'Ajouts et déductions récents de crédits',
+      empty: 'Aucune transaction pour le moment',
+      columns: {
+        type: 'Type',
+        amount: 'Montant',
+        balance: 'Solde après',
+        description: 'Description',
+      },
+      types: {
+        credit: 'Crédit',
+        debit: 'Débit',
+      },
+    },
   },
   errors: {
     generic: {

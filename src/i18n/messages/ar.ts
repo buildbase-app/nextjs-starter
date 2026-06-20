@@ -175,6 +175,32 @@ const messages: Messages = {
       insufficient:
         'Not enough credits. Available: {available}, Requested: {requested}',
     },
+    lowCredits: {
+      title: 'الرصيد منخفض',
+      description: 'رصيد النقاط لديك منخفض. قم بالشحن الآن لتجنب الانقطاع.',
+    },
+    expiring: {
+      title: 'النقاط قاربت على الانتهاء',
+      description: 'النقاط التي تنتهي صلاحيتها خلال 30 يومًا القادمة',
+      expiresIn: 'تنتهي في {date}',
+      noExpiring: 'لا توجد نقاط قاربت على الانتهاء',
+      days: '{count} نقطة',
+    },
+    transactions: {
+      title: 'سجل المعاملات',
+      description: 'أحدث إضافات وخصومات النقاط',
+      empty: 'لا توجد معاملات بعد',
+      columns: {
+        type: 'النوع',
+        amount: 'المبلغ',
+        balance: 'الرصيد بعد',
+        description: 'الوصف',
+      },
+      types: {
+        credit: 'إضافة',
+        debit: 'خصم',
+      },
+    },
   },
   errors: {
     generic: {
