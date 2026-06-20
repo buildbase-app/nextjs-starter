@@ -10,6 +10,9 @@ import {
   Lock,
   Radio,
   UserCircle,
+  Receipt,
+  Users,
+  Flag,
   type LucideIcon,
 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
@@ -113,6 +116,33 @@ const FEATURES: Feature[] = [
       'The profile page reads useUserAttributes() and useUserFeatures() to show custom key-value pairs and per-user feature flag states, and lets you write new attributes live.',
     tryHref: '/dashboard/profile',
     tryLabel: 'View your profile',
+  },
+  {
+    icon: Receipt,
+    badge: 'Invoices',
+    title: 'Invoice history & billing portal',
+    description:
+      'The invoices page calls useInvoices() to list all Stripe invoices with status, amount, and PDF links. A single button opens the Stripe Customer Portal via useBillingPortal().',
+    tryHref: '/dashboard/invoices',
+    tryLabel: 'View invoices',
+  },
+  {
+    icon: Users,
+    badge: 'Seats',
+    title: 'Seat limits & invite gating',
+    description:
+      'The dashboard calls useSeatStatus() to show member count vs plan limits in real time. WhenNoSubscription, WhenSubscription, and WhenSubscriptionToPlans gate UI to the right audience.',
+    tryHref: '/dashboard',
+    tryLabel: 'Open dashboard',
+  },
+  {
+    icon: Flag,
+    badge: 'Feature flags',
+    title: 'Workspace-level feature gates',
+    description:
+      'The profile page uses WhenWorkspaceFeatureEnabled and WhenWorkspaceFeatureDisabled to toggle content based on workspace-level feature flags configured in the BuildBase dashboard.',
+    tryHref: '/dashboard/profile',
+    tryLabel: 'See feature gates',
   },
 ];
 

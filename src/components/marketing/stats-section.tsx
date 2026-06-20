@@ -5,7 +5,7 @@ const STATS = [
     sublabel: 'switch with the header toggle',
   },
   {
-    value: '10',
+    value: '13',
     label: 'Live SDK features',
     sublabel: 'each has a working demo page',
   },
