@@ -61,28 +61,35 @@ export default function DashboardPage() {
         </Card>
       </WhenTrialEnding>
 
-      {/* Active trial banner */}
+      {/* Active trial banner — only shown when NOT ending soon (avoids double banner) */}
       <WhenTrialing>
-        <Card className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950">
-          <CardContent className="flex items-center gap-3 pt-6">
-            <Calendar className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-blue-800 dark:text-blue-200">
-                You&apos;re on a free trial
-              </p>
-              <p className="mt-0.5 text-sm text-blue-700 dark:text-blue-300">
-                {daysRemaining !== null && daysRemaining > 0
-                  ? `${daysRemaining} days remaining`
-                  : trialEndsAt
-                    ? `Trial ends ${new Date(trialEndsAt).toLocaleDateString()}`
-                    : 'Trial active'}
-              </p>
-            </div>
-            <Button variant="outline" size="sm" onClick={openPlanPicker}>
-              View plans
-            </Button>
-          </CardContent>
-        </Card>
+        <WhenTrialEnding
+          daysThreshold={5}
+          fallbackComponent={
+            <Card className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950">
+              <CardContent className="flex items-center gap-3 pt-6">
+                <Calendar className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
+                <div className="flex-1">
+                  <p className="text-sm font-semibold text-blue-800 dark:text-blue-200">
+                    You&apos;re on a free trial
+                  </p>
+                  <p className="mt-0.5 text-sm text-blue-700 dark:text-blue-300">
+                    {daysRemaining !== null && daysRemaining > 5
+                      ? `${daysRemaining} days remaining`
+                      : trialEndsAt
+                        ? `Trial ends ${new Date(trialEndsAt).toLocaleDateString()}`
+                        : 'Trial active'}
+                  </p>
+                </div>
+                <Button variant="outline" size="sm" onClick={openPlanPicker}>
+                  View plans
+                </Button>
+              </CardContent>
+            </Card>
+          }
+        >
+          {null}
+        </WhenTrialEnding>
       </WhenTrialing>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

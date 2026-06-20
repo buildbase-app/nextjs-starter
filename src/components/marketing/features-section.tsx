@@ -6,6 +6,10 @@ import {
   Bell,
   Globe,
   FileText,
+  Gauge,
+  Lock,
+  Radio,
+  UserCircle,
   type LucideIcon,
 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
@@ -73,6 +77,42 @@ const FEATURES: Feature[] = [
       'The blog and changelog are MDX files compiled at build time via Contentlayer2. No CMS, no database — just files with type-safe frontmatter, full-text search, and RSS.',
     tryHref: '/blog',
     tryLabel: 'Read the blog',
+  },
+  {
+    icon: Gauge,
+    badge: 'Quotas',
+    title: 'Quota usage with overage gates',
+    description:
+      'The usage page calls useAllQuotaUsage() to show per-quota progress bars. WhenQuotaExhausted blocks UI when a quota hits zero; WhenQuotaOverage shows overage details.',
+    tryHref: '/dashboard/usage',
+    tryLabel: 'View quota usage',
+  },
+  {
+    icon: Lock,
+    badge: 'Permissions',
+    title: 'Role-based permission matrix',
+    description:
+      'The permissions page uses usePermissions() and WhenPermission to show every platform permission as granted or denied based on your current workspace role in real time.',
+    tryHref: '/dashboard/permissions',
+    tryLabel: 'Check your permissions',
+  },
+  {
+    icon: Radio,
+    badge: 'Events',
+    title: 'Live SDK event stream',
+    description:
+      'The events page wires up eventEmitter.setCallbacks() to capture all SDK events as they fire — workspace changes, user updates, role changes — in a live scrolling log.',
+    tryHref: '/dashboard/events',
+    tryLabel: 'Open event log',
+  },
+  {
+    icon: UserCircle,
+    badge: 'User data',
+    title: 'User attributes & feature flags',
+    description:
+      'The profile page reads useUserAttributes() and useUserFeatures() to show custom key-value pairs and per-user feature flag states, and lets you write new attributes live.',
+    tryHref: '/dashboard/profile',
+    tryLabel: 'View your profile',
   },
 ];
 
