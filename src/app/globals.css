@@ -149,6 +149,10 @@
     overflow: hidden;
     height: 100dvh;
   }
+  #saas-os-portal {
+    height: 0 !important;
+    overflow: visible !important;
+  }
   #saas-os-portal [id^='radix-'] {
     transform: none !important;
   }

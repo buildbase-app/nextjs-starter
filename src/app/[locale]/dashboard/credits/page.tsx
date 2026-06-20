@@ -12,7 +12,6 @@ import {
   useCreditTransactions,
   useExpiringCredits,
   useCreditPackages,
-  usePurchaseCredits,
 } from '@buildbase/sdk/react';
 import { Button } from '@/components/ui/button';
 import {
@@ -35,22 +34,7 @@ import {
 
 function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
   const { packages, loading, error } = useCreditPackages(workspaceId);
-  const { purchaseCredits, loading: buying } = usePurchaseCredits(workspaceId);
-
-  const handleBuy = async (packageId: string) => {
-    try {
-      const result = await purchaseCredits({
-        creditPackageId: packageId,
-        successUrl: `${window.location.origin}/dashboard/credits?purchased=1`,
-        cancelUrl: window.location.href,
-      });
-      if (result.url) {
-        window.location.assign(result.url);
-      }
-    } catch {
-      alert('Failed to start checkout. Please try again.');
-    }
-  };
+  const { openCreditStore } = useSaaSAuth();
 
   return (
     <Card>
@@ -60,8 +44,7 @@ function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
           <CardTitle className="text-base">Credit packages</CardTitle>
           <CardDescription>
             Available for purchase via{' '}
-            <code className="text-xs">useCreditPackages()</code> +{' '}
-            <code className="text-xs">usePurchaseCredits()</code>
+            <code className="text-xs">useCreditPackages()</code>
           </CardDescription>
         </div>
       </CardHeader>
@@ -120,10 +103,9 @@ function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
                   <Button
                     size="sm"
                     className="mt-auto"
-                    disabled={buying}
-                    onClick={() => handleBuy(pkg._id)}
+                    onClick={openCreditStore}
                   >
-                    {buying ? 'Redirecting…' : 'Buy now'}
+                    Buy now
                   </Button>
                 </div>
               );
