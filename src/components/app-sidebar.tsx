@@ -18,6 +18,7 @@ import {
   Gauge,
   Lock,
   Radio,
+  UserCircle,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -58,6 +59,7 @@ type NavKey =
   | 'usage'
   | 'permissions'
   | 'events'
+  | 'profile'
   | 'team'
   | 'notifications'
   | 'settings';
@@ -101,6 +103,11 @@ const menuItems: {
     navKey: 'events',
     url: '/dashboard/events',
     icon: Radio,
+  },
+  {
+    navKey: 'profile',
+    url: '/dashboard/profile',
+    icon: UserCircle,
   },
   {
     navKey: 'team',
