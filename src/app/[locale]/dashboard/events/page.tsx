@@ -1,8 +1,21 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { eventEmitter, SDKEvent } from '@buildbase/sdk/react';
+import { eventEmitter } from '@buildbase/sdk/react';
 import type { EventType } from '@buildbase/sdk/react';
+
+// SDKEvent constant is declared in .d.ts but not in the runtime bundle
+const SDKEvent = {
+  UserCreated: 'user:created',
+  UserUpdated: 'user:updated',
+  WorkspaceChanged: 'workspace:changed',
+  WorkspaceUpdated: 'workspace:updated',
+  WorkspaceUserAdded: 'workspace:user-added',
+  WorkspaceUserRemoved: 'workspace:user-removed',
+  WorkspaceUserRoleChanged: 'workspace:user-role-changed',
+  WorkspaceCreated: 'workspace:created',
+  WorkspaceDeleted: 'workspace:deleted',
+} as const;
 import {
   Card,
   CardContent,
