@@ -5,6 +5,8 @@ import {
   useUserAttributes,
   useUserFeatures,
   useSaaSAuth,
+  WhenWorkspaceFeatureEnabled,
+  WhenWorkspaceFeatureDisabled,
 } from '@buildbase/sdk/react';
 import {
   Card,
@@ -16,7 +18,21 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CheckCircle2, XCircle, RefreshCw, User, Sliders } from 'lucide-react';
+import {
+  CheckCircle2,
+  XCircle,
+  RefreshCw,
+  User,
+  Sliders,
+  Flag,
+} from 'lucide-react';
+
+const DEMO_FEATURE_SLUGS = [
+  'premium-analytics',
+  'advanced-exports',
+  'beta-features',
+  'custom-branding',
+];
 
 export default function ProfilePage() {
   const { user } = useSaaSAuth();
@@ -62,7 +78,9 @@ export default function ProfilePage() {
         <h1 className="text-3xl font-bold tracking-tight">User Profile</h1>
         <p className="text-muted-foreground">
           Attributes via <code className="text-xs">useUserAttributes()</code> ·
-          Feature flags via <code className="text-xs">useUserFeatures()</code>
+          Feature flags via <code className="text-xs">useUserFeatures()</code> ·
+          Workspace flags via{' '}
+          <code className="text-xs">WhenWorkspaceFeatureEnabled</code>
         </p>
       </div>
 
@@ -91,6 +109,48 @@ export default function ProfilePage() {
           <div>
             <p className="text-muted-foreground text-xs">ID</p>
             <p className="font-mono text-xs">{user?.id ?? '—'}</p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Workspace feature flag gates */}
+      <Card>
+        <CardHeader className="flex flex-row items-center gap-2 pb-2">
+          <Flag className="h-5 w-5" />
+          <div>
+            <CardTitle className="text-base">Workspace feature flags</CardTitle>
+            <CardDescription>
+              <code className="text-xs">WhenWorkspaceFeatureEnabled</code> /{' '}
+              <code className="text-xs">WhenWorkspaceFeatureDisabled</code>
+            </CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="divide-y">
+            {DEMO_FEATURE_SLUGS.map((slug) => (
+              <div
+                key={slug}
+                className="flex items-center justify-between py-2 text-sm"
+              >
+                <span className="font-mono text-xs">{slug}</span>
+                <WhenWorkspaceFeatureEnabled slug={slug}>
+                  <span className="flex items-center gap-1.5 text-green-600 dark:text-green-400">
+                    <CheckCircle2 className="h-4 w-4" />
+                    <Badge variant="default" className="text-xs">
+                      Enabled
+                    </Badge>
+                  </span>
+                </WhenWorkspaceFeatureEnabled>
+                <WhenWorkspaceFeatureDisabled slug={slug}>
+                  <span className="text-muted-foreground flex items-center gap-1.5">
+                    <XCircle className="h-4 w-4" />
+                    <Badge variant="secondary" className="text-xs">
+                      Disabled
+                    </Badge>
+                  </span>
+                </WhenWorkspaceFeatureDisabled>
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>
@@ -176,7 +236,7 @@ export default function ProfilePage() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
-            <CardTitle className="text-base">Feature Flags</CardTitle>
+            <CardTitle className="text-base">User Feature Flags</CardTitle>
             <CardDescription>
               User-level feature flags from{' '}
               <code className="text-xs">useUserFeatures()</code>
