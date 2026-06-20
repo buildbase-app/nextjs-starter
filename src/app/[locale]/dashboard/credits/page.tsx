@@ -11,6 +11,8 @@ import {
   WhenCreditsLow,
   useCreditTransactions,
   useExpiringCredits,
+  useCreditPackages,
+  usePurchaseCredits,
 } from '@buildbase/sdk/react';
 import { Button } from '@/components/ui/button';
 import {
@@ -28,7 +30,110 @@ import {
   Clock,
   ArrowUpCircle,
   ArrowDownCircle,
+  Package,
 } from 'lucide-react';
+
+function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
+  const { packages, loading, error } = useCreditPackages(workspaceId);
+  const { purchaseCredits, loading: buying } = usePurchaseCredits(workspaceId);
+
+  const handleBuy = async (packageId: string) => {
+    try {
+      const result = await purchaseCredits({
+        creditPackageId: packageId,
+        successUrl: `${window.location.origin}/dashboard/credits?purchased=1`,
+        cancelUrl: window.location.href,
+      });
+      if (result.url) {
+        window.location.assign(result.url);
+      }
+    } catch {
+      alert('Failed to start checkout. Please try again.');
+    }
+  };
+
+  return (
+    <Card>
+      <CardHeader className="flex flex-row items-center gap-2 pb-2">
+        <Package className="h-5 w-5" />
+        <div>
+          <CardTitle className="text-base">Credit packages</CardTitle>
+          <CardDescription>
+            Available for purchase via{' '}
+            <code className="text-xs">useCreditPackages()</code> +{' '}
+            <code className="text-xs">usePurchaseCredits()</code>
+          </CardDescription>
+        </div>
+      </CardHeader>
+      <CardContent>
+        {loading ? (
+          <p className="text-muted-foreground text-sm">Loading packages…</p>
+        ) : error ? (
+          <p className="text-sm text-red-700 dark:text-red-400">
+            Failed to load packages.
+          </p>
+        ) : packages.length === 0 ? (
+          <p className="text-muted-foreground text-sm">
+            No credit packages configured yet.
+          </p>
+        ) : (
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {packages.map((pkg) => {
+              const variant = pkg.pricingVariants?.[0];
+              const price = variant
+                ? new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: variant.currency.toUpperCase(),
+                    minimumFractionDigits: 2,
+                  }).format(variant.amount / 100)
+                : null;
+
+              return (
+                <div
+                  key={pkg._id}
+                  className="border-border flex flex-col gap-2 rounded-lg border p-4"
+                >
+                  <div className="flex items-center justify-between">
+                    <p className="font-semibold">{pkg.name}</p>
+                    {price && (
+                      <span className="text-muted-foreground text-sm">
+                        {price}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-primary text-2xl font-bold">
+                    {pkg.creditAmount.toLocaleString()}{' '}
+                    <span className="text-muted-foreground text-sm font-normal">
+                      credits
+                    </span>
+                  </p>
+                  {pkg.description && (
+                    <p className="text-muted-foreground text-xs">
+                      {pkg.description}
+                    </p>
+                  )}
+                  {pkg.validityDays && (
+                    <p className="text-muted-foreground text-xs">
+                      Valid for {pkg.validityDays} days
+                    </p>
+                  )}
+                  <Button
+                    size="sm"
+                    className="mt-auto"
+                    disabled={buying}
+                    onClick={() => handleBuy(pkg._id)}
+                  >
+                    {buying ? 'Redirecting…' : 'Buy now'}
+                  </Button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function CreditsPage() {
   const t = useTranslations('credits');
@@ -158,6 +263,11 @@ export default function CreditsPage() {
           </CardContent>
         </Card>
       </WhenCreditsExhausted>
+
+      {/* Credit packages — programmatic purchase */}
+      {currentWorkspace?._id && (
+        <CreditPackagesPanel workspaceId={currentWorkspace._id} />
+      )}
 
       {/* Expiring credits */}
       <Card>
