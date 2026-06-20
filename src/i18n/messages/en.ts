@@ -20,6 +20,7 @@ const messages: Messages = {
       credits: 'Credits',
       creditUsage: 'Credit Usage',
       creditsAvailable: 'Available',
+      usage: 'Usage',
     },
     buttons: {
       signIn: 'Sign In',

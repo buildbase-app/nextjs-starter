@@ -20,6 +20,7 @@ export interface CommonMessages {
     credits: string;
     creditUsage: string;
     creditsAvailable: string;
+    usage: string;
   };
   buttons: {
     signIn: string;

@@ -15,6 +15,7 @@ import {
   CreditCard,
   Coins,
   User,
+  Gauge,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -52,6 +53,7 @@ type NavKey =
   | 'analytics'
   | 'documents'
   | 'credits'
+  | 'usage'
   | 'team'
   | 'notifications'
   | 'settings';
@@ -80,6 +82,11 @@ const menuItems: {
     navKey: 'credits',
     url: '/dashboard/credits',
     icon: Coins,
+  },
+  {
+    navKey: 'usage',
+    url: '/dashboard/usage',
+    icon: Gauge,
   },
   {
     navKey: 'team',
