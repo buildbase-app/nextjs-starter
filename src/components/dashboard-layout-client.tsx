@@ -52,16 +52,16 @@ export function DashboardLayoutClient({
         </div>
       </WhenUnauthenticated>
       <WhenAuthenticated>
-        <SidebarProvider>
+        <SidebarProvider className="h-svh overflow-hidden">
           <AppSidebar />
-          <SidebarInset>
-            <header className="flex h-14 items-center gap-4 border-b px-4">
+          <SidebarInset className="overflow-hidden">
+            <header className="flex h-14 shrink-0 items-center gap-4 border-b px-4">
               <SidebarTrigger />
               <Separator orientation="vertical" className="h-6" />
               <div className="flex-1" />
               <ThemeToggle />
             </header>
-            <main id="main-content" className="flex-1 p-6">
+            <main id="main-content" className="flex-1 overflow-y-auto p-6">
               {children}
             </main>
           </SidebarInset>
