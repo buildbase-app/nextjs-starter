@@ -55,32 +55,40 @@ export async function POST(request: NextRequest) {
       userAgent: request.headers.get('user-agent') || undefined,
       source: 'api',
     });
-    await prisma.user.upsert({
-      where: { email: userData.email },
-      update: {
-        id: userId,
-        name: userData.name,
-        image: userData.image || null,
-        role: userData.role || 'user',
-        emailVerified: userData.emailVerified || false,
-        timezone: userData.timezone || null,
-        language: userData.language || null,
-        country: userData.country || null,
-        currency: userData.currency || null,
-      },
-      create: {
-        id: userId,
-        email: userData.email,
-        name: userData.name,
-        image: userData.image || null,
-        role: userData.role || 'user',
-        emailVerified: userData.emailVerified || false,
-        timezone: userData.timezone || null,
-        language: userData.language || null,
-        country: userData.country || null,
-        currency: userData.currency || null,
-      },
-    });
+    // DB write is a local mirror — don't block auth if it fails
+    await prisma.user
+      .upsert({
+        where: { email: userData.email },
+        update: {
+          id: userId,
+          name: userData.name,
+          image: userData.image || null,
+          role: userData.role || 'user',
+          emailVerified: userData.emailVerified || false,
+          timezone: userData.timezone || null,
+          language: userData.language || null,
+          country: userData.country || null,
+          currency: userData.currency || null,
+        },
+        create: {
+          id: userId,
+          email: userData.email,
+          name: userData.name,
+          image: userData.image || null,
+          role: userData.role || 'user',
+          emailVerified: userData.emailVerified || false,
+          timezone: userData.timezone || null,
+          language: userData.language || null,
+          country: userData.country || null,
+          currency: userData.currency || null,
+        },
+      })
+      .catch((err: unknown) => {
+        logger.error('Failed to upsert user — auth continues', {
+          error: err instanceof Error ? err.message : String(err),
+          userId,
+        });
+      });
 
     const token = createAuthToken({
       userId,

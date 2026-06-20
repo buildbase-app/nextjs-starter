@@ -1,28 +1,33 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { HomeHeader } from '@/components/home-header';
-import { CreditStore } from '@/components/credit-store';
+import { HeroSection } from '@/components/marketing/hero-section';
+import { FeaturesSection } from '@/components/marketing/features-section';
+import { StatsSection } from '@/components/marketing/stats-section';
 import { PricingSection } from '@/components/pricing-section';
+import { CreditStore } from '@/components/credit-store';
+import { CtaBanner } from '@/components/marketing/cta-banner';
+import { SiteFooter } from '@/components/site-footer';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('home');
 
   return {
-    // Use absolute title for home page to avoid "My App | My App"
     title: {
-      absolute: t('title'),
+      absolute: t('meta.title'),
     },
-    description: t('hero.description'),
+    description: t('meta.description'),
     openGraph: {
-      title: t('title'),
-      description: t('hero.description'),
+      title: t('meta.title'),
+      description: t('meta.description'),
     },
   };
 }
 
 export default async function HomePage() {
-  const [t, tStore] = await Promise.all([
+  const [t, tPricing, tStore] = await Promise.all([
     getTranslations('home'),
+    getTranslations('pricing'),
     getTranslations('creditStore'),
   ]);
 
@@ -30,25 +35,17 @@ export default async function HomePage() {
     <div className="bg-background flex min-h-screen flex-col">
       <HomeHeader title={t('title')} />
 
-      <main
-        id="main-content"
-        className="flex flex-1 flex-col items-center gap-12 p-6"
-      >
-        {/* Hero */}
-        <div className="flex flex-col items-center justify-center gap-6 pt-12">
-          <h2 className="text-foreground text-4xl font-bold tracking-tight">
-            {t('hero.heading')}
-          </h2>
-          <p className="text-muted-foreground max-w-md text-center">
-            {t('hero.description')}
-          </p>
+      <main id="main-content" className="flex flex-1 flex-col items-center">
+        <HeroSection />
+        <StatsSection />
+        <FeaturesSection />
+        <div className="w-full max-w-6xl px-6 py-20">
+          <PricingSection
+            title={tPricing('title')}
+            description={tPricing('subtitle')}
+          />
         </div>
-        <PricingSection
-          title={tStore('title')}
-          description={tStore('subtitle')}
-        />
-        {/* Credit Store */}
-        <section className="w-full max-w-5xl">
+        <section className="w-full max-w-5xl px-6 pb-20">
           <div className="mb-8 text-center">
             <h3 className="text-foreground text-3xl font-bold tracking-tight">
               {tStore('title')}
@@ -59,7 +56,10 @@ export default async function HomePage() {
           </div>
           <CreditStore />
         </section>
+        <CtaBanner />
       </main>
+
+      <SiteFooter title={t('title')} />
     </div>
   );
 }

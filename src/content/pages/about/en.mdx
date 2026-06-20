@@ -1,23 +1,27 @@
 ---
-heroEyebrow: About
-heroTitle: Building the future, together
-heroDescription: We're a team passionate about creating tools that help people build amazing things.
-missionHeading: Our Mission
-valuesEyebrow: Our Values
-valuesHeading: How we work
+heroEyebrow: About this demo
+heroTitle: What you're looking at
+heroDescription: This is a live demo application built with the BuildBase SDK and backend platform. Everything you see here — auth, workspaces, credits, notifications, and i18n — is working code you can sign in to and interact with.
+missionHeading: What this demo shows
+valuesEyebrow: Under the hood
+valuesHeading: How each capability is implemented
 values:
   - icon: Zap
-    title: Speed
-    description: We ship fast and iterate based on real feedback.
+    title: Auth in one hook
+    description: The Sign In button calls useSaaSAuth().signIn() — that's it. No session management, no CSRF logic, no token storage. The SDK handles everything and injects the user into every page.
   - icon: Shield
-    title: Security
-    description: Security is built in from day one, not bolted on after.
+    title: Workspaces & roles
+    description: After signing in, the sidebar shows your current workspace and lets you switch between them. Each workspace has its own role enforced server-side by the BuildBase backend.
   - icon: Users
-    title: Community
-    description: We build with our community, not just for them.
+    title: Credits & billing
+    description: The Credits page uses CreditBalance, useConsumeCredits(), and WhenCreditsExhausted from the SDK. The Buy Credits button opens a modal served by BuildBase — no payment code in this app.
   - icon: Heart
-    title: Quality
-    description: We care deeply about craft and attention to detail.
+    title: Push notifications
+    description: The Notifications page calls usePushNotifications() to subscribe your browser, then sends test notifications via the BuildBase API with urgency, scheduling, and action buttons.
 ---
 
-We believe the best software is built by small teams who care deeply about the problems they're solving. Our mission is to make it easier for everyone to build and ship great products.
+This demo app is a Next.js 16 project that uses the BuildBase SDK to wire up auth, billing, notifications, and more — without writing the infrastructure.
+
+There is no custom auth logic, no payment processing code, and no notification delivery infrastructure in this repo. All of that is handled by the BuildBase backend platform. What you see here is the frontend — a real Next.js app with real SDK calls that you can sign into and interact with.
+
+Sign in using the button in the header, then explore the dashboard to see each capability working live. The source code for every feature is in the corresponding page or API route in the repository.

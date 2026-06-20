@@ -78,7 +78,12 @@ function writeAuditLog(
 }
 
 function createPrismaClient() {
-  const pool = new Pool({ connectionString: env.DATABASE_URL });
+  // Read DATABASE_URL directly from process.env so the Pool always uses the
+  // live value — env.DATABASE_URL is captured at module evaluation time and
+  // can be undefined on the first Turbopack compile before .env.local loads.
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL ?? env.DATABASE_URL,
+  });
   const adapter = new PrismaPg(pool);
   const base = new PrismaClient({ adapter });
 

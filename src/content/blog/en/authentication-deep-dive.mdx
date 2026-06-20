@@ -1,0 +1,79 @@
+---
+title: "How BuildBase Handles Authentication — A Deep Dive"
+description: "Learn how BuildBase wires up OAuth, JWT tokens, workspace tokens, and OAuth2 profile endpoints so you never have to write auth boilerplate again."
+date: "2026-05-12"
+author: team
+category: Tutorial
+tags:
+  - authentication
+  - oauth
+  - sdk
+---
+
+Authentication is one of the most time-consuming parts of any new SaaS project. BuildBase eliminates the boilerplate entirely by providing a fully-wired OAuth flow through the BuildBase SDK.
+
+## What's included out of the box
+
+When you scaffold a BuildBase project, you get:
+
+- **OAuth sign-in** via the `useSaaSAuth()` hook — one function call triggers the full OAuth flow
+- **JWT tokens** created with your `SYSTEM_SECRET` for secure workspace and role access
+- **Workspace tokens** — scoped tokens that grant access only to a specific workspace
+- **OAuth2 application tokens** — a standard `/api/auth/oauth2-token` endpoint for machine-to-machine auth
+- **User profile API** — a standard `/api/auth/oauth2-profile` endpoint compatible with OAuth2 clients
+
+## The auth flow in 30 seconds
+
+```tsx
+import { useSaaSAuth, WhenAuthenticated, WhenUnauthenticated } from '@buildbase/sdk/react';
+
+function MyButton() {
+  const { signIn } = useSaaSAuth();
+
+  return (
+    <>
+      <WhenUnauthenticated>
+        <button onClick={() => signIn()}>Sign In</button>
+      </WhenUnauthenticated>
+      <WhenAuthenticated>
+        <a href="/dashboard">Go to Dashboard</a>
+      </WhenAuthenticated>
+    </>
+  );
+}
+```
+
+That's it. No session management, no cookie handling, no CSRF tokens to configure. The SDK handles the entire OAuth dance and keeps the session in sync.
+
+## Server-side token verification
+
+For API routes that need to verify the current user, BuildBase exposes a `getCurrentUser()` helper:
+
+```ts
+import { getCurrentUser } from '@/lib/auth';
+
+export async function GET() {
+  const user = await getCurrentUser();
+  if (!user) return new Response('Unauthorized', { status: 401 });
+
+  return Response.json({ user });
+}
+```
+
+## Multi-tenant workspace tokens
+
+Every workspace gets its own scoped token. This means you can build fine-grained access control without any extra work:
+
+```ts
+import { createWorkspaceToken } from '@/lib/auth';
+
+const token = await createWorkspaceToken(workspaceId, userId, role);
+```
+
+## GDPR endpoints
+
+BuildBase also ships `/api/user/delete` and `/api/user/export` endpoints so you can comply with GDPR data requests without writing a single line of extra code.
+
+---
+
+Authentication is one area where BuildBase truly shines — you get a production-grade system that would normally take weeks to build, in the time it takes to clone a repo.
