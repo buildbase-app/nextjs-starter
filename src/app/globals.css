@@ -144,6 +144,11 @@
   body {
     @apply bg-background text-foreground m-0 min-h-screen w-full p-0;
   }
+  html:has([data-slot='sidebar-wrapper']),
+  body:has([data-slot='sidebar-wrapper']) {
+    overflow: hidden;
+    height: 100dvh;
+  }
   #saas-os-portal [id^='radix-'] {
     transform: none !important;
   }
