@@ -21,6 +21,7 @@ const messages: Messages = {
       creditUsage: 'Credit Usage',
       creditsAvailable: 'Available',
       usage: 'Usage',
+      permissions: 'Permissions',
     },
     buttons: {
       signIn: 'Sign In',

@@ -16,6 +16,7 @@ import {
   Coins,
   User,
   Gauge,
+  Lock,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -54,6 +55,7 @@ type NavKey =
   | 'documents'
   | 'credits'
   | 'usage'
+  | 'permissions'
   | 'team'
   | 'notifications'
   | 'settings';
@@ -87,6 +89,11 @@ const menuItems: {
     navKey: 'usage',
     url: '/dashboard/usage',
     icon: Gauge,
+  },
+  {
+    navKey: 'permissions',
+    url: '/dashboard/permissions',
+    icon: Lock,
   },
   {
     navKey: 'team',
