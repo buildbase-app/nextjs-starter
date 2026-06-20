@@ -33,7 +33,7 @@ import {
 } from 'lucide-react';
 
 export default function DashboardPage() {
-  const { user, openPlanPicker } = useSaaSAuth();
+  const { user, openPlanPicker, openWorkspaceSettings } = useSaaSAuth();
   const { currentWorkspace } = useSaaSWorkspaces();
   const t = useTranslations('dashboard');
   const { subscription, loading: subLoading } = useSubscription(
@@ -317,9 +317,21 @@ export default function DashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-4">
-            <Button>{t('quickActions.createProject')}</Button>
-            <Button variant="outline">{t('quickActions.viewReports')}</Button>
-            <Button variant="outline">{t('quickActions.inviteTeam')}</Button>
+            <Button onClick={() => openWorkspaceSettings('users')}>
+              Invite team
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => openWorkspaceSettings('subscription')}
+            >
+              Manage subscription
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => openWorkspaceSettings('general')}
+            >
+              Workspace settings
+            </Button>
           </div>
         </CardContent>
       </Card>
