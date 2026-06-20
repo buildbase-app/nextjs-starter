@@ -20,6 +20,10 @@ const messages: Messages = {
       credits: 'Credits',
       creditUsage: 'Credit Usage',
       creditsAvailable: 'Available',
+      usage: 'Usage',
+      permissions: 'Permissions',
+      events: 'Events',
+      invoices: 'Invoices',
     },
     buttons: {
       signIn: '登录',
@@ -174,6 +178,32 @@ const messages: Messages = {
       success: 'Consumed {amount} credits. Balance: {balance}',
       insufficient:
         'Not enough credits. Available: {available}, Requested: {requested}',
+    },
+    lowCredits: {
+      title: '积分不足',
+      description: '您的积分余额较低。请立即充值以避免中断。',
+    },
+    expiring: {
+      title: '即将到期的积分',
+      description: '未来30天内到期的积分',
+      expiresIn: '{date}到期',
+      noExpiring: '近期没有即将到期的积分',
+      days: '{count}积分',
+    },
+    transactions: {
+      title: '交易记录',
+      description: '最近的积分添加和扣除',
+      empty: '暂无交易记录',
+      columns: {
+        type: '类型',
+        amount: '金额',
+        balance: '交易后余额',
+        description: '描述',
+      },
+      types: {
+        credit: '充值',
+        debit: '扣除',
+      },
     },
   },
   errors: {

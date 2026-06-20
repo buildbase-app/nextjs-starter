@@ -12,9 +12,16 @@ import {
   Bell,
   LogOut,
   ChevronUp,
+  ChevronsUpDown,
   CreditCard,
   Coins,
   User,
+  Gauge,
+  Lock,
+  Radio,
+  UserCircle,
+  Receipt,
+  Building2,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -52,6 +59,11 @@ type NavKey =
   | 'analytics'
   | 'documents'
   | 'credits'
+  | 'invoices'
+  | 'usage'
+  | 'permissions'
+  | 'events'
+  | 'profile'
   | 'team'
   | 'notifications'
   | 'settings';
@@ -80,6 +92,31 @@ const menuItems: {
     navKey: 'credits',
     url: '/dashboard/credits',
     icon: Coins,
+  },
+  {
+    navKey: 'invoices',
+    url: '/dashboard/invoices',
+    icon: Receipt,
+  },
+  {
+    navKey: 'usage',
+    url: '/dashboard/usage',
+    icon: Gauge,
+  },
+  {
+    navKey: 'permissions',
+    url: '/dashboard/permissions',
+    icon: Lock,
+  },
+  {
+    navKey: 'events',
+    url: '/dashboard/events',
+    icon: Radio,
+  },
+  {
+    navKey: 'profile',
+    url: '/dashboard/profile',
+    icon: UserCircle,
   },
   {
     navKey: 'team',
@@ -128,87 +165,40 @@ export function AppSidebar() {
             trigger={(isLoading, currentWorkspace) => {
               if (isLoading) {
                 return (
-                  <div className="text-muted-foreground flex h-10 items-center rounded-md border px-3 text-sm">
-                    {t('buttons.loading')}
+                  <div className="bg-sidebar-accent text-muted-foreground flex h-10 animate-pulse items-center gap-2 rounded-md px-3 text-sm">
+                    <div className="bg-muted h-6 w-6 rounded" />
+                    <span className="flex-1">{t('buttons.loading')}</span>
                   </div>
                 );
               }
               return (
-                <div className="hover:bg-muted flex h-10 cursor-pointer items-center gap-2 rounded-md border px-3">
-                  {currentWorkspace ? (
-                    <>
-                      {currentWorkspace.image ? (
-                        <Image
-                          src={currentWorkspace.image}
-                          alt={currentWorkspace.name}
-                          width={24}
-                          height={24}
-                          className="rounded"
-                        />
-                      ) : null}
-                      <span className="truncate text-sm font-medium">
-                        {currentWorkspace.name}
-                      </span>
-                    </>
+                <div className="hover:bg-sidebar-accent group flex h-10 w-full cursor-pointer items-center gap-2 rounded-md px-3 transition-colors">
+                  {currentWorkspace?.image ? (
+                    <Image
+                      src={currentWorkspace.image}
+                      alt={currentWorkspace.name}
+                      width={20}
+                      height={20}
+                      className="rounded"
+                    />
                   ) : (
-                    <span className="text-muted-foreground text-sm">
-                      {t('nav.selectWorkspace')}
-                    </span>
+                    <div className="bg-primary/10 text-primary flex h-5 w-5 shrink-0 items-center justify-center rounded">
+                      <Building2 className="h-3 w-3" />
+                    </div>
                   )}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm leading-none font-semibold">
+                      {currentWorkspace?.name ?? t('nav.selectWorkspace')}
+                    </p>
+                    <p className="text-muted-foreground mt-0.5 text-xs leading-none">
+                      Workspace
+                    </p>
+                  </div>
+                  <ChevronsUpDown className="text-muted-foreground h-4 w-4 shrink-0 opacity-60 group-hover:opacity-100" />
                 </div>
               );
             }}
           />
-        </WhenAuthenticated>
-        <WhenAuthenticated>
-          <CreditBalance>
-            {({ balance, loading }) => {
-              const available = balance?.available ?? 0;
-              const granted = balance?.totalGranted ?? 0;
-              const used = granted > 0 ? granted - available : 0;
-              const percent =
-                granted > 0 ? Math.round((used / granted) * 100) : 0;
-              const isLow = granted > 0 && percent >= 80;
-              const isExhausted = granted > 0 && available === 0;
-
-              return (
-                <Link
-                  href="/dashboard/credits"
-                  className="hover:bg-muted/50 block space-y-2 rounded-md border p-3 text-sm transition-colors"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-foreground font-medium">
-                      {t('nav.creditUsage')}
-                    </span>
-                    <span className="text-muted-foreground text-xs">
-                      {loading ? '...' : `${percent}%`}
-                    </span>
-                  </div>
-                  {/* Progress bar */}
-                  <div className="bg-muted h-2 w-full rounded-full">
-                    <div
-                      className={`h-2 rounded-full transition-all duration-500 ${
-                        isExhausted
-                          ? 'bg-red-500'
-                          : isLow
-                            ? 'bg-amber-500'
-                            : 'bg-green-500'
-                      }`}
-                      style={{ width: `${Math.min(percent, 100)}%` }}
-                    />
-                  </div>
-                  <div className="text-muted-foreground flex items-center justify-between text-xs">
-                    <span>
-                      {loading
-                        ? '...'
-                        : `${available.toLocaleString()} / ${granted.toLocaleString()}`}
-                    </span>
-                    <span>{t('nav.creditsAvailable')}</span>
-                  </div>
-                </Link>
-              );
-            }}
-          </CreditBalance>
         </WhenAuthenticated>
       </SidebarHeader>
 
@@ -242,6 +232,55 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
+        <WhenAuthenticated>
+          <CreditBalance>
+            {({ balance, loading }) => {
+              const available = balance?.available ?? 0;
+              const granted = balance?.totalGranted ?? 0;
+              const used = granted > 0 ? granted - available : 0;
+              const percent =
+                granted > 0 ? Math.round((used / granted) * 100) : 0;
+              const isLow = granted > 0 && percent >= 80;
+              const isExhausted = granted > 0 && available === 0;
+
+              return (
+                <Link
+                  href="/dashboard/credits"
+                  className="hover:bg-muted/50 block space-y-2 rounded-md border p-3 text-sm transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-foreground font-medium">
+                      {t('nav.creditUsage')}
+                    </span>
+                    <span className="text-muted-foreground text-xs">
+                      {loading ? '...' : `${percent}%`}
+                    </span>
+                  </div>
+                  <div className="bg-muted h-2 w-full rounded-full">
+                    <div
+                      className={`h-2 rounded-full transition-all duration-500 ${
+                        isExhausted
+                          ? 'bg-red-500'
+                          : isLow
+                            ? 'bg-amber-500'
+                            : 'bg-green-500'
+                      }`}
+                      style={{ width: `${Math.min(percent, 100)}%` }}
+                    />
+                  </div>
+                  <div className="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>
+                      {loading
+                        ? '...'
+                        : `${available.toLocaleString()} / ${granted.toLocaleString()}`}
+                    </span>
+                    <span>{t('nav.creditsAvailable')}</span>
+                  </div>
+                </Link>
+              );
+            }}
+          </CreditBalance>
+        </WhenAuthenticated>
         <SidebarMenu>
           <SidebarMenuItem>
             <LanguageSwitcher />

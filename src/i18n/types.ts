@@ -20,6 +20,10 @@ export interface CommonMessages {
     credits: string;
     creditUsage: string;
     creditsAvailable: string;
+    usage: string;
+    permissions: string;
+    events: string;
+    invoices: string;
   };
   buttons: {
     signIn: string;
@@ -177,6 +181,32 @@ export interface CreditsMessages {
     apiDescription: string;
     success: string;
     insufficient: string;
+  };
+  lowCredits: {
+    title: string;
+    description: string;
+  };
+  expiring: {
+    title: string;
+    description: string;
+    expiresIn: string;
+    noExpiring: string;
+    days: string;
+  };
+  transactions: {
+    title: string;
+    description: string;
+    empty: string;
+    columns: {
+      type: string;
+      amount: string;
+      balance: string;
+      description: string;
+    };
+    types: {
+      credit: string;
+      debit: string;
+    };
   };
 }
 

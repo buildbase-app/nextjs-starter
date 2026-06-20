@@ -20,6 +20,10 @@ const messages: Messages = {
       credits: 'Credits',
       creditUsage: 'Credit Usage',
       creditsAvailable: 'Available',
+      usage: 'Usage',
+      permissions: 'Permissions',
+      events: 'Events',
+      invoices: 'Invoices',
     },
     buttons: {
       signIn: 'Anmelden',
@@ -175,6 +179,33 @@ const messages: Messages = {
       success: 'Consumed {amount} credits. Balance: {balance}',
       insufficient:
         'Not enough credits. Available: {available}, Requested: {requested}',
+    },
+    lowCredits: {
+      title: 'Credits werden knapp',
+      description:
+        'Ihr Guthaben ist niedrig. Laden Sie jetzt auf, um Unterbrechungen zu vermeiden.',
+    },
+    expiring: {
+      title: 'Ablaufende Credits',
+      description: 'Credits, die in den nächsten 30 Tagen ablaufen',
+      expiresIn: 'Läuft ab am {date}',
+      noExpiring: 'Keine Credits laufen bald ab',
+      days: '{count} Credits',
+    },
+    transactions: {
+      title: 'Transaktionsverlauf',
+      description: 'Letzte Credit-Aufladungen und -Abzüge',
+      empty: 'Noch keine Transaktionen',
+      columns: {
+        type: 'Typ',
+        amount: 'Betrag',
+        balance: 'Saldo danach',
+        description: 'Beschreibung',
+      },
+      types: {
+        credit: 'Gutschrift',
+        debit: 'Belastung',
+      },
     },
   },
   errors: {

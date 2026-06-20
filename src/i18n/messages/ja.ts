@@ -20,6 +20,10 @@ const messages: Messages = {
       credits: 'Credits',
       creditUsage: 'Credit Usage',
       creditsAvailable: 'Available',
+      usage: 'Usage',
+      permissions: 'Permissions',
+      events: 'Events',
+      invoices: 'Invoices',
     },
     buttons: {
       signIn: 'サインイン',
@@ -175,6 +179,33 @@ const messages: Messages = {
       success: 'Consumed {amount} credits. Balance: {balance}',
       insufficient:
         'Not enough credits. Available: {available}, Requested: {requested}',
+    },
+    lowCredits: {
+      title: 'クレジットが少なくなっています',
+      description:
+        'クレジット残高が少なくなっています。中断を避けるために今すぐチャージしてください。',
+    },
+    expiring: {
+      title: '期限切れ予定のクレジット',
+      description: '今後30日以内に期限切れになるクレジット',
+      expiresIn: '{date}に期限切れ',
+      noExpiring: 'まもなく期限切れになるクレジットはありません',
+      days: '{count}クレジット',
+    },
+    transactions: {
+      title: '取引履歴',
+      description: '最近のクレジット追加と控除',
+      empty: 'まだ取引はありません',
+      columns: {
+        type: 'タイプ',
+        amount: '金額',
+        balance: '取引後残高',
+        description: '説明',
+      },
+      types: {
+        credit: 'クレジット',
+        debit: 'デビット',
+      },
     },
   },
   errors: {

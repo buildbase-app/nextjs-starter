@@ -20,6 +20,10 @@ const messages: Messages = {
       credits: 'Credits',
       creditUsage: 'Credit Usage',
       creditsAvailable: 'Available',
+      usage: 'Usage',
+      permissions: 'Permissions',
+      events: 'Events',
+      invoices: 'Invoices',
     },
     buttons: {
       signIn: 'Sign In',
@@ -174,6 +178,33 @@ const messages: Messages = {
       success: 'Consumed {amount} credits. Balance: {balance}',
       insufficient:
         'Not enough credits. Available: {available}, Requested: {requested}',
+    },
+    lowCredits: {
+      title: 'Running low on credits',
+      description:
+        'Your credit balance is low. Top up now to avoid interruption.',
+    },
+    expiring: {
+      title: 'Expiring Credits',
+      description: 'Credits expiring in the next 30 days',
+      expiresIn: 'Expires {date}',
+      noExpiring: 'No credits expiring soon',
+      days: '{count} credits',
+    },
+    transactions: {
+      title: 'Transaction History',
+      description: 'Recent credit additions and deductions',
+      empty: 'No transactions yet',
+      columns: {
+        type: 'Type',
+        amount: 'Amount',
+        balance: 'Balance after',
+        description: 'Description',
+      },
+      types: {
+        credit: 'Credit',
+        debit: 'Debit',
+      },
     },
   },
   errors: {

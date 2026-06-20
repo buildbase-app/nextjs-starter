@@ -1,0 +1,81 @@
+---
+title: "Going Global on Day One — How BuildBase Handles i18n"
+description: "BuildBase ships with 8 languages including Arabic RTL, all type-safe with next-intl. Here's how it works and how to add your own translations."
+date: "2026-06-01"
+author: team
+category: Tutorial
+tags:
+  - i18n
+  - internationalization
+  - next-intl
+---
+
+Most SaaS projects add internationalization as an afterthought — and then spend weeks retrofitting it. BuildBase ships with a fully-wired i18n system from day one, supporting 8 languages out of the box.
+
+## Supported languages
+
+| Locale | Language | Direction |
+|--------|----------|-----------|
+| `en`   | English  | LTR       |
+| `hi`   | Hindi    | LTR       |
+| `es`   | Spanish  | LTR       |
+| `fr`   | French   | LTR       |
+| `de`   | German   | LTR       |
+| `ja`   | Japanese | LTR       |
+| `zh`   | Chinese  | LTR       |
+| `ar`   | Arabic   | **RTL**   |
+
+## How it works
+
+The routing uses next-intl with an `as-needed` locale prefix strategy — English URLs stay clean (`/pricing`), while other locales get prefixed (`/fr/pricing`, `/ar/pricing`).
+
+The Arabic locale automatically switches the page to right-to-left layout via the `dir="rtl"` attribute — no extra CSS needed.
+
+## Type-safe translations
+
+All translation keys are fully typed. If you add a key to `en.ts` but forget to add it to `fr.ts`, TypeScript will tell you at compile time:
+
+```ts
+// src/i18n/messages/en.ts
+const messages: Messages = {
+  home: {
+    title: 'BuildBase',
+    hero: {
+      heading: 'Ship your SaaS in days, not months',
+    },
+  },
+};
+```
+
+## Using translations in components
+
+Server components use `getTranslations()`:
+
+```tsx
+import { getTranslations } from 'next-intl/server';
+
+export default async function Page() {
+  const t = await getTranslations('home');
+  return <h1>{t('hero.heading')}</h1>;
+}
+```
+
+Client components use `useTranslations()`:
+
+```tsx
+'use client';
+import { useTranslations } from 'next-intl';
+
+export function MyComponent() {
+  const t = useTranslations('home');
+  return <p>{t('hero.heading')}</p>;
+}
+```
+
+## Adding a new language
+
+1. Add the locale code to `src/i18n/config.ts`
+2. Create `src/i18n/messages/{locale}.ts`
+3. Implement the full `Messages` type (TypeScript will guide you)
+
+That's it — routing, sitemap, and hreflang tags all update automatically.

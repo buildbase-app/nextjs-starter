@@ -20,6 +20,10 @@ const messages: Messages = {
       credits: 'Credits',
       creditUsage: 'Credit Usage',
       creditsAvailable: 'Available',
+      usage: 'Usage',
+      permissions: 'Permissions',
+      events: 'Events',
+      invoices: 'Invoices',
     },
     buttons: {
       signIn: 'साइन इन करें',
@@ -174,6 +178,33 @@ const messages: Messages = {
       success: 'Consumed {amount} credits. Balance: {balance}',
       insufficient:
         'Not enough credits. Available: {available}, Requested: {requested}',
+    },
+    lowCredits: {
+      title: 'क्रेडिट कम हो रहे हैं',
+      description:
+        'आपका क्रेडिट बैलेंस कम है। रुकावट से बचने के लिए अभी टॉप अप करें।',
+    },
+    expiring: {
+      title: 'समाप्त होने वाले क्रेडिट',
+      description: 'अगले 30 दिनों में समाप्त होने वाले क्रेडिट',
+      expiresIn: '{date} को समाप्त',
+      noExpiring: 'जल्द समाप्त होने वाले कोई क्रेडिट नहीं',
+      days: '{count} क्रेडिट',
+    },
+    transactions: {
+      title: 'लेनदेन इतिहास',
+      description: 'हाल के क्रेडिट जोड़ और कटौती',
+      empty: 'अभी तक कोई लेनदेन नहीं',
+      columns: {
+        type: 'प्रकार',
+        amount: 'राशि',
+        balance: 'बाद का बैलेंस',
+        description: 'विवरण',
+      },
+      types: {
+        credit: 'क्रेडिट',
+        debit: 'डेबिट',
+      },
     },
   },
   errors: {
