@@ -47,7 +47,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     <div className="mx-auto max-w-4xl px-6 py-16 md:py-24">
       <BreadcrumbJsonLd
         items={[
-          { name: 'Blog', url: localePath(localeTyped, '/blog') },
+          { name: t('label'), url: localePath(localeTyped, '/blog') },
           {
             name: decoded,
             url: localePath(

@@ -68,7 +68,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
       <JsonLdScript data={personJsonLd} scriptKey={`person-${slug}`} />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Blog', url: localePath(localeTyped, '/blog') },
+          { name: t('label'), url: localePath(localeTyped, '/blog') },
           {
             name: author.name,
             url: localePath(localeTyped, `/blog/authors/${slug}`),

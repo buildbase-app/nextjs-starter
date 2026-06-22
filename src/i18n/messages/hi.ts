@@ -75,6 +75,9 @@ const messages: Messages = {
       dark: 'गहरा',
       system: 'सिस्टम',
     },
+    pages: {
+      lastUpdated: 'अंतिम अपडेट:',
+    },
     redirecting: 'रीडायरेक्ट हो रहा है...',
   },
   home: {
@@ -732,6 +735,11 @@ const messages: Messages = {
     relatedPosts: 'Related Posts',
     share: 'Share',
     rssLabel: 'RSS Feed',
+    shareAriaX: 'X / Twitter पर शेयर करें',
+    shareAriaLinkedin: 'LinkedIn पर शेयर करें',
+    shareAriaFacebook: 'Facebook पर शेयर करें',
+    shareAriaCopy: 'लिंक कॉपी करें',
+    shareAriaCopied: 'लिंक कॉपी हो गया!',
     search: {
       trigger: 'Search posts...',
       placeholder: 'Search blog posts...',

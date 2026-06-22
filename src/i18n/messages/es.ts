@@ -75,6 +75,9 @@ const messages: Messages = {
       dark: 'Oscuro',
       system: 'Sistema',
     },
+    pages: {
+      lastUpdated: 'Última actualización:',
+    },
     redirecting: 'Redirigiendo...',
   },
   home: {
@@ -739,6 +742,11 @@ const messages: Messages = {
     relatedPosts: 'Publicaciones relacionadas',
     share: 'Compartir',
     rssLabel: 'Feed RSS',
+    shareAriaX: 'Compartir en X / Twitter',
+    shareAriaLinkedin: 'Compartir en LinkedIn',
+    shareAriaFacebook: 'Compartir en Facebook',
+    shareAriaCopy: 'Copiar enlace',
+    shareAriaCopied: '¡Enlace copiado!',
     search: {
       trigger: 'Buscar publicaciones...',
       placeholder: 'Buscar en el blog...',

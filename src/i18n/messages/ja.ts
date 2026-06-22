@@ -75,6 +75,9 @@ const messages: Messages = {
       dark: 'ダーク',
       system: 'システム',
     },
+    pages: {
+      lastUpdated: '最終更新:',
+    },
     redirecting: 'リダイレクト中...',
   },
   home: {
@@ -731,6 +734,11 @@ const messages: Messages = {
     relatedPosts: '関連投稿',
     share: 'シェア',
     rssLabel: 'RSSフィード',
+    shareAriaX: 'X / Twitterでシェア',
+    shareAriaLinkedin: 'LinkedInでシェア',
+    shareAriaFacebook: 'Facebookでシェア',
+    shareAriaCopy: 'リンクをコピー',
+    shareAriaCopied: 'リンクをコピーしました！',
     search: {
       trigger: '投稿を検索...',
       placeholder: 'ブログを検索...',

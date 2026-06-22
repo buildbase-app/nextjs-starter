@@ -75,6 +75,9 @@ const messages: Messages = {
       dark: 'داكن',
       system: 'النظام',
     },
+    pages: {
+      lastUpdated: 'آخر تحديث:',
+    },
     redirecting: 'جاري إعادة التوجيه...',
   },
   home: {
@@ -727,6 +730,11 @@ const messages: Messages = {
     relatedPosts: 'مقالات ذات صلة',
     share: 'مشاركة',
     rssLabel: 'خلاصة RSS',
+    shareAriaX: 'مشاركة على X / تويتر',
+    shareAriaLinkedin: 'مشاركة على LinkedIn',
+    shareAriaFacebook: 'مشاركة على Facebook',
+    shareAriaCopy: 'نسخ الرابط',
+    shareAriaCopied: 'تم نسخ الرابط!',
     search: {
       trigger: 'البحث في المقالات...',
       placeholder: 'البحث في المدونة...',

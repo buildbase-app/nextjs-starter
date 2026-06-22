@@ -30,7 +30,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="text-muted-foreground hover:text-foreground rounded-md p-2 transition-colors"
-          aria-label="Share on X / Twitter"
+          aria-label={t('shareAriaX')}
         >
           <Twitter className="size-4" />
         </a>
@@ -39,7 +39,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="text-muted-foreground hover:text-foreground rounded-md p-2 transition-colors"
-          aria-label="Share on LinkedIn"
+          aria-label={t('shareAriaLinkedin')}
         >
           <Linkedin className="size-4" />
         </a>
@@ -48,14 +48,14 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="text-muted-foreground hover:text-foreground rounded-md p-2 transition-colors"
-          aria-label="Share on Facebook"
+          aria-label={t('shareAriaFacebook')}
         >
           <Facebook className="size-4" />
         </a>
         <button
           onClick={handleCopy}
           className="text-muted-foreground hover:text-foreground rounded-md p-2 transition-colors"
-          aria-label={copied ? 'Link copied!' : 'Copy link'}
+          aria-label={copied ? t('shareAriaCopied') : t('shareAriaCopy')}
         >
           {copied ? (
             <Check className="text-success size-4" />

@@ -74,6 +74,9 @@ export interface CommonMessages {
     dark: string;
     system: string;
   };
+  pages: {
+    lastUpdated: string;
+  };
   redirecting: string;
 }
 
@@ -687,6 +690,11 @@ export interface BlogMessages {
   relatedPosts: string;
   share: string;
   rssLabel: string;
+  shareAriaX: string;
+  shareAriaLinkedin: string;
+  shareAriaFacebook: string;
+  shareAriaCopy: string;
+  shareAriaCopied: string;
   search: {
     trigger: string;
     placeholder: string;

@@ -75,6 +75,9 @@ const messages: Messages = {
       dark: '深色',
       system: '系统',
     },
+    pages: {
+      lastUpdated: '最后更新：',
+    },
     redirecting: '重定向中...',
   },
   home: {
@@ -724,6 +727,11 @@ const messages: Messages = {
     relatedPosts: '相关文章',
     share: '分享',
     rssLabel: 'RSS订阅',
+    shareAriaX: '分享到 X / Twitter',
+    shareAriaLinkedin: '分享到 LinkedIn',
+    shareAriaFacebook: '分享到 Facebook',
+    shareAriaCopy: '复制链接',
+    shareAriaCopied: '链接已复制！',
     search: {
       trigger: '搜索文章...',
       placeholder: '搜索博客...',

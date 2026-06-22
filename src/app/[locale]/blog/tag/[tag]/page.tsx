@@ -43,7 +43,7 @@ export default async function TagPage({ params }: TagPageProps) {
     <div className="mx-auto max-w-4xl px-6 py-16 md:py-24">
       <BreadcrumbJsonLd
         items={[
-          { name: 'Blog', url: localePath(localeTyped, '/blog') },
+          { name: t('label'), url: localePath(localeTyped, '/blog') },
           {
             name: `#${decoded}`,
             url: localePath(localeTyped, `/blog/tag/${decoded}`),
