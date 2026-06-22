@@ -1,7 +1,7 @@
 ---
-title: "How BuildBase Handles Authentication — A Deep Dive"
-description: "Learn how BuildBase wires up OAuth, JWT tokens, workspace tokens, and OAuth2 profile endpoints so you never have to write auth boilerplate again."
-date: "2026-05-12"
+title: 'How BuildBase Handles Authentication — A Deep Dive'
+description: 'Learn how BuildBase wires up OAuth, JWT tokens, workspace tokens, and OAuth2 profile endpoints so you never have to write auth boilerplate again.'
+date: '2026-05-12'
 author: team
 category: Tutorial
 tags:
@@ -25,7 +25,11 @@ When you scaffold a BuildBase project, you get:
 ## The auth flow in 30 seconds
 
 ```tsx
-import { useSaaSAuth, WhenAuthenticated, WhenUnauthenticated } from '@buildbase/sdk/react';
+import {
+  useSaaSAuth,
+  WhenAuthenticated,
+  WhenUnauthenticated,
+} from '@buildbase/sdk/react';
 
 function MyButton() {
   const { signIn } = useSaaSAuth();
