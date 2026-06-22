@@ -44,22 +44,22 @@ const messages: Messages = {
     footer: {
       rights: 'सर्वाधिकार सुरक्षित',
       tagline:
-        'A live demo app showing the BuildBase SDK in action. Sign in to explore auth, workspaces, credits, push notifications, and i18n.',
+        'एक लाइव डेमो ऐप जो BuildBase SDK को काम करते हुए दिखाता है। साइन इन करें और प्रमाणीकरण, वर्कस्पेस, क्रेडिट, पुश नोटिफिकेशन और i18n को एक्सप्लोर करें।',
       sections: {
-        product: 'Product',
-        resources: 'Resources',
-        legal: 'Legal',
+        product: 'उत्पाद',
+        resources: 'संसाधन',
+        legal: 'कानूनी',
       },
       links: {
-        features: 'Features',
-        pricing: 'Pricing',
-        dashboard: 'Dashboard',
-        credits: 'Credits',
-        blog: 'Blog',
-        changelog: 'Changelog',
-        about: 'About',
-        privacy: 'Privacy Policy',
-        terms: 'Terms of Service',
+        features: 'सुविधाएं',
+        pricing: 'मूल्य निर्धारण',
+        dashboard: 'डैशबोर्ड',
+        credits: 'क्रेडिट',
+        blog: 'ब्लॉग',
+        changelog: 'परिवर्तन लॉग',
+        about: 'हमारे बारे में',
+        privacy: 'गोपनीयता नीति',
+        terms: 'सेवा की शर्तें',
       },
     },
     language: {
@@ -83,9 +83,138 @@ const messages: Messages = {
   home: {
     title: 'मेरा ऐप',
     hero: {
-      heading: 'मेरा ऐप में आपका स्वागत है',
+      badge: 'BuildBase SDK · लाइव डेमो',
+      heading:
+        'A working demo built with the <highlight>BuildBase SDK</highlight>',
       description:
-        'Next.js, TypeScript, Tailwind CSS, shadcn/ui, next-themes और BuildBase SDK के साथ बनाया गया।',
+        'साइन इन करके देखें — प्रमाणीकरण, मल्टी-टेनेंट वर्कस्पेस, क्रेडिट बिलिंग, पुश नोटिफिकेशन और 8 भाषाओं में i18n — सब एक असली ऐप में BuildBase SDK द्वारा संचालित।',
+      signInToExplore: 'साइन इन करके देखें',
+      openDashboard: 'डैशबोर्ड खोलें',
+      viewSource: 'सोर्स देखें',
+      builtWith: 'इनके साथ बनाया',
+    },
+    stats: {
+      languages: {
+        label: 'इस डेमो में भाषाएं',
+        sublabel: 'हेडर टॉगल से बदलें',
+      },
+      sdkFeatures: {
+        label: 'लाइव SDK सुविधाएं',
+        sublabel: 'हर सुविधा का डेमो पेज है',
+      },
+      notifications: {
+        label: 'नोटिफिकेशन चैनल',
+        sublabel: 'ब्राउज़र पुश + ईमेल',
+      },
+      authCode: {
+        label: 'प्रमाणीकरण कोड की लाइनें',
+        sublabel: 'SDK सब संभालता है',
+      },
+    },
+    cta: {
+      heading: 'सब कुछ काम करता देखना चाहते हैं?',
+      description:
+        'साइन इन करें और पूरा डैशबोर्ड खोलें — वर्कस्पेस बदलें, क्रेडिट उपयोग करें, पुश नोटिफिकेशन भेजें और सभी 8 भाषाओं में स्विच करें।',
+      signIn: 'साइन इन करें और देखें',
+      openDashboard: 'डैशबोर्ड खोलें',
+      howBuilt: 'कैसे बनाया गया',
+    },
+    features: {
+      eyebrow: 'डेमो देखें',
+      heading: 'इस ऐप में क्या काम कर रहा है',
+      description:
+        'नीचे हर सुविधा लाइव है — साइन इन करें और BuildBase SDK को काम करते हुए देखें।',
+      auth: {
+        badge: 'प्रमाणीकरण',
+        title: 'OAuth साइन-इन, बिना किसी झंझट के',
+        description:
+          'ऊपर का साइन इन बटन BuildBase SDK का उपयोग करता है — एक हुक, कोई सेशन लॉजिक नहीं। साइन इन के बाद आपको JWT, वर्कस्पेस टोकन और रोल अपने आप मिलते हैं।',
+        tryLabel: 'साइन इन करके देखें',
+      },
+      workspaces: {
+        badge: 'वर्कस्पेस',
+        title: 'मल्टी-टेनेंट वर्कस्पेस स्विचर',
+        description:
+          'हर उपयोगकर्ता अलग-अलग रोल के साथ कई वर्कस्पेस में हो सकता है। डैशबोर्ड साइडबार आपका मौजूदा वर्कस्पेस दिखाता है और उनके बीच स्विच करने देता है।',
+        tryLabel: 'डैशबोर्ड खोलें',
+      },
+      credits: {
+        badge: 'क्रेडिट',
+        title: 'लाइव क्रेडिट बैलेंस और उपयोग',
+        description:
+          'क्रेडिट पेज आपका लाइव बैलेंस दिखाता है, बिल्ट-इन मोडल से और खरीदने देता है, और SDK के consumeCredits() को रियल-टाइम में टेस्ट करने के बटन हैं।',
+        tryLabel: 'क्रेडिट उपयोग देखें',
+      },
+      notifications: {
+        badge: 'नोटिफिकेशन',
+        title: 'ब्राउज़र पुश और ईमेल डिलीवरी',
+        description:
+          'नोटिफिकेशन पेज से अपने ब्राउज़र को सब्सक्राइब करें, शीर्षक, प्राथमिकता, एक्शन बटन और शेड्यूल के साथ नोटिफिकेशन बनाएं — फिर सीधे भेजें।',
+        tryLabel: 'टेस्ट नोटिफिकेशन भेजें',
+      },
+      i18n: {
+        badge: 'i18n',
+        title: 'अरबी RTL सहित 8 भाषाएं',
+        description:
+          'हेडर में भाषा स्विचर से अंग्रेज़ी, हिंदी, स्पेनिश, फ्रेंच, जर्मन, जापानी, चीनी और अरबी के बीच स्विच करें — लेआउट अपने आप RTL में बदल जाता है।',
+        tryLabel: 'अरबी में बदलें',
+      },
+      content: {
+        badge: 'कंटेंट',
+        title: 'MDX ब्लॉग और चेंजलॉग, बिल्ट-इन',
+        description:
+          'ब्लॉग और चेंजलॉग MDX फ़ाइलें हैं जो Contentlayer2 के ज़रिए बिल्ड टाइम पर कंपाइल होती हैं। कोई CMS नहीं, कोई डेटाबेस नहीं — सिर्फ टाइप-सेफ frontmatter, फुल-टेक्स्ट सर्च और RSS वाली फ़ाइलें।',
+        tryLabel: 'ब्लॉग पढ़ें',
+      },
+      quotas: {
+        badge: 'कोटा',
+        title: 'कोटा उपयोग और ओवरेज गेट्स',
+        description:
+          'उपयोग पेज useAllQuotaUsage() कॉल करता है और हर कोटा की प्रोग्रेस बार दिखाता है। WhenQuotaExhausted कोटा ज़ीरो होने पर UI ब्लॉक करता है; WhenQuotaOverage ओवरेज विवरण दिखाता है।',
+        tryLabel: 'कोटा उपयोग देखें',
+      },
+      permissions: {
+        badge: 'अनुमतियां',
+        title: 'भूमिका-आधारित अनुमति मैट्रिक्स',
+        description:
+          'अनुमतियां पेज usePermissions() और WhenPermission का उपयोग करता है और आपके मौजूदा वर्कस्पेस रोल के आधार पर हर प्लेटफॉर्म अनुमति को रियल-टाइम में स्वीकृत या अस्वीकृत के रूप में दिखाता है।',
+        tryLabel: 'अपनी अनुमतियां देखें',
+      },
+      events: {
+        badge: 'इवेंट',
+        title: 'लाइव SDK इवेंट स्ट्रीम',
+        description:
+          'इवेंट पेज eventEmitter.setCallbacks() को वायर करता है और सभी SDK इवेंट कैप्चर करता है — वर्कस्पेस बदलाव, यूज़र अपडेट, रोल बदलाव — एक लाइव स्क्रॉलिंग लॉग में।',
+        tryLabel: 'इवेंट लॉग खोलें',
+      },
+      userData: {
+        badge: 'यूज़र डेटा',
+        title: 'यूज़र एट्रिब्यूट और फीचर फ्लैग',
+        description:
+          'प्रोफ़ाइल पेज useUserAttributes() और useUserFeatures() पढ़ता है और कस्टम की-वैल्यू जोड़े और प्रति-यूज़र फीचर फ्लैग स्थितियां दिखाता है, और लाइव नए एट्रिब्यूट लिखने देता है।',
+        tryLabel: 'अपनी प्रोफ़ाइल देखें',
+      },
+      invoices: {
+        badge: 'इनवॉइस',
+        title: 'इनवॉइस इतिहास और बिलिंग पोर्टल',
+        description:
+          'इनवॉइस पेज useInvoices() कॉल करता है और सभी Stripe इनवॉइस स्टेटस, राशि और PDF लिंक के साथ सूचीबद्ध करता है। एक बटन useBillingPortal() के ज़रिए Stripe कस्टमर पोर्टल खोलता है।',
+        tryLabel: 'इनवॉइस देखें',
+      },
+      seats: {
+        badge: 'सीटें',
+        title: 'सीट सीमा और इनवाइट गेटिंग',
+        description:
+          'डैशबोर्ड useSeatStatus() कॉल करता है और रियल-टाइम में मेम्बर काउंट बनाम प्लान सीमाएं दिखाता है। WhenNoSubscription, WhenSubscription और WhenSubscriptionToPlans सही ऑडियंस के लिए UI नियंत्रित करते हैं।',
+        tryLabel: 'डैशबोर्ड खोलें',
+      },
+      featureFlags: {
+        badge: 'फीचर फ्लैग',
+        title: 'वर्कस्पेस-स्तरीय फीचर गेट्स',
+        description:
+          'प्रोफ़ाइल पेज WhenWorkspaceFeatureEnabled और WhenWorkspaceFeatureDisabled का उपयोग करता है और BuildBase डैशबोर्ड में कॉन्फ़िगर किए गए वर्कस्पेस-स्तरीय फीचर फ्लैग के आधार पर कंटेंट टॉगल करता है।',
+        tryLabel: 'फीचर गेट्स देखें',
+      },
     },
     meta: {
       title: 'मेरा ऐप',
@@ -99,7 +228,7 @@ const messages: Messages = {
     trial: {
       endingSoon: 'ट्रायल जल्द समाप्त होगा',
       endingSoonMsg:
-        'आपका ट्रायल {days} दिन{s} में समाप्त होता है। एक्सेस बनाए रखने के लिए अभी अपग्रेड करें।',
+        'आपका ट्रायल {days} दिन में समाप्त होता है। एक्सेस बनाए रखने के लिए अभी अपग्रेड करें।',
       upgrade: 'अपग्रेड करें',
       freeTrial: 'आप ट्रायल अवधि में हैं',
       daysRemaining: '{days} दिन शेष',
@@ -472,10 +601,10 @@ const messages: Messages = {
       action2: 'एक्शन 2',
       actionTitlePlaceholder: 'बटन लेबल (जैसे Reply)',
       actionKeyPlaceholder: 'एक्शन कुंजी (जैसे reply)',
-      iconUrlPlaceholder: 'Push icon (falls back to org icon)',
-      imageUrlPlaceholder: 'Large image in push body',
-      badgeUrlPlaceholder: 'Status bar icon (Android)',
-      ttlPlaceholder: '86400 (24h default)',
+      iconUrlPlaceholder: 'Push आइकन (संगठन आइकन पर वापस जाता है)',
+      imageUrlPlaceholder: 'Push बॉडी में बड़ी छवि',
+      badgeUrlPlaceholder: 'स्टेटस बार आइकन (Android)',
+      ttlPlaceholder: '86400 (डिफ़ॉल्ट 24 घंटे)',
     },
     context: {
       workspace: 'वर्कस्पेस:',
@@ -574,8 +703,8 @@ const messages: Messages = {
       overageMsg: '{count} इकाइयों की अधिकता',
       exhaustedMsg:
         'कोटा समाप्त — इस कोटा का उपयोग करने वाली क्रियाएं अवरुद्ध हैं',
-      used: 'used',
-      overageAllowed: '(allowed)',
+      used: 'उपयोग किया',
+      overageAllowed: '(अनुमत)',
     },
     record: {
       title: 'उपयोग रिकॉर्ड करें',
@@ -679,13 +808,13 @@ const messages: Messages = {
       expiresIn: '{date} को समाप्त',
       noExpiring: 'कोई क्रेडिट जल्द समाप्त नहीं होगा',
       days: '{count} क्रेडिट',
-      loading: 'Loading...',
+      loading: 'लोड हो रहा है...',
     },
     transactions: {
       title: 'लेनदेन इतिहास',
       description: 'हालिया क्रेडिट जोड़ और कटौती',
       empty: 'अभी कोई लेनदेन नहीं',
-      loading: 'Loading...',
+      loading: 'लोड हो रहा है...',
       columns: {
         type: 'प्रकार',
         amount: 'राशि',
@@ -712,85 +841,91 @@ const messages: Messages = {
         'क्षमा करें, हम वह पृष्ठ नहीं ढूंढ सके जिसे आप ढूंढ रहे हैं। इसे स्थानांतरित या हटाया जा सकता है।',
       goBack: 'वापस जाएं',
     },
+    blogNotFound: {
+      title: 'पोस्ट नहीं मिली',
+      description:
+        'जिस ब्लॉग पोस्ट को आप ढूंढ रहे हैं वह मौजूद नहीं है, हटाई जा सकती है, या आपकी भाषा में उपलब्ध नहीं है।',
+      browseAll: 'सभी पोस्ट देखें',
+    },
   },
   blog: {
-    label: 'Blog',
-    heading: 'Latest Posts',
-    description: 'Updates, tutorials, and insights from our team.',
-    noPosts: 'No posts yet. Check back soon!',
-    noPostsTag: 'No posts with this tag yet.',
-    noPostsCategory: 'No posts in this category yet.',
-    noPostsAuthor: 'No posts by this author yet.',
-    postsByAuthor: 'Posts by {name}',
-    postsTaggedCount:
-      '{count, plural, one {# post tagged with "{tag}"} other {# posts tagged with "{tag}"}}',
-    postsInCategoryCount:
-      '{count, plural, one {# post in this category} other {# posts in this category}}',
-    readMore: 'Read more',
-    read: 'Read',
-    allPosts: '← All posts',
-    previous: 'Previous',
-    next: 'Next',
-    pageOf: 'Page {page} of {total}',
-    relatedPosts: 'Related Posts',
-    share: 'Share',
-    rssLabel: 'RSS Feed',
+    label: 'ब्लॉग',
+    heading: 'नवीनतम पोस्ट',
+    description: 'हमारी टीम से अपडेट, ट्यूटोरियल और अंतर्दृष्टि।',
+    noPosts: 'अभी कोई पोस्ट नहीं। जल्द वापस आएं!',
+    noPostsTag: 'इस टैग के साथ अभी कोई पोस्ट नहीं।',
+    noPostsCategory: 'इस श्रेणी में अभी कोई पोस्ट नहीं।',
+    noPostsAuthor: 'इस लेखक की अभी कोई पोस्ट नहीं।',
+    postsByAuthor: '{name} की पोस्ट',
+    postsTaggedCount: '"{tag}" टैग वाली {count} पोस्ट',
+    postsInCategoryCount: 'इस श्रेणी में {count} पोस्ट',
+    readMore: 'और पढ़ें',
+    read: 'पढ़ें',
+    allPosts: '← सभी पोस्ट',
+    previous: 'पिछला',
+    next: 'अगला',
+    pageOf: 'पृष्ठ {page} / {total}',
+    relatedPosts: 'संबंधित पोस्ट',
+    share: 'साझा करें',
+    rssLabel: 'RSS फ़ीड',
     shareAriaX: 'X / Twitter पर शेयर करें',
     shareAriaLinkedin: 'LinkedIn पर शेयर करें',
     shareAriaFacebook: 'Facebook पर शेयर करें',
     shareAriaCopy: 'लिंक कॉपी करें',
     shareAriaCopied: 'लिंक कॉपी हो गया!',
     search: {
-      trigger: 'Search posts...',
-      placeholder: 'Search blog posts...',
-      searching: 'Searching...',
-      noResults: 'No results for "{query}"',
-      startTyping: 'Start typing to search...',
+      trigger: 'पोस्ट खोजें...',
+      placeholder: 'ब्लॉग पोस्ट खोजें...',
+      searching: 'खोज रहा है...',
+      noResults: '"{query}" के लिए कोई परिणाम नहीं',
+      startTyping: 'खोजने के लिए टाइप करना शुरू करें...',
     },
     meta: {
-      title: 'Blog',
-      titlePage: 'Blog — Page {page}',
-      description: 'Latest posts, tutorials, and updates from our team.',
-      tagTitle: 'Posts tagged "{tag}"',
-      tagDescription: 'All blog posts tagged with "{tag}".',
-      categoryTitle: '{category} — Blog',
-      categoryDescription: 'Blog posts in the "{category}" category.',
+      title: 'ब्लॉग',
+      titlePage: 'ब्लॉग — पृष्ठ {page}',
+      description: 'हमारी टीम से नवीनतम पोस्ट, ट्यूटोरियल और अपडेट।',
+      tagTitle: '"{tag}" टैग वाली पोस्ट',
+      tagDescription: '"{tag}" टैग वाली सभी ब्लॉग पोस्ट।',
+      categoryTitle: '{category} — ब्लॉग',
+      categoryDescription: '"{category}" श्रेणी की ब्लॉग पोस्ट।',
     },
   },
   changelog: {
-    label: 'Changelog',
-    heading: "What's New",
-    description: 'All the latest updates, improvements, and fixes.',
-    rssLabel: 'RSS Feed',
-    permalink: 'Permalink',
+    label: 'परिवर्तन लॉग',
+    heading: 'नया क्या है',
+    description: 'सभी नवीनतम अपडेट, सुधार और फ़िक्स।',
+    rssLabel: 'RSS फ़ीड',
+    permalink: 'स्थायी लिंक',
     meta: {
-      title: 'Changelog',
-      description: 'All the latest updates, improvements, and fixes.',
+      title: 'परिवर्तन लॉग',
+      description: 'सभी नवीनतम अपडेट, सुधार और फ़िक्स।',
     },
   },
   cookieConsent: {
-    title: 'We use cookies',
+    title: 'हम कुकीज़ का उपयोग करते हैं',
     descriptionBefore:
-      'We use cookies to improve your experience, analyze traffic, and personalize content. You can choose which cookies to allow. Read our',
-    policyLinkPrivacy: 'privacy policy',
-    policyLinkCookie: 'cookie policy',
-    dismissAriaLabel: 'Dismiss for now',
+      'हम अपना अनुभव बेहतर करने, ट्रैफ़िक विश्लेषण करने और सामग्री को व्यक्तिगत बनाने के लिए कुकीज़ का उपयोग करते हैं। आप चुन सकते हैं कि कौन सी कुकीज़ की अनुमति दें। पढ़ें हमारी',
+    policyLinkPrivacy: 'गोपनीयता नीति',
+    policyLinkCookie: 'कुकी नीति',
+    dismissAriaLabel: 'अभी बंद करें',
     necessary: {
-      title: 'Necessary',
-      description: 'Required for the site to function. Cannot be disabled.',
+      title: 'आवश्यक',
+      description: 'साइट के कार्य के लिए आवश्यक। अक्षम नहीं किया जा सकता।',
     },
     analytics: {
-      title: 'Analytics',
-      description: 'Help us understand how visitors use our site.',
+      title: 'विश्लेषण',
+      description:
+        'हमें यह समझने में मदद करता है कि आगंतुक हमारी साइट का उपयोग कैसे करते हैं।',
     },
     marketing: {
-      title: 'Marketing',
-      description: 'Used to deliver relevant ads and track campaigns.',
+      title: 'मार्केटिंग',
+      description:
+        'प्रासंगिक विज्ञापन दिखाने और अभियान ट्रैक करने के लिए उपयोग किया जाता है।',
     },
-    acceptAll: 'Accept all',
-    rejectAll: 'Reject all',
-    savePreferences: 'Save preferences',
-    customize: 'Customize',
+    acceptAll: 'सभी स्वीकार करें',
+    rejectAll: 'सभी अस्वीकार करें',
+    savePreferences: 'प्राथमिकताएं सहेजें',
+    customize: 'अनुकूलित करें',
   },
 };
 

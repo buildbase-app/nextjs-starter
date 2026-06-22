@@ -42,24 +42,24 @@ const messages: Messages = {
       signOutConfirm: '本当にサインアウトしますか？',
     },
     footer: {
-      rights: 'All rights reserved',
+      rights: '全著作権所有',
       tagline:
-        'A live demo app showing the BuildBase SDK in action. Sign in to explore auth, workspaces, credits, push notifications, and i18n.',
+        'BuildBase SDKの実際の動作を示すライブデモアプリです。サインインして、認証、ワークスペース、クレジット、プッシュ通知、i18nを探索してください。',
       sections: {
-        product: 'Product',
-        resources: 'Resources',
-        legal: 'Legal',
+        product: '製品',
+        resources: 'リソース',
+        legal: '法律',
       },
       links: {
-        features: 'Features',
-        pricing: 'Pricing',
-        dashboard: 'Dashboard',
-        credits: 'Credits',
-        blog: 'Blog',
-        changelog: 'Changelog',
-        about: 'About',
-        privacy: 'Privacy Policy',
-        terms: 'Terms of Service',
+        features: '機能',
+        pricing: '料金',
+        dashboard: 'ダッシュボード',
+        credits: 'クレジット',
+        blog: 'ブログ',
+        changelog: '変更履歴',
+        about: '概要',
+        privacy: 'プライバシーポリシー',
+        terms: '利用規約',
       },
     },
     language: {
@@ -83,9 +83,138 @@ const messages: Messages = {
   home: {
     title: 'マイアプリ',
     hero: {
-      heading: 'マイアプリへようこそ',
+      badge: 'BuildBase SDK · ライブデモ',
+      heading:
+        'A working demo built with the <highlight>BuildBase SDK</highlight>',
       description:
-        'Next.js、TypeScript、Tailwind CSS、shadcn/ui、next-themes、BuildBase SDKで構築。',
+        'サインインして、認証、マルチテナントワークスペース、クレジット課金、プッシュ通知、8言語対応のi18nがすべて一つの実際のアプリで動作しているのを確認してください — BuildBase SDK搭載。',
+      signInToExplore: 'サインインして探索',
+      openDashboard: 'ダッシュボードを開く',
+      viewSource: 'ソースを見る',
+      builtWith: '使用技術',
+    },
+    stats: {
+      languages: {
+        label: 'このデモの言語数',
+        sublabel: 'ヘッダーのトグルで切り替え',
+      },
+      sdkFeatures: {
+        label: 'ライブSDK機能',
+        sublabel: '各機能にデモページあり',
+      },
+      notifications: {
+        label: '通知チャンネル',
+        sublabel: 'ブラウザプッシュ + メール',
+      },
+      authCode: {
+        label: '認証コードの行数',
+        sublabel: 'SDKがすべて処理',
+      },
+    },
+    cta: {
+      heading: 'すべての動作を確認する準備ができましたか？',
+      description:
+        'サインインしてフルダッシュボードを開き、ワークスペースの切り替え、クレジット消費、プッシュ通知の送信、8言語の切り替えを試してみてください。',
+      signIn: 'サインインして探索',
+      openDashboard: 'ダッシュボードを開く',
+      howBuilt: '構築方法',
+    },
+    features: {
+      eyebrow: 'デモを探索',
+      heading: 'このアプリで動作しているものを見る',
+      description:
+        '以下の各機能はライブです — サインインしてクリックし、BuildBase SDKの動作を確認してください。',
+      auth: {
+        badge: '認証',
+        title: 'OAuthサインイン、すぐに使える',
+        description:
+          '上のサインインボタンはBuildBase SDKを使用 — フック1つ、セッションロジックの記述不要。サインイン後、JWT、ワークスペーストークン、役割が自動的に付与されます。',
+        tryLabel: 'サインインして試す',
+      },
+      workspaces: {
+        badge: 'ワークスペース',
+        title: 'マルチテナントワークスペース切り替え',
+        description:
+          '各ユーザーは異なる役割で複数のワークスペースに所属できます。ダッシュボードのサイドバーに現在のワークスペースが表示され、切り替えが可能です。',
+        tryLabel: 'ダッシュボードを開く',
+      },
+      credits: {
+        badge: 'クレジット',
+        title: 'ライブクレジット残高と消費',
+        description:
+          'クレジットページはライブ残高を表示し、内蔵モーダルで追加購入でき、SDKのconsumeCredits()をリアルタイムで呼び出すテストボタンがあります。',
+        tryLabel: 'クレジット消費を試す',
+      },
+      notifications: {
+        badge: '通知',
+        title: 'ブラウザプッシュとメール配信',
+        description:
+          '通知ページではブラウザを登録し、タイトル、緊急度、アクションボタン、配信スケジュールを設定した通知を作成してライブ送信できます。',
+        tryLabel: 'テスト通知を送信',
+      },
+      i18n: {
+        badge: 'i18n',
+        title: 'アラビア語RTLを含む8言語',
+        description:
+          'ヘッダーの言語切り替えで英語、ヒンディー語、スペイン語、フランス語、ドイツ語、日本語、中国語、アラビア語に切り替えられます — レイアウトが自動的にRTLに変わります。',
+        tryLabel: 'アラビア語に切り替え',
+      },
+      content: {
+        badge: 'コンテンツ',
+        title: 'MDXブログと変更履歴、内蔵',
+        description:
+          'ブログと変更履歴はContentlayer2でビルド時にコンパイルされるMDXファイルです。CMSもDBも不要 — 型安全なfrontmatter、全文検索、RSSを持つファイルだけです。',
+        tryLabel: 'ブログを読む',
+      },
+      quotas: {
+        badge: 'クォータ',
+        title: '超過ゲート付きクォータ使用状況',
+        description:
+          '使用状況ページはuseAllQuotaUsage()を呼び出しクォータごとの進捗バーを表示します。WhenQuotaExhaustedはクォータがゼロになるとUIをブロック。WhenQuotaOverageは超過詳細を表示。',
+        tryLabel: 'クォータ使用状況を確認',
+      },
+      permissions: {
+        badge: '権限',
+        title: 'ロールベースの権限マトリックス',
+        description:
+          '権限ページはusePermissions()とWhenPermissionを使用し、現在のワークスペース役割に基づいてすべてのプラットフォーム権限をリアルタイムで付与または拒否として表示します。',
+        tryLabel: '権限を確認',
+      },
+      events: {
+        badge: 'イベント',
+        title: 'ライブSDKイベントストリーム',
+        description:
+          'イベントページはeventEmitter.setCallbacks()を接続し、ワークスペース変更、ユーザー更新、役割変更など、すべてのSDKイベントをライブスクロールログでキャプチャします。',
+        tryLabel: 'イベントログを開く',
+      },
+      userData: {
+        badge: 'ユーザーデータ',
+        title: 'ユーザー属性とフィーチャーフラグ',
+        description:
+          'プロフィールページはuseUserAttributes()とuseUserFeatures()を読み取り、カスタムキーバリューペアとユーザーごとのフラグ状態を表示し、新しい属性をライブで書き込めます。',
+        tryLabel: 'プロフィールを確認',
+      },
+      invoices: {
+        badge: '請求書',
+        title: '請求書履歴と請求ポータル',
+        description:
+          '請求書ページはuseInvoices()を呼び出し、すべてのStripe請求書をステータス、金額、PDFリンク付きで一覧表示します。ボタン1つでuseBillingPortal()からStripeカスタマーポータルが開きます。',
+        tryLabel: '請求書を確認',
+      },
+      seats: {
+        badge: 'シート',
+        title: 'シート制限と招待ゲート',
+        description:
+          'ダッシュボードはuseSeatStatus()を呼び出し、メンバー数とプラン制限をリアルタイムで表示します。WhenNoSubscription、WhenSubscription、WhenSubscriptionToPlansが適切なUIを表示します。',
+        tryLabel: 'ダッシュボードを開く',
+      },
+      featureFlags: {
+        badge: 'フィーチャーフラグ',
+        title: 'ワークスペースレベルの機能ゲート',
+        description:
+          'プロフィールページはWhenWorkspaceFeatureEnabledとWhenWorkspaceFeatureDisabledを使用し、BuildBaseダッシュボードで設定したワークスペースレベルのフラグに基づいてコンテンツを切り替えます。',
+        tryLabel: '機能ゲートを確認',
+      },
     },
     meta: {
       title: 'マイアプリ',
@@ -473,10 +602,10 @@ const messages: Messages = {
       action2: 'アクション2',
       actionTitlePlaceholder: 'ボタンラベル（例：返信）',
       actionKeyPlaceholder: 'アクションキー（例：reply）',
-      iconUrlPlaceholder: 'Push icon (falls back to org icon)',
-      imageUrlPlaceholder: 'Large image in push body',
-      badgeUrlPlaceholder: 'Status bar icon (Android)',
-      ttlPlaceholder: '86400 (24h default)',
+      iconUrlPlaceholder: 'Pushアイコン（組織アイコンにフォールバック）',
+      imageUrlPlaceholder: 'Push本文の大きな画像',
+      badgeUrlPlaceholder: 'ステータスバーアイコン（Android）',
+      ttlPlaceholder: '86400（デフォルト24時間）',
     },
     context: {
       workspace: 'ワークスペース：',
@@ -680,13 +809,13 @@ const messages: Messages = {
       expiresIn: '{date}に期限切れ',
       noExpiring: 'まもなく期限切れになるクレジットはありません',
       days: '{count}クレジット',
-      loading: 'Loading...',
+      loading: '読み込み中...',
     },
     transactions: {
       title: '取引履歴',
       description: '最近のクレジット追加・差引',
       empty: 'まだ取引がありません',
-      loading: 'Loading...',
+      loading: '読み込み中...',
       columns: {
         type: '種類',
         amount: '金額',
@@ -712,6 +841,12 @@ const messages: Messages = {
       description:
         '申し訳ありませんが、お探しのページが見つかりませんでした。移動または削除された可能性があります。',
       goBack: '戻る',
+    },
+    blogNotFound: {
+      title: '投稿が見つかりません',
+      description:
+        'お探しのブログ投稿は存在しないか、削除されたか、お使いの言語では利用できない可能性があります。',
+      browseAll: 'すべての投稿を見る',
     },
   },
   blog: {

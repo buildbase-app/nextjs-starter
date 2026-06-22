@@ -83,9 +83,138 @@ const messages: Messages = {
   home: {
     title: 'My App',
     hero: {
-      heading: 'Welcome to My App',
+      badge: 'BuildBase SDK · Live Demo',
+      heading:
+        'A working demo built with the <highlight>BuildBase SDK</highlight>',
       description:
-        'Built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, next-themes, and BuildBase SDK.',
+        'Sign in to see auth, multi-tenant workspaces, credit billing, push notifications, and 8-language i18n all working together in a real app — powered by the BuildBase SDK.',
+      signInToExplore: 'Sign in to explore',
+      openDashboard: 'Open Dashboard',
+      viewSource: 'View source',
+      builtWith: 'Built with',
+    },
+    stats: {
+      languages: {
+        label: 'Languages in this demo',
+        sublabel: 'switch with the header toggle',
+      },
+      sdkFeatures: {
+        label: 'Live SDK features',
+        sublabel: 'each has a working demo page',
+      },
+      notifications: {
+        label: 'Notification channels',
+        sublabel: 'browser push + email',
+      },
+      authCode: {
+        label: 'Lines of auth code',
+        sublabel: 'the SDK handles it all',
+      },
+    },
+    cta: {
+      heading: 'Ready to see it all working?',
+      description:
+        'Sign in to open the full dashboard — try switching workspaces, consuming credits, sending a push notification, and switching between all 8 languages.',
+      signIn: 'Sign in & explore',
+      openDashboard: 'Open Dashboard',
+      howBuilt: "How it's built",
+    },
+    features: {
+      eyebrow: 'Explore the demo',
+      heading: "See what's working in this app",
+      description:
+        'Each capability below is live — sign in and click through to see the BuildBase SDK in action, not just in writing.',
+      auth: {
+        badge: 'Auth',
+        title: 'OAuth sign-in, out of the box',
+        description:
+          'The Sign In button above uses the BuildBase SDK — one hook, no session logic to write. After signing in you get a JWT, workspace token, and role automatically.',
+        tryLabel: 'Sign in to try it',
+      },
+      workspaces: {
+        badge: 'Workspaces',
+        title: 'Multi-tenant workspace switcher',
+        description:
+          'Every user can belong to multiple workspaces with different roles. The dashboard sidebar shows your current workspace and lets you switch between them.',
+        tryLabel: 'Open dashboard',
+      },
+      credits: {
+        badge: 'Credits',
+        title: 'Live credit balance & consumption',
+        description:
+          "The credits page shows your live balance, lets you buy more via a built-in modal, and has test buttons that call the SDK's consumeCredits() in real time.",
+        tryLabel: 'Try credit consumption',
+      },
+      notifications: {
+        badge: 'Notifications',
+        title: 'Browser push & email delivery',
+        description:
+          'The notifications page lets you subscribe your browser, compose a notification with title, urgency, action buttons, and scheduled delivery — then send it live.',
+        tryLabel: 'Send a test notification',
+      },
+      i18n: {
+        badge: 'i18n',
+        title: '8 languages including Arabic RTL',
+        description:
+          'Use the language switcher in the header to switch between English, Hindi, Spanish, French, German, Japanese, Chinese, and Arabic — the layout flips to RTL automatically.',
+        tryLabel: 'Switch to Arabic',
+      },
+      content: {
+        badge: 'Content',
+        title: 'MDX blog & changelog, built in',
+        description:
+          'The blog and changelog are MDX files compiled at build time via Contentlayer2. No CMS, no database — just files with type-safe frontmatter, full-text search, and RSS.',
+        tryLabel: 'Read the blog',
+      },
+      quotas: {
+        badge: 'Quotas',
+        title: 'Quota usage with overage gates',
+        description:
+          'The usage page calls useAllQuotaUsage() to show per-quota progress bars. WhenQuotaExhausted blocks UI when a quota hits zero; WhenQuotaOverage shows overage details.',
+        tryLabel: 'View quota usage',
+      },
+      permissions: {
+        badge: 'Permissions',
+        title: 'Role-based permission matrix',
+        description:
+          'The permissions page uses usePermissions() and WhenPermission to show every platform permission as granted or denied based on your current workspace role in real time.',
+        tryLabel: 'Check your permissions',
+      },
+      events: {
+        badge: 'Events',
+        title: 'Live SDK event stream',
+        description:
+          'The events page wires up eventEmitter.setCallbacks() to capture all SDK events as they fire — workspace changes, user updates, role changes — in a live scrolling log.',
+        tryLabel: 'Open event log',
+      },
+      userData: {
+        badge: 'User data',
+        title: 'User attributes & feature flags',
+        description:
+          'The profile page reads useUserAttributes() and useUserFeatures() to show custom key-value pairs and per-user feature flag states, and lets you write new attributes live.',
+        tryLabel: 'View your profile',
+      },
+      invoices: {
+        badge: 'Invoices',
+        title: 'Invoice history & billing portal',
+        description:
+          'The invoices page calls useInvoices() to list all Stripe invoices with status, amount, and PDF links. A single button opens the Stripe Customer Portal via useBillingPortal().',
+        tryLabel: 'View invoices',
+      },
+      seats: {
+        badge: 'Seats',
+        title: 'Seat limits & invite gating',
+        description:
+          'The dashboard calls useSeatStatus() to show member count vs plan limits in real time. WhenNoSubscription, WhenSubscription, and WhenSubscriptionToPlans gate UI to the right audience.',
+        tryLabel: 'Open dashboard',
+      },
+      featureFlags: {
+        badge: 'Feature flags',
+        title: 'Workspace-level feature gates',
+        description:
+          'The profile page uses WhenWorkspaceFeatureEnabled and WhenWorkspaceFeatureDisabled to toggle content based on workspace-level feature flags configured in the BuildBase dashboard.',
+        tryLabel: 'See feature gates',
+      },
     },
     meta: {
       title: 'My App',
@@ -709,6 +838,12 @@ const messages: Messages = {
       description:
         "Sorry, we couldn't find the page you're looking for. It may have been moved or deleted.",
       goBack: 'Go back',
+    },
+    blogNotFound: {
+      title: 'Post not found',
+      description:
+        "The blog post you're looking for doesn't exist, may have been removed, or is not available in your language.",
+      browseAll: 'Browse all posts',
     },
   },
   blog: {

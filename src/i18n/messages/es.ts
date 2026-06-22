@@ -44,7 +44,7 @@ const messages: Messages = {
     footer: {
       rights: 'Todos los derechos reservados',
       tagline:
-        'A live demo app showing the BuildBase SDK in action. Sign in to explore auth, workspaces, credits, push notifications, and i18n.',
+        'Una app de demostración en vivo que muestra el BuildBase SDK en acción. Inicia sesión para explorar autenticación, workspaces, créditos, notificaciones push e i18n.',
       sections: {
         product: 'Producto',
         resources: 'Recursos',
@@ -83,9 +83,138 @@ const messages: Messages = {
   home: {
     title: 'Mi App',
     hero: {
-      heading: 'Bienvenido a Mi App',
+      badge: 'BuildBase SDK · Demo en vivo',
+      heading:
+        'A working demo built with the <highlight>BuildBase SDK</highlight>',
       description:
-        'Construido con Next.js, TypeScript, Tailwind CSS, shadcn/ui, next-themes y BuildBase SDK.',
+        'Inicia sesión para ver autenticación, espacios de trabajo multitenancy, facturación de créditos, notificaciones push e i18n en 8 idiomas trabajando juntos — impulsado por el BuildBase SDK.',
+      signInToExplore: 'Iniciar sesión para explorar',
+      openDashboard: 'Abrir panel',
+      viewSource: 'Ver código',
+      builtWith: 'Construido con',
+    },
+    stats: {
+      languages: {
+        label: 'Idiomas en esta demo',
+        sublabel: 'cambia con el selector del encabezado',
+      },
+      sdkFeatures: {
+        label: 'Funciones SDK en vivo',
+        sublabel: 'cada una tiene una página de demo',
+      },
+      notifications: {
+        label: 'Canales de notificación',
+        sublabel: 'push en navegador + email',
+      },
+      authCode: {
+        label: 'Líneas de código de auth',
+        sublabel: 'el SDK lo maneja todo',
+      },
+    },
+    cta: {
+      heading: '¿Listo para verlo todo en acción?',
+      description:
+        'Inicia sesión para abrir el panel completo — prueba cambiar espacios de trabajo, consumir créditos, enviar una notificación push y cambiar entre los 8 idiomas.',
+      signIn: 'Iniciar sesión y explorar',
+      openDashboard: 'Abrir panel',
+      howBuilt: 'Cómo está construido',
+    },
+    features: {
+      eyebrow: 'Explora la demo',
+      heading: 'Ve lo que funciona en esta app',
+      description:
+        'Cada capacidad a continuación está en vivo — inicia sesión y haz clic para ver el BuildBase SDK en acción.',
+      auth: {
+        badge: 'Autenticación',
+        title: 'Inicio de sesión OAuth, listo para usar',
+        description:
+          'El botón de inicio de sesión usa el BuildBase SDK — un hook, sin lógica de sesión. Tras iniciar sesión obtienes JWT, token de workspace y rol automáticamente.',
+        tryLabel: 'Inicia sesión para probarlo',
+      },
+      workspaces: {
+        badge: 'Espacios de trabajo',
+        title: 'Selector de workspace multi-inquilino',
+        description:
+          'Cada usuario puede pertenecer a múltiples workspaces con diferentes roles. La barra lateral del dashboard muestra tu workspace actual y permite cambiar entre ellos.',
+        tryLabel: 'Abrir dashboard',
+      },
+      credits: {
+        badge: 'Créditos',
+        title: 'Saldo de créditos en vivo y consumo',
+        description:
+          'La página de créditos muestra tu saldo en vivo, permite comprar más mediante un modal integrado y tiene botones de prueba que llaman a consumeCredits() en tiempo real.',
+        tryLabel: 'Probar consumo de créditos',
+      },
+      notifications: {
+        badge: 'Notificaciones',
+        title: 'Push de navegador y entrega por correo',
+        description:
+          'La página de notificaciones te permite suscribir tu navegador, crear una notificación con título, urgencia, botones de acción y entrega programada — luego enviarla en vivo.',
+        tryLabel: 'Enviar notificación de prueba',
+      },
+      i18n: {
+        badge: 'i18n',
+        title: '8 idiomas incluyendo árabe RTL',
+        description:
+          'Usa el selector de idioma en el encabezado para cambiar entre inglés, hindi, español, francés, alemán, japonés, chino y árabe — el diseño cambia a RTL automáticamente.',
+        tryLabel: 'Cambiar a árabe',
+      },
+      content: {
+        badge: 'Contenido',
+        title: 'Blog MDX y registro de cambios, integrado',
+        description:
+          'El blog y el registro de cambios son archivos MDX compilados en tiempo de construcción via Contentlayer2. Sin CMS, sin base de datos — solo archivos con frontmatter tipado, búsqueda de texto completo y RSS.',
+        tryLabel: 'Leer el blog',
+      },
+      quotas: {
+        badge: 'Cuotas',
+        title: 'Uso de cuotas con puertas de excedente',
+        description:
+          'La página de uso llama a useAllQuotaUsage() para mostrar barras de progreso por cuota. WhenQuotaExhausted bloquea la UI cuando una cuota llega a cero; WhenQuotaOverage muestra detalles del excedente.',
+        tryLabel: 'Ver uso de cuotas',
+      },
+      permissions: {
+        badge: 'Permisos',
+        title: 'Matriz de permisos basada en roles',
+        description:
+          'La página de permisos usa usePermissions() y WhenPermission para mostrar cada permiso de la plataforma como concedido o denegado según tu rol actual en tiempo real.',
+        tryLabel: 'Verificar tus permisos',
+      },
+      events: {
+        badge: 'Eventos',
+        title: 'Flujo de eventos SDK en vivo',
+        description:
+          'La página de eventos conecta eventEmitter.setCallbacks() para capturar todos los eventos SDK — cambios de workspace, actualizaciones de usuario, cambios de rol — en un registro en vivo.',
+        tryLabel: 'Abrir registro de eventos',
+      },
+      userData: {
+        badge: 'Datos de usuario',
+        title: 'Atributos de usuario y banderas de funciones',
+        description:
+          'La página de perfil lee useUserAttributes() y useUserFeatures() para mostrar pares clave-valor personalizados y estados de banderas por usuario, permitiendo escribir nuevos atributos en vivo.',
+        tryLabel: 'Ver tu perfil',
+      },
+      invoices: {
+        badge: 'Facturas',
+        title: 'Historial de facturas y portal de facturación',
+        description:
+          'La página de facturas llama a useInvoices() para listar todas las facturas de Stripe con estado, importe y enlaces PDF. Un botón abre el Portal de Clientes de Stripe via useBillingPortal().',
+        tryLabel: 'Ver facturas',
+      },
+      seats: {
+        badge: 'Asientos',
+        title: 'Límites de asientos y control de invitaciones',
+        description:
+          'El dashboard llama a useSeatStatus() para mostrar el conteo de miembros vs los límites del plan en tiempo real. WhenNoSubscription, WhenSubscription y WhenSubscriptionToPlans controlan la UI para la audiencia correcta.',
+        tryLabel: 'Abrir dashboard',
+      },
+      featureFlags: {
+        badge: 'Banderas de funciones',
+        title: 'Puertas de funciones a nivel de workspace',
+        description:
+          'La página de perfil usa WhenWorkspaceFeatureEnabled y WhenWorkspaceFeatureDisabled para alternar contenido según las banderas a nivel de workspace configuradas en el dashboard de BuildBase.',
+        tryLabel: 'Ver puertas de funciones',
+      },
     },
     meta: {
       title: 'Mi App',
@@ -685,13 +814,13 @@ const messages: Messages = {
       expiresIn: 'Vence el {date}',
       noExpiring: 'No hay créditos próximos a vencer',
       days: '{count} créditos',
-      loading: 'Loading...',
+      loading: 'Cargando...',
     },
     transactions: {
       title: 'Historial de transacciones',
       description: 'Adiciones y deducciones recientes de créditos',
       empty: 'No hay transacciones aún',
-      loading: 'Loading...',
+      loading: 'Cargando...',
       columns: {
         type: 'Tipo',
         amount: 'Monto',
@@ -717,6 +846,12 @@ const messages: Messages = {
       description:
         'Lo sentimos, no pudimos encontrar la página que buscas. Puede haber sido movida o eliminada.',
       goBack: 'Volver atrás',
+    },
+    blogNotFound: {
+      title: 'Entrada no encontrada',
+      description:
+        'La entrada del blog que buscas no existe, puede haber sido eliminada o no está disponible en tu idioma.',
+      browseAll: 'Ver todas las entradas',
     },
   },
   blog: {

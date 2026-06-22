@@ -44,7 +44,7 @@ const messages: Messages = {
     footer: {
       rights: 'Tous droits réservés',
       tagline:
-        'A live demo app showing the BuildBase SDK in action. Sign in to explore auth, workspaces, credits, push notifications, and i18n.',
+        "Une application de démonstration en direct montrant le BuildBase SDK en action. Connectez-vous pour explorer l'authentification, les espaces de travail, les crédits, les notifications push et i18n.",
       sections: {
         product: 'Produit',
         resources: 'Ressources',
@@ -83,9 +83,138 @@ const messages: Messages = {
   home: {
     title: 'Mon Application',
     hero: {
-      heading: 'Bienvenue sur Mon Application',
+      badge: 'BuildBase SDK · Démo en direct',
+      heading:
+        'A working demo built with the <highlight>BuildBase SDK</highlight>',
       description:
-        'Construit avec Next.js, TypeScript, Tailwind CSS, shadcn/ui, next-themes et BuildBase SDK.',
+        "Connectez-vous pour voir l'authentification, les espaces de travail multi-tenant, la facturation de crédits, les notifications push et l'i18n en 8 langues — propulsé par le BuildBase SDK.",
+      signInToExplore: 'Se connecter pour explorer',
+      openDashboard: 'Ouvrir le tableau de bord',
+      viewSource: 'Voir le code source',
+      builtWith: 'Construit avec',
+    },
+    stats: {
+      languages: {
+        label: 'Langues dans cette démo',
+        sublabel: "changez avec le sélecteur dans l'en-tête",
+      },
+      sdkFeatures: {
+        label: 'Fonctionnalités SDK en direct',
+        sublabel: 'chacune a une page de démo',
+      },
+      notifications: {
+        label: 'Canaux de notification',
+        sublabel: 'push navigateur + email',
+      },
+      authCode: {
+        label: "Lignes de code d'auth",
+        sublabel: 'le SDK gère tout',
+      },
+    },
+    cta: {
+      heading: 'Prêt à voir tout fonctionner ?',
+      description:
+        "Connectez-vous pour ouvrir le tableau de bord complet — essayez de changer d'espace de travail, de consommer des crédits, d'envoyer une notification push et de basculer entre les 8 langues.",
+      signIn: 'Se connecter et explorer',
+      openDashboard: 'Ouvrir le tableau de bord',
+      howBuilt: "Comment c'est construit",
+    },
+    features: {
+      eyebrow: 'Explorer la démo',
+      heading: 'Voyez ce qui fonctionne dans cette app',
+      description:
+        'Chaque fonctionnalité ci-dessous est en direct — connectez-vous et cliquez pour voir le BuildBase SDK en action.',
+      auth: {
+        badge: 'Authentification',
+        title: "Connexion OAuth, prête à l'emploi",
+        description:
+          "Le bouton de connexion utilise le BuildBase SDK — un hook, pas de logique de session. Après connexion, vous obtenez automatiquement un JWT, un token d'espace de travail et un rôle.",
+        tryLabel: 'Se connecter pour essayer',
+      },
+      workspaces: {
+        badge: 'Espaces de travail',
+        title: 'Sélecteur de workspace multi-tenant',
+        description:
+          'Chaque utilisateur peut appartenir à plusieurs espaces de travail avec différents rôles. La barre latérale du tableau de bord affiche votre espace de travail actuel et permet de basculer entre eux.',
+        tryLabel: 'Ouvrir le tableau de bord',
+      },
+      credits: {
+        badge: 'Crédits',
+        title: 'Solde de crédits en direct et consommation',
+        description:
+          "La page des crédits affiche votre solde en direct, permet d'en acheter via une modal intégrée et dispose de boutons de test appelant consumeCredits() en temps réel.",
+        tryLabel: 'Essayer la consommation de crédits',
+      },
+      notifications: {
+        badge: 'Notifications',
+        title: 'Push navigateur et envoi par e-mail',
+        description:
+          "La page de notifications vous permet de vous abonner au push navigateur, de composer une notification avec titre, urgence, boutons et livraison planifiée — puis de l'envoyer en direct.",
+        tryLabel: 'Envoyer une notification de test',
+      },
+      i18n: {
+        badge: 'i18n',
+        title: "8 langues dont l'arabe RTL",
+        description:
+          "Utilisez le sélecteur de langue dans l'en-tête pour basculer entre l'anglais, l'hindi, l'espagnol, le français, l'allemand, le japonais, le chinois et l'arabe — la mise en page passe automatiquement en RTL.",
+        tryLabel: 'Passer en arabe',
+      },
+      content: {
+        badge: 'Contenu',
+        title: 'Blog MDX et journal des modifications, intégrés',
+        description:
+          'Le blog et le journal des modifications sont des fichiers MDX compilés à la construction via Contentlayer2. Pas de CMS, pas de base de données — juste des fichiers avec frontmatter typé, recherche plein texte et RSS.',
+        tryLabel: 'Lire le blog',
+      },
+      quotas: {
+        badge: 'Quotas',
+        title: 'Utilisation des quotas avec portes de dépassement',
+        description:
+          "La page d'utilisation appelle useAllQuotaUsage() pour afficher des barres de progression par quota. WhenQuotaExhausted bloque l'UI quand un quota atteint zéro ; WhenQuotaOverage affiche les détails du dépassement.",
+        tryLabel: "Voir l'utilisation des quotas",
+      },
+      permissions: {
+        badge: 'Permissions',
+        title: 'Matrice de permissions basée sur les rôles',
+        description:
+          'La page des permissions utilise usePermissions() et WhenPermission pour afficher chaque permission de la plateforme comme accordée ou refusée selon votre rôle actuel en temps réel.',
+        tryLabel: 'Vérifier vos permissions',
+      },
+      events: {
+        badge: 'Événements',
+        title: "Flux d'événements SDK en direct",
+        description:
+          "La page d'événements connecte eventEmitter.setCallbacks() pour capturer tous les événements SDK — changements de workspace, mises à jour utilisateur, changements de rôle — dans un journal défilant en direct.",
+        tryLabel: "Ouvrir le journal d'événements",
+      },
+      userData: {
+        badge: 'Données utilisateur',
+        title: 'Attributs utilisateur et drapeaux de fonctionnalités',
+        description:
+          "La page de profil lit useUserAttributes() et useUserFeatures() pour afficher des paires clé-valeur personnalisées et les états de drapeaux par utilisateur, permettant d'écrire de nouveaux attributs en direct.",
+        tryLabel: 'Voir votre profil',
+      },
+      invoices: {
+        badge: 'Factures',
+        title: 'Historique des factures et portail de facturation',
+        description:
+          'La page des factures appelle useInvoices() pour lister toutes les factures Stripe avec statut, montant et liens PDF. Un bouton ouvre le Portail Client Stripe via useBillingPortal().',
+        tryLabel: 'Voir les factures',
+      },
+      seats: {
+        badge: 'Sièges',
+        title: 'Limites de sièges et contrôle des invitations',
+        description:
+          "Le tableau de bord appelle useSeatStatus() pour afficher le nombre de membres vs les limites du plan en temps réel. WhenNoSubscription, WhenSubscription et WhenSubscriptionToPlans contrôlent l'UI pour la bonne audience.",
+        tryLabel: 'Ouvrir le tableau de bord',
+      },
+      featureFlags: {
+        badge: 'Drapeaux de fonctionnalités',
+        title: 'Portes de fonctionnalités au niveau workspace',
+        description:
+          'La page de profil utilise WhenWorkspaceFeatureEnabled et WhenWorkspaceFeatureDisabled pour basculer le contenu selon les drapeaux au niveau workspace configurés dans le tableau de bord BuildBase.',
+        tryLabel: 'Voir les portes de fonctionnalités',
+      },
     },
     meta: {
       title: 'Mon Application',
@@ -685,13 +814,13 @@ const messages: Messages = {
       expiresIn: 'Expire le {date}',
       noExpiring: "Aucun crédit n'expire bientôt",
       days: '{count} crédits',
-      loading: 'Loading...',
+      loading: 'Chargement...',
     },
     transactions: {
       title: 'Historique des transactions',
       description: 'Ajouts et déductions de crédits récents',
       empty: 'Aucune transaction pour le moment',
-      loading: 'Loading...',
+      loading: 'Chargement...',
       columns: {
         type: 'Type',
         amount: 'Montant',
@@ -717,6 +846,12 @@ const messages: Messages = {
       description:
         "Désolé, nous n'avons pas pu trouver la page que vous recherchez. Elle a peut-être été déplacée ou supprimée.",
       goBack: 'Retour',
+    },
+    blogNotFound: {
+      title: 'Article introuvable',
+      description:
+        "L'article de blog que vous recherchez n'existe pas, a peut-être été supprimé ou n'est pas disponible dans votre langue.",
+      browseAll: 'Parcourir tous les articles',
     },
   },
   blog: {

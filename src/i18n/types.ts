@@ -80,11 +80,54 @@ export interface CommonMessages {
   redirecting: string;
 }
 
+export interface HomeFeature {
+  badge: string;
+  title: string;
+  description: string;
+  tryLabel: string;
+}
+
 export interface HomeMessages {
   title: string;
   hero: {
+    badge: string;
     heading: string;
     description: string;
+    signInToExplore: string;
+    openDashboard: string;
+    viewSource: string;
+    builtWith: string;
+  };
+  stats: {
+    languages: { label: string; sublabel: string };
+    sdkFeatures: { label: string; sublabel: string };
+    notifications: { label: string; sublabel: string };
+    authCode: { label: string; sublabel: string };
+  };
+  cta: {
+    heading: string;
+    description: string;
+    signIn: string;
+    openDashboard: string;
+    howBuilt: string;
+  };
+  features: {
+    eyebrow: string;
+    heading: string;
+    description: string;
+    auth: HomeFeature;
+    workspaces: HomeFeature;
+    credits: HomeFeature;
+    notifications: HomeFeature;
+    i18n: HomeFeature;
+    content: HomeFeature;
+    quotas: HomeFeature;
+    permissions: HomeFeature;
+    events: HomeFeature;
+    userData: HomeFeature;
+    invoices: HomeFeature;
+    seats: HomeFeature;
+    featureFlags: HomeFeature;
   };
   meta: {
     title: string;
@@ -600,6 +643,11 @@ export interface ErrorMessages {
     title: string;
     description: string;
     goBack: string;
+  };
+  blogNotFound: {
+    title: string;
+    description: string;
+    browseAll: string;
   };
 }
 

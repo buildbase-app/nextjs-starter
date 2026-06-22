@@ -15,157 +15,145 @@ import {
   Flag,
   type LucideIcon,
 } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 
-interface Feature {
+interface FeatureConfig {
   icon: LucideIcon;
-  badge: string;
-  title: string;
-  description: string;
   tryHref: string;
-  tryLabel: string;
 }
 
-const FEATURES: Feature[] = [
-  {
-    icon: ShieldCheck,
-    badge: 'Auth',
-    title: 'OAuth sign-in, out of the box',
-    description:
-      'The Sign In button above uses the BuildBase SDK — one hook, no session logic to write. After signing in you get a JWT, workspace token, and role automatically.',
-    tryHref: '#',
-    tryLabel: 'Sign in to try it',
-  },
-  {
-    icon: Building2,
-    badge: 'Workspaces',
-    title: 'Multi-tenant workspace switcher',
-    description:
-      'Every user can belong to multiple workspaces with different roles. The dashboard sidebar shows your current workspace and lets you switch between them.',
-    tryHref: '/dashboard',
-    tryLabel: 'Open dashboard',
-  },
-  {
-    icon: Coins,
-    badge: 'Credits',
-    title: 'Live credit balance & consumption',
-    description:
-      "The credits page shows your live balance, lets you buy more via a built-in modal, and has test buttons that call the SDK's consumeCredits() in real time.",
-    tryHref: '/dashboard/credits',
-    tryLabel: 'Try credit consumption',
-  },
-  {
-    icon: Bell,
-    badge: 'Notifications',
-    title: 'Browser push & email delivery',
-    description:
-      'The notifications page lets you subscribe your browser, compose a notification with title, urgency, action buttons, and scheduled delivery — then send it live.',
-    tryHref: '/dashboard/notifications',
-    tryLabel: 'Send a test notification',
-  },
-  {
-    icon: Globe,
-    badge: 'i18n',
-    title: '8 languages including Arabic RTL',
-    description:
-      'Use the language switcher in the header to switch between English, Hindi, Spanish, French, German, Japanese, Chinese, and Arabic — the layout flips to RTL automatically.',
-    tryHref: '/ar',
-    tryLabel: 'Switch to Arabic',
-  },
-  {
-    icon: FileText,
-    badge: 'Content',
-    title: 'MDX blog & changelog, built in',
-    description:
-      'The blog and changelog are MDX files compiled at build time via Contentlayer2. No CMS, no database — just files with type-safe frontmatter, full-text search, and RSS.',
-    tryHref: '/blog',
-    tryLabel: 'Read the blog',
-  },
-  {
-    icon: Gauge,
-    badge: 'Quotas',
-    title: 'Quota usage with overage gates',
-    description:
-      'The usage page calls useAllQuotaUsage() to show per-quota progress bars. WhenQuotaExhausted blocks UI when a quota hits zero; WhenQuotaOverage shows overage details.',
-    tryHref: '/dashboard/usage',
-    tryLabel: 'View quota usage',
-  },
-  {
-    icon: Lock,
-    badge: 'Permissions',
-    title: 'Role-based permission matrix',
-    description:
-      'The permissions page uses usePermissions() and WhenPermission to show every platform permission as granted or denied based on your current workspace role in real time.',
-    tryHref: '/dashboard/permissions',
-    tryLabel: 'Check your permissions',
-  },
-  {
-    icon: Radio,
-    badge: 'Events',
-    title: 'Live SDK event stream',
-    description:
-      'The events page wires up eventEmitter.setCallbacks() to capture all SDK events as they fire — workspace changes, user updates, role changes — in a live scrolling log.',
-    tryHref: '/dashboard/events',
-    tryLabel: 'Open event log',
-  },
-  {
-    icon: UserCircle,
-    badge: 'User data',
-    title: 'User attributes & feature flags',
-    description:
-      'The profile page reads useUserAttributes() and useUserFeatures() to show custom key-value pairs and per-user feature flag states, and lets you write new attributes live.',
-    tryHref: '/dashboard/profile',
-    tryLabel: 'View your profile',
-  },
-  {
-    icon: Receipt,
-    badge: 'Invoices',
-    title: 'Invoice history & billing portal',
-    description:
-      'The invoices page calls useInvoices() to list all Stripe invoices with status, amount, and PDF links. A single button opens the Stripe Customer Portal via useBillingPortal().',
-    tryHref: '/dashboard/invoices',
-    tryLabel: 'View invoices',
-  },
-  {
-    icon: Users,
-    badge: 'Seats',
-    title: 'Seat limits & invite gating',
-    description:
-      'The dashboard calls useSeatStatus() to show member count vs plan limits in real time. WhenNoSubscription, WhenSubscription, and WhenSubscriptionToPlans gate UI to the right audience.',
-    tryHref: '/dashboard',
-    tryLabel: 'Open dashboard',
-  },
-  {
-    icon: Flag,
-    badge: 'Feature flags',
-    title: 'Workspace-level feature gates',
-    description:
-      'The profile page uses WhenWorkspaceFeatureEnabled and WhenWorkspaceFeatureDisabled to toggle content based on workspace-level feature flags configured in the BuildBase dashboard.',
-    tryHref: '/dashboard/profile',
-    tryLabel: 'See feature gates',
-  },
+const FEATURE_CONFIGS: FeatureConfig[] = [
+  { icon: ShieldCheck, tryHref: '#' },
+  { icon: Building2, tryHref: '/dashboard' },
+  { icon: Coins, tryHref: '/dashboard/credits' },
+  { icon: Bell, tryHref: '/dashboard/notifications' },
+  { icon: Globe, tryHref: '/ar' },
+  { icon: FileText, tryHref: '/blog' },
+  { icon: Gauge, tryHref: '/dashboard/usage' },
+  { icon: Lock, tryHref: '/dashboard/permissions' },
+  { icon: Radio, tryHref: '/dashboard/events' },
+  { icon: UserCircle, tryHref: '/dashboard/profile' },
+  { icon: Receipt, tryHref: '/dashboard/invoices' },
+  { icon: Users, tryHref: '/dashboard' },
+  { icon: Flag, tryHref: '/dashboard/profile' },
 ];
 
-export function FeaturesSection() {
+export async function FeaturesSection() {
+  const t = await getTranslations('home');
+
+  const features = [
+    {
+      ...FEATURE_CONFIGS[0],
+      badge: t('features.auth.badge'),
+      title: t('features.auth.title'),
+      description: t('features.auth.description'),
+      tryLabel: t('features.auth.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[1],
+      badge: t('features.workspaces.badge'),
+      title: t('features.workspaces.title'),
+      description: t('features.workspaces.description'),
+      tryLabel: t('features.workspaces.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[2],
+      badge: t('features.credits.badge'),
+      title: t('features.credits.title'),
+      description: t('features.credits.description'),
+      tryLabel: t('features.credits.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[3],
+      badge: t('features.notifications.badge'),
+      title: t('features.notifications.title'),
+      description: t('features.notifications.description'),
+      tryLabel: t('features.notifications.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[4],
+      badge: t('features.i18n.badge'),
+      title: t('features.i18n.title'),
+      description: t('features.i18n.description'),
+      tryLabel: t('features.i18n.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[5],
+      badge: t('features.content.badge'),
+      title: t('features.content.title'),
+      description: t('features.content.description'),
+      tryLabel: t('features.content.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[6],
+      badge: t('features.quotas.badge'),
+      title: t('features.quotas.title'),
+      description: t('features.quotas.description'),
+      tryLabel: t('features.quotas.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[7],
+      badge: t('features.permissions.badge'),
+      title: t('features.permissions.title'),
+      description: t('features.permissions.description'),
+      tryLabel: t('features.permissions.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[8],
+      badge: t('features.events.badge'),
+      title: t('features.events.title'),
+      description: t('features.events.description'),
+      tryLabel: t('features.events.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[9],
+      badge: t('features.userData.badge'),
+      title: t('features.userData.title'),
+      description: t('features.userData.description'),
+      tryLabel: t('features.userData.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[10],
+      badge: t('features.invoices.badge'),
+      title: t('features.invoices.title'),
+      description: t('features.invoices.description'),
+      tryLabel: t('features.invoices.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[11],
+      badge: t('features.seats.badge'),
+      title: t('features.seats.title'),
+      description: t('features.seats.description'),
+      tryLabel: t('features.seats.tryLabel'),
+    },
+    {
+      ...FEATURE_CONFIGS[12],
+      badge: t('features.featureFlags.badge'),
+      title: t('features.featureFlags.title'),
+      description: t('features.featureFlags.description'),
+      tryLabel: t('features.featureFlags.tryLabel'),
+    },
+  ];
+
   return (
     <section id="features" className="w-full max-w-6xl px-6 py-20">
       {/* Section header */}
       <div className="mb-16 text-center">
         <p className="text-primary mb-3 font-mono text-xs font-medium tracking-widest uppercase">
-          Explore the demo
+          {t('features.eyebrow')}
         </p>
         <h2 className="text-foreground text-3xl font-bold tracking-tight md:text-4xl">
-          See what&apos;s working in this app
+          {t('features.heading')}
         </h2>
         <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-lg">
-          Each capability below is live — sign in and click through to see the
-          BuildBase SDK in action, not just in writing.
+          {t('features.description')}
         </p>
       </div>
 
       {/* Feature grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {FEATURES.map((feature) => {
+        {features.map((feature) => {
           const Icon = feature.icon;
           return (
             <div
