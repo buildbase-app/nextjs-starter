@@ -1,0 +1,27 @@
+---
+heroEyebrow: Sobre esta demo
+heroTitle: Lo que estás viendo
+heroDescription: Esta es una aplicación de demostración en vivo construida con el SDK de BuildBase y la plataforma backend. Todo lo que ves aquí — auth, espacios de trabajo, créditos, notificaciones e i18n — es código funcional con el que puedes iniciar sesión e interactuar.
+missionHeading: Qué muestra esta demo
+valuesEyebrow: Bajo el capó
+valuesHeading: Cómo se implementa cada capacidad
+values:
+  - icon: Zap
+    title: Auth en un hook
+    description: El botón de inicio de sesión llama a useSaaSAuth().signIn() — eso es todo. Sin gestión de sesiones, sin lógica CSRF, sin almacenamiento de tokens. El SDK lo maneja todo e inyecta al usuario en cada página.
+  - icon: Shield
+    title: Espacios de trabajo y roles
+    description: Después de iniciar sesión, la barra lateral muestra tu espacio de trabajo actual y te permite cambiar entre ellos. Cada espacio de trabajo tiene su propio rol aplicado del lado del servidor por el backend de BuildBase.
+  - icon: Users
+    title: Créditos y facturación
+    description: La página de créditos usa CreditBalance, useConsumeCredits() y WhenCreditsExhausted del SDK. El botón de comprar créditos abre un modal servido por BuildBase — sin código de pago en esta app.
+  - icon: Heart
+    title: Notificaciones push
+    description: La página de notificaciones llama a usePushNotifications() para suscribir tu navegador, luego envía notificaciones de prueba a través de la API de BuildBase con urgencia, programación y botones de acción.
+---
+
+Esta aplicación de demostración es un proyecto Next.js 16 que usa el SDK de BuildBase para conectar auth, facturación, notificaciones y más — sin escribir la infraestructura.
+
+No hay lógica de auth personalizada, código de procesamiento de pagos ni infraestructura de entrega de notificaciones en este repositorio. Todo eso lo maneja la plataforma backend de BuildBase. Lo que ves aquí es el frontend — una aplicación Next.js real con llamadas SDK reales en la que puedes iniciar sesión e interactuar.
+
+Inicia sesión con el botón del encabezado, luego explora el panel de control para ver cada capacidad funcionando en vivo. El código fuente de cada función está en la página o ruta de API correspondiente en el repositorio.

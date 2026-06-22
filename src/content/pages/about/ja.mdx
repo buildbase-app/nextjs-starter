@@ -1,0 +1,27 @@
+---
+heroEyebrow: このデモについて
+heroTitle: 何を見ているのか
+heroDescription: これはBuildBase SDKとバックエンドプラットフォームで構築されたライブデモアプリです。ここで見られるすべて — 認証、ワークスペース、クレジット、通知、i18n — は実際に動作するコードで、サインインして操作できます。
+missionHeading: このデモで示すこと
+valuesEyebrow: 内部の仕組み
+valuesHeading: 各機能の実装方法
+values:
+  - icon: Zap
+    title: 1つのフックで認証
+    description: サインインボタンはuseSaaSAuth().signIn()を呼び出すだけです。セッション管理もCSRFロジックもトークン保存もありません。SDKがすべてを処理し、すべてのページにユーザーを注入します。
+  - icon: Shield
+    title: ワークスペースとロール
+    description: サインイン後、サイドバーは現在のワークスペースを表示し、切り替えを可能にします。各ワークスペースはBuildBaseバックエンドによってサーバーサイドで適用された独自のロールを持っています。
+  - icon: Users
+    title: クレジットと請求
+    description: クレジットページはSDKのCreditBalance、useConsumeCredits()、WhenCreditsExhaustedを使用します。クレジット購入ボタンはBuildBaseが提供するモーダルを開きます — このアプリに支払いコードはありません。
+  - icon: Heart
+    title: プッシュ通知
+    description: 通知ページはusePushNotifications()を呼び出してブラウザを登録し、緊急度、スケジュール、アクションボタン付きでBuildBase APIを通じてテスト通知を送信します。
+---
+
+このデモアプリはNext.js 16プロジェクトで、BuildBase SDKを使って認証、請求、通知などをインフラを書かずに接続しています。
+
+このリポジトリにはカスタム認証ロジック、決済処理コード、通知配信インフラはありません。それらはすべてBuildBaseバックエンドプラットフォームが処理します。ここで見られるのはフロントエンド — 実際のSDK呼び出しを持つ本物のNext.jsアプリで、サインインして操作できます。
+
+ヘッダーのボタンからサインインし、ダッシュボードを探索して各機能がライブで動作するのを確認してください。各機能のソースコードはリポジトリの対応するページまたはAPIルートにあります。

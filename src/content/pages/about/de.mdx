@@ -1,0 +1,27 @@
+---
+heroEyebrow: Über diese Demo
+heroTitle: Was Sie hier sehen
+heroDescription: Dies ist eine Live-Demo-Anwendung, die mit dem BuildBase SDK und der Backend-Plattform erstellt wurde. Alles, was Sie hier sehen — Auth, Workspaces, Credits, Benachrichtigungen und i18n — ist funktionsfähiger Code, mit dem Sie sich anmelden und interagieren können.
+missionHeading: Was diese Demo zeigt
+valuesEyebrow: Unter der Haube
+valuesHeading: Wie jede Funktion implementiert ist
+values:
+  - icon: Zap
+    title: Auth in einem Hook
+    description: Der Anmelde-Button ruft useSaaSAuth().signIn() auf — das war's. Kein Session-Management, keine CSRF-Logik, kein Token-Speicher. Das SDK übernimmt alles und injiziert den Benutzer in jede Seite.
+  - icon: Shield
+    title: Workspaces und Rollen
+    description: Nach der Anmeldung zeigt die Seitenleiste Ihren aktuellen Workspace und lässt Sie zwischen ihnen wechseln. Jeder Workspace hat seine eigene Rolle, die serverseitig vom BuildBase-Backend durchgesetzt wird.
+  - icon: Users
+    title: Credits und Abrechnung
+    description: Die Credits-Seite verwendet CreditBalance, useConsumeCredits() und WhenCreditsExhausted aus dem SDK. Der Button "Credits kaufen" öffnet ein Modal, das von BuildBase bereitgestellt wird — kein Zahlungscode in dieser App.
+  - icon: Heart
+    title: Push-Benachrichtigungen
+    description: Die Benachrichtigungsseite ruft usePushNotifications() auf, um Ihren Browser zu abonnieren, und sendet dann Testbenachrichtigungen über die BuildBase API mit Dringlichkeit, Planung und Aktionsschaltflächen.
+---
+
+Diese Demo-App ist ein Next.js 16-Projekt, das das BuildBase SDK verwendet, um Auth, Abrechnung, Benachrichtigungen und mehr zu verbinden — ohne die Infrastruktur zu schreiben.
+
+In diesem Repository gibt es keine benutzerdefinierte Auth-Logik, keinen Zahlungsverarbeitungscode und keine Benachrichtigungs-Lieferinfrastruktur. All das wird von der BuildBase Backend-Plattform verwaltet. Was Sie hier sehen, ist das Frontend — eine echte Next.js-App mit echten SDK-Aufrufen, bei der Sie sich anmelden und interagieren können.
+
+Melden Sie sich mit dem Button im Header an, und erkunden Sie dann das Dashboard, um jede Funktion live zu sehen. Der Quellcode für jede Funktion befindet sich auf der entsprechenden Seite oder API-Route im Repository.

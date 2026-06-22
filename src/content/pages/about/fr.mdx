@@ -1,0 +1,27 @@
+---
+heroEyebrow: À propos de cette démo
+heroTitle: Ce que vous regardez
+heroDescription: "Il s'agit d'une application de démonstration en direct construite avec le SDK BuildBase et la plateforme backend. Tout ce que vous voyez ici — auth, espaces de travail, crédits, notifications et i18n — est du code fonctionnel avec lequel vous pouvez vous connecter et interagir."
+missionHeading: Ce que montre cette démo
+valuesEyebrow: Sous le capot
+valuesHeading: Comment chaque fonctionnalité est implémentée
+values:
+  - icon: Zap
+    title: "Auth en un hook"
+    description: "Le bouton de connexion appelle useSaaSAuth().signIn() — c'est tout. Pas de gestion de session, pas de logique CSRF, pas de stockage de tokens. Le SDK gère tout et injecte l'utilisateur dans chaque page."
+  - icon: Shield
+    title: Espaces de travail et rôles
+    description: "Après la connexion, la barre latérale affiche votre espace de travail actuel et vous permet de basculer entre eux. Chaque espace de travail a son propre rôle appliqué côté serveur par le backend BuildBase."
+  - icon: Users
+    title: Crédits et facturation
+    description: "La page Crédits utilise CreditBalance, useConsumeCredits() et WhenCreditsExhausted du SDK. Le bouton Acheter des crédits ouvre un modal fourni par BuildBase — pas de code de paiement dans cette app."
+  - icon: Heart
+    title: Notifications push
+    description: "La page Notifications appelle usePushNotifications() pour abonner votre navigateur, puis envoie des notifications de test via l'API BuildBase avec urgence, planification et boutons d'action."
+---
+
+Cette application de démonstration est un projet Next.js 16 qui utilise le SDK BuildBase pour connecter l'auth, la facturation, les notifications et plus encore — sans écrire l'infrastructure.
+
+Il n'y a pas de logique d'auth personnalisée, pas de code de traitement des paiements et pas d'infrastructure de livraison de notifications dans ce dépôt. Tout cela est géré par la plateforme backend BuildBase. Ce que vous voyez ici est le frontend — une vraie application Next.js avec de vraies appels SDK dans laquelle vous pouvez vous connecter et interagir.
+
+Connectez-vous avec le bouton dans l'en-tête, puis explorez le tableau de bord pour voir chaque fonctionnalité fonctionner en direct. Le code source de chaque fonctionnalité se trouve dans la page ou la route API correspondante dans le dépôt.
