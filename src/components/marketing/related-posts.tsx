@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import type { BlogPost } from '@/content/blog';
 
@@ -10,13 +11,15 @@ interface RelatedPostsProps {
  * Shows 2-3 related blog posts. The parent page is responsible for
  * computing which posts are related (by category, tags, etc.).
  */
-export function RelatedPosts({ posts }: RelatedPostsProps) {
+export async function RelatedPosts({ posts }: RelatedPostsProps) {
   if (posts.length === 0) return null;
+
+  const t = await getTranslations('blog');
 
   return (
     <section className="border-border mt-16 border-t pt-12">
       <h2 className="text-foreground mb-6 text-xl font-bold tracking-tight">
-        Related Posts
+        {t('relatedPosts')}
       </h2>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
@@ -35,7 +38,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
               {post.description}
             </p>
             <span className="text-primary mt-auto inline-flex items-center gap-1 text-sm opacity-0 transition-opacity group-hover:opacity-100">
-              Read
+              {t('read')}
               <ArrowRight className="size-3.5" />
             </span>
           </Link>

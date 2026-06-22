@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import { Search, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
@@ -28,6 +29,7 @@ interface PagefindInstance {
  * This component lazy-loads the Pagefind JS bundle on first interaction.
  */
 export function BlogSearch() {
+  const t = useTranslations('blog');
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<PagefindResult[]>([]);
@@ -128,7 +130,7 @@ export function BlogSearch() {
         className="border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors"
       >
         <Search className="size-4" />
-        <span>Search posts...</span>
+        <span>{t('search.trigger')}</span>
         <kbd className="bg-muted text-muted-foreground ml-2 hidden rounded px-1.5 py-0.5 font-mono text-xs sm:inline-block">
           {typeof navigator !== 'undefined' &&
           navigator.platform?.includes('Mac')
@@ -155,7 +157,7 @@ export function BlogSearch() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search blog posts..."
+                placeholder={t('search.placeholder')}
                 className="text-foreground placeholder:text-muted-foreground flex-1 bg-transparent text-sm outline-none"
               />
               {query ? (
@@ -179,11 +181,11 @@ export function BlogSearch() {
             <div className="max-h-80 overflow-y-auto">
               {loading ? (
                 <div className="text-muted-foreground p-6 text-center text-sm">
-                  Searching...
+                  {t('search.searching')}
                 </div>
               ) : query && results.length === 0 ? (
                 <div className="text-muted-foreground p-6 text-center text-sm">
-                  No results for &ldquo;{query}&rdquo;
+                  {t('search.noResults', { query })}
                 </div>
               ) : (
                 results.map((result, i) => (
@@ -206,7 +208,7 @@ export function BlogSearch() {
               )}
               {!query ? (
                 <div className="text-muted-foreground p-6 text-center text-sm">
-                  Start typing to search...
+                  {t('search.startTyping')}
                 </div>
               ) : null}
             </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import {
   useInvoices,
   useBillingPortal,
@@ -32,6 +33,7 @@ function formatCurrency(amount: number, currency: string) {
 }
 
 export default function InvoicesPage() {
+  const t = useTranslations('invoices');
   const { currentWorkspace } = useSaaSWorkspaces();
   const { invoices, hasMore, loading, error, refetch } = useInvoices(
     currentWorkspace?._id
@@ -44,11 +46,8 @@ export default function InvoicesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Invoices</h1>
-          <p className="text-muted-foreground">
-            Billing history via <code className="text-xs">useInvoices()</code> ·{' '}
-            <code className="text-xs">useBillingPortal()</code>
-          </p>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('description')}</p>
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -60,7 +59,7 @@ export default function InvoicesPage() {
             <RefreshCw
               className={`mr-1.5 h-4 w-4 ${loading ? 'animate-spin' : ''}`}
             />
-            Refresh
+            {t('refresh')}
           </Button>
           <Button
             size="sm"
@@ -68,7 +67,7 @@ export default function InvoicesPage() {
             disabled={portalLoading}
           >
             <CreditCard className="mr-1.5 h-4 w-4" />
-            {portalLoading ? 'Opening…' : 'Billing portal'}
+            {portalLoading ? t('billingPortalOpening') : t('billingPortal')}
           </Button>
         </div>
       </div>
@@ -77,7 +76,7 @@ export default function InvoicesPage() {
         <Card className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950">
           <CardContent className="pt-6">
             <p className="text-sm text-red-700 dark:text-red-300">
-              Failed to load invoices.
+              {t('error')}
             </p>
           </CardContent>
         </Card>
@@ -87,34 +86,41 @@ export default function InvoicesPage() {
         <CardHeader className="flex flex-row items-center gap-2 pb-2">
           <FileText className="h-5 w-5" />
           <div>
-            <CardTitle className="text-base">Invoice history</CardTitle>
+            <CardTitle className="text-base">{t('card.title')}</CardTitle>
             <CardDescription>
               {loading
-                ? 'Loading…'
-                : `${invoices.length} invoice${invoices.length !== 1 ? 's' : ''} found`}
+                ? t('billingPortalOpening')
+                : t('card.found', { count: invoices.length })}
             </CardDescription>
           </div>
         </CardHeader>
         <CardContent>
           {loading ? (
-            <p className="text-muted-foreground text-sm">Loading invoices…</p>
-          ) : invoices.length === 0 ? (
             <p className="text-muted-foreground text-sm">
-              No invoices yet. Invoices appear here after you subscribe to a
-              paid plan.
+              {t('billingPortalOpening')}
             </p>
+          ) : invoices.length === 0 ? (
+            <p className="text-muted-foreground text-sm">{t('card.empty')}</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b">
-                    <th className="pb-2 text-left font-medium">Date</th>
-                    <th className="pb-2 text-left font-medium">Amount</th>
-                    <th className="pb-2 text-left font-medium">Status</th>
-                    <th className="hidden pb-2 text-left font-medium md:table-cell">
-                      Description
+                    <th className="pb-2 text-left font-medium">
+                      {t('table.date')}
                     </th>
-                    <th className="pb-2 text-right font-medium">Links</th>
+                    <th className="pb-2 text-left font-medium">
+                      {t('table.amount')}
+                    </th>
+                    <th className="pb-2 text-left font-medium">
+                      {t('table.status')}
+                    </th>
+                    <th className="hidden pb-2 text-left font-medium md:table-cell">
+                      {t('table.description')}
+                    </th>
+                    <th className="pb-2 text-right font-medium">
+                      {t('table.links')}
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y">
@@ -145,7 +151,7 @@ export default function InvoicesPage() {
                               rel="noopener noreferrer"
                               className="text-primary hover:text-primary/80 inline-flex items-center gap-1 text-xs"
                             >
-                              View
+                              {t('table.view')}
                               <ExternalLink className="h-3 w-3" />
                             </a>
                           )}
@@ -156,7 +162,7 @@ export default function InvoicesPage() {
                               rel="noopener noreferrer"
                               className="text-primary hover:text-primary/80 inline-flex items-center gap-1 text-xs"
                             >
-                              PDF
+                              {t('table.pdf')}
                               <ExternalLink className="h-3 w-3" />
                             </a>
                           )}
@@ -169,7 +175,7 @@ export default function InvoicesPage() {
               {hasMore && (
                 <div className="pt-4 text-center">
                   <Button variant="outline" size="sm" onClick={refetch}>
-                    Load more
+                    {t('table.loadMore')}
                   </Button>
                 </div>
               )}

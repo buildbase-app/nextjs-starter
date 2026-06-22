@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import { Check, Copy, Twitter, Linkedin, Facebook } from 'lucide-react';
 
 interface ShareButtonsProps {
@@ -9,6 +10,7 @@ interface ShareButtonsProps {
 }
 
 export function ShareButtons({ url, title }: ShareButtonsProps) {
+  const t = useTranslations('blog');
   const [copied, setCopied] = useState(false);
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
@@ -21,7 +23,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-muted-foreground text-sm">Share</span>
+      <span className="text-muted-foreground text-sm">{t('share')}</span>
       <div className="flex items-center gap-1">
         <a
           href={`https://x.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}

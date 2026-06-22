@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   useSaaSAuth,
   useSaaSWorkspaces,
@@ -38,6 +39,7 @@ type ChannelMode = 'both' | 'email' | 'push';
 type Urgency = '' | 'very-low' | 'low' | 'normal' | 'high';
 
 export default function NotificationsTestPage() {
+  const t = useTranslations('notifications');
   const { user } = useSaaSAuth();
   const { currentWorkspace } = useSaaSWorkspaces();
   const { isSubscribed, subscribe, unsubscribe } = usePushNotifications();
@@ -48,7 +50,6 @@ export default function NotificationsTestPage() {
     null
   );
 
-  // Core fields
   const [event, setEvent] = useState('test_notification');
   const [title, setTitle] = useState('Test Notification');
   const [message, setMessage] = useState(
@@ -58,23 +59,16 @@ export default function NotificationsTestPage() {
   const [targetType, setTargetType] = useState<TargetType>('user');
   const [channelMode, setChannelMode] = useState<ChannelMode>('push');
 
-  // Media fields
   const [icon, setIcon] = useState('');
   const [image, setImage] = useState('');
   const [badgeIcon, setBadgeIcon] = useState('');
-
-  // Push behavior fields
   const [tag, setTag] = useState('');
   const [silent, setSilent] = useState(false);
   const [requireInteraction, setRequireInteraction] = useState(false);
   const [renotify, setRenotify] = useState(false);
-
-  // Delivery fields
   const [urgency, setUrgency] = useState<Urgency>('');
   const [ttl, setTtl] = useState('');
   const [scheduledAt, setScheduledAt] = useState('');
-
-  // Action buttons
   const [action1Title, setAction1Title] = useState('');
   const [action1Action, setAction1Action] = useState('');
   const [action2Title, setAction2Title] = useState('');
@@ -82,7 +76,7 @@ export default function NotificationsTestPage() {
 
   const handleSend = async () => {
     if (!currentWorkspace) {
-      toast.error('Please select a workspace first');
+      toast.error(t('toast.workspaceRequired'));
       return;
     }
 
@@ -134,18 +128,18 @@ export default function NotificationsTestPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        toast.error(data.error || 'Failed to send notification');
+        toast.error(data.error || t('toast.workspaceRequired'));
         return;
       }
 
       setLastResult(data);
       toast.success(
         data.sent
-          ? `Notification sent to ${data.notifiedCount ?? 1} user(s)`
-          : `Notification not sent: ${data.reason || 'unknown reason'}`
+          ? t('toast.sent', { count: data.notifiedCount ?? 1 })
+          : t('toast.notSent', { reason: data.reason || 'unknown reason' })
       );
     } catch {
-      toast.error('Network error — could not reach the server');
+      toast.error(t('toast.networkError'));
     } finally {
       setSending(false);
     }
@@ -155,122 +149,105 @@ export default function NotificationsTestPage() {
     try {
       if (isSubscribed) {
         await unsubscribe();
-        toast.success('Push notifications disabled');
+        toast.success(t('toast.pushDisabled'));
       } else {
         await subscribe();
-        toast.success('Push notifications enabled');
+        toast.success(t('toast.pushEnabled'));
       }
     } catch {
-      toast.error('Failed to toggle push notifications');
+      toast.error(t('toast.pushFailed'));
     }
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">
-          Notifications Test
-        </h1>
-        <p className="text-muted-foreground">
-          Send test notifications via the BuildBase SDK
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('description')}</p>
       </div>
 
-      {/* Push subscription status */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Smartphone className="h-5 w-5" />
-            Browser Push Notifications
+            {t('pushCard.title')}
           </CardTitle>
-          <CardDescription>
-            Enable browser push notifications for this device
-          </CardDescription>
+          <CardDescription>{t('pushCard.description')}</CardDescription>
         </CardHeader>
         <CardContent className="flex items-center gap-4">
           <Badge variant={isSubscribed ? 'default' : 'secondary'}>
-            {isSubscribed ? 'Subscribed' : 'Not subscribed'}
+            {isSubscribed
+              ? t('pushCard.subscribed')
+              : t('pushCard.notSubscribed')}
           </Badge>
           <Button variant="outline" size="sm" onClick={handlePushToggle}>
-            {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
+            {isSubscribed ? t('pushCard.unsubscribe') : t('pushCard.subscribe')}
           </Button>
         </CardContent>
       </Card>
 
-      {/* Send test notification */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Send className="h-5 w-5" />
-            Send Test Notification
+            {t('sendCard.title')}
           </CardTitle>
-          <CardDescription>
-            Fill in the fields below and send a notification via the server-side
-            SDK. Merge tags like {'{{name}}'}, {'{{workspaceName}}'},{' '}
-            {'{{url}}'} are resolved automatically. Ad-hoc event slugs work for
-            push without pre-registering; email requires a registered event.
-          </CardDescription>
+          <CardDescription>{t('sendCard.description')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-5">
-          {/* Event name */}
           <div className="space-y-2">
             <label htmlFor="event" className="text-sm font-medium">
-              Event Slug
+              {t('fields.eventSlug')}
             </label>
             <Input
               id="event"
               value={event}
               onChange={(e) => setEvent(e.target.value)}
-              placeholder="e.g. comment_added, deployment_success"
+              placeholder={t('placeholders.eventSlug')}
             />
             <p className="text-muted-foreground text-xs">
-              For push-only: any slug works (ad-hoc). For email: must match a
-              registered event in the admin dashboard.
+              {t('fields.eventSlugHint')}
             </p>
           </div>
 
-          {/* Title */}
           <div className="space-y-2">
             <label htmlFor="title" className="text-sm font-medium">
-              Title
+              {t('fields.title')}
             </label>
             <Input
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Notification title (falls back to event name)"
+              placeholder={t('placeholders.title')}
             />
           </div>
 
-          {/* Message */}
           <div className="space-y-2">
             <label htmlFor="message" className="text-sm font-medium">
-              Message
+              {t('fields.message')}
             </label>
             <Input
               id="message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Push body + email {{message}}"
+              placeholder={t('placeholders.message')}
             />
           </div>
 
-          {/* URL (optional) */}
           <div className="space-y-2">
             <label htmlFor="url" className="text-sm font-medium">
-              URL
+              {t('fields.url')}
             </label>
             <Input
               id="url"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              placeholder="Opens on push click + {{url}} in email"
+              placeholder={t('placeholders.url')}
             />
           </div>
 
-          {/* Target */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Target</label>
+            <label className="text-sm font-medium">{t('fields.target')}</label>
             <div className="flex gap-2">
               <Button
                 type="button"
@@ -279,7 +256,7 @@ export default function NotificationsTestPage() {
                 onClick={() => setTargetType('user')}
               >
                 <User className="mr-1.5 h-4 w-4" />
-                Me only
+                {t('buttons.meOnly')}
               </Button>
               <Button
                 type="button"
@@ -288,14 +265,13 @@ export default function NotificationsTestPage() {
                 onClick={() => setTargetType('workspace')}
               >
                 <Users className="mr-1.5 h-4 w-4" />
-                All workspace members
+                {t('buttons.allMembers')}
               </Button>
             </div>
           </div>
 
-          {/* Channel */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Channel</label>
+            <label className="text-sm font-medium">{t('fields.channel')}</label>
             <div className="flex gap-2">
               <Button
                 type="button"
@@ -304,7 +280,7 @@ export default function NotificationsTestPage() {
                 onClick={() => setChannelMode('both')}
               >
                 <Bell className="mr-1.5 h-4 w-4" />
-                Both
+                {t('buttons.both')}
               </Button>
               <Button
                 type="button"
@@ -313,7 +289,7 @@ export default function NotificationsTestPage() {
                 onClick={() => setChannelMode('email')}
               >
                 <Mail className="mr-1.5 h-4 w-4" />
-                Email only
+                {t('buttons.emailOnly')}
               </Button>
               <Button
                 type="button"
@@ -322,12 +298,11 @@ export default function NotificationsTestPage() {
                 onClick={() => setChannelMode('push')}
               >
                 <Smartphone className="mr-1.5 h-4 w-4" />
-                Push only
+                {t('buttons.pushOnly')}
               </Button>
             </div>
           </div>
 
-          {/* Advanced options toggle */}
           <Button
             type="button"
             variant="ghost"
@@ -340,70 +315,70 @@ export default function NotificationsTestPage() {
             ) : (
               <ChevronDown className="h-4 w-4" />
             )}
-            {showAdvanced ? 'Hide' : 'Show'} Advanced Push Options
+            {showAdvanced
+              ? t('buttons.hideAdvanced')
+              : t('buttons.showAdvanced')}
           </Button>
 
           {showAdvanced && (
             <div className="border-muted space-y-5 rounded-lg border p-4">
-              {/* Media */}
               <div>
                 <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold">
                   <ImageIcon className="h-4 w-4" />
-                  Media
+                  {t('advanced.media')}
                 </h4>
                 <div className="grid gap-3 sm:grid-cols-3">
                   <div className="space-y-1">
                     <label htmlFor="icon" className="text-xs font-medium">
-                      Icon URL
+                      {t('advanced.iconUrl')}
                     </label>
                     <Input
                       id="icon"
                       value={icon}
                       onChange={(e) => setIcon(e.target.value)}
-                      placeholder="Push icon (falls back to org icon)"
+                      placeholder={t('advanced.iconUrlPlaceholder')}
                     />
                   </div>
                   <div className="space-y-1">
                     <label htmlFor="image" className="text-xs font-medium">
-                      Image URL
+                      {t('advanced.imageUrl')}
                     </label>
                     <Input
                       id="image"
                       value={image}
                       onChange={(e) => setImage(e.target.value)}
-                      placeholder="Large image in push body"
+                      placeholder={t('advanced.imageUrlPlaceholder')}
                     />
                   </div>
                   <div className="space-y-1">
                     <label htmlFor="badge" className="text-xs font-medium">
-                      Badge URL
+                      {t('advanced.badgeUrl')}
                     </label>
                     <Input
                       id="badge"
                       value={badgeIcon}
                       onChange={(e) => setBadgeIcon(e.target.value)}
-                      placeholder="Status bar icon (Android)"
+                      placeholder={t('advanced.badgeUrlPlaceholder')}
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Behavior */}
               <div>
                 <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold">
                   <Volume2 className="h-4 w-4" />
-                  Push Behavior
+                  {t('advanced.behavior')}
                 </h4>
                 <div className="space-y-3">
                   <div className="space-y-1">
                     <label htmlFor="tag" className="text-xs font-medium">
-                      Tag
+                      {t('advanced.tag')}
                     </label>
                     <Input
                       id="tag"
                       value={tag}
                       onChange={(e) => setTag(e.target.value)}
-                      placeholder="Replaces notification with same tag instead of stacking"
+                      placeholder={t('advanced.tagHint')}
                     />
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -414,7 +389,7 @@ export default function NotificationsTestPage() {
                       onClick={() => setSilent(!silent)}
                     >
                       <VolumeOff className="mr-1.5 h-4 w-4" />
-                      Silent
+                      {t('buttons.silent')}
                     </Button>
                     <Button
                       type="button"
@@ -422,7 +397,7 @@ export default function NotificationsTestPage() {
                       size="sm"
                       onClick={() => setRequireInteraction(!requireInteraction)}
                     >
-                      Require Interaction
+                      {t('buttons.requireInteraction')}
                     </Button>
                     <Button
                       type="button"
@@ -430,26 +405,25 @@ export default function NotificationsTestPage() {
                       size="sm"
                       onClick={() => setRenotify(!renotify)}
                     >
-                      Renotify
+                      {t('buttons.renotify')}
                     </Button>
                   </div>
                   <p className="text-muted-foreground text-xs">
-                    Silent = no sound/vibration. Require Interaction = stays
-                    until user interacts. Renotify = sound again when replacing
-                    via tag.
+                    {t('advanced.behaviorHint')}
                   </p>
                 </div>
               </div>
 
-              {/* Delivery */}
               <div>
                 <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold">
                   <Clock className="h-4 w-4" />
-                  Delivery
+                  {t('advanced.delivery')}
                 </h4>
                 <div className="grid gap-3 sm:grid-cols-3">
                   <div className="space-y-1">
-                    <label className="text-xs font-medium">Urgency</label>
+                    <label className="text-xs font-medium">
+                      {t('advanced.urgency')}
+                    </label>
                     <div className="flex flex-wrap gap-1">
                       {(
                         ['', 'very-low', 'low', 'normal', 'high'] as Urgency[]
@@ -462,21 +436,21 @@ export default function NotificationsTestPage() {
                           className="h-7 text-xs"
                           onClick={() => setUrgency(u)}
                         >
-                          {u || 'Default'}
+                          {u || t('buttons.default')}
                         </Button>
                       ))}
                     </div>
                   </div>
                   <div className="space-y-1">
                     <label htmlFor="ttl" className="text-xs font-medium">
-                      TTL (seconds)
+                      {t('advanced.ttl')}
                     </label>
                     <Input
                       id="ttl"
                       type="number"
                       value={ttl}
                       onChange={(e) => setTtl(e.target.value)}
-                      placeholder="86400 (24h default)"
+                      placeholder={t('advanced.ttlPlaceholder')}
                     />
                   </div>
                   <div className="space-y-1">
@@ -484,7 +458,7 @@ export default function NotificationsTestPage() {
                       htmlFor="scheduledAt"
                       className="text-xs font-medium"
                     >
-                      Schedule (ISO 8601)
+                      {t('advanced.schedule')}
                     </label>
                     <Input
                       id="scheduledAt"
@@ -502,40 +476,39 @@ export default function NotificationsTestPage() {
                 </div>
               </div>
 
-              {/* Actions */}
               <div>
                 <h4 className="mb-3 text-sm font-semibold">
-                  Action Buttons (max 2)
+                  {t('advanced.actions')}
                 </h4>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="space-y-2 rounded-md border p-3">
                     <p className="text-muted-foreground text-xs font-medium">
-                      Action 1
+                      {t('advanced.action1')}
                     </p>
                     <Input
                       value={action1Title}
                       onChange={(e) => setAction1Title(e.target.value)}
-                      placeholder="Button label (e.g. Reply)"
+                      placeholder={t('advanced.actionTitlePlaceholder')}
                     />
                     <Input
                       value={action1Action}
                       onChange={(e) => setAction1Action(e.target.value)}
-                      placeholder="Action key (e.g. reply)"
+                      placeholder={t('advanced.actionKeyPlaceholder')}
                     />
                   </div>
                   <div className="space-y-2 rounded-md border p-3">
                     <p className="text-muted-foreground text-xs font-medium">
-                      Action 2
+                      {t('advanced.action2')}
                     </p>
                     <Input
                       value={action2Title}
                       onChange={(e) => setAction2Title(e.target.value)}
-                      placeholder="Button label (e.g. Dismiss)"
+                      placeholder={t('advanced.actionTitlePlaceholder')}
                     />
                     <Input
                       value={action2Action}
                       onChange={(e) => setAction2Action(e.target.value)}
-                      placeholder="Action key (e.g. dismiss)"
+                      placeholder={t('advanced.actionKeyPlaceholder')}
                     />
                   </div>
                 </div>
@@ -543,34 +516,31 @@ export default function NotificationsTestPage() {
             </div>
           )}
 
-          {/* Context info */}
           <div className="bg-muted rounded-md p-3 text-sm">
             <p>
-              <strong>Workspace:</strong>{' '}
-              {currentWorkspace?.name || 'None selected'}
+              <strong>{t('context.workspace')}</strong>{' '}
+              {currentWorkspace?.name || t('context.none')}
             </p>
             <p>
-              <strong>User:</strong> {user?.name} ({user?.email})
+              <strong>{t('context.user')}</strong> {user?.name} ({user?.email})
             </p>
           </div>
 
-          {/* Send button */}
           <Button onClick={handleSend} disabled={sending || !event || !message}>
             {sending ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             ) : (
               <Send className="mr-2 h-4 w-4" />
             )}
-            {sending ? 'Sending...' : 'Send Notification'}
+            {sending ? t('buttons.sending') : t('buttons.send')}
           </Button>
         </CardContent>
       </Card>
 
-      {/* Result */}
       {lastResult && (
         <Card>
           <CardHeader>
-            <CardTitle>Response</CardTitle>
+            <CardTitle>{t('resultCard.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <pre className="bg-muted overflow-auto rounded-md p-4 text-sm">

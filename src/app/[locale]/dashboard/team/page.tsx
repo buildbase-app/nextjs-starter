@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import {
   useSaaSAuth,
   useSaaSWorkspaces,
@@ -27,6 +28,7 @@ function initials(name: string) {
 }
 
 export default function TeamPage() {
+  const t = useTranslations('team');
   const { openWorkspaceSettings } = useSaaSAuth();
   const { currentWorkspace } = useSaaSWorkspaces();
   const seatStatus = useSeatStatus(currentWorkspace ?? null);
@@ -37,26 +39,22 @@ export default function TeamPage() {
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Team</h1>
-          <p className="text-muted-foreground">
-            Workspace members from{' '}
-            <code className="text-xs">currentWorkspace.users</code>
-          </p>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('description')}</p>
         </div>
         <Button
           onClick={() => openWorkspaceSettings('users')}
           disabled={!seatStatus.canInvite}
         >
           <UserPlus className="mr-2 h-4 w-4" />
-          Invite member
+          {t('inviteMember')}
         </Button>
       </div>
 
-      {/* Seat status summary */}
       <div className="grid gap-4 sm:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardDescription>Members</CardDescription>
+            <CardDescription>{t('cards.members')}</CardDescription>
             <Users className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
@@ -66,7 +64,7 @@ export default function TeamPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Included seats</CardDescription>
+            <CardDescription>{t('cards.includedSeats')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">
@@ -77,7 +75,7 @@ export default function TeamPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Max users</CardDescription>
+            <CardDescription>{t('cards.maxUsers')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">
@@ -88,7 +86,7 @@ export default function TeamPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Available seats</CardDescription>
+            <CardDescription>{t('cards.availableSeats')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">
@@ -103,24 +101,22 @@ export default function TeamPage() {
       {!seatStatus.canInvite && (
         <Card className="border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950">
           <CardContent className="pt-4 text-sm text-amber-700 dark:text-amber-300">
-            Seat limit reached — upgrade your plan to invite more members.
+            {t('seatLimitReached')}
           </CardContent>
         </Card>
       )}
 
-      {/* Member list */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Members</CardTitle>
+          <CardTitle className="text-base">{t('memberList.title')}</CardTitle>
           <CardDescription>
-            {members.length} member{members.length !== 1 ? 's' : ''} in this
-            workspace
+            {t('memberList.count', { count: members.length })}
           </CardDescription>
         </CardHeader>
         <CardContent>
           {members.length === 0 ? (
             <p className="text-muted-foreground text-sm">
-              No members loaded. Make sure you are authenticated.
+              {t('memberList.empty')}
             </p>
           ) : (
             <div className="divide-y">
@@ -157,7 +153,7 @@ export default function TeamPage() {
                       }
                       className="capitalize"
                     >
-                      {member.role ?? 'member'}
+                      {member.role ?? t('memberList.roleFallback')}
                     </Badge>
                   </div>
                 </div>
@@ -169,10 +165,8 @@ export default function TeamPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Manage members</CardTitle>
-          <CardDescription>
-            Open the workspace settings panel to manage roles and invitations
-          </CardDescription>
+          <CardTitle className="text-base">{t('manage.title')}</CardTitle>
+          <CardDescription>{t('manage.description')}</CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-3">
           <Button
@@ -180,14 +174,14 @@ export default function TeamPage() {
             onClick={() => openWorkspaceSettings('users')}
           >
             <Users className="mr-2 h-4 w-4" />
-            Open member settings
+            {t('manage.openSettings')}
           </Button>
           <Button
             variant="outline"
             onClick={() => openWorkspaceSettings('permissions')}
           >
             <ShieldCheck className="mr-2 h-4 w-4" />
-            Permissions
+            {t('manage.permissions')}
           </Button>
         </CardContent>
       </Card>

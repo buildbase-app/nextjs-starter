@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   useUserAttributes,
   useUserFeatures,
@@ -35,6 +36,7 @@ const DEMO_FEATURE_SLUGS = [
 ];
 
 export default function ProfilePage() {
+  const t = useTranslations('profile');
   const { user } = useSaaSAuth();
   const {
     attributes,
@@ -59,11 +61,11 @@ export default function ProfilePage() {
     setSaveMsg('');
     try {
       await updateAttribute(editKey.trim(), editValue);
-      setSaveMsg('Saved!');
+      setSaveMsg(t('attributes.saved'));
       setEditKey('');
       setEditValue('');
     } catch {
-      setSaveMsg('Failed to save.');
+      setSaveMsg(t('attributes.failed'));
     } finally {
       setSaving(false);
     }
@@ -75,53 +77,53 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">User Profile</h1>
-        <p className="text-muted-foreground">
-          Attributes via <code className="text-xs">useUserAttributes()</code> ·
-          Feature flags via <code className="text-xs">useUserFeatures()</code> ·
-          Workspace flags via{' '}
-          <code className="text-xs">WhenWorkspaceFeatureEnabled</code>
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('description')}</p>
       </div>
 
-      {/* Identity */}
       <Card>
         <CardHeader className="flex flex-row items-center gap-2 pb-2">
           <User className="h-5 w-5" />
           <div>
-            <CardTitle className="text-base">Identity</CardTitle>
-            <CardDescription>From useSaaSAuth()</CardDescription>
+            <CardTitle className="text-base">{t('identity.title')}</CardTitle>
+            <CardDescription>{t('identity.subtitle')}</CardDescription>
           </div>
         </CardHeader>
         <CardContent className="grid gap-2 text-sm sm:grid-cols-2">
           <div>
-            <p className="text-muted-foreground text-xs">Name</p>
+            <p className="text-muted-foreground text-xs">
+              {t('identity.name')}
+            </p>
             <p className="font-medium">{user?.name ?? '—'}</p>
           </div>
           <div>
-            <p className="text-muted-foreground text-xs">Email</p>
+            <p className="text-muted-foreground text-xs">
+              {t('identity.email')}
+            </p>
             <p className="font-medium">{user?.email ?? '—'}</p>
           </div>
           <div>
-            <p className="text-muted-foreground text-xs">Role</p>
+            <p className="text-muted-foreground text-xs">
+              {t('identity.role')}
+            </p>
             <p className="font-medium capitalize">{user?.role ?? '—'}</p>
           </div>
           <div>
-            <p className="text-muted-foreground text-xs">ID</p>
+            <p className="text-muted-foreground text-xs">{t('identity.id')}</p>
             <p className="font-mono text-xs">{user?.id ?? '—'}</p>
           </div>
         </CardContent>
       </Card>
 
-      {/* Workspace feature flag gates */}
       <Card>
         <CardHeader className="flex flex-row items-center gap-2 pb-2">
           <Flag className="h-5 w-5" />
           <div>
-            <CardTitle className="text-base">Workspace feature flags</CardTitle>
+            <CardTitle className="text-base">
+              {t('workspaceFeatures.title')}
+            </CardTitle>
             <CardDescription>
-              <code className="text-xs">WhenWorkspaceFeatureEnabled</code> /{' '}
-              <code className="text-xs">WhenWorkspaceFeatureDisabled</code>
+              <code className="text-xs">WhenWorkspaceFeatureEnabled</code>
             </CardDescription>
           </div>
         </CardHeader>
@@ -137,7 +139,7 @@ export default function ProfilePage() {
                   <span className="flex items-center gap-1.5 text-green-600 dark:text-green-400">
                     <CheckCircle2 className="h-4 w-4" />
                     <Badge variant="default" className="text-xs">
-                      Enabled
+                      {t('workspaceFeatures.enabled')}
                     </Badge>
                   </span>
                 </WhenWorkspaceFeatureEnabled>
@@ -145,7 +147,7 @@ export default function ProfilePage() {
                   <span className="text-muted-foreground flex items-center gap-1.5">
                     <XCircle className="h-4 w-4" />
                     <Badge variant="secondary" className="text-xs">
-                      Disabled
+                      {t('workspaceFeatures.disabled')}
                     </Badge>
                   </span>
                 </WhenWorkspaceFeatureDisabled>
@@ -155,16 +157,15 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
-      {/* User attributes */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div className="flex items-center gap-2">
             <Sliders className="h-5 w-5" />
             <div>
-              <CardTitle className="text-base">User Attributes</CardTitle>
-              <CardDescription>
-                Custom key-value pairs stored per user
-              </CardDescription>
+              <CardTitle className="text-base">
+                {t('attributes.title')}
+              </CardTitle>
+              <CardDescription>{t('attributes.description')}</CardDescription>
             </div>
           </div>
           <Button
@@ -181,7 +182,7 @@ export default function ProfilePage() {
         <CardContent className="space-y-4">
           {attrEntries.length === 0 && !attrsLoading ? (
             <p className="text-muted-foreground text-sm">
-              No attributes set yet.
+              {t('attributes.empty')}
             </p>
           ) : (
             <div className="divide-y">
@@ -199,28 +200,27 @@ export default function ProfilePage() {
             </div>
           )}
 
-          {/* Write a new attribute */}
           <div className="border-t pt-4">
             <p className="mb-3 text-sm font-medium">
-              Set an attribute (live demo)
+              {t('attributes.setTitle')}
             </p>
             <div className="flex flex-col gap-2 sm:flex-row">
               <div className="flex-1">
                 <Input
-                  placeholder="key (e.g. theme)"
+                  placeholder={t('attributes.keyPlaceholder')}
                   value={editKey}
                   onChange={(e) => setEditKey(e.target.value)}
                 />
               </div>
               <div className="flex-1">
                 <Input
-                  placeholder="value"
+                  placeholder={t('attributes.valuePlaceholder')}
                   value={editValue}
                   onChange={(e) => setEditValue(e.target.value)}
                 />
               </div>
               <Button onClick={handleSave} disabled={saving || !editKey.trim()}>
-                {saving ? 'Saving…' : 'Save'}
+                {saving ? t('attributes.saving') : t('attributes.save')}
               </Button>
             </div>
             {saveMsg && (
@@ -232,15 +232,13 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
-      {/* Feature flags */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
-            <CardTitle className="text-base">User Feature Flags</CardTitle>
-            <CardDescription>
-              User-level feature flags from{' '}
-              <code className="text-xs">useUserFeatures()</code>
-            </CardDescription>
+            <CardTitle className="text-base">
+              {t('userFeatures.title')}
+            </CardTitle>
+            <CardDescription>{t('userFeatures.description')}</CardDescription>
           </div>
           <Button
             variant="ghost"
@@ -255,10 +253,12 @@ export default function ProfilePage() {
         </CardHeader>
         <CardContent>
           {featuresLoading ? (
-            <p className="text-muted-foreground text-sm">Loading...</p>
+            <p className="text-muted-foreground text-sm">
+              {t('userFeatures.loading')}
+            </p>
           ) : featureEntries.length === 0 ? (
             <p className="text-muted-foreground text-sm">
-              No feature flags configured for this user.
+              {t('userFeatures.empty')}
             </p>
           ) : (
             <div className="divide-y">
@@ -275,14 +275,14 @@ export default function ProfilePage() {
                       <>
                         <CheckCircle2 className="h-4 w-4" />
                         <Badge variant="default" className="text-xs">
-                          Enabled
+                          {t('userFeatures.enabled')}
                         </Badge>
                       </>
                     ) : (
                       <>
                         <XCircle className="h-4 w-4" />
                         <Badge variant="secondary" className="text-xs">
-                          Disabled
+                          {t('userFeatures.disabled')}
                         </Badge>
                       </>
                     )}

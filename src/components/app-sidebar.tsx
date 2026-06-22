@@ -191,7 +191,7 @@ export function AppSidebar() {
                       {currentWorkspace?.name ?? t('nav.selectWorkspace')}
                     </p>
                     <p className="text-muted-foreground mt-0.5 text-xs leading-none">
-                      Workspace
+                      {t('nav.workspace')}
                     </p>
                   </div>
                   <ChevronsUpDown className="text-muted-foreground h-4 w-4 shrink-0 opacity-60 group-hover:opacity-100" />

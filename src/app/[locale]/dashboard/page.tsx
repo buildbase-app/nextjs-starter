@@ -53,28 +53,28 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      {/* Trial ending soon banner — shown when ≤5 days left */}
       <WhenTrialEnding daysThreshold={5}>
         <Card className="border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950">
           <CardContent className="flex items-start gap-3 pt-6">
             <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
             <div className="flex-1">
               <p className="text-sm font-semibold text-amber-800 dark:text-amber-200">
-                Trial ending soon
+                {t('trial.endingSoon')}
               </p>
               <p className="mt-0.5 text-sm text-amber-700 dark:text-amber-300">
-                Your trial ends in {daysRemaining} day
-                {daysRemaining !== 1 ? 's' : ''}. Upgrade now to keep access.
+                {t('trial.endingSoonMsg', {
+                  days: daysRemaining ?? 0,
+                  s: daysRemaining !== 1 ? 's' : '',
+                })}
               </p>
             </div>
             <Button size="sm" onClick={openPlanPicker}>
-              Upgrade
+              {t('trial.upgrade')}
             </Button>
           </CardContent>
         </Card>
       </WhenTrialEnding>
 
-      {/* Active trial banner — only shown when NOT ending soon */}
       <WhenTrialing>
         <WhenTrialEnding
           daysThreshold={5}
@@ -84,18 +84,20 @@ export default function DashboardPage() {
                 <Calendar className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
                 <div className="flex-1">
                   <p className="text-sm font-semibold text-blue-800 dark:text-blue-200">
-                    You&apos;re on a free trial
+                    {t('trial.freeTrial')}
                   </p>
                   <p className="mt-0.5 text-sm text-blue-700 dark:text-blue-300">
                     {daysRemaining !== null && daysRemaining > 5
-                      ? `${daysRemaining} days remaining`
+                      ? t('trial.daysRemaining', { days: daysRemaining })
                       : trialEndsAt
-                        ? `Trial ends ${new Date(trialEndsAt).toLocaleDateString()}`
-                        : 'Trial active'}
+                        ? t('trial.endsOn', {
+                            date: new Date(trialEndsAt).toLocaleDateString(),
+                          })
+                        : t('trial.active')}
                   </p>
                 </div>
                 <Button variant="outline" size="sm" onClick={openPlanPicker}>
-                  View plans
+                  {t('trial.viewPlans')}
                 </Button>
               </CardContent>
             </Card>
@@ -105,19 +107,20 @@ export default function DashboardPage() {
         </WhenTrialEnding>
       </WhenTrialing>
 
-      {/* Not trialing + no subscription → upsell */}
       <WhenNotTrialing>
         <WhenNoSubscription fallbackComponent={null}>
           <Card className="border-dashed">
             <CardContent className="flex items-center justify-between pt-6">
               <div>
-                <p className="text-sm font-medium">No active subscription</p>
+                <p className="text-sm font-medium">
+                  {t('noSubscription.title')}
+                </p>
                 <p className="text-muted-foreground mt-0.5 text-xs">
-                  WhenNoSubscription — subscribe to unlock paid features
+                  {t('noSubscription.hint')}
                 </p>
               </div>
               <Button size="sm" onClick={openPlanPicker}>
-                Choose a plan
+                {t('noSubscription.choosePlan')}
               </Button>
             </CardContent>
           </Card>
@@ -162,34 +165,37 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <Badge variant="secondary" className="text-sm">
-              {isTrialing ? 'Trial' : t('cards.status.active')}
+              {isTrialing ? t('trial.trialBadge') : t('cards.status.active')}
             </Badge>
           </CardContent>
         </Card>
       </div>
 
-      {/* Subscription card */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
-            <CardTitle className="text-base">Subscription</CardTitle>
-            <CardDescription>
-              Current plan from the BuildBase SDK
-            </CardDescription>
+            <CardTitle className="text-base">
+              {t('subscription.title')}
+            </CardTitle>
+            <CardDescription>{t('subscription.description')}</CardDescription>
           </div>
           <CreditCard className="text-muted-foreground h-5 w-5" />
         </CardHeader>
         <CardContent>
           {subLoading ? (
-            <p className="text-muted-foreground text-sm">Loading...</p>
+            <p className="text-muted-foreground text-sm">
+              {t('subscription.loading')}
+            </p>
           ) : plan ? (
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xl font-bold">{plan.name}</p>
                 <p className="text-muted-foreground mt-0.5 text-sm">
                   {subscription?.subscription?.subscriptionStatus
-                    ? `Status: ${subscription.subscription?.subscriptionStatus}`
-                    : 'Active subscription'}
+                    ? t('subscription.status', {
+                        status: subscription.subscription?.subscriptionStatus,
+                      })
+                    : t('subscription.activeSubscription')}
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -198,41 +204,44 @@ export default function DashboardPage() {
                 </Badge>
                 <Button variant="outline" size="sm" onClick={openPlanPicker}>
                   <Zap className="mr-1.5 h-3.5 w-3.5" />
-                  Change plan
+                  {t('subscription.changePlan')}
                 </Button>
               </div>
             </div>
           ) : (
             <div className="flex items-center justify-between">
-              <p className="text-muted-foreground text-sm">No active plan</p>
+              <p className="text-muted-foreground text-sm">
+                {t('subscription.noPlan')}
+              </p>
               <Button size="sm" onClick={openPlanPicker}>
-                Choose a plan
+                {t('subscription.choosePlan')}
               </Button>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Subscription gates demo */}
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">WhenSubscription gate</CardTitle>
+            <CardTitle className="text-base">
+              {t('subscriptionGates.whenSubscription.title')}
+            </CardTitle>
             <CardDescription>
-              Only visible when workspace has an active subscription
+              {t('subscriptionGates.whenSubscription.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <WhenSubscription
               fallbackComponent={
                 <p className="text-muted-foreground text-sm">
-                  No subscription active — upgrade to see this content.
+                  {t('subscriptionGates.whenSubscription.fallback')}
                 </p>
               }
             >
               <p className="flex items-center gap-1.5 text-sm text-green-700 dark:text-green-400">
                 <CheckCircle2 className="h-4 w-4" />
-                You have an active subscription — this card is visible.
+                {t('subscriptionGates.whenSubscription.content')}
               </p>
             </WhenSubscription>
           </CardContent>
@@ -241,10 +250,10 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-base">
-              WhenSubscriptionToPlans gate
+              {t('subscriptionGates.whenSubscriptionToPlans.title')}
             </CardTitle>
             <CardDescription>
-              Only visible when subscribed to a specific plan
+              {t('subscriptionGates.whenSubscriptionToPlans.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -252,60 +261,65 @@ export default function DashboardPage() {
               plans={['pro', 'enterprise', 'growth']}
               fallbackComponent={
                 <p className="text-muted-foreground text-sm">
-                  Not on a Pro / Enterprise / Growth plan.
+                  {t('subscriptionGates.whenSubscriptionToPlans.fallback')}
                 </p>
               }
             >
               <p className="flex items-center gap-1.5 text-sm text-green-700 dark:text-green-400">
                 <CheckCircle2 className="h-4 w-4" />
-                You&apos;re on Pro, Enterprise, or Growth — premium content
-                unlocked.
+                {t('subscriptionGates.whenSubscriptionToPlans.content')}
               </p>
             </WhenSubscriptionToPlans>
           </CardContent>
         </Card>
       </div>
 
-      {/* Seat status card */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
-            <CardTitle className="text-base">Seat status</CardTitle>
-            <CardDescription>
-              <code className="text-xs">useSeatStatus()</code> — member count vs
-              plan limits
-            </CardDescription>
+            <CardTitle className="text-base">{t('seatStatus.title')}</CardTitle>
+            <CardDescription>{t('seatStatus.description')}</CardDescription>
           </div>
           <Users className="text-muted-foreground h-5 w-5" />
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             <div>
-              <p className="text-muted-foreground text-xs">Members</p>
+              <p className="text-muted-foreground text-xs">
+                {t('seatStatus.members')}
+              </p>
               <p className="text-2xl font-bold">{seatStatus.memberCount}</p>
             </div>
             <div>
-              <p className="text-muted-foreground text-xs">Included seats</p>
+              <p className="text-muted-foreground text-xs">
+                {t('seatStatus.includedSeats')}
+              </p>
               <p className="text-2xl font-bold">
                 {seatStatus.includedSeats || '—'}
               </p>
             </div>
             <div>
-              <p className="text-muted-foreground text-xs">Max users</p>
+              <p className="text-muted-foreground text-xs">
+                {t('seatStatus.maxUsers')}
+              </p>
               <p className="text-2xl font-bold">
                 {seatStatus.maxUsers === 0 ? '∞' : seatStatus.maxUsers}
               </p>
             </div>
             <div>
-              <p className="text-muted-foreground text-xs">Can invite</p>
+              <p className="text-muted-foreground text-xs">
+                {t('seatStatus.canInvite')}
+              </p>
               <Badge variant={seatStatus.canInvite ? 'default' : 'destructive'}>
-                {seatStatus.canInvite ? 'Yes' : 'No'}
+                {seatStatus.canInvite
+                  ? t('seatStatus.yes')
+                  : t('seatStatus.no')}
               </Badge>
             </div>
           </div>
           {!seatStatus.canInvite && (
             <p className="mt-3 text-sm text-amber-700 dark:text-amber-400">
-              Seat limit reached — upgrade your plan to invite more members.
+              {t('seatStatus.limitReached')}
             </p>
           )}
         </CardContent>
@@ -318,19 +332,19 @@ export default function DashboardPage() {
         <CardContent>
           <div className="flex flex-wrap gap-4">
             <Button onClick={() => openWorkspaceSettings('users')}>
-              Invite team
+              {t('quickActionButtons.inviteTeam')}
             </Button>
             <Button
               variant="outline"
               onClick={() => openWorkspaceSettings('subscription')}
             >
-              Manage subscription
+              {t('quickActionButtons.manageSubscription')}
             </Button>
             <Button
               variant="outline"
               onClick={() => openWorkspaceSettings('general')}
             >
-              Workspace settings
+              {t('quickActionButtons.workspaceSettings')}
             </Button>
           </div>
         </CardContent>

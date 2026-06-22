@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 import { blog } from '@/content/blog';
@@ -22,11 +23,12 @@ export async function generateMetadata({
 }: TagPageProps): Promise<Metadata> {
   const { tag, locale } = await params;
   const decoded = decodeURIComponent(tag);
+  const t = await getTranslations({ locale, namespace: 'blog' });
   return buildMarketingMetadata({
     path: `/blog/tag/${decoded}`,
     locale: locale as Locale,
-    title: `Posts tagged "${decoded}"`,
-    description: `All blog posts tagged with "${decoded}".`,
+    title: t('meta.tagTitle', { tag: decoded }),
+    description: t('meta.tagDescription', { tag: decoded }),
   });
 }
 
@@ -34,6 +36,7 @@ export default async function TagPage({ params }: TagPageProps) {
   const { tag, locale } = await params;
   const localeTyped = locale as Locale;
   const decoded = decodeURIComponent(tag);
+  const t = await getTranslations({ locale: localeTyped, namespace: 'blog' });
   const posts = await blog.getPostsByTag(decoded, localeTyped);
 
   return (
@@ -53,22 +56,19 @@ export default async function TagPage({ params }: TagPageProps) {
           href="/blog"
           className="text-muted-foreground hover:text-foreground mb-4 inline-block text-sm transition-colors"
         >
-          &larr; All posts
+          {t('allPosts')}
         </Link>
         <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-5xl">
           #{decoded}
         </h1>
         <p className="text-muted-foreground mt-4 text-base md:text-lg">
-          {posts.length} {posts.length === 1 ? 'post' : 'posts'} tagged with
-          &ldquo;{decoded}&rdquo;
+          {t('postsTaggedCount', { count: posts.length, tag: decoded })}
         </p>
       </header>
 
       {posts.length === 0 ? (
         <div className="border-border bg-muted rounded-lg border p-12 text-center">
-          <p className="text-muted-foreground text-sm">
-            No posts with this tag yet.
-          </p>
+          <p className="text-muted-foreground text-sm">{t('noPostsTag')}</p>
         </div>
       ) : (
         <div className="border-border bg-border flex flex-col gap-px overflow-hidden rounded-lg border">
@@ -109,7 +109,7 @@ export default async function TagPage({ params }: TagPageProps) {
                 </div>
               ) : null}
               <span className="text-primary mt-2 inline-flex items-center gap-2 text-sm opacity-0 transition-opacity group-hover:opacity-100">
-                Read more
+                {t('readMore')}
                 <ArrowRight className="size-4" />
               </span>
             </Link>

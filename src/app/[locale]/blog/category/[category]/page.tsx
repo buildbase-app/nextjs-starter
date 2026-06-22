@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 import { blog } from '@/content/blog';
@@ -23,11 +24,12 @@ export async function generateMetadata({
 }: CategoryPageProps): Promise<Metadata> {
   const { category, locale } = await params;
   const decoded = decodeURIComponent(category);
+  const t = await getTranslations({ locale, namespace: 'blog' });
   return buildMarketingMetadata({
     path: `/blog/category/${decoded}`,
     locale: locale as Locale,
-    title: `${decoded} — Blog`,
-    description: `Blog posts in the "${decoded}" category.`,
+    title: t('meta.categoryTitle', { category: decoded }),
+    description: t('meta.categoryDescription', { category: decoded }),
   });
 }
 
@@ -35,6 +37,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category, locale } = await params;
   const localeTyped = locale as Locale;
   const decoded = decodeURIComponent(category);
+  const t = await getTranslations({ locale: localeTyped, namespace: 'blog' });
   const [posts, allCategories] = await Promise.all([
     blog.getPostsByCategory(decoded, localeTyped),
     blog.getAllCategories(localeTyped),
@@ -60,14 +63,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           href="/blog"
           className="text-muted-foreground hover:text-foreground mb-4 inline-block text-sm transition-colors"
         >
-          &larr; All posts
+          {t('allPosts')}
         </Link>
         <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-5xl">
           {decoded}
         </h1>
         <p className="text-muted-foreground mt-4 text-base md:text-lg">
-          {posts.length} {posts.length === 1 ? 'post' : 'posts'} in this
-          category
+          {t('postsInCategoryCount', { count: posts.length })}
         </p>
       </header>
 
@@ -93,7 +95,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {posts.length === 0 ? (
         <div className="border-border bg-muted rounded-lg border p-12 text-center">
           <p className="text-muted-foreground text-sm">
-            No posts in this category yet.
+            {t('noPostsCategory')}
           </p>
         </div>
       ) : (
@@ -128,7 +130,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 </div>
               ) : null}
               <span className="text-primary mt-2 inline-flex items-center gap-2 text-sm opacity-0 transition-opacity group-hover:opacity-100">
-                Read more
+                {t('readMore')}
                 <ArrowRight className="size-4" />
               </span>
             </Link>
