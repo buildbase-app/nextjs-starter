@@ -16,7 +16,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, XCircle, Shield, Users } from 'lucide-react';
 
-function PermissionRow({ label, slug }: { label: string; slug: string }) {
+function PermissionRow({ slug }: { label: string; slug: string }) {
   return (
     <WhenPermission
       permission={slug}
