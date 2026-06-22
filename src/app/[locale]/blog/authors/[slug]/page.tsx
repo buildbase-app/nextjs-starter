@@ -10,6 +10,7 @@ import { blog } from '@/content/blog';
 import type { Locale } from '@/i18n/config';
 import { buildMarketingMetadata } from '@/lib/seo/marketing-metadata';
 import { localePath } from '@/lib/i18n-url';
+import { getTranslations } from 'next-intl/server';
 
 interface AuthorPageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -38,6 +39,7 @@ export async function generateMetadata({
 export default async function AuthorPage({ params }: AuthorPageProps) {
   const { slug, locale } = await params;
   const localeTyped = locale as Locale;
+  const t = await getTranslations({ locale: localeTyped, namespace: 'blog' });
 
   const author = authors.getBySlug(slug);
   if (!author) notFound();
@@ -66,7 +68,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
       <JsonLdScript data={personJsonLd} scriptKey={`person-${slug}`} />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Blog', url: localePath(localeTyped, '/blog') },
+          { name: t('label'), url: localePath(localeTyped, '/blog') },
           {
             name: author.name,
             url: localePath(localeTyped, `/blog/authors/${slug}`),
@@ -133,13 +135,13 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
       {/* Posts by this author */}
       <section>
         <h2 className="text-foreground mb-6 text-2xl font-bold tracking-tight">
-          Posts by {author.name}
+          {t('postsByAuthor', { name: author.name })}
         </h2>
 
         {posts.length === 0 ? (
           <div className="border-border bg-muted rounded-lg border p-12 text-center">
             <p className="text-muted-foreground text-sm">
-              No posts by this author yet.
+              {t('noPostsAuthor')}
             </p>
           </div>
         ) : (
@@ -165,7 +167,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                   {post.description}
                 </p>
                 <span className="text-primary mt-2 inline-flex items-center gap-2 text-sm opacity-0 transition-opacity group-hover:opacity-100">
-                  Read more
+                  {t('readMore')}
                   <ArrowRight className="size-4" />
                 </span>
               </Link>

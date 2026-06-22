@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrowRight, Github } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from '@/i18n/routing';
@@ -19,17 +20,19 @@ const TECH_STACK = [
   { name: 'BuildBase SDK', icon: '⬢' },
 ] as const;
 
-function SignInCta() {
+function SignInCta({ label }: { label: string }) {
   const { signIn } = useSaaSAuth();
   return (
     <Button size="lg" className="gap-2 px-8" onClick={() => signIn()}>
-      Sign in to explore
+      {label}
       <ArrowRight className="h-4 w-4" />
     </Button>
   );
 }
 
 export function HeroSection() {
+  const t = useTranslations('home');
+
   return (
     <section className="relative flex flex-col items-center gap-8 px-6 py-20 text-center md:py-32">
       {/* Background gradient blob */}
@@ -46,33 +49,34 @@ export function HeroSection() {
         className="gap-1.5 px-3 py-1 text-xs font-medium"
       >
         <span className="bg-primary h-1.5 w-1.5 animate-pulse rounded-full" />
-        BuildBase SDK · Live Demo
+        {t('hero.badge')}
       </Badge>
 
       {/* Headline */}
       <h1 className="text-foreground max-w-3xl text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-        A working demo built with the{' '}
-        <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
-          BuildBase SDK
-        </span>
+        {t.rich('hero.heading', {
+          highlight: (chunks) => (
+            <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
+              {chunks}
+            </span>
+          ),
+        })}
       </h1>
 
       {/* Subheadline */}
       <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed md:text-xl">
-        Sign in to see auth, multi-tenant workspaces, credit billing, push
-        notifications, and 8-language i18n all working together in a real app —
-        powered by the BuildBase SDK.
+        {t('hero.description')}
       </p>
 
       {/* CTAs */}
       <div className="flex flex-col gap-3 sm:flex-row">
         <WhenUnauthenticated>
-          <SignInCta />
+          <SignInCta label={t('hero.signInToExplore')} />
         </WhenUnauthenticated>
         <WhenAuthenticated>
           <Button size="lg" className="gap-2 px-8" asChild>
             <Link href="/dashboard">
-              Open Dashboard
+              {t('hero.openDashboard')}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -84,7 +88,7 @@ export function HeroSection() {
             rel="noopener noreferrer"
           >
             <Github className="h-4 w-4" />
-            View source
+            {t('hero.viewSource')}
           </a>
         </Button>
       </div>
@@ -92,7 +96,7 @@ export function HeroSection() {
       {/* Tech stack */}
       <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
         <span className="text-muted-foreground text-xs tracking-widest uppercase">
-          Built with
+          {t('hero.builtWith')}
         </span>
         {TECH_STACK.map((tech) => (
           <div

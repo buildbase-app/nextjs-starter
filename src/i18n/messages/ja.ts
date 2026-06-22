@@ -13,17 +13,18 @@ const messages: Messages = {
       menu: 'メニュー',
       selectWorkspace: 'ワークスペースを選択',
       profile: 'プロフィール',
-      manageWorkspace: 'ワークスペース管理',
+      manageWorkspace: 'ワークスペースを管理',
       generalSettings: '一般設定',
       userManagement: 'ユーザー管理',
-      billingPayments: '請求と支払い',
-      credits: 'Credits',
-      creditUsage: 'Credit Usage',
-      creditsAvailable: 'Available',
-      usage: 'Usage',
-      permissions: 'Permissions',
-      events: 'Events',
-      invoices: 'Invoices',
+      billingPayments: '請求・支払い',
+      credits: 'クレジット',
+      creditUsage: 'クレジット使用状況',
+      creditsAvailable: '利用可能',
+      usage: '使用状況',
+      permissions: '権限',
+      events: 'イベント',
+      invoices: '請求書',
+      workspace: 'ワークスペース',
     },
     buttons: {
       signIn: 'サインイン',
@@ -38,17 +39,35 @@ const messages: Messages = {
     },
     auth: {
       signInPrompt: '続行するにはサインインしてください',
-      signOutConfirm: 'サインアウトしてもよろしいですか？',
+      signOutConfirm: '本当にサインアウトしますか？',
     },
     footer: {
       rights: '全著作権所有',
+      tagline:
+        'BuildBase SDKの実際の動作を示すライブデモアプリです。サインインして、認証、ワークスペース、クレジット、プッシュ通知、i18nを探索してください。',
+      sections: {
+        product: '製品',
+        resources: 'リソース',
+        legal: '法律',
+      },
+      links: {
+        features: '機能',
+        pricing: '料金',
+        dashboard: 'ダッシュボード',
+        credits: 'クレジット',
+        blog: 'ブログ',
+        changelog: '変更履歴',
+        about: '概要',
+        privacy: 'プライバシーポリシー',
+        terms: '利用規約',
+      },
     },
     language: {
       select: '言語を選択',
       current: '現在の言語',
     },
     accessibility: {
-      skipToContent: 'コンテンツへスキップ',
+      skipToContent: 'コンテンツにスキップ',
     },
     theme: {
       toggle: 'テーマを切り替え',
@@ -56,36 +75,228 @@ const messages: Messages = {
       dark: 'ダーク',
       system: 'システム',
     },
+    pages: {
+      lastUpdated: '最終更新:',
+    },
     redirecting: 'リダイレクト中...',
   },
   home: {
     title: 'マイアプリ',
     hero: {
-      heading: 'マイアプリへようこそ',
+      badge: 'BuildBase SDK · ライブデモ',
+      heading:
+        'A working demo built with the <highlight>BuildBase SDK</highlight>',
       description:
-        'Next.js、TypeScript、Tailwind CSS、shadcn/ui、next-themes、BuildBase SDKで構築されています。',
+        'サインインして、認証、マルチテナントワークスペース、クレジット課金、プッシュ通知、8言語対応のi18nがすべて一つの実際のアプリで動作しているのを確認してください — BuildBase SDK搭載。',
+      signInToExplore: 'サインインして探索',
+      openDashboard: 'ダッシュボードを開く',
+      viewSource: 'ソースを見る',
+      builtWith: '使用技術',
+    },
+    stats: {
+      languages: {
+        label: 'このデモの言語数',
+        sublabel: 'ヘッダーのトグルで切り替え',
+      },
+      sdkFeatures: {
+        label: 'ライブSDK機能',
+        sublabel: '各機能にデモページあり',
+      },
+      notifications: {
+        label: '通知チャンネル',
+        sublabel: 'ブラウザプッシュ + メール',
+      },
+      authCode: {
+        label: '認証コードの行数',
+        sublabel: 'SDKがすべて処理',
+      },
+    },
+    cta: {
+      heading: 'すべての動作を確認する準備ができましたか？',
+      description:
+        'サインインしてフルダッシュボードを開き、ワークスペースの切り替え、クレジット消費、プッシュ通知の送信、8言語の切り替えを試してみてください。',
+      signIn: 'サインインして探索',
+      openDashboard: 'ダッシュボードを開く',
+      howBuilt: '構築方法',
+    },
+    features: {
+      eyebrow: 'デモを探索',
+      heading: 'このアプリで動作しているものを見る',
+      description:
+        '以下の各機能はライブです — サインインしてクリックし、BuildBase SDKの動作を確認してください。',
+      auth: {
+        badge: '認証',
+        title: 'OAuthサインイン、すぐに使える',
+        description:
+          '上のサインインボタンはBuildBase SDKを使用 — フック1つ、セッションロジックの記述不要。サインイン後、JWT、ワークスペーストークン、役割が自動的に付与されます。',
+        tryLabel: 'サインインして試す',
+      },
+      workspaces: {
+        badge: 'ワークスペース',
+        title: 'マルチテナントワークスペース切り替え',
+        description:
+          '各ユーザーは異なる役割で複数のワークスペースに所属できます。ダッシュボードのサイドバーに現在のワークスペースが表示され、切り替えが可能です。',
+        tryLabel: 'ダッシュボードを開く',
+      },
+      credits: {
+        badge: 'クレジット',
+        title: 'ライブクレジット残高と消費',
+        description:
+          'クレジットページはライブ残高を表示し、内蔵モーダルで追加購入でき、SDKのconsumeCredits()をリアルタイムで呼び出すテストボタンがあります。',
+        tryLabel: 'クレジット消費を試す',
+      },
+      notifications: {
+        badge: '通知',
+        title: 'ブラウザプッシュとメール配信',
+        description:
+          '通知ページではブラウザを登録し、タイトル、緊急度、アクションボタン、配信スケジュールを設定した通知を作成してライブ送信できます。',
+        tryLabel: 'テスト通知を送信',
+      },
+      i18n: {
+        badge: 'i18n',
+        title: 'アラビア語RTLを含む8言語',
+        description:
+          'ヘッダーの言語切り替えで英語、ヒンディー語、スペイン語、フランス語、ドイツ語、日本語、中国語、アラビア語に切り替えられます — レイアウトが自動的にRTLに変わります。',
+        tryLabel: 'アラビア語に切り替え',
+      },
+      content: {
+        badge: 'コンテンツ',
+        title: 'MDXブログと変更履歴、内蔵',
+        description:
+          'ブログと変更履歴はContentlayer2でビルド時にコンパイルされるMDXファイルです。CMSもDBも不要 — 型安全なfrontmatter、全文検索、RSSを持つファイルだけです。',
+        tryLabel: 'ブログを読む',
+      },
+      quotas: {
+        badge: 'クォータ',
+        title: '超過ゲート付きクォータ使用状況',
+        description:
+          '使用状況ページはuseAllQuotaUsage()を呼び出しクォータごとの進捗バーを表示します。WhenQuotaExhaustedはクォータがゼロになるとUIをブロック。WhenQuotaOverageは超過詳細を表示。',
+        tryLabel: 'クォータ使用状況を確認',
+      },
+      permissions: {
+        badge: '権限',
+        title: 'ロールベースの権限マトリックス',
+        description:
+          '権限ページはusePermissions()とWhenPermissionを使用し、現在のワークスペース役割に基づいてすべてのプラットフォーム権限をリアルタイムで付与または拒否として表示します。',
+        tryLabel: '権限を確認',
+      },
+      events: {
+        badge: 'イベント',
+        title: 'ライブSDKイベントストリーム',
+        description:
+          'イベントページはeventEmitter.setCallbacks()を接続し、ワークスペース変更、ユーザー更新、役割変更など、すべてのSDKイベントをライブスクロールログでキャプチャします。',
+        tryLabel: 'イベントログを開く',
+      },
+      userData: {
+        badge: 'ユーザーデータ',
+        title: 'ユーザー属性とフィーチャーフラグ',
+        description:
+          'プロフィールページはuseUserAttributes()とuseUserFeatures()を読み取り、カスタムキーバリューペアとユーザーごとのフラグ状態を表示し、新しい属性をライブで書き込めます。',
+        tryLabel: 'プロフィールを確認',
+      },
+      invoices: {
+        badge: '請求書',
+        title: '請求書履歴と請求ポータル',
+        description:
+          '請求書ページはuseInvoices()を呼び出し、すべてのStripe請求書をステータス、金額、PDFリンク付きで一覧表示します。ボタン1つでuseBillingPortal()からStripeカスタマーポータルが開きます。',
+        tryLabel: '請求書を確認',
+      },
+      seats: {
+        badge: 'シート',
+        title: 'シート制限と招待ゲート',
+        description:
+          'ダッシュボードはuseSeatStatus()を呼び出し、メンバー数とプラン制限をリアルタイムで表示します。WhenNoSubscription、WhenSubscription、WhenSubscriptionToPlansが適切なUIを表示します。',
+        tryLabel: 'ダッシュボードを開く',
+      },
+      featureFlags: {
+        badge: 'フィーチャーフラグ',
+        title: 'ワークスペースレベルの機能ゲート',
+        description:
+          'プロフィールページはWhenWorkspaceFeatureEnabledとWhenWorkspaceFeatureDisabledを使用し、BuildBaseダッシュボードで設定したワークスペースレベルのフラグに基づいてコンテンツを切り替えます。',
+        tryLabel: '機能ゲートを確認',
+      },
     },
     meta: {
       title: 'マイアプリ',
-      description:
-        'shadcn/uiとテーマサポートを備えた私のNext.jsアプリケーション',
+      description: 'shadcn/uiとテーマサポートを備えたNext.jsアプリ',
       tagline: '素晴らしいものを作ろう',
     },
   },
   dashboard: {
     title: 'ダッシュボード',
-    welcome: 'おかえりなさい、{name}さん！',
+    welcome: 'おかえりなさい、{name}！',
+    trial: {
+      endingSoon: 'トライアル終了間近',
+      endingSoonMsg:
+        'トライアルはあと{days}日{s}で終了します。アクセスを維持するために今すぐアップグレードしてください。',
+      upgrade: 'アップグレード',
+      freeTrial: 'トライアル期間中です',
+      daysRemaining: '残り{days}日',
+      endsOn: 'トライアル終了日：{date}',
+      active: 'トライアル有効',
+      viewPlans: 'プランを見る',
+      trialBadge: 'トライアル',
+    },
+    noSubscription: {
+      title: '有効なサブスクリプションなし',
+      hint: '有料機能をアンロックするにはサブスクリプションが必要です',
+      choosePlan: 'プランを選択',
+    },
+    subscription: {
+      title: 'サブスクリプション',
+      description: '現在のプラン',
+      loading: '読み込み中...',
+      status: 'ステータス：{status}',
+      activeSubscription: '有効なサブスクリプション',
+      changePlan: 'プランを変更',
+      noPlan: '有効なプランなし',
+      choosePlan: 'プランを選択',
+    },
+    subscriptionGates: {
+      whenSubscription: {
+        title: 'サブスクリプションゲート',
+        description: '有効なサブスクリプションでのみ表示',
+        fallback:
+          '有効なサブスクリプションがありません — このコンテンツを表示するにはアップグレードしてください。',
+        content:
+          '有効なサブスクリプションがあります — このカードが表示されています。',
+      },
+      whenSubscriptionToPlans: {
+        title: 'プランゲート',
+        description: '特定のプランでのみ表示',
+        fallback: 'Pro / Enterprise / Growthプランに加入していません。',
+        content:
+          'Pro、Enterprise、またはGrowthに加入中 — プレミアムコンテンツがアンロックされました。',
+      },
+    },
+    seatStatus: {
+      title: 'シートステータス',
+      description: 'メンバー数 vs プラン制限',
+      members: 'メンバー',
+      includedSeats: '含まれるシート',
+      maxUsers: '最大ユーザー数',
+      canInvite: '招待可能',
+      yes: 'はい',
+      no: 'いいえ',
+      limitReached:
+        'シート制限に達しました — 追加メンバーを招待するにはプランをアップグレードしてください。',
+    },
+    quickActionButtons: {
+      inviteTeam: 'チームを招待',
+      manageSubscription: 'サブスクリプションを管理',
+      workspaceSettings: 'ワークスペース設定',
+    },
     cards: {
       workspace: {
         title: '現在のワークスペース',
-        empty: 'ワークスペースが選択されていません',
+        empty: 'ワークスペース未選択',
       },
       role: {
         title: 'あなたの役割',
         empty: 'N/A',
       },
       email: {
-        title: 'メール',
+        title: 'メールアドレス',
       },
       status: {
         title: 'ステータス',
@@ -102,39 +313,437 @@ const messages: Messages = {
     pages: {
       documents: {
         title: 'ドキュメント',
-        description: 'ドキュメントを管理する',
-        placeholder: 'ドキュメントのコンテンツはここに表示されます。',
+        description: 'ドキュメントを管理',
+        placeholder: 'ドキュメントコンテンツがここに入ります。',
       },
       analytics: {
         title: '分析',
-        description: '分析を表示する',
-        placeholder: '分析のコンテンツはここに表示されます。',
+        description: '分析を表示',
+        placeholder: '分析コンテンツがここに入ります。',
       },
       team: {
         title: 'チーム',
-        description: 'チームを管理する',
-        placeholder: 'チーム管理のコンテンツはここに表示されます。',
+        description: 'チームを管理',
+        placeholder: 'チーム管理コンテンツがここに入ります。',
       },
       settings: {
         title: '設定',
-        description: '設定を管理する',
-        placeholder: '設定のコンテンツはここに表示されます。',
+        description: '設定を管理',
+        placeholder: '設定コンテンツがここに入ります。',
+      },
+    },
+  },
+  analytics: {
+    title: '分析',
+    description: 'リアルタイムワークスペースメトリクス',
+    cards: {
+      plan: 'プラン',
+      teamMembers: 'チームメンバー',
+      quotasTracked: '追跡中のクォータ',
+      creditDebits: 'クレジット消費',
+      noSubscription: 'サブスクリプションなし',
+      unlimitedSeats: '無制限シート',
+      maxSeats: '最大{n}シート',
+      totalConsumed: '合計{n}ユニット消費済み',
+      consumptionEvents: '消費イベントが記録されました',
+    },
+    quotaConsumption: {
+      title: 'クォータ消費',
+      empty: 'このワークスペースにはクォータが設定されていません。',
+    },
+    featureFlags: {
+      title: 'フィーチャーフラグ',
+      empty: 'フラグが設定されていません。',
+    },
+    planLimits: {
+      title: 'プラン制限',
+      empty: 'プラン制限が設定されていません。',
+      unlimited: '無制限',
+    },
+    loading: '読み込み中…',
+  },
+  team: {
+    title: 'チーム',
+    description: 'ワークスペースメンバー',
+    inviteMember: 'メンバーを招待',
+    seatLimitReached:
+      'シート制限に達しました — 追加メンバーを招待するにはプランをアップグレードしてください。',
+    cards: {
+      members: 'メンバー',
+      includedSeats: '含まれるシート',
+      maxUsers: '最大ユーザー数',
+      availableSeats: '利用可能なシート',
+    },
+    memberList: {
+      title: 'メンバー',
+      count: 'このワークスペースに{count}名のメンバー',
+      empty:
+        'メンバーが読み込まれていません。認証されていることを確認してください。',
+      roleFallback: 'メンバー',
+    },
+    manage: {
+      title: 'メンバーを管理',
+      description: '役割と招待を管理するには設定パネルを開いてください',
+      openSettings: 'メンバー設定を開く',
+      permissions: '権限',
+    },
+  },
+  settings: {
+    title: '設定',
+    description: 'ワークスペース設定',
+    card: {
+      title: 'ワークスペース設定',
+      description: 'セクションをクリックして設定パネルを開きます',
+    },
+    danger: {
+      openButton: '危険ゾーンを開く',
+    },
+    sections: {
+      profile: {
+        label: 'プロフィール',
+        description: '名前、アバター、個人データ',
+      },
+      general: {
+        label: '一般',
+        description: 'ワークスペース名、スラッグ、基本設定',
+      },
+      users: {
+        label: 'メンバーと招待',
+        description: 'チームメンバー、役割、保留中の招待を管理',
+      },
+      subscription: {
+        label: 'サブスクリプション',
+        description: '現在のプランを確認・変更',
+      },
+      usage: {
+        label: '使用状況',
+        description: 'クォータ消費と使用履歴',
+      },
+      credits: {
+        label: 'クレジット',
+        description: 'クレジット残高とチャージオプション',
+      },
+      features: {
+        label: 'フィーチャーフラグ',
+        description: 'ワークスペース機能の有効/無効',
+      },
+      notifications: {
+        label: '通知',
+        description: 'メールおよびプッシュ通知の設定',
+      },
+      permissions: {
+        label: '権限',
+        description: 'ロールベースアクセス制御の設定',
+      },
+      danger: {
+        label: '危険ゾーン',
+        description: 'ワークスペースの削除または所有権の移転',
+      },
+    },
+  },
+  documents: {
+    title: 'ドキュメント',
+    description: 'フィーチャー制御付きドキュメントセクション',
+    stats: {
+      featureSections: 'フィーチャーセクション',
+      featureSectionsSubtitle: 'ドキュメント機能',
+      enabled: 'ワークスペースで有効',
+      enabledSubtitle: 'アクティブな機能',
+      locked: 'ロック済み',
+      lockedSubtitle: '非アクティブな機能',
+    },
+    features: {
+      enabled: '有効',
+      disabled: '無効',
+    },
+    allFeatures: {
+      title: 'すべてのワークスペース機能',
+      description: 'すべてのフラグのステータス',
+      empty: 'このワークスペースにはフィーチャーフラグが設定されていません。',
+    },
+    featureSections: {
+      advancedExports: {
+        label: '高度なエクスポート',
+        description: 'ドキュメントをPDF、DOCX、CSVとしてエクスポート',
+        content: 'PDF、Word、CSVエクスポートがプランで利用可能です。',
+        lockedMessage:
+          'エクスポートをアンロックするには高度なエクスポート機能を有効にしてください。',
+      },
+      documentSharing: {
+        label: 'ドキュメント共有',
+        description: '外部の共同作業者とドキュメントを共有',
+        content: '共有リンクと外部コラボレーターアクセスが有効です。',
+        lockedMessage:
+          '外部アクセスを許可するにはドキュメント共有を有効にしてください。',
+      },
+      eSignatures: {
+        label: '電子署名',
+        description: '法的拘束力のある署名を収集',
+        content: '電子署名の収集がアクティブです。',
+        lockedMessage:
+          'ドキュメントで署名を収集するには電子署名を有効にしてください。',
+      },
+    },
+  },
+  events: {
+    title: 'SDKイベントログ',
+    description: 'リアルタイムSDKイベント',
+    clearButton: 'クリア',
+    listenCard: {
+      title: 'イベントをリッスン中',
+      description:
+        'これらのイベントはSDK使用時に自動的にトリガーされます — ワークスペースを変更、サインイン、またはメンバーを招待して確認してください。',
+    },
+    liveCard: {
+      title: 'ライブストリーム',
+      captured: '{count}件のイベントをキャプチャ',
+      empty:
+        'まだイベントがありません。ワークスペースを切り替えるかページをリロードしてみてください。',
+    },
+    eventLabels: {
+      userCreated: 'ユーザーが作成されました',
+      userUpdated: 'ユーザーが更新されました',
+      workspaceChanged: 'ワークスペースが変更されました',
+      workspaceUpdated: 'ワークスペースが更新されました',
+      memberAdded: 'メンバーが追加されました',
+      memberRemoved: 'メンバーが削除されました',
+      roleChanged: '役割が変更されました',
+      workspaceCreated: 'ワークスペースが作成されました',
+      workspaceDeleted: 'ワークスペースが削除されました',
+    },
+  },
+  invoices: {
+    title: '請求書',
+    description: '請求履歴',
+    refresh: '更新',
+    billingPortal: '請求ポータル',
+    billingPortalOpening: '開いています…',
+    error: '請求書の読み込みエラー。',
+    card: {
+      title: '請求書履歴',
+      found: '{count}件の請求書が見つかりました',
+      empty:
+        'まだ請求書がありません。有料プランに登録後、請求書がここに表示されます。',
+    },
+    table: {
+      date: '日付',
+      amount: '金額',
+      status: 'ステータス',
+      description: '説明',
+      links: 'リンク',
+      view: '表示',
+      pdf: 'PDF',
+      loadMore: 'もっと読み込む',
+    },
+  },
+  notifications: {
+    title: '通知テスト',
+    description: 'BuildBase SDKを使用してテスト通知を送信',
+    pushCard: {
+      title: 'ブラウザプッシュ通知',
+      description: 'このデバイスのブラウザプッシュ通知を有効にする',
+      subscribed: '登録済み',
+      notSubscribed: '未登録',
+      subscribe: '登録する',
+      unsubscribe: '登録解除',
+    },
+    sendCard: {
+      title: 'テスト通知を送信',
+      description:
+        'フィールドに入力して通知を送信します。{{name}}、{{workspaceName}}、{{url}}のラベルは自動的に解決されます。',
+    },
+    fields: {
+      eventSlug: 'イベントスラッグ',
+      eventSlugHint:
+        'Pushのみ：任意のスラッグが使用可能。メールの場合：登録済みイベントと一致する必要があります。',
+      title: 'タイトル',
+      message: 'メッセージ',
+      url: 'URL',
+      target: '送信先',
+      channel: 'チャンネル',
+    },
+    placeholders: {
+      eventSlug: '例：comment_added、deployment_success',
+      title: '通知タイトル',
+      message: 'Push本文＋メールメッセージ',
+      url: 'Pushクリック時に開く',
+    },
+    buttons: {
+      meOnly: '自分のみ',
+      allMembers: 'すべてのメンバー',
+      both: '両方',
+      emailOnly: 'メールのみ',
+      pushOnly: 'Pushのみ',
+      showAdvanced: '高度なPushオプションを表示',
+      hideAdvanced: '高度なPushオプションを非表示',
+      send: '通知を送信',
+      sending: '送信中...',
+      silent: 'サイレント',
+      requireInteraction: 'インタラクション必須',
+      renotify: '再通知',
+      default: 'デフォルト',
+    },
+    advanced: {
+      media: 'メディア',
+      behavior: 'Push動作',
+      delivery: 'デリバリー',
+      actions: 'アクションボタン（最大2つ）',
+      iconUrl: 'アイコンURL',
+      imageUrl: '画像URL',
+      badgeUrl: 'バッジURL',
+      tag: 'タグ',
+      tagHint: '同じタグの通知をスタックせずに置き換える',
+      behaviorHint:
+        'サイレント＝音なし。インタラクション必須＝ユーザー操作まで残る。再通知＝置き換え時に音を出す。',
+      urgency: '緊急度',
+      ttl: 'TTL（秒）',
+      schedule: 'スケジュール（ISO 8601）',
+      action1: 'アクション1',
+      action2: 'アクション2',
+      actionTitlePlaceholder: 'ボタンラベル（例：返信）',
+      actionKeyPlaceholder: 'アクションキー（例：reply）',
+      iconUrlPlaceholder: 'Pushアイコン（組織アイコンにフォールバック）',
+      imageUrlPlaceholder: 'Push本文の大きな画像',
+      badgeUrlPlaceholder: 'ステータスバーアイコン（Android）',
+      ttlPlaceholder: '86400（デフォルト24時間）',
+    },
+    context: {
+      workspace: 'ワークスペース：',
+      user: 'ユーザー：',
+      none: '未選択',
+    },
+    resultCard: {
+      title: 'レスポンス',
+    },
+    toast: {
+      workspaceRequired: '最初にワークスペースを選択してください',
+      sent: '{count}名のユーザーに通知を送信しました',
+      notSent: '通知が送信されませんでした：{reason}',
+      pushEnabled: 'プッシュ通知が有効になりました',
+      pushDisabled: 'プッシュ通知が無効になりました',
+      pushFailed: 'プッシュ通知の変更に失敗しました',
+      networkError: 'ネットワークエラー — サーバーに接続できませんでした',
+    },
+  },
+  permissions: {
+    title: '権限',
+    description: 'リアルタイム権限解決',
+    cards: {
+      role: 'あなたの役割',
+      owner: 'オーナー',
+      ownerYes: 'はい',
+      ownerNo: 'いいえ',
+      granted: '付与された権限',
+    },
+    ownerAdmin: {
+      title: 'オーナー / 管理者のみ',
+      notVisible: 'あなたの役割（{role}）では表示されません。',
+      visible: 'あなたはオーナーまたは管理者のためこれが表示されています。',
+    },
+    allMembers: {
+      title: 'すべてのメンバー',
+      notMember: 'あなたはこのワークスペースのメンバーではありません。',
+      visible: 'あなたはワークスペースのメンバーのためこれが表示されています。',
+    },
+    matrix: {
+      title: '権限マトリックス',
+      description: '現在の役割に対してすべての権限を確認',
+      denied: '拒否',
+      grantedStatus: '付与済み',
+    },
+  },
+  profile: {
+    title: 'ユーザープロフィール',
+    description: 'ユーザー属性とフィーチャーフラグ',
+    identity: {
+      title: 'アイデンティティ',
+      subtitle: 'useSaaSAuth()より',
+      name: '名前',
+      email: 'メールアドレス',
+      role: '役割',
+      id: 'ID',
+    },
+    workspaceFeatures: {
+      title: 'ワークスペースフィーチャーフラグ',
+      enabled: '有効',
+      disabled: '無効',
+    },
+    attributes: {
+      title: 'ユーザー属性',
+      description: 'ユーザーごとのカスタムキーバリューペア',
+      empty: 'まだ属性が設定されていません。',
+      setTitle: '属性を設定（デモ）',
+      keyPlaceholder: 'キー（例：theme）',
+      valuePlaceholder: '値',
+      saving: '保存中…',
+      save: '保存',
+      saved: '保存しました！',
+      failed: '保存に失敗しました。',
+    },
+    userFeatures: {
+      title: 'ユーザーフィーチャーフラグ',
+      description: 'ユーザーレベルのフィーチャーフラグ',
+      empty: 'このユーザーにはフラグが設定されていません。',
+      loading: '読み込み中...',
+      enabled: '有効',
+      disabled: '無効',
+    },
+  },
+  usage: {
+    title: 'クォータ使用状況',
+    description: 'リアルタイムクォータ消費',
+    loading: 'クォータを読み込み中...',
+    error: 'クォータデータの読み込みエラー。',
+    empty: 'このワークスペースにはクォータが設定されていません。',
+    quotaCard: {
+      remaining: '{count}残り',
+      unlimited: '無制限',
+      exhausted: '使い切り',
+      overage: '超過',
+      threshold: '80%以上使用済み（{pct}%）— 制限に近づいています',
+      overageMsg: '{count}ユニット超過',
+      exhaustedMsg:
+        'クォータを使い切りました — このクォータを使用するアクションはブロックされています',
+      used: '使用済み',
+      overageAllowed: '（許可）',
+    },
+    record: {
+      title: '使用状況を記録',
+      description: 'クォータ使用状況を手動で記録',
+      slugPlaceholder: 'クォータスラッグ（例：api_calls）',
+      qtyPlaceholder: '数量',
+      recording: '記録中…',
+      record: '記録',
+      success: '「{slug}」に{qty}ユニットを記録しました。',
+      failed: '使用状況の記録に失敗しました。',
+    },
+    logs: {
+      title: '使用状況ログ',
+      description: '最近の使用状況エントリ',
+      loading: 'ログを読み込み中…',
+      empty:
+        'まだ使用状況エントリがありません。エントリを表示するには以下で使用状況を記録してください。',
+      table: {
+        quota: 'クォータ',
+        quantity: '数量',
+        source: 'ソース',
+        date: '日付',
       },
     },
   },
   creditStore: {
-    title: 'Credit Packages',
+    title: 'クレジットパッケージ',
     subtitle:
-      'Purchase credits to unlock premium features like AI generation, exports, and more.',
-    buy: 'Buy Credits',
-    validFor: 'Valid for {days} days',
-    noExpiry: 'Never expires',
-    noPackages: 'No credit packages available at this time.',
-    error: 'Failed to load credit packages',
+      'AI生成、エクスポートなどのプレミアム機能をアンロックするためにクレジットを購入してください。',
+    buy: 'クレジットを購入',
+    validFor: '{days}日間有効',
+    noExpiry: '有効期限なし',
+    noPackages: '現在クレジットパッケージがありません。',
+    error: 'クレジットパッケージの読み込みエラー',
   },
   pricing: {
-    title: '料金プラン',
-    subtitle: 'ニーズに合ったプランをお選びください',
+    title: '料金',
+    subtitle: 'ニーズに合ったプランを選択してください',
     billing: '請求',
     monthly: '月額',
     quarterly: '四半期',
@@ -145,59 +754,70 @@ const messages: Messages = {
     currency: '通貨',
     quotas: 'クォータ',
     limits: '制限',
-    credits: 'AI Credits',
-    creditsPerPeriod: 'credits / period',
+    credits: 'AIクレジット',
+    creditsPerPeriod: 'クレジット / 期間',
     features: '機能',
     included: '含まれる',
-    perUnit: 'その後',
+    perUnit: 'それ以降',
     loading: 'プランを読み込み中...',
-    noPlans: '利用可能なプランはありません',
-    error: '料金の読み込みに失敗しました',
+    noPlans: 'プランがありません',
+    error: '料金の読み込みエラー',
     meta: {
-      title: '料金プラン',
-      description: 'プランと料金を見る',
+      title: '料金',
+      description: 'プランと料金を確認',
     },
   },
   credits: {
-    title: 'Credits',
+    title: 'クレジット',
     description:
-      'Use credits for premium actions. Manage packages in workspace settings.',
-    balance: 'Credit Balance',
-    creditsAvailable: 'credits available',
-    manageCredits: 'Manage Credits',
-    buyCredits: 'Buy Credits',
-    choosePlan: 'Choose Plan',
+      'プレミアムアクションにクレジットを使用してください。ワークスペース設定でパッケージを管理できます。',
+    balance: 'クレジット残高',
+    creditsAvailable: 'クレジット利用可能',
+    manageCredits: 'クレジットを管理',
+    buyCredits: 'クレジットを購入',
+    choosePlan: 'プランを選択',
     noCredits:
-      'You have no credits remaining. Purchase more to continue using premium features.',
-    buyMore: 'Buy Credits',
+      'クレジットが残っていません。プレミアム機能を引き続き使用するには追加購入してください。',
+    buyMore: 'クレジットを購入',
+    packages: {
+      title: 'クレジットパッケージ',
+      loading: 'パッケージを読み込み中…',
+      error: 'パッケージの読み込みエラー。',
+      empty: 'まだクレジットパッケージが設定されていません。',
+      credits: 'クレジット',
+      validFor: '{days}日間有効',
+      buyNow: '今すぐ購入',
+    },
     testConsume: {
-      title: 'Test Credit Consumption',
+      title: 'クレジット消費テスト',
       description:
-        'Use these buttons to test consuming credits from your balance.',
-      use: 'Use {amount}',
-      apiDescription: 'Test: consume {amount} credits',
-      success: 'Consumed {amount} credits. Balance: {balance}',
+        'これらのボタンを使用して残高からのクレジット消費をテストしてください。',
+      use: '{amount}を使用',
+      apiDescription: 'テスト：{amount}クレジットを消費',
+      success: '{amount}クレジットを消費しました。残高：{balance}',
       insufficient:
-        'Not enough credits. Available: {available}, Requested: {requested}',
+        'クレジットが不足しています。利用可能：{available}、要求：{requested}',
     },
     lowCredits: {
-      title: 'クレジットが少なくなっています',
+      title: 'クレジット残高が少ない',
       description:
         'クレジット残高が少なくなっています。中断を避けるために今すぐチャージしてください。',
     },
     expiring: {
-      title: '期限切れ予定のクレジット',
+      title: 'まもなく期限切れのクレジット',
       description: '今後30日以内に期限切れになるクレジット',
       expiresIn: '{date}に期限切れ',
       noExpiring: 'まもなく期限切れになるクレジットはありません',
       days: '{count}クレジット',
+      loading: '読み込み中...',
     },
     transactions: {
       title: '取引履歴',
-      description: '最近のクレジット追加と控除',
-      empty: 'まだ取引はありません',
+      description: '最近のクレジット追加・差引',
+      empty: 'まだ取引がありません',
+      loading: '読み込み中...',
       columns: {
-        type: 'タイプ',
+        type: '種類',
         amount: '金額',
         balance: '取引後残高',
         description: '説明',
@@ -210,11 +830,11 @@ const messages: Messages = {
   },
   errors: {
     generic: {
-      title: '問題が発生しました',
+      title: 'エラーが発生しました',
       description:
-        '予期しないエラーが発生しました。もう一度お試しいただくか、問題が解決しない場合はサポートにお問い合わせください。',
-      tryAgain: 'もう一度試す',
-      goHome: 'ホームに戻る',
+        '予期しないエラーが発生しました。もう一度試すか、問題が続く場合はサポートにお問い合わせください。',
+      tryAgain: '再試行',
+      goHome: 'ホームへ',
     },
     notFound: {
       title: 'ページが見つかりません',
@@ -222,6 +842,90 @@ const messages: Messages = {
         '申し訳ありませんが、お探しのページが見つかりませんでした。移動または削除された可能性があります。',
       goBack: '戻る',
     },
+    blogNotFound: {
+      title: '投稿が見つかりません',
+      description:
+        'お探しのブログ投稿は存在しないか、削除されたか、お使いの言語では利用できない可能性があります。',
+      browseAll: 'すべての投稿を見る',
+    },
+  },
+  blog: {
+    label: 'ブログ',
+    heading: '最新の投稿',
+    description: 'チームからのアップデート、チュートリアル、インサイト。',
+    noPosts: 'まだ投稿がありません。またご確認ください！',
+    noPostsTag: 'このタグの投稿はまだありません。',
+    noPostsCategory: 'このカテゴリの投稿はまだありません。',
+    noPostsAuthor: 'この著者の投稿はまだありません。',
+    postsByAuthor: '{name}の投稿',
+    postsTaggedCount: '"{tag}"のタグが付いた投稿が{count}件',
+    postsInCategoryCount: 'このカテゴリに{count}件の投稿',
+    readMore: '続きを読む',
+    read: '読む',
+    allPosts: '← すべての投稿',
+    previous: '前へ',
+    next: '次へ',
+    pageOf: '{page} / {total} ページ',
+    relatedPosts: '関連投稿',
+    share: 'シェア',
+    rssLabel: 'RSSフィード',
+    shareAriaX: 'X / Twitterでシェア',
+    shareAriaLinkedin: 'LinkedInでシェア',
+    shareAriaFacebook: 'Facebookでシェア',
+    shareAriaCopy: 'リンクをコピー',
+    shareAriaCopied: 'リンクをコピーしました！',
+    search: {
+      trigger: '投稿を検索...',
+      placeholder: 'ブログを検索...',
+      searching: '検索中...',
+      noResults: '「{query}」の結果が見つかりません',
+      startTyping: '検索するには入力してください...',
+    },
+    meta: {
+      title: 'ブログ',
+      titlePage: 'ブログ — {page}ページ目',
+      description: 'チームからの最新の投稿、チュートリアル、アップデート。',
+      tagTitle: '「{tag}」タグの投稿',
+      tagDescription: '「{tag}」タグの付いたすべてのブログ投稿。',
+      categoryTitle: '{category} — ブログ',
+      categoryDescription: '「{category}」カテゴリのブログ投稿。',
+    },
+  },
+  changelog: {
+    label: '変更履歴',
+    heading: '新着情報',
+    description: '最新のアップデート、改善、修正をすべてご覧ください。',
+    rssLabel: 'RSSフィード',
+    permalink: 'パーマリンク',
+    meta: {
+      title: '変更履歴',
+      description: '最新のアップデート、改善、修正をすべてご覧ください。',
+    },
+  },
+  cookieConsent: {
+    title: 'Cookieを使用しています',
+    descriptionBefore:
+      '当サイトでは、ユーザー体験の向上、トラフィックの分析、コンテンツのパーソナライズのためにCookieを使用しています。許可するCookieを選択できます。',
+    policyLinkPrivacy: 'プライバシーポリシー',
+    policyLinkCookie: 'Cookieポリシー',
+    dismissAriaLabel: '今は閉じる',
+    necessary: {
+      title: '必要',
+      description: 'サイトの機能に必要です。無効にできません。',
+    },
+    analytics: {
+      title: 'アナリティクス',
+      description:
+        '訪問者がサイトをどのように使用しているかを把握するのに役立ちます。',
+    },
+    marketing: {
+      title: 'マーケティング',
+      description: '関連広告の配信とキャンペーンの追跡に使用されます。',
+    },
+    acceptAll: 'すべて承諾',
+    rejectAll: 'すべて拒否',
+    savePreferences: '設定を保存',
+    customize: 'カスタマイズ',
   },
 };
 

@@ -24,6 +24,7 @@ const messages: Messages = {
       permissions: 'Permissions',
       events: 'Events',
       invoices: 'Invoices',
+      workspace: 'Workspace',
     },
     buttons: {
       signIn: 'Sign In',
@@ -42,6 +43,24 @@ const messages: Messages = {
     },
     footer: {
       rights: 'All rights reserved',
+      tagline:
+        'A live demo app showing the BuildBase SDK in action. Sign in to explore auth, workspaces, credits, push notifications, and i18n.',
+      sections: {
+        product: 'Product',
+        resources: 'Resources',
+        legal: 'Legal',
+      },
+      links: {
+        features: 'Features',
+        pricing: 'Pricing',
+        dashboard: 'Dashboard',
+        credits: 'Credits',
+        blog: 'Blog',
+        changelog: 'Changelog',
+        about: 'About',
+        privacy: 'Privacy Policy',
+        terms: 'Terms of Service',
+      },
     },
     language: {
       select: 'Select Language',
@@ -56,14 +75,146 @@ const messages: Messages = {
       dark: 'Dark',
       system: 'System',
     },
+    pages: {
+      lastUpdated: 'Last updated:',
+    },
     redirecting: 'Redirecting...',
   },
   home: {
     title: 'My App',
     hero: {
-      heading: 'Welcome to My App',
+      badge: 'BuildBase SDK · Live Demo',
+      heading:
+        'A working demo built with the <highlight>BuildBase SDK</highlight>',
       description:
-        'Built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, next-themes, and BuildBase SDK.',
+        'Sign in to see auth, multi-tenant workspaces, credit billing, push notifications, and 8-language i18n all working together in a real app — powered by the BuildBase SDK.',
+      signInToExplore: 'Sign in to explore',
+      openDashboard: 'Open Dashboard',
+      viewSource: 'View source',
+      builtWith: 'Built with',
+    },
+    stats: {
+      languages: {
+        label: 'Languages in this demo',
+        sublabel: 'switch with the header toggle',
+      },
+      sdkFeatures: {
+        label: 'Live SDK features',
+        sublabel: 'each has a working demo page',
+      },
+      notifications: {
+        label: 'Notification channels',
+        sublabel: 'browser push + email',
+      },
+      authCode: {
+        label: 'Lines of auth code',
+        sublabel: 'the SDK handles it all',
+      },
+    },
+    cta: {
+      heading: 'Ready to see it all working?',
+      description:
+        'Sign in to open the full dashboard — try switching workspaces, consuming credits, sending a push notification, and switching between all 8 languages.',
+      signIn: 'Sign in & explore',
+      openDashboard: 'Open Dashboard',
+      howBuilt: "How it's built",
+    },
+    features: {
+      eyebrow: 'Explore the demo',
+      heading: "See what's working in this app",
+      description:
+        'Each capability below is live — sign in and click through to see the BuildBase SDK in action, not just in writing.',
+      auth: {
+        badge: 'Auth',
+        title: 'OAuth sign-in, out of the box',
+        description:
+          'The Sign In button above uses the BuildBase SDK — one hook, no session logic to write. After signing in you get a JWT, workspace token, and role automatically.',
+        tryLabel: 'Sign in to try it',
+      },
+      workspaces: {
+        badge: 'Workspaces',
+        title: 'Multi-tenant workspace switcher',
+        description:
+          'Every user can belong to multiple workspaces with different roles. The dashboard sidebar shows your current workspace and lets you switch between them.',
+        tryLabel: 'Open dashboard',
+      },
+      credits: {
+        badge: 'Credits',
+        title: 'Live credit balance & consumption',
+        description:
+          "The credits page shows your live balance, lets you buy more via a built-in modal, and has test buttons that call the SDK's consumeCredits() in real time.",
+        tryLabel: 'Try credit consumption',
+      },
+      notifications: {
+        badge: 'Notifications',
+        title: 'Browser push & email delivery',
+        description:
+          'The notifications page lets you subscribe your browser, compose a notification with title, urgency, action buttons, and scheduled delivery — then send it live.',
+        tryLabel: 'Send a test notification',
+      },
+      i18n: {
+        badge: 'i18n',
+        title: '8 languages including Arabic RTL',
+        description:
+          'Use the language switcher in the header to switch between English, Hindi, Spanish, French, German, Japanese, Chinese, and Arabic — the layout flips to RTL automatically.',
+        tryLabel: 'Switch to Arabic',
+      },
+      content: {
+        badge: 'Content',
+        title: 'MDX blog & changelog, built in',
+        description:
+          'The blog and changelog are MDX files compiled at build time via Contentlayer2. No CMS, no database — just files with type-safe frontmatter, full-text search, and RSS.',
+        tryLabel: 'Read the blog',
+      },
+      quotas: {
+        badge: 'Quotas',
+        title: 'Quota usage with overage gates',
+        description:
+          'The usage page calls useAllQuotaUsage() to show per-quota progress bars. WhenQuotaExhausted blocks UI when a quota hits zero; WhenQuotaOverage shows overage details.',
+        tryLabel: 'View quota usage',
+      },
+      permissions: {
+        badge: 'Permissions',
+        title: 'Role-based permission matrix',
+        description:
+          'The permissions page uses usePermissions() and WhenPermission to show every platform permission as granted or denied based on your current workspace role in real time.',
+        tryLabel: 'Check your permissions',
+      },
+      events: {
+        badge: 'Events',
+        title: 'Live SDK event stream',
+        description:
+          'The events page wires up eventEmitter.setCallbacks() to capture all SDK events as they fire — workspace changes, user updates, role changes — in a live scrolling log.',
+        tryLabel: 'Open event log',
+      },
+      userData: {
+        badge: 'User data',
+        title: 'User attributes & feature flags',
+        description:
+          'The profile page reads useUserAttributes() and useUserFeatures() to show custom key-value pairs and per-user feature flag states, and lets you write new attributes live.',
+        tryLabel: 'View your profile',
+      },
+      invoices: {
+        badge: 'Invoices',
+        title: 'Invoice history & billing portal',
+        description:
+          'The invoices page calls useInvoices() to list all Stripe invoices with status, amount, and PDF links. A single button opens the Stripe Customer Portal via useBillingPortal().',
+        tryLabel: 'View invoices',
+      },
+      seats: {
+        badge: 'Seats',
+        title: 'Seat limits & invite gating',
+        description:
+          'The dashboard calls useSeatStatus() to show member count vs plan limits in real time. WhenNoSubscription, WhenSubscription, and WhenSubscriptionToPlans gate UI to the right audience.',
+        tryLabel: 'Open dashboard',
+      },
+      featureFlags: {
+        badge: 'Feature flags',
+        title: 'Workspace-level feature gates',
+        description:
+          'The profile page uses WhenWorkspaceFeatureEnabled and WhenWorkspaceFeatureDisabled to toggle content based on workspace-level feature flags configured in the BuildBase dashboard.',
+        tryLabel: 'See feature gates',
+      },
     },
     meta: {
       title: 'My App',
@@ -74,6 +225,65 @@ const messages: Messages = {
   dashboard: {
     title: 'Dashboard',
     welcome: 'Welcome back, {name}!',
+    trial: {
+      endingSoon: 'Trial ending soon',
+      endingSoonMsg:
+        'Your trial ends in {days} day{s}. Upgrade now to keep access.',
+      upgrade: 'Upgrade',
+      freeTrial: "You're on a free trial",
+      daysRemaining: '{days} days remaining',
+      endsOn: 'Trial ends {date}',
+      active: 'Trial active',
+      viewPlans: 'View plans',
+      trialBadge: 'Trial',
+    },
+    noSubscription: {
+      title: 'No active subscription',
+      hint: 'Subscribe to unlock paid features',
+      choosePlan: 'Choose a plan',
+    },
+    subscription: {
+      title: 'Subscription',
+      description: 'Your current plan',
+      loading: 'Loading...',
+      status: 'Status: {status}',
+      activeSubscription: 'Active subscription',
+      changePlan: 'Change plan',
+      noPlan: 'No active plan',
+      choosePlan: 'Choose a plan',
+    },
+    subscriptionGates: {
+      whenSubscription: {
+        title: 'Subscription gate',
+        description: 'Only visible when workspace has an active subscription',
+        fallback: 'No subscription active — upgrade to see this content.',
+        content: 'You have an active subscription — this card is visible.',
+      },
+      whenSubscriptionToPlans: {
+        title: 'Plan gate',
+        description: 'Only visible when subscribed to a specific plan',
+        fallback: 'Not on a Pro / Enterprise / Growth plan.',
+        content:
+          "You're on Pro, Enterprise, or Growth — premium content unlocked.",
+      },
+    },
+    seatStatus: {
+      title: 'Seat status',
+      description: 'Member count vs plan limits',
+      members: 'Members',
+      includedSeats: 'Included seats',
+      maxUsers: 'Max users',
+      canInvite: 'Can invite',
+      yes: 'Yes',
+      no: 'No',
+      limitReached:
+        'Seat limit reached — upgrade your plan to invite more members.',
+    },
+    quickActionButtons: {
+      inviteTeam: 'Invite team',
+      manageSubscription: 'Manage subscription',
+      workspaceSettings: 'Workspace settings',
+    },
     cards: {
       workspace: {
         title: 'Current Workspace',
@@ -118,6 +328,403 @@ const messages: Messages = {
         title: 'Settings',
         description: 'Manage your settings',
         placeholder: 'Settings content goes here.',
+      },
+    },
+  },
+  analytics: {
+    title: 'Analytics',
+    description: 'Workspace metrics pulled live from the BuildBase SDK',
+    cards: {
+      plan: 'Plan',
+      teamMembers: 'Team members',
+      quotasTracked: 'Quotas tracked',
+      creditDebits: 'Credit debits',
+      noSubscription: 'no subscription',
+      unlimitedSeats: 'unlimited seats',
+      maxSeats: '{n} max seats',
+      totalConsumed: '{n} total units consumed',
+      consumptionEvents: 'consumption events recorded',
+    },
+    quotaConsumption: {
+      title: 'Quota consumption',
+      empty: 'No quotas configured for this workspace.',
+    },
+    featureFlags: {
+      title: 'Workspace feature flags',
+      empty: 'No feature flags configured.',
+    },
+    planLimits: {
+      title: 'Plan limits',
+      empty: 'No plan limits configured.',
+      unlimited: 'unlimited',
+    },
+    loading: 'Loading…',
+  },
+  team: {
+    title: 'Team',
+    description: 'Workspace members',
+    inviteMember: 'Invite member',
+    seatLimitReached:
+      'Seat limit reached — upgrade your plan to invite more members.',
+    cards: {
+      members: 'Members',
+      includedSeats: 'Included seats',
+      maxUsers: 'Max users',
+      availableSeats: 'Available seats',
+    },
+    memberList: {
+      title: 'Members',
+      count: '{count} member(s) in this workspace',
+      empty: 'No members loaded. Make sure you are authenticated.',
+      roleFallback: 'member',
+    },
+    manage: {
+      title: 'Manage members',
+      description:
+        'Open the workspace settings panel to manage roles and invitations',
+      openSettings: 'Open member settings',
+      permissions: 'Permissions',
+    },
+  },
+  settings: {
+    title: 'Settings',
+    description: 'Workspace settings',
+    card: {
+      title: 'Workspace settings',
+      description: 'Click any section to open the BuildBase settings panel',
+    },
+    danger: {
+      openButton: 'Open danger zone',
+    },
+    sections: {
+      profile: {
+        label: 'Profile',
+        description: 'Your name, avatar, and personal details',
+      },
+      general: {
+        label: 'General',
+        description: 'Workspace name, slug, and basic settings',
+      },
+      users: {
+        label: 'Members & invitations',
+        description: 'Manage team members, roles, and pending invites',
+      },
+      subscription: {
+        label: 'Subscription',
+        description: 'View and change your current plan',
+      },
+      usage: {
+        label: 'Usage',
+        description: 'Quota consumption and usage history',
+      },
+      credits: {
+        label: 'Credits',
+        description: 'Credit balance and top-up options',
+      },
+      features: {
+        label: 'Feature flags',
+        description: 'Workspace-level feature toggles',
+      },
+      notifications: {
+        label: 'Notifications',
+        description: 'Email and push notification preferences',
+      },
+      permissions: {
+        label: 'Permissions',
+        description: 'Role-based access control settings',
+      },
+      danger: {
+        label: 'Danger zone',
+        description: 'Delete workspace or transfer ownership',
+      },
+    },
+  },
+  documents: {
+    title: 'Documents',
+    description: 'Feature-gated document sections',
+    stats: {
+      featureSections: 'Feature sections',
+      featureSectionsSubtitle: 'document features',
+      enabled: 'Enabled for workspace',
+      enabledSubtitle: 'features active',
+      locked: 'Locked',
+      lockedSubtitle: 'features inactive',
+    },
+    features: {
+      enabled: 'Enabled',
+      disabled: 'Disabled',
+    },
+    allFeatures: {
+      title: 'All workspace features',
+      description: 'Raw feature flag state',
+      empty: 'No feature flags configured for this workspace.',
+    },
+    featureSections: {
+      advancedExports: {
+        label: 'Advanced exports',
+        description: 'Export documents as PDF, DOCX, or CSV',
+        content: 'Export to PDF, Word, and CSV is available on your plan.',
+        lockedMessage:
+          'Enable the advanced-exports feature to unlock document exports.',
+      },
+      documentSharing: {
+        label: 'Document sharing',
+        description: 'Share documents with external collaborators',
+        content:
+          'Shareable links and external collaborator access are enabled.',
+        lockedMessage:
+          'Enable document-sharing to allow sharing with people outside your workspace.',
+      },
+      eSignatures: {
+        label: 'E-signatures',
+        description: 'Collect legally binding signatures',
+        content:
+          'E-signature collection is active. Send signature requests from any document.',
+        lockedMessage:
+          'Enable e-signatures to collect legally binding signatures on documents.',
+      },
+    },
+  },
+  events: {
+    title: 'SDK Event Log',
+    description: 'Real-time SDK events',
+    clearButton: 'Clear',
+    listenCard: {
+      title: 'Listening for events',
+      description:
+        'These events fire automatically as you use the SDK — switch workspaces, sign in, or invite a member to see them appear.',
+    },
+    liveCard: {
+      title: 'Live stream',
+      captured: '{count} events captured',
+      empty: 'No events yet. Try switching workspaces or refreshing the page.',
+    },
+    eventLabels: {
+      userCreated: 'User Created',
+      userUpdated: 'User Updated',
+      workspaceChanged: 'Workspace Changed',
+      workspaceUpdated: 'Workspace Updated',
+      memberAdded: 'Member Added',
+      memberRemoved: 'Member Removed',
+      roleChanged: 'Role Changed',
+      workspaceCreated: 'Workspace Created',
+      workspaceDeleted: 'Workspace Deleted',
+    },
+  },
+  invoices: {
+    title: 'Invoices',
+    description: 'Billing history',
+    refresh: 'Refresh',
+    billingPortal: 'Billing portal',
+    billingPortalOpening: 'Opening…',
+    error: 'Failed to load invoices.',
+    card: {
+      title: 'Invoice history',
+      found: '{count} invoice(s) found',
+      empty:
+        'No invoices yet. Invoices appear here after you subscribe to a paid plan.',
+    },
+    table: {
+      date: 'Date',
+      amount: 'Amount',
+      status: 'Status',
+      description: 'Description',
+      links: 'Links',
+      view: 'View',
+      pdf: 'PDF',
+      loadMore: 'Load more',
+    },
+  },
+  notifications: {
+    title: 'Notifications Test',
+    description: 'Send test notifications via the BuildBase SDK',
+    pushCard: {
+      title: 'Browser Push Notifications',
+      description: 'Enable browser push notifications for this device',
+      subscribed: 'Subscribed',
+      notSubscribed: 'Not subscribed',
+      subscribe: 'Subscribe',
+      unsubscribe: 'Unsubscribe',
+    },
+    sendCard: {
+      title: 'Send Test Notification',
+      description:
+        'Fill in the fields below and send a notification. Merge tags like {{name}}, {{workspaceName}}, {{url}} are resolved automatically.',
+    },
+    fields: {
+      eventSlug: 'Event Slug',
+      eventSlugHint:
+        'For push-only: any slug works. For email: must match a registered event.',
+      title: 'Title',
+      message: 'Message',
+      url: 'URL',
+      target: 'Target',
+      channel: 'Channel',
+    },
+    placeholders: {
+      eventSlug: 'e.g. comment_added, deployment_success',
+      title: 'Notification title (falls back to event name)',
+      message: 'Push body + email message',
+      url: 'Opens on push click',
+    },
+    buttons: {
+      meOnly: 'Me only',
+      allMembers: 'All workspace members',
+      both: 'Both',
+      emailOnly: 'Email only',
+      pushOnly: 'Push only',
+      showAdvanced: 'Show Advanced Push Options',
+      hideAdvanced: 'Hide Advanced Push Options',
+      send: 'Send Notification',
+      sending: 'Sending...',
+      silent: 'Silent',
+      requireInteraction: 'Require Interaction',
+      renotify: 'Renotify',
+      default: 'Default',
+    },
+    advanced: {
+      media: 'Media',
+      behavior: 'Push Behavior',
+      delivery: 'Delivery',
+      actions: 'Action Buttons (max 2)',
+      iconUrl: 'Icon URL',
+      imageUrl: 'Image URL',
+      badgeUrl: 'Badge URL',
+      tag: 'Tag',
+      tagHint: 'Replaces notification with same tag instead of stacking',
+      behaviorHint:
+        'Silent = no sound/vibration. Require Interaction = stays until user interacts. Renotify = sound again when replacing via tag.',
+      urgency: 'Urgency',
+      ttl: 'TTL (seconds)',
+      schedule: 'Schedule (ISO 8601)',
+      action1: 'Action 1',
+      action2: 'Action 2',
+      actionTitlePlaceholder: 'Button label (e.g. Reply)',
+      actionKeyPlaceholder: 'Action key (e.g. reply)',
+      iconUrlPlaceholder: 'Push icon (falls back to org icon)',
+      imageUrlPlaceholder: 'Large image in push body',
+      badgeUrlPlaceholder: 'Status bar icon (Android)',
+      ttlPlaceholder: '86400 (24h default)',
+    },
+    context: {
+      workspace: 'Workspace:',
+      user: 'User:',
+      none: 'None selected',
+    },
+    resultCard: {
+      title: 'Response',
+    },
+    toast: {
+      workspaceRequired: 'Please select a workspace first',
+      sent: 'Notification sent to {count} user(s)',
+      notSent: 'Notification not sent: {reason}',
+      pushEnabled: 'Push notifications enabled',
+      pushDisabled: 'Push notifications disabled',
+      pushFailed: 'Failed to toggle push notifications',
+      networkError: 'Network error — could not reach the server',
+    },
+  },
+  permissions: {
+    title: 'Permissions',
+    description: 'Live permission resolution',
+    cards: {
+      role: 'Your role',
+      owner: 'Owner',
+      ownerYes: 'Yes',
+      ownerNo: 'No',
+      granted: 'Permissions granted',
+    },
+    ownerAdmin: {
+      title: 'Owner / Admin only',
+      notVisible: 'Not visible to your role ({role}).',
+      visible: 'You can see this because you are an owner or admin.',
+    },
+    allMembers: {
+      title: 'All members',
+      notMember: 'You are not a member of this workspace.',
+      visible: 'You can see this because you are a workspace member.',
+    },
+    matrix: {
+      title: 'Permission matrix',
+      description: 'All platform permissions checked against your current role',
+      denied: 'Denied',
+      grantedStatus: 'Granted',
+    },
+  },
+  profile: {
+    title: 'User Profile',
+    description: 'User attributes and feature flags',
+    identity: {
+      title: 'Identity',
+      subtitle: 'From useSaaSAuth()',
+      name: 'Name',
+      email: 'Email',
+      role: 'Role',
+      id: 'ID',
+    },
+    workspaceFeatures: {
+      title: 'Workspace feature flags',
+      enabled: 'Enabled',
+      disabled: 'Disabled',
+    },
+    attributes: {
+      title: 'User Attributes',
+      description: 'Custom key-value pairs stored per user',
+      empty: 'No attributes set yet.',
+      setTitle: 'Set an attribute (live demo)',
+      keyPlaceholder: 'key (e.g. theme)',
+      valuePlaceholder: 'value',
+      saving: 'Saving…',
+      save: 'Save',
+      saved: 'Saved!',
+      failed: 'Failed to save.',
+    },
+    userFeatures: {
+      title: 'User Feature Flags',
+      description: 'User-level feature flags',
+      empty: 'No feature flags configured for this user.',
+      loading: 'Loading...',
+      enabled: 'Enabled',
+      disabled: 'Disabled',
+    },
+  },
+  usage: {
+    title: 'Quota Usage',
+    description: 'Live quota consumption',
+    loading: 'Loading quotas...',
+    error: 'Failed to load quota data.',
+    empty: 'No quotas configured for this workspace.',
+    quotaCard: {
+      remaining: '{count} remaining',
+      unlimited: 'Unlimited',
+      exhausted: 'Exhausted',
+      overage: 'Overage',
+      threshold: 'Over 80% used ({pct}%) — approaching limit',
+      overageMsg: 'In overage by {count} units',
+      exhaustedMsg: 'Quota exhausted — actions using this quota are blocked',
+      used: 'used',
+      overageAllowed: '(allowed)',
+    },
+    record: {
+      title: 'Record usage',
+      description: 'Manually record quota usage',
+      slugPlaceholder: 'quota slug (e.g. api_calls)',
+      qtyPlaceholder: 'quantity',
+      recording: 'Recording…',
+      record: 'Record',
+      success: 'Recorded {qty} unit(s) for "{slug}".',
+      failed: 'Failed to record usage.',
+    },
+    logs: {
+      title: 'Usage log',
+      description: 'Recent usage entries',
+      loading: 'Loading logs…',
+      empty: 'No usage logs yet. Record some usage below to see entries here.',
+      table: {
+        quota: 'Quota',
+        quantity: 'Quantity',
+        source: 'Source',
+        date: 'Date',
       },
     },
   },
@@ -169,6 +776,15 @@ const messages: Messages = {
     noCredits:
       'You have no credits remaining. Purchase more to continue using premium features.',
     buyMore: 'Buy Credits',
+    packages: {
+      title: 'Credit packages',
+      loading: 'Loading packages…',
+      error: 'Failed to load packages.',
+      empty: 'No credit packages configured yet.',
+      credits: 'credits',
+      validFor: 'Valid for {days} days',
+      buyNow: 'Buy now',
+    },
     testConsume: {
       title: 'Test Credit Consumption',
       description:
@@ -190,11 +806,13 @@ const messages: Messages = {
       expiresIn: 'Expires {date}',
       noExpiring: 'No credits expiring soon',
       days: '{count} credits',
+      loading: 'Loading...',
     },
     transactions: {
       title: 'Transaction History',
       description: 'Recent credit additions and deductions',
       empty: 'No transactions yet',
+      loading: 'Loading...',
       columns: {
         type: 'Type',
         amount: 'Amount',
@@ -221,6 +839,91 @@ const messages: Messages = {
         "Sorry, we couldn't find the page you're looking for. It may have been moved or deleted.",
       goBack: 'Go back',
     },
+    blogNotFound: {
+      title: 'Post not found',
+      description:
+        "The blog post you're looking for doesn't exist, may have been removed, or is not available in your language.",
+      browseAll: 'Browse all posts',
+    },
+  },
+  blog: {
+    label: 'Blog',
+    heading: 'Latest Posts',
+    description: 'Updates, tutorials, and insights from our team.',
+    noPosts: 'No posts yet. Check back soon!',
+    noPostsTag: 'No posts with this tag yet.',
+    noPostsCategory: 'No posts in this category yet.',
+    noPostsAuthor: 'No posts by this author yet.',
+    postsByAuthor: 'Posts by {name}',
+    postsTaggedCount:
+      '{count, plural, one {# post tagged with "{tag}"} other {# posts tagged with "{tag}"}}',
+    postsInCategoryCount:
+      '{count, plural, one {# post in this category} other {# posts in this category}}',
+    readMore: 'Read more',
+    read: 'Read',
+    allPosts: '← All posts',
+    previous: 'Previous',
+    next: 'Next',
+    pageOf: 'Page {page} of {total}',
+    relatedPosts: 'Related Posts',
+    share: 'Share',
+    rssLabel: 'RSS Feed',
+    shareAriaX: 'Share on X / Twitter',
+    shareAriaLinkedin: 'Share on LinkedIn',
+    shareAriaFacebook: 'Share on Facebook',
+    shareAriaCopy: 'Copy link',
+    shareAriaCopied: 'Link copied!',
+    search: {
+      trigger: 'Search posts...',
+      placeholder: 'Search blog posts...',
+      searching: 'Searching...',
+      noResults: 'No results for "{query}"',
+      startTyping: 'Start typing to search...',
+    },
+    meta: {
+      title: 'Blog',
+      titlePage: 'Blog — Page {page}',
+      description: 'Latest posts, tutorials, and updates from our team.',
+      tagTitle: 'Posts tagged "{tag}"',
+      tagDescription: 'All blog posts tagged with "{tag}".',
+      categoryTitle: '{category} — Blog',
+      categoryDescription: 'Blog posts in the "{category}" category.',
+    },
+  },
+  changelog: {
+    label: 'Changelog',
+    heading: "What's New",
+    description: 'All the latest updates, improvements, and fixes.',
+    rssLabel: 'RSS Feed',
+    permalink: 'Permalink',
+    meta: {
+      title: 'Changelog',
+      description: 'All the latest updates, improvements, and fixes.',
+    },
+  },
+  cookieConsent: {
+    title: 'We use cookies',
+    descriptionBefore:
+      'We use cookies to improve your experience, analyze traffic, and personalize content. You can choose which cookies to allow. Read our',
+    policyLinkPrivacy: 'privacy policy',
+    policyLinkCookie: 'cookie policy',
+    dismissAriaLabel: 'Dismiss for now',
+    necessary: {
+      title: 'Necessary',
+      description: 'Required for the site to function. Cannot be disabled.',
+    },
+    analytics: {
+      title: 'Analytics',
+      description: 'Help us understand how visitors use our site.',
+    },
+    marketing: {
+      title: 'Marketing',
+      description: 'Used to deliver relevant ads and track campaigns.',
+    },
+    acceptAll: 'Accept all',
+    rejectAll: 'Reject all',
+    savePreferences: 'Save preferences',
+    customize: 'Customize',
   },
 };
 

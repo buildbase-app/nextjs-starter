@@ -13,6 +13,7 @@ import { seoConfig } from '@/config/seo';
 import { localePath, localeUrl } from '@/lib/i18n-url';
 import { buildMarketingMetadata } from '@/lib/seo/marketing-metadata';
 import { Link } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 
 function toIsoDate(value: string): string {
   const parsed = new Date(value);
@@ -57,6 +58,7 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug, locale } = await params;
   const localeTyped = locale as Locale;
+  const t = await getTranslations({ locale: localeTyped, namespace: 'blog' });
 
   const post = await blog.getPostBySlug(localeTyped, slug);
 
@@ -99,7 +101,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Blog', url: localePath(localeTyped, '/blog') },
+          { name: t('label'), url: localePath(localeTyped, '/blog') },
           { name: post.title, url: localePath(localeTyped, postUrl) },
         ]}
       />
@@ -109,7 +111,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             href="/blog"
             className="hover:text-foreground transition-colors"
           >
-            Blog
+            {t('label')}
           </Link>
           <span className="mx-2">/</span>
           <span className="text-foreground">{post.title}</span>

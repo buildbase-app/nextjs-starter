@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { ItemListJsonLd } from '@/components/seo/json-ld';
 import { changelog } from '@/content/changelog';
@@ -17,11 +18,12 @@ export async function generateMetadata({
   params,
 }: ChangelogPageProps): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'changelog' });
   return buildMarketingMetadata({
     path: '/changelog',
     locale: locale as Locale,
-    title: 'Changelog',
-    description: 'All the latest updates, improvements, and fixes.',
+    title: t('meta.title'),
+    description: t('meta.description'),
     alternatesTypes: {
       'application/rss+xml': '/changelog/feed.xml',
     },
@@ -49,6 +51,7 @@ function formatDate(iso: string, locale: string): string {
 
 export default async function ChangelogPage({ params }: ChangelogPageProps) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'changelog' });
   const entries = await changelog.getAll();
 
   return (
@@ -66,17 +69,17 @@ export default async function ChangelogPage({ params }: ChangelogPageProps) {
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-primary font-mono text-xs tracking-wider uppercase">
-              Changelog
+              {t('label')}
             </p>
             <h1 className="text-foreground mt-2 text-3xl font-bold tracking-tight md:text-5xl">
-              What&apos;s New
+              {t('heading')}
             </h1>
             <p className="text-muted-foreground mt-4 text-base md:text-lg">
-              All the latest updates, improvements, and fixes.
+              {t('description')}
             </p>
           </div>
           <div className="mt-2 shrink-0">
-            <RssButton href="/changelog/feed.xml" />
+            <RssButton href="/changelog/feed.xml" label={t('rssLabel')} />
           </div>
         </div>
       </header>
@@ -144,7 +147,7 @@ export default async function ChangelogPage({ params }: ChangelogPageProps) {
               href={`/changelog/${entry.slug}`}
               className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm"
             >
-              Permalink
+              {t('permalink')}
               <ArrowRight className="size-4" />
             </Link>
           </article>

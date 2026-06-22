@@ -1,0 +1,27 @@
+---
+heroEyebrow: 关于这个演示
+heroTitle: 您正在看什么
+heroDescription: 这是一个使用BuildBase SDK和后端平台构建的实时演示应用。您在这里看到的一切 — 认证、工作区、积分、通知和i18n — 都是您可以登录并交互的可运行代码。
+missionHeading: 这个演示展示什么
+valuesEyebrow: 内部原理
+valuesHeading: 每个功能的实现方式
+values:
+  - icon: Zap
+    title: 一个Hook实现认证
+    description: 登录按钮调用useSaaSAuth().signIn() — 就这么简单。没有会话管理，没有CSRF逻辑，没有令牌存储。SDK处理一切并将用户注入每个页面。
+  - icon: Shield
+    title: 工作区和角色
+    description: 登录后，侧边栏显示您当前的工作区并允许在它们之间切换。每个工作区都有其自己的角色，由BuildBase后端在服务器端强制执行。
+  - icon: Users
+    title: 积分和计费
+    description: 积分页面使用SDK的CreditBalance、useConsumeCredits()和WhenCreditsExhausted。购买积分按钮打开由BuildBase提供的模态框 — 此应用中没有支付代码。
+  - icon: Heart
+    title: 推送通知
+    description: 通知页面调用usePushNotifications()订阅您的浏览器，然后通过BuildBase API发送带有紧急程度、调度和操作按钮的测试通知。
+---
+
+这个演示应用是一个Next.js 16项目，使用BuildBase SDK连接认证、计费、通知等功能 — 无需编写基础设施。
+
+该仓库中没有自定义认证逻辑、支付处理代码或通知交付基础设施。这些都由BuildBase后端平台处理。您在这里看到的是前端 — 一个带有真实SDK调用的真实Next.js应用，您可以登录并交互。
+
+使用标题中的按钮登录，然后探索仪表板以实时查看每个功能的工作情况。每个功能的源代码都在仓库中对应的页面或API路由中。

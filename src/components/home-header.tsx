@@ -39,19 +39,31 @@ function AuthButton() {
   );
 }
 
-const NAV_LINKS = [
-  { label: 'Features', href: '/#features' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Changelog', href: '/changelog' },
-  { label: 'About', href: '/about' },
+const NAV_HREFS = [
+  '/#features',
+  '/pricing',
+  '/blog',
+  '/changelog',
+  '/about',
 ] as const;
+
+type NavHref = (typeof NAV_HREFS)[number];
 
 interface HomeHeaderProps {
   title: string;
 }
 
 export function HomeHeader({ title }: HomeHeaderProps) {
+  const t = useTranslations('common');
+
+  const NAV_LINK_KEYS: Record<NavHref, string> = {
+    '/#features': t('footer.links.features'),
+    '/pricing': t('footer.links.pricing'),
+    '/blog': t('footer.links.blog'),
+    '/changelog': t('footer.links.changelog'),
+    '/about': t('footer.links.about'),
+  };
+
   return (
     <header className="bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex items-center justify-between border-b px-6 py-4 backdrop-blur-md">
       <div className="flex items-center gap-8">
@@ -62,13 +74,13 @@ export function HomeHeader({ title }: HomeHeaderProps) {
           {title}
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
+          {NAV_HREFS.map((href) => (
             <Link
-              key={link.href}
-              href={link.href}
+              key={href}
+              href={href}
               className="text-muted-foreground hover:text-foreground rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
             >
-              {link.label}
+              {NAV_LINK_KEYS[href]}
             </Link>
           ))}
         </nav>

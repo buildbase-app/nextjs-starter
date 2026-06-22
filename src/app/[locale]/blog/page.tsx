@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { BlogJsonLd } from '@/components/seo/json-ld';
 import { blog } from '@/content/blog';
@@ -23,6 +24,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const { page } = await searchParams;
   const localeTyped = locale as Locale;
+  const t = await getTranslations({ locale: localeTyped, namespace: 'blog' });
   const currentPage = Math.max(1, parseInt(page ?? '1', 10) || 1);
 
   const allPosts = await blog.getAllPosts(localeTyped);
@@ -32,8 +34,9 @@ export async function generateMetadata({
   const base = buildMarketingMetadata({
     path: '/blog',
     locale: localeTyped,
-    title: safePage > 1 ? `Blog — Page ${safePage}` : 'Blog',
-    description: 'Latest posts, tutorials, and updates from our team.',
+    title:
+      safePage > 1 ? t('meta.titlePage', { page: safePage }) : t('meta.title'),
+    description: t('meta.description'),
     alternatesTypes: {
       'application/rss+xml': '/blog/feed.xml',
     },
@@ -58,6 +61,7 @@ export default async function BlogIndexPage({
   const { locale } = await params;
   const { page } = await searchParams;
   const localeTyped = locale as Locale;
+  const t = await getTranslations({ locale: localeTyped, namespace: 'blog' });
 
   const currentPage = Math.max(1, parseInt(page ?? '1', 10) || 1);
 
@@ -90,18 +94,18 @@ export default async function BlogIndexPage({
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-primary font-mono text-xs tracking-wider uppercase">
-              Blog
+              {t('label')}
             </p>
             <h1 className="text-foreground mt-2 text-3xl font-bold tracking-tight md:text-5xl">
-              Latest Posts
+              {t('heading')}
             </h1>
             <p className="text-muted-foreground mt-4 text-base md:text-lg">
-              Updates, tutorials, and insights from our team.
+              {t('description')}
             </p>
           </div>
           <div className="mt-2 flex shrink-0 gap-2">
             <BlogSearch />
-            <RssButton href="/blog/feed.xml" />
+            <RssButton href="/blog/feed.xml" label={t('rssLabel')} />
           </div>
         </div>
       </header>
@@ -132,9 +136,7 @@ export default async function BlogIndexPage({
 
       {posts.length === 0 ? (
         <div className="border-border bg-muted rounded-lg border p-12 text-center">
-          <p className="text-muted-foreground text-sm">
-            No posts yet. Check back soon!
-          </p>
+          <p className="text-muted-foreground text-sm">{t('noPosts')}</p>
         </div>
       ) : (
         <>
@@ -172,7 +174,7 @@ export default async function BlogIndexPage({
                   </div>
                 ) : null}
                 <span className="text-primary mt-2 inline-flex items-center gap-2 text-sm opacity-0 transition-opacity group-hover:opacity-100">
-                  Read more
+                  {t('readMore')}
                   <ArrowRight className="size-4" />
                 </span>
               </Link>
@@ -191,17 +193,17 @@ export default async function BlogIndexPage({
                   className="border-border text-muted-foreground hover:text-foreground hover:border-foreground inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm transition-colors"
                 >
                   <ChevronLeft className="size-4" />
-                  Previous
+                  {t('previous')}
                 </Link>
               ) : (
                 <span className="border-border text-muted-foreground/40 inline-flex cursor-not-allowed items-center gap-1 rounded-md border px-3 py-2 text-sm">
                   <ChevronLeft className="size-4" />
-                  Previous
+                  {t('previous')}
                 </span>
               )}
 
               <span className="text-muted-foreground px-3 text-sm">
-                Page {safePage} of {totalPages}
+                {t('pageOf', { page: safePage, total: totalPages })}
               </span>
 
               {safePage < totalPages ? (
@@ -209,12 +211,12 @@ export default async function BlogIndexPage({
                   href={`/blog?page=${safePage + 1}`}
                   className="border-border text-muted-foreground hover:text-foreground hover:border-foreground inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm transition-colors"
                 >
-                  Next
+                  {t('next')}
                   <ChevronRight className="size-4" />
                 </Link>
               ) : (
                 <span className="border-border text-muted-foreground/40 inline-flex cursor-not-allowed items-center gap-1 rounded-md border px-3 py-2 text-sm">
-                  Next
+                  {t('next')}
                   <ChevronRight className="size-4" />
                 </span>
               )}

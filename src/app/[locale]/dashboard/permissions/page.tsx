@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import {
   usePermissions,
   WhenWorkspaceRoles,
@@ -16,7 +17,15 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, XCircle, Shield, Users } from 'lucide-react';
 
-function PermissionRow({ slug }: { label: string; slug: string }) {
+function PermissionRow({
+  slug,
+  denied,
+  granted,
+}: {
+  slug: string;
+  denied: string;
+  granted: string;
+}) {
   return (
     <WhenPermission
       permission={slug}
@@ -25,7 +34,7 @@ function PermissionRow({ slug }: { label: string; slug: string }) {
           <span className="font-mono text-xs">{slug}</span>
           <span className="flex items-center gap-1.5 text-red-600 dark:text-red-400">
             <XCircle className="h-4 w-4" />
-            Denied
+            {denied}
           </span>
         </div>
       }
@@ -34,7 +43,7 @@ function PermissionRow({ slug }: { label: string; slug: string }) {
         <span className="font-mono text-xs">{slug}</span>
         <span className="flex items-center gap-1.5 text-green-600 dark:text-green-400">
           <CheckCircle2 className="h-4 w-4" />
-          Granted
+          {granted}
         </span>
       </div>
     </WhenPermission>
@@ -42,24 +51,23 @@ function PermissionRow({ slug }: { label: string; slug: string }) {
 }
 
 export default function PermissionsPage() {
+  const t = useTranslations('permissions');
   const { role, isOwner, permissions } = usePermissions();
+
+  const denied = t('matrix.denied');
+  const grantedStatus = t('matrix.grantedStatus');
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Permissions</h1>
-        <p className="text-muted-foreground">
-          Live permission resolution via{' '}
-          <code className="text-xs">usePermissions()</code> and{' '}
-          <code className="text-xs">&lt;WhenPermission&gt;</code>
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('description')}</p>
       </div>
 
-      {/* Current role card */}
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Your role</CardDescription>
+            <CardDescription>{t('cards.role')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold capitalize">{role ?? '—'}</p>
@@ -68,18 +76,18 @@ export default function PermissionsPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Owner</CardDescription>
+            <CardDescription>{t('cards.owner')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Badge variant={isOwner ? 'default' : 'secondary'}>
-              {isOwner ? 'Yes' : 'No'}
+              {isOwner ? t('cards.ownerYes') : t('cards.ownerNo')}
             </Badge>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Permissions granted</CardDescription>
+            <CardDescription>{t('cards.granted')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">{permissions.size}</p>
@@ -87,13 +95,14 @@ export default function PermissionsPage() {
         </Card>
       </div>
 
-      {/* Role-gated sections */}
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader className="flex flex-row items-center gap-2 pb-2">
             <Shield className="h-5 w-5" />
             <div>
-              <CardTitle className="text-base">Owner / Admin only</CardTitle>
+              <CardTitle className="text-base">
+                {t('ownerAdmin.title')}
+              </CardTitle>
               <CardDescription>
                 <code className="text-xs">
                   WhenWorkspaceRoles roles={['owner', 'admin']}
@@ -106,12 +115,12 @@ export default function PermissionsPage() {
               roles={['owner', 'admin']}
               fallback={
                 <p className="text-muted-foreground text-sm">
-                  Not visible to your role ({role}).
+                  {t('ownerAdmin.notVisible', { role: role ?? '' })}
                 </p>
               }
             >
               <p className="text-sm text-green-700 dark:text-green-400">
-                You can see this because you are an owner or admin.
+                {t('ownerAdmin.visible')}
               </p>
             </WhenWorkspaceRoles>
           </CardContent>
@@ -121,7 +130,9 @@ export default function PermissionsPage() {
           <CardHeader className="flex flex-row items-center gap-2 pb-2">
             <Users className="h-5 w-5" />
             <div>
-              <CardTitle className="text-base">All members</CardTitle>
+              <CardTitle className="text-base">
+                {t('allMembers.title')}
+              </CardTitle>
               <CardDescription>
                 <code className="text-xs">
                   WhenWorkspaceRoles roles={['owner', 'admin', 'member']}
@@ -134,32 +145,33 @@ export default function PermissionsPage() {
               roles={['owner', 'admin', 'member']}
               fallback={
                 <p className="text-muted-foreground text-sm">
-                  You are not a member of this workspace.
+                  {t('allMembers.notMember')}
                 </p>
               }
             >
               <p className="text-sm text-green-700 dark:text-green-400">
-                You can see this because you are a workspace member.
+                {t('allMembers.visible')}
               </p>
             </WhenWorkspaceRoles>
           </CardContent>
         </Card>
       </div>
 
-      {/* Full permission matrix */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Permission matrix</CardTitle>
-          <CardDescription>
-            All platform permissions checked against your current role via{' '}
-            <code className="text-xs">WhenPermission</code>
-          </CardDescription>
+          <CardTitle className="text-base">{t('matrix.title')}</CardTitle>
+          <CardDescription>{t('matrix.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="divide-y">
             {(Object.entries(Permission) as [string, string][]).map(
-              ([key, slug]) => (
-                <PermissionRow key={key} label={key} slug={slug} />
+              ([, slug]) => (
+                <PermissionRow
+                  key={slug}
+                  slug={slug}
+                  denied={denied}
+                  granted={grantedStatus}
+                />
               )
             )}
           </div>

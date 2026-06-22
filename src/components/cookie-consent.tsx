@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useSyncExternalStore } from 'react';
+import { useTranslations } from 'next-intl';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -328,6 +329,7 @@ export function CookieConsent({
   privacyPolicyUrl = '/privacy',
   cookiePolicyUrl,
 }: CookieConsentProps) {
+  const t = useTranslations('cookieConsent');
   const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [prefs, setPrefs] = useState<CookiePreferences>(DEFAULT_PREFERENCES);
@@ -363,7 +365,9 @@ export function CookieConsent({
   if (!visible) return null;
 
   const policyLink = cookiePolicyUrl ?? privacyPolicyUrl;
-  const policyLabel = cookiePolicyUrl ? 'cookie policy' : 'privacy policy';
+  const policyLabel = cookiePolicyUrl
+    ? t('policyLinkCookie')
+    : t('policyLinkPrivacy');
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6">
@@ -372,12 +376,10 @@ export function CookieConsent({
         <div className="flex items-start justify-between gap-4">
           <div>
             <h2 className="text-foreground text-base font-semibold">
-              We use cookies
+              {t('title')}
             </h2>
             <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
-              We use cookies to improve your experience, analyze traffic, and
-              personalize content. You can choose which cookies to allow. Read
-              our{' '}
+              {t('descriptionBefore')}{' '}
               <a
                 href={policyLink}
                 className="text-primary underline underline-offset-4 hover:no-underline"
@@ -390,7 +392,7 @@ export function CookieConsent({
           <button
             onClick={() => setVisible(false)}
             className="text-muted-foreground hover:text-foreground shrink-0 rounded-md p-1 transition-colors"
-            aria-label="Dismiss for now"
+            aria-label={t('dismissAriaLabel')}
           >
             <X className="size-4" />
           </button>
@@ -402,10 +404,10 @@ export function CookieConsent({
             <label className="flex items-center justify-between">
               <div>
                 <span className="text-foreground text-sm font-medium">
-                  Necessary
+                  {t('necessary.title')}
                 </span>
                 <p className="text-muted-foreground text-xs">
-                  Required for the site to function. Cannot be disabled.
+                  {t('necessary.description')}
                 </p>
               </div>
               <input
@@ -419,10 +421,10 @@ export function CookieConsent({
             <label className="flex cursor-pointer items-center justify-between">
               <div>
                 <span className="text-foreground text-sm font-medium">
-                  Analytics
+                  {t('analytics.title')}
                 </span>
                 <p className="text-muted-foreground text-xs">
-                  Help us understand how visitors use our site.
+                  {t('analytics.description')}
                 </p>
               </div>
               <input
@@ -438,10 +440,10 @@ export function CookieConsent({
             <label className="flex cursor-pointer items-center justify-between">
               <div>
                 <span className="text-foreground text-sm font-medium">
-                  Marketing
+                  {t('marketing.title')}
                 </span>
                 <p className="text-muted-foreground text-xs">
-                  Used to deliver relevant ads and track campaigns.
+                  {t('marketing.description')}
                 </p>
               </div>
               <input
@@ -459,21 +461,21 @@ export function CookieConsent({
         {/* Actions */}
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <Button onClick={handleAcceptAll} size="sm">
-            Accept all
+            {t('acceptAll')}
           </Button>
           <Button onClick={handleRejectAll} variant="outline" size="sm">
-            Reject all
+            {t('rejectAll')}
           </Button>
           {showDetails ? (
             <Button onClick={handleSavePreferences} variant="outline" size="sm">
-              Save preferences
+              {t('savePreferences')}
             </Button>
           ) : (
             <button
               onClick={() => setShowDetails(true)}
               className="text-muted-foreground hover:text-foreground text-sm underline underline-offset-4 transition-colors"
             >
-              Customize
+              {t('customize')}
             </button>
           )}
         </div>

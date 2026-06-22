@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Coins } from 'lucide-react';
 import { getCurrencySymbol } from '@buildbase/sdk';
-import { CreditStorePage } from '@buildbase/sdk/react';
+import { CreditStorePage, useSaaSAuth } from '@buildbase/sdk/react';
 import type { IPublicCreditPackage } from '@buildbase/sdk';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -30,6 +31,8 @@ function PackageSkeleton() {
 export function CreditStore() {
   const t = useTranslations('creditStore');
   const [currency, setCurrency] = useState<string>('usd');
+  const { isAuthenticated } = useSaaSAuth();
+  const router = useRouter();
 
   return (
     <CreditStorePage
@@ -162,7 +165,17 @@ export function CreditStore() {
 
                       <Button
                         className="w-full"
-                        onClick={() => selectPackage(pkg._id)}
+                        onClick={() => {
+                          if (isAuthenticated) {
+                            // Workspace context not bootstrapped on public pages —
+                            // send to dashboard credits where it is.
+                            router.push('/dashboard/credits');
+                          } else {
+                            // SDK calls signIn(redirectUrl) with packageId encoded,
+                            // resuming the purchase after login.
+                            selectPackage(pkg._id);
+                          }
+                        }}
                       >
                         {t('buy')}
                       </Button>

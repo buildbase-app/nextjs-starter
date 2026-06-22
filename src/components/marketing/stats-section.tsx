@@ -1,27 +1,31 @@
-const STATS = [
-  {
-    value: '8',
-    label: 'Languages in this demo',
-    sublabel: 'switch with the header toggle',
-  },
-  {
-    value: '13',
-    label: 'Live SDK features',
-    sublabel: 'each has a working demo page',
-  },
-  {
-    value: '2',
-    label: 'Notification channels',
-    sublabel: 'browser push + email',
-  },
-  {
-    value: '0',
-    label: 'Lines of auth code',
-    sublabel: 'the SDK handles it all',
-  },
-] as const;
+import { getTranslations } from 'next-intl/server';
 
-export function StatsSection() {
+export async function StatsSection() {
+  const t = await getTranslations('home');
+
+  const STATS = [
+    {
+      value: '8',
+      label: t('stats.languages.label'),
+      sublabel: t('stats.languages.sublabel'),
+    },
+    {
+      value: '13',
+      label: t('stats.sdkFeatures.label'),
+      sublabel: t('stats.sdkFeatures.sublabel'),
+    },
+    {
+      value: '2',
+      label: t('stats.notifications.label'),
+      sublabel: t('stats.notifications.sublabel'),
+    },
+    {
+      value: '0',
+      label: t('stats.authCode.label'),
+      sublabel: t('stats.authCode.sublabel'),
+    },
+  ];
+
   return (
     <section className="border-border/50 w-full border-y">
       <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y md:grid-cols-4 md:divide-y-0">

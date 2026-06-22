@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   useSaaSWorkspaces,
   useAllQuotaUsage,
@@ -29,6 +30,7 @@ function QuotaBar({
   consumed: number;
   included: number;
 }) {
+  const t = useTranslations('usage');
   const pct =
     included > 0 ? Math.min(Math.round((consumed / included) * 100), 100) : 0;
   const color =
@@ -42,13 +44,15 @@ function QuotaBar({
         />
       </div>
       <p className="text-muted-foreground text-xs">
-        {consumed.toLocaleString()} / {included.toLocaleString()} used ({pct}%)
+        {consumed.toLocaleString()} / {included.toLocaleString()}{' '}
+        {t('quotaCard.used')} ({pct}%)
       </p>
     </div>
   );
 }
 
 function UsageLogsPanel({ workspaceId }: { workspaceId: string }) {
+  const t = useTranslations('usage');
   const { logs, loading } = useUsageLogs(workspaceId, undefined, { limit: 10 });
 
   return (
@@ -56,30 +60,32 @@ function UsageLogsPanel({ workspaceId }: { workspaceId: string }) {
       <CardHeader className="flex flex-row items-center gap-2 pb-2">
         <History className="h-5 w-5" />
         <div>
-          <CardTitle className="text-base">Usage log</CardTitle>
-          <CardDescription>
-            Recent entries via <code className="text-xs">useUsageLogs()</code>
-          </CardDescription>
+          <CardTitle className="text-base">{t('logs.title')}</CardTitle>
+          <CardDescription>{t('logs.description')}</CardDescription>
         </div>
       </CardHeader>
       <CardContent>
         {loading ? (
-          <p className="text-muted-foreground text-sm">Loading logs…</p>
+          <p className="text-muted-foreground text-sm">{t('logs.loading')}</p>
         ) : logs.length === 0 ? (
-          <p className="text-muted-foreground text-sm">
-            No usage logs yet. Record some usage below to see entries here.
-          </p>
+          <p className="text-muted-foreground text-sm">{t('logs.empty')}</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b">
-                  <th className="pb-2 text-left font-medium">Quota</th>
-                  <th className="pb-2 text-right font-medium">Quantity</th>
-                  <th className="hidden pb-2 text-left font-medium md:table-cell">
-                    Source
+                  <th className="pb-2 text-left font-medium">
+                    {t('logs.table.quota')}
                   </th>
-                  <th className="pb-2 text-right font-medium">Date</th>
+                  <th className="pb-2 text-right font-medium">
+                    {t('logs.table.quantity')}
+                  </th>
+                  <th className="hidden pb-2 text-left font-medium md:table-cell">
+                    {t('logs.table.source')}
+                  </th>
+                  <th className="pb-2 text-right font-medium">
+                    {t('logs.table.date')}
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y">
@@ -107,6 +113,7 @@ function UsageLogsPanel({ workspaceId }: { workspaceId: string }) {
 }
 
 function RecordUsagePanel({ workspaceId }: { workspaceId: string }) {
+  const t = useTranslations('usage');
   const { recordUsage, loading } = useRecordUsage(workspaceId);
   const [slug, setSlug] = useState('');
   const [qty, setQty] = useState('1');
@@ -118,9 +125,9 @@ function RecordUsagePanel({ workspaceId }: { workspaceId: string }) {
     setMsg('');
     try {
       await recordUsage({ quotaSlug: slug.trim(), quantity });
-      setMsg(`Recorded ${quantity} unit(s) for "${slug}".`);
+      setMsg(t('record.success', { qty: quantity, slug: slug.trim() }));
     } catch {
-      setMsg('Failed to record usage.');
+      setMsg(t('record.failed'));
     }
   };
 
@@ -129,36 +136,33 @@ function RecordUsagePanel({ workspaceId }: { workspaceId: string }) {
       <CardHeader className="flex flex-row items-center gap-2 pb-2">
         <PlusCircle className="h-5 w-5" />
         <div>
-          <CardTitle className="text-base">Record usage</CardTitle>
-          <CardDescription>
-            Manually record via{' '}
-            <code className="text-xs">useRecordUsage()</code>
-          </CardDescription>
+          <CardTitle className="text-base">{t('record.title')}</CardTitle>
+          <CardDescription>{t('record.description')}</CardDescription>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="flex flex-col gap-2 sm:flex-row">
           <Input
-            placeholder="quota slug (e.g. api_calls)"
+            placeholder={t('record.slugPlaceholder')}
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
             className="flex-1"
           />
           <Input
             type="number"
-            placeholder="quantity"
+            placeholder={t('record.qtyPlaceholder')}
             value={qty}
             onChange={(e) => setQty(e.target.value)}
             className="w-28"
             min="1"
           />
           <Button onClick={handleRecord} disabled={loading || !slug.trim()}>
-            {loading ? 'Recording…' : 'Record'}
+            {loading ? t('record.recording') : t('record.record')}
           </Button>
         </div>
         {msg && (
           <p
-            className={`text-sm ${msg.startsWith('Failed') ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}
+            className={`text-sm ${msg === t('record.failed') ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}
           >
             {msg}
           </p>
@@ -169,6 +173,7 @@ function RecordUsagePanel({ workspaceId }: { workspaceId: string }) {
 }
 
 export default function UsagePage() {
+  const t = useTranslations('usage');
   const { currentWorkspace } = useSaaSWorkspaces();
   const { quotas, loading, error } = useAllQuotaUsage(
     currentWorkspace?._id ?? ''
@@ -179,24 +184,19 @@ export default function UsagePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Quota Usage</h1>
-        <p className="text-muted-foreground">
-          Live quota consumption via{' '}
-          <code className="text-xs">useAllQuotaUsage()</code>,{' '}
-          <code className="text-xs">useRecordUsage()</code>,{' '}
-          <code className="text-xs">useUsageLogs()</code>
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('description')}</p>
       </div>
 
       {loading && (
-        <p className="text-muted-foreground text-sm">Loading quotas...</p>
+        <p className="text-muted-foreground text-sm">{t('loading')}</p>
       )}
 
       {error && (
         <Card className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950">
           <CardContent className="pt-6">
             <p className="text-sm text-red-700 dark:text-red-300">
-              Failed to load quota data.
+              {t('error')}
             </p>
           </CardContent>
         </Card>
@@ -205,9 +205,7 @@ export default function UsagePage() {
       {!loading && !error && slugs.length === 0 && (
         <Card>
           <CardContent className="pt-6">
-            <p className="text-muted-foreground text-sm">
-              No quotas configured for this workspace.
-            </p>
+            <p className="text-muted-foreground text-sm">{t('empty')}</p>
           </CardContent>
         </Card>
       )}
@@ -229,7 +227,7 @@ export default function UsagePage() {
                     <div className="flex gap-1.5">
                       {isExhausted && (
                         <Badge variant="destructive" className="text-xs">
-                          Exhausted
+                          {t('quotaCard.exhausted')}
                         </Badge>
                       )}
                       {isOverage && (
@@ -237,48 +235,47 @@ export default function UsagePage() {
                           variant="outline"
                           className="border-amber-400 text-xs text-amber-700"
                         >
-                          Overage
+                          {t('quotaCard.overage')}
                         </Badge>
                       )}
                     </div>
                   </div>
                   <CardDescription>
                     {q.available !== undefined
-                      ? `${q.available.toLocaleString()} remaining`
-                      : 'Unlimited'}
+                      ? t('quotaCard.remaining', {
+                          count: q.available.toLocaleString(),
+                        })
+                      : t('quotaCard.unlimited')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <QuotaBar consumed={q.consumed} included={q.included} />
 
-                  {/* 80% threshold warning */}
                   <WhenQuotaThreshold slug={slug} threshold={80}>
                     <div className="flex items-center gap-2 text-sm text-amber-700 dark:text-amber-400">
                       <AlertTriangle className="h-4 w-4 shrink-0" />
-                      <span>
-                        Over 80% used ({pct}%) — WhenQuotaThreshold fired
-                      </span>
+                      <span>{t('quotaCard.threshold', { pct })}</span>
                     </div>
                   </WhenQuotaThreshold>
 
-                  {/* Overage warning */}
                   <WhenQuotaOverage slug={slug}>
                     <div className="flex items-center gap-2 text-sm text-amber-700 dark:text-amber-400">
                       <TrendingUp className="h-4 w-4 shrink-0" />
                       <span>
-                        In overage by {q.overage?.toLocaleString() ?? 0} units
-                        {q.allowOverage ? ' (allowed)' : ''}
+                        {t('quotaCard.overageMsg', {
+                          count: q.overage?.toLocaleString() ?? 0,
+                        })}
+                        {q.allowOverage
+                          ? ` ${t('quotaCard.overageAllowed')}`
+                          : ''}
                       </span>
                     </div>
                   </WhenQuotaOverage>
 
-                  {/* Exhausted gate demo */}
                   <WhenQuotaExhausted slug={slug}>
                     <div className="flex items-center gap-2 text-sm text-red-700 dark:text-red-400">
                       <AlertTriangle className="h-4 w-4 shrink-0" />
-                      <span>
-                        Quota exhausted — actions using this quota are blocked
-                      </span>
+                      <span>{t('quotaCard.exhaustedMsg')}</span>
                     </div>
                   </WhenQuotaExhausted>
                 </CardContent>
@@ -288,12 +285,10 @@ export default function UsagePage() {
         </div>
       )}
 
-      {/* Record usage */}
       {currentWorkspace?._id && (
         <RecordUsagePanel workspaceId={currentWorkspace._id} />
       )}
 
-      {/* Usage logs */}
       {currentWorkspace?._id && (
         <UsageLogsPanel workspaceId={currentWorkspace._id} />
       )}

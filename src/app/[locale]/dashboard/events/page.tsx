@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import { eventEmitter, SDKEvent } from '@buildbase/sdk';
 import type { EventType } from '@buildbase/sdk';
 import {
@@ -23,18 +24,6 @@ interface LogEntry {
 
 let _id = 0;
 
-const EVENT_LABELS: Record<string, string> = {
-  [SDKEvent.UserCreated]: 'User Created',
-  [SDKEvent.UserUpdated]: 'User Updated',
-  [SDKEvent.WorkspaceChanged]: 'Workspace Changed',
-  [SDKEvent.WorkspaceUpdated]: 'Workspace Updated',
-  [SDKEvent.WorkspaceUserAdded]: 'Member Added',
-  [SDKEvent.WorkspaceUserRemoved]: 'Member Removed',
-  [SDKEvent.WorkspaceUserRoleChanged]: 'Role Changed',
-  [SDKEvent.WorkspaceCreated]: 'Workspace Created',
-  [SDKEvent.WorkspaceDeleted]: 'Workspace Deleted',
-};
-
 const EVENT_COLORS: Record<string, string> = {
   [SDKEvent.WorkspaceChanged]: 'bg-blue-500',
   [SDKEvent.WorkspaceUpdated]: 'bg-blue-400',
@@ -48,6 +37,7 @@ const EVENT_COLORS: Record<string, string> = {
 };
 
 export default function EventsPage() {
+  const t = useTranslations('events');
   const [log, setLog] = useState<LogEntry[]>([]);
 
   const addEntry = useCallback((eventType: EventType, data: unknown) => {
@@ -58,18 +48,16 @@ export default function EventsPage() {
         data,
         timestamp: new Date().toLocaleTimeString(),
       },
-      ...prev.slice(0, 49), // keep last 50
+      ...prev.slice(0, 49),
     ]);
   }, []);
 
   useEffect(() => {
-    // Preserve existing callbacks so we don't break the SDK's normal flow
     const previous = eventEmitter.getCallbacks();
 
     eventEmitter.setCallbacks({
       handleEvent: async (eventType, data) => {
         addEntry(eventType, data);
-        // Forward to any previously registered handler
         if (previous?.handleEvent) {
           await previous.handleEvent(eventType, data);
         }
@@ -77,20 +65,28 @@ export default function EventsPage() {
     });
 
     return () => {
-      // Restore whatever was there before
       eventEmitter.setCallbacks(previous);
     };
   }, [addEntry]);
+
+  const EVENT_LABELS: Record<string, string> = {
+    [SDKEvent.UserCreated]: t('eventLabels.userCreated'),
+    [SDKEvent.UserUpdated]: t('eventLabels.userUpdated'),
+    [SDKEvent.WorkspaceChanged]: t('eventLabels.workspaceChanged'),
+    [SDKEvent.WorkspaceUpdated]: t('eventLabels.workspaceUpdated'),
+    [SDKEvent.WorkspaceUserAdded]: t('eventLabels.memberAdded'),
+    [SDKEvent.WorkspaceUserRemoved]: t('eventLabels.memberRemoved'),
+    [SDKEvent.WorkspaceUserRoleChanged]: t('eventLabels.roleChanged'),
+    [SDKEvent.WorkspaceCreated]: t('eventLabels.workspaceCreated'),
+    [SDKEvent.WorkspaceDeleted]: t('eventLabels.workspaceDeleted'),
+  };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">SDK Event Log</h1>
-          <p className="text-muted-foreground">
-            Real-time events from{' '}
-            <code className="text-xs">eventEmitter.setCallbacks()</code>
-          </p>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('description')}</p>
         </div>
         <Button
           variant="outline"
@@ -99,18 +95,14 @@ export default function EventsPage() {
           disabled={log.length === 0}
         >
           <Trash2 className="mr-1.5 h-4 w-4" />
-          Clear
+          {t('clearButton')}
         </Button>
       </div>
 
-      {/* Event type reference */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-base">Listening for events</CardTitle>
-          <CardDescription>
-            These events fire automatically as you use the SDK — switch
-            workspaces, sign in, or invite a member to see them appear.
-          </CardDescription>
+          <CardTitle className="text-base">{t('listenCard.title')}</CardTitle>
+          <CardDescription>{t('listenCard.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
@@ -126,19 +118,20 @@ export default function EventsPage() {
         </CardContent>
       </Card>
 
-      {/* Live log */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
-            <CardTitle className="text-base">Live stream</CardTitle>
-            <CardDescription>{log.length} events captured</CardDescription>
+            <CardTitle className="text-base">{t('liveCard.title')}</CardTitle>
+            <CardDescription>
+              {t('liveCard.captured', { count: log.length })}
+            </CardDescription>
           </div>
           <Activity className="text-muted-foreground h-5 w-5" />
         </CardHeader>
         <CardContent>
           {log.length === 0 ? (
             <p className="text-muted-foreground py-8 text-center text-sm">
-              No events yet. Try switching workspaces or refreshing the page.
+              {t('liveCard.empty')}
             </p>
           ) : (
             <div className="space-y-2">

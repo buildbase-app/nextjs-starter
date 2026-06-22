@@ -1,31 +1,42 @@
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
-
-const FOOTER_LINKS = {
-  Product: [
-    { label: 'Features', href: '/#features' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Dashboard', href: '/dashboard' },
-    { label: 'Credits', href: '/dashboard/credits' },
-  ],
-  Resources: [
-    { label: 'Blog', href: '/blog' },
-    { label: 'Changelog', href: '/changelog' },
-    { label: 'About', href: '/about' },
-  ],
-  Legal: [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Service', href: '/terms' },
-  ],
-} as const;
 
 interface SiteFooterProps {
   title: string;
 }
 
-export function SiteFooter({ title }: SiteFooterProps) {
+export async function SiteFooter({ title }: SiteFooterProps) {
+  const t = await getTranslations('common');
   const year = new Date().getFullYear();
+
+  const footerLinks = [
+    {
+      section: t('footer.sections.product'),
+      links: [
+        { label: t('footer.links.features'), href: '/#features' },
+        { label: t('footer.links.pricing'), href: '/pricing' },
+        { label: t('footer.links.dashboard'), href: '/dashboard' },
+        { label: t('footer.links.credits'), href: '/dashboard/credits' },
+      ],
+    },
+    {
+      section: t('footer.sections.resources'),
+      links: [
+        { label: t('footer.links.blog'), href: '/blog' },
+        { label: t('footer.links.changelog'), href: '/changelog' },
+        { label: t('footer.links.about'), href: '/about' },
+      ],
+    },
+    {
+      section: t('footer.sections.legal'),
+      links: [
+        { label: t('footer.links.privacy'), href: '/privacy' },
+        { label: t('footer.links.terms'), href: '/terms' },
+      ],
+    },
+  ];
 
   return (
     <footer className="border-border/50 bg-background w-full border-t">
@@ -40,18 +51,12 @@ export function SiteFooter({ title }: SiteFooterProps) {
               {title}
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              A live demo app showing the BuildBase SDK in action. Sign in to
-              explore auth, workspaces, credits, push notifications, and i18n.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Link columns */}
-          {(
-            Object.entries(FOOTER_LINKS) as [
-              string,
-              readonly { label: string; href: string }[],
-            ][]
-          ).map(([section, links]) => (
+          {footerLinks.map(({ section, links }) => (
             <div key={section} className="flex flex-col gap-3">
               <h3 className="text-foreground text-sm font-semibold">
                 {section}
@@ -75,7 +80,7 @@ export function SiteFooter({ title }: SiteFooterProps) {
         {/* Bottom bar */}
         <div className="border-border/50 mt-10 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
           <p className="text-muted-foreground text-xs">
-            © {year} {title}. All rights reserved.
+            © {year} {title}. {t('footer.rights')}.
           </p>
           <div className="flex items-center gap-2">
             <LanguageSwitcher />

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { MdxRenderer } from '@/components/marketing/mdx/mdx-renderer';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 import { privacy } from '@/content/pages/privacy';
@@ -23,7 +24,10 @@ export async function generateMetadata({
 
 export default async function PrivacyPage({ params }: PrivacyPageProps) {
   const { locale } = await params;
-  const content = await privacy.get(locale as Locale);
+  const [content, t] = await Promise.all([
+    privacy.get(locale as Locale),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
   if (!content) notFound();
 
@@ -43,7 +47,7 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
           {content.heroDescription}
         </p>
         <p className="text-muted-foreground mt-2 text-sm">
-          Last updated: {content.lastUpdated}
+          {t('pages.lastUpdated')} {content.lastUpdated}
         </p>
       </header>
 
