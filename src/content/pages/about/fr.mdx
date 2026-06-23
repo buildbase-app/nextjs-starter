@@ -7,14 +7,14 @@ valuesEyebrow: Sous le capot
 valuesHeading: Comment chaque fonctionnalité est implémentée
 values:
   - icon: Zap
-    title: "Auth en un hook"
+    title: 'Auth en un hook'
     description: "Le bouton de connexion appelle useSaaSAuth().signIn() — c'est tout. Pas de gestion de session, pas de logique CSRF, pas de stockage de tokens. Le SDK gère tout et injecte l'utilisateur dans chaque page."
   - icon: Shield
     title: Espaces de travail et rôles
-    description: "Après la connexion, la barre latérale affiche votre espace de travail actuel et vous permet de basculer entre eux. Chaque espace de travail a son propre rôle appliqué côté serveur par le backend BuildBase."
+    description: 'Après la connexion, la barre latérale affiche votre espace de travail actuel et vous permet de basculer entre eux. Chaque espace de travail a son propre rôle appliqué côté serveur par le backend BuildBase.'
   - icon: Users
     title: Crédits et facturation
-    description: "La page Crédits utilise CreditBalance, useConsumeCredits() et WhenCreditsExhausted du SDK. Le bouton Acheter des crédits ouvre un modal fourni par BuildBase — pas de code de paiement dans cette app."
+    description: 'La page Crédits utilise CreditBalance, useConsumeCredits() et WhenCreditsExhausted du SDK. Le bouton Acheter des crédits ouvre un modal fourni par BuildBase — pas de code de paiement dans cette app.'
   - icon: Heart
     title: Notifications push
     description: "La page Notifications appelle usePushNotifications() pour abonner votre navigateur, puis envoie des notifications de test via l'API BuildBase avec urgence, planification et boutons d'action."
