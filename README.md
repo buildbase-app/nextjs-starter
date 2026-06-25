@@ -1,4 +1,4 @@
-# Next.js Enterprise Starter
+# BuildBase Next.js Starter
 
 ![Node.js](https://img.shields.io/badge/node-20+-brightgreen) ![Next.js](https://img.shields.io/badge/Next.js-16-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
