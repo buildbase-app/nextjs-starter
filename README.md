@@ -385,6 +385,30 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 ---
 
+## ✅ Customisation Checklist
+
+After cloning, update these files before shipping to production:
+
+| File                                | What to change                                                       |
+| ----------------------------------- | -------------------------------------------------------------------- |
+| `.env.local`                        | Fill in all required values (copy from `.env.example`)               |
+| `src/config/seo.ts`                 | Replace `My App`, `My App Team`, and social handles with your brand  |
+| `public/llms.txt`                   | Replace `My App` and `https://example.com` with your product details |
+| `public/llms-full.txt`              | Same as above — full AI agent discovery document                     |
+| `public/.well-known/agent.json`     | Replace `My App`, `https://example.com`, and org details             |
+| `public/.well-known/ai-plugin.json` | Replace name, description, logo URL, and contact email               |
+| `public/openapi.json`               | Replace title and server URL                                         |
+| `public/logo.png`                   | Add your logo (referenced by JSON-LD structured data)                |
+| `public/authors/`                   | Replace the `john-doe.mdx` author and avatar with real authors       |
+| `src/content/blog/en/`              | Replace example blog posts with your own content                     |
+| `src/content/changelog/`            | Replace example changelog entries                                    |
+| `src/content/pages/`                | Update About, Privacy, and Terms content for all locales             |
+| `src/content/authors/john-doe.mdx`  | Replace with your real author(s)                                     |
+
+> **Tip:** Search the repo for `example.com` and `My App` to find all placeholder values.
+
+---
+
 ## ⚙️ Environment Variables
 
 | Variable                             | Required | Description                                              |
@@ -454,7 +478,7 @@ docker-compose up -d
 
 # Or build manually
 docker build -t nextjs-starter .
-docker run -p 3000:3000 --env-file .env.local nextjs-starter
+docker run -p 3000:3000 --env-file .env nextjs-starter
 ```
 
 The Dockerfile uses a 3-stage build:

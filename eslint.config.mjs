@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     'build/**',
     'next-env.d.ts',
     '.contentlayer/**',
+    // Generated pagefind search index (third-party, built at postbuild)
+    'public/pagefind/**',
   ]),
 ]);
 

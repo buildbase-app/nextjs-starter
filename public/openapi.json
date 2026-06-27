@@ -8,7 +8,8 @@
       "email": "support@example.com"
     },
     "license": {
-      "name": "Proprietary"
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
     }
   },
   "servers": [

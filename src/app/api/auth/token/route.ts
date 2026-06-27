@@ -115,7 +115,6 @@ export async function POST(request: NextRequest) {
 
     return response;
   } catch (error) {
-    console.log(error);
     logger.error('Auth token exchange failed', {
       error: error instanceof Error ? error.message : 'Unknown error',
     });
