@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Prisma } from '@prisma/client';
 import { prisma, setAuditContext } from '@/lib/db';
-import { getAuthTokenFromHeader } from '@/lib/auth';
+import { getSessionUser } from '@/lib/session';
 import { logger } from '@/lib/logger';
 
 /**
@@ -10,15 +10,21 @@ import { logger } from '@/lib/logger';
  * Audit logs are anonymized (userId set to null) rather than deleted for compliance.
  */
 export async function DELETE(request: NextRequest) {
-  const token = await getAuthTokenFromHeader();
-  if (!token) {
+  // Identity comes from the session, NOT from a bearer token.
+  //
+  // A signed token is only as trustworthy as whatever issued it, and this
+  // route is irreversible: it erases a user. Reading the id from the session
+  // means the only account that can be deleted is the one actually signed in,
+  // regardless of what any token claims.
+  const session = await getSessionUser();
+  if (!session) {
     return NextResponse.json(
       { success: false, message: 'Unauthorized' },
       { status: 401 }
     );
   }
 
-  const { userId } = token;
+  const { userId } = session;
 
   setAuditContext({
     userId,
