@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma, setAuditContext } from '@/lib/db';
-import { getAuthTokenFromHeader } from '@/lib/auth';
+import { getSessionUser } from '@/lib/session';
 import { logger } from '@/lib/logger';
 
 /**
@@ -8,15 +8,17 @@ import { logger } from '@/lib/logger';
  * Returns all personal data associated with the authenticated user.
  */
 export async function GET(request: NextRequest) {
-  const token = await getAuthTokenFromHeader();
-  if (!token) {
+  // Identity from the session, not a bearer token — this returns a user's
+  // complete personal data, so the id it acts on must be the one signed in.
+  const session = await getSessionUser();
+  if (!session) {
     return NextResponse.json(
       { success: false, message: 'Unauthorized' },
       { status: 401 }
     );
   }
 
-  const { userId } = token;
+  const { userId } = session;
 
   setAuditContext({
     userId,

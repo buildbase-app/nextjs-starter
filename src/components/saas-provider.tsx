@@ -22,16 +22,17 @@ function clearAuthToken() {
   localStorage.removeItem('auth_token');
 }
 
-async function updateAuthToken(
-  userId: string,
-  workspaceId: string,
-  userRole: string
-) {
+/**
+ * Only the workspace is sent. The server derives the user from the session
+ * cookie and the role from UserWorkspace — a client cannot assert either, and
+ * should not be asked to.
+ */
+async function updateAuthToken(workspaceId: string) {
   try {
     const response = await fetch('/api/auth/workspace-token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId, workspaceId, userRole }),
+      body: JSON.stringify({ workspaceId }),
     });
     const data = await response.json();
     if (data.success && data.token) {
@@ -99,13 +100,8 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
                   user: { _id: string; id?: string };
                   userRole?: string;
                 };
-                if (eventData.workspace && eventData.user) {
-                  const userId = eventData.user.id || eventData.user._id;
-                  await updateAuthToken(
-                    userId,
-                    eventData.workspace._id,
-                    eventData.userRole || 'member'
-                  );
+                if (eventData.workspace) {
+                  await updateAuthToken(eventData.workspace._id);
                 }
               }
 
@@ -116,36 +112,16 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
                   workspace: { _id: string };
                   role: string;
                 };
-                await updateAuthToken(
-                  eventData.userId,
-                  eventData.workspace._id,
-                  eventData.role
-                );
+                await updateAuthToken(eventData.workspace._id);
               }
             } catch (error) {
               console.error('Failed to handle event:', error);
             }
           },
           onWorkspaceChange: async (params) => {
-            const { user, workspace, role: userRole } = params;
-            if (!user?.id || !workspace?._id) return;
-            try {
-              const response = await fetch('/api/auth/workspace-token', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  userId: user.id,
-                  workspaceId: workspace._id,
-                  userRole,
-                }),
-              });
-              const data = await response.json();
-              if (data.success && data.token) {
-                localStorage.setItem('auth_token', data.token);
-              }
-            } catch (error) {
-              console.error('Failed to update auth token:', error);
-            }
+            const { workspace } = params;
+            if (!workspace?._id) return;
+            await updateAuthToken(workspace._id);
           },
         },
       }}
