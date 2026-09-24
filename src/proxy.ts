@@ -11,6 +11,24 @@ const intlMiddleware = createIntlMiddleware(routing);
  */
 const CANONICAL_HOST = process.env.CANONICAL_HOST;
 
+/**
+ * The BuildBase server the browser talks to, as CSP sources: its origin for
+ * fetch, and the matching ws:/wss: origin for the notification inbox's live
+ * connection. Derived from the same variable the SDK is configured with, so a
+ * self-hosted or local server is allowed without editing this file.
+ */
+function buildbaseConnectSources(): string[] {
+  const raw = process.env.NEXT_PUBLIC_BUILDBASE_SERVER_URL;
+  if (!raw) return [];
+  try {
+    const url = new URL(raw);
+    const socket = `${url.protocol === 'https:' ? 'wss' : 'ws'}://${url.host}`;
+    return [url.origin, socket];
+  } catch {
+    return [];
+  }
+}
+
 function addSecurityHeaders(response: NextResponse): NextResponse {
   const cspDirectives = [
     "default-src 'self'",
@@ -19,11 +37,15 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data:",
-    "connect-src 'self' https:",
+    ["connect-src 'self' https:", ...buildbaseConnectSources()].join(' '),
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-    'upgrade-insecure-requests',
+    // Only where the site is served over HTTPS: in development it would
+    // rewrite every http://localhost API call to https and break them.
+    ...(process.env.NODE_ENV === 'production'
+      ? ['upgrade-insecure-requests']
+      : []),
   ];
 
   response.headers.set('Content-Security-Policy', cspDirectives.join('; '));
