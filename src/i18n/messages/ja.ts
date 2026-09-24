@@ -25,6 +25,7 @@ const messages: Messages = {
       events: 'イベント',
       invoices: '請求書',
       workspace: 'ワークスペース',
+      tour: 'ツアー',
     },
     buttons: {
       signIn: 'サインイン',
@@ -926,6 +927,31 @@ const messages: Messages = {
     rejectAll: 'すべて拒否',
     savePreferences: '設定を保存',
     customize: 'カスタマイズ',
+  },
+  tour: {
+    title: 'ツアー',
+    subtitle:
+      '試せることが{total}件。それぞれがBuildBaseの機能と、その出どころです。',
+    progress: '{total}件中{done}件完了',
+    markDone: '完了にする',
+    undo: '元に戻す',
+    open: '開く',
+    detected: '自動で検出されます',
+    manual: 'ご自身で確認',
+    why: 'なぜ重要か',
+    steps: 'やること',
+    fromSdk: 'SDKから',
+    fromConsole: 'コンソールで設定',
+    fromApp: 'このアプリ内',
+    requires: '先にやること',
+    allDone: 'すべて完了しました。持ち帰りましょう。',
+    homeTitle: 'ひとつずつ、すべて試す',
+    homeSubtitle:
+      'サインインして{groups}グループ・{total}件のタスクを進めます。それぞれがBuildBaseの機能、アプリでの見え方、設定場所を示します。',
+    homeCta: 'ツアーを始める',
+    dashboardCard: 'あなたのツアー',
+    next: '次',
+    dashboardCta: '続ける',
   },
 };
 

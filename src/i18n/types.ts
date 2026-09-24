@@ -25,6 +25,7 @@ export interface CommonMessages {
     events: string;
     invoices: string;
     workspace: string;
+    tour: string;
   };
   buttons: {
     signIn: string;
@@ -797,6 +798,30 @@ export interface CookieConsentMessages {
   customize: string;
 }
 
+export interface TourMessages {
+  title: string;
+  subtitle: string;
+  progress: string;
+  markDone: string;
+  undo: string;
+  open: string;
+  detected: string;
+  manual: string;
+  why: string;
+  steps: string;
+  fromSdk: string;
+  fromConsole: string;
+  fromApp: string;
+  requires: string;
+  allDone: string;
+  homeTitle: string;
+  homeSubtitle: string;
+  homeCta: string;
+  dashboardCard: string;
+  next: string;
+  dashboardCta: string;
+}
+
 // Combined messages type
 export interface Messages {
   common: CommonMessages;
@@ -819,6 +844,7 @@ export interface Messages {
   cookieConsent: CookieConsentMessages;
   blog: BlogMessages;
   changelog: ChangelogMessages;
+  tour: TourMessages;
 }
 
 // For next-intl type inference

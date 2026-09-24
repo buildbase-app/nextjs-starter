@@ -25,6 +25,7 @@ const messages: Messages = {
       events: 'Events',
       invoices: 'Invoices',
       workspace: 'Workspace',
+      tour: 'Tour',
     },
     buttons: {
       signIn: 'Sign In',
@@ -924,6 +925,31 @@ const messages: Messages = {
     rejectAll: 'Reject all',
     savePreferences: 'Save preferences',
     customize: 'Customize',
+  },
+  tour: {
+    title: 'The tour',
+    subtitle:
+      '{total} things to try, each one a BuildBase capability and where it comes from.',
+    progress: '{done} of {total} done',
+    markDone: 'Mark done',
+    undo: 'Undo',
+    open: 'Open',
+    detected: 'Detected automatically',
+    manual: 'Confirm it yourself',
+    why: 'Why it matters',
+    steps: 'What to do',
+    fromSdk: 'From the SDK',
+    fromConsole: 'Configured in the console',
+    fromApp: 'In this app',
+    requires: 'Do first',
+    allDone: 'You have done everything. Take it home.',
+    homeTitle: 'Try everything, one task at a time',
+    homeSubtitle:
+      'Sign in and work through {total} tasks in {groups} groups. Each one shows a BuildBase capability, what it looks like in an app, and where it is configured.',
+    homeCta: 'Start the tour',
+    dashboardCard: 'Your tour',
+    next: 'Next',
+    dashboardCta: 'Continue',
   },
 };
 

@@ -25,6 +25,7 @@ const messages: Messages = {
       events: 'Événements',
       invoices: 'Factures',
       workspace: 'Espace de travail',
+      tour: 'Visite',
     },
     buttons: {
       signIn: 'Se connecter',
@@ -938,6 +939,31 @@ const messages: Messages = {
     rejectAll: 'Tout refuser',
     savePreferences: 'Enregistrer les préférences',
     customize: 'Personnaliser',
+  },
+  tour: {
+    title: 'La visite',
+    subtitle:
+      '{total} choses à essayer, chacune une capacité de BuildBase et d’où elle vient.',
+    progress: '{done} sur {total} faites',
+    markDone: 'Marquer comme faite',
+    undo: 'Annuler',
+    open: 'Ouvrir',
+    detected: 'Détecté automatiquement',
+    manual: 'À confirmer vous-même',
+    why: 'Pourquoi c’est important',
+    steps: 'Que faire',
+    fromSdk: 'Depuis le SDK',
+    fromConsole: 'Configuré dans la console',
+    fromApp: 'Dans cette app',
+    requires: 'À faire d’abord',
+    allDone: 'Vous avez tout fait. Emportez-le chez vous.',
+    homeTitle: 'Essayez tout, une tâche à la fois',
+    homeSubtitle:
+      'Connectez-vous et parcourez {total} tâches en {groups} groupes. Chacune montre une capacité de BuildBase, son rendu dans une app et où elle se configure.',
+    homeCta: 'Commencer la visite',
+    dashboardCard: 'Votre visite',
+    next: 'Suivant',
+    dashboardCta: 'Continuer',
   },
 };
 

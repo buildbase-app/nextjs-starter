@@ -22,6 +22,7 @@ import {
   UserCircle,
   Receipt,
   Building2,
+  ListChecks,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -56,6 +57,7 @@ import { LanguageSwitcher } from './language-switcher';
 
 type NavKey =
   | 'dashboard'
+  | 'tour'
   | 'analytics'
   | 'documents'
   | 'credits'
@@ -77,6 +79,11 @@ const menuItems: {
     navKey: 'dashboard',
     url: '/dashboard',
     icon: LayoutDashboard,
+  },
+  {
+    navKey: 'tour',
+    url: '/dashboard/tour',
+    icon: ListChecks,
   },
   {
     navKey: 'analytics',

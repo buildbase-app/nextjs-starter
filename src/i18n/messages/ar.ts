@@ -25,6 +25,7 @@ const messages: Messages = {
       events: 'الأحداث',
       invoices: 'الفواتير',
       workspace: 'مساحة العمل',
+      tour: 'الجولة',
     },
     buttons: {
       signIn: 'تسجيل الدخول',
@@ -918,6 +919,30 @@ const messages: Messages = {
     rejectAll: 'رفض الكل',
     savePreferences: 'حفظ التفضيلات',
     customize: 'تخصيص',
+  },
+  tour: {
+    title: 'الجولة',
+    subtitle: '{total} شيئًا لتجربته، كل واحد قدرة من BuildBase ومصدرها.',
+    progress: '{done} من {total} منجزة',
+    markDone: 'وضع علامة منجز',
+    undo: 'تراجع',
+    open: 'فتح',
+    detected: 'يُكتشف تلقائيًا',
+    manual: 'أكّده بنفسك',
+    why: 'لماذا يهم',
+    steps: 'ما يجب فعله',
+    fromSdk: 'من SDK',
+    fromConsole: 'مُعدّ في وحدة التحكم',
+    fromApp: 'في هذا التطبيق',
+    requires: 'افعل أولًا',
+    allDone: 'لقد أنجزت كل شيء. خذه معك.',
+    homeTitle: 'جرّب كل شيء، مهمة تلو الأخرى',
+    homeSubtitle:
+      'سجّل الدخول وأنجز {total} مهمة في {groups} مجموعات. كل مهمة تعرض قدرة من BuildBase، وشكلها في التطبيق، ومكان إعدادها.',
+    homeCta: 'ابدأ الجولة',
+    dashboardCard: 'جولتك',
+    next: 'التالي',
+    dashboardCta: 'متابعة',
   },
 };
 

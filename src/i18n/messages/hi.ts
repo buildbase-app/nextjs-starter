@@ -25,6 +25,7 @@ const messages: Messages = {
       events: 'घटनाएं',
       invoices: 'चालान',
       workspace: 'वर्कस्पेस',
+      tour: 'टूर',
     },
     buttons: {
       signIn: 'साइन इन करें',
@@ -926,6 +927,31 @@ const messages: Messages = {
     rejectAll: 'सभी अस्वीकार करें',
     savePreferences: 'प्राथमिकताएं सहेजें',
     customize: 'अनुकूलित करें',
+  },
+  tour: {
+    title: 'टूर',
+    subtitle:
+      'आज़माने के लिए {total} चीज़ें, हर एक BuildBase की क्षमता और वह कहाँ से आती है।',
+    progress: '{total} में से {done} पूरे',
+    markDone: 'पूरा करें',
+    undo: 'पूर्ववत',
+    open: 'खोलें',
+    detected: 'अपने आप पहचाना जाता है',
+    manual: 'स्वयं पुष्टि करें',
+    why: 'यह क्यों मायने रखता है',
+    steps: 'क्या करना है',
+    fromSdk: 'SDK से',
+    fromConsole: 'कंसोल में कॉन्फ़िगर',
+    fromApp: 'इस ऐप में',
+    requires: 'पहले करें',
+    allDone: 'आपने सब कुछ कर लिया। इसे घर ले जाएँ।',
+    homeTitle: 'सब कुछ आज़माएँ, एक बार में एक काम',
+    homeSubtitle:
+      'साइन इन करें और {groups} समूहों में {total} कार्य पूरे करें। हर एक BuildBase की क्षमता, ऐप में उसका रूप और उसकी कॉन्फ़िगरेशन दिखाता है।',
+    homeCta: 'टूर शुरू करें',
+    dashboardCard: 'आपका टूर',
+    next: 'अगला',
+    dashboardCta: 'जारी रखें',
   },
 };
 

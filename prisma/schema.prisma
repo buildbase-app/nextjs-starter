@@ -119,3 +119,19 @@ model AppEvent {
   @@index([workspaceId, createdAt])
   @@index([eventType])
 }
+
+/// One row per tour task a person has completed. The tour is the demo's own
+/// checklist of things to try; most rows are written by detection (an SDK
+/// event, a webhook, an action in this app), the rest by "Mark done".
+model TourProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  taskId      String
+  /// detected | manual
+  source      String   @default("manual")
+  meta        Json?
+  completedAt DateTime @default(now())
+
+  @@unique([userId, taskId])
+  @@index([userId])
+}

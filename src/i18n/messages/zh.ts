@@ -25,6 +25,7 @@ const messages: Messages = {
       events: '事件',
       invoices: '发票',
       workspace: '工作区',
+      tour: '导览',
     },
     buttons: {
       signIn: '登录',
@@ -902,6 +903,31 @@ const messages: Messages = {
     rejectAll: '全部拒绝',
     savePreferences: '保存偏好',
     customize: '自定义',
+  },
+  tour: {
+    title: '导览',
+    subtitle:
+      '{total} 件可以尝试的事，每一件都是 BuildBase 的一项能力及其来源。',
+    progress: '已完成 {done} / {total}',
+    markDone: '标记完成',
+    undo: '撤销',
+    open: '打开',
+    detected: '自动检测',
+    manual: '自行确认',
+    why: '为什么重要',
+    steps: '怎么做',
+    fromSdk: '来自 SDK',
+    fromConsole: '在控制台配置',
+    fromApp: '在本应用中',
+    requires: '先完成',
+    allDone: '你已全部完成。把它带回家吧。',
+    homeTitle: '逐项尝试所有功能',
+    homeSubtitle:
+      '登录后完成 {groups} 组共 {total} 项任务。每一项展示 BuildBase 的一项能力、它在应用中的样子以及在哪里配置。',
+    homeCta: '开始导览',
+    dashboardCard: '你的导览',
+    next: '下一步',
+    dashboardCta: '继续',
   },
 };
 

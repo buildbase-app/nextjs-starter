@@ -25,6 +25,7 @@ const messages: Messages = {
       events: 'Eventos',
       invoices: 'Facturas',
       workspace: 'Espacio de trabajo',
+      tour: 'Recorrido',
     },
     buttons: {
       signIn: 'Iniciar sesión',
@@ -939,6 +940,31 @@ const messages: Messages = {
     rejectAll: 'Rechazar todo',
     savePreferences: 'Guardar preferencias',
     customize: 'Personalizar',
+  },
+  tour: {
+    title: 'El recorrido',
+    subtitle:
+      '{total} cosas que probar, cada una una capacidad de BuildBase y de dónde viene.',
+    progress: '{done} de {total} hechas',
+    markDone: 'Marcar hecha',
+    undo: 'Deshacer',
+    open: 'Abrir',
+    detected: 'Se detecta automáticamente',
+    manual: 'Confírmalo tú',
+    why: 'Por qué importa',
+    steps: 'Qué hacer',
+    fromSdk: 'Del SDK',
+    fromConsole: 'Configurado en la consola',
+    fromApp: 'En esta app',
+    requires: 'Antes haz',
+    allDone: 'Lo has hecho todo. Llévatelo a casa.',
+    homeTitle: 'Prueba todo, una tarea a la vez',
+    homeSubtitle:
+      'Inicia sesión y completa {total} tareas en {groups} grupos. Cada una muestra una capacidad de BuildBase, cómo se ve en una app y dónde se configura.',
+    homeCta: 'Empezar el recorrido',
+    dashboardCard: 'Tu recorrido',
+    next: 'Siguiente',
+    dashboardCta: 'Continuar',
   },
 };
 

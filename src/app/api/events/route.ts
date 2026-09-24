@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma, setAuditContext } from '@/lib/db';
 import { logger } from '@/lib/logger';
+import { getSessionContext } from '@/lib/server-auth';
+import { detect } from '@/tour/progress';
 
 type EventType =
   | 'user:created'
@@ -11,7 +13,11 @@ type EventType =
   | 'workspace:changed'
   | 'workspace:user-added'
   | 'workspace:user-removed'
-  | 'workspace:user-role-changed';
+  | 'workspace:user-role-changed'
+  | 'workspace:invitation-sent'
+  | 'workspace:invitation-accepted'
+  | 'workspace:invitation-declined'
+  | 'workspace:invitation-revoked';
 
 interface IUser {
   _id: string;
@@ -247,8 +253,23 @@ export async function POST(request: NextRequest) {
         break;
       }
 
+      case 'workspace:invitation-sent':
+      case 'workspace:invitation-accepted':
+      case 'workspace:invitation-declined':
+      case 'workspace:invitation-revoked':
+        // Membership follows through workspace:user-added; nothing to mirror.
+        break;
+
       default:
         logger.warn('Unknown event type received', { eventType });
+    }
+
+    // The tour ticks off tasks from the trace they leave. The person is the
+    // session cookie's, never the body's: the body is whatever the browser
+    // chose to send.
+    const session = await getSessionContext();
+    if (session) {
+      await detect(session.userId, { kind: 'sdk-event', event: eventType });
     }
 
     logger.debug('Event processed successfully', { eventType });
