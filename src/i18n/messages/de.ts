@@ -26,6 +26,7 @@ const messages: Messages = {
       invoices: 'Rechnungen',
       workspace: 'Arbeitsbereich',
       tour: 'Tour',
+      inbox: 'Posteingang',
     },
     buttons: {
       signIn: 'Anmelden',
@@ -380,7 +381,33 @@ const messages: Messages = {
       empty:
         'Keine Mitglieder geladen. Stellen Sie sicher, dass Sie authentifiziert sind.',
       roleFallback: 'Mitglied',
+      changeRole: 'Rolle ändern',
     },
+    invite: {
+      title: 'Per E-Mail einladen',
+      description:
+        'Die Adresse braucht noch kein Konto. Die Person erhält eine E-Mail, folgt dem Link, registriert sich oder meldet sich an und nimmt an.',
+      noPermission: 'Ihre Rolle darf keine Mitglieder einladen.',
+      emailPlaceholder: 'name@firma.de',
+      role: 'Rolle',
+      send: 'Einladung senden',
+      sent: 'Einladung an {email} gesendet',
+      failed: 'Etwas ist schiefgelaufen',
+      resent: 'Einladung erneut gesendet',
+      revoked: 'Einladung zurückgezogen',
+      seatNote:
+        '{count} offene Einladung(en) belegen einen Platz, bis sie beantwortet sind.',
+      pendingTitle: 'Offen',
+      loading: 'Wird geladen…',
+      none: 'Nichts offen.',
+      invitedBy: 'Eingeladen von {name}',
+      pendingLabel: 'Offen',
+      expires: 'läuft ab am {date}',
+      cooldown: 'Erneut senden in {seconds}s',
+      resend: 'Erneut senden',
+      revoke: 'Zurückziehen',
+    },
+    roleChanged: 'Rolle geändert zu {role}',
     manage: {
       title: 'Mitglieder verwalten',
       description:
@@ -445,8 +472,69 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'Feature-Gates',
+      description:
+        'Teile dieses Produkts, die ein Workspace- oder Nutzer-Feature-Flag freischaltet.',
+    },
+    workbench: {
+      title: 'Ihre Dokumente',
+      description:
+        'Dokumente liegen in der Datenbank dieser App; die Plattform misst sie.',
+      search: 'Dokumente suchen',
+      allStatuses: 'Alle Status',
+      allTags: 'Alle Tags',
+      newDocument: 'Neues Dokument',
+      newDocumentHint:
+        'Ein Dokument anzulegen bucht Nutzung auf die documents-Quote und kostet einen Credit.',
+      titleLabel: 'Titel',
+      contentLabel: 'Inhalt (Markdown)',
+      statusLabel: 'Status',
+      tagsLabel: 'Tags, durch Komma getrennt',
+      create: 'Anlegen',
+      creating: 'Wird angelegt…',
+      created: 'Dokument angelegt',
+      deleted: 'Dokument gelöscht',
+      delete: 'Löschen',
+      loadSamples: 'Beispieldokumente laden',
+      clearSamples: 'Beispiele entfernen',
+      samplesLoaded: '{count} Beispieldokumente geladen',
+      samplesAlready: 'Beispiele bereits geladen',
+      samplesCleared: '{count} Beispieldokumente entfernt',
+      sample: 'Beispiel',
+      empty: 'Noch keine Dokumente.',
+      total: '{count} gesamt',
+      words: '{count} Wörter',
+      loadFailed: 'Dokumente konnten nicht geladen werden',
+      viewerNotice:
+        'Ihre Rolle hier ist {role}: lesen ja, schreiben nein. Die Buttons sind deaktiviert und der Server lehnt ohnehin ab.',
+      quotaExhausted:
+        'Die documents-Quote dieses Plans ist aufgebraucht und erlaubt keine Überschreitung. Für mehr upgraden.',
+      quotaExhaustedShort: 'Quote aufgebraucht',
+      quotaWarning:
+        'Sie haben über 80 % der documents-Quote dieses Plans verbraucht.',
+      creditsLow: 'Die Credits werden knapp. Jedes Dokument kostet einen.',
+      creditsExhausted:
+        'Keine Credits mehr. Dokumente werden trotzdem angelegt; die Messzeile zeigt, dass die Abbuchung übersprungen wurde.',
+      refusedQuota:
+        'Abgelehnt: {consumed} von {included} Dokumenten verbraucht, der Plan hat ein hartes Limit.',
+      refusedRole: 'Abgelehnt: die Rolle {role} darf nicht schreiben.',
+      meteringTitle: 'Was die Plattform erfasst hat',
+      meteringUsage: 'Nutzung: {used} von {included} Dokumenten',
+      meteringUsageSkipped:
+        'Nutzung: nicht erfasst (dieser Plan hat keine documents-Quote)',
+      meteringCredits: 'Credits: {amount} abgebucht, {balance} übrig',
+      meteringCreditsSkipped: 'Credits: nicht abgebucht (kein Guthaben)',
+      statuses: {
+        draft: 'Entwurf',
+        in_review: 'In Prüfung',
+        published: 'Veröffentlicht',
+        archived: 'Archiviert',
+      },
+    },
     title: 'Dokumente',
-    description: 'Dokumentabschnitte mit Feature-Kontrolle',
+    description:
+      'Die Dokumente Ihres Workspace: hier oder von einem Agenten angelegt, von der Plattform gemessen.',
     stats: {
       featureSections: 'Feature-Abschnitte',
       featureSectionsSubtitle: 'Dokumentfunktionen',
@@ -489,6 +577,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'Empfangene Webhooks',
+      description:
+        'Signierte Server-zu-Server-Zustellungen der Plattform, von /api/webhooks/buildbase für diesen Arbeitsbereich gespeichert.',
+      empty:
+        'Noch keine Webhooks. Abonnieren, jemanden einladen oder Credits kaufen, dann ruft die Plattform diese App auf.',
+      refresh: 'Aktualisieren',
+      event: 'Ereignis',
+      received: 'Empfangen',
+      signature: 'Signatur',
+      verified: 'Geprüft',
+      payload: 'Inhalt',
+      when: 'Plattformzeit',
+    },
     title: 'SDK-Ereignisprotokoll',
     description: 'Echtzeit-SDK-Ereignisse',
     clearButton: 'Leeren',
@@ -540,8 +642,9 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'Benachrichtigungstest',
-    description: 'Testbenachrichtigungen über BuildBase SDK senden',
+    title: 'Benachrichtigungen',
+    description:
+      'Senden Sie eine Benachrichtigung aus dieser App und sehen Sie, wo sie ankommt',
     pushCard: {
       title: 'Browser-Push-Benachrichtigungen',
       description:
@@ -559,7 +662,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'Ereignis-Slug',
       eventSlugHint:
-        'Nur Push: jeder Slug funktioniert. Für E-Mail: muss einem registrierten Ereignis entsprechen.',
+        'Das Demo-Ereignis ist „{slug}“, in der Konsole mit E-Mail und Push registriert. Nur für Push geht jeder Slug; E-Mail braucht ein registriertes Ereignis.',
       title: 'Titel',
       message: 'Nachricht',
       url: 'URL',
@@ -619,11 +722,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'Antwort',
+      description: 'Was die Plattform mit dem Versand gemacht hat.',
+      openInbox: 'Posteingang öffnen',
     },
     toast: {
       workspaceRequired: 'Bitte wählen Sie zuerst einen Arbeitsbereich aus',
       sent: 'Benachrichtigung an {count} Benutzer gesendet',
       notSent: 'Benachrichtigung nicht gesendet: {reason}',
+      inboxHint: 'Sehen Sie auf die Glocke und in Ihren Posteingang.',
       pushEnabled: 'Push-Benachrichtigungen aktiviert',
       pushDisabled: 'Push-Benachrichtigungen deaktiviert',
       pushFailed: 'Fehler beim Ändern der Push-Benachrichtigungen',
@@ -661,6 +767,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'Verbundene Agenten',
+      description:
+        'KI-Clients, die Sie berechtigt haben, über MCP in Ihrem Namen zu handeln. Trennen entzieht den Zugriff.',
+      guideTitle: 'Agent verbinden',
+      guideDescription:
+        'Diese App ist ein MCP-Server. Fügen Sie sie in Claude, Cursor oder ChatGPT hinzu und melden Sie sich mit Ihrem BuildBase-Konto an; der Agent liest dann Ihre Arbeitsbereiche und die Dokumente dieser App mit Ihren Berechtigungen.',
+    },
     title: 'Benutzerprofil',
     description: 'Benutzerattribute und Feature-Flags',
     identity: {
@@ -938,6 +1052,17 @@ const messages: Messages = {
     rejectAll: 'Alle ablehnen',
     savePreferences: 'Einstellungen speichern',
     customize: 'Anpassen',
+  },
+  inbox: {
+    title: 'Posteingang',
+    description:
+      'Alles, was diese App Ihnen geschickt hat, ein Eintrag pro Benachrichtigung, egal auf welchem Weg.',
+    rules: {
+      live: 'Neue Einträge kommen live über einen Socket, ohne Neuladen.',
+      read: 'Ein Eintrag gilt als gelesen, wenn Sie ihn hier öffnen oder seinen Link anklicken. Nur die E-Mail zu öffnen reicht nicht.',
+      email:
+        'Jeder Eintrag zeigt, was E-Mail und Push getan haben, damit klar ist, warum ein Kanal still blieb.',
+    },
   },
   tour: {
     title: 'Die Tour',

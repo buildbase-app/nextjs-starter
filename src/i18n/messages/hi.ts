@@ -26,6 +26,7 @@ const messages: Messages = {
       invoices: 'चालान',
       workspace: 'वर्कस्पेस',
       tour: 'टूर',
+      inbox: 'इनबॉक्स',
     },
     buttons: {
       signIn: 'साइन इन करें',
@@ -379,7 +380,32 @@ const messages: Messages = {
       count: 'इस वर्कस्पेस में {count} सदस्य',
       empty: 'कोई सदस्य लोड नहीं हुए। सुनिश्चित करें कि आप प्रमाणित हैं।',
       roleFallback: 'सदस्य',
+      changeRole: 'भूमिका बदलें',
     },
+    invite: {
+      title: 'ईमेल से आमंत्रित करें',
+      description:
+        'पते का खाता होना ज़रूरी नहीं। उन्हें ईमेल मिलता है, लिंक खोलते हैं, साइन अप या इन करते हैं और स्वीकार करते हैं।',
+      noPermission: 'आपकी भूमिका सदस्यों को आमंत्रित नहीं कर सकती।',
+      emailPlaceholder: 'name@company.com',
+      role: 'भूमिका',
+      send: 'आमंत्रण भेजें',
+      sent: '{email} को आमंत्रण भेजा गया',
+      failed: 'कुछ गलत हो गया',
+      resent: 'आमंत्रण फिर भेजा गया',
+      revoked: 'आमंत्रण रद्द किया गया',
+      seatNote: '{count} लंबित आमंत्रण जवाब मिलने तक सीट रोके रखते हैं।',
+      pendingTitle: 'लंबित',
+      loading: 'लोड हो रहा है…',
+      none: 'कुछ लंबित नहीं।',
+      invitedBy: '{name} द्वारा आमंत्रित',
+      pendingLabel: 'लंबित',
+      expires: '{date} को समाप्त',
+      cooldown: '{seconds} सेकंड में फिर भेज सकेंगे',
+      resend: 'फिर भेजें',
+      revoke: 'रद्द करें',
+    },
+    roleChanged: 'भूमिका बदलकर {role} की गई',
     manage: {
       title: 'सदस्य प्रबंधित करें',
       description:
@@ -442,8 +468,69 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'फ़ीचर गेट',
+      description:
+        'इस उत्पाद के वे हिस्से जो वर्कस्पेस या यूज़र फ़ीचर फ़्लैग से चालू होते हैं।',
+    },
+    workbench: {
+      title: 'आपके दस्तावेज़',
+      description:
+        'दस्तावेज़ इस ऐप के अपने डेटाबेस में रहते हैं; प्लेटफ़ॉर्म उन्हें मापता है।',
+      search: 'दस्तावेज़ खोजें',
+      allStatuses: 'सभी स्थितियाँ',
+      allTags: 'सभी टैग',
+      newDocument: 'नया दस्तावेज़',
+      newDocumentHint:
+        'बनाने पर documents कोटा में उपयोग दर्ज होता है और एक क्रेडिट खर्च होता है।',
+      titleLabel: 'शीर्षक',
+      contentLabel: 'सामग्री (Markdown)',
+      statusLabel: 'स्थिति',
+      tagsLabel: 'टैग, अल्पविराम से अलग',
+      create: 'बनाएँ',
+      creating: 'बना रहे हैं…',
+      created: 'दस्तावेज़ बन गया',
+      deleted: 'दस्तावेज़ हटाया गया',
+      delete: 'हटाएँ',
+      loadSamples: 'नमूना दस्तावेज़ लोड करें',
+      clearSamples: 'नमूने हटाएँ',
+      samplesLoaded: '{count} नमूना दस्तावेज़ लोड हुए',
+      samplesAlready: 'नमूने पहले से लोड हैं',
+      samplesCleared: '{count} नमूना दस्तावेज़ हटाए गए',
+      sample: 'नमूना',
+      empty: 'अभी कोई दस्तावेज़ नहीं।',
+      total: 'कुल {count}',
+      words: '{count} शब्द',
+      loadFailed: 'दस्तावेज़ लोड नहीं हो सके',
+      viewerNotice:
+        'यहाँ आपकी भूमिका {role} है: आप पढ़ सकते हैं, लिख नहीं सकते। बटन अक्षम हैं और सर्वर वैसे भी मना करता है।',
+      quotaExhausted:
+        'इस प्लान का documents कोटा समाप्त है और ओवरेज नहीं है। और बनाने के लिए अपग्रेड करें।',
+      quotaExhaustedShort: 'कोटा समाप्त',
+      quotaWarning:
+        'आपने इस प्लान के documents कोटा का 80% से अधिक उपयोग कर लिया है।',
+      creditsLow: 'क्रेडिट कम हो रहे हैं। हर दस्तावेज़ एक खर्च करता है।',
+      creditsExhausted:
+        'कोई क्रेडिट नहीं बचा। दस्तावेज़ फिर भी बनते हैं; मीटरिंग पंक्ति दिखाती है कि खर्च छोड़ा गया।',
+      refusedQuota:
+        'अस्वीकृत: {included} में से {consumed} दस्तावेज़ उपयोग हुए और प्लान की सख्त सीमा है।',
+      refusedRole: 'अस्वीकृत: {role} भूमिका लिख नहीं सकती।',
+      meteringTitle: 'प्लेटफ़ॉर्म ने क्या दर्ज किया',
+      meteringUsage: 'उपयोग: {included} में से {used} दस्तावेज़',
+      meteringUsageSkipped:
+        'उपयोग: दर्ज नहीं (इस प्लान में documents कोटा नहीं)',
+      meteringCredits: 'क्रेडिट: {amount} खर्च, {balance} शेष',
+      meteringCreditsSkipped: 'क्रेडिट: खर्च नहीं (शेष नहीं)',
+      statuses: {
+        draft: 'मसौदा',
+        in_review: 'समीक्षा में',
+        published: 'प्रकाशित',
+        archived: 'संग्रहीत',
+      },
+    },
     title: 'दस्तावेज़',
-    description: 'फ़ीचर नियंत्रण के साथ दस्तावेज़ अनुभाग',
+    description:
+      'आपके वर्कस्पेस के दस्तावेज़: यहाँ या किसी एजेंट द्वारा बनाए गए, प्लेटफ़ॉर्म द्वारा मापे गए।',
     stats: {
       featureSections: 'फ़ीचर अनुभाग',
       featureSectionsSubtitle: 'दस्तावेज़ सुविधाएं',
@@ -486,6 +573,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'प्राप्त वेबहुक',
+      description:
+        'प्लेटफ़ॉर्म से हस्ताक्षरित सर्वर-से-सर्वर डिलीवरी, इस वर्कस्पेस के लिए /api/webhooks/buildbase द्वारा संग्रहीत।',
+      empty:
+        'अभी कोई वेबहुक नहीं। सदस्यता लें, किसी को आमंत्रित करें या क्रेडिट खरीदें और प्लेटफ़ॉर्म इस ऐप को कॉल करेगा।',
+      refresh: 'रीफ़्रेश',
+      event: 'इवेंट',
+      received: 'प्राप्त',
+      signature: 'हस्ताक्षर',
+      verified: 'सत्यापित',
+      payload: 'पेलोड',
+      when: 'प्लेटफ़ॉर्म समय',
+    },
     title: 'SDK इवेंट लॉग',
     description: 'रियल-टाइम SDK घटनाएं',
     clearButton: 'साफ़ करें',
@@ -537,8 +638,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'सूचना परीक्षण',
-    description: 'BuildBase SDK के माध्यम से परीक्षण सूचनाएं भेजें',
+    title: 'सूचनाएँ',
+    description: 'इस ऐप से एक सूचना भेजें और देखें कि वह कहाँ पहुँचती है',
     pushCard: {
       title: 'ब्राउज़र पुश सूचनाएं',
       description: 'इस डिवाइस के लिए ब्राउज़र पुश सूचनाएं सक्षम करें',
@@ -555,7 +656,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'इवेंट स्लग',
       eventSlugHint:
-        'केवल Push: कोई भी स्लग काम करता है। Email के लिए: पंजीकृत इवेंट से मेल खाना चाहिए।',
+        'डेमो इवेंट "{slug}" है, जो कंसोल में ईमेल और पुश के साथ पंजीकृत है। सिर्फ़ पुश के लिए कोई भी स्लग चलेगा; ईमेल के लिए पंजीकृत इवेंट चाहिए।',
       title: 'शीर्षक',
       message: 'संदेश',
       url: 'URL',
@@ -614,11 +715,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'प्रतिक्रिया',
+      description: 'प्लेटफ़ॉर्म ने इस भेजने के साथ क्या किया।',
+      openInbox: 'इनबॉक्स खोलें',
     },
     toast: {
       workspaceRequired: 'पहले एक वर्कस्पेस चुनें',
       sent: '{count} उपयोगकर्ता(ओं) को सूचना भेजी गई',
       notSent: 'सूचना नहीं भेजी गई: {reason}',
+      inboxHint: 'घंटी और अपना इनबॉक्स देखें।',
       pushEnabled: 'Push सूचनाएं सक्षम',
       pushDisabled: 'Push सूचनाएं अक्षम',
       pushFailed: 'Push सूचनाएं बदलने में त्रुटि',
@@ -653,6 +757,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'जुड़े हुए एजेंट',
+      description:
+        'वे AI क्लाइंट जिन्हें आपने MCP पर अपनी ओर से काम करने की अनुमति दी है। डिस्कनेक्ट करने पर उनकी पहुँच रद्द हो जाती है।',
+      guideTitle: 'एजेंट जोड़ें',
+      guideDescription:
+        'यह ऐप एक MCP सर्वर है। इसे Claude, Cursor या ChatGPT में जोड़ें और अपने BuildBase खाते से साइन इन करें; फिर एजेंट आपकी अनुमतियों के साथ आपके वर्कस्पेस और इस ऐप के दस्तावेज़ पढ़ता है।',
+    },
     title: 'उपयोगकर्ता प्रोफ़ाइल',
     description: 'उपयोगकर्ता विशेषताएं और फ़ीचर फ़्लैग',
     identity: {
@@ -927,6 +1039,17 @@ const messages: Messages = {
     rejectAll: 'सभी अस्वीकार करें',
     savePreferences: 'प्राथमिकताएं सहेजें',
     customize: 'अनुकूलित करें',
+  },
+  inbox: {
+    title: 'इनबॉक्स',
+    description:
+      'इस ऐप ने आपको जो कुछ भेजा है, हर सूचना के लिए एक आइटम, चाहे वह कैसे भी पहुँची हो।',
+    rules: {
+      live: 'नए आइटम सॉकेट पर लाइव आते हैं; रीलोड की ज़रूरत नहीं।',
+      read: 'आइटम तब पढ़ा माना जाता है जब आप उसे यहाँ खोलें या उसका लिंक क्लिक करें। सिर्फ़ ईमेल खोलने से नहीं।',
+      email:
+        'हर आइटम दिखाता है कि ईमेल और पुश ने क्या किया, ताकि पता चले कोई चैनल चुप क्यों रहा।',
+    },
   },
   tour: {
     title: 'टूर',

@@ -26,6 +26,7 @@ export interface CommonMessages {
     invoices: string;
     workspace: string;
     tour: string;
+    inbox: string;
   };
   buttons: {
     signIn: string;
@@ -290,7 +291,31 @@ export interface TeamMessages {
     count: string;
     empty: string;
     roleFallback: string;
+    changeRole: string;
   };
+  invite: {
+    title: string;
+    description: string;
+    noPermission: string;
+    emailPlaceholder: string;
+    role: string;
+    send: string;
+    sent: string;
+    failed: string;
+    resent: string;
+    revoked: string;
+    seatNote: string;
+    pendingTitle: string;
+    loading: string;
+    none: string;
+    invitedBy: string;
+    pendingLabel: string;
+    expires: string;
+    cooldown: string;
+    resend: string;
+    revoke: string;
+  };
+  roleChanged: string;
   manage: {
     title: string;
     description: string;
@@ -336,6 +361,54 @@ export interface DocumentsFeatureSection {
 }
 
 export interface DocumentsMessages {
+  featureGates: { title: string; description: string };
+  workbench: {
+    title: string;
+    description: string;
+    search: string;
+    allStatuses: string;
+    allTags: string;
+    newDocument: string;
+    newDocumentHint: string;
+    titleLabel: string;
+    contentLabel: string;
+    statusLabel: string;
+    tagsLabel: string;
+    create: string;
+    creating: string;
+    created: string;
+    deleted: string;
+    delete: string;
+    loadSamples: string;
+    clearSamples: string;
+    samplesLoaded: string;
+    samplesAlready: string;
+    samplesCleared: string;
+    sample: string;
+    empty: string;
+    total: string;
+    words: string;
+    loadFailed: string;
+    viewerNotice: string;
+    quotaExhausted: string;
+    quotaExhaustedShort: string;
+    quotaWarning: string;
+    creditsLow: string;
+    creditsExhausted: string;
+    refusedQuota: string;
+    refusedRole: string;
+    meteringTitle: string;
+    meteringUsage: string;
+    meteringUsageSkipped: string;
+    meteringCredits: string;
+    meteringCreditsSkipped: string;
+    statuses: {
+      draft: string;
+      in_review: string;
+      published: string;
+      archived: string;
+    };
+  };
   title: string;
   description: string;
   stats: {
@@ -363,6 +436,18 @@ export interface DocumentsMessages {
 }
 
 export interface EventsMessages {
+  webhooks: {
+    title: string;
+    description: string;
+    empty: string;
+    refresh: string;
+    event: string;
+    received: string;
+    signature: string;
+    verified: string;
+    payload: string;
+    when: string;
+  };
   title: string;
   description: string;
   clearButton: string;
@@ -487,11 +572,14 @@ export interface NotificationsMessages {
   };
   resultCard: {
     title: string;
+    description: string;
+    openInbox: string;
   };
   toast: {
     workspaceRequired: string;
     sent: string;
     notSent: string;
+    inboxHint: string;
     pushEnabled: string;
     pushDisabled: string;
     pushFailed: string;
@@ -528,6 +616,12 @@ export interface PermissionsMessages {
 }
 
 export interface ProfileMessages {
+  agents: {
+    title: string;
+    description: string;
+    guideTitle: string;
+    guideDescription: string;
+  };
   title: string;
   description: string;
   identity: {
@@ -798,6 +892,16 @@ export interface CookieConsentMessages {
   customize: string;
 }
 
+export interface InboxMessages {
+  title: string;
+  description: string;
+  rules: {
+    live: string;
+    read: string;
+    email: string;
+  };
+}
+
 export interface TourMessages {
   title: string;
   subtitle: string;
@@ -845,6 +949,7 @@ export interface Messages {
   blog: BlogMessages;
   changelog: ChangelogMessages;
   tour: TourMessages;
+  inbox: InboxMessages;
 }
 
 // For next-intl type inference

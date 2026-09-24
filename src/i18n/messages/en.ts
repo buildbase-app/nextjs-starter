@@ -26,6 +26,7 @@ const messages: Messages = {
       invoices: 'Invoices',
       workspace: 'Workspace',
       tour: 'Tour',
+      inbox: 'Inbox',
     },
     buttons: {
       signIn: 'Sign In',
@@ -378,7 +379,32 @@ const messages: Messages = {
       count: '{count} member(s) in this workspace',
       empty: 'No members loaded. Make sure you are authenticated.',
       roleFallback: 'member',
+      changeRole: 'Change role',
     },
+    invite: {
+      title: 'Invite by email',
+      description:
+        'The address needs no account yet. They get an email, follow the link, sign up or in, and accept.',
+      noPermission: 'Your role cannot invite members.',
+      emailPlaceholder: 'name@company.com',
+      role: 'Role',
+      send: 'Send invitation',
+      sent: 'Invitation sent to {email}',
+      failed: 'Something went wrong',
+      resent: 'Invitation sent again',
+      revoked: 'Invitation revoked',
+      seatNote: '{count} pending invitation(s) hold a seat until answered.',
+      pendingTitle: 'Pending',
+      loading: 'Loading…',
+      none: 'Nothing pending.',
+      invitedBy: 'Invited by {name}',
+      pendingLabel: 'Pending',
+      expires: 'expires {date}',
+      cooldown: 'Resend available in {seconds}s',
+      resend: 'Resend',
+      revoke: 'Revoke',
+    },
+    roleChanged: 'Role changed to {role}',
     manage: {
       title: 'Manage members',
       description:
@@ -441,8 +467,69 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'Feature gates',
+      description:
+        'Sections of this product that a workspace or user feature flag switches on.',
+    },
+    workbench: {
+      title: 'Your documents',
+      description:
+        'Documents live in this app’s own database; the platform meters them.',
+      search: 'Search documents',
+      allStatuses: 'All statuses',
+      allTags: 'All tags',
+      newDocument: 'New document',
+      newDocumentHint:
+        'Creating one records usage against the documents quota and spends one credit.',
+      titleLabel: 'Title',
+      contentLabel: 'Content (Markdown)',
+      statusLabel: 'Status',
+      tagsLabel: 'Tags, comma separated',
+      create: 'Create',
+      creating: 'Creating…',
+      created: 'Document created',
+      deleted: 'Document deleted',
+      delete: 'Delete',
+      loadSamples: 'Load sample documents',
+      clearSamples: 'Clear samples',
+      samplesLoaded: '{count} sample documents loaded',
+      samplesAlready: 'Samples already loaded',
+      samplesCleared: '{count} sample documents removed',
+      sample: 'Sample',
+      empty: 'No documents yet.',
+      total: '{count} total',
+      words: '{count} words',
+      loadFailed: 'Could not load documents',
+      viewerNotice:
+        'Your role here is {role}: you can read, not write. The buttons are disabled and the server refuses anyway.',
+      quotaExhausted:
+        'The documents quota for this plan is used up and it has no overage. Upgrade to create more.',
+      quotaExhaustedShort: 'Quota used up',
+      quotaWarning:
+        'You have used over 80% of the documents quota on this plan.',
+      creditsLow: 'Credits are running low. Each document spends one.',
+      creditsExhausted:
+        'No credits left. Documents still get created; the metering line shows the spend was skipped.',
+      refusedQuota:
+        'Refused: {consumed} of {included} documents used and the plan hard-caps.',
+      refusedRole: 'Refused: the {role} role may not write.',
+      meteringTitle: 'What the platform recorded',
+      meteringUsage: 'Usage: {used} of {included} documents',
+      meteringUsageSkipped:
+        'Usage: not recorded (this plan has no documents quota)',
+      meteringCredits: 'Credits: {amount} spent, {balance} left',
+      meteringCreditsSkipped: 'Credits: not spent (no balance)',
+      statuses: {
+        draft: 'Draft',
+        in_review: 'In review',
+        published: 'Published',
+        archived: 'Archived',
+      },
+    },
     title: 'Documents',
-    description: 'Feature-gated document sections',
+    description:
+      'Your workspace’s documents: created here or by an agent, metered by the platform.',
     stats: {
       featureSections: 'Feature sections',
       featureSectionsSubtitle: 'document features',
@@ -487,6 +574,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'Webhooks received',
+      description:
+        'Signed server-to-server deliveries from the platform, stored by /api/webhooks/buildbase for this workspace.',
+      empty:
+        'No webhooks yet. Subscribe, invite someone or buy credits and the platform will call this app.',
+      refresh: 'Refresh',
+      event: 'Event',
+      received: 'Received',
+      signature: 'Signature',
+      verified: 'Verified',
+      payload: 'Payload',
+      when: 'Platform time',
+    },
     title: 'SDK Event Log',
     description: 'Real-time SDK events',
     clearButton: 'Clear',
@@ -537,8 +638,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'Notifications Test',
-    description: 'Send test notifications via the BuildBase SDK',
+    title: 'Notifications',
+    description: 'Send a notification from this app and watch where it lands',
     pushCard: {
       title: 'Browser Push Notifications',
       description: 'Enable browser push notifications for this device',
@@ -555,7 +656,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'Event Slug',
       eventSlugHint:
-        'For push-only: any slug works. For email: must match a registered event.',
+        'The demo event is "{slug}", registered in the console with email and push. Any slug works for push only; email needs a registered event.',
       title: 'Title',
       message: 'Message',
       url: 'URL',
@@ -614,11 +715,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'Response',
+      description: 'What the platform did with the send.',
+      openInbox: 'Open inbox',
     },
     toast: {
       workspaceRequired: 'Please select a workspace first',
       sent: 'Notification sent to {count} user(s)',
       notSent: 'Notification not sent: {reason}',
+      inboxHint: 'Check the bell and your inbox.',
       pushEnabled: 'Push notifications enabled',
       pushDisabled: 'Push notifications disabled',
       pushFailed: 'Failed to toggle push notifications',
@@ -653,6 +757,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'Connected agents',
+      description:
+        'AI clients you have authorized to act as you over MCP. Disconnect revokes their access.',
+      guideTitle: 'Connect an agent',
+      guideDescription:
+        'This app is an MCP server. Add it to Claude, Cursor or ChatGPT and sign in with your BuildBase account; the agent then reads your workspaces and this app’s documents with your permissions.',
+    },
     title: 'User Profile',
     description: 'User attributes and feature flags',
     identity: {
@@ -925,6 +1037,17 @@ const messages: Messages = {
     rejectAll: 'Reject all',
     savePreferences: 'Save preferences',
     customize: 'Customize',
+  },
+  inbox: {
+    title: 'Inbox',
+    description:
+      'Everything this app has sent you, one item per notification, however it was delivered.',
+    rules: {
+      live: 'New items arrive live over a socket; no reload.',
+      read: 'An item is read when you open it here or click its link. Opening the email alone does not read it.',
+      email:
+        'Each item shows what email and push did, so you can see why a channel stayed quiet.',
+    },
   },
   tour: {
     title: 'The tour',

@@ -26,6 +26,7 @@ const messages: Messages = {
       invoices: '請求書',
       workspace: 'ワークスペース',
       tour: 'ツアー',
+      inbox: '受信箱',
     },
     buttons: {
       signIn: 'サインイン',
@@ -381,7 +382,32 @@ const messages: Messages = {
       empty:
         'メンバーが読み込まれていません。認証されていることを確認してください。',
       roleFallback: 'メンバー',
+      changeRole: 'ロールを変更',
     },
+    invite: {
+      title: 'メールで招待',
+      description:
+        'アドレスにアカウントは不要です。メールが届き、リンクを開いて登録またはサインインし、承諾します。',
+      noPermission: 'あなたのロールではメンバーを招待できません。',
+      emailPlaceholder: 'name@company.com',
+      role: 'ロール',
+      send: '招待を送信',
+      sent: '{email} に招待を送信しました',
+      failed: '問題が発生しました',
+      resent: '招待を再送しました',
+      revoked: '招待を取り消しました',
+      seatNote: '保留中の招待 {count} 件は、回答があるまで席を確保します。',
+      pendingTitle: '保留中',
+      loading: '読み込み中…',
+      none: '保留中はありません。',
+      invitedBy: '{name} が招待',
+      pendingLabel: '保留中',
+      expires: '{date} に期限切れ',
+      cooldown: '{seconds}秒後に再送できます',
+      resend: '再送',
+      revoke: '取り消し',
+    },
+    roleChanged: 'ロールを {role} に変更しました',
     manage: {
       title: 'メンバーを管理',
       description: '役割と招待を管理するには設定パネルを開いてください',
@@ -443,8 +469,69 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: '機能ゲート',
+      description:
+        'ワークスペースまたはユーザーの機能フラグで有効になる、この製品の部分。',
+    },
+    workbench: {
+      title: 'あなたのドキュメント',
+      description:
+        'ドキュメントはこのアプリ自身のデータベースにあり、プラットフォームが計測します。',
+      search: 'ドキュメントを検索',
+      allStatuses: 'すべてのステータス',
+      allTags: 'すべてのタグ',
+      newDocument: '新しいドキュメント',
+      newDocumentHint:
+        '作成すると documents クォータに使用量が記録され、クレジットを1つ消費します。',
+      titleLabel: 'タイトル',
+      contentLabel: '内容（Markdown）',
+      statusLabel: 'ステータス',
+      tagsLabel: 'タグ（カンマ区切り）',
+      create: '作成',
+      creating: '作成中…',
+      created: 'ドキュメントを作成しました',
+      deleted: 'ドキュメントを削除しました',
+      delete: '削除',
+      loadSamples: 'サンプルを読み込む',
+      clearSamples: 'サンプルを削除',
+      samplesLoaded: 'サンプル{count}件を読み込みました',
+      samplesAlready: 'サンプルは読み込み済みです',
+      samplesCleared: 'サンプル{count}件を削除しました',
+      sample: 'サンプル',
+      empty: 'まだドキュメントはありません。',
+      total: '合計{count}件',
+      words: '{count}語',
+      loadFailed: 'ドキュメントを読み込めませんでした',
+      viewerNotice:
+        'ここでのあなたの役割は{role}です。閲覧はできますが編集はできません。ボタンは無効で、サーバーも拒否します。',
+      quotaExhausted:
+        'このプランの documents クォータは使い切られ、超過は許可されていません。さらに作成するにはアップグレードしてください。',
+      quotaExhaustedShort: 'クォータ上限',
+      quotaWarning: 'このプランの documents クォータの80%以上を使用しました。',
+      creditsLow:
+        'クレジットが残り少なくなっています。ドキュメントごとに1つ消費します。',
+      creditsExhausted:
+        'クレジットがありません。ドキュメントは作成されますが、計測行に消費が省略されたことが表示されます。',
+      refusedQuota:
+        '拒否: {included}件中{consumed}件使用済みで、プランには上限があります。',
+      refusedRole: '拒否: {role} ロールは書き込めません。',
+      meteringTitle: 'プラットフォームが記録した内容',
+      meteringUsage: '使用量: {included}件中{used}件',
+      meteringUsageSkipped:
+        '使用量: 未記録（このプランに documents クォータはありません）',
+      meteringCredits: 'クレジット: {amount}消費、残り{balance}',
+      meteringCreditsSkipped: 'クレジット: 未消費（残高なし）',
+      statuses: {
+        draft: '下書き',
+        in_review: 'レビュー中',
+        published: '公開済み',
+        archived: 'アーカイブ',
+      },
+    },
     title: 'ドキュメント',
-    description: 'フィーチャー制御付きドキュメントセクション',
+    description:
+      'ワークスペースのドキュメント。ここで、またはエージェントが作成し、プラットフォームが計測します。',
     stats: {
       featureSections: 'フィーチャーセクション',
       featureSectionsSubtitle: 'ドキュメント機能',
@@ -487,6 +574,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: '受信したWebhook',
+      description:
+        'プラットフォームからの署名付きサーバー間配信。このワークスペース向けに /api/webhooks/buildbase が保存します。',
+      empty:
+        'まだWebhookはありません。購読、招待、クレジット購入を行うとプラットフォームがこのアプリを呼び出します。',
+      refresh: '更新',
+      event: 'イベント',
+      received: '受信',
+      signature: '署名',
+      verified: '検証済み',
+      payload: 'ペイロード',
+      when: 'プラットフォーム時刻',
+    },
     title: 'SDKイベントログ',
     description: 'リアルタイムSDKイベント',
     clearButton: 'クリア',
@@ -538,8 +639,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: '通知テスト',
-    description: 'BuildBase SDKを使用してテスト通知を送信',
+    title: '通知',
+    description: 'このアプリから通知を送り、どこに届くか確かめます',
     pushCard: {
       title: 'ブラウザプッシュ通知',
       description: 'このデバイスのブラウザプッシュ通知を有効にする',
@@ -556,7 +657,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'イベントスラッグ',
       eventSlugHint:
-        'Pushのみ：任意のスラッグが使用可能。メールの場合：登録済みイベントと一致する必要があります。',
+        'デモイベントは「{slug}」で、コンソールにメールとプッシュ付きで登録済みです。プッシュのみなら任意のスラッグで動きます。メールには登録済みイベントが必要です。',
       title: 'タイトル',
       message: 'メッセージ',
       url: 'URL',
@@ -615,11 +716,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'レスポンス',
+      description: 'プラットフォームがこの送信をどう処理したか。',
+      openInbox: '受信箱を開く',
     },
     toast: {
       workspaceRequired: '最初にワークスペースを選択してください',
       sent: '{count}名のユーザーに通知を送信しました',
       notSent: '通知が送信されませんでした：{reason}',
+      inboxHint: 'ベルと受信箱を確認してください。',
       pushEnabled: 'プッシュ通知が有効になりました',
       pushDisabled: 'プッシュ通知が無効になりました',
       pushFailed: 'プッシュ通知の変更に失敗しました',
@@ -654,6 +758,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: '接続済みエージェント',
+      description:
+        'MCP経由であなたとして動作することを許可したAIクライアント。切断するとアクセスが取り消されます。',
+      guideTitle: 'エージェントを接続',
+      guideDescription:
+        'このアプリはMCPサーバーです。Claude、Cursor、ChatGPTに追加してBuildBaseアカウントでサインインすると、エージェントがあなたの権限でワークスペースとこのアプリのドキュメントを読み取ります。',
+    },
     title: 'ユーザープロフィール',
     description: 'ユーザー属性とフィーチャーフラグ',
     identity: {
@@ -927,6 +1039,17 @@ const messages: Messages = {
     rejectAll: 'すべて拒否',
     savePreferences: '設定を保存',
     customize: 'カスタマイズ',
+  },
+  inbox: {
+    title: '受信箱',
+    description:
+      'このアプリがあなたに送ったすべて。配信方法にかかわらず、通知ごとに1件です。',
+    rules: {
+      live: '新しい項目はソケットでリアルタイムに届きます。再読み込みは不要です。',
+      read: 'ここで開くか、リンクをクリックすると既読になります。メールを開くだけでは既読になりません。',
+      email:
+        '各項目にメールとプッシュの結果が表示されるので、チャネルが動かなかった理由が分かります。',
+    },
   },
   tour: {
     title: 'ツアー',

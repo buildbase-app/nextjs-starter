@@ -26,6 +26,7 @@ const messages: Messages = {
       invoices: 'Factures',
       workspace: 'Espace de travail',
       tour: 'Visite',
+      inbox: 'Boîte de réception',
     },
     buttons: {
       signIn: 'Se connecter',
@@ -380,7 +381,33 @@ const messages: Messages = {
       count: '{count} membre(s) dans cet espace',
       empty: "Aucun membre chargé. Assurez-vous d'être authentifié.",
       roleFallback: 'membre',
+      changeRole: 'Changer le rôle',
     },
+    invite: {
+      title: 'Inviter par e-mail',
+      description:
+        'L’adresse n’a pas besoin de compte. La personne reçoit un e-mail, suit le lien, s’inscrit ou se connecte, puis accepte.',
+      noPermission: 'Votre rôle ne peut pas inviter de membres.',
+      emailPlaceholder: 'nom@entreprise.com',
+      role: 'Rôle',
+      send: 'Envoyer l’invitation',
+      sent: 'Invitation envoyée à {email}',
+      failed: 'Une erreur est survenue',
+      resent: 'Invitation renvoyée',
+      revoked: 'Invitation révoquée',
+      seatNote:
+        '{count} invitation(s) en attente occupe(nt) un siège jusqu’à réponse.',
+      pendingTitle: 'En attente',
+      loading: 'Chargement…',
+      none: 'Rien en attente.',
+      invitedBy: 'Invité par {name}',
+      pendingLabel: 'En attente',
+      expires: 'expire le {date}',
+      cooldown: 'Renvoi possible dans {seconds}s',
+      resend: 'Renvoyer',
+      revoke: 'Révoquer',
+    },
+    roleChanged: 'Rôle changé en {role}',
     manage: {
       title: 'Gérer les membres',
       description:
@@ -444,8 +471,69 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'Portes de fonctionnalités',
+      description:
+        'Les parties de ce produit qu’un flag d’espace ou d’utilisateur active.',
+    },
+    workbench: {
+      title: 'Vos documents',
+      description:
+        'Les documents vivent dans la base de cette app ; la plateforme les mesure.',
+      search: 'Rechercher des documents',
+      allStatuses: 'Tous les statuts',
+      allTags: 'Toutes les étiquettes',
+      newDocument: 'Nouveau document',
+      newDocumentHint:
+        'En créer un enregistre un usage sur le quota documents et dépense un crédit.',
+      titleLabel: 'Titre',
+      contentLabel: 'Contenu (Markdown)',
+      statusLabel: 'Statut',
+      tagsLabel: 'Étiquettes, séparées par des virgules',
+      create: 'Créer',
+      creating: 'Création…',
+      created: 'Document créé',
+      deleted: 'Document supprimé',
+      delete: 'Supprimer',
+      loadSamples: 'Charger des documents d’exemple',
+      clearSamples: 'Retirer les exemples',
+      samplesLoaded: '{count} documents d’exemple chargés',
+      samplesAlready: 'Exemples déjà chargés',
+      samplesCleared: '{count} documents d’exemple retirés',
+      sample: 'Exemple',
+      empty: 'Aucun document pour l’instant.',
+      total: '{count} au total',
+      words: '{count} mots',
+      loadFailed: 'Impossible de charger les documents',
+      viewerNotice:
+        'Votre rôle ici est {role} : lecture seule. Les boutons sont désactivés et le serveur refuse de toute façon.',
+      quotaExhausted:
+        'Le quota documents de ce plan est épuisé et sans dépassement. Passez au plan supérieur pour en créer plus.',
+      quotaExhaustedShort: 'Quota épuisé',
+      quotaWarning:
+        'Vous avez utilisé plus de 80 % du quota documents de ce plan.',
+      creditsLow: 'Les crédits s’épuisent. Chaque document en dépense un.',
+      creditsExhausted:
+        'Plus de crédits. Les documents sont quand même créés ; la ligne de mesure montre que la dépense a été ignorée.',
+      refusedQuota:
+        'Refusé : {consumed} documents sur {included} utilisés et le plan est plafonné.',
+      refusedRole: 'Refusé : le rôle {role} ne peut pas écrire.',
+      meteringTitle: 'Ce que la plateforme a enregistré',
+      meteringUsage: 'Usage : {used} documents sur {included}',
+      meteringUsageSkipped:
+        'Usage : non enregistré (ce plan n’a pas de quota documents)',
+      meteringCredits: 'Crédits : {amount} dépensés, {balance} restants',
+      meteringCreditsSkipped: 'Crédits : non dépensés (pas de solde)',
+      statuses: {
+        draft: 'Brouillon',
+        in_review: 'En relecture',
+        published: 'Publié',
+        archived: 'Archivé',
+      },
+    },
     title: 'Documents',
-    description: 'Sections de documents avec contrôle des fonctionnalités',
+    description:
+      'Les documents de votre espace : créés ici ou par un agent, mesurés par la plateforme.',
     stats: {
       featureSections: 'Sections de fonctionnalités',
       featureSectionsSubtitle: 'fonctionnalités de documents',
@@ -489,6 +577,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'Webhooks reçus',
+      description:
+        'Livraisons signées de serveur à serveur depuis la plateforme, enregistrées par /api/webhooks/buildbase pour cet espace de travail.',
+      empty:
+        'Aucun webhook pour l’instant. Abonnez-vous, invitez quelqu’un ou achetez des crédits et la plateforme appellera cette app.',
+      refresh: 'Actualiser',
+      event: 'Événement',
+      received: 'Reçu',
+      signature: 'Signature',
+      verified: 'Vérifiée',
+      payload: 'Contenu',
+      when: 'Heure plateforme',
+    },
     title: "Journal d'événements SDK",
     description: 'Événements SDK en temps réel',
     clearButton: 'Effacer',
@@ -540,8 +642,9 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'Test de notifications',
-    description: 'Envoyer des notifications de test via BuildBase SDK',
+    title: 'Notifications',
+    description:
+      'Envoyez une notification depuis cette app et regardez où elle arrive',
     pushCard: {
       title: 'Notifications push du navigateur',
       description:
@@ -559,7 +662,7 @@ const messages: Messages = {
     fields: {
       eventSlug: "Identifiant de l'événement",
       eventSlugHint:
-        'Push uniquement : tout identifiant fonctionne. Pour e-mail : doit correspondre à un événement enregistré.',
+        'L’événement de démo est « {slug} », enregistré dans la console avec e-mail et push. N’importe quel slug marche pour le push seul ; l’e-mail exige un événement enregistré.',
       title: 'Titre',
       message: 'Message',
       url: 'URL',
@@ -618,11 +721,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'Réponse',
+      description: 'Ce que la plateforme a fait de l’envoi.',
+      openInbox: 'Ouvrir la boîte',
     },
     toast: {
       workspaceRequired: "Veuillez d'abord sélectionner un espace de travail",
       sent: 'Notification envoyée à {count} utilisateur(s)',
       notSent: 'Notification non envoyée : {reason}',
+      inboxHint: 'Regardez la cloche et votre boîte de réception.',
       pushEnabled: 'Notifications push activées',
       pushDisabled: 'Notifications push désactivées',
       pushFailed: 'Erreur lors du changement des notifications push',
@@ -659,6 +765,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'Agents connectés',
+      description:
+        'Clients IA que vous avez autorisés à agir en votre nom via MCP. Déconnecter révoque leur accès.',
+      guideTitle: 'Connecter un agent',
+      guideDescription:
+        'Cette app est un serveur MCP. Ajoutez-la à Claude, Cursor ou ChatGPT et connectez-vous avec votre compte BuildBase ; l’agent lit alors vos espaces de travail et les documents de cette app avec vos permissions.',
+    },
     title: 'Profil utilisateur',
     description: 'Attributs utilisateur et indicateurs de fonctionnalités',
     identity: {
@@ -939,6 +1053,17 @@ const messages: Messages = {
     rejectAll: 'Tout refuser',
     savePreferences: 'Enregistrer les préférences',
     customize: 'Personnaliser',
+  },
+  inbox: {
+    title: 'Boîte de réception',
+    description:
+      'Tout ce que cette app vous a envoyé, un élément par notification, quel que soit le canal.',
+    rules: {
+      live: 'Les nouveaux éléments arrivent en direct par socket, sans recharger.',
+      read: 'Un élément est lu quand vous l’ouvrez ici ou cliquez son lien. Ouvrir l’e-mail seul ne le lit pas.',
+      email:
+        'Chaque élément montre ce qu’ont fait l’e-mail et le push, pour voir pourquoi un canal est resté muet.',
+    },
   },
   tour: {
     title: 'La visite',

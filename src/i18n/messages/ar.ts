@@ -26,6 +26,7 @@ const messages: Messages = {
       invoices: 'الفواتير',
       workspace: 'مساحة العمل',
       tour: 'الجولة',
+      inbox: 'البريد الوارد',
     },
     buttons: {
       signIn: 'تسجيل الدخول',
@@ -378,7 +379,32 @@ const messages: Messages = {
       count: '{count} عضو في هذه مساحة العمل',
       empty: 'لم يتم تحميل أعضاء. تأكد من تسجيل الدخول.',
       roleFallback: 'عضو',
+      changeRole: 'تغيير الدور',
     },
+    invite: {
+      title: 'دعوة عبر البريد',
+      description:
+        'لا يحتاج العنوان إلى حساب. يصل بريد، يتبع الرابط، يسجّل أو يدخل، ثم يقبل.',
+      noPermission: 'دورك لا يستطيع دعوة الأعضاء.',
+      emailPlaceholder: 'name@company.com',
+      role: 'الدور',
+      send: 'إرسال الدعوة',
+      sent: 'أُرسلت الدعوة إلى {email}',
+      failed: 'حدث خطأ ما',
+      resent: 'أُعيد إرسال الدعوة',
+      revoked: 'أُلغيت الدعوة',
+      seatNote: '{count} دعوة معلّقة تحجز مقعدًا حتى الرد عليها.',
+      pendingTitle: 'معلّقة',
+      loading: 'جارٍ التحميل…',
+      none: 'لا شيء معلّق.',
+      invitedBy: 'بدعوة من {name}',
+      pendingLabel: 'معلّقة',
+      expires: 'تنتهي في {date}',
+      cooldown: 'يمكن إعادة الإرسال خلال {seconds} ث',
+      resend: 'إعادة الإرسال',
+      revoke: 'إلغاء',
+    },
+    roleChanged: 'تغيّر الدور إلى {role}',
     manage: {
       title: 'إدارة الأعضاء',
       description: 'افتح لوحة إعدادات مساحة العمل لإدارة الأدوار والدعوات',
@@ -440,8 +466,68 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'بوابات الميزات',
+      description:
+        'أجزاء هذا المنتج التي يشغّلها علم ميزة لمساحة العمل أو للمستخدم.',
+    },
+    workbench: {
+      title: 'مستنداتك',
+      description:
+        'تعيش المستندات في قاعدة بيانات هذا التطبيق؛ وتقيسها المنصة.',
+      search: 'ابحث في المستندات',
+      allStatuses: 'كل الحالات',
+      allTags: 'كل الوسوم',
+      newDocument: 'مستند جديد',
+      newDocumentHint:
+        'إنشاء مستند يسجّل استخدامًا على حصة documents وينفق رصيدًا واحدًا.',
+      titleLabel: 'العنوان',
+      contentLabel: 'المحتوى (Markdown)',
+      statusLabel: 'الحالة',
+      tagsLabel: 'وسوم مفصولة بفواصل',
+      create: 'إنشاء',
+      creating: 'جارٍ الإنشاء…',
+      created: 'تم إنشاء المستند',
+      deleted: 'تم حذف المستند',
+      delete: 'حذف',
+      loadSamples: 'تحميل مستندات نموذجية',
+      clearSamples: 'إزالة النماذج',
+      samplesLoaded: 'تم تحميل {count} مستندات نموذجية',
+      samplesAlready: 'النماذج محمّلة مسبقًا',
+      samplesCleared: 'تمت إزالة {count} مستندات نموذجية',
+      sample: 'نموذج',
+      empty: 'لا مستندات بعد.',
+      total: '{count} إجمالًا',
+      words: '{count} كلمة',
+      loadFailed: 'تعذّر تحميل المستندات',
+      viewerNotice:
+        'دورك هنا هو {role}: يمكنك القراءة لا الكتابة. الأزرار معطّلة والخادم يرفض على أي حال.',
+      quotaExhausted:
+        'حصة documents لهذه الخطة مستنفدة ولا تسمح بالتجاوز. رقِّ الخطة لإنشاء المزيد.',
+      quotaExhaustedShort: 'الحصة مستنفدة',
+      quotaWarning: 'استخدمت أكثر من 80% من حصة documents لهذه الخطة.',
+      creditsLow: 'الرصيد ينفد. كل مستند ينفق رصيدًا واحدًا.',
+      creditsExhausted:
+        'لا رصيد متبقٍ. تُنشأ المستندات مع ذلك؛ ويُظهر سطر القياس أن الإنفاق تم تخطيه.',
+      refusedQuota:
+        'مرفوض: استُخدم {consumed} من {included} مستندات والخطة ذات حد صارم.',
+      refusedRole: 'مرفوض: دور {role} لا يمكنه الكتابة.',
+      meteringTitle: 'ما سجّلته المنصة',
+      meteringUsage: 'الاستخدام: {used} من {included} مستندات',
+      meteringUsageSkipped:
+        'الاستخدام: غير مسجّل (لا حصة documents في هذه الخطة)',
+      meteringCredits: 'الرصيد: أُنفق {amount}، المتبقي {balance}',
+      meteringCreditsSkipped: 'الرصيد: لم يُنفق (لا رصيد)',
+      statuses: {
+        draft: 'مسودة',
+        in_review: 'قيد المراجعة',
+        published: 'منشور',
+        archived: 'مؤرشف',
+      },
+    },
     title: 'المستندات',
-    description: 'أقسام المستندات ذات البوابات',
+    description:
+      'مستندات مساحة عملك: تُنشأ هنا أو بواسطة وكيل، وتقيسها المنصة.',
     stats: {
       featureSections: 'أقسام الميزات',
       featureSectionsSubtitle: 'ميزات المستندات',
@@ -484,6 +570,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'الويب هوكس المستلمة',
+      description:
+        'عمليات تسليم موقّعة من خادم إلى خادم من المنصة، يخزّنها /api/webhooks/buildbase لمساحة العمل هذه.',
+      empty:
+        'لا ويب هوكس بعد. اشترك أو ادعُ شخصًا أو اشترِ رصيدًا وستستدعي المنصة هذا التطبيق.',
+      refresh: 'تحديث',
+      event: 'الحدث',
+      received: 'وقت الاستلام',
+      signature: 'التوقيع',
+      verified: 'موثّق',
+      payload: 'المحتوى',
+      when: 'وقت المنصة',
+    },
     title: 'سجل أحداث SDK',
     description: 'أحداث SDK في الوقت الفعلي',
     clearButton: 'مسح',
@@ -534,8 +634,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'اختبار الإشعارات',
-    description: 'إرسال إشعارات تجريبية عبر BuildBase SDK',
+    title: 'الإشعارات',
+    description: 'أرسل إشعارًا من هذا التطبيق وشاهد أين يصل',
     pushCard: {
       title: 'إشعارات الدفع للمتصفح',
       description: 'تفعيل إشعارات الدفع للمتصفح لهذا الجهاز',
@@ -552,7 +652,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'معرّف الحدث',
       eventSlugHint:
-        'للدفع فقط: أي معرّف يعمل. للبريد الإلكتروني: يجب أن يطابق حدثاً مسجلاً.',
+        'حدث العرض هو "{slug}"، مسجّل في وحدة التحكم مع البريد والدفع. للدفع فقط يعمل أي معرّف؛ البريد يحتاج حدثًا مسجّلًا.',
       title: 'العنوان',
       message: 'الرسالة',
       url: 'الرابط',
@@ -611,11 +711,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'الاستجابة',
+      description: 'ما فعلته المنصة بهذا الإرسال.',
+      openInbox: 'فتح البريد الوارد',
     },
     toast: {
       workspaceRequired: 'يرجى اختيار مساحة عمل أولاً',
       sent: 'تم إرسال الإشعار لـ{count} مستخدم',
       notSent: 'لم يُرسل الإشعار: {reason}',
+      inboxHint: 'تحقّق من الجرس وبريدك الوارد.',
       pushEnabled: 'تم تفعيل إشعارات الدفع',
       pushDisabled: 'تم تعطيل إشعارات الدفع',
       pushFailed: 'فشل تبديل إشعارات الدفع',
@@ -650,6 +753,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'الوكلاء المتصلون',
+      description:
+        'عملاء الذكاء الاصطناعي الذين سمحت لهم بالتصرف باسمك عبر MCP. قطع الاتصال يلغي وصولهم.',
+      guideTitle: 'ربط وكيل',
+      guideDescription:
+        'هذا التطبيق خادم MCP. أضفه إلى Claude أو Cursor أو ChatGPT وسجّل الدخول بحساب BuildBase؛ عندها يقرأ الوكيل مساحات عملك ومستندات هذا التطبيق بصلاحياتك.',
+    },
     title: 'ملف المستخدم',
     description: 'سمات المستخدم وعلامات الميزات',
     identity: {
@@ -919,6 +1030,16 @@ const messages: Messages = {
     rejectAll: 'رفض الكل',
     savePreferences: 'حفظ التفضيلات',
     customize: 'تخصيص',
+  },
+  inbox: {
+    title: 'البريد الوارد',
+    description:
+      'كل ما أرسله لك هذا التطبيق، عنصر واحد لكل إشعار، أيًا كانت طريقة التسليم.',
+    rules: {
+      live: 'تصل العناصر الجديدة مباشرة عبر مقبس؛ دون إعادة تحميل.',
+      read: 'يُعدّ العنصر مقروءًا عند فتحه هنا أو النقر على رابطه. فتح البريد وحده لا يقرؤه.',
+      email: 'يعرض كل عنصر ما فعله البريد والدفع، لتعرف لماذا صمت قناة ما.',
+    },
   },
   tour: {
     title: 'الجولة',

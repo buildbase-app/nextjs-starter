@@ -26,6 +26,7 @@ const messages: Messages = {
       invoices: '发票',
       workspace: '工作区',
       tour: '导览',
+      inbox: '收件箱',
     },
     buttons: {
       signIn: '登录',
@@ -374,7 +375,32 @@ const messages: Messages = {
       count: '此工作区有{count}名成员',
       empty: '未加载成员。请确保您已登录。',
       roleFallback: '成员',
+      changeRole: '更改角色',
     },
+    invite: {
+      title: '通过邮箱邀请',
+      description:
+        '该地址无需已有账户。对方收到邮件，点击链接，注册或登录后接受即可。',
+      noPermission: '你的角色无法邀请成员。',
+      emailPlaceholder: 'name@company.com',
+      role: '角色',
+      send: '发送邀请',
+      sent: '已向 {email} 发送邀请',
+      failed: '出了点问题',
+      resent: '已重新发送邀请',
+      revoked: '已撤销邀请',
+      seatNote: '{count} 条待处理邀请在得到答复前占用席位。',
+      pendingTitle: '待处理',
+      loading: '加载中…',
+      none: '没有待处理的邀请。',
+      invitedBy: '由 {name} 邀请',
+      pendingLabel: '待处理',
+      expires: '{date} 过期',
+      cooldown: '{seconds} 秒后可重发',
+      resend: '重发',
+      revoke: '撤销',
+    },
+    roleChanged: '角色已改为 {role}',
     manage: {
       title: '管理成员',
       description: '打开工作区设置面板以管理角色和邀请',
@@ -436,8 +462,62 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: '功能门控',
+      description: '由工作区或用户功能开关启用的产品部分。',
+    },
+    workbench: {
+      title: '你的文档',
+      description: '文档存放在本应用自己的数据库中；平台负责计量。',
+      search: '搜索文档',
+      allStatuses: '所有状态',
+      allTags: '所有标签',
+      newDocument: '新建文档',
+      newDocumentHint: '创建会在 documents 配额中记录用量并消耗 1 个积分。',
+      titleLabel: '标题',
+      contentLabel: '内容（Markdown）',
+      statusLabel: '状态',
+      tagsLabel: '标签，用逗号分隔',
+      create: '创建',
+      creating: '创建中…',
+      created: '文档已创建',
+      deleted: '文档已删除',
+      delete: '删除',
+      loadSamples: '加载示例文档',
+      clearSamples: '清除示例',
+      samplesLoaded: '已加载 {count} 个示例文档',
+      samplesAlready: '示例已加载',
+      samplesCleared: '已移除 {count} 个示例文档',
+      sample: '示例',
+      empty: '还没有文档。',
+      total: '共 {count} 个',
+      words: '{count} 字',
+      loadFailed: '无法加载文档',
+      viewerNotice:
+        '你在这里的角色是 {role}：只能读，不能写。按钮已禁用，服务器也会拒绝。',
+      quotaExhausted:
+        '此方案的 documents 配额已用完且不允许超额。升级以创建更多。',
+      quotaExhaustedShort: '配额已用完',
+      quotaWarning: '你已使用此方案 documents 配额的 80% 以上。',
+      creditsLow: '积分不多了。每个文档消耗 1 个。',
+      creditsExhausted: '积分已用完。文档仍会创建；计量行会显示已跳过扣费。',
+      refusedQuota:
+        '已拒绝：已使用 {consumed}/{included} 个文档，且方案有硬性上限。',
+      refusedRole: '已拒绝：{role} 角色不能写入。',
+      meteringTitle: '平台记录的内容',
+      meteringUsage: '用量：{used}/{included} 个文档',
+      meteringUsageSkipped: '用量：未记录（此方案没有 documents 配额）',
+      meteringCredits: '积分：消耗 {amount}，剩余 {balance}',
+      meteringCreditsSkipped: '积分：未消耗（无余额）',
+      statuses: {
+        draft: '草稿',
+        in_review: '审阅中',
+        published: '已发布',
+        archived: '已归档',
+      },
+    },
     title: '文档',
-    description: '功能门控文档部分',
+    description: '你工作区的文档：在此处或由代理创建，由平台计量。',
     stats: {
       featureSections: '功能部分',
       featureSectionsSubtitle: '文档功能',
@@ -477,6 +557,19 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: '收到的 Webhook',
+      description:
+        '来自平台的签名服务器间投递，由 /api/webhooks/buildbase 为此工作区保存。',
+      empty: '还没有 Webhook。订阅、邀请成员或购买积分后，平台会调用本应用。',
+      refresh: '刷新',
+      event: '事件',
+      received: '收到时间',
+      signature: '签名',
+      verified: '已验证',
+      payload: '负载',
+      when: '平台时间',
+    },
     title: 'SDK事件日志',
     description: '实时SDK事件',
     clearButton: '清除',
@@ -526,8 +619,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: '通知测试',
-    description: '通过BuildBase SDK发送测试通知',
+    title: '通知',
+    description: '从本应用发送一条通知，看看它落在哪里',
     pushCard: {
       title: '浏览器推送通知',
       description: '为此设备启用浏览器推送通知',
@@ -543,7 +636,8 @@ const messages: Messages = {
     },
     fields: {
       eventSlug: '事件标识符',
-      eventSlugHint: '仅推送：任何标识符均有效。邮件：必须匹配已注册的事件。',
+      eventSlugHint:
+        '演示事件是“{slug}”，已在控制台注册并启用邮件和推送。仅推送时任何标识符均可；邮件需要已注册的事件。',
       title: '标题',
       message: '消息',
       url: 'URL',
@@ -602,11 +696,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: '响应',
+      description: '平台对这次发送做了什么。',
+      openInbox: '打开收件箱',
     },
     toast: {
       workspaceRequired: '请先选择工作区',
       sent: '已向{count}名用户发送通知',
       notSent: '通知未发送：{reason}',
+      inboxHint: '看看铃铛和你的收件箱。',
       pushEnabled: '推送通知已启用',
       pushDisabled: '推送通知已禁用',
       pushFailed: '切换推送通知失败',
@@ -641,6 +738,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: '已连接的智能体',
+      description:
+        '你已授权通过 MCP 以你的身份操作的 AI 客户端。断开连接会撤销其访问权限。',
+      guideTitle: '连接智能体',
+      guideDescription:
+        '本应用是一个 MCP 服务器。把它添加到 Claude、Cursor 或 ChatGPT 并用你的 BuildBase 账号登录；智能体随后会以你的权限读取你的工作区和本应用的文档。',
+    },
     title: '用户个人资料',
     description: '用户属性和功能标志',
     identity: {
@@ -903,6 +1008,15 @@ const messages: Messages = {
     rejectAll: '全部拒绝',
     savePreferences: '保存偏好',
     customize: '自定义',
+  },
+  inbox: {
+    title: '收件箱',
+    description: '本应用发给你的一切，每条通知一项，无论通过哪个渠道送达。',
+    rules: {
+      live: '新项目通过套接字实时到达，无需刷新。',
+      read: '在此打开或点击链接即视为已读。仅打开邮件不算已读。',
+      email: '每一项都显示邮件和推送做了什么，便于了解某个渠道为何没有动静。',
+    },
   },
   tour: {
     title: '导览',

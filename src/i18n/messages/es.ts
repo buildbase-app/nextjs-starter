@@ -26,6 +26,7 @@ const messages: Messages = {
       invoices: 'Facturas',
       workspace: 'Espacio de trabajo',
       tour: 'Recorrido',
+      inbox: 'Bandeja',
     },
     buttons: {
       signIn: 'Iniciar sesión',
@@ -378,7 +379,33 @@ const messages: Messages = {
       count: '{count} miembro(s) en este espacio de trabajo',
       empty: 'No se cargaron miembros. Asegúrate de estar autenticado.',
       roleFallback: 'miembro',
+      changeRole: 'Cambiar rol',
     },
+    invite: {
+      title: 'Invitar por correo',
+      description:
+        'La dirección no necesita cuenta. Recibe un correo, sigue el enlace, se registra o inicia sesión y acepta.',
+      noPermission: 'Tu rol no puede invitar miembros.',
+      emailPlaceholder: 'nombre@empresa.com',
+      role: 'Rol',
+      send: 'Enviar invitación',
+      sent: 'Invitación enviada a {email}',
+      failed: 'Algo salió mal',
+      resent: 'Invitación reenviada',
+      revoked: 'Invitación revocada',
+      seatNote:
+        '{count} invitación(es) pendiente(s) ocupan un asiento hasta responderse.',
+      pendingTitle: 'Pendientes',
+      loading: 'Cargando…',
+      none: 'Nada pendiente.',
+      invitedBy: 'Invitado por {name}',
+      pendingLabel: 'Pendiente',
+      expires: 'caduca {date}',
+      cooldown: 'Reenvío disponible en {seconds}s',
+      resend: 'Reenviar',
+      revoke: 'Revocar',
+    },
+    roleChanged: 'Rol cambiado a {role}',
     manage: {
       title: 'Gestionar miembros',
       description:
@@ -445,8 +472,68 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'Puertas de funciones',
+      description:
+        'Partes de este producto que activa un flag de función del espacio o del usuario.',
+    },
+    workbench: {
+      title: 'Tus documentos',
+      description:
+        'Los documentos viven en la base de datos de esta app; la plataforma los mide.',
+      search: 'Buscar documentos',
+      allStatuses: 'Todos los estados',
+      allTags: 'Todas las etiquetas',
+      newDocument: 'Nuevo documento',
+      newDocumentHint:
+        'Crear uno registra uso en la cuota documents y gasta un crédito.',
+      titleLabel: 'Título',
+      contentLabel: 'Contenido (Markdown)',
+      statusLabel: 'Estado',
+      tagsLabel: 'Etiquetas, separadas por comas',
+      create: 'Crear',
+      creating: 'Creando…',
+      created: 'Documento creado',
+      deleted: 'Documento eliminado',
+      delete: 'Eliminar',
+      loadSamples: 'Cargar documentos de ejemplo',
+      clearSamples: 'Quitar ejemplos',
+      samplesLoaded: '{count} documentos de ejemplo cargados',
+      samplesAlready: 'Los ejemplos ya estaban cargados',
+      samplesCleared: '{count} documentos de ejemplo eliminados',
+      sample: 'Ejemplo',
+      empty: 'Aún no hay documentos.',
+      total: '{count} en total',
+      words: '{count} palabras',
+      loadFailed: 'No se pudieron cargar los documentos',
+      viewerNotice:
+        'Tu rol aquí es {role}: puedes leer, no escribir. Los botones están desactivados y el servidor lo rechaza igualmente.',
+      quotaExhausted:
+        'La cuota documents de este plan está agotada y no tiene excedente. Mejora el plan para crear más.',
+      quotaExhaustedShort: 'Cuota agotada',
+      quotaWarning: 'Has usado más del 80% de la cuota documents de este plan.',
+      creditsLow: 'Quedan pocos créditos. Cada documento gasta uno.',
+      creditsExhausted:
+        'No quedan créditos. Los documentos se crean igual; la línea de medición muestra que se omitió el gasto.',
+      refusedQuota:
+        'Rechazado: {consumed} de {included} documentos usados y el plan tiene tope fijo.',
+      refusedRole: 'Rechazado: el rol {role} no puede escribir.',
+      meteringTitle: 'Lo que registró la plataforma',
+      meteringUsage: 'Uso: {used} de {included} documentos',
+      meteringUsageSkipped:
+        'Uso: no registrado (este plan no tiene cuota documents)',
+      meteringCredits: 'Créditos: {amount} gastados, quedan {balance}',
+      meteringCreditsSkipped: 'Créditos: no gastados (sin saldo)',
+      statuses: {
+        draft: 'Borrador',
+        in_review: 'En revisión',
+        published: 'Publicado',
+        archived: 'Archivado',
+      },
+    },
     title: 'Documentos',
-    description: 'Secciones de documentos con control de características',
+    description:
+      'Los documentos de tu espacio: creados aquí o por un agente, medidos por la plataforma.',
     stats: {
       featureSections: 'Secciones de características',
       featureSectionsSubtitle: 'características de documentos',
@@ -491,6 +578,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'Webhooks recibidos',
+      description:
+        'Entregas firmadas de servidor a servidor desde la plataforma, guardadas por /api/webhooks/buildbase para este espacio de trabajo.',
+      empty:
+        'Aún no hay webhooks. Suscríbete, invita a alguien o compra créditos y la plataforma llamará a esta app.',
+      refresh: 'Actualizar',
+      event: 'Evento',
+      received: 'Recibido',
+      signature: 'Firma',
+      verified: 'Verificada',
+      payload: 'Contenido',
+      when: 'Hora de la plataforma',
+    },
     title: 'Registro de eventos SDK',
     description: 'Eventos SDK en tiempo real',
     clearButton: 'Limpiar',
@@ -542,8 +643,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'Prueba de notificaciones',
-    description: 'Enviar notificaciones de prueba via BuildBase SDK',
+    title: 'Notificaciones',
+    description: 'Envía una notificación desde esta app y mira dónde llega',
     pushCard: {
       title: 'Notificaciones push del navegador',
       description:
@@ -561,7 +662,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'Slug del evento',
       eventSlugHint:
-        'Solo push: cualquier slug funciona. Para email: debe coincidir con un evento registrado.',
+        'El evento de demo es "{slug}", registrado en la consola con correo y push. Para solo push vale cualquier slug; el correo necesita un evento registrado.',
       title: 'Título',
       message: 'Mensaje',
       url: 'URL',
@@ -621,11 +722,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'Respuesta',
+      description: 'Qué hizo la plataforma con el envío.',
+      openInbox: 'Abrir bandeja',
     },
     toast: {
       workspaceRequired: 'Por favor selecciona un espacio de trabajo primero',
       sent: 'Notificación enviada a {count} usuario(s)',
       notSent: 'Notificación no enviada: {reason}',
+      inboxHint: 'Mira la campana y tu bandeja.',
       pushEnabled: 'Notificaciones push habilitadas',
       pushDisabled: 'Notificaciones push deshabilitadas',
       pushFailed: 'Error al cambiar notificaciones push',
@@ -660,6 +764,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'Agentes conectados',
+      description:
+        'Clientes de IA que has autorizado a actuar como tú por MCP. Desconectar revoca su acceso.',
+      guideTitle: 'Conectar un agente',
+      guideDescription:
+        'Esta app es un servidor MCP. Añádela a Claude, Cursor o ChatGPT e inicia sesión con tu cuenta de BuildBase; el agente leerá tus espacios de trabajo y los documentos de esta app con tus permisos.',
+    },
     title: 'Perfil de usuario',
     description: 'Atributos de usuario e indicadores de características',
     identity: {
@@ -940,6 +1052,17 @@ const messages: Messages = {
     rejectAll: 'Rechazar todo',
     savePreferences: 'Guardar preferencias',
     customize: 'Personalizar',
+  },
+  inbox: {
+    title: 'Bandeja de entrada',
+    description:
+      'Todo lo que esta app te ha enviado, un elemento por notificación, se entregara como se entregara.',
+    rules: {
+      live: 'Los nuevos elementos llegan en vivo por socket; sin recargar.',
+      read: 'Un elemento se marca como leído al abrirlo aquí o al pulsar su enlace. Abrir solo el correo no lo lee.',
+      email:
+        'Cada elemento muestra qué hicieron el correo y el push, para ver por qué un canal quedó en silencio.',
+    },
   },
   tour: {
     title: 'El recorrido',

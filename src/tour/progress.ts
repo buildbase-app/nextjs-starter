@@ -69,7 +69,10 @@ export async function detect(
     if (d.kind !== what.kind) continue;
     const key = 'event' in d ? d.event : d.action;
     const seen = 'event' in what ? what.event : what.action;
-    if (key !== seen) continue;
+    // '*' on an event-kind task means "any event of this kind"; the
+    // webhook-received task uses it, since which event arrives first is
+    // whatever the platform sends first.
+    if (key !== seen && !(key === '*' && 'event' in d)) continue;
     if (await completeTask(userId, task.id, 'detected', meta))
       done.push(task.id);
   }
