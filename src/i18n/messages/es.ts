@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'Inicio',
       dashboard: 'Panel',
       documents: 'Documentos',
-      analytics: 'Analíticas',
       team: 'Equipo',
       notifications: 'Notificaciones',
       settings: 'Configuración',
@@ -59,7 +58,7 @@ const messages: Messages = {
         credits: 'Créditos',
         blog: 'Blog',
         changelog: 'Historial de cambios',
-        about: 'Acerca de',
+        tour: 'Recorrido',
         privacy: 'Política de privacidad',
         terms: 'Términos de servicio',
       },
@@ -83,13 +82,13 @@ const messages: Messages = {
     redirecting: 'Redirigiendo...',
   },
   home: {
-    title: 'Mi App',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · Demo en vivo',
+      badge: 'Demo en vivo · 67 tareas',
       heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+        'Cada capacidad de BuildBase, <highlight>una tarea a la vez</highlight>',
       description:
-        'Inicia sesión para ver autenticación, espacios de trabajo multitenancy, facturación de créditos, notificaciones push e i18n en 8 idiomas trabajando juntos — impulsado por el BuildBase SDK.',
+        'Una app real sobre el SDK de BuildBase, con un recorrido guiado: inicia sesión y prueba registro, espacios de trabajo, facturación, uso, créditos, notificaciones, agentes y webhooks, cada uno mostrando de dónde viene.',
       signInToExplore: 'Iniciar sesión para explorar',
       openDashboard: 'Abrir panel',
       viewSource: 'Ver código',
@@ -100,13 +99,13 @@ const messages: Messages = {
         label: 'Idiomas en esta demo',
         sublabel: 'cambia con el selector del encabezado',
       },
-      sdkFeatures: {
-        label: 'Funciones SDK en vivo',
-        sublabel: 'cada una tiene una página de demo',
+      tasks: {
+        label: 'Tareas del recorrido',
+        sublabel: 'cada una una capacidad que probar',
       },
-      notifications: {
-        label: 'Canales de notificación',
-        sublabel: 'push en navegador + email',
+      groups: {
+        label: 'Grupos',
+        sublabel: 'del inicio de sesión a los webhooks',
       },
       authCode: {
         label: 'Líneas de código de auth',
@@ -120,103 +119,6 @@ const messages: Messages = {
       signIn: 'Iniciar sesión y explorar',
       openDashboard: 'Abrir panel',
       howBuilt: 'Cómo está construido',
-    },
-    features: {
-      eyebrow: 'Explora la demo',
-      heading: 'Ve lo que funciona en esta app',
-      description:
-        'Cada capacidad a continuación está en vivo — inicia sesión y haz clic para ver el BuildBase SDK en acción.',
-      auth: {
-        badge: 'Autenticación',
-        title: 'Inicio de sesión OAuth, listo para usar',
-        description:
-          'El botón de inicio de sesión usa el BuildBase SDK — un hook, sin lógica de sesión. Tras iniciar sesión obtienes JWT, token de workspace y rol automáticamente.',
-        tryLabel: 'Inicia sesión para probarlo',
-      },
-      workspaces: {
-        badge: 'Espacios de trabajo',
-        title: 'Selector de workspace multi-inquilino',
-        description:
-          'Cada usuario puede pertenecer a múltiples workspaces con diferentes roles. La barra lateral del dashboard muestra tu workspace actual y permite cambiar entre ellos.',
-        tryLabel: 'Abrir dashboard',
-      },
-      credits: {
-        badge: 'Créditos',
-        title: 'Saldo de créditos en vivo y consumo',
-        description:
-          'La página de créditos muestra tu saldo en vivo, permite comprar más mediante un modal integrado y tiene botones de prueba que llaman a consumeCredits() en tiempo real.',
-        tryLabel: 'Probar consumo de créditos',
-      },
-      notifications: {
-        badge: 'Notificaciones',
-        title: 'Push de navegador y entrega por correo',
-        description:
-          'La página de notificaciones te permite suscribir tu navegador, crear una notificación con título, urgencia, botones de acción y entrega programada — luego enviarla en vivo.',
-        tryLabel: 'Enviar notificación de prueba',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: '8 idiomas incluyendo árabe RTL',
-        description:
-          'Usa el selector de idioma en el encabezado para cambiar entre inglés, hindi, español, francés, alemán, japonés, chino y árabe — el diseño cambia a RTL automáticamente.',
-        tryLabel: 'Cambiar a árabe',
-      },
-      content: {
-        badge: 'Contenido',
-        title: 'Blog MDX y registro de cambios, integrado',
-        description:
-          'El blog y el registro de cambios son archivos MDX compilados en tiempo de construcción via Contentlayer2. Sin CMS, sin base de datos — solo archivos con frontmatter tipado, búsqueda de texto completo y RSS.',
-        tryLabel: 'Leer el blog',
-      },
-      quotas: {
-        badge: 'Cuotas',
-        title: 'Uso de cuotas con puertas de excedente',
-        description:
-          'La página de uso llama a useAllQuotaUsage() para mostrar barras de progreso por cuota. WhenQuotaExhausted bloquea la UI cuando una cuota llega a cero; WhenQuotaOverage muestra detalles del excedente.',
-        tryLabel: 'Ver uso de cuotas',
-      },
-      permissions: {
-        badge: 'Permisos',
-        title: 'Matriz de permisos basada en roles',
-        description:
-          'La página de permisos usa usePermissions() y WhenPermission para mostrar cada permiso de la plataforma como concedido o denegado según tu rol actual en tiempo real.',
-        tryLabel: 'Verificar tus permisos',
-      },
-      events: {
-        badge: 'Eventos',
-        title: 'Flujo de eventos SDK en vivo',
-        description:
-          'La página de eventos conecta eventEmitter.setCallbacks() para capturar todos los eventos SDK — cambios de workspace, actualizaciones de usuario, cambios de rol — en un registro en vivo.',
-        tryLabel: 'Abrir registro de eventos',
-      },
-      userData: {
-        badge: 'Datos de usuario',
-        title: 'Atributos de usuario y banderas de funciones',
-        description:
-          'La página de perfil lee useUserAttributes() y useUserFeatures() para mostrar pares clave-valor personalizados y estados de banderas por usuario, permitiendo escribir nuevos atributos en vivo.',
-        tryLabel: 'Ver tu perfil',
-      },
-      invoices: {
-        badge: 'Facturas',
-        title: 'Historial de facturas y portal de facturación',
-        description:
-          'La página de facturas llama a useInvoices() para listar todas las facturas de Stripe con estado, importe y enlaces PDF. Un botón abre el Portal de Clientes de Stripe via useBillingPortal().',
-        tryLabel: 'Ver facturas',
-      },
-      seats: {
-        badge: 'Asientos',
-        title: 'Límites de asientos y control de invitaciones',
-        description:
-          'El dashboard llama a useSeatStatus() para mostrar el conteo de miembros vs los límites del plan en tiempo real. WhenNoSubscription, WhenSubscription y WhenSubscriptionToPlans controlan la UI para la audiencia correcta.',
-        tryLabel: 'Abrir dashboard',
-      },
-      featureFlags: {
-        badge: 'Banderas de funciones',
-        title: 'Puertas de funciones a nivel de workspace',
-        description:
-          'La página de perfil usa WhenWorkspaceFeatureEnabled y WhenWorkspaceFeatureDisabled para alternar contenido según las banderas a nivel de workspace configuradas en el dashboard de BuildBase.',
-        tryLabel: 'Ver puertas de funciones',
-      },
     },
     meta: {
       title: 'Mi App',
@@ -332,35 +234,6 @@ const messages: Messages = {
         placeholder: 'El contenido de configuración va aquí.',
       },
     },
-  },
-  analytics: {
-    title: 'Analíticas',
-    description: 'Métricas del espacio de trabajo en tiempo real',
-    cards: {
-      plan: 'Plan',
-      teamMembers: 'Miembros del equipo',
-      quotasTracked: 'Cuotas registradas',
-      creditDebits: 'Débitos de créditos',
-      noSubscription: 'sin suscripción',
-      unlimitedSeats: 'asientos ilimitados',
-      maxSeats: '{n} asientos máx.',
-      totalConsumed: '{n} unidades totales consumidas',
-      consumptionEvents: 'eventos de consumo registrados',
-    },
-    quotaConsumption: {
-      title: 'Consumo de cuota',
-      empty: 'No hay cuotas configuradas para este espacio de trabajo.',
-    },
-    featureFlags: {
-      title: 'Indicadores de características',
-      empty: 'No hay indicadores configurados.',
-    },
-    planLimits: {
-      title: 'Límites del plan',
-      empty: 'No hay límites del plan configurados.',
-      unlimited: 'ilimitado',
-    },
-    loading: 'Cargando…',
   },
   team: {
     title: 'Equipo',

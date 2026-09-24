@@ -39,13 +39,7 @@ function AuthButton() {
   );
 }
 
-const NAV_HREFS = [
-  '/#features',
-  '/pricing',
-  '/blog',
-  '/changelog',
-  '/about',
-] as const;
+const NAV_HREFS = ['/#tour', '/pricing', '/blog', '/changelog'] as const;
 
 type NavHref = (typeof NAV_HREFS)[number];
 
@@ -57,11 +51,10 @@ export function HomeHeader({ title }: HomeHeaderProps) {
   const t = useTranslations('common');
 
   const NAV_LINK_KEYS: Record<NavHref, string> = {
-    '/#features': t('footer.links.features'),
+    '/#tour': t('footer.links.tour'),
     '/pricing': t('footer.links.pricing'),
     '/blog': t('footer.links.blog'),
     '/changelog': t('footer.links.changelog'),
-    '/about': t('footer.links.about'),
   };
 
   return (

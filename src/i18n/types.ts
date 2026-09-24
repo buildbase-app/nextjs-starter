@@ -6,7 +6,6 @@ export interface CommonMessages {
     home: string;
     dashboard: string;
     documents: string;
-    analytics: string;
     team: string;
     notifications: string;
     settings: string;
@@ -58,7 +57,7 @@ export interface CommonMessages {
       credits: string;
       blog: string;
       changelog: string;
-      about: string;
+      tour: string;
       privacy: string;
       terms: string;
     };
@@ -102,8 +101,8 @@ export interface HomeMessages {
   };
   stats: {
     languages: { label: string; sublabel: string };
-    sdkFeatures: { label: string; sublabel: string };
-    notifications: { label: string; sublabel: string };
+    tasks: { label: string; sublabel: string };
+    groups: { label: string; sublabel: string };
     authCode: { label: string; sublabel: string };
   };
   cta: {
@@ -112,24 +111,6 @@ export interface HomeMessages {
     signIn: string;
     openDashboard: string;
     howBuilt: string;
-  };
-  features: {
-    eyebrow: string;
-    heading: string;
-    description: string;
-    auth: HomeFeature;
-    workspaces: HomeFeature;
-    credits: HomeFeature;
-    notifications: HomeFeature;
-    i18n: HomeFeature;
-    content: HomeFeature;
-    quotas: HomeFeature;
-    permissions: HomeFeature;
-    events: HomeFeature;
-    userData: HomeFeature;
-    invoices: HomeFeature;
-    seats: HomeFeature;
-    featureFlags: HomeFeature;
   };
   meta: {
     title: string;
@@ -243,36 +224,6 @@ export interface DashboardMessages {
       placeholder: string;
     };
   };
-}
-
-export interface AnalyticsMessages {
-  title: string;
-  description: string;
-  cards: {
-    plan: string;
-    teamMembers: string;
-    quotasTracked: string;
-    creditDebits: string;
-    noSubscription: string;
-    unlimitedSeats: string;
-    maxSeats: string;
-    totalConsumed: string;
-    consumptionEvents: string;
-  };
-  quotaConsumption: {
-    title: string;
-    empty: string;
-  };
-  featureFlags: {
-    title: string;
-    empty: string;
-  };
-  planLimits: {
-    title: string;
-    empty: string;
-    unlimited: string;
-  };
-  loading: string;
 }
 
 export interface TeamMessages {
@@ -931,7 +882,6 @@ export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
   dashboard: DashboardMessages;
-  analytics: AnalyticsMessages;
   team: TeamMessages;
   settings: SettingsMessages;
   documents: DocumentsMessages;

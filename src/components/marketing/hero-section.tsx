@@ -83,7 +83,7 @@ export function HeroSection() {
         </WhenAuthenticated>
         <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
           <a
-            href="https://github.com/buildbase-dev"
+            href="https://github.com/buildbase-app/nextjs-starter"
             target="_blank"
             rel="noopener noreferrer"
           >

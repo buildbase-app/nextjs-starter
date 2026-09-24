@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'Home',
       dashboard: 'Dashboard',
       documents: 'Documents',
-      analytics: 'Analytics',
       team: 'Team',
       notifications: 'Notifications',
       settings: 'Settings',
@@ -59,7 +58,7 @@ const messages: Messages = {
         credits: 'Credits',
         blog: 'Blog',
         changelog: 'Changelog',
-        about: 'About',
+        tour: 'Tour',
         privacy: 'Privacy Policy',
         terms: 'Terms of Service',
       },
@@ -83,13 +82,13 @@ const messages: Messages = {
     redirecting: 'Redirecting...',
   },
   home: {
-    title: 'My App',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · Live Demo',
+      badge: 'Live demo · 67 tasks',
       heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+        'Every BuildBase capability, <highlight>one task at a time</highlight>',
       description:
-        'Sign in to see auth, multi-tenant workspaces, credit billing, push notifications, and 8-language i18n all working together in a real app — powered by the BuildBase SDK.',
+        'A real app on the BuildBase SDK, with a guided tour: sign in and work through sign-up, workspaces, billing, usage, credits, notifications, agents and webhooks, each one showing where it comes from.',
       signInToExplore: 'Sign in to explore',
       openDashboard: 'Open Dashboard',
       viewSource: 'View source',
@@ -100,13 +99,13 @@ const messages: Messages = {
         label: 'Languages in this demo',
         sublabel: 'switch with the header toggle',
       },
-      sdkFeatures: {
-        label: 'Live SDK features',
-        sublabel: 'each has a working demo page',
+      tasks: {
+        label: 'Tasks in the tour',
+        sublabel: 'each one a capability to try',
       },
-      notifications: {
-        label: 'Notification channels',
-        sublabel: 'browser push + email',
+      groups: {
+        label: 'Groups',
+        sublabel: 'from sign-in to webhooks',
       },
       authCode: {
         label: 'Lines of auth code',
@@ -120,103 +119,6 @@ const messages: Messages = {
       signIn: 'Sign in & explore',
       openDashboard: 'Open Dashboard',
       howBuilt: "How it's built",
-    },
-    features: {
-      eyebrow: 'Explore the demo',
-      heading: "See what's working in this app",
-      description:
-        'Each capability below is live — sign in and click through to see the BuildBase SDK in action, not just in writing.',
-      auth: {
-        badge: 'Auth',
-        title: 'OAuth sign-in, out of the box',
-        description:
-          'The Sign In button above uses the BuildBase SDK — one hook, no session logic to write. After signing in you get a JWT, workspace token, and role automatically.',
-        tryLabel: 'Sign in to try it',
-      },
-      workspaces: {
-        badge: 'Workspaces',
-        title: 'Multi-tenant workspace switcher',
-        description:
-          'Every user can belong to multiple workspaces with different roles. The dashboard sidebar shows your current workspace and lets you switch between them.',
-        tryLabel: 'Open dashboard',
-      },
-      credits: {
-        badge: 'Credits',
-        title: 'Live credit balance & consumption',
-        description:
-          "The credits page shows your live balance, lets you buy more via a built-in modal, and has test buttons that call the SDK's consumeCredits() in real time.",
-        tryLabel: 'Try credit consumption',
-      },
-      notifications: {
-        badge: 'Notifications',
-        title: 'Browser push & email delivery',
-        description:
-          'The notifications page lets you subscribe your browser, compose a notification with title, urgency, action buttons, and scheduled delivery — then send it live.',
-        tryLabel: 'Send a test notification',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: '8 languages including Arabic RTL',
-        description:
-          'Use the language switcher in the header to switch between English, Hindi, Spanish, French, German, Japanese, Chinese, and Arabic — the layout flips to RTL automatically.',
-        tryLabel: 'Switch to Arabic',
-      },
-      content: {
-        badge: 'Content',
-        title: 'MDX blog & changelog, built in',
-        description:
-          'The blog and changelog are MDX files compiled at build time via Contentlayer2. No CMS, no database — just files with type-safe frontmatter, full-text search, and RSS.',
-        tryLabel: 'Read the blog',
-      },
-      quotas: {
-        badge: 'Quotas',
-        title: 'Quota usage with overage gates',
-        description:
-          'The usage page calls useAllQuotaUsage() to show per-quota progress bars. WhenQuotaExhausted blocks UI when a quota hits zero; WhenQuotaOverage shows overage details.',
-        tryLabel: 'View quota usage',
-      },
-      permissions: {
-        badge: 'Permissions',
-        title: 'Role-based permission matrix',
-        description:
-          'The permissions page uses usePermissions() and WhenPermission to show every platform permission as granted or denied based on your current workspace role in real time.',
-        tryLabel: 'Check your permissions',
-      },
-      events: {
-        badge: 'Events',
-        title: 'Live SDK event stream',
-        description:
-          'The events page wires up eventEmitter.setCallbacks() to capture all SDK events as they fire — workspace changes, user updates, role changes — in a live scrolling log.',
-        tryLabel: 'Open event log',
-      },
-      userData: {
-        badge: 'User data',
-        title: 'User attributes & feature flags',
-        description:
-          'The profile page reads useUserAttributes() and useUserFeatures() to show custom key-value pairs and per-user feature flag states, and lets you write new attributes live.',
-        tryLabel: 'View your profile',
-      },
-      invoices: {
-        badge: 'Invoices',
-        title: 'Invoice history & billing portal',
-        description:
-          'The invoices page calls useInvoices() to list all Stripe invoices with status, amount, and PDF links. A single button opens the Stripe Customer Portal via useBillingPortal().',
-        tryLabel: 'View invoices',
-      },
-      seats: {
-        badge: 'Seats',
-        title: 'Seat limits & invite gating',
-        description:
-          'The dashboard calls useSeatStatus() to show member count vs plan limits in real time. WhenNoSubscription, WhenSubscription, and WhenSubscriptionToPlans gate UI to the right audience.',
-        tryLabel: 'Open dashboard',
-      },
-      featureFlags: {
-        badge: 'Feature flags',
-        title: 'Workspace-level feature gates',
-        description:
-          'The profile page uses WhenWorkspaceFeatureEnabled and WhenWorkspaceFeatureDisabled to toggle content based on workspace-level feature flags configured in the BuildBase dashboard.',
-        tryLabel: 'See feature gates',
-      },
     },
     meta: {
       title: 'My App',
@@ -332,35 +234,6 @@ const messages: Messages = {
         placeholder: 'Settings content goes here.',
       },
     },
-  },
-  analytics: {
-    title: 'Analytics',
-    description: 'Workspace metrics pulled live from the BuildBase SDK',
-    cards: {
-      plan: 'Plan',
-      teamMembers: 'Team members',
-      quotasTracked: 'Quotas tracked',
-      creditDebits: 'Credit debits',
-      noSubscription: 'no subscription',
-      unlimitedSeats: 'unlimited seats',
-      maxSeats: '{n} max seats',
-      totalConsumed: '{n} total units consumed',
-      consumptionEvents: 'consumption events recorded',
-    },
-    quotaConsumption: {
-      title: 'Quota consumption',
-      empty: 'No quotas configured for this workspace.',
-    },
-    featureFlags: {
-      title: 'Workspace feature flags',
-      empty: 'No feature flags configured.',
-    },
-    planLimits: {
-      title: 'Plan limits',
-      empty: 'No plan limits configured.',
-      unlimited: 'unlimited',
-    },
-    loading: 'Loading…',
   },
   team: {
     title: 'Team',

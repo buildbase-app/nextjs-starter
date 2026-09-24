@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'الرئيسية',
       dashboard: 'لوحة التحكم',
       documents: 'المستندات',
-      analytics: 'التحليلات',
       team: 'الفريق',
       notifications: 'الإشعارات',
       settings: 'الإعدادات',
@@ -59,7 +58,7 @@ const messages: Messages = {
         credits: 'الاعتمادات',
         blog: 'المدونة',
         changelog: 'سجل التغييرات',
-        about: 'حول',
+        tour: 'الجولة',
         privacy: 'سياسة الخصوصية',
         terms: 'شروط الخدمة',
       },
@@ -83,13 +82,12 @@ const messages: Messages = {
     redirecting: 'جاري إعادة التوجيه...',
   },
   home: {
-    title: 'تطبيقي',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · عرض مباشر',
-      heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+      badge: 'عرض مباشر · 67 مهمة',
+      heading: 'كل قدرة من BuildBase، <highlight>مهمة تلو الأخرى</highlight>',
       description:
-        'سجّل الدخول لترى المصادقة، ومساحات العمل متعددة المستأجرين، وفوترة الاعتمادات، والإشعارات الفورية، وi18n بـ8 لغات تعمل معاً في تطبيق حقيقي — مدعومة بـ BuildBase SDK.',
+        'تطبيق حقيقي مبني على BuildBase SDK مع جولة موجهة: سجّل الدخول وجرّب التسجيل ومساحات العمل والفوترة والاستخدام والرصيد والإشعارات والوكلاء والـ webhooks، وكل منها يبيّن مصدره.',
       signInToExplore: 'سجّل الدخول للاستكشاف',
       openDashboard: 'فتح لوحة التحكم',
       viewSource: 'عرض الكود المصدري',
@@ -100,13 +98,13 @@ const messages: Messages = {
         label: 'اللغات في هذا العرض',
         sublabel: 'قم بالتبديل من خلال الزر في الرأس',
       },
-      sdkFeatures: {
-        label: 'ميزات SDK المباشرة',
-        sublabel: 'لكل ميزة صفحة عرض',
+      tasks: {
+        label: 'مهام الجولة',
+        sublabel: 'كل واحدة قدرة لتجربتها',
       },
-      notifications: {
-        label: 'قنوات الإشعارات',
-        sublabel: 'دفع المتصفح + البريد الإلكتروني',
+      groups: {
+        label: 'المجموعات',
+        sublabel: 'من تسجيل الدخول إلى الـ webhooks',
       },
       authCode: {
         label: 'أسطر كود المصادقة',
@@ -120,103 +118,6 @@ const messages: Messages = {
       signIn: 'سجّل الدخول واستكشف',
       openDashboard: 'فتح لوحة التحكم',
       howBuilt: 'كيف تم بناؤه',
-    },
-    features: {
-      eyebrow: 'استكشف العرض',
-      heading: 'انظر ما يعمل في هذا التطبيق',
-      description:
-        'كل ميزة أدناه مباشرة — سجّل الدخول وانقر للاطلاع على BuildBase SDK في العمل الفعلي.',
-      auth: {
-        badge: 'المصادقة',
-        title: 'تسجيل الدخول عبر OAuth، جاهز للاستخدام',
-        description:
-          'زر تسجيل الدخول أعلاه يستخدم BuildBase SDK — خطاف واحد، لا منطق للجلسة تحتاج كتابته. بعد تسجيل الدخول ستحصل على JWT وtoken مساحة عمل ودور تلقائياً.',
-        tryLabel: 'سجّل الدخول لتجربته',
-      },
-      workspaces: {
-        badge: 'مساحات العمل',
-        title: 'محوّل مساحة العمل متعدد المستأجرين',
-        description:
-          'كل مستخدم يمكنه الانتماء لمساحات عمل متعددة بأدوار مختلفة. الشريط الجانبي في لوحة التحكم يُظهر مساحة عملك الحالية ويتيح التبديل بينها.',
-        tryLabel: 'فتح لوحة التحكم',
-      },
-      credits: {
-        badge: 'الاعتمادات',
-        title: 'رصيد الاعتمادات المباشر واستهلاكها',
-        description:
-          'صفحة الاعتمادات تُظهر رصيدك المباشر، وتتيح شراء المزيد عبر نافذة مدمجة، وتحتوي أزرار اختبار تستدعي consumeCredits() في الوقت الفعلي.',
-        tryLabel: 'تجربة استهلاك الاعتمادات',
-      },
-      notifications: {
-        badge: 'الإشعارات',
-        title: 'إشعارات المتصفح الفورية والبريد الإلكتروني',
-        description:
-          'صفحة الإشعارات تتيح الاشتراك في إشعارات المتصفح، وإنشاء إشعار بعنوان وأولوية وأزرار إجراء وتسليم مجدول — ثم إرساله مباشرةً.',
-        tryLabel: 'إرسال إشعار تجريبي',
-      },
-      i18n: {
-        badge: 'التدويل',
-        title: '8 لغات بما فيها العربية RTL',
-        description:
-          'استخدم محوّل اللغة في الرأس للتبديل بين الإنجليزية والهندية والإسبانية والفرنسية والألمانية واليابانية والصينية والعربية — يتحول التخطيط تلقائياً إلى RTL.',
-        tryLabel: 'التبديل إلى العربية',
-      },
-      content: {
-        badge: 'المحتوى',
-        title: 'مدونة MDX وسجل التغييرات، مدمجان',
-        description:
-          'المدونة وسجل التغييرات عبارة عن ملفات MDX تُترجَم وقت البناء عبر Contentlayer2. لا CMS، لا قاعدة بيانات — مجرد ملفات بـfrontmatter آمن من حيث الأنواع وبحث نصي كامل وRSS.',
-        tryLabel: 'قراءة المدونة',
-      },
-      quotas: {
-        badge: 'الحصص',
-        title: 'استخدام الحصص مع بوابات الزيادة',
-        description:
-          'صفحة الاستخدام تستدعي useAllQuotaUsage() لعرض أشرطة تقدم لكل حصة. WhenQuotaExhausted تحجب الواجهة عند وصول الحصة للصفر؛ WhenQuotaOverage تُظهر تفاصيل الزيادة.',
-        tryLabel: 'عرض استخدام الحصص',
-      },
-      permissions: {
-        badge: 'الصلاحيات',
-        title: 'مصفوفة الأذونات القائمة على الأدوار',
-        description:
-          'صفحة الأذونات تستخدم usePermissions() وWhenPermission لعرض كل أذونات المنصة كممنوحة أو مرفوضة بناءً على دورك في مساحة العمل الحالية في الوقت الفعلي.',
-        tryLabel: 'التحقق من صلاحياتك',
-      },
-      events: {
-        badge: 'الأحداث',
-        title: 'تدفق أحداث SDK المباشر',
-        description:
-          'صفحة الأحداث تربط eventEmitter.setCallbacks() لالتقاط جميع أحداث SDK أثناء إطلاقها — تغييرات مساحة العمل، تحديثات المستخدم، تغييرات الدور — في سجل تمرير مباشر.',
-        tryLabel: 'فتح سجل الأحداث',
-      },
-      userData: {
-        badge: 'بيانات المستخدم',
-        title: 'سمات المستخدم وعلامات الميزات',
-        description:
-          'صفحة الملف الشخصي تقرأ useUserAttributes() وuseUserFeatures() لعرض أزواج مفتاح-قيمة مخصصة وحالات علامات الميزات لكل مستخدم، وتتيح كتابة سمات جديدة مباشرةً.',
-        tryLabel: 'عرض ملفك الشخصي',
-      },
-      invoices: {
-        badge: 'الفواتير',
-        title: 'سجل الفواتير وبوابة الفاتورة',
-        description:
-          'صفحة الفواتير تستدعي useInvoices() لسرد جميع فواتير Stripe بالحالة والمبلغ وروابط PDF. زر واحد يفتح بوابة عملاء Stripe عبر useBillingPortal().',
-        tryLabel: 'عرض الفواتير',
-      },
-      seats: {
-        badge: 'المقاعد',
-        title: 'حدود المقاعد وبوابة الدعوات',
-        description:
-          'تستدعي لوحة التحكم useSeatStatus() لعرض عدد الأعضاء مقابل حدود الخطة في الوقت الفعلي. WhenNoSubscription وWhenSubscription وWhenSubscriptionToPlans تتحكم في الواجهة للجمهور المناسب.',
-        tryLabel: 'فتح لوحة التحكم',
-      },
-      featureFlags: {
-        badge: 'علامات الميزات',
-        title: 'بوابات الميزات على مستوى مساحة العمل',
-        description:
-          'صفحة الملف الشخصي تستخدم WhenWorkspaceFeatureEnabled وWhenWorkspaceFeatureDisabled لتبديل المحتوى بناءً على علامات الميزات المكوّنة في لوحة تحكم BuildBase.',
-        tryLabel: 'عرض بوابات الميزات',
-      },
     },
     meta: {
       title: 'تطبيقي',
@@ -332,35 +233,6 @@ const messages: Messages = {
         placeholder: 'محتوى الإعدادات سيظهر هنا.',
       },
     },
-  },
-  analytics: {
-    title: 'التحليلات',
-    description: 'مقاييس مساحة العمل المسحوبة مباشرة من BuildBase SDK',
-    cards: {
-      plan: 'الخطة',
-      teamMembers: 'أعضاء الفريق',
-      quotasTracked: 'الحصص المتتبعة',
-      creditDebits: 'خصومات الاعتمادات',
-      noSubscription: 'لا يوجد اشتراك',
-      unlimitedSeats: 'مقاعد غير محدودة',
-      maxSeats: '{n} حد أقصى للمقاعد',
-      totalConsumed: '{n} وحدة إجمالية مستهلكة',
-      consumptionEvents: 'أحداث استهلاك مسجلة',
-    },
-    quotaConsumption: {
-      title: 'استهلاك الحصص',
-      empty: 'لا توجد حصص مكوّنة لهذه مساحة العمل.',
-    },
-    featureFlags: {
-      title: 'علامات ميزات مساحة العمل',
-      empty: 'لا توجد علامات ميزات مكوّنة.',
-    },
-    planLimits: {
-      title: 'حدود الخطة',
-      empty: 'لا توجد حدود خطة مكوّنة.',
-      unlimited: 'غير محدود',
-    },
-    loading: 'جاري التحميل…',
   },
   team: {
     title: 'الفريق',

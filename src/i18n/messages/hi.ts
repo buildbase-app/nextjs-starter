@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'होम',
       dashboard: 'डैशबोर्ड',
       documents: 'दस्तावेज़',
-      analytics: 'विश्लेषण',
       team: 'टीम',
       notifications: 'सूचनाएं',
       settings: 'सेटिंग्स',
@@ -59,7 +58,7 @@ const messages: Messages = {
         credits: 'क्रेडिट',
         blog: 'ब्लॉग',
         changelog: 'परिवर्तन लॉग',
-        about: 'हमारे बारे में',
+        tour: 'टूर',
         privacy: 'गोपनीयता नीति',
         terms: 'सेवा की शर्तें',
       },
@@ -83,13 +82,13 @@ const messages: Messages = {
     redirecting: 'रीडायरेक्ट हो रहा है...',
   },
   home: {
-    title: 'मेरा ऐप',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · लाइव डेमो',
+      badge: 'लाइव डेमो · 67 कार्य',
       heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+        'BuildBase की हर क्षमता, <highlight>एक बार में एक कार्य</highlight>',
       description:
-        'साइन इन करके देखें — प्रमाणीकरण, मल्टी-टेनेंट वर्कस्पेस, क्रेडिट बिलिंग, पुश नोटिफिकेशन और 8 भाषाओं में i18n — सब एक असली ऐप में BuildBase SDK द्वारा संचालित।',
+        'BuildBase SDK पर बना असली ऐप, गाइडेड टूर के साथ: साइन इन करें और साइन-अप, वर्कस्पेस, बिलिंग, उपयोग, क्रेडिट, सूचनाएँ, एजेंट और वेबहुक आज़माएँ, हर एक बताता है कि वह कहाँ से आता है।',
       signInToExplore: 'साइन इन करके देखें',
       openDashboard: 'डैशबोर्ड खोलें',
       viewSource: 'सोर्स देखें',
@@ -100,13 +99,13 @@ const messages: Messages = {
         label: 'इस डेमो में भाषाएं',
         sublabel: 'हेडर टॉगल से बदलें',
       },
-      sdkFeatures: {
-        label: 'लाइव SDK सुविधाएं',
-        sublabel: 'हर सुविधा का डेमो पेज है',
+      tasks: {
+        label: 'टूर के कार्य',
+        sublabel: 'हर एक आज़माने योग्य क्षमता',
       },
-      notifications: {
-        label: 'नोटिफिकेशन चैनल',
-        sublabel: 'ब्राउज़र पुश + ईमेल',
+      groups: {
+        label: 'समूह',
+        sublabel: 'साइन-इन से वेबहुक तक',
       },
       authCode: {
         label: 'प्रमाणीकरण कोड की लाइनें',
@@ -120,103 +119,6 @@ const messages: Messages = {
       signIn: 'साइन इन करें और देखें',
       openDashboard: 'डैशबोर्ड खोलें',
       howBuilt: 'कैसे बनाया गया',
-    },
-    features: {
-      eyebrow: 'डेमो देखें',
-      heading: 'इस ऐप में क्या काम कर रहा है',
-      description:
-        'नीचे हर सुविधा लाइव है — साइन इन करें और BuildBase SDK को काम करते हुए देखें।',
-      auth: {
-        badge: 'प्रमाणीकरण',
-        title: 'OAuth साइन-इन, बिना किसी झंझट के',
-        description:
-          'ऊपर का साइन इन बटन BuildBase SDK का उपयोग करता है — एक हुक, कोई सेशन लॉजिक नहीं। साइन इन के बाद आपको JWT, वर्कस्पेस टोकन और रोल अपने आप मिलते हैं।',
-        tryLabel: 'साइन इन करके देखें',
-      },
-      workspaces: {
-        badge: 'वर्कस्पेस',
-        title: 'मल्टी-टेनेंट वर्कस्पेस स्विचर',
-        description:
-          'हर उपयोगकर्ता अलग-अलग रोल के साथ कई वर्कस्पेस में हो सकता है। डैशबोर्ड साइडबार आपका मौजूदा वर्कस्पेस दिखाता है और उनके बीच स्विच करने देता है।',
-        tryLabel: 'डैशबोर्ड खोलें',
-      },
-      credits: {
-        badge: 'क्रेडिट',
-        title: 'लाइव क्रेडिट बैलेंस और उपयोग',
-        description:
-          'क्रेडिट पेज आपका लाइव बैलेंस दिखाता है, बिल्ट-इन मोडल से और खरीदने देता है, और SDK के consumeCredits() को रियल-टाइम में टेस्ट करने के बटन हैं।',
-        tryLabel: 'क्रेडिट उपयोग देखें',
-      },
-      notifications: {
-        badge: 'नोटिफिकेशन',
-        title: 'ब्राउज़र पुश और ईमेल डिलीवरी',
-        description:
-          'नोटिफिकेशन पेज से अपने ब्राउज़र को सब्सक्राइब करें, शीर्षक, प्राथमिकता, एक्शन बटन और शेड्यूल के साथ नोटिफिकेशन बनाएं — फिर सीधे भेजें।',
-        tryLabel: 'टेस्ट नोटिफिकेशन भेजें',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: 'अरबी RTL सहित 8 भाषाएं',
-        description:
-          'हेडर में भाषा स्विचर से अंग्रेज़ी, हिंदी, स्पेनिश, फ्रेंच, जर्मन, जापानी, चीनी और अरबी के बीच स्विच करें — लेआउट अपने आप RTL में बदल जाता है।',
-        tryLabel: 'अरबी में बदलें',
-      },
-      content: {
-        badge: 'कंटेंट',
-        title: 'MDX ब्लॉग और चेंजलॉग, बिल्ट-इन',
-        description:
-          'ब्लॉग और चेंजलॉग MDX फ़ाइलें हैं जो Contentlayer2 के ज़रिए बिल्ड टाइम पर कंपाइल होती हैं। कोई CMS नहीं, कोई डेटाबेस नहीं — सिर्फ टाइप-सेफ frontmatter, फुल-टेक्स्ट सर्च और RSS वाली फ़ाइलें।',
-        tryLabel: 'ब्लॉग पढ़ें',
-      },
-      quotas: {
-        badge: 'कोटा',
-        title: 'कोटा उपयोग और ओवरेज गेट्स',
-        description:
-          'उपयोग पेज useAllQuotaUsage() कॉल करता है और हर कोटा की प्रोग्रेस बार दिखाता है। WhenQuotaExhausted कोटा ज़ीरो होने पर UI ब्लॉक करता है; WhenQuotaOverage ओवरेज विवरण दिखाता है।',
-        tryLabel: 'कोटा उपयोग देखें',
-      },
-      permissions: {
-        badge: 'अनुमतियां',
-        title: 'भूमिका-आधारित अनुमति मैट्रिक्स',
-        description:
-          'अनुमतियां पेज usePermissions() और WhenPermission का उपयोग करता है और आपके मौजूदा वर्कस्पेस रोल के आधार पर हर प्लेटफॉर्म अनुमति को रियल-टाइम में स्वीकृत या अस्वीकृत के रूप में दिखाता है।',
-        tryLabel: 'अपनी अनुमतियां देखें',
-      },
-      events: {
-        badge: 'इवेंट',
-        title: 'लाइव SDK इवेंट स्ट्रीम',
-        description:
-          'इवेंट पेज eventEmitter.setCallbacks() को वायर करता है और सभी SDK इवेंट कैप्चर करता है — वर्कस्पेस बदलाव, यूज़र अपडेट, रोल बदलाव — एक लाइव स्क्रॉलिंग लॉग में।',
-        tryLabel: 'इवेंट लॉग खोलें',
-      },
-      userData: {
-        badge: 'यूज़र डेटा',
-        title: 'यूज़र एट्रिब्यूट और फीचर फ्लैग',
-        description:
-          'प्रोफ़ाइल पेज useUserAttributes() और useUserFeatures() पढ़ता है और कस्टम की-वैल्यू जोड़े और प्रति-यूज़र फीचर फ्लैग स्थितियां दिखाता है, और लाइव नए एट्रिब्यूट लिखने देता है।',
-        tryLabel: 'अपनी प्रोफ़ाइल देखें',
-      },
-      invoices: {
-        badge: 'इनवॉइस',
-        title: 'इनवॉइस इतिहास और बिलिंग पोर्टल',
-        description:
-          'इनवॉइस पेज useInvoices() कॉल करता है और सभी Stripe इनवॉइस स्टेटस, राशि और PDF लिंक के साथ सूचीबद्ध करता है। एक बटन useBillingPortal() के ज़रिए Stripe कस्टमर पोर्टल खोलता है।',
-        tryLabel: 'इनवॉइस देखें',
-      },
-      seats: {
-        badge: 'सीटें',
-        title: 'सीट सीमा और इनवाइट गेटिंग',
-        description:
-          'डैशबोर्ड useSeatStatus() कॉल करता है और रियल-टाइम में मेम्बर काउंट बनाम प्लान सीमाएं दिखाता है। WhenNoSubscription, WhenSubscription और WhenSubscriptionToPlans सही ऑडियंस के लिए UI नियंत्रित करते हैं।',
-        tryLabel: 'डैशबोर्ड खोलें',
-      },
-      featureFlags: {
-        badge: 'फीचर फ्लैग',
-        title: 'वर्कस्पेस-स्तरीय फीचर गेट्स',
-        description:
-          'प्रोफ़ाइल पेज WhenWorkspaceFeatureEnabled और WhenWorkspaceFeatureDisabled का उपयोग करता है और BuildBase डैशबोर्ड में कॉन्फ़िगर किए गए वर्कस्पेस-स्तरीय फीचर फ्लैग के आधार पर कंटेंट टॉगल करता है।',
-        tryLabel: 'फीचर गेट्स देखें',
-      },
     },
     meta: {
       title: 'मेरा ऐप',
@@ -333,35 +235,6 @@ const messages: Messages = {
         placeholder: 'सेटिंग्स सामग्री यहां आती है।',
       },
     },
-  },
-  analytics: {
-    title: 'विश्लेषण',
-    description: 'रियल-टाइम वर्कस्पेस मेट्रिक्स',
-    cards: {
-      plan: 'प्लान',
-      teamMembers: 'टीम सदस्य',
-      quotasTracked: 'ट्रैक किए गए कोटा',
-      creditDebits: 'क्रेडिट डेबिट',
-      noSubscription: 'कोई सदस्यता नहीं',
-      unlimitedSeats: 'असीमित सीटें',
-      maxSeats: '{n} सीटें अधिकतम',
-      totalConsumed: 'कुल {n} इकाइयां उपभोग की गईं',
-      consumptionEvents: 'उपभोग घटनाएं रिकॉर्ड की गईं',
-    },
-    quotaConsumption: {
-      title: 'कोटा उपभोग',
-      empty: 'इस वर्कस्पेस के लिए कोई कोटा कॉन्फ़िगर नहीं।',
-    },
-    featureFlags: {
-      title: 'फ़ीचर फ़्लैग',
-      empty: 'कोई फ़्लैग कॉन्फ़िगर नहीं।',
-    },
-    planLimits: {
-      title: 'प्लान सीमाएं',
-      empty: 'कोई प्लान सीमाएं कॉन्फ़िगर नहीं।',
-      unlimited: 'असीमित',
-    },
-    loading: 'लोड हो रहा है…',
   },
   team: {
     title: 'टीम',

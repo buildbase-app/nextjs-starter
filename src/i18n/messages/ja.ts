@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'ホーム',
       dashboard: 'ダッシュボード',
       documents: 'ドキュメント',
-      analytics: '分析',
       team: 'チーム',
       notifications: '通知',
       settings: '設定',
@@ -59,7 +58,7 @@ const messages: Messages = {
         credits: 'クレジット',
         blog: 'ブログ',
         changelog: '変更履歴',
-        about: '概要',
+        tour: 'ツアー',
         privacy: 'プライバシーポリシー',
         terms: '利用規約',
       },
@@ -83,13 +82,12 @@ const messages: Messages = {
     redirecting: 'リダイレクト中...',
   },
   home: {
-    title: 'マイアプリ',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · ライブデモ',
-      heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+      badge: 'ライブデモ · 67タスク',
+      heading: 'BuildBaseのすべての機能を、<highlight>ひとつずつ</highlight>',
       description:
-        'サインインして、認証、マルチテナントワークスペース、クレジット課金、プッシュ通知、8言語対応のi18nがすべて一つの実際のアプリで動作しているのを確認してください — BuildBase SDK搭載。',
+        'BuildBase SDKで作られた実際のアプリとガイド付きツアー。サインインして、登録、ワークスペース、請求、使用量、クレジット、通知、エージェント、Webhookを順に試し、それぞれの出どころを確認できます。',
       signInToExplore: 'サインインして探索',
       openDashboard: 'ダッシュボードを開く',
       viewSource: 'ソースを見る',
@@ -100,13 +98,13 @@ const messages: Messages = {
         label: 'このデモの言語数',
         sublabel: 'ヘッダーのトグルで切り替え',
       },
-      sdkFeatures: {
-        label: 'ライブSDK機能',
-        sublabel: '各機能にデモページあり',
+      tasks: {
+        label: 'ツアーのタスク',
+        sublabel: 'それぞれが試せる機能',
       },
-      notifications: {
-        label: '通知チャンネル',
-        sublabel: 'ブラウザプッシュ + メール',
+      groups: {
+        label: 'グループ',
+        sublabel: 'サインインからWebhookまで',
       },
       authCode: {
         label: '認証コードの行数',
@@ -120,103 +118,6 @@ const messages: Messages = {
       signIn: 'サインインして探索',
       openDashboard: 'ダッシュボードを開く',
       howBuilt: '構築方法',
-    },
-    features: {
-      eyebrow: 'デモを探索',
-      heading: 'このアプリで動作しているものを見る',
-      description:
-        '以下の各機能はライブです — サインインしてクリックし、BuildBase SDKの動作を確認してください。',
-      auth: {
-        badge: '認証',
-        title: 'OAuthサインイン、すぐに使える',
-        description:
-          '上のサインインボタンはBuildBase SDKを使用 — フック1つ、セッションロジックの記述不要。サインイン後、JWT、ワークスペーストークン、役割が自動的に付与されます。',
-        tryLabel: 'サインインして試す',
-      },
-      workspaces: {
-        badge: 'ワークスペース',
-        title: 'マルチテナントワークスペース切り替え',
-        description:
-          '各ユーザーは異なる役割で複数のワークスペースに所属できます。ダッシュボードのサイドバーに現在のワークスペースが表示され、切り替えが可能です。',
-        tryLabel: 'ダッシュボードを開く',
-      },
-      credits: {
-        badge: 'クレジット',
-        title: 'ライブクレジット残高と消費',
-        description:
-          'クレジットページはライブ残高を表示し、内蔵モーダルで追加購入でき、SDKのconsumeCredits()をリアルタイムで呼び出すテストボタンがあります。',
-        tryLabel: 'クレジット消費を試す',
-      },
-      notifications: {
-        badge: '通知',
-        title: 'ブラウザプッシュとメール配信',
-        description:
-          '通知ページではブラウザを登録し、タイトル、緊急度、アクションボタン、配信スケジュールを設定した通知を作成してライブ送信できます。',
-        tryLabel: 'テスト通知を送信',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: 'アラビア語RTLを含む8言語',
-        description:
-          'ヘッダーの言語切り替えで英語、ヒンディー語、スペイン語、フランス語、ドイツ語、日本語、中国語、アラビア語に切り替えられます — レイアウトが自動的にRTLに変わります。',
-        tryLabel: 'アラビア語に切り替え',
-      },
-      content: {
-        badge: 'コンテンツ',
-        title: 'MDXブログと変更履歴、内蔵',
-        description:
-          'ブログと変更履歴はContentlayer2でビルド時にコンパイルされるMDXファイルです。CMSもDBも不要 — 型安全なfrontmatter、全文検索、RSSを持つファイルだけです。',
-        tryLabel: 'ブログを読む',
-      },
-      quotas: {
-        badge: 'クォータ',
-        title: '超過ゲート付きクォータ使用状況',
-        description:
-          '使用状況ページはuseAllQuotaUsage()を呼び出しクォータごとの進捗バーを表示します。WhenQuotaExhaustedはクォータがゼロになるとUIをブロック。WhenQuotaOverageは超過詳細を表示。',
-        tryLabel: 'クォータ使用状況を確認',
-      },
-      permissions: {
-        badge: '権限',
-        title: 'ロールベースの権限マトリックス',
-        description:
-          '権限ページはusePermissions()とWhenPermissionを使用し、現在のワークスペース役割に基づいてすべてのプラットフォーム権限をリアルタイムで付与または拒否として表示します。',
-        tryLabel: '権限を確認',
-      },
-      events: {
-        badge: 'イベント',
-        title: 'ライブSDKイベントストリーム',
-        description:
-          'イベントページはeventEmitter.setCallbacks()を接続し、ワークスペース変更、ユーザー更新、役割変更など、すべてのSDKイベントをライブスクロールログでキャプチャします。',
-        tryLabel: 'イベントログを開く',
-      },
-      userData: {
-        badge: 'ユーザーデータ',
-        title: 'ユーザー属性とフィーチャーフラグ',
-        description:
-          'プロフィールページはuseUserAttributes()とuseUserFeatures()を読み取り、カスタムキーバリューペアとユーザーごとのフラグ状態を表示し、新しい属性をライブで書き込めます。',
-        tryLabel: 'プロフィールを確認',
-      },
-      invoices: {
-        badge: '請求書',
-        title: '請求書履歴と請求ポータル',
-        description:
-          '請求書ページはuseInvoices()を呼び出し、すべてのStripe請求書をステータス、金額、PDFリンク付きで一覧表示します。ボタン1つでuseBillingPortal()からStripeカスタマーポータルが開きます。',
-        tryLabel: '請求書を確認',
-      },
-      seats: {
-        badge: 'シート',
-        title: 'シート制限と招待ゲート',
-        description:
-          'ダッシュボードはuseSeatStatus()を呼び出し、メンバー数とプラン制限をリアルタイムで表示します。WhenNoSubscription、WhenSubscription、WhenSubscriptionToPlansが適切なUIを表示します。',
-        tryLabel: 'ダッシュボードを開く',
-      },
-      featureFlags: {
-        badge: 'フィーチャーフラグ',
-        title: 'ワークスペースレベルの機能ゲート',
-        description:
-          'プロフィールページはWhenWorkspaceFeatureEnabledとWhenWorkspaceFeatureDisabledを使用し、BuildBaseダッシュボードで設定したワークスペースレベルのフラグに基づいてコンテンツを切り替えます。',
-        tryLabel: '機能ゲートを確認',
-      },
     },
     meta: {
       title: 'マイアプリ',
@@ -334,35 +235,6 @@ const messages: Messages = {
         placeholder: '設定コンテンツがここに入ります。',
       },
     },
-  },
-  analytics: {
-    title: '分析',
-    description: 'リアルタイムワークスペースメトリクス',
-    cards: {
-      plan: 'プラン',
-      teamMembers: 'チームメンバー',
-      quotasTracked: '追跡中のクォータ',
-      creditDebits: 'クレジット消費',
-      noSubscription: 'サブスクリプションなし',
-      unlimitedSeats: '無制限シート',
-      maxSeats: '最大{n}シート',
-      totalConsumed: '合計{n}ユニット消費済み',
-      consumptionEvents: '消費イベントが記録されました',
-    },
-    quotaConsumption: {
-      title: 'クォータ消費',
-      empty: 'このワークスペースにはクォータが設定されていません。',
-    },
-    featureFlags: {
-      title: 'フィーチャーフラグ',
-      empty: 'フラグが設定されていません。',
-    },
-    planLimits: {
-      title: 'プラン制限',
-      empty: 'プラン制限が設定されていません。',
-      unlimited: '無制限',
-    },
-    loading: '読み込み中…',
   },
   team: {
     title: 'チーム',

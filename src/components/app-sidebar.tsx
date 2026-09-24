@@ -8,7 +8,6 @@ import {
   Settings,
   Users,
   FileText,
-  BarChart3,
   Bell,
   LogOut,
   ChevronUp,
@@ -60,7 +59,6 @@ type NavKey =
   | 'dashboard'
   | 'tour'
   | 'inbox'
-  | 'analytics'
   | 'documents'
   | 'credits'
   | 'invoices'
@@ -91,11 +89,6 @@ const menuItems: {
     navKey: 'inbox',
     url: '/dashboard/inbox',
     icon: Inbox,
-  },
-  {
-    navKey: 'analytics',
-    url: '/dashboard/analytics',
-    icon: BarChart3,
   },
   {
     navKey: 'documents',

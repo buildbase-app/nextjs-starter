@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'Accueil',
       dashboard: 'Tableau de bord',
       documents: 'Documents',
-      analytics: 'Analytiques',
       team: 'Équipe',
       notifications: 'Notifications',
       settings: 'Paramètres',
@@ -59,7 +58,7 @@ const messages: Messages = {
         credits: 'Crédits',
         blog: 'Blog',
         changelog: 'Journal des modifications',
-        about: 'À propos',
+        tour: 'Visite',
         privacy: 'Politique de confidentialité',
         terms: "Conditions d'utilisation",
       },
@@ -83,11 +82,11 @@ const messages: Messages = {
     redirecting: 'Redirection...',
   },
   home: {
-    title: 'Mon Application',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · Démo en direct',
+      badge: 'Démo en direct · 67 tâches',
       heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+        'Chaque capacité de BuildBase, <highlight>une tâche à la fois</highlight>',
       description:
         "Connectez-vous pour voir l'authentification, les espaces de travail multi-tenant, la facturation de crédits, les notifications push et l'i18n en 8 langues — propulsé par le BuildBase SDK.",
       signInToExplore: 'Se connecter pour explorer',
@@ -100,13 +99,13 @@ const messages: Messages = {
         label: 'Langues dans cette démo',
         sublabel: "changez avec le sélecteur dans l'en-tête",
       },
-      sdkFeatures: {
-        label: 'Fonctionnalités SDK en direct',
-        sublabel: 'chacune a une page de démo',
+      tasks: {
+        label: 'Tâches de la visite',
+        sublabel: 'chacune une capacité à essayer',
       },
-      notifications: {
-        label: 'Canaux de notification',
-        sublabel: 'push navigateur + email',
+      groups: {
+        label: 'Groupes',
+        sublabel: 'de la connexion aux webhooks',
       },
       authCode: {
         label: "Lignes de code d'auth",
@@ -121,107 +120,10 @@ const messages: Messages = {
       openDashboard: 'Ouvrir le tableau de bord',
       howBuilt: "Comment c'est construit",
     },
-    features: {
-      eyebrow: 'Explorer la démo',
-      heading: 'Voyez ce qui fonctionne dans cette app',
-      description:
-        'Chaque fonctionnalité ci-dessous est en direct — connectez-vous et cliquez pour voir le BuildBase SDK en action.',
-      auth: {
-        badge: 'Authentification',
-        title: "Connexion OAuth, prête à l'emploi",
-        description:
-          "Le bouton de connexion utilise le BuildBase SDK — un hook, pas de logique de session. Après connexion, vous obtenez automatiquement un JWT, un token d'espace de travail et un rôle.",
-        tryLabel: 'Se connecter pour essayer',
-      },
-      workspaces: {
-        badge: 'Espaces de travail',
-        title: 'Sélecteur de workspace multi-tenant',
-        description:
-          'Chaque utilisateur peut appartenir à plusieurs espaces de travail avec différents rôles. La barre latérale du tableau de bord affiche votre espace de travail actuel et permet de basculer entre eux.',
-        tryLabel: 'Ouvrir le tableau de bord',
-      },
-      credits: {
-        badge: 'Crédits',
-        title: 'Solde de crédits en direct et consommation',
-        description:
-          "La page des crédits affiche votre solde en direct, permet d'en acheter via une modal intégrée et dispose de boutons de test appelant consumeCredits() en temps réel.",
-        tryLabel: 'Essayer la consommation de crédits',
-      },
-      notifications: {
-        badge: 'Notifications',
-        title: 'Push navigateur et envoi par e-mail',
-        description:
-          "La page de notifications vous permet de vous abonner au push navigateur, de composer une notification avec titre, urgence, boutons et livraison planifiée — puis de l'envoyer en direct.",
-        tryLabel: 'Envoyer une notification de test',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: "8 langues dont l'arabe RTL",
-        description:
-          "Utilisez le sélecteur de langue dans l'en-tête pour basculer entre l'anglais, l'hindi, l'espagnol, le français, l'allemand, le japonais, le chinois et l'arabe — la mise en page passe automatiquement en RTL.",
-        tryLabel: 'Passer en arabe',
-      },
-      content: {
-        badge: 'Contenu',
-        title: 'Blog MDX et journal des modifications, intégrés',
-        description:
-          'Le blog et le journal des modifications sont des fichiers MDX compilés à la construction via Contentlayer2. Pas de CMS, pas de base de données — juste des fichiers avec frontmatter typé, recherche plein texte et RSS.',
-        tryLabel: 'Lire le blog',
-      },
-      quotas: {
-        badge: 'Quotas',
-        title: 'Utilisation des quotas avec portes de dépassement',
-        description:
-          "La page d'utilisation appelle useAllQuotaUsage() pour afficher des barres de progression par quota. WhenQuotaExhausted bloque l'UI quand un quota atteint zéro ; WhenQuotaOverage affiche les détails du dépassement.",
-        tryLabel: "Voir l'utilisation des quotas",
-      },
-      permissions: {
-        badge: 'Permissions',
-        title: 'Matrice de permissions basée sur les rôles',
-        description:
-          'La page des permissions utilise usePermissions() et WhenPermission pour afficher chaque permission de la plateforme comme accordée ou refusée selon votre rôle actuel en temps réel.',
-        tryLabel: 'Vérifier vos permissions',
-      },
-      events: {
-        badge: 'Événements',
-        title: "Flux d'événements SDK en direct",
-        description:
-          "La page d'événements connecte eventEmitter.setCallbacks() pour capturer tous les événements SDK — changements de workspace, mises à jour utilisateur, changements de rôle — dans un journal défilant en direct.",
-        tryLabel: "Ouvrir le journal d'événements",
-      },
-      userData: {
-        badge: 'Données utilisateur',
-        title: 'Attributs utilisateur et drapeaux de fonctionnalités',
-        description:
-          "La page de profil lit useUserAttributes() et useUserFeatures() pour afficher des paires clé-valeur personnalisées et les états de drapeaux par utilisateur, permettant d'écrire de nouveaux attributs en direct.",
-        tryLabel: 'Voir votre profil',
-      },
-      invoices: {
-        badge: 'Factures',
-        title: 'Historique des factures et portail de facturation',
-        description:
-          'La page des factures appelle useInvoices() pour lister toutes les factures Stripe avec statut, montant et liens PDF. Un bouton ouvre le Portail Client Stripe via useBillingPortal().',
-        tryLabel: 'Voir les factures',
-      },
-      seats: {
-        badge: 'Sièges',
-        title: 'Limites de sièges et contrôle des invitations',
-        description:
-          "Le tableau de bord appelle useSeatStatus() pour afficher le nombre de membres vs les limites du plan en temps réel. WhenNoSubscription, WhenSubscription et WhenSubscriptionToPlans contrôlent l'UI pour la bonne audience.",
-        tryLabel: 'Ouvrir le tableau de bord',
-      },
-      featureFlags: {
-        badge: 'Drapeaux de fonctionnalités',
-        title: 'Portes de fonctionnalités au niveau workspace',
-        description:
-          'La page de profil utilise WhenWorkspaceFeatureEnabled et WhenWorkspaceFeatureDisabled pour basculer le contenu selon les drapeaux au niveau workspace configurés dans le tableau de bord BuildBase.',
-        tryLabel: 'Voir les portes de fonctionnalités',
-      },
-    },
     meta: {
       title: 'Mon Application',
       description:
-        'Mon application Next.js avec shadcn/ui et support des thèmes',
+        'Une vraie app sur le SDK BuildBase, avec une visite guidée : connectez-vous et parcourez inscription, espaces de travail, facturation, usage, crédits, notifications, agents et webhooks, chacun montrant d’où il vient.',
       tagline: 'Construisez quelque chose de remarquable',
     },
   },
@@ -334,35 +236,6 @@ const messages: Messages = {
         placeholder: 'Le contenu des paramètres va ici.',
       },
     },
-  },
-  analytics: {
-    title: 'Analytiques',
-    description: "Métriques de l'espace de travail en temps réel",
-    cards: {
-      plan: 'Plan',
-      teamMembers: "Membres de l'équipe",
-      quotasTracked: 'Quotas suivis',
-      creditDebits: 'Débits de crédits',
-      noSubscription: 'sans abonnement',
-      unlimitedSeats: 'sièges illimités',
-      maxSeats: '{n} sièges max.',
-      totalConsumed: '{n} unités consommées au total',
-      consumptionEvents: 'événements de consommation enregistrés',
-    },
-    quotaConsumption: {
-      title: 'Consommation des quotas',
-      empty: 'Aucun quota configuré pour cet espace de travail.',
-    },
-    featureFlags: {
-      title: 'Indicateurs de fonctionnalités',
-      empty: 'Aucun indicateur configuré.',
-    },
-    planLimits: {
-      title: 'Limites du plan',
-      empty: 'Aucune limite de plan configurée.',
-      unlimited: 'illimité',
-    },
-    loading: 'Chargement…',
   },
   team: {
     title: 'Équipe',

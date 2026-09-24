@@ -6,7 +6,6 @@ const messages: Messages = {
       home: '首页',
       dashboard: '仪表板',
       documents: '文档',
-      analytics: '分析',
       team: '团队',
       notifications: '通知',
       settings: '设置',
@@ -59,7 +58,7 @@ const messages: Messages = {
         credits: '积分',
         blog: '博客',
         changelog: '更新日志',
-        about: '关于',
+        tour: '导览',
         privacy: '隐私政策',
         terms: '服务条款',
       },
@@ -83,13 +82,12 @@ const messages: Messages = {
     redirecting: '重定向中...',
   },
   home: {
-    title: '我的应用',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · 在线演示',
-      heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+      badge: '在线演示 · 67 项任务',
+      heading: 'BuildBase 的每一项能力，<highlight>逐项体验</highlight>',
       description:
-        '登录以查看认证、多租户工作区、积分计费、推送通知和8种语言的i18n在真实应用中协同工作 — 由 BuildBase SDK 提供支持。',
+        '基于 BuildBase SDK 的真实应用，配有引导式导览：登录后依次体验注册、工作区、计费、用量、积分、通知、代理和 Webhook，每一项都说明它来自哪里。',
       signInToExplore: '登录探索',
       openDashboard: '打开仪表板',
       viewSource: '查看源码',
@@ -100,13 +98,13 @@ const messages: Messages = {
         label: '本演示支持的语言数',
         sublabel: '使用标题切换器切换',
       },
-      sdkFeatures: {
-        label: '实时 SDK 功能',
-        sublabel: '每个功能都有演示页面',
+      tasks: {
+        label: '导览任务',
+        sublabel: '每一项都是可尝试的能力',
       },
-      notifications: {
-        label: '通知渠道',
-        sublabel: '浏览器推送 + 邮件',
+      groups: {
+        label: '分组',
+        sublabel: '从登录到 Webhook',
       },
       authCode: {
         label: '认证代码行数',
@@ -120,103 +118,6 @@ const messages: Messages = {
       signIn: '登录并探索',
       openDashboard: '打开仪表板',
       howBuilt: '如何构建的',
-    },
-    features: {
-      eyebrow: '探索演示',
-      heading: '查看此应用中正常运行的内容',
-      description:
-        '以下每个功能都是实时的 — 登录并点击查看 BuildBase SDK 的实际运行情况。',
-      auth: {
-        badge: '认证',
-        title: '开箱即用的OAuth登录',
-        description:
-          '上方的登录按钮使用了BuildBase SDK — 一个钩子，无需编写会话逻辑。登录后自动获得JWT、工作区令牌和角色。',
-        tryLabel: '登录体验',
-      },
-      workspaces: {
-        badge: '工作区',
-        title: '多租户工作区切换器',
-        description:
-          '每个用户可以以不同角色属于多个工作区。仪表板侧边栏显示您当前的工作区并允许切换。',
-        tryLabel: '打开仪表板',
-      },
-      credits: {
-        badge: '积分',
-        title: '实时积分余额与消费',
-        description:
-          '积分页面显示实时余额，通过内置弹窗购买更多积分，并提供测试按钮实时调用SDK的consumeCredits()。',
-        tryLabel: '体验积分消费',
-      },
-      notifications: {
-        badge: '通知',
-        title: '浏览器推送与邮件通知',
-        description:
-          '通知页面允许订阅浏览器推送，创建包含标题、优先级、操作按钮和定时发送的通知，然后实时发送。',
-        tryLabel: '发送测试通知',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: '8种语言包含阿拉伯语RTL',
-        description:
-          '使用标题中的语言切换器在英语、印地语、西班牙语、法语、德语、日语、中文和阿拉伯语之间切换 — 布局自动翻转为RTL。',
-        tryLabel: '切换到阿拉伯语',
-      },
-      content: {
-        badge: '内容',
-        title: '内置MDX博客和更新日志',
-        description:
-          '博客和更新日志是通过Contentlayer2在构建时编译的MDX文件。无CMS，无数据库 — 只有具有类型安全frontmatter、全文搜索和RSS的文件。',
-        tryLabel: '阅读博客',
-      },
-      quotas: {
-        badge: '配额',
-        title: '带超额门控的配额使用',
-        description:
-          '使用页面调用useAllQuotaUsage()显示每个配额的进度条。WhenQuotaExhausted在配额为零时阻止UI；WhenQuotaOverage显示超额详情。',
-        tryLabel: '查看配额使用',
-      },
-      permissions: {
-        badge: '权限',
-        title: '基于角色的权限矩阵',
-        description:
-          '权限页面使用usePermissions()和WhenPermission显示每个平台权限，根据您当前工作区角色实时显示为已授权或拒绝。',
-        tryLabel: '检查您的权限',
-      },
-      events: {
-        badge: '事件',
-        title: '实时SDK事件流',
-        description:
-          '事件页面连接eventEmitter.setCallbacks()捕获所有SDK事件 — 工作区更改、用户更新、角色变更 — 在实时滚动日志中显示。',
-        tryLabel: '打开事件日志',
-      },
-      userData: {
-        badge: '用户数据',
-        title: '用户属性与功能标志',
-        description:
-          '个人资料页面读取useUserAttributes()和useUserFeatures()显示自定义键值对和每用户功能标志状态，并允许实时写入新属性。',
-        tryLabel: '查看您的个人资料',
-      },
-      invoices: {
-        badge: '发票',
-        title: '发票历史与账单门户',
-        description:
-          '发票页面调用useInvoices()列出所有包含状态、金额和PDF链接的Stripe发票。单个按钮通过useBillingPortal()打开Stripe客户门户。',
-        tryLabel: '查看发票',
-      },
-      seats: {
-        badge: '席位',
-        title: '席位限制与邀请门控',
-        description:
-          '仪表板调用useSeatStatus()实时显示成员数量与计划限制。WhenNoSubscription、WhenSubscription和WhenSubscriptionToPlans将UI限制到适合的受众。',
-        tryLabel: '打开仪表板',
-      },
-      featureFlags: {
-        badge: '功能标志',
-        title: '工作区级功能门控',
-        description:
-          '个人资料页面使用WhenWorkspaceFeatureEnabled和WhenWorkspaceFeatureDisabled根据BuildBase仪表板中配置的工作区级功能标志切换内容。',
-        tryLabel: '查看功能门控',
-      },
     },
     meta: {
       title: '我的应用',
@@ -329,35 +230,6 @@ const messages: Messages = {
         placeholder: '设置内容将在此处显示。',
       },
     },
-  },
-  analytics: {
-    title: '分析',
-    description: '从BuildBase SDK实时获取的工作区指标',
-    cards: {
-      plan: '计划',
-      teamMembers: '团队成员',
-      quotasTracked: '跟踪的配额',
-      creditDebits: '积分扣除',
-      noSubscription: '无订阅',
-      unlimitedSeats: '无限席位',
-      maxSeats: '{n}个最大席位',
-      totalConsumed: '共消耗{n}个单位',
-      consumptionEvents: '已记录的消耗事件',
-    },
-    quotaConsumption: {
-      title: '配额消耗',
-      empty: '此工作区未配置配额。',
-    },
-    featureFlags: {
-      title: '工作区功能标志',
-      empty: '未配置功能标志。',
-    },
-    planLimits: {
-      title: '计划限制',
-      empty: '未配置计划限制。',
-      unlimited: '无限',
-    },
-    loading: '加载中…',
   },
   team: {
     title: '团队',

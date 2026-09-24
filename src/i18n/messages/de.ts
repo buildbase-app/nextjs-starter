@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'Startseite',
       dashboard: 'Dashboard',
       documents: 'Dokumente',
-      analytics: 'Analysen',
       team: 'Team',
       notifications: 'Benachrichtigungen',
       settings: 'Einstellungen',
@@ -59,7 +58,7 @@ const messages: Messages = {
         credits: 'Credits',
         blog: 'Blog',
         changelog: 'Änderungsprotokoll',
-        about: 'Über uns',
+        tour: 'Tour',
         privacy: 'Datenschutzrichtlinie',
         terms: 'Nutzungsbedingungen',
       },
@@ -83,13 +82,13 @@ const messages: Messages = {
     redirecting: 'Weiterleitung...',
   },
   home: {
-    title: 'Meine App',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · Live-Demo',
+      badge: 'Live-Demo · 67 Aufgaben',
       heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+        'Jede BuildBase-Fähigkeit, <highlight>eine Aufgabe nach der anderen</highlight>',
       description:
-        'Melde dich an, um Authentifizierung, Multi-Tenant-Arbeitsbereiche, Kreditabrechnung, Push-Benachrichtigungen und i18n in 8 Sprachen zusammen in einer echten App zu sehen — angetrieben vom BuildBase SDK.',
+        'Eine echte App auf dem BuildBase SDK, mit geführter Tour: anmelden und Registrierung, Workspaces, Abrechnung, Nutzung, Credits, Benachrichtigungen, Agenten und Webhooks durchgehen, jeweils mit Herkunft.',
       signInToExplore: 'Anmelden und erkunden',
       openDashboard: 'Dashboard öffnen',
       viewSource: 'Quellcode ansehen',
@@ -100,13 +99,13 @@ const messages: Messages = {
         label: 'Sprachen in dieser Demo',
         sublabel: 'mit dem Header-Schalter wechseln',
       },
-      sdkFeatures: {
-        label: 'Live SDK-Funktionen',
-        sublabel: 'jede hat eine Demo-Seite',
+      tasks: {
+        label: 'Aufgaben der Tour',
+        sublabel: 'jede eine Fähigkeit zum Ausprobieren',
       },
-      notifications: {
-        label: 'Benachrichtigungskanäle',
-        sublabel: 'Browser-Push + E-Mail',
+      groups: {
+        label: 'Gruppen',
+        sublabel: 'von der Anmeldung bis zu Webhooks',
       },
       authCode: {
         label: 'Zeilen Auth-Code',
@@ -120,103 +119,6 @@ const messages: Messages = {
       signIn: 'Anmelden und erkunden',
       openDashboard: 'Dashboard öffnen',
       howBuilt: 'Wie es gebaut wurde',
-    },
-    features: {
-      eyebrow: 'Demo erkunden',
-      heading: 'Sieh, was in dieser App funktioniert',
-      description:
-        'Jede Funktion unten ist live — melde dich an und klicke durch, um das BuildBase SDK in Aktion zu sehen.',
-      auth: {
-        badge: 'Authentifizierung',
-        title: 'OAuth-Anmeldung, sofort einsatzbereit',
-        description:
-          'Der Anmelde-Button oben verwendet das BuildBase SDK — ein Hook, keine Session-Logik zu schreiben. Nach der Anmeldung erhalten Sie automatisch ein JWT, Workspace-Token und eine Rolle.',
-        tryLabel: 'Anmelden und ausprobieren',
-      },
-      workspaces: {
-        badge: 'Arbeitsbereiche',
-        title: 'Multi-Tenant-Workspace-Umschalter',
-        description:
-          'Jeder Benutzer kann mehreren Arbeitsbereichen mit unterschiedlichen Rollen angehören. Die Dashboard-Seitenleiste zeigt Ihren aktuellen Arbeitsbereich und ermöglicht das Wechseln.',
-        tryLabel: 'Dashboard öffnen',
-      },
-      credits: {
-        badge: 'Credits',
-        title: 'Live-Credit-Guthaben und -Verbrauch',
-        description:
-          'Die Credits-Seite zeigt Ihr Live-Guthaben, ermöglicht den Kauf über ein integriertes Modal und verfügt über Test-Buttons, die consumeCredits() des SDK in Echtzeit aufrufen.',
-        tryLabel: 'Credit-Verbrauch testen',
-      },
-      notifications: {
-        badge: 'Benachrichtigungen',
-        title: 'Browser-Push und E-Mail-Zustellung',
-        description:
-          'Die Benachrichtigungsseite ermöglicht das Abonnieren von Browser-Push, das Verfassen einer Benachrichtigung mit Titel, Dringlichkeit, Aktionsschaltflächen und geplanter Zustellung — dann live senden.',
-        tryLabel: 'Testbenachrichtigung senden',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: '8 Sprachen einschließlich Arabisch RTL',
-        description:
-          'Verwenden Sie den Sprachumschalter in der Kopfzeile, um zwischen Englisch, Hindi, Spanisch, Französisch, Deutsch, Japanisch, Chinesisch und Arabisch zu wechseln — das Layout wechselt automatisch zu RTL.',
-        tryLabel: 'Zu Arabisch wechseln',
-      },
-      content: {
-        badge: 'Inhalt',
-        title: 'MDX-Blog und Änderungsprotokoll, integriert',
-        description:
-          'Blog und Änderungsprotokoll sind MDX-Dateien, die zur Build-Zeit via Contentlayer2 kompiliert werden. Kein CMS, keine Datenbank — nur Dateien mit typsicherem Frontmatter, Volltextsuche und RSS.',
-        tryLabel: 'Blog lesen',
-      },
-      quotas: {
-        badge: 'Kontingente',
-        title: 'Kontingentnutzung mit Überschreitungs-Gates',
-        description:
-          'Die Nutzungsseite ruft useAllQuotaUsage() auf, um Fortschrittsbalken pro Kontingent anzuzeigen. WhenQuotaExhausted blockiert die UI, wenn ein Kontingent null erreicht; WhenQuotaOverage zeigt Überschreitungsdetails.',
-        tryLabel: 'Kontingentnutzung anzeigen',
-      },
-      permissions: {
-        badge: 'Berechtigungen',
-        title: 'Rollenbasierte Berechtigungsmatrix',
-        description:
-          'Die Berechtigungsseite verwendet usePermissions() und WhenPermission, um jede Plattformberechtigung in Echtzeit als gewährt oder verweigert basierend auf Ihrer aktuellen Workspace-Rolle anzuzeigen.',
-        tryLabel: 'Berechtigungen prüfen',
-      },
-      events: {
-        badge: 'Ereignisse',
-        title: 'Live-SDK-Ereignisstrom',
-        description:
-          'Die Ereignisseite verbindet eventEmitter.setCallbacks(), um alle SDK-Ereignisse zu erfassen — Workspace-Änderungen, Benutzeraktualisierungen, Rollenänderungen — in einem live scrollenden Protokoll.',
-        tryLabel: 'Ereignisprotokoll öffnen',
-      },
-      userData: {
-        badge: 'Benutzerdaten',
-        title: 'Benutzerattribute und Feature-Flags',
-        description:
-          'Die Profilseite liest useUserAttributes() und useUserFeatures(), um benutzerdefinierte Schlüssel-Wert-Paare und benutzerspezifische Feature-Flag-Zustände anzuzeigen und neue Attribute live zu schreiben.',
-        tryLabel: 'Ihr Profil anzeigen',
-      },
-      invoices: {
-        badge: 'Rechnungen',
-        title: 'Rechnungsverlauf und Abrechnungsportal',
-        description:
-          'Die Rechnungsseite ruft useInvoices() auf, um alle Stripe-Rechnungen mit Status, Betrag und PDF-Links aufzulisten. Ein Button öffnet das Stripe-Kundenportal via useBillingPortal().',
-        tryLabel: 'Rechnungen anzeigen',
-      },
-      seats: {
-        badge: 'Sitze',
-        title: 'Sitzlimits und Einladungs-Gates',
-        description:
-          'Das Dashboard ruft useSeatStatus() auf, um die Mitgliederzahl vs. Planlimits in Echtzeit anzuzeigen. WhenNoSubscription, WhenSubscription und WhenSubscriptionToPlans steuern die UI für die richtige Zielgruppe.',
-        tryLabel: 'Dashboard öffnen',
-      },
-      featureFlags: {
-        badge: 'Feature-Flags',
-        title: 'Feature-Gates auf Workspace-Ebene',
-        description:
-          'Die Profilseite verwendet WhenWorkspaceFeatureEnabled und WhenWorkspaceFeatureDisabled, um Inhalte basierend auf workspace-level Feature-Flags, die im BuildBase-Dashboard konfiguriert sind, umzuschalten.',
-        tryLabel: 'Feature-Gates anzeigen',
-      },
     },
     meta: {
       title: 'Meine App',
@@ -333,35 +235,6 @@ const messages: Messages = {
         placeholder: 'Einstellungsinhalt kommt hier.',
       },
     },
-  },
-  analytics: {
-    title: 'Analysen',
-    description: 'Echtzeit-Metriken des Arbeitsbereichs',
-    cards: {
-      plan: 'Plan',
-      teamMembers: 'Teammitglieder',
-      quotasTracked: 'Verfolgte Kontingente',
-      creditDebits: 'Credit-Abbuchungen',
-      noSubscription: 'kein Abonnement',
-      unlimitedSeats: 'unbegrenzte Sitze',
-      maxSeats: '{n} Sitze max.',
-      totalConsumed: '{n} Einheiten insgesamt verbraucht',
-      consumptionEvents: 'Verbrauchsereignisse erfasst',
-    },
-    quotaConsumption: {
-      title: 'Kontingentverbrauch',
-      empty: 'Keine Kontingente für diesen Arbeitsbereich konfiguriert.',
-    },
-    featureFlags: {
-      title: 'Feature-Flags',
-      empty: 'Keine Flags konfiguriert.',
-    },
-    planLimits: {
-      title: 'Planlimits',
-      empty: 'Keine Planlimits konfiguriert.',
-      unlimited: 'unbegrenzt',
-    },
-    loading: 'Wird geladen…',
   },
   team: {
     title: 'Team',
