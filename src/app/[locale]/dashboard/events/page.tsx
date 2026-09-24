@@ -14,6 +14,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Activity, Trash2 } from 'lucide-react';
+import { WebhookEventsCard } from '@/components/events/webhook-events-card';
 
 interface LogEntry {
   id: number;
@@ -162,6 +163,8 @@ export default function EventsPage() {
           )}
         </CardContent>
       </Card>
+
+      <WebhookEventsCard />
     </div>
   );
 }

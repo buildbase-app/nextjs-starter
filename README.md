@@ -423,6 +423,7 @@ After cloning, update these files before shipping to production:
 | `BUILDBASE_CLIENT_SECRET`            | Yes      | BuildBase OAuth client secret (server-side only)         |
 | `BUILDBASE_OAUTH2_CLIENT_ID`         | No       | OAuth2-specific client ID (if different)                 |
 | `BUILDBASE_OAUTH2_CLIENT_SECRET`     | No       | OAuth2-specific secret (if different)                    |
+| `BUILDBASE_WEBHOOK_SECRET`           | No       | Signing secret of the console webhook endpoint           |
 | `NEXT_PUBLIC_SENTRY_DSN`             | No       | Sentry client key (error tracking, optional)             |
 | `SENTRY_ORG`                         | No       | Sentry organisation slug                                 |
 | `SENTRY_PROJECT`                     | No       | Sentry project slug                                      |

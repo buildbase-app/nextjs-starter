@@ -18,6 +18,7 @@ import {
 } from '@/lib/documents';
 import { resolveWorkspaceRole, canWrite } from '@/lib/server-auth';
 import { buildLlmsFullTxt } from './content';
+import { detect } from '@/tour/progress';
 
 /**
  * The demo's own MCP tools — what an AI agent can do with *this app's* data
@@ -57,6 +58,7 @@ async function resolveWorkspace(
 ): Promise<{ workspaceId: string; role: string }> {
   const userId = ctx.auth.userId;
   if (!userId) throw new ToolError('Token has no user — re-authenticate.');
+  await tick(ctx, 'mcp:tool-called');
 
   let id = workspaceId ?? ctx.workspaceId;
   if (!id) {
@@ -73,6 +75,13 @@ async function resolveWorkspace(
   const role = await resolveWorkspaceRole(ctx.bb, id, userId);
   if (!role) throw new ToolError(`You are not a member of workspace ${id}.`);
   return { workspaceId: id, role };
+}
+
+/** The tour: tick a task from inside a tool, as the person the token is for. */
+async function tick(ctx: McpToolContext, action: string) {
+  if (ctx.auth.userId) {
+    await detect(ctx.auth.userId, { kind: 'action', action });
+  }
 }
 
 function actor(ctx: McpToolContext) {
@@ -184,6 +193,7 @@ export const documentTools = [
         input,
         { source: 'mcp' }
       );
+      await tick(ctx, 'mcp:document-created');
       return { document, metering };
     },
   }),

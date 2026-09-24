@@ -19,6 +19,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { ConnectedAgentsCard } from '@/components/agents/connected-agents-card';
 import {
   CheckCircle2,
   XCircle,
@@ -114,6 +115,8 @@ export default function ProfilePage() {
           </div>
         </CardContent>
       </Card>
+
+      <ConnectedAgentsCard />
 
       <Card>
         <CardHeader className="flex flex-row items-center gap-2 pb-2">

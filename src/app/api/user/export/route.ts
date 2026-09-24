@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma, setAuditContext } from '@/lib/db';
-import { getSessionUser } from '@/lib/session';
+import { getSessionContext } from '@/lib/server-auth';
 import { logger } from '@/lib/logger';
+import { detect } from '@/tour/progress';
 
 /**
  * GDPR Data Export — Right of Access (Article 15)
@@ -10,7 +11,7 @@ import { logger } from '@/lib/logger';
 export async function GET(request: NextRequest) {
   // Identity from the session, not a bearer token — this returns a user's
   // complete personal data, so the id it acts on must be the one signed in.
-  const session = await getSessionUser();
+  const session = await getSessionContext();
   if (!session) {
     return NextResponse.json(
       { success: false, message: 'Unauthorized' },
@@ -55,6 +56,8 @@ export async function GET(request: NextRequest) {
     const workspaces = await prisma.workspace.findMany({
       where: { id: { in: workspaceIds } },
     });
+
+    await detect(userId, { kind: 'action', action: 'user:exported' });
 
     const exportData = {
       exportedAt: new Date().toISOString(),
