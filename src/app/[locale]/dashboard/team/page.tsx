@@ -1,11 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   useSaaSAuth,
   useSaaSWorkspaces,
   useSeatStatus,
+  useSaaSSettings,
+  useWorkspaceInvitations,
+  WhenPermission,
 } from '@buildbase/sdk/react';
+import { Permission } from '@buildbase/sdk';
+import { toast } from 'sonner';
+import { InvitationsCard } from '@/components/team/invitations-card';
 import {
   Card,
   CardContent,
@@ -29,11 +36,33 @@ function initials(name: string) {
 
 export default function TeamPage() {
   const t = useTranslations('team');
-  const { openWorkspaceSettings } = useSaaSAuth();
-  const { currentWorkspace } = useSaaSWorkspaces();
-  const seatStatus = useSeatStatus(currentWorkspace ?? null);
+  const { openWorkspaceSettings, user: me } = useSaaSAuth();
+  const { currentWorkspace, updateUser } = useSaaSWorkspaces();
+  const invitationList = useWorkspaceInvitations(currentWorkspace?._id);
+  // A pending invitation holds a seat, so the ceiling counts it too.
+  const seatStatus = useSeatStatus(currentWorkspace ?? null, {
+    pendingInvitations: invitationList.pendingCount,
+  });
+  const [changing, setChanging] = useState<string | null>(null);
 
   const members = currentWorkspace?.users ?? [];
+  const { settings } = useSaaSSettings();
+  const roles = settings?.workspace?.roles?.length
+    ? settings.workspace.roles
+    : (currentWorkspace?.roles ?? []);
+
+  const changeRole = async (userId: string, role: string) => {
+    if (!currentWorkspace) return;
+    setChanging(userId);
+    try {
+      await updateUser(currentWorkspace._id, userId, { role });
+      toast.success(t('roleChanged', { role }));
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : t('invite.failed'));
+    } finally {
+      setChanging(null);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -43,13 +72,15 @@ export default function TeamPage() {
           <p className="text-muted-foreground">{t('description')}</p>
         </div>
         <Button
+          variant="outline"
           onClick={() => openWorkspaceSettings('users')}
-          disabled={!seatStatus.canInvite}
         >
           <UserPlus className="mr-2 h-4 w-4" />
           {t('inviteMember')}
         </Button>
       </div>
+
+      <InvitationsCard canInvite={seatStatus.canInvite} list={invitationList} />
 
       <div className="grid gap-4 sm:grid-cols-4">
         <Card>
@@ -90,9 +121,9 @@ export default function TeamPage() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">
-              {seatStatus.availableSeats === null
-                ? '∞'
-                : seatStatus.availableSeats}
+              {Number.isFinite(seatStatus.availableSeats)
+                ? seatStatus.availableSeats
+                : '∞'}
             </p>
           </CardContent>
         </Card>
@@ -147,14 +178,48 @@ export default function TeamPage() {
                     {member.role === 'admin' && (
                       <ShieldCheck className="text-primary h-3.5 w-3.5" />
                     )}
-                    <Badge
-                      variant={
-                        member.role === 'owner' ? 'default' : 'secondary'
+                    <WhenPermission
+                      permission={Permission.WORKSPACE_MEMBERS_ROLE_CHANGE}
+                      fallback={
+                        <Badge
+                          variant={
+                            member.role === 'owner' ? 'default' : 'secondary'
+                          }
+                          className="capitalize"
+                        >
+                          {member.role ?? t('memberList.roleFallback')}
+                        </Badge>
                       }
-                      className="capitalize"
                     >
-                      {member.role ?? t('memberList.roleFallback')}
-                    </Badge>
+                      {member.role === 'owner' ||
+                      member._id === me?.id ||
+                      roles.length === 0 ? (
+                        <Badge
+                          variant={
+                            member.role === 'owner' ? 'default' : 'secondary'
+                          }
+                          className="capitalize"
+                        >
+                          {member.role ?? t('memberList.roleFallback')}
+                        </Badge>
+                      ) : (
+                        <select
+                          value={member.role}
+                          disabled={changing === member._id}
+                          onChange={(e) =>
+                            changeRole(member._id, e.target.value)
+                          }
+                          aria-label={t('memberList.changeRole')}
+                          className="border-input bg-background h-8 rounded-md border px-2 text-xs capitalize"
+                        >
+                          {roles.map((r) => (
+                            <option key={r} value={r}>
+                              {r}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                    </WhenPermission>
                   </div>
                 </div>
               ))}

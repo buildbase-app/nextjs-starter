@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { notification, auth } from '@/lib/buildbase';
+import { notification } from '@/lib/buildbase';
+import { getSessionContext } from '@/lib/server-auth';
+import { detect } from '@/tour/progress';
 
+/**
+ * Send a notification from the app. One call; the platform decides which
+ * channels fire from the event's settings, the workspace defaults and the
+ * person's own preferences, and every recipient gets an inbox item either way.
+ */
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth();
+    const session = await getSessionContext();
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -33,6 +40,13 @@ export async function POST(request: NextRequest) {
     );
 
     const result = await notification.send(workspaceId, event, userId, cleaned);
+
+    if (result.sent) {
+      await detect(session.userId, {
+        kind: 'action',
+        action: 'notification:sent',
+      });
+    }
 
     return NextResponse.json(result);
   } catch (error) {

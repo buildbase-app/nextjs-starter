@@ -23,6 +23,7 @@ import {
   Receipt,
   Building2,
   ListChecks,
+  Inbox,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -58,6 +59,7 @@ import { LanguageSwitcher } from './language-switcher';
 type NavKey =
   | 'dashboard'
   | 'tour'
+  | 'inbox'
   | 'analytics'
   | 'documents'
   | 'credits'
@@ -84,6 +86,11 @@ const menuItems: {
     navKey: 'tour',
     url: '/dashboard/tour',
     icon: ListChecks,
+  },
+  {
+    navKey: 'inbox',
+    url: '/dashboard/inbox',
+    icon: Inbox,
   },
   {
     navKey: 'analytics',

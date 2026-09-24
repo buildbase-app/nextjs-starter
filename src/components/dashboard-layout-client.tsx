@@ -2,11 +2,15 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useRouter as useLocaleRouter } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import {
   useSaaSAuth,
   WhenAuthenticated,
   WhenUnauthenticated,
+  NotificationBell,
+  WhenPendingInvitations,
+  PendingInvitations,
 } from '@buildbase/sdk/react';
 import {
   SidebarProvider,
@@ -25,6 +29,7 @@ export function DashboardLayoutClient({
 }) {
   const { isAuthenticated, status } = useSaaSAuth();
   const router = useRouter();
+  const localeRouter = useLocaleRouter();
   const t = useTranslations('common');
 
   useEffect(() => {
@@ -59,12 +64,29 @@ export function DashboardLayoutClient({
               <SidebarTrigger />
               <Separator orientation="vertical" className="h-6" />
               <div className="flex-1" />
+              {/* One item per notification, however it was delivered; opening
+                  the panel marks items seen, clicking one marks it read. */}
+              <NotificationBell
+                live
+                inboxProps={{
+                  onSelect: (item) => {
+                    if (!item.link) return;
+                    if (item.link.startsWith('/')) localeRouter.push(item.link);
+                    else window.location.assign(item.link);
+                  },
+                }}
+              />
               <ThemeToggle />
             </header>
             <div
               id="main-content"
               className="min-h-0 flex-1 overflow-y-auto p-6"
             >
+              {/* An invited person sees what is waiting on every page, not
+                  only on the empty workspace state. */}
+              <WhenPendingInvitations>
+                <PendingInvitations className="mb-6" />
+              </WhenPendingInvitations>
               {children}
             </div>
           </SidebarInset>
