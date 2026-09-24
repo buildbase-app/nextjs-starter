@@ -549,7 +549,7 @@ const messages: Messages = {
     sendCard: {
       title: 'Send Test Notification',
       description:
-        'Fill in the fields below and send a notification. Merge tags like {{name}}, {{workspaceName}}, {{url}} are resolved automatically.',
+        "Fill in the fields below and send a notification. Merge tags like '{{name}}', '{{workspaceName}}' and '{{url}}' are resolved automatically.",
     },
     fields: {
       eventSlug: 'Event Slug',
