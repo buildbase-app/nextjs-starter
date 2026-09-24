@@ -1,8 +1,8 @@
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
-import { TOUR_GROUPS, TOUR_TASKS, tasksInGroup } from '@/tour/catalog';
+import { tourGroups, tourTasks } from '@/tour/text';
 
 /**
  * The tour, read before signing in: every group and every task title, so a
@@ -10,7 +10,9 @@ import { TOUR_GROUPS, TOUR_TASKS, tasksInGroup } from '@/tour/catalog';
  * the catalog's English; only the chrome is translated.
  */
 export async function TourPreview() {
-  const t = await getTranslations('tour');
+  const [t, locale] = await Promise.all([getTranslations('tour'), getLocale()]);
+  const groups = tourGroups(locale);
+  const tasks = tourTasks(locale);
 
   return (
     <section id="tour" className="w-full max-w-6xl scroll-mt-20 px-6 py-20">
@@ -20,15 +22,15 @@ export async function TourPreview() {
         </h2>
         <p className="text-muted-foreground mx-auto mt-3 max-w-2xl text-lg text-pretty">
           {t('homeSubtitle', {
-            total: TOUR_TASKS.length,
-            groups: TOUR_GROUPS.length,
+            total: tasks.length,
+            groups: groups.length,
           })}
         </p>
       </div>
 
       <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {TOUR_GROUPS.map((group, i) => {
-          const tasks = tasksInGroup(group.id);
+        {groups.map((group, i) => {
+          const groupTasks = tasks.filter((task) => task.group === group.id);
           return (
             <li
               key={group.id}
@@ -40,14 +42,14 @@ export async function TourPreview() {
                 </span>
                 <h3 className="font-semibold">{group.title}</h3>
                 <span className="text-muted-foreground ml-auto text-xs tabular-nums">
-                  {tasks.length}
+                  {groupTasks.length}
                 </span>
               </div>
               <p className="text-muted-foreground mb-4 text-sm">
                 {group.summary}
               </p>
               <ul className="space-y-1.5">
-                {tasks.map((task) => (
+                {groupTasks.map((task) => (
                   <li
                     key={task.id}
                     className="flex items-start gap-2 text-sm leading-snug"

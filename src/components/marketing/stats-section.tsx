@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { TOUR_GROUPS, TOUR_TASKS } from '@/tour/catalog';
+import { TOUR_GROUP_IDS, TOUR_TASKS } from '@/tour/catalog';
 
 export async function StatsSection() {
   const t = await getTranslations('home');
@@ -16,7 +16,7 @@ export async function StatsSection() {
       sublabel: t('stats.tasks.sublabel'),
     },
     {
-      value: String(TOUR_GROUPS.length),
+      value: String(TOUR_GROUP_IDS.length),
       label: t('stats.groups.label'),
       sublabel: t('stats.groups.sublabel'),
     },

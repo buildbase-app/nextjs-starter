@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { ListChecks } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
@@ -12,11 +12,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { TOUR_TASKS, taskById } from '@/tour/catalog';
+import { tourTasks } from '@/tour/text';
 
 /** The dashboard's pointer into the tour: how far, and what comes next. */
 export function TourProgressCard() {
   const t = useTranslations('tour');
+  const locale = useLocale();
+  const tasks = tourTasks(locale);
   const [done, setDone] = useState<Set<string> | null>(null);
 
   useEffect(() => {
@@ -28,9 +30,9 @@ export function TourProgressCard() {
       .catch(() => setDone(new Set()));
   }, []);
 
-  const total = TOUR_TASKS.length;
+  const total = tasks.length;
   const count = done?.size ?? 0;
-  const next = done ? TOUR_TASKS.find((task) => !done.has(task.id)) : undefined;
+  const next = done ? tasks.find((task) => !done.has(task.id)) : undefined;
   const pct = Math.round((count / total) * 100);
 
   return (
@@ -53,7 +55,7 @@ export function TourProgressCard() {
         </div>
         {next && (
           <p className="text-muted-foreground text-sm">
-            {t('next')}: {taskById(next.id)?.title}
+            {t('next')}: {next.title}
           </p>
         )}
         <Button asChild size="sm" variant="outline">

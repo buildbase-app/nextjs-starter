@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import {
   CheckCircle2,
@@ -17,7 +17,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { TOUR_GROUPS, TOUR_TASKS, CONSOLE_URL } from '@/tour/catalog';
+import { CONSOLE_URL } from '@/tour/catalog';
+import { tourGroups, tourTasks } from '@/tour/text';
 import type { TourTask } from '@/tour/types';
 
 interface ProgressRow {
@@ -33,6 +34,9 @@ interface ProgressRow {
  */
 export function TourList({ initialOpen }: { initialOpen?: string }) {
   const t = useTranslations('tour');
+  const locale = useLocale();
+  const groups = useMemo(() => tourGroups(locale), [locale]);
+  const tasks = useMemo(() => tourTasks(locale), [locale]);
   const [progress, setProgress] = useState<Map<string, ProgressRow>>(new Map());
   const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = useState<string | null>(initialOpen ?? null);
@@ -69,18 +73,18 @@ export function TourList({ initialOpen }: { initialOpen?: string }) {
   };
 
   const doneCount = progress.size;
-  const total = TOUR_TASKS.length;
+  const total = tasks.length;
   const pct = total ? Math.round((doneCount / total) * 100) : 0;
 
   const byGroup = useMemo(() => {
     const m = new Map<string, TourTask[]>();
-    for (const task of TOUR_TASKS) {
+    for (const task of tasks) {
       const list = m.get(task.group) ?? [];
       list.push(task);
       m.set(task.group, list);
     }
     return m;
-  }, []);
+  }, [tasks]);
 
   return (
     <div className="space-y-8">
@@ -112,7 +116,7 @@ export function TourList({ initialOpen }: { initialOpen?: string }) {
         )}
       </div>
 
-      {TOUR_GROUPS.map((group, gi) => {
+      {groups.map((group, gi) => {
         const tasks = byGroup.get(group.id) ?? [];
         const groupDone = tasks.filter((x) => progress.has(x.id)).length;
         return (
@@ -177,6 +181,7 @@ export function TourList({ initialOpen }: { initialOpen?: string }) {
                     {isOpen && (
                       <TaskDetail
                         task={task}
+                        all={tasks}
                         row={row}
                         blockedBy={blockedBy}
                         busy={busy === task.id}
@@ -196,12 +201,14 @@ export function TourList({ initialOpen }: { initialOpen?: string }) {
 
 function TaskDetail({
   task,
+  all,
   row,
   blockedBy,
   busy,
   onToggle,
 }: {
   task: TourTask;
+  all: TourTask[];
   row?: ProgressRow;
   blockedBy: string[];
   busy: boolean;
@@ -320,7 +327,7 @@ function TaskDetail({
             <Lock className="h-3 w-3" />
             {t('requires')}:{' '}
             {blockedBy
-              .map((id) => TOUR_TASKS.find((x) => x.id === id)?.title ?? id)
+              .map((id) => all.find((x) => x.id === id)?.title ?? id)
               .join(', ')}
           </span>
         )}

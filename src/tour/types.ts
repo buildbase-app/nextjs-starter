@@ -8,6 +8,8 @@
  * by "Mark done" where it does not.
  */
 
+import type { TaskId } from './ids';
+
 export type TourGroupId =
   | 'start'
   | 'workspaces'
@@ -44,14 +46,10 @@ export interface TourSource {
   app?: string[];
 }
 
-export interface TourTask {
-  id: string;
+/** A task's structure, without its words (those are per language). */
+export interface TourTaskDefinition {
+  id: TaskId;
   group: TourGroupId;
-  title: string;
-  /** Why a buyer would care: one or two sentences. */
-  why: string;
-  /** What to do, in order. */
-  steps: string[];
   /** Where to do it in this app, as a route under the locale prefix. */
   href?: string;
   source: TourSource;
@@ -59,7 +57,16 @@ export interface TourTask {
   code?: { title: string; lang: 'tsx' | 'ts' | 'bash' | 'json'; body: string };
   detect: TourDetection;
   /** Tasks that must be done first. */
-  requires?: string[];
+  requires?: TaskId[];
+}
+
+/** A task with its words in one language: what the UI renders. */
+export interface TourTask extends TourTaskDefinition {
+  title: string;
+  /** Why a buyer would care: one or two sentences. */
+  why: string;
+  /** What to do, in order. */
+  steps: string[];
 }
 
 export interface TourGroup {
