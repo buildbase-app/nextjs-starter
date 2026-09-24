@@ -396,7 +396,7 @@ export const TOUR_TASKS: TourTask[] = [
     source: {
       sdk: ['useSeatStatus()'],
       console: {
-        screen: '/dashboard/admin/subscriptions',
+        screen: '/dashboard/admin/subscriptions/plans',
         note: 'Plan limits: max users per workspace.',
       },
     },
@@ -414,7 +414,7 @@ export const TOUR_TASKS: TourTask[] = [
     source: {
       sdk: ['useTrialStatus()', '<WhenTrialing>', '<WhenTrialEnding>'],
       console: {
-        screen: '/dashboard/admin/subscriptions',
+        screen: '/dashboard/admin/subscriptions/plans',
         note: 'Trial days on the plan.',
       },
     },
@@ -430,7 +430,7 @@ export const TOUR_TASKS: TourTask[] = [
     source: {
       sdk: ['<PricingPage slug="main-pricing">', 'usePublicPlans()'],
       console: {
-        screen: '/dashboard/admin/subscriptions',
+        screen: '/dashboard/admin/subscriptions/plans',
         note: 'Plan groups, plans and versions.',
       },
     },
@@ -542,7 +542,7 @@ export const TOUR_TASKS: TourTask[] = [
     source: {
       sdk: ['bb.usage.record()', 'useQuotaUsageContext().refetch()'],
       console: {
-        screen: '/dashboard/admin/subscriptions',
+        screen: '/dashboard/admin/subscriptions/plans',
         note: 'The documents quota on each plan: included amount and whether overage is allowed.',
       },
       app: ['src/lib/documents/service.ts', 'src/app/api/documents/route.ts'],
@@ -578,7 +578,7 @@ export const TOUR_TASKS: TourTask[] = [
     source: {
       sdk: ['<WhenQuotaExhausted slug="documents">', 'bb.usage.getQuota()'],
       console: {
-        screen: '/dashboard/admin/subscriptions',
+        screen: '/dashboard/admin/subscriptions/plans',
         note: 'Quota included amount, overage price, and the "allow overage" switch per plan.',
       },
       app: ['src/lib/documents/service.ts'],
@@ -661,7 +661,7 @@ export const TOUR_TASKS: TourTask[] = [
     source: {
       sdk: ['<CreditStorePage />', 'usePurchaseCredits()'],
       console: {
-        screen: '/dashboard/admin/subscriptions',
+        screen: '/dashboard/admin/subscriptions/credit-packages',
         note: 'Credit packages.',
       },
     },
