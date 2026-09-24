@@ -3,6 +3,7 @@ import type { ScopedActions } from '@buildbase/sdk';
 import type { Prisma } from '@prisma/client';
 import { prisma, setAuditContext } from '@/lib/db';
 import { logger } from '@/lib/logger';
+import { detect } from '@/tour/progress';
 import { SAMPLE_DOCUMENTS } from './samples';
 
 /**
@@ -18,6 +19,10 @@ import { SAMPLE_DOCUMENTS } from './samples';
  * Both are best-effort: a workspace whose plan has no such quota, or no
  * credits, still gets its document — the result explains what happened so
  * the UI can show it. Flip `METERING.strict` to make them blocking.
+ *
+ * One case is always blocking: a plan that has the quota, has used all of
+ * it, and does not allow overage. That is what a hard cap means, and the
+ * create throws `QuotaExhaustedError` so the route can answer 402.
  */
 
 export const DOCUMENT_STATUSES = [
@@ -34,6 +39,18 @@ export const METERING = {
   /** When true, quota exhaustion / insufficient credits block creation. */
   strict: false,
 } as const;
+
+/** The plan's `documents` quota is used up and it does not allow overage. */
+export class QuotaExhaustedError extends Error {
+  constructor(
+    public readonly quotaSlug: string,
+    public readonly included: number,
+    public readonly consumed: number
+  ) {
+    super(`Quota "${quotaSlug}" exhausted: ${consumed} of ${included} used`);
+    this.name = 'QuotaExhaustedError';
+  }
+}
 
 export interface MeteringResult {
   usage:
@@ -143,6 +160,26 @@ export async function getWorkspaceStats(workspaceId: string) {
   };
 }
 
+/**
+ * Refuse before writing when the plan hard-caps the quota and it is used up.
+ * A plan without the quota at all is not metered and passes through.
+ */
+async function assertQuotaAvailable(bb: ScopedActions, workspaceId: string) {
+  let quota;
+  try {
+    quota = await bb.usage.getQuota(workspaceId, METERING.quotaSlug);
+  } catch {
+    return; // no such quota on this plan: nothing to cap
+  }
+  if (quota.available <= 0 && quota.allowOverage === false) {
+    throw new QuotaExhaustedError(
+      METERING.quotaSlug,
+      quota.included,
+      quota.consumed
+    );
+  }
+}
+
 async function meterCreate(
   bb: ScopedActions,
   workspaceId: string,
@@ -222,6 +259,20 @@ export async function createDocument(
     source: options.source ?? 'api',
   });
 
+  if (!options.isSample) {
+    try {
+      await assertQuotaAvailable(bb, workspaceId);
+    } catch (error) {
+      if (error instanceof QuotaExhaustedError) {
+        await detect(actor.userId, {
+          kind: 'action',
+          action: 'document:refused-quota',
+        });
+      }
+      throw error;
+    }
+  }
+
   const doc = await prisma.document.create({
     data: {
       workspaceId,
@@ -238,6 +289,26 @@ export async function createDocument(
   const metering = options.isSample
     ? null
     : await meterCreate(bb, workspaceId, doc.id);
+
+  // The tour watches for these: a document made by a person or by an agent
+  // over MCP counts the same, because both come through here.
+  await detect(
+    actor.userId,
+    { kind: 'action', action: 'document:created' },
+    {
+      documentId: doc.id,
+      source: options.source ?? 'api',
+    }
+  );
+  if (metering?.credits.consumed) {
+    await detect(
+      actor.userId,
+      { kind: 'action', action: 'credits:consumed' },
+      {
+        documentId: doc.id,
+      }
+    );
+  }
 
   return { document: doc, metering };
 }
