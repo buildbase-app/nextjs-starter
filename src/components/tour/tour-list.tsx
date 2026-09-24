@@ -124,7 +124,7 @@ export function TourList({ initialOpen }: { initialOpen?: string }) {
             <div className="mb-3 flex items-baseline justify-between gap-4">
               <div>
                 <h2 className="text-xl font-semibold tracking-tight">
-                  <span className="text-muted-foreground mr-2 tabular-nums">
+                  <span className="text-muted-foreground me-2 tabular-nums">
                     {String(gi + 1).padStart(2, '0')}
                   </span>
                   {group.title}
@@ -148,7 +148,7 @@ export function TourList({ initialOpen }: { initialOpen?: string }) {
                       type="button"
                       onClick={() => setOpen(isOpen ? null : task.id)}
                       aria-expanded={isOpen}
-                      className="hover:bg-muted/50 flex w-full items-center gap-3 px-4 py-3 text-left"
+                      className="hover:bg-muted/50 flex w-full items-center gap-3 px-4 py-3 text-start"
                     >
                       {row ? (
                         <CheckCircle2 className="text-primary h-5 w-5 shrink-0" />

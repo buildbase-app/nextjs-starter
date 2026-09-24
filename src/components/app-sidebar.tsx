@@ -142,7 +142,7 @@ const menuItems: {
   },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ side = 'left' }: { side?: 'left' | 'right' }) {
   const pathname = usePathname();
   const { user, signOut, openWorkspaceSettings } = useSaaSAuth();
   const t = useTranslations('common');
@@ -158,7 +158,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar>
+    <Sidebar side={side}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

@@ -3,7 +3,8 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useRouter as useLocaleRouter } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { isRtlLocale, type Locale } from '@/i18n/config';
 import {
   useSaaSAuth,
   WhenAuthenticated,
@@ -30,6 +31,9 @@ export function DashboardLayoutClient({
   const { isAuthenticated, status } = useSaaSAuth();
   const router = useRouter();
   const localeRouter = useLocaleRouter();
+  // The sidebar is pinned by side, not by writing direction; in RTL it
+  // belongs on the right or the inset lays out over a gap that is not there.
+  const sidebarSide = isRtlLocale(useLocale() as Locale) ? 'right' : 'left';
   const t = useTranslations('common');
 
   useEffect(() => {
@@ -58,7 +62,7 @@ export function DashboardLayoutClient({
       </WhenUnauthenticated>
       <WhenAuthenticated>
         <SidebarProvider>
-          <AppSidebar />
+          <AppSidebar side={sidebarSide} />
           <SidebarInset className="overflow-hidden">
             <header className="flex h-14 shrink-0 items-center gap-4 border-b px-4">
               <SidebarTrigger />
