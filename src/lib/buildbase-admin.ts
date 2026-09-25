@@ -36,7 +36,11 @@ export function hasAdminApi(): boolean {
 export interface AdminFetchOptions extends Omit<RequestInit, 'body'> {
   /** Serialized as JSON unless it is FormData. */
   body?: unknown;
-  /** Query string parameters; objects are JSON-encoded (the API's `filter`). */
+  /**
+   * Query string parameters. Objects are expanded to bracket keys
+   * (`filter[from]=…`), which is how the API's validators read `filter`,
+   * `sort` and friends; a JSON string is rejected as "not an object".
+   */
   query?: Record<string, string | number | boolean | object | undefined>;
 }
 
@@ -53,13 +57,17 @@ export async function adminFetch<T = unknown>(
     throw new AdminApiError(503, 'BUILDBASE_API_TOKEN is not configured');
   }
   const url = new URL(`${BASE}/api/${path.replace(/^\//, '')}`);
-  for (const [k, v] of Object.entries(query ?? {})) {
-    if (v === undefined) continue;
-    url.searchParams.set(
-      k,
-      typeof v === 'object' ? JSON.stringify(v) : String(v)
-    );
-  }
+  const setParam = (key: string, value: unknown) => {
+    if (value === undefined || value === null) return;
+    if (typeof value === 'object') {
+      for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+        setParam(`${key}[${k}]`, v);
+      }
+      return;
+    }
+    url.searchParams.set(key, String(value));
+  };
+  for (const [k, v] of Object.entries(query ?? {})) setParam(k, v);
   const isForm = typeof FormData !== 'undefined' && body instanceof FormData;
   const res = await fetch(url, {
     ...init,
