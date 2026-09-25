@@ -1,7 +1,7 @@
-import type { TourTextPartial } from './types';
+import type { TourText } from './types';
 
 /** The tour's text, Simplified Chinese. Mirrors `en.ts`. */
-export const zh: TourTextPartial = {
+export const zh: TourText = {
   groups: {
     start: {
       title: '开始使用',
@@ -54,6 +54,36 @@ export const zh: TourTextPartial = {
     platform: {
       title: '平台',
       summary: '语言、主题、你的数据，以及把这个仓库带回家。',
+    },
+    content: {
+      title: '内容',
+      summary: '在控制台撰写的文档、常见问题和文案，由本应用读取。',
+    },
+    forms: { title: '表单', summary: '在控制台搭建的表单，在这里渲染并提交。' },
+    collections: {
+      title: '数据集',
+      summary: '带版本化结构的自定义数据，存储在平台上。',
+    },
+    assets: {
+      title: '文件',
+      summary: '通过应用上传的文件，由平台存储和分发。',
+    },
+    links: { title: '短链接', summary: '统计每一次点击的分享链接。' },
+    audience: {
+      title: '受众与属性',
+      summary: '用户的自定义属性、候补名单和营销受众。',
+    },
+    tracking: {
+      title: '追踪',
+      summary: '带同意管理、自定义事件和来源归因的分析标签。',
+    },
+    workflows: {
+      title: '工作流',
+      summary: '在控制台搭建的自动化，由你在这里的操作触发。',
+    },
+    reports: {
+      title: '报表',
+      summary: '每个模块都有报表，本应用绘制其中几项。',
     },
   },
   tasks: {
@@ -463,6 +493,270 @@ export const zh: TourTextPartial = {
       title: '删除你的账户',
       why: 'GDPR 第 17 条：在这里和平台上都会被抹除。',
       steps: ['个人资料 → 删除我的账户。导览到此结束。'],
+    },
+    'help-policy': {
+      title: '阅读帮助中心',
+      why: '编辑内容存放在控制台，而不是这个仓库：政策区块、文档、常见问题、用户评价。应用用仅限服务器的令牌通过组织 API 读取它们。',
+      steps: [
+        '打开帮助中心。',
+        '阅读退款政策区块。',
+        '在控制台修改文字，然后重新加载。',
+      ],
+    },
+    'help-doc': {
+      title: '打开一篇文档',
+      why: '文档有文件夹和发布标记；应用从目录树列出文件夹，只显示已发布的内容。',
+      steps: ['在帮助中心左栏选择一篇文档。'],
+    },
+    'help-faq': {
+      title: '展开一个常见问题',
+      why: '常见问题集合是精选的问题列表，同一个问题可以放在多个集合中。',
+      steps: [
+        '在帮助中心打开“Frequently asked”下的一个问题。',
+        '在控制台添加一个问题，然后重新加载。',
+      ],
+    },
+    'help-testimonials': {
+      title: '查看用户评价',
+      why: '用户评价在有人于控制台发布之前一直是草稿。',
+      steps: ['在帮助中心滚动到“What customers say”。'],
+    },
+    'form-submit': {
+      title: '提交联系表单',
+      why: '表单结构在控制台搭建并公开提供；每次提交都会成为一条数据集记录并触发 form.submitted。本应用通过自己的服务器转发提交，以加上自己的校验。',
+      steps: [
+        '打开 Forms。',
+        '填写联系表单并发送。',
+        '它会出现在“Latest submissions”中。',
+      ],
+    },
+    'form-invalid': {
+      title: '发送表单会拒绝的内容',
+      why: '平台按当前结构校验，并一次返回所有错误；应用原样显示。',
+      steps: [
+        '留空一个必填字段，或输入无效的邮箱。',
+        '发送，然后阅读错误信息。',
+      ],
+    },
+    'form-console': {
+      title: '在控制台查看提交',
+      why: '每次提交都是表单数据集中的一条记录，还有提交量随时间变化的图表。',
+      steps: ['打开控制台的 Forms 页面，找到 Contact 表单。'],
+    },
+    'form-workflow': {
+      title: '给表单接上工作流',
+      why: 'form.submitted 是工作流触发器：发送确认邮件、发到 Slack、调用你的服务器。在控制台搭建，这里无需部署。',
+      steps: [
+        '在控制台创建一个以 form.submitted 为触发器的工作流。',
+        '再次提交表单，观察实例运行。',
+      ],
+    },
+    'collection-read': {
+      title: '阅读发布说明',
+      why: '数据集是带版本化结构的自定义数据。应用读取当前生效版本的记录，所以修改结构只需发布，不需部署。',
+      steps: ['打开 Collections。', '表格的列就是当前版本的字段。'],
+    },
+    'collection-delete': {
+      title: '删除一条记录',
+      why: '写入记录要用应用的令牌经过组织 API；控制台会立即显示变化。',
+      steps: ['从表格中删除一条发布说明。', '查看控制台的记录页面。'],
+    },
+    'collection-version': {
+      title: '发布一个新版本',
+      why: '已生效的版本不可更改。新版本会复制字段，你加一个字段并设为生效，表格就多出一列。',
+      steps: [
+        '在控制台为 release-notes 添加一个多一个字段的版本，并设为生效。',
+        '重新加载 Collections。',
+      ],
+    },
+    'upload-asset': {
+      title: '上传一个文件',
+      why: '文件由平台存储和分发，每个最大 5 MB，可设为公开或私有。浏览器永远拿不到组织令牌：由服务器转发上传。',
+      steps: ['打开 Assets。', '选择一张图片，等它带着宽高出现在图库中。'],
+    },
+    'asset-in-console': {
+      title: '在控制台查看',
+      why: '同一个文件出现在组织的文件列表中，附带平台掌握的全部信息。',
+      steps: ['打开控制台的 Assets 页面。', '找到你刚上传的文件。'],
+    },
+    'asset-private': {
+      title: '设为私有',
+      why: '可见性是平台上的一个开关；私有文件的公开 URL 会立即失效。',
+      steps: [
+        '在文件卡片上选择“Make private”。',
+        '打开它的 URL：已不再提供。',
+        '再把它设回公开。',
+      ],
+    },
+    'create-link': {
+      title: '创建一个短链接',
+      why: '平台生成一个 12 位的 ID 并负责跳转；目标地址由你决定。',
+      steps: ['打开 Short links。', '起个名字，为本应用的 URL 创建链接。'],
+    },
+    'click-link': {
+      title: '点击并查看计数',
+      why: '每次点击都会连同国家、设备和时间记录下来；这里的计数是从平台读回的。',
+      steps: [
+        '选择“Follow”：短链接在新标签页打开并跳到目标地址。',
+        '回来刷新：计数增加了。',
+      ],
+    },
+    'change-link-destination': {
+      title: '修改目标地址',
+      why: '短链接本身不变，所以已经分享出去的链接照常可用。',
+      steps: [
+        '选择“Change destination”，输入另一个 URL 并保存。',
+        '再次打开链接：它跳到了新地址。',
+      ],
+    },
+    'link-analytics-console': {
+      title: '查看分析页面',
+      why: '控制台绘制点击量随时间的变化，并逐条列出。',
+      steps: ['打开控制台的 Links → Analytics 页面。', '找到你的点击。'],
+    },
+    'finish-onboarding': {
+      title: '完成新手清单',
+      why: '自定义属性是用户身上的键值对，由 SDK 以你的身份从浏览器写入。键在控制台定义，便于之后筛选。',
+      steps: [
+        '打开 Audience。',
+        '勾选全部三项，填写职位名称，然后完成。',
+        '属性卡片显示 onboarded=true。',
+      ],
+    },
+    'attributes-in-console': {
+      title: '在你的记录上查看属性',
+      why: '应用写入的内容就在控制台中你的用户上，管理员可以据此筛选或分群。',
+      steps: [
+        '打开控制台的 Users 页面，进入你自己的记录。',
+        '找到 onboarded 和 role-title。',
+      ],
+    },
+    'set-country': {
+      title: '选择国家、时区和货币',
+      why: 'SDK 自带国家、时区和货币列表，选择器无需额外下载；选择会保存为属性。',
+      steps: ['在 Audience 上选择国家、时区和货币。', '保存偏好。'],
+    },
+    'subscribe-newsletter': {
+      title: '订阅新闻通讯',
+      why: '受众联系人是独立于账户的营销记录：没有账户也可以存在，是营销活动的发送对象。',
+      steps: [
+        '在 Audience 上用你的邮箱订阅。',
+        '服务器创建联系人并把它加入 newsletter 列表。',
+      ],
+    },
+    'join-waitlist': {
+      title: '在未登录状态下加入候补名单',
+      why: '平台的测试版候补名单：表单和文案来自控制台，报名也在那里审批。',
+      steps: [
+        '在隐私窗口中打开 /waitlist。',
+        '留下姓名和邮箱。',
+        '在控制台的 Users → Beta 中批准这条报名。',
+      ],
+    },
+    'tracking-consent': {
+      title: '给出同意，看着标签加载',
+      why: '分析和广告标签在控制台设置，而不是在这份代码里。SDK 只在获得同意后加载它们，横幅只列出实际安装的内容，从不列出没有加载的厂商。',
+      steps: [
+        '打开 Tracking。',
+        '阅读同意列表：它由挂在本应用上的标签生成。',
+        '全部接受或只接受分析，看看安装了哪些提供方。',
+      ],
+    },
+    'tracking-custom-event': {
+      title: '发送一个自定义事件',
+      why: '注册和购买会自动发送；你自己的事件通过 track() 发往数据层和每个已安装的厂商。',
+      steps: [
+        '在 Tracking 上点击“Track a custom event”。',
+        '看它带着参数出现在实时日志中。',
+      ],
+    },
+    'tracking-attribution': {
+      title: '查看你从哪里来',
+      why: '点击 ID 和活动参数在访客落地的第一个页面被记录，并跨子域附在之后的每个事件上。',
+      steps: [
+        '带上 ?utm_source=demo&utm_campaign=tour 重新加载 Tracking 页面。',
+        '阅读来源归因卡片。',
+      ],
+    },
+    'tracking-console-tag': {
+      title: '在控制台查看标签',
+      why: 'GA4、Meta、PostHog、Clarity 等十五种，每种都有同意类别和控制台为你的隐私政策生成的说明文字。',
+      steps: [
+        '在控制台打开 Settings → Tracking。',
+        '打开 Auth → Clients，查看挂在本应用上的标签。',
+      ],
+    },
+    'workflow-runs': {
+      title: '查看你的工作流运行',
+      why: '工作流在控制台用触发器、动作和条件搭建。应用从不调用工作流；它引发工作流监听的事件，并能读取为每个人运行了什么。',
+      steps: [
+        '打开 Automations。',
+        '阅读平台为你启动的运行，包括状态和节点数。',
+      ],
+    },
+    'workflow-cause': {
+      title: '触发一次工作流运行',
+      why: '注册、提交表单、付款或余额不足都会启动运行。应用里没有任何地方写着工作流的名字。',
+      steps: [
+        '在 Forms 上提交联系表单。',
+        '回到 Automations 刷新：出现一条“Provision on form”的运行。',
+      ],
+    },
+    'workflow-provision-call': {
+      title: '接收来自工作流的调用',
+      why: 'HTTP Webhook 动作可以调用你自己的服务器。调用不带签名，authorization 头也会被去掉，所以它在 x-webhook-secret 中携带共享密钥；由于平台会重试，路由是幂等的。',
+      steps: [
+        '触发“Provision on form”工作流。',
+        '在 Automations 上阅读应用收到并保存的这次调用。',
+      ],
+    },
+    'workflow-console-run': {
+      title: '在控制台打开这次运行',
+      why: '每个节点的结果、日志、重试和死信队列，你的代码里一样都不需要。',
+      steps: [
+        '在控制台打开 Workflows → Instances。',
+        '打开你的运行，阅读每个节点的输出。',
+      ],
+    },
+    'reports-view': {
+      title: '查看来自平台的报表',
+      why: '每个模块都有图表和计数接口，控制台仪表盘用的也是它们。本应用绘制最近三十天的注册、表单提交和链接点击。',
+      steps: ['打开 Reports。', '阅读三张图表和主要数字。'],
+    },
+    'reports-console': {
+      title: '与控制台仪表盘对比',
+      why: '数字一致，因为来自同样的接口；其中一些是每十分钟刷新的汇总。',
+      steps: ['打开控制台仪表盘，找到同样的注册曲线。'],
+    },
+    'see-badge': {
+      title: '查看徽章',
+      why: '一张“Built with BuildBase”图片和链接，在服务器上渲染，不用脚本、不发网络请求，可附带推荐码。',
+      steps: ['滚动到首页的页脚。'],
+    },
+    'slack-alert': {
+      title: '有人注册时收到 Slack 提醒',
+      why: '最多 55 种系统事件的团队提醒会发到同一个 Slack 传入 Webhook URL。只在控制台设置：应用只负责引发事件。',
+      steps: [
+        '在控制台的 Settings → Slack 中粘贴一个传入 Webhook URL，并选择“user.registered”。',
+        '注册一个测试用户，观察 Slack 频道。',
+      ],
+    },
+    'receive-campaign': {
+      title: '收到一封邮件营销',
+      why: '面向受众的邮件在控制台撰写和发送：模板、已验证的发信域名、受众列表、按收件人生成的草稿、打开和点击追踪。',
+      steps: [
+        '在 Audience 上订阅新闻通讯。',
+        '在控制台的 Emails → Campaigns 中针对该列表创建一个并发送。',
+        '在收件箱中阅读。',
+      ],
+    },
+    'unsubscribe-campaign': {
+      title: '退订',
+      why: '{{unsubscribe}} 合并标签会变成一个托管页面；联系人被标记为已退订，此后不再发送。',
+      steps: [
+        '点击营销邮件中的退订。',
+        '在控制台的 Audience 中找到该联系人：已退订。',
+      ],
     },
   },
 };

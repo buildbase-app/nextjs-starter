@@ -1,7 +1,7 @@
-import type { TourTextPartial } from './types';
+import type { TourText } from './types';
 
 /** Der Text der Tour, Deutsch. */
-export const de: TourTextPartial = {
+export const de: TourText = {
   groups: {
     start: {
       title: 'Erste Schritte',
@@ -63,6 +63,49 @@ export const de: TourTextPartial = {
       title: 'Plattform',
       summary:
         'Sprachen, Themes, Ihre Daten, und wie Sie dieses Repository mitnehmen.',
+    },
+    content: {
+      title: 'Inhalte',
+      summary:
+        'Docs, FAQs und Texte, in der Konsole geschrieben und von dieser App gelesen.',
+    },
+    forms: {
+      title: 'Formulare',
+      summary:
+        'Ein in der Konsole gebautes Formular, hier angezeigt und abgeschickt.',
+    },
+    collections: {
+      title: 'Sammlungen',
+      summary:
+        'Eigene Daten mit versionierten Schemas, auf der Plattform gespeichert.',
+    },
+    assets: {
+      title: 'Dateien',
+      summary:
+        'Über die App hochgeladene Dateien, von der Plattform gespeichert und ausgeliefert.',
+    },
+    links: {
+      title: 'Kurzlinks',
+      summary: 'Links zum Teilen, die jeden Klick zählen.',
+    },
+    audience: {
+      title: 'Zielgruppe und Attribute',
+      summary:
+        'Eigene Attribute an einem Nutzer, eine Warteliste und eine Marketing-Zielgruppe.',
+    },
+    tracking: {
+      title: 'Tracking',
+      summary: 'Analyse-Tags mit Einwilligung, eigenen Events und Attribution.',
+    },
+    workflows: {
+      title: 'Workflows',
+      summary:
+        'In der Konsole gebaute Automatisierungen, gestartet durch das, was Sie hier tun.',
+    },
+    reports: {
+      title: 'Berichte',
+      summary:
+        'Jedes Modul liefert Berichte; diese App zeigt einige davon als Diagramm.',
     },
   },
   tasks: {
@@ -539,6 +582,298 @@ export const de: TourTextPartial = {
       title: 'Ihr Konto löschen',
       why: 'DSGVO Artikel 17: gelöscht hier und auf der Plattform.',
       steps: ['Profil → Mein Konto löschen. Damit endet die Tour.'],
+    },
+    'help-policy': {
+      title: 'Das Hilfe-Center lesen',
+      why: 'Redaktionelle Inhalte leben in der Konsole, nicht in diesem Repository: ein Richtlinienblock, Docs, FAQs, Testimonials. Die App liest sie über die Organisations-API mit einem Token, das nur der Server kennt.',
+      steps: [
+        'Öffnen Sie das Hilfe-Center.',
+        'Lesen Sie den Block zur Rückerstattungsrichtlinie.',
+        'Ändern Sie seinen Text in der Konsole und laden Sie neu.',
+      ],
+    },
+    'help-doc': {
+      title: 'Ein Doc öffnen',
+      why: 'Docs haben Ordner und ein Veröffentlicht-Kennzeichen; die App listet die Ordner aus dem Baum und zeigt nur Veröffentlichtes.',
+      steps: ['Wählen Sie im Hilfe-Center ein Doc in der linken Spalte.'],
+    },
+    'help-faq': {
+      title: 'Eine FAQ aufklappen',
+      why: 'Eine FAQ-Sammlung ist eine kuratierte Liste von Fragen; dieselbe Frage kann in mehreren Sammlungen stehen.',
+      steps: [
+        'Öffnen Sie im Hilfe-Center eine Frage unter Häufige Fragen.',
+        'Fügen Sie in der Konsole eine hinzu und laden Sie neu.',
+      ],
+    },
+    'help-testimonials': {
+      title: 'Die Testimonials ansehen',
+      why: 'Testimonials sind Entwürfe, bis jemand sie in der Konsole veröffentlicht.',
+      steps: ['Scrollen Sie im Hilfe-Center zu Was Kunden sagen.'],
+    },
+    'form-submit': {
+      title: 'Das Kontaktformular abschicken',
+      why: 'Das Formularschema wird in der Konsole gebaut und öffentlich ausgeliefert; jede Einsendung wird zu einem Sammlungseintrag und löst form.submitted aus. Diese App leitet das Absenden über ihren eigenen Server, um eigene Prüfungen zu ergänzen.',
+      steps: [
+        'Öffnen Sie Formulare.',
+        'Füllen Sie das Kontaktformular aus und schicken Sie es ab.',
+        'Es erscheint unter Neueste Einsendungen.',
+      ],
+    },
+    'form-invalid': {
+      title: 'Etwas senden, das das Formular ablehnt',
+      why: 'Die Plattform prüft gegen das Live-Schema und liefert alle Fehler auf einmal zurück; die App zeigt sie so an, wie sie kommen.',
+      steps: [
+        'Lassen Sie ein Pflichtfeld leer oder geben Sie eine ungültige E-Mail ein.',
+        'Senden Sie ab und lesen Sie die Fehler.',
+      ],
+    },
+    'form-console': {
+      title: 'Die Einsendung in der Konsole sehen',
+      why: 'Jede Einsendung ist ein Eintrag in der Sammlung des Formulars, mit einem Diagramm der Einsendungen über die Zeit.',
+      steps: [
+        'Öffnen Sie in der Konsole den Bereich Formulare und suchen Sie das Formular Contact.',
+      ],
+    },
+    'form-workflow': {
+      title: 'Einen Workflow an das Formular hängen',
+      why: 'form.submitted ist ein Workflow-Auslöser: eine Bestätigungs-E-Mail senden, in Slack posten, Ihren Server aufrufen. In der Konsole gebaut, hier nichts zu deployen.',
+      steps: [
+        'Legen Sie in der Konsole einen Workflow mit dem Auslöser form.submitted an.',
+        'Schicken Sie das Formular erneut ab und sehen Sie der Instanz beim Laufen zu.',
+      ],
+    },
+    'collection-read': {
+      title: 'Die Release Notes lesen',
+      why: 'Eine Sammlung sind eigene Daten mit versioniertem Schema. Die App liest Einträge der Live-Version, eine Schemaänderung ist also eine Veröffentlichung, kein Deployment.',
+      steps: [
+        'Öffnen Sie Sammlungen.',
+        'Die Tabellenspalten sind die Felder der Live-Version.',
+      ],
+    },
+    'collection-delete': {
+      title: 'Einen Eintrag löschen',
+      why: 'Schreibzugriffe laufen über die Organisations-API mit dem Token der App; die Konsole zeigt die Änderung sofort.',
+      steps: [
+        'Löschen Sie eine Release Note aus der Tabelle.',
+        'Prüfen Sie den Eintragsbereich in der Konsole.',
+      ],
+    },
+    'collection-version': {
+      title: 'Eine neue Version veröffentlichen',
+      why: 'Live-Versionen sind unveränderlich. Eine neue Version kopiert die Felder, Sie fügen eines hinzu, setzen sie live, und die Tabelle bekommt eine Spalte mehr.',
+      steps: [
+        'Legen Sie in der Konsole für release-notes eine Version mit einem zusätzlichen Feld an und setzen Sie sie live.',
+        'Laden Sie Sammlungen neu.',
+      ],
+    },
+    'upload-asset': {
+      title: 'Eine Datei hochladen',
+      why: 'Dateien werden von der Plattform gespeichert und ausgeliefert, je 5 MB, öffentlich oder privat. Der Browser sieht das Organisations-Token nie: Der Server leitet den Upload weiter.',
+      steps: [
+        'Öffnen Sie Dateien.',
+        'Wählen Sie ein Bild und warten Sie, bis es mit Breite und Höhe in der Galerie erscheint.',
+      ],
+    },
+    'asset-in-console': {
+      title: 'Die Datei in der Konsole sehen',
+      why: 'Dieselbe Datei in der Dateiliste der Organisation, mit allem, was die Plattform über sie weiß.',
+      steps: [
+        'Öffnen Sie den Bereich Assets in der Konsole.',
+        'Suchen Sie die Datei, die Sie gerade hochgeladen haben.',
+      ],
+    },
+    'asset-private': {
+      title: 'Die Datei privat machen',
+      why: 'Sichtbarkeit ist ein Schalter auf der Plattform; die öffentliche URL einer privaten Datei funktioniert sofort nicht mehr.',
+      steps: [
+        'Wählen Sie auf der Dateikarte Privat machen.',
+        'Öffnen Sie ihre URL: Sie liefert nichts mehr aus.',
+        'Machen Sie sie wieder öffentlich.',
+      ],
+    },
+    'create-link': {
+      title: 'Einen Kurzlink erstellen',
+      why: 'Die Plattform vergibt eine 12-stellige ID und leitet dafür weiter; das Ziel bestimmen Sie.',
+      steps: [
+        'Öffnen Sie Kurzlinks.',
+        'Geben Sie ihm einen Namen und erstellen Sie ihn für die URL dieser App.',
+      ],
+    },
+    'click-link': {
+      title: 'Klicken und den Zähler sehen',
+      why: 'Jeder Klick wird mit Land, Gerät und Uhrzeit erfasst; der Zähler hier wird von der Plattform zurückgelesen.',
+      steps: [
+        'Wählen Sie Folgen: Die Kurz-URL öffnet sich in einem neuen Tab und landet am Ziel.',
+        'Kommen Sie zurück und aktualisieren Sie: Der Zähler ist gestiegen.',
+      ],
+    },
+    'change-link-destination': {
+      title: 'Das Ziel ändern',
+      why: 'Die Kurz-URL bleibt gleich, bereits geteilte Links funktionieren also weiter.',
+      steps: [
+        'Wählen Sie Ziel ändern, geben Sie eine andere URL ein und speichern Sie.',
+        'Folgen Sie dem Link erneut: Er landet am neuen Ziel.',
+      ],
+    },
+    'link-analytics-console': {
+      title: 'Den Analysebereich ansehen',
+      why: 'Die Konsole zeigt die Klicks im Zeitverlauf und listet jeden einzeln auf.',
+      steps: [
+        'Öffnen Sie in der Konsole Links → Analytics.',
+        'Suchen Sie Ihre Klicks.',
+      ],
+    },
+    'finish-onboarding': {
+      title: 'Die Onboarding-Checkliste abschließen',
+      why: 'Eigene Attribute sind Schlüssel-Wert-Paare am Nutzer, vom SDK im Browser in Ihrem Namen geschrieben. Die Schlüssel werden in der Konsole definiert, damit man später danach filtern kann.',
+      steps: [
+        'Öffnen Sie Zielgruppe.',
+        'Haken Sie alle drei Kästchen ab, ergänzen Sie eine Rollenbezeichnung und schließen Sie ab.',
+        'Die Attributkarte zeigt onboarded=true.',
+      ],
+    },
+    'attributes-in-console': {
+      title: 'Die Attribute an Ihrem Datensatz sehen',
+      why: 'Was die App geschrieben hat, steht an Ihrem Nutzer in der Konsole, wo Admins danach filtern oder segmentieren können.',
+      steps: [
+        'Öffnen Sie in der Konsole den Bereich Users und Ihren eigenen Datensatz.',
+        'Suchen Sie onboarded und role-title.',
+      ],
+    },
+    'set-country': {
+      title: 'Land, Zeitzone und Währung wählen',
+      why: 'Das SDK liefert die Listen (Länder, Zeitzonen, Währungen) mit, eine Auswahl braucht also keinen Download; die Wahl wird als Attribute gespeichert.',
+      steps: [
+        'Wählen Sie unter Zielgruppe ein Land, eine Zeitzone und eine Währung.',
+        'Speichern Sie die Einstellungen.',
+      ],
+    },
+    'subscribe-newsletter': {
+      title: 'Den Newsletter abonnieren',
+      why: 'Ein Zielgruppenkontakt ist ein Marketing-Datensatz, getrennt vom Konto: Er kann ohne Konto existieren, und an ihn gehen die Kampagnen.',
+      steps: [
+        'Abonnieren Sie unter Zielgruppe mit Ihrer E-Mail.',
+        'Der Server legt den Kontakt an und fügt ihn der Liste newsletter hinzu.',
+      ],
+    },
+    'join-waitlist': {
+      title: 'Abgemeldet der Warteliste beitreten',
+      why: 'Die Beta-Warteliste der Plattform: Formular und Texte kommen aus der Konsole, Anmeldungen werden dort freigegeben.',
+      steps: [
+        'Öffnen Sie /waitlist in einem privaten Fenster.',
+        'Hinterlassen Sie einen Namen und eine E-Mail.',
+        'Geben Sie die Anmeldung in der Konsole unter Users → Beta frei.',
+      ],
+    },
+    'tracking-consent': {
+      title: 'Einwilligen und Tags laden sehen',
+      why: 'Analyse- und Werbe-Tags werden in der Konsole eingerichtet, nicht in diesem Code. Das SDK lädt sie erst nach der Einwilligung, und das Banner listet, was tatsächlich installiert ist, nie einen Anbieter, der nicht geladen wurde.',
+      steps: [
+        'Öffnen Sie Tracking.',
+        'Lesen Sie die Einwilligungsliste: Sie entsteht aus den Tags, die dieser App zugeordnet sind.',
+        'Akzeptieren Sie alles oder nur Analyse und sehen Sie, welche Anbieter geladen werden.',
+      ],
+    },
+    'tracking-custom-event': {
+      title: 'Ein eigenes Event auslösen',
+      why: 'Registrierungen und Käufe werden von selbst ausgelöst; Ihre eigenen Events gehen über track() an den Data Layer und an jeden installierten Anbieter.',
+      steps: [
+        'Klicken Sie unter Tracking auf "Track a custom event".',
+        'Sehen Sie es mit seinen Parametern im Live-Protokoll erscheinen.',
+      ],
+    },
+    'tracking-attribution': {
+      title: 'Sehen, woher Sie kamen',
+      why: 'Klick-IDs und Kampagnenparameter werden auf der ersten Seite erfasst, auf der jemand landet, und begleiten jedes spätere Event, auch über Subdomains hinweg.',
+      steps: [
+        'Laden Sie die Tracking-Seite mit ?utm_source=demo&utm_campaign=tour neu.',
+        'Lesen Sie die Attributionskarte.',
+      ],
+    },
+    'tracking-console-tag': {
+      title: 'Das Tag in der Konsole sehen',
+      why: 'GA4, Meta, PostHog, Clarity und elf weitere, jeweils mit einer Einwilligungskategorie und einem Datenschutztext, den die Konsole für Ihre Richtlinie erzeugt.',
+      steps: [
+        'Öffnen Sie in der Konsole Settings → Tracking.',
+        'Öffnen Sie Auth → Clients und sehen Sie das dieser App zugeordnete Tag.',
+      ],
+    },
+    'workflow-runs': {
+      title: 'Ihre Workflow-Läufe ansehen',
+      why: 'Workflows werden in der Konsole gebaut: Auslöser, Aktionen und Bedingungen. Die App ruft nie einen auf; sie verursacht die Events, auf die sie hören, und kann lesen, was für jede Person gelaufen ist.',
+      steps: [
+        'Öffnen Sie Automatisierungen.',
+        'Lesen Sie die Läufe, die die Plattform für Sie gestartet hat, mit Status und Anzahl der Knoten.',
+      ],
+    },
+    'workflow-cause': {
+      title: 'Einen Workflow-Lauf auslösen',
+      why: 'Eine Registrierung, eine Formulareinsendung, eine Zahlung oder ein niedriges Guthaben startet einen Lauf. Nichts in der App nennt den Workflow beim Namen.',
+      steps: [
+        'Schicken Sie unter Formulare das Kontaktformular ab.',
+        'Gehen Sie zurück zu Automatisierungen und aktualisieren Sie: Ein Lauf von "Provision on form" erscheint.',
+      ],
+    },
+    'workflow-provision-call': {
+      title: 'Einen Aufruf von einem Workflow empfangen',
+      why: 'Eine HTTP-Webhook-Aktion kann Ihren eigenen Server aufrufen. Der Aufruf ist nicht signiert und der Authorization-Header wird entfernt; deshalb trägt er ein gemeinsames Secret in x-webhook-secret, und die Route ist idempotent, weil die Plattform wiederholt.',
+      steps: [
+        'Lösen Sie den Workflow "Provision on form" aus.',
+        'Lesen Sie unter Automatisierungen den Bereitstellungsaufruf, den die App empfangen und gespeichert hat.',
+      ],
+    },
+    'workflow-console-run': {
+      title: 'Den Lauf in der Konsole öffnen',
+      why: 'Ergebnisse je Knoten, Logs, Wiederholungen und eine Dead-Letter-Queue, ohne dass davon etwas in Ihrem Code steht.',
+      steps: [
+        'Öffnen Sie in der Konsole Workflows → Instances.',
+        'Öffnen Sie Ihren Lauf und lesen Sie die Ausgabe jedes Knotens.',
+      ],
+    },
+    'reports-view': {
+      title: 'Einen Bericht der Plattform ansehen',
+      why: 'Jedes Modul hat Endpunkte für Diagramme und Zählwerte, dieselben, aus denen die Dashboards der Konsole zeichnen. Diese App zeigt Registrierungen, Formulareinsendungen und Linkklicks der letzten dreißig Tage.',
+      steps: [
+        'Öffnen Sie Berichte.',
+        'Lesen Sie die drei Diagramme und die Kennzahlen.',
+      ],
+    },
+    'reports-console': {
+      title: 'Mit dem Konsolen-Dashboard vergleichen',
+      why: 'Die Zahlen stimmen überein, weil sie von denselben Endpunkten kommen; manche sind Aggregate, die alle zehn Minuten aktualisiert werden.',
+      steps: [
+        'Öffnen Sie das Dashboard der Konsole und suchen Sie dieselbe Registrierungskurve.',
+      ],
+    },
+    'see-badge': {
+      title: 'Das Badge ansehen',
+      why: 'Ein Bild und Link "Built with BuildBase", auf dem Server gerendert, ohne Script und ohne Netzwerkaufruf, mit optionalem Empfehlungscode.',
+      steps: ['Scrollen Sie auf der Startseite zur Fußzeile.'],
+    },
+    'slack-alert': {
+      title: 'Einen Slack-Alarm bei einer Registrierung bekommen',
+      why: 'Team-Alarme für bis zu 55 Systemevents gehen an eine einzige Slack-Incoming-Webhook-URL. Nur in der Konsole: Die App verursacht lediglich die Events.',
+      steps: [
+        'Fügen Sie in der Konsole unter Settings → Slack eine Incoming-Webhook-URL ein und wählen Sie "user.registered".',
+        'Registrieren Sie einen Testnutzer und beobachten Sie den Slack-Kanal.',
+      ],
+    },
+    'receive-campaign': {
+      title: 'Eine E-Mail-Kampagne empfangen',
+      why: 'E-Mails an eine ganze Zielgruppe werden in der Konsole geschrieben und versendet: Vorlage, verifizierte Versanddomain, Zielgruppenliste, Entwürfe je Empfänger, Öffnungs- und Klick-Tracking.',
+      steps: [
+        'Treten Sie unter Zielgruppe dem Newsletter bei.',
+        'Erstellen Sie in der Konsole unter Emails → Campaigns eine Kampagne an diese Liste und senden Sie sie.',
+        'Lesen Sie sie in Ihrem Posteingang.',
+      ],
+    },
+    'unsubscribe-campaign': {
+      title: 'Sich davon abmelden',
+      why: 'Das Merge-Tag {{unsubscribe}} führt zu einer gehosteten Seite; der Kontakt wird als abgemeldet markiert und ab dann übersprungen.',
+      steps: [
+        'Klicken Sie in der Kampagnen-E-Mail auf Abmelden.',
+        'Suchen Sie den Kontakt in der Konsole unter Audience: abgemeldet.',
+      ],
     },
   },
 };
