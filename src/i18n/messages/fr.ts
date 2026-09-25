@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'Accueil',
       dashboard: 'Tableau de bord',
       documents: 'Documents',
-      analytics: 'Analytiques',
       team: 'Équipe',
       notifications: 'Notifications',
       settings: 'Paramètres',
@@ -25,6 +24,17 @@ const messages: Messages = {
       events: 'Événements',
       invoices: 'Factures',
       workspace: 'Espace de travail',
+      tour: 'Visite',
+      inbox: 'Boîte de réception',
+      modules: 'Modules',
+      forms: 'Formulaires',
+      collections: 'Collections',
+      assets: 'Fichiers',
+      links: 'Liens courts',
+      audience: 'Audience',
+      tracking: 'Suivi',
+      automations: 'Automatisations',
+      reports: 'Rapports',
     },
     buttons: {
       signIn: 'Se connecter',
@@ -57,7 +67,8 @@ const messages: Messages = {
         credits: 'Crédits',
         blog: 'Blog',
         changelog: 'Journal des modifications',
-        about: 'À propos',
+        tour: 'Visite',
+        github: 'Code sur GitHub',
         privacy: 'Politique de confidentialité',
         terms: "Conditions d'utilisation",
       },
@@ -81,11 +92,11 @@ const messages: Messages = {
     redirecting: 'Redirection...',
   },
   home: {
-    title: 'Mon Application',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · Démo en direct',
+      badge: 'Démo en direct · 67 tâches',
       heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+        'Chaque capacité de BuildBase, <highlight>une tâche à la fois</highlight>',
       description:
         "Connectez-vous pour voir l'authentification, les espaces de travail multi-tenant, la facturation de crédits, les notifications push et l'i18n en 8 langues — propulsé par le BuildBase SDK.",
       signInToExplore: 'Se connecter pour explorer',
@@ -98,13 +109,13 @@ const messages: Messages = {
         label: 'Langues dans cette démo',
         sublabel: "changez avec le sélecteur dans l'en-tête",
       },
-      sdkFeatures: {
-        label: 'Fonctionnalités SDK en direct',
-        sublabel: 'chacune a une page de démo',
+      tasks: {
+        label: 'Tâches de la visite',
+        sublabel: 'chacune une capacité à essayer',
       },
-      notifications: {
-        label: 'Canaux de notification',
-        sublabel: 'push navigateur + email',
+      groups: {
+        label: 'Groupes',
+        sublabel: 'de la connexion aux webhooks',
       },
       authCode: {
         label: "Lignes de code d'auth",
@@ -119,107 +130,10 @@ const messages: Messages = {
       openDashboard: 'Ouvrir le tableau de bord',
       howBuilt: "Comment c'est construit",
     },
-    features: {
-      eyebrow: 'Explorer la démo',
-      heading: 'Voyez ce qui fonctionne dans cette app',
-      description:
-        'Chaque fonctionnalité ci-dessous est en direct — connectez-vous et cliquez pour voir le BuildBase SDK en action.',
-      auth: {
-        badge: 'Authentification',
-        title: "Connexion OAuth, prête à l'emploi",
-        description:
-          "Le bouton de connexion utilise le BuildBase SDK — un hook, pas de logique de session. Après connexion, vous obtenez automatiquement un JWT, un token d'espace de travail et un rôle.",
-        tryLabel: 'Se connecter pour essayer',
-      },
-      workspaces: {
-        badge: 'Espaces de travail',
-        title: 'Sélecteur de workspace multi-tenant',
-        description:
-          'Chaque utilisateur peut appartenir à plusieurs espaces de travail avec différents rôles. La barre latérale du tableau de bord affiche votre espace de travail actuel et permet de basculer entre eux.',
-        tryLabel: 'Ouvrir le tableau de bord',
-      },
-      credits: {
-        badge: 'Crédits',
-        title: 'Solde de crédits en direct et consommation',
-        description:
-          "La page des crédits affiche votre solde en direct, permet d'en acheter via une modal intégrée et dispose de boutons de test appelant consumeCredits() en temps réel.",
-        tryLabel: 'Essayer la consommation de crédits',
-      },
-      notifications: {
-        badge: 'Notifications',
-        title: 'Push navigateur et envoi par e-mail',
-        description:
-          "La page de notifications vous permet de vous abonner au push navigateur, de composer une notification avec titre, urgence, boutons et livraison planifiée — puis de l'envoyer en direct.",
-        tryLabel: 'Envoyer une notification de test',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: "8 langues dont l'arabe RTL",
-        description:
-          "Utilisez le sélecteur de langue dans l'en-tête pour basculer entre l'anglais, l'hindi, l'espagnol, le français, l'allemand, le japonais, le chinois et l'arabe — la mise en page passe automatiquement en RTL.",
-        tryLabel: 'Passer en arabe',
-      },
-      content: {
-        badge: 'Contenu',
-        title: 'Blog MDX et journal des modifications, intégrés',
-        description:
-          'Le blog et le journal des modifications sont des fichiers MDX compilés à la construction via Contentlayer2. Pas de CMS, pas de base de données — juste des fichiers avec frontmatter typé, recherche plein texte et RSS.',
-        tryLabel: 'Lire le blog',
-      },
-      quotas: {
-        badge: 'Quotas',
-        title: 'Utilisation des quotas avec portes de dépassement',
-        description:
-          "La page d'utilisation appelle useAllQuotaUsage() pour afficher des barres de progression par quota. WhenQuotaExhausted bloque l'UI quand un quota atteint zéro ; WhenQuotaOverage affiche les détails du dépassement.",
-        tryLabel: "Voir l'utilisation des quotas",
-      },
-      permissions: {
-        badge: 'Permissions',
-        title: 'Matrice de permissions basée sur les rôles',
-        description:
-          'La page des permissions utilise usePermissions() et WhenPermission pour afficher chaque permission de la plateforme comme accordée ou refusée selon votre rôle actuel en temps réel.',
-        tryLabel: 'Vérifier vos permissions',
-      },
-      events: {
-        badge: 'Événements',
-        title: "Flux d'événements SDK en direct",
-        description:
-          "La page d'événements connecte eventEmitter.setCallbacks() pour capturer tous les événements SDK — changements de workspace, mises à jour utilisateur, changements de rôle — dans un journal défilant en direct.",
-        tryLabel: "Ouvrir le journal d'événements",
-      },
-      userData: {
-        badge: 'Données utilisateur',
-        title: 'Attributs utilisateur et drapeaux de fonctionnalités',
-        description:
-          "La page de profil lit useUserAttributes() et useUserFeatures() pour afficher des paires clé-valeur personnalisées et les états de drapeaux par utilisateur, permettant d'écrire de nouveaux attributs en direct.",
-        tryLabel: 'Voir votre profil',
-      },
-      invoices: {
-        badge: 'Factures',
-        title: 'Historique des factures et portail de facturation',
-        description:
-          'La page des factures appelle useInvoices() pour lister toutes les factures Stripe avec statut, montant et liens PDF. Un bouton ouvre le Portail Client Stripe via useBillingPortal().',
-        tryLabel: 'Voir les factures',
-      },
-      seats: {
-        badge: 'Sièges',
-        title: 'Limites de sièges et contrôle des invitations',
-        description:
-          "Le tableau de bord appelle useSeatStatus() pour afficher le nombre de membres vs les limites du plan en temps réel. WhenNoSubscription, WhenSubscription et WhenSubscriptionToPlans contrôlent l'UI pour la bonne audience.",
-        tryLabel: 'Ouvrir le tableau de bord',
-      },
-      featureFlags: {
-        badge: 'Drapeaux de fonctionnalités',
-        title: 'Portes de fonctionnalités au niveau workspace',
-        description:
-          'La page de profil utilise WhenWorkspaceFeatureEnabled et WhenWorkspaceFeatureDisabled pour basculer le contenu selon les drapeaux au niveau workspace configurés dans le tableau de bord BuildBase.',
-        tryLabel: 'Voir les portes de fonctionnalités',
-      },
-    },
     meta: {
       title: 'Mon Application',
       description:
-        'Mon application Next.js avec shadcn/ui et support des thèmes',
+        'Une vraie app sur le SDK BuildBase, avec une visite guidée : connectez-vous et parcourez inscription, espaces de travail, facturation, usage, crédits, notifications, agents et webhooks, chacun montrant d’où il vient.',
       tagline: 'Construisez quelque chose de remarquable',
     },
   },
@@ -333,35 +247,6 @@ const messages: Messages = {
       },
     },
   },
-  analytics: {
-    title: 'Analytiques',
-    description: "Métriques de l'espace de travail en temps réel",
-    cards: {
-      plan: 'Plan',
-      teamMembers: "Membres de l'équipe",
-      quotasTracked: 'Quotas suivis',
-      creditDebits: 'Débits de crédits',
-      noSubscription: 'sans abonnement',
-      unlimitedSeats: 'sièges illimités',
-      maxSeats: '{n} sièges max.',
-      totalConsumed: '{n} unités consommées au total',
-      consumptionEvents: 'événements de consommation enregistrés',
-    },
-    quotaConsumption: {
-      title: 'Consommation des quotas',
-      empty: 'Aucun quota configuré pour cet espace de travail.',
-    },
-    featureFlags: {
-      title: 'Indicateurs de fonctionnalités',
-      empty: 'Aucun indicateur configuré.',
-    },
-    planLimits: {
-      title: 'Limites du plan',
-      empty: 'Aucune limite de plan configurée.',
-      unlimited: 'illimité',
-    },
-    loading: 'Chargement…',
-  },
   team: {
     title: 'Équipe',
     description: "Membres de l'espace de travail",
@@ -379,7 +264,33 @@ const messages: Messages = {
       count: '{count} membre(s) dans cet espace',
       empty: "Aucun membre chargé. Assurez-vous d'être authentifié.",
       roleFallback: 'membre',
+      changeRole: 'Changer le rôle',
     },
+    invite: {
+      title: 'Inviter par e-mail',
+      description:
+        'L’adresse n’a pas besoin de compte. La personne reçoit un e-mail, suit le lien, s’inscrit ou se connecte, puis accepte.',
+      noPermission: 'Votre rôle ne peut pas inviter de membres.',
+      emailPlaceholder: 'nom@entreprise.com',
+      role: 'Rôle',
+      send: 'Envoyer l’invitation',
+      sent: 'Invitation envoyée à {email}',
+      failed: 'Une erreur est survenue',
+      resent: 'Invitation renvoyée',
+      revoked: 'Invitation révoquée',
+      seatNote:
+        '{count} invitation(s) en attente occupe(nt) un siège jusqu’à réponse.',
+      pendingTitle: 'En attente',
+      loading: 'Chargement…',
+      none: 'Rien en attente.',
+      invitedBy: 'Invité par {name}',
+      pendingLabel: 'En attente',
+      expires: 'expire le {date}',
+      cooldown: 'Renvoi possible dans {seconds}s',
+      resend: 'Renvoyer',
+      revoke: 'Révoquer',
+    },
+    roleChanged: 'Rôle changé en {role}',
     manage: {
       title: 'Gérer les membres',
       description:
@@ -443,8 +354,69 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'Portes de fonctionnalités',
+      description:
+        'Les parties de ce produit qu’un flag d’espace ou d’utilisateur active.',
+    },
+    workbench: {
+      title: 'Vos documents',
+      description:
+        'Les documents vivent dans la base de cette app ; la plateforme les mesure.',
+      search: 'Rechercher des documents',
+      allStatuses: 'Tous les statuts',
+      allTags: 'Toutes les étiquettes',
+      newDocument: 'Nouveau document',
+      newDocumentHint:
+        'En créer un enregistre un usage sur le quota documents et dépense un crédit.',
+      titleLabel: 'Titre',
+      contentLabel: 'Contenu (Markdown)',
+      statusLabel: 'Statut',
+      tagsLabel: 'Étiquettes, séparées par des virgules',
+      create: 'Créer',
+      creating: 'Création…',
+      created: 'Document créé',
+      deleted: 'Document supprimé',
+      delete: 'Supprimer',
+      loadSamples: 'Charger des documents d’exemple',
+      clearSamples: 'Retirer les exemples',
+      samplesLoaded: '{count} documents d’exemple chargés',
+      samplesAlready: 'Exemples déjà chargés',
+      samplesCleared: '{count} documents d’exemple retirés',
+      sample: 'Exemple',
+      empty: 'Aucun document pour l’instant.',
+      total: '{count} au total',
+      words: '{count} mots',
+      loadFailed: 'Impossible de charger les documents',
+      viewerNotice:
+        'Votre rôle ici est {role} : lecture seule. Les boutons sont désactivés et le serveur refuse de toute façon.',
+      quotaExhausted:
+        'Le quota documents de ce plan est épuisé et sans dépassement. Passez au plan supérieur pour en créer plus.',
+      quotaExhaustedShort: 'Quota épuisé',
+      quotaWarning:
+        'Vous avez utilisé plus de 80 % du quota documents de ce plan.',
+      creditsLow: 'Les crédits s’épuisent. Chaque document en dépense un.',
+      creditsExhausted:
+        'Plus de crédits. Les documents sont quand même créés ; la ligne de mesure montre que la dépense a été ignorée.',
+      refusedQuota:
+        'Refusé : {consumed} documents sur {included} utilisés et le plan est plafonné.',
+      refusedRole: 'Refusé : le rôle {role} ne peut pas écrire.',
+      meteringTitle: 'Ce que la plateforme a enregistré',
+      meteringUsage: 'Usage : {used} documents sur {included}',
+      meteringUsageSkipped:
+        'Usage : non enregistré (ce plan n’a pas de quota documents)',
+      meteringCredits: 'Crédits : {amount} dépensés, {balance} restants',
+      meteringCreditsSkipped: 'Crédits : non dépensés (pas de solde)',
+      statuses: {
+        draft: 'Brouillon',
+        in_review: 'En relecture',
+        published: 'Publié',
+        archived: 'Archivé',
+      },
+    },
     title: 'Documents',
-    description: 'Sections de documents avec contrôle des fonctionnalités',
+    description:
+      'Les documents de votre espace : créés ici ou par un agent, mesurés par la plateforme.',
     stats: {
       featureSections: 'Sections de fonctionnalités',
       featureSectionsSubtitle: 'fonctionnalités de documents',
@@ -488,6 +460,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'Webhooks reçus',
+      description:
+        'Livraisons signées de serveur à serveur depuis la plateforme, enregistrées par /api/webhooks/buildbase pour cet espace de travail.',
+      empty:
+        'Aucun webhook pour l’instant. Abonnez-vous, invitez quelqu’un ou achetez des crédits et la plateforme appellera cette app.',
+      refresh: 'Actualiser',
+      event: 'Événement',
+      received: 'Reçu',
+      signature: 'Signature',
+      verified: 'Vérifiée',
+      payload: 'Contenu',
+      when: 'Heure plateforme',
+    },
     title: "Journal d'événements SDK",
     description: 'Événements SDK en temps réel',
     clearButton: 'Effacer',
@@ -539,8 +525,9 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'Test de notifications',
-    description: 'Envoyer des notifications de test via BuildBase SDK',
+    title: 'Notifications',
+    description:
+      'Envoyez une notification depuis cette app et regardez où elle arrive',
     pushCard: {
       title: 'Notifications push du navigateur',
       description:
@@ -558,7 +545,7 @@ const messages: Messages = {
     fields: {
       eventSlug: "Identifiant de l'événement",
       eventSlugHint:
-        'Push uniquement : tout identifiant fonctionne. Pour e-mail : doit correspondre à un événement enregistré.',
+        'L’événement de démo est « {slug} », enregistré dans la console avec e-mail et push. N’importe quel slug marche pour le push seul ; l’e-mail exige un événement enregistré.',
       title: 'Titre',
       message: 'Message',
       url: 'URL',
@@ -617,11 +604,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'Réponse',
+      description: 'Ce que la plateforme a fait de l’envoi.',
+      openInbox: 'Ouvrir la boîte',
     },
     toast: {
       workspaceRequired: "Veuillez d'abord sélectionner un espace de travail",
       sent: 'Notification envoyée à {count} utilisateur(s)',
       notSent: 'Notification non envoyée : {reason}',
+      inboxHint: 'Regardez la cloche et votre boîte de réception.',
       pushEnabled: 'Notifications push activées',
       pushDisabled: 'Notifications push désactivées',
       pushFailed: 'Erreur lors du changement des notifications push',
@@ -658,6 +648,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'Agents connectés',
+      description:
+        'Clients IA que vous avez autorisés à agir en votre nom via MCP. Déconnecter révoque leur accès.',
+      guideTitle: 'Connecter un agent',
+      guideDescription:
+        'Cette app est un serveur MCP. Ajoutez-la à Claude, Cursor ou ChatGPT et connectez-vous avec votre compte BuildBase ; l’agent lit alors vos espaces de travail et les documents de cette app avec vos permissions.',
+    },
     title: 'Profil utilisateur',
     description: 'Attributs utilisateur et indicateurs de fonctionnalités',
     identity: {
@@ -938,6 +936,343 @@ const messages: Messages = {
     rejectAll: 'Tout refuser',
     savePreferences: 'Enregistrer les préférences',
     customize: 'Personnaliser',
+  },
+  inbox: {
+    title: 'Boîte de réception',
+    description:
+      'Tout ce que cette app vous a envoyé, un élément par notification, quel que soit le canal.',
+    rules: {
+      live: 'Les nouveaux éléments arrivent en direct par socket, sans recharger.',
+      read: 'Un élément est lu quand vous l’ouvrez ici ou cliquez son lien. Ouvrir l’e-mail seul ne le lit pas.',
+      email:
+        'Chaque élément montre ce qu’ont fait l’e-mail et le push, pour voir pourquoi un canal est resté muet.',
+    },
+  },
+  tour: {
+    title: 'La visite',
+    subtitle:
+      '{total} choses à essayer, chacune une capacité de BuildBase et d’où elle vient.',
+    progress: '{done} sur {total} faites',
+    markDone: 'Marquer comme faite',
+    undo: 'Annuler',
+    open: 'Ouvrir',
+    detected: 'Détecté automatiquement',
+    manual: 'À confirmer vous-même',
+    why: 'Pourquoi c’est important',
+    steps: 'Que faire',
+    fromSdk: 'Depuis le SDK',
+    fromConsole: 'Configuré dans la console',
+    fromApp: 'Dans cette app',
+    requires: 'À faire d’abord',
+    allDone: 'Vous avez tout fait. Emportez-le chez vous.',
+    homeTitle: 'Essayez tout, une tâche à la fois',
+    homeSubtitle:
+      'Connectez-vous et parcourez {total} tâches en {groups} groupes. Chacune montre une capacité de BuildBase, son rendu dans une app et où elle se configure.',
+    homeCta: 'Commencer la visite',
+    dashboardCard: 'Votre visite',
+    next: 'Suivant',
+    cloneTitle: 'Clonez cette app',
+    cloneBody:
+      'Chaque page et chaque tâche ici sont dans un seul dépôt ouvert. Voyez comment tout fonctionne, ou clonez-le pour démarrer votre propre app.',
+    browseCode: 'Parcourir le code',
+    copy: 'Copier',
+    copied: 'Copié',
+    dashboardCta: 'Continuer',
+  },
+  help: {
+    title: "Centre d'aide",
+    description:
+      'Tout sur cette page a été écrit dans la console : une politique, des docs, une FAQ et des témoignages. Modifiez-le là-bas, rechargez ici.',
+    notConfigured: {
+      title: 'Pas encore de contenu',
+      token:
+        "Cette app n'a pas de jeton d'API d'organisation, elle ne peut donc pas lire le contenu de la console. Définissez BUILDBASE_API_TOKEN.",
+      empty:
+        "L'organisation n'a pas encore le contenu de démo. Initialisez-le avec :",
+    },
+    from: {
+      richContent: 'contenu riche',
+      docs: 'docs',
+      faqs: 'collection FAQ',
+      testimonials: 'témoignages',
+    },
+    docs: {
+      title: 'Documentation',
+      empty: "Aucun doc publié pour l'instant.",
+    },
+    faq: {
+      title: 'Questions fréquentes',
+    },
+    testimonials: {
+      title: 'Ce que disent les clients',
+    },
+  },
+  forms: {
+    title: 'Formulaires',
+    description:
+      'Un formulaire créé dans la console, rendu depuis son schéma en ligne et envoyé via cette app.',
+    loading: 'Chargement du formulaire…',
+    fromConsole:
+      'Les champs viennent de la console ; ajoutez-en un là-bas et rechargez.',
+    submit: 'Envoyer',
+    sending: 'Envoi…',
+    sent: 'Envoyé',
+    hint: "Les envois sont stockés comme enregistrements d'une collection et déclenchent l'événement form.submitted.",
+    errors: {
+      title: 'La plateforme a refusé cet envoi',
+      generic: "Quelque chose n'a pas été accepté.",
+    },
+    missing: {
+      title: 'Pas encore de formulaire de contact',
+      token:
+        "Cette app n'a pas de jeton d'API d'organisation. Définissez BUILDBASE_API_TOKEN.",
+      form: "L'organisation n'a pas de formulaire nommé Contact. Initialisez-le avec :",
+    },
+    toast: {
+      sent: "Envoyé. C'est maintenant un enregistrement sur la plateforme.",
+    },
+    submissions: {
+      title: 'Derniers envois',
+      description: 'Relus depuis la collection du formulaire.',
+      refresh: 'Actualiser',
+      empty: "Rien d'envoyé pour l'instant.",
+    },
+  },
+  collections: {
+    title: 'Collections',
+    description:
+      'Données personnalisées sur la plateforme : un schéma versionné, des enregistrements sur la version en ligne.',
+    loading: 'Chargement des enregistrements…',
+    liveVersion: 'Version en ligne {version} ({name}), {fields} champs',
+    noLiveVersion: 'Aucune version en ligne. Publiez-en une dans la console.',
+    refresh: 'Actualiser',
+    empty:
+      'Aucun enregistrement. Initialisez-en ou ajoutez-en un dans la console.',
+    actions: 'Actions',
+    delete: "Supprimer l'enregistrement",
+    hint: 'Publiez une nouvelle version avec un champ supplémentaire dans la console ; la colonne apparaît ici au rechargement.',
+    missing: {
+      title: 'Pas encore de collection release-notes',
+      token:
+        "Cette app n'a pas de jeton d'API d'organisation. Définissez BUILDBASE_API_TOKEN.",
+      collection:
+        "L'organisation n'a pas de collection avec le slug release-notes. Initialisez-la avec :",
+    },
+    toast: {
+      deleted: 'Enregistrement supprimé sur la plateforme.',
+      deleteFailed: "Impossible de supprimer l'enregistrement.",
+    },
+  },
+  tracking: {
+    title: 'Suivi',
+    description:
+      'Tags d’analyse et de publicité définis dans la console, chargés après consentement, avec vos propres événements et l’attribution.',
+    loading: 'Chargement…',
+    consent: {
+      title: 'Consentement',
+      description:
+        'Construit à partir des tags rattachés à cette app, jamais de toute la bibliothèque.',
+      noTags:
+        'Aucun tag n’est rattaché à cette app. Ajoutez-en un dans la console sous Paramètres → Suivi et rattachez-le au client.',
+      privacy: 'Confidentialité',
+      analytics: 'analyse',
+      marketing: 'marketing',
+      acceptAll: 'Tout accepter',
+      analyticsOnly: 'Analyse seulement',
+      denyAll: 'Tout refuser',
+      state: 'État actuel',
+      unset: 'pas encore demandé',
+    },
+    installed: {
+      title: 'Fournisseurs installés',
+      description:
+        'Ce qui s’est réellement chargé dans ce navigateur après consentement.',
+      none: 'Rien n’est chargé. Donnez votre consentement, ou rattachez un tag dans la console.',
+    },
+    custom: {
+      title: 'Suivre un événement personnalisé',
+      description:
+        'Vos propres événements vont à la couche de données et à chaque fournisseur installé.',
+      button: 'Suivre report_exported',
+      fired: 'Envoyé {count} fois',
+    },
+    attribution: {
+      title: 'Attribution',
+      description:
+        'D’où vient ce visiteur : identifiants de clic et paramètres de campagne, capturés sur la première page.',
+      empty: 'Rien de capturé. Rechargez avec',
+    },
+    log: {
+      title: 'Journal des événements en direct',
+      description:
+        'Chaque événement envoyé par le SDK dans cet onglet, y compris ceux qu’il envoie de lui-même.',
+      empty: 'Pas encore d’événement. Naviguez, ou suivez-en un ci-dessus.',
+    },
+  },
+  automations: {
+    title: 'Automatisations',
+    description:
+      'Les workflows se construisent dans la console ; cette app provoque les événements qu’ils écoutent et lit ce qui a tourné pour vous.',
+    refresh: 'Actualiser',
+    loading: 'Chargement…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN n’est pas configuré, cette app ne peut donc pas lire les exécutions.',
+    error: 'Impossible de charger les exécutions',
+    runs: {
+      title: 'Vos exécutions',
+      description:
+        'Instances de workflow lancées par la plateforme pour votre compte.',
+      empty:
+        'Pas encore d’exécution. Envoyez le formulaire de contact ou inscrivez un nouvel utilisateur, puis actualisez.',
+      workflow: 'Workflow',
+      event: 'Événement',
+      status: 'Statut',
+      nodes: 'Nœuds terminés',
+      started: 'Début',
+    },
+    calls: {
+      title: 'Appels vers cette app',
+      description:
+        'Ce que l’action HTTP Webhook d’un workflow a envoyé à /api/buildbase/provision, vérifié par secret partagé.',
+      empty: 'Aucun appel de provisionnement reçu pour l’instant.',
+    },
+  },
+  reports: {
+    title: 'Rapports',
+    description:
+      'Chaque module rapporte via les mêmes endpoints de graphiques et de comptages ; trois d’entre eux, sur les trente derniers jours.',
+    notConfigured:
+      'BUILDBASE_API_TOKEN n’est pas configuré, cette app ne peut donc pas lire les rapports.',
+    loading: 'Chargement…',
+    refresh: 'Actualiser',
+    window: 'Du {from} au {to}',
+    unavailable: 'Indisponible',
+    series: {
+      users: {
+        title: 'Inscriptions',
+        description: 'Nouveaux utilisateurs par jour.',
+      },
+      forms: {
+        title: 'Envois de formulaire',
+        description: 'Envois du formulaire de contact par jour.',
+      },
+      links: {
+        title: 'Clics sur liens',
+        description: 'Clics sur liens courts par jour.',
+      },
+    },
+  },
+  assets: {
+    title: 'Fichiers',
+    description:
+      'Fichiers envoyés depuis cette app, stockés et servis par la plateforme.',
+    upload: 'Envoyer un fichier',
+    uploading: 'Envoi…',
+    limit: 'Jusqu’à 5 Mo. Les images ont un aperçu.',
+    uploaded: 'Envoyé',
+    gallery: 'Fichiers',
+    empty: 'Aucun fichier pour l’instant. Envoyez-en un ci-dessus.',
+    public: 'Public',
+    private: 'Privé',
+    makePrivate: 'Rendre privé',
+    makePublic: 'Rendre public',
+    nowPublic: 'Désormais public : l’URL fonctionne à nouveau.',
+    nowPrivate: 'Désormais privé : l’URL publique ne fonctionne plus.',
+    openUrl: 'Ouvrir',
+    tooLarge: 'Ce fichier dépasse 5 Mo.',
+    loadFailed: 'Impossible de joindre la plateforme.',
+    notConfigured:
+      'Cette page lit l’organisation via un jeton d’API. Définissez BUILDBASE_API_TOKEN (console → Settings → Tokens) et redémarrez.',
+  },
+  links: {
+    title: 'Liens courts',
+    description:
+      'Des liens de partage que la plateforme redirige et compte, clic après clic.',
+    create: 'Créer un lien court',
+    createHint:
+      'N’importe quelle URL. La plateforme attribue un id de 12 caractères et enregistre chaque clic avec son pays et son appareil.',
+    name: 'Nom',
+    url: 'URL de destination',
+    createButton: 'Créer',
+    created: 'Lien créé',
+    yourLinks: 'Vos liens',
+    clicksHint:
+      'Suivez un lien puis actualisez : le compte vient de la plateforme, pas de cette page.',
+    refresh: 'Actualiser',
+    empty: 'Aucun lien pour l’instant.',
+    clicks: 'clics',
+    copy: 'Copier l’URL courte',
+    copied: 'Copié',
+    follow: 'Suivre',
+    changeDestination: 'Changer la destination',
+    save: 'Enregistrer',
+    cancel: 'Annuler',
+    updated: 'Destination changée. L’URL courte reste la même.',
+    chart: 'Clics, 14 derniers jours',
+    chartHint: 'Tous les liens ensemble, par jour.',
+    chartEmpty: 'Aucun clic pour l’instant.',
+    loadFailed: 'Impossible de joindre la plateforme.',
+    notConfigured:
+      'Cette page lit l’organisation via un jeton d’API. Définissez BUILDBASE_API_TOKEN (console → Settings → Tokens) et redémarrez.',
+  },
+  audience: {
+    title: 'Audience et attributs',
+    description:
+      'Ce que la plateforme garde d’une personne au-delà du compte : attributs personnalisés, contact marketing et liste d’attente.',
+    failed: 'Enregistrement impossible.',
+    notConfigured:
+      'La newsletter a besoin de BUILDBASE_API_TOKEN côté serveur.',
+    onboarding: {
+      title: 'Liste d’intégration',
+      description:
+        'Cochez les trois et enregistrez : le SDK écrit onboarded=true et votre fonction comme attributs utilisateur, dans votre navigateur, en votre nom.',
+      items: {
+        profile: 'J’ai rempli mon profil',
+        workspace: 'J’ai créé un espace de travail',
+        invite: 'J’ai invité quelqu’un',
+      },
+      role: 'Votre fonction (facultatif)',
+      save: 'Terminer l’intégration',
+      saved: 'Enregistré. Ouvrez votre fiche dans la console pour le voir.',
+      already: 'Déjà intégré, d’après vos attributs.',
+    },
+    attributes: {
+      title: 'Vos attributs',
+      description:
+        'Les clés sont définies dans la console (Users → Attributes) ; les valeurs vivent sur votre utilisateur.',
+      empty: 'Aucun attribut pour l’instant.',
+    },
+    locale: {
+      title: 'Pays, fuseau horaire, devise',
+      description:
+        'Les listes sont fournies avec le SDK (@buildbase/sdk/data), sans téléchargement.',
+      country: 'Pays',
+      timezone: 'Fuseau horaire',
+      currency: 'Devise',
+      save: 'Enregistrer les préférences',
+      saved: 'Préférences enregistrées comme attributs.',
+    },
+    newsletter: {
+      title: 'Newsletter',
+      description:
+        'Un contact marketing est distinct de votre compte : il peut exister sans lui. Le serveur le crée avec le jeton de l’organisation et l’ajoute à la liste newsletter.',
+      email: 'E-mail',
+      subscribe: 'S’abonner',
+      subscribed: 'Abonné',
+      listed: 'Ajouté à la liste {list}.',
+      noList:
+        'Contact créé ; cette organisation n’a pas encore de liste newsletter.',
+      waitlistHint:
+        'Les visiteurs non connectés peuvent rejoindre la liste d’attente bêta sur',
+    },
+  },
+  waitlist: {
+    title: 'Rejoindre la liste d’attente',
+    description:
+      'Le formulaire bêta de la plateforme : laissez votre nom et votre e-mail, un administrateur vous approuve dans la console.',
+    success:
+      'Vous êtes sur la liste. Un administrateur vous approuvera depuis la console.',
+    note: 'Le formulaire et ses textes viennent de la configuration bêta de l’organisation (console → Users → Beta).',
   },
 };
 

@@ -9,6 +9,14 @@ on:
 env:
   # Skip env validation during CI (no real secrets)
   SKIP_ENV_VALIDATION: true
+  # The SDK refuses to construct without these, and route modules construct
+  # it at import, so the build needs them. Public values, not secrets: the
+  # build only prerenders; nothing here is used to sign in.
+  NEXT_PUBLIC_BUILDBASE_SERVER_URL: https://api.console.buildbase.app
+  NEXT_PUBLIC_BUILDBASE_ORG_ID: 694e64a4e41ec4ca273256e9
+  # The MCP stack needs a signing secret to construct. A throwaway one: CI
+  # never serves a request, so nothing it signs is ever checked.
+  SYSTEM_SECRET: ci-build-only-not-a-secret-0123456789abcdef
 
 jobs:
   analyze:
@@ -67,6 +75,9 @@ jobs:
             echo "Run \`npm run format\` to fix formatting issues" >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
+
+      - name: Tour source links
+        run: npm run check:tour
 
       - name: Generate Prisma Client
         run: npx prisma generate

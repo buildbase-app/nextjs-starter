@@ -33,6 +33,11 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Link } from '@/i18n/routing';
+import {
+  DEMO_EVENT_SLUG,
+  DEMO_EVENT_DEFAULTS,
+} from '@/components/notifications/demo-event';
 
 type TargetType = 'user' | 'workspace';
 type ChannelMode = 'both' | 'email' | 'push';
@@ -50,14 +55,12 @@ export default function NotificationsTestPage() {
     null
   );
 
-  const [event, setEvent] = useState('test_notification');
-  const [title, setTitle] = useState('Test Notification');
-  const [message, setMessage] = useState(
-    'Hello {{name}}, this is a test from {{workspaceName}}!'
-  );
-  const [url, setUrl] = useState('');
+  const [event, setEvent] = useState<string>(DEMO_EVENT_SLUG);
+  const [title, setTitle] = useState<string>(DEMO_EVENT_DEFAULTS.title);
+  const [message, setMessage] = useState<string>(DEMO_EVENT_DEFAULTS.message);
+  const [url, setUrl] = useState<string>(DEMO_EVENT_DEFAULTS.url);
   const [targetType, setTargetType] = useState<TargetType>('user');
-  const [channelMode, setChannelMode] = useState<ChannelMode>('push');
+  const [channelMode, setChannelMode] = useState<ChannelMode>('both');
 
   const [icon, setIcon] = useState('');
   const [image, setImage] = useState('');
@@ -133,11 +136,15 @@ export default function NotificationsTestPage() {
       }
 
       setLastResult(data);
-      toast.success(
-        data.sent
-          ? t('toast.sent', { count: data.notifiedCount ?? 1 })
-          : t('toast.notSent', { reason: data.reason || 'unknown reason' })
-      );
+      if (data.sent) {
+        toast.success(t('toast.sent', { count: data.notifiedCount ?? 1 }), {
+          description: t('toast.inboxHint'),
+        });
+      } else {
+        toast.error(
+          t('toast.notSent', { reason: data.reason || 'unknown reason' })
+        );
+      }
     } catch {
       toast.error(t('toast.networkError'));
     } finally {
@@ -206,7 +213,7 @@ export default function NotificationsTestPage() {
               placeholder={t('placeholders.eventSlug')}
             />
             <p className="text-muted-foreground text-xs">
-              {t('fields.eventSlugHint')}
+              {t('fields.eventSlugHint', { slug: DEMO_EVENT_SLUG })}
             </p>
           </div>
 
@@ -541,6 +548,12 @@ export default function NotificationsTestPage() {
         <Card>
           <CardHeader>
             <CardTitle>{t('resultCard.title')}</CardTitle>
+            <CardDescription>
+              {t('resultCard.description')}{' '}
+              <Link href="/dashboard/inbox" className="text-primary underline">
+                {t('resultCard.openInbox')}
+              </Link>
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <pre className="bg-muted overflow-auto rounded-md p-4 text-sm">

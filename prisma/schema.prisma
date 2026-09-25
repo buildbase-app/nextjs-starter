@@ -64,3 +64,74 @@ model AuditLog {
   @@index([action])
   @@index([createdAt])
 }
+
+/// The demo's own product data — documents owned by a BuildBase workspace.
+/// Creating one records usage against the `documents` quota and consumes a
+/// credit, so billing, quotas and feature flags have something real to gate.
+model Document {
+  id            String   @id @default(cuid())
+  workspaceId   String
+  title         String
+  content       String
+  /// draft | in_review | published | archived
+  status        String   @default("draft")
+  tags          String[] @default([])
+  createdById   String
+  createdByName String?
+  updatedById   String?
+  /// true for rows inserted by the "Load sample data" action
+  isSample      Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workspaceId, updatedAt])
+  @@index([workspaceId, status])
+}
+
+/// Server-to-server webhooks delivered by BuildBase (84 event types), verified
+/// with `parseWebhookEvent` and kept so the Events page can show them.
+model WebhookEvent {
+  id          String   @id @default(cuid())
+  event       String
+  /// Platform timestamp (ms since epoch) the signature was computed over.
+  timestamp   BigInt
+  workspaceId String?
+  userId      String?
+  payload     Json
+  receivedAt  DateTime @default(now())
+
+  @@index([event])
+  @@index([workspaceId])
+  @@index([receivedAt])
+}
+
+/// Client-side SDK lifecycle events (`user:*`, `workspace:*`) forwarded by the
+/// browser to /api/events so they survive a page reload.
+model AppEvent {
+  id          String   @id @default(cuid())
+  eventType   String
+  userId      String?
+  workspaceId String?
+  payload     Json
+  createdAt   DateTime @default(now())
+
+  @@index([workspaceId, createdAt])
+  @@index([eventType])
+}
+
+/// One row per tour task a person has completed. The tour is the demo's own
+/// checklist of things to try; most rows are written by detection (an SDK
+/// event, a webhook, an action in this app), the rest by "Mark done".
+model TourProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  taskId      String
+  /// detected | manual
+  source      String   @default("manual")
+  meta        Json?
+  completedAt DateTime @default(now())
+
+  @@unique([userId, taskId])
+  @@index([userId])
+}

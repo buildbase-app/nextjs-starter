@@ -1,4 +1,5 @@
 import { siteUrl } from '@/env';
+import { siteConfig } from '@/config/site';
 
 /**
  * Central SEO / brand config.
@@ -23,21 +24,21 @@ type ContactPoint = {
 export const seoConfig = {
   brand: {
     /** Product / company name used everywhere (JSON-LD, OG, Twitter). */
-    name: 'My App',
-    legalName: 'My App',
-    description: 'My Next.js application with shadcn/ui and theme support',
-    tagline: 'Build something great.',
+    name: siteConfig.name,
+    legalName: 'BuildBase',
+    description: siteConfig.description,
+    tagline: 'Everything a SaaS needs, wired and working.',
     url: siteUrl,
     /** Path relative to public/ or absolute URL. Used for Organization JSON-LD. */
     logo: '/logo.png',
     foundingDate: undefined as string | undefined,
   },
   author: {
-    name: 'My App Team',
-    url: siteUrl,
+    name: 'BuildBase Team',
+    url: siteConfig.buildbase.url,
   },
   publisher: {
-    name: 'My App',
+    name: 'BuildBase',
     logo: '/logo.png',
   },
   social: {

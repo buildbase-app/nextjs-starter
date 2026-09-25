@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { DocumentsWorkbench } from '@/components/documents/documents-workbench';
 import {
   FileText,
   Lock,
@@ -46,6 +47,17 @@ export default function DocumentsPage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
         <p className="text-muted-foreground">{t('description')}</p>
+      </div>
+
+      <DocumentsWorkbench />
+
+      <div>
+        <h2 className="text-xl font-semibold tracking-tight">
+          {t('featureGates.title')}
+        </h2>
+        <p className="text-muted-foreground text-sm">
+          {t('featureGates.description')}
+        </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">

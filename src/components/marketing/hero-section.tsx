@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from '@/i18n/routing';
+import { siteConfig } from '@/config/site';
 import {
   WhenAuthenticated,
   WhenUnauthenticated,
@@ -82,11 +83,7 @@ export function HeroSection() {
           </Button>
         </WhenAuthenticated>
         <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
-          <a
-            href="https://github.com/buildbase-dev"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={siteConfig.repo} target="_blank" rel="noopener noreferrer">
             <Github className="h-4 w-4" />
             {t('hero.viewSource')}
           </a>

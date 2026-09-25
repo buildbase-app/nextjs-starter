@@ -23,6 +23,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { TourProgressCard } from '@/components/tour/tour-progress-card';
 import {
   AlertTriangle,
   Calendar,
@@ -126,6 +127,8 @@ export default function DashboardPage() {
           </Card>
         </WhenNoSubscription>
       </WhenNotTrialing>
+
+      <TourProgressCard />
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>

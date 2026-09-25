@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'ホーム',
       dashboard: 'ダッシュボード',
       documents: 'ドキュメント',
-      analytics: '分析',
       team: 'チーム',
       notifications: '通知',
       settings: '設定',
@@ -25,6 +24,17 @@ const messages: Messages = {
       events: 'イベント',
       invoices: '請求書',
       workspace: 'ワークスペース',
+      tour: 'ツアー',
+      inbox: '受信箱',
+      modules: 'モジュール',
+      forms: 'フォーム',
+      collections: 'コレクション',
+      assets: 'アセット',
+      links: '短縮リンク',
+      audience: 'オーディエンス',
+      tracking: 'トラッキング',
+      automations: '自動化',
+      reports: 'レポート',
     },
     buttons: {
       signIn: 'サインイン',
@@ -57,7 +67,8 @@ const messages: Messages = {
         credits: 'クレジット',
         blog: 'ブログ',
         changelog: '変更履歴',
-        about: '概要',
+        tour: 'ツアー',
+        github: 'GitHubのソース',
         privacy: 'プライバシーポリシー',
         terms: '利用規約',
       },
@@ -81,13 +92,12 @@ const messages: Messages = {
     redirecting: 'リダイレクト中...',
   },
   home: {
-    title: 'マイアプリ',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · ライブデモ',
-      heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+      badge: 'ライブデモ · 67タスク',
+      heading: 'BuildBaseのすべての機能を、<highlight>ひとつずつ</highlight>',
       description:
-        'サインインして、認証、マルチテナントワークスペース、クレジット課金、プッシュ通知、8言語対応のi18nがすべて一つの実際のアプリで動作しているのを確認してください — BuildBase SDK搭載。',
+        'BuildBase SDKで作られた実際のアプリとガイド付きツアー。サインインして、登録、ワークスペース、請求、使用量、クレジット、通知、エージェント、Webhookを順に試し、それぞれの出どころを確認できます。',
       signInToExplore: 'サインインして探索',
       openDashboard: 'ダッシュボードを開く',
       viewSource: 'ソースを見る',
@@ -98,13 +108,13 @@ const messages: Messages = {
         label: 'このデモの言語数',
         sublabel: 'ヘッダーのトグルで切り替え',
       },
-      sdkFeatures: {
-        label: 'ライブSDK機能',
-        sublabel: '各機能にデモページあり',
+      tasks: {
+        label: 'ツアーのタスク',
+        sublabel: 'それぞれが試せる機能',
       },
-      notifications: {
-        label: '通知チャンネル',
-        sublabel: 'ブラウザプッシュ + メール',
+      groups: {
+        label: 'グループ',
+        sublabel: 'サインインからWebhookまで',
       },
       authCode: {
         label: '認証コードの行数',
@@ -118,103 +128,6 @@ const messages: Messages = {
       signIn: 'サインインして探索',
       openDashboard: 'ダッシュボードを開く',
       howBuilt: '構築方法',
-    },
-    features: {
-      eyebrow: 'デモを探索',
-      heading: 'このアプリで動作しているものを見る',
-      description:
-        '以下の各機能はライブです — サインインしてクリックし、BuildBase SDKの動作を確認してください。',
-      auth: {
-        badge: '認証',
-        title: 'OAuthサインイン、すぐに使える',
-        description:
-          '上のサインインボタンはBuildBase SDKを使用 — フック1つ、セッションロジックの記述不要。サインイン後、JWT、ワークスペーストークン、役割が自動的に付与されます。',
-        tryLabel: 'サインインして試す',
-      },
-      workspaces: {
-        badge: 'ワークスペース',
-        title: 'マルチテナントワークスペース切り替え',
-        description:
-          '各ユーザーは異なる役割で複数のワークスペースに所属できます。ダッシュボードのサイドバーに現在のワークスペースが表示され、切り替えが可能です。',
-        tryLabel: 'ダッシュボードを開く',
-      },
-      credits: {
-        badge: 'クレジット',
-        title: 'ライブクレジット残高と消費',
-        description:
-          'クレジットページはライブ残高を表示し、内蔵モーダルで追加購入でき、SDKのconsumeCredits()をリアルタイムで呼び出すテストボタンがあります。',
-        tryLabel: 'クレジット消費を試す',
-      },
-      notifications: {
-        badge: '通知',
-        title: 'ブラウザプッシュとメール配信',
-        description:
-          '通知ページではブラウザを登録し、タイトル、緊急度、アクションボタン、配信スケジュールを設定した通知を作成してライブ送信できます。',
-        tryLabel: 'テスト通知を送信',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: 'アラビア語RTLを含む8言語',
-        description:
-          'ヘッダーの言語切り替えで英語、ヒンディー語、スペイン語、フランス語、ドイツ語、日本語、中国語、アラビア語に切り替えられます — レイアウトが自動的にRTLに変わります。',
-        tryLabel: 'アラビア語に切り替え',
-      },
-      content: {
-        badge: 'コンテンツ',
-        title: 'MDXブログと変更履歴、内蔵',
-        description:
-          'ブログと変更履歴はContentlayer2でビルド時にコンパイルされるMDXファイルです。CMSもDBも不要 — 型安全なfrontmatter、全文検索、RSSを持つファイルだけです。',
-        tryLabel: 'ブログを読む',
-      },
-      quotas: {
-        badge: 'クォータ',
-        title: '超過ゲート付きクォータ使用状況',
-        description:
-          '使用状況ページはuseAllQuotaUsage()を呼び出しクォータごとの進捗バーを表示します。WhenQuotaExhaustedはクォータがゼロになるとUIをブロック。WhenQuotaOverageは超過詳細を表示。',
-        tryLabel: 'クォータ使用状況を確認',
-      },
-      permissions: {
-        badge: '権限',
-        title: 'ロールベースの権限マトリックス',
-        description:
-          '権限ページはusePermissions()とWhenPermissionを使用し、現在のワークスペース役割に基づいてすべてのプラットフォーム権限をリアルタイムで付与または拒否として表示します。',
-        tryLabel: '権限を確認',
-      },
-      events: {
-        badge: 'イベント',
-        title: 'ライブSDKイベントストリーム',
-        description:
-          'イベントページはeventEmitter.setCallbacks()を接続し、ワークスペース変更、ユーザー更新、役割変更など、すべてのSDKイベントをライブスクロールログでキャプチャします。',
-        tryLabel: 'イベントログを開く',
-      },
-      userData: {
-        badge: 'ユーザーデータ',
-        title: 'ユーザー属性とフィーチャーフラグ',
-        description:
-          'プロフィールページはuseUserAttributes()とuseUserFeatures()を読み取り、カスタムキーバリューペアとユーザーごとのフラグ状態を表示し、新しい属性をライブで書き込めます。',
-        tryLabel: 'プロフィールを確認',
-      },
-      invoices: {
-        badge: '請求書',
-        title: '請求書履歴と請求ポータル',
-        description:
-          '請求書ページはuseInvoices()を呼び出し、すべてのStripe請求書をステータス、金額、PDFリンク付きで一覧表示します。ボタン1つでuseBillingPortal()からStripeカスタマーポータルが開きます。',
-        tryLabel: '請求書を確認',
-      },
-      seats: {
-        badge: 'シート',
-        title: 'シート制限と招待ゲート',
-        description:
-          'ダッシュボードはuseSeatStatus()を呼び出し、メンバー数とプラン制限をリアルタイムで表示します。WhenNoSubscription、WhenSubscription、WhenSubscriptionToPlansが適切なUIを表示します。',
-        tryLabel: 'ダッシュボードを開く',
-      },
-      featureFlags: {
-        badge: 'フィーチャーフラグ',
-        title: 'ワークスペースレベルの機能ゲート',
-        description:
-          'プロフィールページはWhenWorkspaceFeatureEnabledとWhenWorkspaceFeatureDisabledを使用し、BuildBaseダッシュボードで設定したワークスペースレベルのフラグに基づいてコンテンツを切り替えます。',
-        tryLabel: '機能ゲートを確認',
-      },
     },
     meta: {
       title: 'マイアプリ',
@@ -333,35 +246,6 @@ const messages: Messages = {
       },
     },
   },
-  analytics: {
-    title: '分析',
-    description: 'リアルタイムワークスペースメトリクス',
-    cards: {
-      plan: 'プラン',
-      teamMembers: 'チームメンバー',
-      quotasTracked: '追跡中のクォータ',
-      creditDebits: 'クレジット消費',
-      noSubscription: 'サブスクリプションなし',
-      unlimitedSeats: '無制限シート',
-      maxSeats: '最大{n}シート',
-      totalConsumed: '合計{n}ユニット消費済み',
-      consumptionEvents: '消費イベントが記録されました',
-    },
-    quotaConsumption: {
-      title: 'クォータ消費',
-      empty: 'このワークスペースにはクォータが設定されていません。',
-    },
-    featureFlags: {
-      title: 'フィーチャーフラグ',
-      empty: 'フラグが設定されていません。',
-    },
-    planLimits: {
-      title: 'プラン制限',
-      empty: 'プラン制限が設定されていません。',
-      unlimited: '無制限',
-    },
-    loading: '読み込み中…',
-  },
   team: {
     title: 'チーム',
     description: 'ワークスペースメンバー',
@@ -380,7 +264,32 @@ const messages: Messages = {
       empty:
         'メンバーが読み込まれていません。認証されていることを確認してください。',
       roleFallback: 'メンバー',
+      changeRole: 'ロールを変更',
     },
+    invite: {
+      title: 'メールで招待',
+      description:
+        'アドレスにアカウントは不要です。メールが届き、リンクを開いて登録またはサインインし、承諾します。',
+      noPermission: 'あなたのロールではメンバーを招待できません。',
+      emailPlaceholder: 'name@company.com',
+      role: 'ロール',
+      send: '招待を送信',
+      sent: '{email} に招待を送信しました',
+      failed: '問題が発生しました',
+      resent: '招待を再送しました',
+      revoked: '招待を取り消しました',
+      seatNote: '保留中の招待 {count} 件は、回答があるまで席を確保します。',
+      pendingTitle: '保留中',
+      loading: '読み込み中…',
+      none: '保留中はありません。',
+      invitedBy: '{name} が招待',
+      pendingLabel: '保留中',
+      expires: '{date} に期限切れ',
+      cooldown: '{seconds}秒後に再送できます',
+      resend: '再送',
+      revoke: '取り消し',
+    },
+    roleChanged: 'ロールを {role} に変更しました',
     manage: {
       title: 'メンバーを管理',
       description: '役割と招待を管理するには設定パネルを開いてください',
@@ -442,8 +351,69 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: '機能ゲート',
+      description:
+        'ワークスペースまたはユーザーの機能フラグで有効になる、この製品の部分。',
+    },
+    workbench: {
+      title: 'あなたのドキュメント',
+      description:
+        'ドキュメントはこのアプリ自身のデータベースにあり、プラットフォームが計測します。',
+      search: 'ドキュメントを検索',
+      allStatuses: 'すべてのステータス',
+      allTags: 'すべてのタグ',
+      newDocument: '新しいドキュメント',
+      newDocumentHint:
+        '作成すると documents クォータに使用量が記録され、クレジットを1つ消費します。',
+      titleLabel: 'タイトル',
+      contentLabel: '内容（Markdown）',
+      statusLabel: 'ステータス',
+      tagsLabel: 'タグ（カンマ区切り）',
+      create: '作成',
+      creating: '作成中…',
+      created: 'ドキュメントを作成しました',
+      deleted: 'ドキュメントを削除しました',
+      delete: '削除',
+      loadSamples: 'サンプルを読み込む',
+      clearSamples: 'サンプルを削除',
+      samplesLoaded: 'サンプル{count}件を読み込みました',
+      samplesAlready: 'サンプルは読み込み済みです',
+      samplesCleared: 'サンプル{count}件を削除しました',
+      sample: 'サンプル',
+      empty: 'まだドキュメントはありません。',
+      total: '合計{count}件',
+      words: '{count}語',
+      loadFailed: 'ドキュメントを読み込めませんでした',
+      viewerNotice:
+        'ここでのあなたの役割は{role}です。閲覧はできますが編集はできません。ボタンは無効で、サーバーも拒否します。',
+      quotaExhausted:
+        'このプランの documents クォータは使い切られ、超過は許可されていません。さらに作成するにはアップグレードしてください。',
+      quotaExhaustedShort: 'クォータ上限',
+      quotaWarning: 'このプランの documents クォータの80%以上を使用しました。',
+      creditsLow:
+        'クレジットが残り少なくなっています。ドキュメントごとに1つ消費します。',
+      creditsExhausted:
+        'クレジットがありません。ドキュメントは作成されますが、計測行に消費が省略されたことが表示されます。',
+      refusedQuota:
+        '拒否: {included}件中{consumed}件使用済みで、プランには上限があります。',
+      refusedRole: '拒否: {role} ロールは書き込めません。',
+      meteringTitle: 'プラットフォームが記録した内容',
+      meteringUsage: '使用量: {included}件中{used}件',
+      meteringUsageSkipped:
+        '使用量: 未記録（このプランに documents クォータはありません）',
+      meteringCredits: 'クレジット: {amount}消費、残り{balance}',
+      meteringCreditsSkipped: 'クレジット: 未消費（残高なし）',
+      statuses: {
+        draft: '下書き',
+        in_review: 'レビュー中',
+        published: '公開済み',
+        archived: 'アーカイブ',
+      },
+    },
     title: 'ドキュメント',
-    description: 'フィーチャー制御付きドキュメントセクション',
+    description:
+      'ワークスペースのドキュメント。ここで、またはエージェントが作成し、プラットフォームが計測します。',
     stats: {
       featureSections: 'フィーチャーセクション',
       featureSectionsSubtitle: 'ドキュメント機能',
@@ -486,6 +456,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: '受信したWebhook',
+      description:
+        'プラットフォームからの署名付きサーバー間配信。このワークスペース向けに /api/webhooks/buildbase が保存します。',
+      empty:
+        'まだWebhookはありません。購読、招待、クレジット購入を行うとプラットフォームがこのアプリを呼び出します。',
+      refresh: '更新',
+      event: 'イベント',
+      received: '受信',
+      signature: '署名',
+      verified: '検証済み',
+      payload: 'ペイロード',
+      when: 'プラットフォーム時刻',
+    },
     title: 'SDKイベントログ',
     description: 'リアルタイムSDKイベント',
     clearButton: 'クリア',
@@ -537,8 +521,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: '通知テスト',
-    description: 'BuildBase SDKを使用してテスト通知を送信',
+    title: '通知',
+    description: 'このアプリから通知を送り、どこに届くか確かめます',
     pushCard: {
       title: 'ブラウザプッシュ通知',
       description: 'このデバイスのブラウザプッシュ通知を有効にする',
@@ -555,7 +539,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'イベントスラッグ',
       eventSlugHint:
-        'Pushのみ：任意のスラッグが使用可能。メールの場合：登録済みイベントと一致する必要があります。',
+        'デモイベントは「{slug}」で、コンソールにメールとプッシュ付きで登録済みです。プッシュのみなら任意のスラッグで動きます。メールには登録済みイベントが必要です。',
       title: 'タイトル',
       message: 'メッセージ',
       url: 'URL',
@@ -614,11 +598,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'レスポンス',
+      description: 'プラットフォームがこの送信をどう処理したか。',
+      openInbox: '受信箱を開く',
     },
     toast: {
       workspaceRequired: '最初にワークスペースを選択してください',
       sent: '{count}名のユーザーに通知を送信しました',
       notSent: '通知が送信されませんでした：{reason}',
+      inboxHint: 'ベルと受信箱を確認してください。',
       pushEnabled: 'プッシュ通知が有効になりました',
       pushDisabled: 'プッシュ通知が無効になりました',
       pushFailed: 'プッシュ通知の変更に失敗しました',
@@ -653,6 +640,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: '接続済みエージェント',
+      description:
+        'MCP経由であなたとして動作することを許可したAIクライアント。切断するとアクセスが取り消されます。',
+      guideTitle: 'エージェントを接続',
+      guideDescription:
+        'このアプリはMCPサーバーです。Claude、Cursor、ChatGPTに追加してBuildBaseアカウントでサインインすると、エージェントがあなたの権限でワークスペースとこのアプリのドキュメントを読み取ります。',
+    },
     title: 'ユーザープロフィール',
     description: 'ユーザー属性とフィーチャーフラグ',
     identity: {
@@ -926,6 +921,340 @@ const messages: Messages = {
     rejectAll: 'すべて拒否',
     savePreferences: '設定を保存',
     customize: 'カスタマイズ',
+  },
+  inbox: {
+    title: '受信箱',
+    description:
+      'このアプリがあなたに送ったすべて。配信方法にかかわらず、通知ごとに1件です。',
+    rules: {
+      live: '新しい項目はソケットでリアルタイムに届きます。再読み込みは不要です。',
+      read: 'ここで開くか、リンクをクリックすると既読になります。メールを開くだけでは既読になりません。',
+      email:
+        '各項目にメールとプッシュの結果が表示されるので、チャネルが動かなかった理由が分かります。',
+    },
+  },
+  tour: {
+    title: 'ツアー',
+    subtitle:
+      '試せることが{total}件。それぞれがBuildBaseの機能と、その出どころです。',
+    progress: '{total}件中{done}件完了',
+    markDone: '完了にする',
+    undo: '元に戻す',
+    open: '開く',
+    detected: '自動で検出されます',
+    manual: 'ご自身で確認',
+    why: 'なぜ重要か',
+    steps: 'やること',
+    fromSdk: 'SDKから',
+    fromConsole: 'コンソールで設定',
+    fromApp: 'このアプリ内',
+    requires: '先にやること',
+    allDone: 'すべて完了しました。持ち帰りましょう。',
+    homeTitle: 'ひとつずつ、すべて試す',
+    homeSubtitle:
+      'サインインして{groups}グループ・{total}件のタスクを進めます。それぞれがBuildBaseの機能、アプリでの見え方、設定場所を示します。',
+    homeCta: 'ツアーを始める',
+    dashboardCard: 'あなたのツアー',
+    next: '次',
+    cloneTitle: 'このアプリをクローン',
+    cloneBody:
+      'ここにあるすべてのページとタスクは、ひとつの公開リポジトリにあります。仕組みを読むことも、クローンして自分のアプリを始めることもできます。',
+    browseCode: 'コードを見る',
+    copy: 'コピー',
+    copied: 'コピーしました',
+    dashboardCta: '続ける',
+  },
+  help: {
+    title: 'ヘルプセンター',
+    description:
+      'このページの内容はすべてコンソールで書かれています：ポリシー、ドキュメント、FAQ、お客様の声。そこで変更し、ここで再読み込みしてください。',
+    notConfigured: {
+      title: 'まだコンテンツがありません',
+      token:
+        'このアプリには組織のAPIトークンがないため、コンソールのコンテンツを読めません。BUILDBASE_API_TOKENを設定してください。',
+      empty: '組織にはまだデモコンテンツがありません。次で作成できます：',
+    },
+    from: {
+      richContent: 'リッチコンテンツ',
+      docs: 'ドキュメント',
+      faqs: 'FAQコレクション',
+      testimonials: 'お客様の声',
+    },
+    docs: {
+      title: 'ドキュメント',
+      empty: '公開されたドキュメントはまだありません。',
+    },
+    faq: {
+      title: 'よくある質問',
+    },
+    testimonials: {
+      title: 'お客様の声',
+    },
+  },
+  forms: {
+    title: 'フォーム',
+    description:
+      'コンソールで作ったフォームを、そのライブスキーマから描画し、このアプリから送信します。',
+    loading: 'フォームを読み込み中…',
+    fromConsole:
+      'フィールドはコンソールから来ます。そこで追加して再読み込みしてください。',
+    submit: '送信',
+    sending: '送信中…',
+    sent: '送信済み',
+    hint: '送信内容はコレクションのレコードとして保存され、form.submittedイベントを発火します。',
+    errors: {
+      title: 'プラットフォームがこの送信を拒否しました',
+      generic: '受け付けられない項目があります。',
+    },
+    missing: {
+      title: 'お問い合わせフォームがまだありません',
+      token:
+        'このアプリには組織のAPIトークンがありません。BUILDBASE_API_TOKENを設定してください。',
+      form: '組織にContactという名前のフォームがありません。次で作成できます：',
+    },
+    toast: {
+      sent: '送信しました。プラットフォーム上のレコードになりました。',
+    },
+    submissions: {
+      title: '最近の送信',
+      description: 'フォームのコレクションから読み戻しています。',
+      refresh: '更新',
+      empty: 'まだ送信はありません。',
+    },
+  },
+  collections: {
+    title: 'コレクション',
+    description:
+      'プラットフォーム上のカスタムデータ：バージョン管理されたスキーマと、ライブバージョンに対するレコード。',
+    loading: 'レコードを読み込み中…',
+    liveVersion: 'ライブバージョン {version}（{name}）、{fields} フィールド',
+    noLiveVersion:
+      'ライブバージョンがありません。コンソールで公開してください。',
+    refresh: '更新',
+    empty: 'レコードがありません。シードするかコンソールで追加してください。',
+    actions: '操作',
+    delete: 'レコードを削除',
+    hint: 'コンソールでフィールドを追加した新バージョンを公開すると、再読み込みでここに列が現れます。',
+    missing: {
+      title: 'release-notesコレクションがまだありません',
+      token:
+        'このアプリには組織のAPIトークンがありません。BUILDBASE_API_TOKENを設定してください。',
+      collection:
+        '組織にスラッグrelease-notesのコレクションがありません。次で作成できます：',
+    },
+    toast: {
+      deleted: 'プラットフォーム上のレコードを削除しました。',
+      deleteFailed: 'レコードを削除できませんでした。',
+    },
+  },
+  tracking: {
+    title: 'トラッキング',
+    description:
+      'コンソールで設定した分析・広告タグを同意後に読み込み、独自イベントとアトリビューションを扱います。',
+    loading: '読み込み中…',
+    consent: {
+      title: '同意',
+      description:
+        'このアプリに紐づくタグから構成され、ライブラリ全体からではありません。',
+      noTags:
+        'このアプリにタグはまだ紐づいていません。コンソールの設定 → トラッキングで追加し、クライアントに紐づけてください。',
+      privacy: 'プライバシー',
+      analytics: '分析',
+      marketing: 'マーケティング',
+      acceptAll: 'すべて許可',
+      analyticsOnly: '分析のみ',
+      denyAll: 'すべて拒否',
+      state: '現在の状態',
+      unset: '未回答',
+    },
+    installed: {
+      title: '読み込まれたプロバイダー',
+      description: '同意後にこのブラウザーで実際に読み込まれたもの。',
+      none: '何も読み込まれていません。同意するか、コンソールでタグを紐づけてください。',
+    },
+    custom: {
+      title: 'カスタムイベントを送る',
+      description:
+        '独自イベントはデータレイヤーと読み込まれた各ベンダーに届きます。',
+      button: 'report_exported を送る',
+      fired: '{count} 回送信',
+    },
+    attribution: {
+      title: 'アトリビューション',
+      description:
+        '訪問者の流入元：最初のページで取得したクリックIDとキャンペーンパラメーター。',
+      empty: '取得なし。次を付けて再読み込み:',
+    },
+    log: {
+      title: 'ライブイベントログ',
+      description: 'このタブでSDKが送ったすべてのイベント（自動送信を含む）。',
+      empty:
+        'イベントはまだありません。ページを移動するか、上で送ってください。',
+    },
+  },
+  automations: {
+    title: '自動化',
+    description:
+      'ワークフローはコンソールで作ります。このアプリはそのイベントを発生させ、あなた向けに実行された内容を読み取ります。',
+    refresh: '更新',
+    loading: '読み込み中…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN が未設定のため、実行履歴を読み取れません。',
+    error: '実行履歴を読み込めませんでした',
+    runs: {
+      title: 'あなたの実行',
+      description:
+        'プラットフォームがあなたのアカウント向けに開始したワークフローインスタンス。',
+      empty:
+        'まだ実行はありません。お問い合わせフォームを送信するか新規ユーザーを登録して更新してください。',
+      workflow: 'ワークフロー',
+      event: 'イベント',
+      status: '状態',
+      nodes: '完了ノード',
+      started: '開始',
+    },
+    calls: {
+      title: 'このアプリへの呼び出し',
+      description:
+        'ワークフローの HTTP Webhook アクションが /api/buildbase/provision に送った内容。共有シークレットで検証済み。',
+      empty: 'プロビジョニング呼び出しはまだありません。',
+    },
+  },
+  reports: {
+    title: 'レポート',
+    description:
+      '各モジュールは同じチャート・カウントのエンドポイントで報告します。直近30日の3つを表示。',
+    notConfigured:
+      'BUILDBASE_API_TOKEN が未設定のため、レポートを読み取れません。',
+    loading: '読み込み中…',
+    refresh: '更新',
+    window: '{from} 〜 {to}',
+    unavailable: '利用不可',
+    series: {
+      users: {
+        title: '登録',
+        description: '1日あたりの新規ユーザー。',
+      },
+      forms: {
+        title: 'フォーム送信',
+        description: '1日あたりのお問い合わせフォーム送信。',
+      },
+      links: {
+        title: 'リンククリック',
+        description: '1日あたりの短縮リンククリック。',
+      },
+    },
+  },
+  assets: {
+    title: 'アセット',
+    description:
+      'このアプリからアップロードし、プラットフォームが保存・配信するファイル。',
+    upload: 'ファイルをアップロード',
+    uploading: 'アップロード中…',
+    limit: '5 MBまで。画像はプレビュー表示されます。',
+    uploaded: 'アップロードしました',
+    gallery: 'ファイル',
+    empty: 'まだファイルがありません。上からアップロードしてください。',
+    public: '公開',
+    private: '非公開',
+    makePrivate: '非公開にする',
+    makePublic: '公開にする',
+    nowPublic: '公開になりました。URLが再び有効です。',
+    nowPrivate: '非公開になりました。公開URLは無効になります。',
+    openUrl: '開く',
+    tooLarge: 'このファイルは5 MBを超えています。',
+    loadFailed: 'プラットフォームに接続できませんでした。',
+    notConfigured:
+      'このページはAPIトークンで組織を読み取ります。BUILDBASE_API_TOKEN（コンソール → Settings → Tokens）を設定して再起動してください。',
+  },
+  links: {
+    title: '短縮リンク',
+    description:
+      'プラットフォームがリダイレクトし、クリックを1件ずつ数える共有リンク。',
+    create: '短縮リンクを作成',
+    createHint:
+      '任意のURL。プラットフォームが12文字のIDを発行し、国とデバイスとともに全クリックを記録します。',
+    name: '名前',
+    url: 'リンク先URL',
+    createButton: '作成',
+    created: 'リンクを作成しました',
+    yourLinks: 'あなたのリンク',
+    clicksHint:
+      'リンクを開いてから更新してください。件数はこのページではなくプラットフォームから来ます。',
+    refresh: '更新',
+    empty: 'まだリンクがありません。',
+    clicks: 'クリック',
+    copy: '短縮URLをコピー',
+    copied: 'コピーしました',
+    follow: '開く',
+    changeDestination: 'リンク先を変更',
+    save: '保存',
+    cancel: 'キャンセル',
+    updated: 'リンク先を変更しました。短縮URLは同じです。',
+    chart: 'クリック数（過去14日）',
+    chartHint: '全リンク合計、日別。',
+    chartEmpty: 'まだクリックがありません。',
+    loadFailed: 'プラットフォームに接続できませんでした。',
+    notConfigured:
+      'このページはAPIトークンで組織を読み取ります。BUILDBASE_API_TOKEN（コンソール → Settings → Tokens）を設定して再起動してください。',
+  },
+  audience: {
+    title: 'オーディエンスと属性',
+    description:
+      'アカウント以外にプラットフォームが保持する情報：カスタム属性、マーケティング連絡先、ウェイトリスト。',
+    failed: '保存できませんでした。',
+    notConfigured:
+      'ニュースレターにはサーバー側のBUILDBASE_API_TOKENが必要です。',
+    onboarding: {
+      title: 'オンボーディングチェックリスト',
+      description:
+        '3つにチェックして保存すると、SDKがブラウザからあなたとして onboarded=true と役職をユーザー属性に書き込みます。',
+      items: {
+        profile: 'プロフィールを入力した',
+        workspace: 'ワークスペースを作成した',
+        invite: '誰かを招待した',
+      },
+      role: '役職（任意）',
+      save: 'オンボーディングを完了',
+      saved: '保存しました。コンソールで自分のレコードを開いて確認できます。',
+      already: '属性によると、すでにオンボーディング済みです。',
+    },
+    attributes: {
+      title: 'あなたの属性',
+      description:
+        'キーはコンソール（Users → Attributes）で定義され、値はユーザーに保存されます。',
+      empty: 'まだ属性がありません。',
+    },
+    locale: {
+      title: '国・タイムゾーン・通貨',
+      description:
+        'リストはSDK（@buildbase/sdk/data）に同梱、ダウンロード不要。',
+      country: '国',
+      timezone: 'タイムゾーン',
+      currency: '通貨',
+      save: '設定を保存',
+      saved: '設定を属性として保存しました。',
+    },
+    newsletter: {
+      title: 'ニュースレター',
+      description:
+        'マーケティング連絡先はアカウントとは別で、アカウントなしでも存在できます。サーバーが組織トークンで作成し、ニュースレターリストに追加します。',
+      email: 'メール',
+      subscribe: '購読',
+      subscribed: '購読しました',
+      listed: '{list} リストに追加しました。',
+      noList:
+        '連絡先を作成しました。この組織にはまだニュースレターリストがありません。',
+      waitlistHint:
+        'サインアウト中の訪問者はベータ版ウェイトリストに参加できます：',
+    },
+  },
+  waitlist: {
+    title: 'ウェイトリストに参加',
+    description:
+      'プラットフォームのベータフォーム：名前とメールを残すと、管理者がコンソールで承認します。',
+    success: 'リストに登録されました。管理者がコンソールから承認します。',
+    note: 'フォームと文言は組織のベータ設定（コンソール → Users → Beta）から来ています。',
   },
 };
 

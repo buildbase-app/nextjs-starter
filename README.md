@@ -1,567 +1,185 @@
-# BuildBase Next.js Starter
+# BuildBase Next.js starter
 
-![Node.js](https://img.shields.io/badge/node-20+-brightgreen) ![Next.js](https://img.shields.io/badge/Next.js-16-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+A Next.js 16 app wired to [BuildBase](https://buildbase.app), and a guided
+tour of everything BuildBase gives it.
 
-A production-ready Next.js 16 SaaS starter powered by [BuildBase](https://buildbase.app). Includes authentication, multi-tenancy, subscriptions, credits, i18n (8 languages + RTL), SEO, security headers, audit logging, GDPR compliance, and Docker deployment — all pre-wired and ready to ship.
+<!-- TODO: replace with the deployed demo URL -->
 
-> **Important:** This starter requires a [BuildBase](https://buildbase.app) account. Without it, authentication, workspaces, subscriptions, billing, feature flags, and notifications will not work. The dashboard will be non-functional.
+Live demo: https://demo.buildbase.app
 
----
+The tour is 67 tasks in 13 groups: sign up, create a second workspace, invite
+someone by email, subscribe with a test card, hit a quota, spend credits,
+switch a feature flag, send yourself a notification, connect Claude over MCP,
+watch a webhook land in Postgres, export your data. You can read the whole
+list on the home page before you sign in. After you sign in, each task says
+why it matters, what to do, and where the capability comes from: the SDK hook
+or component, the console screen that configures it, and the file in this repo
+that takes part. Tasks that leave a trace tick themselves off; the rest have a
+"Mark done" button. Progress follows your account, not your browser.
 
-## Why use this?
+Use it two ways: clone it as the starting point for your own app, or work
+through the tour to decide whether BuildBase does what you need before you
+buy. Every screen you click through is in this repo.
 
-- Skip weeks of boilerplate — auth, i18n, theming, SEO, billing, and security are all pre-configured
-- Multi-tenant out of the box — workspaces, roles (admin/member/viewer), seat limits, and workspace switching
-- Internationalisation-first — 8 languages including RTL (Arabic) with type-safe translation keys
-- Production-hardened — audit logs, GDPR endpoints, CSP/HSTS headers, Sentry error tracking
-- Fully typed — TypeScript strict mode end to end, including env vars via `@t3-oss/env-nextjs`
-
----
-
-## ✨ Features
-
-- **Framework**: Next.js 16.1.4 with App Router + Turbopack
-- **Language**: TypeScript 5 (strict mode)
-- **Styling**: Tailwind CSS 4 + shadcn/ui components
-- **Auth**: OAuth via BuildBase SDK (multi-tenant, role-based, session-persistent)
-- **Multi-tenancy**: Workspaces, seat limits, role-based access control
-- **Billing**: Subscription plans, credit system, invoices, usage tracking
-- **i18n**: 8 languages with RTL support (next-intl)
-- **Database**: PostgreSQL with Prisma ORM + connection pooling + audit logging middleware
-- **Content**: MDX blog, changelog, and marketing pages via contentlayer2
-- **Theming**: Light/Dark/System modes (next-themes)
-- **SEO**: Multi-language sitemap, RSS feeds, OG images, JSON-LD structured data
-- **Security**: CSP, HSTS, X-Frame-Options, Permissions-Policy, request IDs
-- **GDPR**: Data export (Article 15) and erasure (Article 17) API endpoints
-- **Error tracking**: Optional Sentry integration (zero-config if DSN not set)
-- **Testing**: Vitest (unit) + Playwright (E2E, 3 browsers)
-- **Deployment**: Docker multi-stage build + docker-compose with PostgreSQL
-- **DX**: ESLint, Prettier, Husky pre-commit hooks, bundle analyzer
-
----
-
-## 🌍 Supported Languages
-
-| Code | Language | Direction |
-| ---- | -------- | --------- |
-| en   | English  | LTR       |
-| hi   | Hindi    | LTR       |
-| es   | Spanish  | LTR       |
-| fr   | French   | LTR       |
-| de   | German   | LTR       |
-| ja   | Japanese | LTR       |
-| zh   | Chinese  | LTR       |
-| ar   | Arabic   | RTL       |
-
----
-
-## 📁 Project Structure
-
-```
-src/
-├── app/
-│   ├── sitemap.ts                  # Multi-language sitemap
-│   ├── robots.ts                   # robots.txt config
-│   ├── api/
-│   │   ├── auth/
-│   │   │   ├── token/              # OAuth token exchange (BuildBase → local JWT)
-│   │   │   ├── oauth2-token/       # OAuth2 application token endpoint
-│   │   │   ├── oauth2-profile/     # OAuth2 profile endpoint
-│   │   │   ├── workspace-token/    # Workspace-scoped JWT generation
-│   │   │   ├── session/            # Session check (reads httpOnly cookie)
-│   │   │   └── signout/            # Clear session cookie
-│   │   ├── events/                 # BuildBase webhook receiver (syncs users/workspaces)
-│   │   ├── user/
-│   │   │   ├── export/             # GDPR data export (Article 15)
-│   │   │   └── delete/             # GDPR data erasure (Article 17)
-│   │   ├── content/[...path]/      # Markdown API for AI agents
-│   │   ├── og/                     # Dynamic OG image generation (Edge)
-│   │   ├── health/                 # Health check + optional DB ping
-│   │   └── notifications/test/     # Send test push notification
-│   └── [locale]/                   # All pages are locale-prefixed
-│       ├── layout.tsx              # Root layout with metadata
-│       ├── page.tsx                # Home / marketing page
-│       ├── about/                  # About page (MDX)
-│       ├── pricing/                # Pricing plans page
-│       ├── privacy/                # Privacy policy (MDX, GDPR)
-│       ├── terms/                  # Terms of service (MDX)
-│       ├── error/                  # Error boundary page
-│       ├── not-found/              # 404 page
-│       ├── blog/
-│       │   ├── page.tsx            # Blog index with pagination
-│       │   ├── [slug]/             # Individual blog post
-│       │   ├── authors/[slug]/     # Author archive
-│       │   ├── category/[category]/# Category filtered posts
-│       │   ├── tag/[tag]/          # Tag filtered posts
-│       │   └── feed.xml/           # RSS feed (auto-generated)
-│       ├── changelog/
-│       │   ├── page.tsx            # Changelog index
-│       │   ├── [slug]/             # Individual changelog entry
-│       │   └── feed.xml/           # Changelog RSS feed
-│       └── dashboard/              # Protected routes (requires BuildBase auth)
-│           ├── page.tsx            # Dashboard home (subscription + trial status)
-│           ├── analytics/          # Analytics
-│           ├── documents/          # Document management
-│           ├── credits/            # Credit balance and purchase
-│           ├── invoices/           # Billing invoices
-│           ├── usage/              # API usage tracking
-│           ├── team/               # Team members and workspace users
-│           ├── notifications/      # Push notifications list
-│           ├── settings/           # Theme, language, preferences
-│           ├── profile/            # Name, email, avatar, timezone, locale
-│           ├── permissions/        # Role-based access control settings
-│           └── events/             # Activity and audit event log
-├── components/
-│   ├── ui/                         # shadcn/ui primitives (button, card, dialog, etc.)
-│   ├── marketing/
-│   │   └── mdx/                    # MDX renderer, code blocks, callouts, TOC, image zoom
-│   ├── saas-provider.tsx           # BuildBase SDK wrapper (auth + workspace callbacks)
-│   ├── query-provider.tsx          # TanStack React Query setup
-│   ├── theme-provider.tsx          # next-themes setup
-│   ├── theme-toggle.tsx            # Theme switcher
-│   ├── language-switcher.tsx       # Locale dropdown
-│   ├── home-header.tsx             # Nav header with auth state
-│   ├── site-footer.tsx             # Footer with sections and social links
-│   ├── app-sidebar.tsx             # Dashboard sidebar with workspace switcher
-│   ├── dashboard-layout-client.tsx # Auth guard wrapper for dashboard
-│   ├── hero-section.tsx            # Marketing hero banner
-│   ├── features-section.tsx        # Features grid
-│   ├── stats-section.tsx           # Stats display
-│   ├── pricing-section.tsx         # Pricing plans
-│   ├── credit-store.tsx            # Credit purchase UI
-│   ├── cta-banner.tsx              # Call-to-action banner
-│   ├── blog-search.tsx             # Blog search/filter
-│   ├── related-posts.tsx           # Related posts
-│   ├── share-buttons.tsx           # Social sharing
-│   ├── rss-button.tsx              # RSS subscribe button
-│   ├── cookie-consent.tsx          # GDPR cookie consent banner
-│   └── skip-link.tsx               # Accessibility skip link
-├── hooks/
-│   └── use-mobile.ts               # Media query hook (< 768px)
-├── lib/
-│   ├── auth.ts                     # JWT create/verify, getCurrentUser, getAuthTokenFromHeader
-│   ├── buildbase.ts                # BuildBase SDK init and module exports
-│   ├── db.ts                       # Prisma singleton + audit log middleware
-│   ├── logger.ts                   # Dual-mode logger (dev: colored, prod: JSON)
-│   ├── sentry.ts                   # Optional Sentry helpers (no-op if DSN not set)
-│   ├── utils.ts                    # cn() Tailwind class merging helper
-│   ├── i18n-url.ts                 # URL builder with locale prefix
-│   ├── format/
-│   │   ├── date.ts                 # formatDate, formatDateTime, formatRelativeTime
-│   │   ├── number.ts               # formatCurrency, formatCompact, formatBytes, formatOrdinal
-│   │   └── string.ts               # slugify, truncate, titleCase, mask, pluralize, initials
-│   ├── seo/
-│   │   └── marketing-metadata.ts   # Build localized metadata for marketing pages
-│   └── validation/
-│       ├── schemas.ts              # Zod schemas (auth, profile, workspace, pagination)
-│       └── api.ts                  # validateBody(), validateParams(), isValidationError()
-├── i18n/
-│   ├── config.ts                   # Supported locales + default locale
-│   ├── routing.ts                  # next-intl routing setup
-│   ├── request.ts                  # Server-side locale resolver
-│   └── messages/                   # Translation files (en, hi, es, fr, de, ja, zh, ar)
-├── middleware.ts                    # i18n routing, security headers, canonical redirect,
-│                                   # markdown content negotiation, request ID propagation
-└── __tests__/
-    └── utils.test.ts               # Vitest unit tests
-
-content/                            # MDX source files
-├── blog/{locale}/{slug}.mdx        # Blog posts (multi-locale)
-├── authors/{slug}.mdx              # Author profiles
-├── changelog/{slug}.mdx            # Changelog entries
-└── pages/
-    ├── about/{locale}.mdx          # About page content
-    ├── privacy/{locale}.mdx        # Privacy policy content
-    └── terms/{locale}.mdx          # Terms of service content
-
-e2e/                                # Playwright E2E tests
-prisma/
-└── schema.prisma                   # Database schema (User, Workspace, UserWorkspace, AuditLog)
-knowledge/                          # Extended documentation (see below)
-```
-
----
-
-## 🔌 BuildBase SDK — What It Powers
-
-The BuildBase SDK (`@buildbase/sdk`) is the core dependency. The following will **not work** without a connected BuildBase account:
-
-| Feature                   | Without BuildBase            |
-| ------------------------- | ---------------------------- |
-| Sign in / Sign out        | Broken — no OAuth flow       |
-| Session persistence       | Broken — no session handling |
-| Workspaces                | Not available                |
-| Role-based permissions    | Not enforced                 |
-| Subscription plans        | Not available                |
-| Credit balance & purchase | Not available                |
-| Feature flags             | Not available                |
-| Push notifications        | Not available                |
-| Trial status              | Not shown                    |
-
-The SDK is initialised in `src/lib/buildbase.ts` and exports these modules:
-
-```ts
-(auth,
-  workspace,
-  subscription,
-  users,
-  plans,
-  usage,
-  invoices,
-  features,
-  settings,
-  notification,
-  credits,
-  withSession,
-  client);
-```
-
----
-
-## 🗄️ Database Schema
-
-**User**
-
-```
-id, email (unique), name, image, role, emailVerified,
-timezone, language, country, currency, createdAt, updatedAt
-```
-
-**Workspace**
-
-```
-id, name, createdAt, updatedAt
-```
-
-**UserWorkspace** (join table)
-
-```
-userId + workspaceId (composite PK), userRole (admin | member | viewer),
-createdAt, updatedAt
-Indexes: workspaceId
-```
-
-**AuditLog**
-
-```
-id, action (create | update | delete | upsert | gdpr_delete),
-model (User | Workspace | UserWorkspace), recordId,
-userId, workspaceId, ipAddress, userAgent,
-source (api | event | system | oauth2-token),
-before (Json), after (Json), metadata (Json), createdAt
-Indexes: model+recordId, userId, workspaceId, action, createdAt
-```
-
-Audit logging is automatic via Prisma middleware — every create/update/delete/upsert on User, Workspace, and UserWorkspace is recorded with before/after state.
-
----
-
-## 🌐 API Routes
-
-| Method | Route                       | Description                                                    |
-| ------ | --------------------------- | -------------------------------------------------------------- |
-| POST   | `/api/auth/token`           | Exchange BuildBase auth code for local JWT + session cookie    |
-| POST   | `/api/auth/oauth2-token`    | OAuth2 token endpoint (called by BuildBase server)             |
-| POST   | `/api/auth/oauth2-profile`  | OAuth2 profile endpoint (called during OAuth flow)             |
-| POST   | `/api/auth/workspace-token` | Generate workspace-scoped JWT                                  |
-| GET    | `/api/auth/session`         | Read session from httpOnly cookie                              |
-| POST   | `/api/auth/signout`         | Clear session cookie                                           |
-| POST   | `/api/events`               | BuildBase webhook (syncs users/workspaces, records audit logs) |
-| GET    | `/api/user/export`          | GDPR Article 15 — export all user data as JSON                 |
-| DELETE | `/api/user/delete`          | GDPR Article 17 — delete user, anonymise audit logs            |
-| GET    | `/api/content/[...path]`    | Serve raw markdown for AI agents (`Accept: text/markdown`)     |
-| GET    | `/api/og`                   | Generate dynamic OG images (Edge runtime, locale-aware)        |
-| GET    | `/api/health`               | Health check; `?deep=true` includes DB connectivity + latency  |
-| POST   | `/api/notifications/test`   | Send test push notification via BuildBase SDK                  |
-
----
-
-## 📝 Content System (MDX)
-
-Content is managed via **contentlayer2** with the following types:
-
-**Blog Posts** — `content/blog/{locale}/{slug}.mdx`
-
-- Fields: `title`, `description`, `date`, `updated?`, `draft?`, `author` (slug), `category`, `tags[]`, `image?`
-- Computed: `slug`, `locale`, `readingTime`
-- Features: draft filtering in production, multi-locale with fallback, related posts by tags/category, RSS feed, markdown API for AI agents
-
-**Authors** — `content/authors/{slug}.mdx`
-
-- Fields: `name`, `role?`, `avatar?`, `bio`, `website?`, `twitter?`, `github?`, `linkedin?`
-
-**Changelog** — `content/changelog/{slug}.mdx`
-
-- Fields: `date`, `title`, `description`, `draft?`, `highlights[]` (kind, title, body), `tag?`, `version?`
-- Computed: `slug`, `readingTime`
-
-**Marketing Pages** — `content/pages/{type}/{locale}.mdx`
-
-- About, Privacy, Terms — fully translatable with SEO metadata per locale
-
-MDX pipeline: `remarkGfm` → `rehypeSlug` → `rehypeAutolinkHeadings` → `rehypePrettyCode` (github-dark-default theme)
-
----
-
-## 🌍 i18n Message Namespaces
-
-All translations live in `src/i18n/messages/` and are TypeScript files for full type safety. Missing keys cause TypeScript errors.
-
-| Namespace              | Contents                                    |
-| ---------------------- | ------------------------------------------- |
-| `common.nav`           | Navigation labels                           |
-| `common.buttons`       | Button labels (signIn, save, delete, etc.)  |
-| `common.auth`          | Auth messages                               |
-| `common.footer`        | Footer content and links                    |
-| `common.language`      | Language names                              |
-| `common.accessibility` | Skip links, ARIA labels                     |
-| `common.theme`         | Theme option labels                         |
-| `home.*`               | Home / marketing page                       |
-| `dashboard.*`          | Dashboard, trial status, subscription cards |
-| `analytics.*`          | Analytics page                              |
-| `team.*`               | Team management                             |
-| `settings.*`           | Settings page                               |
-| `documents.*`          | Documents page                              |
-| `events.*`             | Activity / audit log                        |
-| `invoices.*`           | Billing invoices                            |
-| `notifications.*`      | Notifications                               |
-| `permissions.*`        | RBAC settings                               |
-| `profile.*`            | Profile settings                            |
-| `usage.*`              | API usage tracking                          |
-| `credits.*`            | Credits page                                |
-| `creditStore.*`        | Credit purchase UI                          |
-| `pricing.*`            | Pricing page                                |
-| `blog.*`               | Blog index and post pages                   |
-| `changelog.*`          | Changelog pages                             |
-| `cookieConsent.*`      | Cookie consent banner                       |
-| `errors.*`             | Error messages                              |
-
----
-
-## 🔒 Middleware
-
-`src/middleware.ts` handles all requests and applies:
-
-- **i18n routing** — locale prefix via next-intl (`as-needed` strategy)
-- **Canonical redirect** — `www.domain.com` → apex domain (301)
-- **Security headers** — CSP, HSTS, X-Frame-Options: DENY, X-Content-Type-Options, Referrer-Policy, X-XSS-Protection, Permissions-Policy
-- **Request ID** — generates UUID per request, propagates via headers for observability
-- **Markdown negotiation** — rewrites `Accept: text/markdown` requests to `/api/content/`
-- **Link headers** — appends `Link` headers for AI agent discovery (llms.txt, sitemap, RSS)
-- **Robots** — sets `X-Robots-Tag: noindex, nofollow` on all `/api/` routes
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 20+ (see `.nvmrc`)
-- PostgreSQL database
-- [BuildBase](https://buildbase.app) account (org ID, client ID, client secret)
-
-### Installation
+## Quick start
 
 ```bash
-# Clone the repository
-git clone https://github.com/buildbase-app/nextjs-starter.git
+git clone https://github.com/buildbase-app/nextjs-starter
 cd nextjs-starter
-
-# Install dependencies
-npm install
-
-# Copy environment file
 cp .env.example .env.local
-
-# Set up database
-npx prisma generate
+npm install
 npx prisma db push
-
-# Start development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the app.
+The app runs on http://localhost:3000. Fill in `.env.local` first:
 
----
+| Variable                             | Where it comes from                                                                                                                                           |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_BUILDBASE_SERVER_URL`   | `https://api.console.buildbase.app` for the hosted platform, or your self-hosted server.                                                                      |
+| `NEXT_PUBLIC_BUILDBASE_ORG_ID`       | The console's organization settings. It is the id in the URL when the console is open.                                                                        |
+| `NEXT_PUBLIC_BUILDBASE_CLIENT_ID`    | Console, `/dashboard/admin/auth`. Create an OAuth client and add `http://localhost:3000` (and your deployed URL) to its redirect URLs.                        |
+| `BUILDBASE_CLIENT_SECRET`            | The same client's secret. Server only.                                                                                                                        |
+| `NEXT_PUBLIC_BUILDBASE_REDIRECT_URL` | The URL the hosted sign-in returns to. Must be one of the client's redirect URLs.                                                                             |
+| `DATABASE_URL`                       | A Postgres connection string. `docker compose up db` gives you one locally.                                                                                   |
+| `SYSTEM_SECRET`                      | At least 32 characters, `openssl rand -base64 32`. Signs the workspace tokens this app mints for itself.                                                      |
+| `BUILDBASE_WEBHOOK_SECRET`           | Console, `/dashboard/admin/setting/webhooks`. Create an endpoint for `<your URL>/api/webhooks/buildbase` and paste the signing secret. Optional until you do. |
+| `SITE_URL`, `NEXT_PUBLIC_SITE_URL`   | Your public URL. Used for canonical links, the MCP server address and the discovery documents.                                                                |
 
-## ✅ Customisation Checklist
+`src/env.ts` validates these at boot and refuses to start with a missing
+required one, so a typo shows up as a clear message rather than a 500 later.
 
-After cloning, update these files before shipping to production:
+## What the organization needs for the tour to complete
 
-| File                                | What to change                                                       |
-| ----------------------------------- | -------------------------------------------------------------------- |
-| `.env.local`                        | Fill in all required values (copy from `.env.example`)               |
-| `src/config/seo.ts`                 | Replace `My App`, `My App Team`, and social handles with your brand  |
-| `public/llms.txt`                   | Replace `My App` and `https://example.com` with your product details |
-| `public/llms-full.txt`              | Same as above — full AI agent discovery document                     |
-| `public/.well-known/agent.json`     | Replace `My App`, `https://example.com`, and org details             |
-| `public/.well-known/ai-plugin.json` | Replace name, description, logo URL, and contact email               |
-| `public/openapi.json`               | Replace title and server URL                                         |
-| `public/logo.png`                   | Add your logo (referenced by JSON-LD structured data)                |
-| `public/authors/`                   | Replace the `john-doe.mdx` author and avatar with real authors       |
-| `src/content/blog/en/`              | Replace example blog posts with your own content                     |
-| `src/content/changelog/`            | Replace example changelog entries                                    |
-| `src/content/pages/`                | Update About, Privacy, and Terms content for all locales             |
-| `src/content/authors/john-doe.mdx`  | Replace with your real author(s)                                     |
+The app works against any BuildBase organization. The tour, though, asks you
+to hit a limit, spend a credit and receive a specific event, so the demo
+organization is configured like this. Each row says which console screen it
+lives on.
 
-> **Tip:** Search the repo for `example.com` and `My App` to find all placeholder values.
+| What                                                                                                                                                                                   | Console screen                         |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| A pricing group with slug `main-pricing`. The pricing page renders whatever it holds.                                                                                                  | `/dashboard/admin/subscriptions`       |
+| Two plans in it, both with a `documents` quota. The smaller plan allows no overage, so "Hit the limit" is reachable; the larger one includes more.                                     | `/dashboard/admin/subscriptions`       |
+| A `max-users` limit on each plan (3 and 10 on the demo), so "Hit the seat limit" is reachable.                                                                                         | `/dashboard/admin/subscriptions`       |
+| An `analytics` workspace feature, off on the smaller plan and on for the larger, so "See it switched on" happens by upgrading.                                                         | `/dashboard/admin/workspaces/features` |
+| A 14-day trial without a card on each plan.                                                                                                                                            | `/dashboard/admin/subscriptions`       |
+| A credit package with slug `100-credits`, granted by each plan on every period. Creating a document spends one.                                                                        | `/dashboard/admin/subscriptions`       |
+| A custom notification event with slug `comment-added`, user-managed, email and push on. Its email template uses the `{{title}}`, `{{message}}` and `{{url}}` merge tags the app sends. | `/dashboard/admin/notifications`       |
+| A webhook endpoint at `<your URL>/api/webhooks/buildbase` subscribed to `*`. Its secret goes in `BUILDBASE_WEBHOOK_SECRET`.                                                            | `/dashboard/admin/setting/webhooks`    |
+| VAPID keys, so browsers can subscribe to push.                                                                                                                                         | `/dashboard/admin/push`                |
+| A verified email sender, or the email channel stays quiet and the inbox says so.                                                                                                       | `/dashboard/admin/notifications`       |
+| Stripe keys in test mode. The tour uses card `4242 4242 4242 4242`.                                                                                                                    | `/dashboard/admin/payment`             |
+| The OAuth client's redirect URLs include the app's URL.                                                                                                                                | `/dashboard/admin/auth`                |
 
----
+The slugs (`documents`, `max-users`, `analytics`, `100-credits`,
+`comment-added`, `main-pricing`) are the only coupling between the app and the
+organization. Each lives in one constant: `METERING` in
+`src/lib/documents/service.ts`, `DEMO_EVENT_SLUG` in
+`src/components/notifications/demo-event.ts`, and the `slug` prop on
+`PricingSection`.
 
-## ⚙️ Environment Variables
+## How it is put together
 
-| Variable                             | Required | Description                                              |
-| ------------------------------------ | -------- | -------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`               | Yes      | Site base URL (e.g. `https://yourdomain.com`)            |
-| `DATABASE_URL`                       | Yes      | PostgreSQL connection string                             |
-| `SYSTEM_SECRET`                      | Yes      | JWT signing key — min 32 characters                      |
-| `NEXT_PUBLIC_BUILDBASE_SERVER_URL`   | Yes      | BuildBase API URL (default: `https://api.buildbase.app`) |
-| `NEXT_PUBLIC_BUILDBASE_ORG_ID`       | Yes      | Your BuildBase organisation ID                           |
-| `NEXT_PUBLIC_BUILDBASE_CLIENT_ID`    | Yes      | BuildBase OAuth client ID                                |
-| `NEXT_PUBLIC_BUILDBASE_REDIRECT_URL` | Yes      | OAuth redirect URL (e.g. `http://localhost:3000`)        |
-| `BUILDBASE_CLIENT_SECRET`            | Yes      | BuildBase OAuth client secret (server-side only)         |
-| `BUILDBASE_OAUTH2_CLIENT_ID`         | No       | OAuth2-specific client ID (if different)                 |
-| `BUILDBASE_OAUTH2_CLIENT_SECRET`     | No       | OAuth2-specific secret (if different)                    |
-| `NEXT_PUBLIC_SENTRY_DSN`             | No       | Sentry client key (error tracking, optional)             |
-| `SENTRY_ORG`                         | No       | Sentry organisation slug                                 |
-| `SENTRY_PROJECT`                     | No       | Sentry project slug                                      |
-| `SENTRY_AUTH_TOKEN`                  | No       | Sentry auth token (for source maps upload)               |
-| `SKIP_ENV_VALIDATION`                | No       | Set `1` to skip Zod env validation (CI/CD)               |
-| `LOG_LEVEL`                          | No       | Logger level: `debug` / `info` / `warn` / `error`        |
-| `LOG_IN_TESTS`                       | No       | Set `true` to enable logs during tests                   |
-| `POSTGRES_USER`                      | Docker   | PostgreSQL container user                                |
-| `POSTGRES_PASSWORD`                  | Docker   | PostgreSQL container password                            |
-| `POSTGRES_DB`                        | Docker   | PostgreSQL database name (default: `buildbase`)          |
+**Auth and the session.** Sign-up, sign-in, passkeys and device trust happen
+on BuildBase's hosted pages. The SDK's `SaaSOSProvider` in
+`src/components/saas-provider.tsx` hands the resulting session id to
+`/api/auth/token`, which stores it in an httpOnly cookie named `bb-session-id`.
+This app never sees a password.
 
-See [environment-config.md](knowledge/environment-config.md) for type-safe validation setup using `@t3-oss/env-nextjs`.
+**The server client.** `src/lib/buildbase.ts` builds a server-side client that
+reads that cookie. `src/lib/server-auth.ts` exposes two helpers every API route
+uses: `getSessionContext()` resolves who is calling from the cookie, and
+`getWorkspaceContext(workspaceId)` also checks, against the platform, that they
+belong to that workspace and what their role is. Identity in a request body is
+a claim; these are the facts.
 
----
+**Mirroring the platform into Postgres.** The SDK emits lifecycle events in the
+browser (`user:created`, `workspace:changed`, `workspace:invitation-sent`,
+...). `saas-provider.tsx` forwards them to `/api/events`, which upserts `User`,
+`Workspace` and `UserWorkspace`. Server-side changes (a subscription, a
+payment, a credit purchase) arrive at `/api/webhooks/buildbase`, which verifies
+the signature and timestamp with `verifyWebhookSignature`, stores each event
+once in `WebhookEvent`, and shows them on the Events page.
 
-## 📜 Available Scripts
+**Documents.** The demo's own product domain, in `src/lib/documents/service.ts`
+and `/api/documents/*`. Creating one records usage against the `documents`
+quota and spends one credit; a workspace at its cap with no overage gets a 402. The same service backs the MCP tools, so an agent and a person are
+metered the same way.
 
-| Script                  | Description                                                                   |
-| ----------------------- | ----------------------------------------------------------------------------- |
-| `npm run dev`           | Start development server (Turbopack, auto-runs contentlayer2)                 |
-| `npm run build`         | Full build: contentlayer2 + prisma generate + next build + sitemap + pagefind |
-| `npm start`             | Start production server                                                       |
-| `npm run lint`          | Run ESLint                                                                    |
-| `npm run lint:fix`      | Fix ESLint errors                                                             |
-| `npm run format`        | Format with Prettier                                                          |
-| `npm run format:check`  | Check formatting without writing                                              |
-| `npm run typecheck`     | TypeScript type checking                                                      |
-| `npm run check`         | Run all checks (lint + format + typecheck)                                    |
-| `npm run build:analyze` | Build with bundle analyzer                                                    |
-| `npm test`              | Run unit/component tests (Vitest)                                             |
-| `npm run test:watch`    | Run Vitest in watch mode                                                      |
-| `npm run test:e2e`      | Run Playwright E2E tests (Chrome, Firefox, Safari)                            |
-| `npm run test:e2e:ui`   | Run Playwright with visual debug UI                                           |
-| `npm run content:build` | Rebuild contentlayer2 MDX content                                             |
-| `npm run content:watch` | Watch and rebuild MDX content                                                 |
+**Agents.** `src/lib/agent/index.ts` calls `createAgentStack` from
+`@buildbase/sdk/mcp`. That gives the app an MCP server at `/api/mcp`, OAuth
+discovery under `/.well-known/*`, `/llms.txt`, `/auth.md`, `/openapi.json` and
+`/security.txt`, all generated from `src/config/site.ts`. An MCP client signs
+in with the person's BuildBase account and the app mints it a token in
+`/api/auth/oauth2-token`.
 
----
+**The tour.** `src/tour/catalog.ts` is the content: 13 groups and 67 tasks,
+English on purpose. `src/tour/progress.ts` writes one `TourProgress` row per
+person per task. A task declares how it gets ticked:
 
-## 🚢 Deployment
+| `detect.kind` | Ticked by                                                                        |
+| ------------- | -------------------------------------------------------------------------------- |
+| `sdk-event`   | `/api/events`, when the named SDK lifecycle event arrives for the signed-in user |
+| `webhook`     | `/api/webhooks/buildbase`, for every member of the workspace in the payload      |
+| `action`      | This app's own routes: a document created, a notification sent, a tool called    |
+| `manual`      | The "Mark done" button, for things nothing can observe                           |
 
-### Vercel (Recommended)
+The tour page is `src/app/[locale]/dashboard/tour`, the home-page preview is
+`src/components/marketing/tour-preview.tsx`, and `/api/tour` serves progress.
 
-1. Push to GitHub
-2. Import project in Vercel
-3. Configure all environment variables
-4. Deploy
-
-### Docker
-
-```bash
-# Build and start with docker-compose (includes PostgreSQL)
-docker-compose up -d
-
-# Or build manually
-docker build -t nextjs-starter .
-docker run -p 3000:3000 --env-file .env nextjs-starter
-```
-
-The Dockerfile uses a 3-stage build:
-
-1. **deps** — installs dependencies + runs `prisma generate`
-2. **builder** — builds the Next.js app (standalone output)
-3. **runner** — production image, non-root user (`nextjs:1001`), read-only filesystem
-
-`docker-compose.yml` includes:
-
-- PostgreSQL 17 Alpine with health check and 512MB memory limit
-- Next.js app with 1GB memory limit, read-only filesystem, tmpfs `/tmp`
-
----
-
-## 🎨 Adding UI Components
+## Scripts
 
 ```bash
-npx shadcn@latest add button
-npx shadcn@latest add card
-npx shadcn@latest add dialog
+npm run dev          # Next.js with Turbopack (contentlayer builds first)
+npm run build        # contentlayer, prisma generate, next build, sitemap, pagefind
+npm run typecheck    # tsc --noEmit
+npm run lint         # eslint
+npm run check        # lint + format check + typecheck
+npm run test         # vitest
+npm run test:e2e     # playwright (e2e/)
 ```
 
----
+Husky runs eslint and prettier on staged files at commit time.
 
-## 🌐 Adding Translations
+## Languages
 
-1. Add keys to `src/i18n/messages/en.ts` (source of truth)
-2. Add matching keys to all other locale files (`hi.ts`, `es.ts`, `fr.ts`, etc.)
-3. TypeScript enforces the `Messages` type — missing keys are compile errors
-4. Use in components:
+The app and the SDK's own screens ship in eight languages: English, Hindi,
+Spanish, French, German, Japanese, Chinese and Arabic (right to left). Messages
+are typed in `src/i18n/types.ts`, so adding a key in English fails the
+typecheck until every locale has it. The tour's task content is English only;
+its chrome is translated.
 
-```tsx
-// Client component
-import { useTranslations } from 'next-intl';
+## Make it yours
 
-export function MyComponent() {
-  const t = useTranslations('common');
-  return <button>{t('buttons.submit')}</button>;
-}
+Point `.env.local` at your own organization and the app runs unchanged. To
+remove the tour once you no longer want it:
 
-// Server component
-import { getTranslations } from 'next-intl/server';
+1. Delete `src/tour`, `src/components/tour`,
+   `src/app/[locale]/dashboard/tour` and `src/app/api/tour`.
+2. Remove the `TourProgress` model from `prisma/schema.prisma` and run
+   `npx prisma db push`.
+3. Remove the `tour` item from `menuItems` in `src/components/app-sidebar.tsx`,
+   `<TourProgressCard />` from the dashboard page and `<TourPreview />` from
+   the home page.
+4. Remove the `tour` namespace and `nav.tour` from `src/i18n/types.ts` and the
+   eight files in `src/i18n/messages/`.
+5. Delete the `detect(...)` calls in `/api/events`, `/api/webhooks/buildbase`,
+   `/api/documents`, `/api/notifications/test`, `/api/auth/oauth2-token`,
+   `/api/user/export` and `src/lib/agent/tools.ts`.
 
-export default async function Page() {
-  const t = await getTranslations('dashboard');
-  return <h1>{t('title')}</h1>;
-}
-```
+Documents, the inbox, team invitations and the webhook table stand on their
+own and are worth keeping as examples of the SDK in use.
 
----
+## Deployment
 
-## 📚 Documentation
+Vercel: import the repo, set the variables above, point `DATABASE_URL` at a
+hosted Postgres and add the deployed URL to the OAuth client's redirect URLs.
+`NEXT_PUBLIC_*` values are baked into the bundle, so changing one needs a
+redeploy.
 
-| Document                                                            | Description                                                  |
-| ------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [Authentication](knowledge/authentication.md)                       | OAuth setup with BuildBase SDK, token flow, session handling |
-| [Environment Config](knowledge/environment-config.md)               | Type-safe env vars with `@t3-oss/env-nextjs` + Zod           |
-| [Multi-language Support](knowledge/multi-language-support.md)       | i18n configuration, routing, and usage patterns              |
-| [Theme Management](knowledge/theme-management.md)                   | Light/dark/system mode implementation                        |
-| [SEO Configuration](knowledge/next-seo.md)                          | Metadata API, sitemap, structured data, OG images            |
-| [Security](knowledge/security.md)                                   | Security headers, CSP configuration, best practices          |
-| [UI Components](knowledge/ui-components.md)                         | shadcn/ui component library and customisation                |
-| [Error Handling](knowledge/error-handling.md)                       | Error boundaries, API error patterns                         |
-| [Logging](knowledge/logging.md)                                     | Structured logging, log levels, child loggers                |
-| [Sentry](knowledge/sentry.md)                                       | Optional error monitoring and session replay setup           |
-| [Validation](knowledge/validation.md)                               | Zod schemas for API and form validation                      |
-| [Format Utilities](knowledge/format-utilities.md)                   | Date, number, currency, and string formatters                |
-| [Enterprise Features Audit](knowledge/enterprise-features-audit.md) | Feature checklist and implementation status                  |
+Docker: `docker compose up` builds the app and starts Postgres; the
+`POSTGRES_*` variables in `.env.example` configure the container.
 
----
-
-## 🤝 Contributing
-
-1. Follow existing code patterns
-2. Ensure all checks pass: `npm run check`
-3. Add i18n keys for any user-facing text (all 8 locales)
-4. Test in both light and dark themes
-5. Add Vitest tests for utilities, Playwright tests for new pages
-6. Update `knowledge/` docs if you change behaviour
-
----
-
-## 📄 License
+## License
 
 MIT

@@ -13,6 +13,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global error boundary (`src/app/global-error.tsx`)
 - Sentry utility functions (`src/lib/sentry.ts`)
 
+## [0.2.0] - 2026-09-24
+
+### Added
+
+- The tour: 67 tasks in 13 groups, listed on the home page before sign-in and
+  worked through after. Each task says why it matters, what to do and where the
+  capability comes from (SDK surface, console screen, this app's code).
+  Progress is one `TourProgress` row per person per task, ticked by SDK
+  lifecycle events, webhooks, the app's own actions, or "Mark done".
+- Documents, the demo's own product: REST routes under `/api/documents`, a
+  workbench with filters, inline status changes, sample data and a metering
+  line. Creating one records usage against the `documents` quota and spends a
+  credit; a workspace at its cap with no overage gets a 402. The MCP tools go
+  through the same service.
+- Notification bell in the dashboard header and an inbox page (live, all or
+  unread, mark all read, archive). The Notifications page sends the
+  `comment-added` event to yourself.
+- Team: invite by email with a role, pending list with resend and revoke, the
+  seat a pending invitation holds, inline role changes, and the platform's
+  pending-invitation banner on every dashboard page.
+- `/api/webhooks/buildbase`: verifies signature and timestamp, stores each
+  delivery once, credits the tour to the workspace's members. The Events page
+  lists what arrived with the payload.
+- Connected agents on the profile page, with an MCP set-up guide for Claude,
+  Cursor, ChatGPT and VS Code. Token minting and tool calls tick their tasks.
+
+### Changed
+
+- `@buildbase/sdk` 0.0.70.
+- Content-Security-Policy `connect-src` is derived from
+  `NEXT_PUBLIC_BUILDBASE_SERVER_URL` (HTTP and WebSocket), and
+  `upgrade-insecure-requests` applies only in production, so a local server
+  over plain HTTP works.
+
+### Fixed
+
+- Account export and deletion answered 401 to a real session: the session
+  helper read `profile._id` while the profile carries `id`.
+- The notifications page copy contained `{{name}}` unescaped, which ICU
+  rejected as a malformed argument.
+
 ## [0.1.0] - 2026-01-27
 
 ### Added
@@ -106,7 +147,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History
 
+- **0.2.0** - The tour, documents, inbox, invitations, webhooks, agents
 - **0.1.0** - Initial release with full feature set
 
-[Unreleased]: https://github.com/user/repo/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/user/repo/releases/tag/v0.1.0
+[Unreleased]: https://github.com/buildbase-app/nextjs-starter/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/buildbase-app/nextjs-starter/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/buildbase-app/nextjs-starter/releases/tag/v0.1.0

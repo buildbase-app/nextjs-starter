@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'Inicio',
       dashboard: 'Panel',
       documents: 'Documentos',
-      analytics: 'Analíticas',
       team: 'Equipo',
       notifications: 'Notificaciones',
       settings: 'Configuración',
@@ -25,6 +24,17 @@ const messages: Messages = {
       events: 'Eventos',
       invoices: 'Facturas',
       workspace: 'Espacio de trabajo',
+      tour: 'Recorrido',
+      inbox: 'Bandeja',
+      modules: 'Módulos',
+      forms: 'Formularios',
+      collections: 'Colecciones',
+      assets: 'Archivos',
+      links: 'Enlaces cortos',
+      audience: 'Audiencia',
+      tracking: 'Seguimiento',
+      automations: 'Automatizaciones',
+      reports: 'Informes',
     },
     buttons: {
       signIn: 'Iniciar sesión',
@@ -57,7 +67,8 @@ const messages: Messages = {
         credits: 'Créditos',
         blog: 'Blog',
         changelog: 'Historial de cambios',
-        about: 'Acerca de',
+        tour: 'Recorrido',
+        github: 'Código en GitHub',
         privacy: 'Política de privacidad',
         terms: 'Términos de servicio',
       },
@@ -81,13 +92,13 @@ const messages: Messages = {
     redirecting: 'Redirigiendo...',
   },
   home: {
-    title: 'Mi App',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · Demo en vivo',
+      badge: 'Demo en vivo · 67 tareas',
       heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+        'Cada capacidad de BuildBase, <highlight>una tarea a la vez</highlight>',
       description:
-        'Inicia sesión para ver autenticación, espacios de trabajo multitenancy, facturación de créditos, notificaciones push e i18n en 8 idiomas trabajando juntos — impulsado por el BuildBase SDK.',
+        'Una app real sobre el SDK de BuildBase, con un recorrido guiado: inicia sesión y prueba registro, espacios de trabajo, facturación, uso, créditos, notificaciones, agentes y webhooks, cada uno mostrando de dónde viene.',
       signInToExplore: 'Iniciar sesión para explorar',
       openDashboard: 'Abrir panel',
       viewSource: 'Ver código',
@@ -98,13 +109,13 @@ const messages: Messages = {
         label: 'Idiomas en esta demo',
         sublabel: 'cambia con el selector del encabezado',
       },
-      sdkFeatures: {
-        label: 'Funciones SDK en vivo',
-        sublabel: 'cada una tiene una página de demo',
+      tasks: {
+        label: 'Tareas del recorrido',
+        sublabel: 'cada una una capacidad que probar',
       },
-      notifications: {
-        label: 'Canales de notificación',
-        sublabel: 'push en navegador + email',
+      groups: {
+        label: 'Grupos',
+        sublabel: 'del inicio de sesión a los webhooks',
       },
       authCode: {
         label: 'Líneas de código de auth',
@@ -118,103 +129,6 @@ const messages: Messages = {
       signIn: 'Iniciar sesión y explorar',
       openDashboard: 'Abrir panel',
       howBuilt: 'Cómo está construido',
-    },
-    features: {
-      eyebrow: 'Explora la demo',
-      heading: 'Ve lo que funciona en esta app',
-      description:
-        'Cada capacidad a continuación está en vivo — inicia sesión y haz clic para ver el BuildBase SDK en acción.',
-      auth: {
-        badge: 'Autenticación',
-        title: 'Inicio de sesión OAuth, listo para usar',
-        description:
-          'El botón de inicio de sesión usa el BuildBase SDK — un hook, sin lógica de sesión. Tras iniciar sesión obtienes JWT, token de workspace y rol automáticamente.',
-        tryLabel: 'Inicia sesión para probarlo',
-      },
-      workspaces: {
-        badge: 'Espacios de trabajo',
-        title: 'Selector de workspace multi-inquilino',
-        description:
-          'Cada usuario puede pertenecer a múltiples workspaces con diferentes roles. La barra lateral del dashboard muestra tu workspace actual y permite cambiar entre ellos.',
-        tryLabel: 'Abrir dashboard',
-      },
-      credits: {
-        badge: 'Créditos',
-        title: 'Saldo de créditos en vivo y consumo',
-        description:
-          'La página de créditos muestra tu saldo en vivo, permite comprar más mediante un modal integrado y tiene botones de prueba que llaman a consumeCredits() en tiempo real.',
-        tryLabel: 'Probar consumo de créditos',
-      },
-      notifications: {
-        badge: 'Notificaciones',
-        title: 'Push de navegador y entrega por correo',
-        description:
-          'La página de notificaciones te permite suscribir tu navegador, crear una notificación con título, urgencia, botones de acción y entrega programada — luego enviarla en vivo.',
-        tryLabel: 'Enviar notificación de prueba',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: '8 idiomas incluyendo árabe RTL',
-        description:
-          'Usa el selector de idioma en el encabezado para cambiar entre inglés, hindi, español, francés, alemán, japonés, chino y árabe — el diseño cambia a RTL automáticamente.',
-        tryLabel: 'Cambiar a árabe',
-      },
-      content: {
-        badge: 'Contenido',
-        title: 'Blog MDX y registro de cambios, integrado',
-        description:
-          'El blog y el registro de cambios son archivos MDX compilados en tiempo de construcción via Contentlayer2. Sin CMS, sin base de datos — solo archivos con frontmatter tipado, búsqueda de texto completo y RSS.',
-        tryLabel: 'Leer el blog',
-      },
-      quotas: {
-        badge: 'Cuotas',
-        title: 'Uso de cuotas con puertas de excedente',
-        description:
-          'La página de uso llama a useAllQuotaUsage() para mostrar barras de progreso por cuota. WhenQuotaExhausted bloquea la UI cuando una cuota llega a cero; WhenQuotaOverage muestra detalles del excedente.',
-        tryLabel: 'Ver uso de cuotas',
-      },
-      permissions: {
-        badge: 'Permisos',
-        title: 'Matriz de permisos basada en roles',
-        description:
-          'La página de permisos usa usePermissions() y WhenPermission para mostrar cada permiso de la plataforma como concedido o denegado según tu rol actual en tiempo real.',
-        tryLabel: 'Verificar tus permisos',
-      },
-      events: {
-        badge: 'Eventos',
-        title: 'Flujo de eventos SDK en vivo',
-        description:
-          'La página de eventos conecta eventEmitter.setCallbacks() para capturar todos los eventos SDK — cambios de workspace, actualizaciones de usuario, cambios de rol — en un registro en vivo.',
-        tryLabel: 'Abrir registro de eventos',
-      },
-      userData: {
-        badge: 'Datos de usuario',
-        title: 'Atributos de usuario y banderas de funciones',
-        description:
-          'La página de perfil lee useUserAttributes() y useUserFeatures() para mostrar pares clave-valor personalizados y estados de banderas por usuario, permitiendo escribir nuevos atributos en vivo.',
-        tryLabel: 'Ver tu perfil',
-      },
-      invoices: {
-        badge: 'Facturas',
-        title: 'Historial de facturas y portal de facturación',
-        description:
-          'La página de facturas llama a useInvoices() para listar todas las facturas de Stripe con estado, importe y enlaces PDF. Un botón abre el Portal de Clientes de Stripe via useBillingPortal().',
-        tryLabel: 'Ver facturas',
-      },
-      seats: {
-        badge: 'Asientos',
-        title: 'Límites de asientos y control de invitaciones',
-        description:
-          'El dashboard llama a useSeatStatus() para mostrar el conteo de miembros vs los límites del plan en tiempo real. WhenNoSubscription, WhenSubscription y WhenSubscriptionToPlans controlan la UI para la audiencia correcta.',
-        tryLabel: 'Abrir dashboard',
-      },
-      featureFlags: {
-        badge: 'Banderas de funciones',
-        title: 'Puertas de funciones a nivel de workspace',
-        description:
-          'La página de perfil usa WhenWorkspaceFeatureEnabled y WhenWorkspaceFeatureDisabled para alternar contenido según las banderas a nivel de workspace configuradas en el dashboard de BuildBase.',
-        tryLabel: 'Ver puertas de funciones',
-      },
     },
     meta: {
       title: 'Mi App',
@@ -331,35 +245,6 @@ const messages: Messages = {
       },
     },
   },
-  analytics: {
-    title: 'Analíticas',
-    description: 'Métricas del espacio de trabajo en tiempo real',
-    cards: {
-      plan: 'Plan',
-      teamMembers: 'Miembros del equipo',
-      quotasTracked: 'Cuotas registradas',
-      creditDebits: 'Débitos de créditos',
-      noSubscription: 'sin suscripción',
-      unlimitedSeats: 'asientos ilimitados',
-      maxSeats: '{n} asientos máx.',
-      totalConsumed: '{n} unidades totales consumidas',
-      consumptionEvents: 'eventos de consumo registrados',
-    },
-    quotaConsumption: {
-      title: 'Consumo de cuota',
-      empty: 'No hay cuotas configuradas para este espacio de trabajo.',
-    },
-    featureFlags: {
-      title: 'Indicadores de características',
-      empty: 'No hay indicadores configurados.',
-    },
-    planLimits: {
-      title: 'Límites del plan',
-      empty: 'No hay límites del plan configurados.',
-      unlimited: 'ilimitado',
-    },
-    loading: 'Cargando…',
-  },
   team: {
     title: 'Equipo',
     description: 'Miembros del espacio de trabajo',
@@ -377,7 +262,33 @@ const messages: Messages = {
       count: '{count} miembro(s) en este espacio de trabajo',
       empty: 'No se cargaron miembros. Asegúrate de estar autenticado.',
       roleFallback: 'miembro',
+      changeRole: 'Cambiar rol',
     },
+    invite: {
+      title: 'Invitar por correo',
+      description:
+        'La dirección no necesita cuenta. Recibe un correo, sigue el enlace, se registra o inicia sesión y acepta.',
+      noPermission: 'Tu rol no puede invitar miembros.',
+      emailPlaceholder: 'nombre@empresa.com',
+      role: 'Rol',
+      send: 'Enviar invitación',
+      sent: 'Invitación enviada a {email}',
+      failed: 'Algo salió mal',
+      resent: 'Invitación reenviada',
+      revoked: 'Invitación revocada',
+      seatNote:
+        '{count} invitación(es) pendiente(s) ocupan un asiento hasta responderse.',
+      pendingTitle: 'Pendientes',
+      loading: 'Cargando…',
+      none: 'Nada pendiente.',
+      invitedBy: 'Invitado por {name}',
+      pendingLabel: 'Pendiente',
+      expires: 'caduca {date}',
+      cooldown: 'Reenvío disponible en {seconds}s',
+      resend: 'Reenviar',
+      revoke: 'Revocar',
+    },
+    roleChanged: 'Rol cambiado a {role}',
     manage: {
       title: 'Gestionar miembros',
       description:
@@ -444,8 +355,68 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'Puertas de funciones',
+      description:
+        'Partes de este producto que activa un flag de función del espacio o del usuario.',
+    },
+    workbench: {
+      title: 'Tus documentos',
+      description:
+        'Los documentos viven en la base de datos de esta app; la plataforma los mide.',
+      search: 'Buscar documentos',
+      allStatuses: 'Todos los estados',
+      allTags: 'Todas las etiquetas',
+      newDocument: 'Nuevo documento',
+      newDocumentHint:
+        'Crear uno registra uso en la cuota documents y gasta un crédito.',
+      titleLabel: 'Título',
+      contentLabel: 'Contenido (Markdown)',
+      statusLabel: 'Estado',
+      tagsLabel: 'Etiquetas, separadas por comas',
+      create: 'Crear',
+      creating: 'Creando…',
+      created: 'Documento creado',
+      deleted: 'Documento eliminado',
+      delete: 'Eliminar',
+      loadSamples: 'Cargar documentos de ejemplo',
+      clearSamples: 'Quitar ejemplos',
+      samplesLoaded: '{count} documentos de ejemplo cargados',
+      samplesAlready: 'Los ejemplos ya estaban cargados',
+      samplesCleared: '{count} documentos de ejemplo eliminados',
+      sample: 'Ejemplo',
+      empty: 'Aún no hay documentos.',
+      total: '{count} en total',
+      words: '{count} palabras',
+      loadFailed: 'No se pudieron cargar los documentos',
+      viewerNotice:
+        'Tu rol aquí es {role}: puedes leer, no escribir. Los botones están desactivados y el servidor lo rechaza igualmente.',
+      quotaExhausted:
+        'La cuota documents de este plan está agotada y no tiene excedente. Mejora el plan para crear más.',
+      quotaExhaustedShort: 'Cuota agotada',
+      quotaWarning: 'Has usado más del 80% de la cuota documents de este plan.',
+      creditsLow: 'Quedan pocos créditos. Cada documento gasta uno.',
+      creditsExhausted:
+        'No quedan créditos. Los documentos se crean igual; la línea de medición muestra que se omitió el gasto.',
+      refusedQuota:
+        'Rechazado: {consumed} de {included} documentos usados y el plan tiene tope fijo.',
+      refusedRole: 'Rechazado: el rol {role} no puede escribir.',
+      meteringTitle: 'Lo que registró la plataforma',
+      meteringUsage: 'Uso: {used} de {included} documentos',
+      meteringUsageSkipped:
+        'Uso: no registrado (este plan no tiene cuota documents)',
+      meteringCredits: 'Créditos: {amount} gastados, quedan {balance}',
+      meteringCreditsSkipped: 'Créditos: no gastados (sin saldo)',
+      statuses: {
+        draft: 'Borrador',
+        in_review: 'En revisión',
+        published: 'Publicado',
+        archived: 'Archivado',
+      },
+    },
     title: 'Documentos',
-    description: 'Secciones de documentos con control de características',
+    description:
+      'Los documentos de tu espacio: creados aquí o por un agente, medidos por la plataforma.',
     stats: {
       featureSections: 'Secciones de características',
       featureSectionsSubtitle: 'características de documentos',
@@ -490,6 +461,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'Webhooks recibidos',
+      description:
+        'Entregas firmadas de servidor a servidor desde la plataforma, guardadas por /api/webhooks/buildbase para este espacio de trabajo.',
+      empty:
+        'Aún no hay webhooks. Suscríbete, invita a alguien o compra créditos y la plataforma llamará a esta app.',
+      refresh: 'Actualizar',
+      event: 'Evento',
+      received: 'Recibido',
+      signature: 'Firma',
+      verified: 'Verificada',
+      payload: 'Contenido',
+      when: 'Hora de la plataforma',
+    },
     title: 'Registro de eventos SDK',
     description: 'Eventos SDK en tiempo real',
     clearButton: 'Limpiar',
@@ -541,8 +526,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'Prueba de notificaciones',
-    description: 'Enviar notificaciones de prueba via BuildBase SDK',
+    title: 'Notificaciones',
+    description: 'Envía una notificación desde esta app y mira dónde llega',
     pushCard: {
       title: 'Notificaciones push del navegador',
       description:
@@ -560,7 +545,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'Slug del evento',
       eventSlugHint:
-        'Solo push: cualquier slug funciona. Para email: debe coincidir con un evento registrado.',
+        'El evento de demo es "{slug}", registrado en la consola con correo y push. Para solo push vale cualquier slug; el correo necesita un evento registrado.',
       title: 'Título',
       message: 'Mensaje',
       url: 'URL',
@@ -620,11 +605,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'Respuesta',
+      description: 'Qué hizo la plataforma con el envío.',
+      openInbox: 'Abrir bandeja',
     },
     toast: {
       workspaceRequired: 'Por favor selecciona un espacio de trabajo primero',
       sent: 'Notificación enviada a {count} usuario(s)',
       notSent: 'Notificación no enviada: {reason}',
+      inboxHint: 'Mira la campana y tu bandeja.',
       pushEnabled: 'Notificaciones push habilitadas',
       pushDisabled: 'Notificaciones push deshabilitadas',
       pushFailed: 'Error al cambiar notificaciones push',
@@ -659,6 +647,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'Agentes conectados',
+      description:
+        'Clientes de IA que has autorizado a actuar como tú por MCP. Desconectar revoca su acceso.',
+      guideTitle: 'Conectar un agente',
+      guideDescription:
+        'Esta app es un servidor MCP. Añádela a Claude, Cursor o ChatGPT e inicia sesión con tu cuenta de BuildBase; el agente leerá tus espacios de trabajo y los documentos de esta app con tus permisos.',
+    },
     title: 'Perfil de usuario',
     description: 'Atributos de usuario e indicadores de características',
     identity: {
@@ -939,6 +935,340 @@ const messages: Messages = {
     rejectAll: 'Rechazar todo',
     savePreferences: 'Guardar preferencias',
     customize: 'Personalizar',
+  },
+  inbox: {
+    title: 'Bandeja de entrada',
+    description:
+      'Todo lo que esta app te ha enviado, un elemento por notificación, se entregara como se entregara.',
+    rules: {
+      live: 'Los nuevos elementos llegan en vivo por socket; sin recargar.',
+      read: 'Un elemento se marca como leído al abrirlo aquí o al pulsar su enlace. Abrir solo el correo no lo lee.',
+      email:
+        'Cada elemento muestra qué hicieron el correo y el push, para ver por qué un canal quedó en silencio.',
+    },
+  },
+  tour: {
+    title: 'El recorrido',
+    subtitle:
+      '{total} cosas que probar, cada una una capacidad de BuildBase y de dónde viene.',
+    progress: '{done} de {total} hechas',
+    markDone: 'Marcar hecha',
+    undo: 'Deshacer',
+    open: 'Abrir',
+    detected: 'Se detecta automáticamente',
+    manual: 'Confírmalo tú',
+    why: 'Por qué importa',
+    steps: 'Qué hacer',
+    fromSdk: 'Del SDK',
+    fromConsole: 'Configurado en la consola',
+    fromApp: 'En esta app',
+    requires: 'Antes haz',
+    allDone: 'Lo has hecho todo. Llévatelo a casa.',
+    homeTitle: 'Prueba todo, una tarea a la vez',
+    homeSubtitle:
+      'Inicia sesión y completa {total} tareas en {groups} grupos. Cada una muestra una capacidad de BuildBase, cómo se ve en una app y dónde se configura.',
+    homeCta: 'Empezar el recorrido',
+    dashboardCard: 'Tu recorrido',
+    next: 'Siguiente',
+    cloneTitle: 'Clona esta app',
+    cloneBody:
+      'Cada página y cada tarea de aquí están en un repositorio abierto. Mira cómo funciona cualquier parte, o clónalo y empieza tu propia app.',
+    browseCode: 'Ver el código',
+    copy: 'Copiar',
+    copied: 'Copiado',
+    dashboardCta: 'Continuar',
+  },
+  help: {
+    title: 'Centro de ayuda',
+    description:
+      'Todo en esta página se escribió en la consola: una política, docs, preguntas frecuentes y testimonios. Cámbialo allí, recarga aquí.',
+    notConfigured: {
+      title: 'Aún no hay contenido',
+      token:
+        'Esta app no tiene token de API de la organización, así que no puede leer contenido de la consola. Define BUILDBASE_API_TOKEN.',
+      empty:
+        'La organización aún no tiene el contenido de demo. Siémbralo con:',
+    },
+    from: {
+      richContent: 'contenido enriquecido',
+      docs: 'docs',
+      faqs: 'colección de FAQ',
+      testimonials: 'testimonios',
+    },
+    docs: {
+      title: 'Documentación',
+      empty: 'Aún no hay docs publicados.',
+    },
+    faq: {
+      title: 'Preguntas frecuentes',
+    },
+    testimonials: {
+      title: 'Lo que dicen los clientes',
+    },
+  },
+  forms: {
+    title: 'Formularios',
+    description:
+      'Un formulario creado en la consola, renderizado desde su esquema en vivo y enviado a través de esta app.',
+    loading: 'Cargando el formulario…',
+    fromConsole: 'Los campos vienen de la consola; añade uno allí y recarga.',
+    submit: 'Enviar',
+    sending: 'Enviando…',
+    sent: 'Enviado',
+    hint: 'Los envíos se guardan como registros de una colección y disparan el evento form.submitted.',
+    errors: {
+      title: 'La plataforma rechazó este envío',
+      generic: 'Algo no fue aceptado.',
+    },
+    missing: {
+      title: 'Aún no hay formulario de contacto',
+      token:
+        'Esta app no tiene token de API de la organización. Define BUILDBASE_API_TOKEN.',
+      form: 'La organización no tiene un formulario llamado Contact. Siémbralo con:',
+    },
+    toast: {
+      sent: 'Enviado. Ya es un registro en la plataforma.',
+    },
+    submissions: {
+      title: 'Últimos envíos',
+      description: 'Leídos desde la colección del formulario.',
+      refresh: 'Actualizar',
+      empty: 'Nada enviado todavía.',
+    },
+  },
+  collections: {
+    title: 'Colecciones',
+    description:
+      'Datos personalizados en la plataforma: un esquema versionado y registros sobre la versión en vivo.',
+    loading: 'Cargando registros…',
+    liveVersion: 'Versión en vivo {version} ({name}), {fields} campos',
+    noLiveVersion: 'Sin versión en vivo. Publica una en la consola.',
+    refresh: 'Actualizar',
+    empty: 'Sin registros. Siembra algunos o añade uno en la consola.',
+    actions: 'Acciones',
+    delete: 'Eliminar registro',
+    hint: 'Publica una nueva versión con un campo extra en la consola; la columna aparece aquí al recargar.',
+    missing: {
+      title: 'Aún no hay colección release-notes',
+      token:
+        'Esta app no tiene token de API de la organización. Define BUILDBASE_API_TOKEN.',
+      collection:
+        'La organización no tiene una colección con slug release-notes. Siémbrala con:',
+    },
+    toast: {
+      deleted: 'Registro eliminado en la plataforma.',
+      deleteFailed: 'No se pudo eliminar el registro.',
+    },
+  },
+  tracking: {
+    title: 'Seguimiento',
+    description:
+      'Etiquetas de analítica y anuncios desde la consola, cargadas tras el consentimiento, con tus propios eventos y atribución.',
+    loading: 'Cargando…',
+    consent: {
+      title: 'Consentimiento',
+      description:
+        'Construido a partir de las etiquetas asignadas a esta app, nunca de toda la biblioteca.',
+      noTags:
+        'Ninguna etiqueta está asignada a esta app. Añade una en la consola en Ajustes → Seguimiento y asígnala al cliente.',
+      privacy: 'Privacidad',
+      analytics: 'analítica',
+      marketing: 'marketing',
+      acceptAll: 'Aceptar todo',
+      analyticsOnly: 'Solo analítica',
+      denyAll: 'Rechazar todo',
+      state: 'Estado actual',
+      unset: 'aún no preguntado',
+    },
+    installed: {
+      title: 'Proveedores instalados',
+      description:
+        'Lo que realmente se cargó en este navegador tras el consentimiento.',
+      none: 'No se cargó nada. Da tu consentimiento o asigna una etiqueta en la consola.',
+    },
+    custom: {
+      title: 'Registrar un evento propio',
+      description:
+        'Tus eventos van a la capa de datos y a cada proveedor instalado.',
+      button: 'Registrar report_exported',
+      fired: 'Enviado {count} vez/veces',
+    },
+    attribution: {
+      title: 'Atribución',
+      description:
+        'De dónde vino este visitante: ids de clic y parámetros de campaña, capturados en la primera página.',
+      empty: 'Nada capturado. Recarga con',
+    },
+    log: {
+      title: 'Registro de eventos en vivo',
+      description:
+        'Cada evento que el SDK envió en esta pestaña, incluidos los que envía por sí mismo.',
+      empty: 'Sin eventos aún. Navega, o registra uno arriba.',
+    },
+  },
+  automations: {
+    title: 'Automatizaciones',
+    description:
+      'Los flujos se construyen en la consola; esta app provoca los eventos que escuchan y lee lo que se ejecutó para ti.',
+    refresh: 'Actualizar',
+    loading: 'Cargando…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN no está configurado, así que esta app no puede leer las ejecuciones.',
+    error: 'No se pudieron cargar las ejecuciones',
+    runs: {
+      title: 'Tus ejecuciones',
+      description:
+        'Instancias de flujo que la plataforma inició para tu cuenta.',
+      empty:
+        'Sin ejecuciones aún. Envía el formulario de contacto o registra un usuario nuevo, y actualiza.',
+      workflow: 'Flujo',
+      event: 'Evento',
+      status: 'Estado',
+      nodes: 'Nodos hechos',
+      started: 'Inicio',
+    },
+    calls: {
+      title: 'Llamadas a esta app',
+      description:
+        'Lo que la acción HTTP Webhook de un flujo envió a /api/buildbase/provision, verificado con secreto compartido.',
+      empty: 'Aún no se recibieron llamadas de aprovisionamiento.',
+    },
+  },
+  reports: {
+    title: 'Informes',
+    description:
+      'Cada módulo informa por los mismos endpoints de gráficos y recuentos; tres de ellos, para los últimos treinta días.',
+    notConfigured:
+      'BUILDBASE_API_TOKEN no está configurado, así que esta app no puede leer informes.',
+    loading: 'Cargando…',
+    refresh: 'Actualizar',
+    window: '{from} a {to}',
+    unavailable: 'No disponible',
+    series: {
+      users: {
+        title: 'Registros',
+        description: 'Usuarios nuevos por día.',
+      },
+      forms: {
+        title: 'Envíos de formulario',
+        description: 'Envíos del formulario de contacto por día.',
+      },
+      links: {
+        title: 'Clics en enlaces',
+        description: 'Clics en enlaces cortos por día.',
+      },
+    },
+  },
+  assets: {
+    title: 'Archivos',
+    description:
+      'Archivos subidos desde esta app, almacenados y servidos por la plataforma.',
+    upload: 'Subir un archivo',
+    uploading: 'Subiendo…',
+    limit: 'Hasta 5 MB. Las imágenes muestran vista previa.',
+    uploaded: 'Subido',
+    gallery: 'Archivos',
+    empty: 'Aún no hay archivos. Sube uno arriba.',
+    public: 'Público',
+    private: 'Privado',
+    makePrivate: 'Hacer privado',
+    makePublic: 'Hacer público',
+    nowPublic: 'Ahora es público: la URL vuelve a funcionar.',
+    nowPrivate: 'Ahora es privado: la URL pública deja de funcionar.',
+    openUrl: 'Abrir',
+    tooLarge: 'Ese archivo supera 5 MB.',
+    loadFailed: 'No se pudo contactar con la plataforma.',
+    notConfigured:
+      'Esta página lee la organización con un token de API. Define BUILDBASE_API_TOKEN (consola → Settings → Tokens) y reinicia.',
+  },
+  links: {
+    title: 'Enlaces cortos',
+    description:
+      'Enlaces para compartir que la plataforma redirige y cuenta, clic a clic.',
+    create: 'Crear un enlace corto',
+    createHint:
+      'Cualquier URL. La plataforma asigna un id de 12 caracteres y registra cada clic con su país y dispositivo.',
+    name: 'Nombre',
+    url: 'URL de destino',
+    createButton: 'Crear',
+    created: 'Enlace creado',
+    yourLinks: 'Tus enlaces',
+    clicksHint:
+      'Sigue un enlace y luego actualiza: el recuento viene de la plataforma, no de esta página.',
+    refresh: 'Actualizar',
+    empty: 'Aún no hay enlaces.',
+    clicks: 'clics',
+    copy: 'Copiar la URL corta',
+    copied: 'Copiado',
+    follow: 'Seguir',
+    changeDestination: 'Cambiar destino',
+    save: 'Guardar',
+    cancel: 'Cancelar',
+    updated: 'Destino cambiado. La URL corta es la misma.',
+    chart: 'Clics, últimos 14 días',
+    chartHint: 'Todos los enlaces juntos, por día.',
+    chartEmpty: 'Aún no hay clics.',
+    loadFailed: 'No se pudo contactar con la plataforma.',
+    notConfigured:
+      'Esta página lee la organización con un token de API. Define BUILDBASE_API_TOKEN (consola → Settings → Tokens) y reinicia.',
+  },
+  audience: {
+    title: 'Audiencia y atributos',
+    description:
+      'Lo que la plataforma guarda de una persona más allá de la cuenta: atributos personalizados, un contacto de marketing y una lista de espera.',
+    failed: 'No se pudo guardar.',
+    notConfigured: 'El boletín necesita BUILDBASE_API_TOKEN en el servidor.',
+    onboarding: {
+      title: 'Lista de bienvenida',
+      description:
+        'Marca las tres y guarda: el SDK escribe onboarded=true y tu cargo como atributos de usuario, en tu navegador, como tú.',
+      items: {
+        profile: 'Completé mi perfil',
+        workspace: 'Creé un espacio de trabajo',
+        invite: 'Invité a alguien',
+      },
+      role: 'Tu cargo (opcional)',
+      save: 'Terminar la bienvenida',
+      saved: 'Guardado. Abre tu registro en la consola para verlo.',
+      already: 'Ya completaste la bienvenida, según tus atributos.',
+    },
+    attributes: {
+      title: 'Tus atributos',
+      description:
+        'Las claves se definen en la consola (Users → Attributes); los valores viven en tu usuario.',
+      empty: 'Aún no hay atributos.',
+    },
+    locale: {
+      title: 'País, zona horaria, moneda',
+      description:
+        'Las listas vienen con el SDK (@buildbase/sdk/data), sin descargas.',
+      country: 'País',
+      timezone: 'Zona horaria',
+      currency: 'Moneda',
+      save: 'Guardar preferencias',
+      saved: 'Preferencias guardadas como atributos.',
+    },
+    newsletter: {
+      title: 'Boletín',
+      description:
+        'Un contacto de marketing es independiente de tu cuenta: puede existir sin ella. El servidor lo crea con el token de la organización y lo añade a la lista del boletín.',
+      email: 'Correo',
+      subscribe: 'Suscribirse',
+      subscribed: 'Suscrito',
+      listed: 'Añadido a la lista {list}.',
+      noList:
+        'Contacto creado; esta organización aún no tiene lista de boletín.',
+      waitlistHint:
+        'Los visitantes sin sesión pueden unirse a la lista de espera beta en',
+    },
+  },
+  waitlist: {
+    title: 'Únete a la lista de espera',
+    description:
+      'El formulario beta de la plataforma: deja tu nombre y correo, un administrador te aprueba en la consola.',
+    success:
+      'Estás en la lista. Un administrador te aprobará desde la consola.',
+    note: 'El formulario y sus textos vienen de la configuración beta de la organización (consola → Users → Beta).',
   },
 };
 

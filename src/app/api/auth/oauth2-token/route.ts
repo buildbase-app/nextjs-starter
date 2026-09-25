@@ -1,109 +1,91 @@
 import { NextRequest, NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
+import { handleAppTokenRequest, mintAgentToken } from '@buildbase/sdk';
 import { prisma, setAuditContext } from '@/lib/db';
-import { createAuthToken } from '@/lib/auth';
 import { env } from '@/env';
 import { logger } from '@/lib/logger';
+import { detect } from '@/tour/progress';
 
 /**
- * Application Token URL — called by the BuildBase OAuth2 server
- * during token exchange to get an app-specific token for the user.
+ * Application Token URL (`applicationTokenUrl` in the BuildBase OAuth2 client).
  *
- * BuildBase sends:
- *   - Authorization: Bearer {JWT signed with clientSecret}
- *   - JWT payload: { id, email, name, role, emailVerified, image, ... }
+ * BuildBase calls this on EVERY grant — the initial code exchange and every
+ * refresh — for OAuth2 clients of this app: AI agents connecting over MCP,
+ * Zapier/n8n style integrations, or any third party you register.
  *
- * This endpoint:
- *   1. Verifies the JWT using the shared clientSecret
- *   2. Upserts the user in the local database
- *   3. Creates a local auth token (JWT signed with SYSTEM_SECRET)
- *   4. Returns { success: true, token: string, message: string }
+ * Flow (see docs/MCP-AND-AGENT-READINESS.md in @buildbase/sdk):
+ *   1. `handleAppTokenRequest` verifies the platform's call — a short-lived
+ *      HS256 JWT signed with the shared client secret (alg pinned, exp required).
+ *   2. We mirror the user into our own database.
+ *   3. `mintAgentToken` signs OUR access token with SYSTEM_SECRET: `aud` bound
+ *      to the RFC 8707 resource the agent asked for, granted scopes carried
+ *      through, and the per-grant BuildBase session embedded as an encrypted
+ *      `sid` claim. The platform never sees SYSTEM_SECRET or the token.
+ *
+ * That same token is what `buildbaseAuth` verifies on /api/mcp, so an agent
+ * that finishes this OAuth flow can immediately list and call tools as the user.
  */
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { success: false, token: '', message: 'Missing authorization header' },
-        { status: 401 }
-      );
-    }
+    const { status, body } = await handleAppTokenRequest({
+      authorization: request.headers.get('authorization'),
+      clientSecret:
+        env.BUILDBASE_OAUTH2_CLIENT_SECRET || env.BUILDBASE_CLIENT_SECRET,
+      mintToken: async (claims) => {
+        if (claims.blocked) {
+          // Surfaced to the platform as a failed mint; the agent gets no token.
+          throw new Error('User is blocked');
+        }
 
-    const bearerToken = authHeader.slice(7);
+        setAuditContext({
+          userId: claims.id,
+          ipAddress:
+            request.headers.get('x-forwarded-for') ||
+            request.headers.get('x-real-ip') ||
+            undefined,
+          userAgent: request.headers.get('user-agent') || undefined,
+          source: 'oauth2-token',
+        });
 
-    // Verify the JWT using the shared client secret
-    let userData: {
-      id: string;
-      email: string;
-      name: string;
-      role: string;
-      emailVerified: boolean;
-      image?: string;
-      blocked?: boolean;
-    };
+        // Local mirror — never block a grant on our own DB being unavailable.
+        await prisma.user
+          .upsert({
+            where: { email: claims.email },
+            update: {
+              id: claims.id,
+              name: claims.name ?? '',
+              image: claims.image || null,
+              role: claims.role || 'user',
+              emailVerified: claims.emailVerified || false,
+            },
+            create: {
+              id: claims.id,
+              email: claims.email,
+              name: claims.name ?? '',
+              image: claims.image || null,
+              role: claims.role || 'user',
+              emailVerified: claims.emailVerified || false,
+            },
+          })
+          .catch((err: unknown) => {
+            logger.error('Failed to mirror OAuth2 user — mint continues', {
+              error: err instanceof Error ? err.message : String(err),
+              userId: claims.id,
+            });
+          });
 
-    try {
-      userData = jwt.verify(
-        bearerToken,
-        env.BUILDBASE_OAUTH2_CLIENT_SECRET || env.BUILDBASE_CLIENT_SECRET
-      ) as typeof userData;
-    } catch {
-      return NextResponse.json(
-        { success: false, token: '', message: 'Invalid or expired token' },
-        { status: 401 }
-      );
-    }
+        // The tour: an agent just finished the OAuth flow as this person.
+        await detect(claims.id, { kind: 'action', action: 'agent:connected' });
 
-    if (userData.blocked) {
-      return NextResponse.json(
-        { success: false, token: '', message: 'User is blocked' },
-        { status: 403 }
-      );
-    }
-
-    // Upsert user in local database
-    const userId = userData.id;
-    setAuditContext({
-      userId,
-      ipAddress:
-        request.headers.get('x-forwarded-for') ||
-        request.headers.get('x-real-ip') ||
-        undefined,
-      userAgent: request.headers.get('user-agent') || undefined,
-      source: 'oauth2-token',
-    });
-
-    await prisma.user.upsert({
-      where: { email: userData.email },
-      update: {
-        id: userId,
-        name: userData.name,
-        image: userData.image || null,
-        role: userData.role || 'user',
-        emailVerified: userData.emailVerified || false,
-      },
-      create: {
-        id: userId,
-        email: userData.email,
-        name: userData.name,
-        image: userData.image || null,
-        role: userData.role || 'user',
-        emailVerified: userData.emailVerified || false,
+        return mintAgentToken({
+          claims,
+          secret: env.SYSTEM_SECRET,
+          expiresInSec: 60 * 60, // 1h — refresh re-mints with a fresh session
+          extraClaims: { userRole: claims.role || 'user' },
+        });
       },
     });
 
-    // Create a local auth token
-    const token = createAuthToken({
-      userId,
-      workspaceId: null,
-      userRole: userData.role || 'user',
-    });
-
-    return NextResponse.json({
-      success: true,
-      token,
-      message: 'Token created successfully',
-    });
+    return NextResponse.json(body, { status });
   } catch (error) {
     logger.error('OAuth2 token endpoint failed', {
       error: error instanceof Error ? error.message : 'Unknown error',

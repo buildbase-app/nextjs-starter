@@ -6,6 +6,7 @@ import { env } from '@/env';
 import { SaaSOSProvider } from '@buildbase/sdk/react';
 import { useLocale } from 'next-intl';
 import { Locale } from '@/i18n/config';
+import { pushTrackingEvent } from '@/lib/tracking-bus';
 
 const config = {
   serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
@@ -23,9 +24,9 @@ function clearAuthToken() {
 }
 
 /**
- * Only the workspace is sent. The server derives the user from the session
- * cookie and the role from UserWorkspace — a client cannot assert either, and
- * should not be asked to.
+ * Ask the server for a workspace-scoped app token. Only the workspace id is
+ * sent — the server identifies the user from the httpOnly session cookie and
+ * asks BuildBase for their real role (see src/lib/server-auth.ts).
  */
 async function updateAuthToken(workspaceId: string) {
   try {
@@ -53,6 +54,19 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
       version={ApiVersion.V1}
       orgId={config.orgId}
       locale={locale}
+      // Analytics and ad tags come from the console (Settings → Tracking)
+      // and load only after consent. Every event the SDK fires goes through
+      // `onEvent` into a small in-memory log the Tracking page renders.
+      tracking={{
+        enabled: true,
+        consent: 'auto',
+        autoPageview: true,
+        events: { mode: 'auto' },
+        debug: process.env.NODE_ENV !== 'production',
+        onEvent: (event) => {
+          pushTrackingEvent(event);
+        },
+      }}
       defaultPermissions={{
         admin: ['create', 'share', 'delete'],
         editor: ['create', 'share'],
@@ -100,7 +114,7 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
                   user: { _id: string; id?: string };
                   userRole?: string;
                 };
-                if (eventData.workspace) {
+                if (eventData.workspace?._id) {
                   await updateAuthToken(eventData.workspace._id);
                 }
               }
@@ -108,18 +122,17 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
               // Generate token when user is added to workspace
               if (eventType === 'workspace:user-added') {
                 const eventData = data as unknown as {
-                  userId: string;
                   workspace: { _id: string };
-                  role: string;
                 };
-                await updateAuthToken(eventData.workspace._id);
+                if (eventData.workspace?._id) {
+                  await updateAuthToken(eventData.workspace._id);
+                }
               }
             } catch (error) {
               console.error('Failed to handle event:', error);
             }
           },
-          onWorkspaceChange: async (params) => {
-            const { workspace } = params;
+          onWorkspaceChange: async ({ workspace }) => {
             if (!workspace?._id) return;
             await updateAuthToken(workspace._id);
           },

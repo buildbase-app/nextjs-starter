@@ -21,10 +21,11 @@
     "content:watch": "contentlayer2 dev",
     "postbuild": "next-sitemap && pagefind --site .next/server/app --output-path public/pagefind",
     "build:analyze": "ANALYZE=true npm run build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "check:tour": "node scripts/check-tour-sources.mjs"
   },
   "dependencies": {
-    "@buildbase/sdk": "^0.0.45",
+    "@buildbase/sdk": "0.0.71",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
@@ -68,9 +69,9 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^16.2.9",
-    "@tanstack/react-query-devtools": "^5.95.2",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
+    "@tanstack/react-query-devtools": "^5.95.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/jsonwebtoken": "^9.0.10",

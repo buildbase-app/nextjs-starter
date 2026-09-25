@@ -8,7 +8,6 @@ import {
   Settings,
   Users,
   FileText,
-  BarChart3,
   Bell,
   LogOut,
   ChevronUp,
@@ -22,6 +21,16 @@ import {
   UserCircle,
   Receipt,
   Building2,
+  ListChecks,
+  ClipboardList,
+  Database,
+  Image as ImageIcon,
+  Link2,
+  Contact,
+  Activity,
+  Workflow,
+  PieChart,
+  Inbox,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -56,7 +65,8 @@ import { LanguageSwitcher } from './language-switcher';
 
 type NavKey =
   | 'dashboard'
-  | 'analytics'
+  | 'tour'
+  | 'inbox'
   | 'documents'
   | 'credits'
   | 'invoices'
@@ -67,6 +77,16 @@ type NavKey =
   | 'team'
   | 'notifications'
   | 'settings';
+
+type ModuleNavKey =
+  | 'forms'
+  | 'collections'
+  | 'assets'
+  | 'links'
+  | 'audience'
+  | 'tracking'
+  | 'automations'
+  | 'reports';
 
 const menuItems: {
   navKey: NavKey;
@@ -79,9 +99,14 @@ const menuItems: {
     icon: LayoutDashboard,
   },
   {
-    navKey: 'analytics',
-    url: '/dashboard/analytics',
-    icon: BarChart3,
+    navKey: 'tour',
+    url: '/dashboard/tour',
+    icon: ListChecks,
+  },
+  {
+    navKey: 'inbox',
+    url: '/dashboard/inbox',
+    icon: Inbox,
   },
   {
     navKey: 'documents',
@@ -135,7 +160,23 @@ const menuItems: {
   },
 ];
 
-export function AppSidebar() {
+/** The platform modules the SDK does not wrap, read through the org API. */
+const moduleItems: {
+  navKey: ModuleNavKey;
+  url: string;
+  icon: typeof LayoutDashboard;
+}[] = [
+  { navKey: 'forms', url: '/dashboard/forms', icon: ClipboardList },
+  { navKey: 'collections', url: '/dashboard/collections', icon: Database },
+  { navKey: 'assets', url: '/dashboard/assets', icon: ImageIcon },
+  { navKey: 'links', url: '/dashboard/links', icon: Link2 },
+  { navKey: 'audience', url: '/dashboard/audience', icon: Contact },
+  { navKey: 'tracking', url: '/dashboard/tracking', icon: Activity },
+  { navKey: 'automations', url: '/dashboard/automations', icon: Workflow },
+  { navKey: 'reports', url: '/dashboard/reports', icon: PieChart },
+];
+
+export function AppSidebar({ side = 'left' }: { side?: 'left' | 'right' }) {
   const pathname = usePathname();
   const { user, signOut, openWorkspaceSettings } = useSaaSAuth();
   const t = useTranslations('common');
@@ -151,7 +192,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar>
+    <Sidebar side={side}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -210,6 +251,30 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => {
+                const title = t(`nav.${item.navKey}`);
+                return (
+                  <SidebarMenuItem key={item.navKey}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === item.url}
+                      tooltip={title}
+                    >
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>{t('nav.modules')}</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {moduleItems.map((item) => {
                 const title = t(`nav.${item.navKey}`);
                 return (
                   <SidebarMenuItem key={item.navKey}>

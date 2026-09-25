@@ -1,69 +1,48 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
 import { createAuthToken } from '@/lib/auth';
+import { getWorkspaceContext } from '@/lib/server-auth';
+import { workspaceTokenSchema } from '@/lib/validation/schemas';
 import { validateBody, isValidationError } from '@/lib/validation/api';
-import { getSessionUser, getWorkspaceRole } from '@/lib/session';
 import { logger } from '@/lib/logger';
 
 /**
- * Mint a workspace-scoped token for the CURRENT user.
+ * Workspace-scoped app token.
  *
- * Identity and role are derived server-side — from the session cookie and from
- * UserWorkspace respectively. Only the workspace being switched to comes from
- * the caller, and membership in it is verified before anything is signed.
+ * Called by the client whenever the active workspace changes so that this
+ * app's own API routes (GDPR export/delete, documents, …) know which
+ * workspace the user is acting in.
  *
- * Previously this route took userId, workspaceId and userRole straight from the
- * request body with no session check, so an unauthenticated caller could mint a
- * validly-signed token naming any user and any role. Because
- * getAuthTokenFromHeader() then trusts the userId inside that token,
- * /api/user/delete and /api/user/export would act on whoever it named.
- *
- * The rule this restores: a request body carries what the caller WANTS, never
- * who the caller IS.
+ * Security model: the caller is identified by the httpOnly session cookie,
+ * and BuildBase confirms the membership + role. The request body only names
+ * the workspace — it can never choose a user id or a role.
  */
-const bodySchema = z.object({
-  workspaceId: z.string().min(1, 'Workspace ID is required'),
-});
-
 export async function POST(request: NextRequest) {
+  const validationResult = await validateBody(request, workspaceTokenSchema);
+  if (isValidationError(validationResult)) {
+    return validationResult;
+  }
+
+  const { workspaceId } = validationResult;
+
   try {
-    const session = await getSessionUser();
-    if (!session) {
+    const ctx = await getWorkspaceContext(workspaceId);
+    if (!ctx) {
       return NextResponse.json(
-        { success: false, message: 'Unauthorized' },
+        { success: false, message: 'Not signed in or not a workspace member' },
         { status: 401 }
       );
     }
 
-    const validationResult = await validateBody(request, bodySchema);
-    if (isValidationError(validationResult)) {
-      return validationResult;
-    }
-    const { workspaceId } = validationResult;
-
-    // Membership decides the role. A caller cannot name their own.
-    const userRole = await getWorkspaceRole(session.userId, workspaceId);
-    if (!userRole) {
-      logger.warn('Workspace token refused — caller is not a member', {
-        userId: session.userId,
-        workspaceId,
-      });
-      return NextResponse.json(
-        { success: false, message: 'Forbidden' },
-        { status: 403 }
-      );
-    }
-
     const token = createAuthToken({
-      userId: session.userId,
-      workspaceId,
-      userRole,
+      userId: ctx.userId,
+      workspaceId: ctx.workspaceId,
+      userRole: ctx.role,
     });
 
     logger.debug('Workspace token generated', {
-      userId: session.userId,
-      workspaceId,
-      userRole,
+      userId: ctx.userId,
+      workspaceId: ctx.workspaceId,
+      userRole: ctx.role,
     });
 
     return NextResponse.json({ success: true, token });

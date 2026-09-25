@@ -6,7 +6,6 @@ const messages: Messages = {
       home: 'Startseite',
       dashboard: 'Dashboard',
       documents: 'Dokumente',
-      analytics: 'Analysen',
       team: 'Team',
       notifications: 'Benachrichtigungen',
       settings: 'Einstellungen',
@@ -25,6 +24,17 @@ const messages: Messages = {
       events: 'Ereignisse',
       invoices: 'Rechnungen',
       workspace: 'Arbeitsbereich',
+      tour: 'Tour',
+      inbox: 'Posteingang',
+      modules: 'Module',
+      forms: 'Formulare',
+      collections: 'Sammlungen',
+      assets: 'Dateien',
+      links: 'Kurzlinks',
+      audience: 'Zielgruppe',
+      tracking: 'Tracking',
+      automations: 'Automatisierungen',
+      reports: 'Berichte',
     },
     buttons: {
       signIn: 'Anmelden',
@@ -57,7 +67,8 @@ const messages: Messages = {
         credits: 'Credits',
         blog: 'Blog',
         changelog: 'Änderungsprotokoll',
-        about: 'Über uns',
+        tour: 'Tour',
+        github: 'Quellcode auf GitHub',
         privacy: 'Datenschutzrichtlinie',
         terms: 'Nutzungsbedingungen',
       },
@@ -81,13 +92,13 @@ const messages: Messages = {
     redirecting: 'Weiterleitung...',
   },
   home: {
-    title: 'Meine App',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · Live-Demo',
+      badge: 'Live-Demo · 67 Aufgaben',
       heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+        'Jede BuildBase-Fähigkeit, <highlight>eine Aufgabe nach der anderen</highlight>',
       description:
-        'Melde dich an, um Authentifizierung, Multi-Tenant-Arbeitsbereiche, Kreditabrechnung, Push-Benachrichtigungen und i18n in 8 Sprachen zusammen in einer echten App zu sehen — angetrieben vom BuildBase SDK.',
+        'Eine echte App auf dem BuildBase SDK, mit geführter Tour: anmelden und Registrierung, Workspaces, Abrechnung, Nutzung, Credits, Benachrichtigungen, Agenten und Webhooks durchgehen, jeweils mit Herkunft.',
       signInToExplore: 'Anmelden und erkunden',
       openDashboard: 'Dashboard öffnen',
       viewSource: 'Quellcode ansehen',
@@ -98,13 +109,13 @@ const messages: Messages = {
         label: 'Sprachen in dieser Demo',
         sublabel: 'mit dem Header-Schalter wechseln',
       },
-      sdkFeatures: {
-        label: 'Live SDK-Funktionen',
-        sublabel: 'jede hat eine Demo-Seite',
+      tasks: {
+        label: 'Aufgaben der Tour',
+        sublabel: 'jede eine Fähigkeit zum Ausprobieren',
       },
-      notifications: {
-        label: 'Benachrichtigungskanäle',
-        sublabel: 'Browser-Push + E-Mail',
+      groups: {
+        label: 'Gruppen',
+        sublabel: 'von der Anmeldung bis zu Webhooks',
       },
       authCode: {
         label: 'Zeilen Auth-Code',
@@ -118,103 +129,6 @@ const messages: Messages = {
       signIn: 'Anmelden und erkunden',
       openDashboard: 'Dashboard öffnen',
       howBuilt: 'Wie es gebaut wurde',
-    },
-    features: {
-      eyebrow: 'Demo erkunden',
-      heading: 'Sieh, was in dieser App funktioniert',
-      description:
-        'Jede Funktion unten ist live — melde dich an und klicke durch, um das BuildBase SDK in Aktion zu sehen.',
-      auth: {
-        badge: 'Authentifizierung',
-        title: 'OAuth-Anmeldung, sofort einsatzbereit',
-        description:
-          'Der Anmelde-Button oben verwendet das BuildBase SDK — ein Hook, keine Session-Logik zu schreiben. Nach der Anmeldung erhalten Sie automatisch ein JWT, Workspace-Token und eine Rolle.',
-        tryLabel: 'Anmelden und ausprobieren',
-      },
-      workspaces: {
-        badge: 'Arbeitsbereiche',
-        title: 'Multi-Tenant-Workspace-Umschalter',
-        description:
-          'Jeder Benutzer kann mehreren Arbeitsbereichen mit unterschiedlichen Rollen angehören. Die Dashboard-Seitenleiste zeigt Ihren aktuellen Arbeitsbereich und ermöglicht das Wechseln.',
-        tryLabel: 'Dashboard öffnen',
-      },
-      credits: {
-        badge: 'Credits',
-        title: 'Live-Credit-Guthaben und -Verbrauch',
-        description:
-          'Die Credits-Seite zeigt Ihr Live-Guthaben, ermöglicht den Kauf über ein integriertes Modal und verfügt über Test-Buttons, die consumeCredits() des SDK in Echtzeit aufrufen.',
-        tryLabel: 'Credit-Verbrauch testen',
-      },
-      notifications: {
-        badge: 'Benachrichtigungen',
-        title: 'Browser-Push und E-Mail-Zustellung',
-        description:
-          'Die Benachrichtigungsseite ermöglicht das Abonnieren von Browser-Push, das Verfassen einer Benachrichtigung mit Titel, Dringlichkeit, Aktionsschaltflächen und geplanter Zustellung — dann live senden.',
-        tryLabel: 'Testbenachrichtigung senden',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: '8 Sprachen einschließlich Arabisch RTL',
-        description:
-          'Verwenden Sie den Sprachumschalter in der Kopfzeile, um zwischen Englisch, Hindi, Spanisch, Französisch, Deutsch, Japanisch, Chinesisch und Arabisch zu wechseln — das Layout wechselt automatisch zu RTL.',
-        tryLabel: 'Zu Arabisch wechseln',
-      },
-      content: {
-        badge: 'Inhalt',
-        title: 'MDX-Blog und Änderungsprotokoll, integriert',
-        description:
-          'Blog und Änderungsprotokoll sind MDX-Dateien, die zur Build-Zeit via Contentlayer2 kompiliert werden. Kein CMS, keine Datenbank — nur Dateien mit typsicherem Frontmatter, Volltextsuche und RSS.',
-        tryLabel: 'Blog lesen',
-      },
-      quotas: {
-        badge: 'Kontingente',
-        title: 'Kontingentnutzung mit Überschreitungs-Gates',
-        description:
-          'Die Nutzungsseite ruft useAllQuotaUsage() auf, um Fortschrittsbalken pro Kontingent anzuzeigen. WhenQuotaExhausted blockiert die UI, wenn ein Kontingent null erreicht; WhenQuotaOverage zeigt Überschreitungsdetails.',
-        tryLabel: 'Kontingentnutzung anzeigen',
-      },
-      permissions: {
-        badge: 'Berechtigungen',
-        title: 'Rollenbasierte Berechtigungsmatrix',
-        description:
-          'Die Berechtigungsseite verwendet usePermissions() und WhenPermission, um jede Plattformberechtigung in Echtzeit als gewährt oder verweigert basierend auf Ihrer aktuellen Workspace-Rolle anzuzeigen.',
-        tryLabel: 'Berechtigungen prüfen',
-      },
-      events: {
-        badge: 'Ereignisse',
-        title: 'Live-SDK-Ereignisstrom',
-        description:
-          'Die Ereignisseite verbindet eventEmitter.setCallbacks(), um alle SDK-Ereignisse zu erfassen — Workspace-Änderungen, Benutzeraktualisierungen, Rollenänderungen — in einem live scrollenden Protokoll.',
-        tryLabel: 'Ereignisprotokoll öffnen',
-      },
-      userData: {
-        badge: 'Benutzerdaten',
-        title: 'Benutzerattribute und Feature-Flags',
-        description:
-          'Die Profilseite liest useUserAttributes() und useUserFeatures(), um benutzerdefinierte Schlüssel-Wert-Paare und benutzerspezifische Feature-Flag-Zustände anzuzeigen und neue Attribute live zu schreiben.',
-        tryLabel: 'Ihr Profil anzeigen',
-      },
-      invoices: {
-        badge: 'Rechnungen',
-        title: 'Rechnungsverlauf und Abrechnungsportal',
-        description:
-          'Die Rechnungsseite ruft useInvoices() auf, um alle Stripe-Rechnungen mit Status, Betrag und PDF-Links aufzulisten. Ein Button öffnet das Stripe-Kundenportal via useBillingPortal().',
-        tryLabel: 'Rechnungen anzeigen',
-      },
-      seats: {
-        badge: 'Sitze',
-        title: 'Sitzlimits und Einladungs-Gates',
-        description:
-          'Das Dashboard ruft useSeatStatus() auf, um die Mitgliederzahl vs. Planlimits in Echtzeit anzuzeigen. WhenNoSubscription, WhenSubscription und WhenSubscriptionToPlans steuern die UI für die richtige Zielgruppe.',
-        tryLabel: 'Dashboard öffnen',
-      },
-      featureFlags: {
-        badge: 'Feature-Flags',
-        title: 'Feature-Gates auf Workspace-Ebene',
-        description:
-          'Die Profilseite verwendet WhenWorkspaceFeatureEnabled und WhenWorkspaceFeatureDisabled, um Inhalte basierend auf workspace-level Feature-Flags, die im BuildBase-Dashboard konfiguriert sind, umzuschalten.',
-        tryLabel: 'Feature-Gates anzeigen',
-      },
     },
     meta: {
       title: 'Meine App',
@@ -332,35 +246,6 @@ const messages: Messages = {
       },
     },
   },
-  analytics: {
-    title: 'Analysen',
-    description: 'Echtzeit-Metriken des Arbeitsbereichs',
-    cards: {
-      plan: 'Plan',
-      teamMembers: 'Teammitglieder',
-      quotasTracked: 'Verfolgte Kontingente',
-      creditDebits: 'Credit-Abbuchungen',
-      noSubscription: 'kein Abonnement',
-      unlimitedSeats: 'unbegrenzte Sitze',
-      maxSeats: '{n} Sitze max.',
-      totalConsumed: '{n} Einheiten insgesamt verbraucht',
-      consumptionEvents: 'Verbrauchsereignisse erfasst',
-    },
-    quotaConsumption: {
-      title: 'Kontingentverbrauch',
-      empty: 'Keine Kontingente für diesen Arbeitsbereich konfiguriert.',
-    },
-    featureFlags: {
-      title: 'Feature-Flags',
-      empty: 'Keine Flags konfiguriert.',
-    },
-    planLimits: {
-      title: 'Planlimits',
-      empty: 'Keine Planlimits konfiguriert.',
-      unlimited: 'unbegrenzt',
-    },
-    loading: 'Wird geladen…',
-  },
   team: {
     title: 'Team',
     description: 'Mitglieder des Arbeitsbereichs',
@@ -379,7 +264,33 @@ const messages: Messages = {
       empty:
         'Keine Mitglieder geladen. Stellen Sie sicher, dass Sie authentifiziert sind.',
       roleFallback: 'Mitglied',
+      changeRole: 'Rolle ändern',
     },
+    invite: {
+      title: 'Per E-Mail einladen',
+      description:
+        'Die Adresse braucht noch kein Konto. Die Person erhält eine E-Mail, folgt dem Link, registriert sich oder meldet sich an und nimmt an.',
+      noPermission: 'Ihre Rolle darf keine Mitglieder einladen.',
+      emailPlaceholder: 'name@firma.de',
+      role: 'Rolle',
+      send: 'Einladung senden',
+      sent: 'Einladung an {email} gesendet',
+      failed: 'Etwas ist schiefgelaufen',
+      resent: 'Einladung erneut gesendet',
+      revoked: 'Einladung zurückgezogen',
+      seatNote:
+        '{count} offene Einladung(en) belegen einen Platz, bis sie beantwortet sind.',
+      pendingTitle: 'Offen',
+      loading: 'Wird geladen…',
+      none: 'Nichts offen.',
+      invitedBy: 'Eingeladen von {name}',
+      pendingLabel: 'Offen',
+      expires: 'läuft ab am {date}',
+      cooldown: 'Erneut senden in {seconds}s',
+      resend: 'Erneut senden',
+      revoke: 'Zurückziehen',
+    },
+    roleChanged: 'Rolle geändert zu {role}',
     manage: {
       title: 'Mitglieder verwalten',
       description:
@@ -444,8 +355,69 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: 'Feature-Gates',
+      description:
+        'Teile dieses Produkts, die ein Workspace- oder Nutzer-Feature-Flag freischaltet.',
+    },
+    workbench: {
+      title: 'Ihre Dokumente',
+      description:
+        'Dokumente liegen in der Datenbank dieser App; die Plattform misst sie.',
+      search: 'Dokumente suchen',
+      allStatuses: 'Alle Status',
+      allTags: 'Alle Tags',
+      newDocument: 'Neues Dokument',
+      newDocumentHint:
+        'Ein Dokument anzulegen bucht Nutzung auf die documents-Quote und kostet einen Credit.',
+      titleLabel: 'Titel',
+      contentLabel: 'Inhalt (Markdown)',
+      statusLabel: 'Status',
+      tagsLabel: 'Tags, durch Komma getrennt',
+      create: 'Anlegen',
+      creating: 'Wird angelegt…',
+      created: 'Dokument angelegt',
+      deleted: 'Dokument gelöscht',
+      delete: 'Löschen',
+      loadSamples: 'Beispieldokumente laden',
+      clearSamples: 'Beispiele entfernen',
+      samplesLoaded: '{count} Beispieldokumente geladen',
+      samplesAlready: 'Beispiele bereits geladen',
+      samplesCleared: '{count} Beispieldokumente entfernt',
+      sample: 'Beispiel',
+      empty: 'Noch keine Dokumente.',
+      total: '{count} gesamt',
+      words: '{count} Wörter',
+      loadFailed: 'Dokumente konnten nicht geladen werden',
+      viewerNotice:
+        'Ihre Rolle hier ist {role}: lesen ja, schreiben nein. Die Buttons sind deaktiviert und der Server lehnt ohnehin ab.',
+      quotaExhausted:
+        'Die documents-Quote dieses Plans ist aufgebraucht und erlaubt keine Überschreitung. Für mehr upgraden.',
+      quotaExhaustedShort: 'Quote aufgebraucht',
+      quotaWarning:
+        'Sie haben über 80 % der documents-Quote dieses Plans verbraucht.',
+      creditsLow: 'Die Credits werden knapp. Jedes Dokument kostet einen.',
+      creditsExhausted:
+        'Keine Credits mehr. Dokumente werden trotzdem angelegt; die Messzeile zeigt, dass die Abbuchung übersprungen wurde.',
+      refusedQuota:
+        'Abgelehnt: {consumed} von {included} Dokumenten verbraucht, der Plan hat ein hartes Limit.',
+      refusedRole: 'Abgelehnt: die Rolle {role} darf nicht schreiben.',
+      meteringTitle: 'Was die Plattform erfasst hat',
+      meteringUsage: 'Nutzung: {used} von {included} Dokumenten',
+      meteringUsageSkipped:
+        'Nutzung: nicht erfasst (dieser Plan hat keine documents-Quote)',
+      meteringCredits: 'Credits: {amount} abgebucht, {balance} übrig',
+      meteringCreditsSkipped: 'Credits: nicht abgebucht (kein Guthaben)',
+      statuses: {
+        draft: 'Entwurf',
+        in_review: 'In Prüfung',
+        published: 'Veröffentlicht',
+        archived: 'Archiviert',
+      },
+    },
     title: 'Dokumente',
-    description: 'Dokumentabschnitte mit Feature-Kontrolle',
+    description:
+      'Die Dokumente Ihres Workspace: hier oder von einem Agenten angelegt, von der Plattform gemessen.',
     stats: {
       featureSections: 'Feature-Abschnitte',
       featureSectionsSubtitle: 'Dokumentfunktionen',
@@ -488,6 +460,20 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: 'Empfangene Webhooks',
+      description:
+        'Signierte Server-zu-Server-Zustellungen der Plattform, von /api/webhooks/buildbase für diesen Arbeitsbereich gespeichert.',
+      empty:
+        'Noch keine Webhooks. Abonnieren, jemanden einladen oder Credits kaufen, dann ruft die Plattform diese App auf.',
+      refresh: 'Aktualisieren',
+      event: 'Ereignis',
+      received: 'Empfangen',
+      signature: 'Signatur',
+      verified: 'Geprüft',
+      payload: 'Inhalt',
+      when: 'Plattformzeit',
+    },
     title: 'SDK-Ereignisprotokoll',
     description: 'Echtzeit-SDK-Ereignisse',
     clearButton: 'Leeren',
@@ -539,8 +525,9 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: 'Benachrichtigungstest',
-    description: 'Testbenachrichtigungen über BuildBase SDK senden',
+    title: 'Benachrichtigungen',
+    description:
+      'Senden Sie eine Benachrichtigung aus dieser App und sehen Sie, wo sie ankommt',
     pushCard: {
       title: 'Browser-Push-Benachrichtigungen',
       description:
@@ -558,7 +545,7 @@ const messages: Messages = {
     fields: {
       eventSlug: 'Ereignis-Slug',
       eventSlugHint:
-        'Nur Push: jeder Slug funktioniert. Für E-Mail: muss einem registrierten Ereignis entsprechen.',
+        'Das Demo-Ereignis ist „{slug}“, in der Konsole mit E-Mail und Push registriert. Nur für Push geht jeder Slug; E-Mail braucht ein registriertes Ereignis.',
       title: 'Titel',
       message: 'Nachricht',
       url: 'URL',
@@ -618,11 +605,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: 'Antwort',
+      description: 'Was die Plattform mit dem Versand gemacht hat.',
+      openInbox: 'Posteingang öffnen',
     },
     toast: {
       workspaceRequired: 'Bitte wählen Sie zuerst einen Arbeitsbereich aus',
       sent: 'Benachrichtigung an {count} Benutzer gesendet',
       notSent: 'Benachrichtigung nicht gesendet: {reason}',
+      inboxHint: 'Sehen Sie auf die Glocke und in Ihren Posteingang.',
       pushEnabled: 'Push-Benachrichtigungen aktiviert',
       pushDisabled: 'Push-Benachrichtigungen deaktiviert',
       pushFailed: 'Fehler beim Ändern der Push-Benachrichtigungen',
@@ -660,6 +650,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: 'Verbundene Agenten',
+      description:
+        'KI-Clients, die Sie berechtigt haben, über MCP in Ihrem Namen zu handeln. Trennen entzieht den Zugriff.',
+      guideTitle: 'Agent verbinden',
+      guideDescription:
+        'Diese App ist ein MCP-Server. Fügen Sie sie in Claude, Cursor oder ChatGPT hinzu und melden Sie sich mit Ihrem BuildBase-Konto an; der Agent liest dann Ihre Arbeitsbereiche und die Dokumente dieser App mit Ihren Berechtigungen.',
+    },
     title: 'Benutzerprofil',
     description: 'Benutzerattribute und Feature-Flags',
     identity: {
@@ -937,6 +935,341 @@ const messages: Messages = {
     rejectAll: 'Alle ablehnen',
     savePreferences: 'Einstellungen speichern',
     customize: 'Anpassen',
+  },
+  inbox: {
+    title: 'Posteingang',
+    description:
+      'Alles, was diese App Ihnen geschickt hat, ein Eintrag pro Benachrichtigung, egal auf welchem Weg.',
+    rules: {
+      live: 'Neue Einträge kommen live über einen Socket, ohne Neuladen.',
+      read: 'Ein Eintrag gilt als gelesen, wenn Sie ihn hier öffnen oder seinen Link anklicken. Nur die E-Mail zu öffnen reicht nicht.',
+      email:
+        'Jeder Eintrag zeigt, was E-Mail und Push getan haben, damit klar ist, warum ein Kanal still blieb.',
+    },
+  },
+  tour: {
+    title: 'Die Tour',
+    subtitle:
+      '{total} Dinge zum Ausprobieren, jedes eine BuildBase-Fähigkeit und woher sie kommt.',
+    progress: '{done} von {total} erledigt',
+    markDone: 'Als erledigt markieren',
+    undo: 'Rückgängig',
+    open: 'Öffnen',
+    detected: 'Wird automatisch erkannt',
+    manual: 'Selbst bestätigen',
+    why: 'Warum es zählt',
+    steps: 'Was zu tun ist',
+    fromSdk: 'Aus dem SDK',
+    fromConsole: 'In der Konsole konfiguriert',
+    fromApp: 'In dieser App',
+    requires: 'Zuerst erledigen',
+    allDone: 'Sie haben alles erledigt. Nehmen Sie es mit.',
+    homeTitle: 'Alles ausprobieren, eine Aufgabe nach der anderen',
+    homeSubtitle:
+      'Melden Sie sich an und arbeiten Sie {total} Aufgaben in {groups} Gruppen durch. Jede zeigt eine BuildBase-Fähigkeit, wie sie in einer App aussieht und wo sie konfiguriert wird.',
+    homeCta: 'Tour starten',
+    dashboardCard: 'Ihre Tour',
+    next: 'Als Nächstes',
+    cloneTitle: 'Diese App klonen',
+    cloneBody:
+      'Jede Seite und jede Aufgabe hier liegt in einem offenen Repository. Sehen Sie, wie alles funktioniert, oder klonen Sie es als Start für Ihre eigene App.',
+    browseCode: 'Code ansehen',
+    copy: 'Kopieren',
+    copied: 'Kopiert',
+    dashboardCta: 'Weiter',
+  },
+  help: {
+    title: 'Hilfe-Center',
+    description:
+      'Alles auf dieser Seite wurde in der Konsole geschrieben: eine Richtlinie, Docs, FAQs und Referenzen. Dort ändern, hier neu laden.',
+    notConfigured: {
+      title: 'Noch kein Inhalt',
+      token:
+        'Diese App hat kein Organisations-API-Token und kann daher keine Konsoleninhalte lesen. BUILDBASE_API_TOKEN setzen.',
+      empty: 'Die Organisation hat noch keinen Demo-Inhalt. Anlegen mit:',
+    },
+    from: {
+      richContent: 'Rich Content',
+      docs: 'Docs',
+      faqs: 'FAQ-Sammlung',
+      testimonials: 'Referenzen',
+    },
+    docs: {
+      title: 'Dokumentation',
+      empty: 'Noch keine veröffentlichten Docs.',
+    },
+    faq: {
+      title: 'Häufige Fragen',
+    },
+    testimonials: {
+      title: 'Was Kunden sagen',
+    },
+  },
+  forms: {
+    title: 'Formulare',
+    description:
+      'Ein in der Konsole gebautes Formular, aus seinem Live-Schema gerendert und über diese App abgeschickt.',
+    loading: 'Formular wird geladen…',
+    fromConsole:
+      'Die Felder kommen aus der Konsole; dort eines hinzufügen und neu laden.',
+    submit: 'Senden',
+    sending: 'Wird gesendet…',
+    sent: 'Gesendet',
+    hint: 'Einsendungen werden als Sammlungs-Datensätze gespeichert und lösen das Ereignis form.submitted aus.',
+    errors: {
+      title: 'Die Plattform hat diese Einsendung abgelehnt',
+      generic: 'Etwas wurde nicht akzeptiert.',
+    },
+    missing: {
+      title: 'Noch kein Kontaktformular',
+      token:
+        'Diese App hat kein Organisations-API-Token. BUILDBASE_API_TOKEN setzen.',
+      form: 'Die Organisation hat kein Formular namens Contact. Anlegen mit:',
+    },
+    toast: {
+      sent: 'Abgeschickt. Jetzt ein Datensatz auf der Plattform.',
+    },
+    submissions: {
+      title: 'Letzte Einsendungen',
+      description: 'Aus der Sammlung des Formulars gelesen.',
+      refresh: 'Aktualisieren',
+      empty: 'Noch nichts eingesendet.',
+    },
+  },
+  collections: {
+    title: 'Sammlungen',
+    description:
+      'Eigene Daten auf der Plattform: ein versioniertes Schema, Datensätze gegen die Live-Version.',
+    loading: 'Datensätze werden geladen…',
+    liveVersion: 'Live-Version {version} ({name}), {fields} Felder',
+    noLiveVersion: 'Keine Live-Version. In der Konsole eine veröffentlichen.',
+    refresh: 'Aktualisieren',
+    empty: 'Keine Datensätze. Anlegen oder in der Konsole hinzufügen.',
+    actions: 'Aktionen',
+    delete: 'Datensatz löschen',
+    hint: 'In der Konsole eine neue Version mit einem zusätzlichen Feld veröffentlichen; die Spalte erscheint hier beim Neuladen.',
+    missing: {
+      title: 'Noch keine release-notes-Sammlung',
+      token:
+        'Diese App hat kein Organisations-API-Token. BUILDBASE_API_TOKEN setzen.',
+      collection:
+        'Die Organisation hat keine Sammlung mit dem Slug release-notes. Anlegen mit:',
+    },
+    toast: {
+      deleted: 'Datensatz auf der Plattform gelöscht.',
+      deleteFailed: 'Datensatz konnte nicht gelöscht werden.',
+    },
+  },
+  tracking: {
+    title: 'Tracking',
+    description:
+      'Analyse- und Werbe-Tags aus der Konsole, geladen nach Einwilligung, mit eigenen Ereignissen und Attribution.',
+    loading: 'Lädt…',
+    consent: {
+      title: 'Einwilligung',
+      description:
+        'Aus den Tags dieser App gebildet, nie aus der gesamten Bibliothek.',
+      noTags:
+        'Dieser App ist noch kein Tag zugeordnet. Legen Sie in der Konsole unter Einstellungen → Tracking eines an und ordnen Sie es dem Client zu.',
+      privacy: 'Datenschutz',
+      analytics: 'Analyse',
+      marketing: 'Marketing',
+      acceptAll: 'Alle akzeptieren',
+      analyticsOnly: 'Nur Analyse',
+      denyAll: 'Alle ablehnen',
+      state: 'Aktueller Stand',
+      unset: 'noch nicht gefragt',
+    },
+    installed: {
+      title: 'Installierte Anbieter',
+      description:
+        'Was in diesem Browser nach der Einwilligung tatsächlich geladen wurde.',
+      none: 'Nichts geladen. Willigen Sie ein oder ordnen Sie in der Konsole ein Tag zu.',
+    },
+    custom: {
+      title: 'Eigenes Ereignis senden',
+      description:
+        'Eigene Ereignisse gehen an den Data Layer und jeden installierten Anbieter.',
+      button: 'report_exported senden',
+      fired: '{count} Mal gesendet',
+    },
+    attribution: {
+      title: 'Attribution',
+      description:
+        'Woher dieser Besucher kam: Klick-IDs und Kampagnenparameter, auf der ersten Seite erfasst.',
+      empty: 'Nichts erfasst. Neu laden mit',
+    },
+    log: {
+      title: 'Live-Ereignisprotokoll',
+      description:
+        'Jedes Ereignis, das das SDK in diesem Tab gesendet hat, auch die eigenen.',
+      empty:
+        'Noch keine Ereignisse. Navigieren Sie, oder senden Sie oben eines.',
+    },
+  },
+  automations: {
+    title: 'Automatisierungen',
+    description:
+      'Workflows werden in der Konsole gebaut; diese App löst die Ereignisse aus, auf die sie hören, und liest, was für Sie gelaufen ist.',
+    refresh: 'Aktualisieren',
+    loading: 'Lädt…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN ist nicht gesetzt, daher kann diese App keine Workflow-Läufe lesen.',
+    error: 'Läufe konnten nicht geladen werden',
+    runs: {
+      title: 'Ihre Läufe',
+      description:
+        'Workflow-Instanzen, die die Plattform für Ihr Konto gestartet hat.',
+      empty:
+        'Noch keine Läufe. Senden Sie das Kontaktformular oder registrieren Sie einen neuen Nutzer, dann aktualisieren.',
+      workflow: 'Workflow',
+      event: 'Ereignis',
+      status: 'Status',
+      nodes: 'Knoten fertig',
+      started: 'Gestartet',
+    },
+    calls: {
+      title: 'Aufrufe in diese App',
+      description:
+        'Was die HTTP-Webhook-Aktion eines Workflows an /api/buildbase/provision gesendet hat, per gemeinsamem Geheimnis geprüft.',
+      empty: 'Noch keine Provisionierungsaufrufe empfangen.',
+    },
+  },
+  reports: {
+    title: 'Berichte',
+    description:
+      'Jedes Modul berichtet über dieselben Chart- und Zähl-Endpunkte; drei davon, für die letzten dreißig Tage.',
+    notConfigured:
+      'BUILDBASE_API_TOKEN ist nicht gesetzt, daher kann diese App keine Berichte lesen.',
+    loading: 'Lädt…',
+    refresh: 'Aktualisieren',
+    window: '{from} bis {to}',
+    unavailable: 'Nicht verfügbar',
+    series: {
+      users: {
+        title: 'Registrierungen',
+        description: 'Neue Nutzer pro Tag.',
+      },
+      forms: {
+        title: 'Formulareingänge',
+        description: 'Eingänge des Kontaktformulars pro Tag.',
+      },
+      links: {
+        title: 'Link-Klicks',
+        description: 'Klicks auf Kurzlinks pro Tag.',
+      },
+    },
+  },
+  assets: {
+    title: 'Dateien',
+    description:
+      'Über diese App hochgeladene Dateien, gespeichert und ausgeliefert von der Plattform.',
+    upload: 'Datei hochladen',
+    uploading: 'Wird hochgeladen…',
+    limit: 'Bis 5 MB. Bilder zeigen eine Vorschau.',
+    uploaded: 'Hochgeladen',
+    gallery: 'Dateien',
+    empty: 'Noch keine Dateien. Laden Sie oben eine hoch.',
+    public: 'Öffentlich',
+    private: 'Privat',
+    makePrivate: 'Privat machen',
+    makePublic: 'Öffentlich machen',
+    nowPublic: 'Jetzt öffentlich: Die URL funktioniert wieder.',
+    nowPrivate: 'Jetzt privat: Die öffentliche URL funktioniert nicht mehr.',
+    openUrl: 'Öffnen',
+    tooLarge: 'Diese Datei ist größer als 5 MB.',
+    loadFailed: 'Die Plattform war nicht erreichbar.',
+    notConfigured:
+      'Diese Seite liest die Organisation über ein API-Token. Setzen Sie BUILDBASE_API_TOKEN (Konsole → Settings → Tokens) und starten Sie neu.',
+  },
+  links: {
+    title: 'Kurzlinks',
+    description:
+      'Teil-Links, die die Plattform weiterleitet und zählt, Klick für Klick.',
+    create: 'Kurzlink erstellen',
+    createHint:
+      'Beliebige URL. Die Plattform vergibt eine 12-stellige ID und protokolliert jeden Klick mit Land und Gerät.',
+    name: 'Name',
+    url: 'Ziel-URL',
+    createButton: 'Erstellen',
+    created: 'Link erstellt',
+    yourLinks: 'Ihre Links',
+    clicksHint:
+      'Folgen Sie einem Link und aktualisieren Sie: Die Zahl kommt von der Plattform, nicht von dieser Seite.',
+    refresh: 'Aktualisieren',
+    empty: 'Noch keine Links.',
+    clicks: 'Klicks',
+    copy: 'Kurz-URL kopieren',
+    copied: 'Kopiert',
+    follow: 'Folgen',
+    changeDestination: 'Ziel ändern',
+    save: 'Speichern',
+    cancel: 'Abbrechen',
+    updated: 'Ziel geändert. Die Kurz-URL bleibt gleich.',
+    chart: 'Klicks, letzte 14 Tage',
+    chartHint: 'Alle Links zusammen, pro Tag.',
+    chartEmpty: 'Noch keine Klicks.',
+    loadFailed: 'Die Plattform war nicht erreichbar.',
+    notConfigured:
+      'Diese Seite liest die Organisation über ein API-Token. Setzen Sie BUILDBASE_API_TOKEN (Konsole → Settings → Tokens) und starten Sie neu.',
+  },
+  audience: {
+    title: 'Zielgruppe und Attribute',
+    description:
+      'Was die Plattform über eine Person jenseits des Kontos führt: eigene Attribute, ein Marketingkontakt und eine Warteliste.',
+    failed: 'Speichern fehlgeschlagen.',
+    notConfigured: 'Der Newsletter braucht BUILDBASE_API_TOKEN auf dem Server.',
+    onboarding: {
+      title: 'Onboarding-Checkliste',
+      description:
+        'Alle drei abhaken und speichern: Das SDK schreibt onboarded=true und Ihre Funktion als Nutzerattribute, in Ihrem Browser, als Sie.',
+      items: {
+        profile: 'Ich habe mein Profil ausgefüllt',
+        workspace: 'Ich habe einen Workspace erstellt',
+        invite: 'Ich habe jemanden eingeladen',
+      },
+      role: 'Ihre Funktion (optional)',
+      save: 'Onboarding abschließen',
+      saved: 'Gespeichert. Öffnen Sie Ihren Datensatz in der Konsole.',
+      already: 'Laut Ihren Attributen bereits abgeschlossen.',
+    },
+    attributes: {
+      title: 'Ihre Attribute',
+      description:
+        'Schlüssel werden in der Konsole definiert (Users → Attributes); Werte liegen an Ihrem Nutzer.',
+      empty: 'Noch keine Attribute.',
+    },
+    locale: {
+      title: 'Land, Zeitzone, Währung',
+      description:
+        'Die Listen kommen mit dem SDK (@buildbase/sdk/data), ohne Download.',
+      country: 'Land',
+      timezone: 'Zeitzone',
+      currency: 'Währung',
+      save: 'Einstellungen speichern',
+      saved: 'Einstellungen als Attribute gespeichert.',
+    },
+    newsletter: {
+      title: 'Newsletter',
+      description:
+        'Ein Marketingkontakt ist vom Konto getrennt: Er kann auch ohne eines existieren. Der Server legt ihn mit dem Org-Token an und fügt ihn der Newsletter-Liste hinzu.',
+      email: 'E-Mail',
+      subscribe: 'Abonnieren',
+      subscribed: 'Abonniert',
+      listed: 'Zur Liste {list} hinzugefügt.',
+      noList:
+        'Kontakt angelegt; diese Organisation hat noch keine Newsletter-Liste.',
+      waitlistHint:
+        'Nicht angemeldete Besucher können der Beta-Warteliste beitreten unter',
+    },
+  },
+  waitlist: {
+    title: 'Auf die Warteliste',
+    description:
+      'Das Beta-Formular der Plattform: Name und E-Mail hinterlassen, ein Admin schaltet Sie in der Konsole frei.',
+    success:
+      'Sie stehen auf der Liste. Ein Admin schaltet Sie aus der Konsole frei.',
+    note: 'Formular und Texte kommen aus der Beta-Konfiguration der Organisation (Konsole → Users → Beta).',
   },
 };
 

@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { HomeHeader } from '@/components/home-header';
 import { HeroSection } from '@/components/marketing/hero-section';
-import { FeaturesSection } from '@/components/marketing/features-section';
 import { StatsSection } from '@/components/marketing/stats-section';
+import { TourPreview } from '@/components/marketing/tour-preview';
 import { PricingSection } from '@/components/pricing-section';
 import { CreditStore } from '@/components/credit-store';
 import { CtaBanner } from '@/components/marketing/cta-banner';
@@ -38,7 +38,7 @@ export default async function HomePage() {
       <main id="main-content" className="flex flex-1 flex-col items-center">
         <HeroSection />
         <StatsSection />
-        <FeaturesSection />
+        <TourPreview />
         <div className="w-full max-w-6xl px-6 py-20">
           <PricingSection
             title={tPricing('title')}

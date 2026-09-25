@@ -2,6 +2,7 @@
 
 import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { RepoLink } from '@/components/repo-link';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
@@ -39,13 +40,7 @@ function AuthButton() {
   );
 }
 
-const NAV_HREFS = [
-  '/#features',
-  '/pricing',
-  '/blog',
-  '/changelog',
-  '/about',
-] as const;
+const NAV_HREFS = ['/#tour', '/pricing', '/blog', '/changelog'] as const;
 
 type NavHref = (typeof NAV_HREFS)[number];
 
@@ -57,11 +52,10 @@ export function HomeHeader({ title }: HomeHeaderProps) {
   const t = useTranslations('common');
 
   const NAV_LINK_KEYS: Record<NavHref, string> = {
-    '/#features': t('footer.links.features'),
+    '/#tour': t('footer.links.tour'),
     '/pricing': t('footer.links.pricing'),
     '/blog': t('footer.links.blog'),
     '/changelog': t('footer.links.changelog'),
-    '/about': t('footer.links.about'),
   };
 
   return (
@@ -86,6 +80,7 @@ export function HomeHeader({ title }: HomeHeaderProps) {
         </nav>
       </div>
       <div className="flex items-center gap-2">
+        <RepoLink label={t('footer.links.github')} />
         <LanguageSwitcher />
         <ThemeToggle />
         <AuthButton />

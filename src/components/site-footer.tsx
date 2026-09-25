@@ -2,6 +2,9 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
+import { BuildBaseBadge } from '@buildbase/sdk/react';
+import { Github } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 interface SiteFooterProps {
   title: string;
@@ -15,7 +18,6 @@ export async function SiteFooter({ title }: SiteFooterProps) {
     {
       section: t('footer.sections.product'),
       links: [
-        { label: t('footer.links.features'), href: '/#features' },
         { label: t('footer.links.pricing'), href: '/pricing' },
         { label: t('footer.links.dashboard'), href: '/dashboard' },
         { label: t('footer.links.credits'), href: '/dashboard/credits' },
@@ -26,7 +28,7 @@ export async function SiteFooter({ title }: SiteFooterProps) {
       links: [
         { label: t('footer.links.blog'), href: '/blog' },
         { label: t('footer.links.changelog'), href: '/changelog' },
-        { label: t('footer.links.about'), href: '/about' },
+        { label: t('footer.links.tour'), href: '/#tour' },
       ],
     },
     {
@@ -82,7 +84,18 @@ export async function SiteFooter({ title }: SiteFooterProps) {
           <p className="text-muted-foreground text-xs">
             © {year} {title}. {t('footer.rights')}.
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            {/* The platform's badge: an image and a link, no script, no network call. */}
+            <a
+              href={siteConfig.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-xs"
+            >
+              <Github className="h-3.5 w-3.5" />
+              {t('footer.links.github')}
+            </a>
+            <BuildBaseBadge variant="built-with" theme="auto" size="sm" />
             <LanguageSwitcher />
             <ThemeToggle />
           </div>

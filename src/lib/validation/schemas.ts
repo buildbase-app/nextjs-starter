@@ -104,11 +104,14 @@ export const authCodeSchema = z.object({
     .regex(/^[a-zA-Z0-9_-]+$/, 'Invalid authorization code format'),
 });
 
-export const workspaceTokenSchema = z.object({
-  userId: z.string().min(1, 'User ID is required'),
-  workspaceId: z.string().min(1, 'Workspace ID is required'),
-  userRole: z.string().default('member'),
-});
+// Only the workspace is taken from the body. Identity and role are resolved
+// server-side from the session cookie + BuildBase membership (see
+// src/lib/server-auth.ts). Extra legacy fields are ignored, not trusted.
+export const workspaceTokenSchema = z
+  .object({
+    workspaceId: z.string().min(1, 'Workspace ID is required'),
+  })
+  .passthrough();
 
 export const paginationSchema = z.object({
   page: z.coerce.number().int().positive().default(1),

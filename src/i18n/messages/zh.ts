@@ -6,7 +6,6 @@ const messages: Messages = {
       home: '首页',
       dashboard: '仪表板',
       documents: '文档',
-      analytics: '分析',
       team: '团队',
       notifications: '通知',
       settings: '设置',
@@ -25,6 +24,17 @@ const messages: Messages = {
       events: '事件',
       invoices: '发票',
       workspace: '工作区',
+      tour: '导览',
+      inbox: '收件箱',
+      modules: '模块',
+      forms: '表单',
+      collections: '数据集',
+      assets: '文件',
+      links: '短链接',
+      audience: '受众',
+      tracking: '追踪',
+      automations: '自动化',
+      reports: '报表',
     },
     buttons: {
       signIn: '登录',
@@ -57,7 +67,8 @@ const messages: Messages = {
         credits: '积分',
         blog: '博客',
         changelog: '更新日志',
-        about: '关于',
+        tour: '导览',
+        github: 'GitHub 源码',
         privacy: '隐私政策',
         terms: '服务条款',
       },
@@ -81,13 +92,12 @@ const messages: Messages = {
     redirecting: '重定向中...',
   },
   home: {
-    title: '我的应用',
+    title: 'BuildBase Demo',
     hero: {
-      badge: 'BuildBase SDK · 在线演示',
-      heading:
-        'A working demo built with the <highlight>BuildBase SDK</highlight>',
+      badge: '在线演示 · 67 项任务',
+      heading: 'BuildBase 的每一项能力，<highlight>逐项体验</highlight>',
       description:
-        '登录以查看认证、多租户工作区、积分计费、推送通知和8种语言的i18n在真实应用中协同工作 — 由 BuildBase SDK 提供支持。',
+        '基于 BuildBase SDK 的真实应用，配有引导式导览：登录后依次体验注册、工作区、计费、用量、积分、通知、代理和 Webhook，每一项都说明它来自哪里。',
       signInToExplore: '登录探索',
       openDashboard: '打开仪表板',
       viewSource: '查看源码',
@@ -98,13 +108,13 @@ const messages: Messages = {
         label: '本演示支持的语言数',
         sublabel: '使用标题切换器切换',
       },
-      sdkFeatures: {
-        label: '实时 SDK 功能',
-        sublabel: '每个功能都有演示页面',
+      tasks: {
+        label: '导览任务',
+        sublabel: '每一项都是可尝试的能力',
       },
-      notifications: {
-        label: '通知渠道',
-        sublabel: '浏览器推送 + 邮件',
+      groups: {
+        label: '分组',
+        sublabel: '从登录到 Webhook',
       },
       authCode: {
         label: '认证代码行数',
@@ -118,103 +128,6 @@ const messages: Messages = {
       signIn: '登录并探索',
       openDashboard: '打开仪表板',
       howBuilt: '如何构建的',
-    },
-    features: {
-      eyebrow: '探索演示',
-      heading: '查看此应用中正常运行的内容',
-      description:
-        '以下每个功能都是实时的 — 登录并点击查看 BuildBase SDK 的实际运行情况。',
-      auth: {
-        badge: '认证',
-        title: '开箱即用的OAuth登录',
-        description:
-          '上方的登录按钮使用了BuildBase SDK — 一个钩子，无需编写会话逻辑。登录后自动获得JWT、工作区令牌和角色。',
-        tryLabel: '登录体验',
-      },
-      workspaces: {
-        badge: '工作区',
-        title: '多租户工作区切换器',
-        description:
-          '每个用户可以以不同角色属于多个工作区。仪表板侧边栏显示您当前的工作区并允许切换。',
-        tryLabel: '打开仪表板',
-      },
-      credits: {
-        badge: '积分',
-        title: '实时积分余额与消费',
-        description:
-          '积分页面显示实时余额，通过内置弹窗购买更多积分，并提供测试按钮实时调用SDK的consumeCredits()。',
-        tryLabel: '体验积分消费',
-      },
-      notifications: {
-        badge: '通知',
-        title: '浏览器推送与邮件通知',
-        description:
-          '通知页面允许订阅浏览器推送，创建包含标题、优先级、操作按钮和定时发送的通知，然后实时发送。',
-        tryLabel: '发送测试通知',
-      },
-      i18n: {
-        badge: 'i18n',
-        title: '8种语言包含阿拉伯语RTL',
-        description:
-          '使用标题中的语言切换器在英语、印地语、西班牙语、法语、德语、日语、中文和阿拉伯语之间切换 — 布局自动翻转为RTL。',
-        tryLabel: '切换到阿拉伯语',
-      },
-      content: {
-        badge: '内容',
-        title: '内置MDX博客和更新日志',
-        description:
-          '博客和更新日志是通过Contentlayer2在构建时编译的MDX文件。无CMS，无数据库 — 只有具有类型安全frontmatter、全文搜索和RSS的文件。',
-        tryLabel: '阅读博客',
-      },
-      quotas: {
-        badge: '配额',
-        title: '带超额门控的配额使用',
-        description:
-          '使用页面调用useAllQuotaUsage()显示每个配额的进度条。WhenQuotaExhausted在配额为零时阻止UI；WhenQuotaOverage显示超额详情。',
-        tryLabel: '查看配额使用',
-      },
-      permissions: {
-        badge: '权限',
-        title: '基于角色的权限矩阵',
-        description:
-          '权限页面使用usePermissions()和WhenPermission显示每个平台权限，根据您当前工作区角色实时显示为已授权或拒绝。',
-        tryLabel: '检查您的权限',
-      },
-      events: {
-        badge: '事件',
-        title: '实时SDK事件流',
-        description:
-          '事件页面连接eventEmitter.setCallbacks()捕获所有SDK事件 — 工作区更改、用户更新、角色变更 — 在实时滚动日志中显示。',
-        tryLabel: '打开事件日志',
-      },
-      userData: {
-        badge: '用户数据',
-        title: '用户属性与功能标志',
-        description:
-          '个人资料页面读取useUserAttributes()和useUserFeatures()显示自定义键值对和每用户功能标志状态，并允许实时写入新属性。',
-        tryLabel: '查看您的个人资料',
-      },
-      invoices: {
-        badge: '发票',
-        title: '发票历史与账单门户',
-        description:
-          '发票页面调用useInvoices()列出所有包含状态、金额和PDF链接的Stripe发票。单个按钮通过useBillingPortal()打开Stripe客户门户。',
-        tryLabel: '查看发票',
-      },
-      seats: {
-        badge: '席位',
-        title: '席位限制与邀请门控',
-        description:
-          '仪表板调用useSeatStatus()实时显示成员数量与计划限制。WhenNoSubscription、WhenSubscription和WhenSubscriptionToPlans将UI限制到适合的受众。',
-        tryLabel: '打开仪表板',
-      },
-      featureFlags: {
-        badge: '功能标志',
-        title: '工作区级功能门控',
-        description:
-          '个人资料页面使用WhenWorkspaceFeatureEnabled和WhenWorkspaceFeatureDisabled根据BuildBase仪表板中配置的工作区级功能标志切换内容。',
-        tryLabel: '查看功能门控',
-      },
     },
     meta: {
       title: '我的应用',
@@ -328,35 +241,6 @@ const messages: Messages = {
       },
     },
   },
-  analytics: {
-    title: '分析',
-    description: '从BuildBase SDK实时获取的工作区指标',
-    cards: {
-      plan: '计划',
-      teamMembers: '团队成员',
-      quotasTracked: '跟踪的配额',
-      creditDebits: '积分扣除',
-      noSubscription: '无订阅',
-      unlimitedSeats: '无限席位',
-      maxSeats: '{n}个最大席位',
-      totalConsumed: '共消耗{n}个单位',
-      consumptionEvents: '已记录的消耗事件',
-    },
-    quotaConsumption: {
-      title: '配额消耗',
-      empty: '此工作区未配置配额。',
-    },
-    featureFlags: {
-      title: '工作区功能标志',
-      empty: '未配置功能标志。',
-    },
-    planLimits: {
-      title: '计划限制',
-      empty: '未配置计划限制。',
-      unlimited: '无限',
-    },
-    loading: '加载中…',
-  },
   team: {
     title: '团队',
     description: '工作区成员',
@@ -373,7 +257,32 @@ const messages: Messages = {
       count: '此工作区有{count}名成员',
       empty: '未加载成员。请确保您已登录。',
       roleFallback: '成员',
+      changeRole: '更改角色',
     },
+    invite: {
+      title: '通过邮箱邀请',
+      description:
+        '该地址无需已有账户。对方收到邮件，点击链接，注册或登录后接受即可。',
+      noPermission: '你的角色无法邀请成员。',
+      emailPlaceholder: 'name@company.com',
+      role: '角色',
+      send: '发送邀请',
+      sent: '已向 {email} 发送邀请',
+      failed: '出了点问题',
+      resent: '已重新发送邀请',
+      revoked: '已撤销邀请',
+      seatNote: '{count} 条待处理邀请在得到答复前占用席位。',
+      pendingTitle: '待处理',
+      loading: '加载中…',
+      none: '没有待处理的邀请。',
+      invitedBy: '由 {name} 邀请',
+      pendingLabel: '待处理',
+      expires: '{date} 过期',
+      cooldown: '{seconds} 秒后可重发',
+      resend: '重发',
+      revoke: '撤销',
+    },
+    roleChanged: '角色已改为 {role}',
     manage: {
       title: '管理成员',
       description: '打开工作区设置面板以管理角色和邀请',
@@ -435,8 +344,62 @@ const messages: Messages = {
     },
   },
   documents: {
+    featureGates: {
+      title: '功能门控',
+      description: '由工作区或用户功能开关启用的产品部分。',
+    },
+    workbench: {
+      title: '你的文档',
+      description: '文档存放在本应用自己的数据库中；平台负责计量。',
+      search: '搜索文档',
+      allStatuses: '所有状态',
+      allTags: '所有标签',
+      newDocument: '新建文档',
+      newDocumentHint: '创建会在 documents 配额中记录用量并消耗 1 个积分。',
+      titleLabel: '标题',
+      contentLabel: '内容（Markdown）',
+      statusLabel: '状态',
+      tagsLabel: '标签，用逗号分隔',
+      create: '创建',
+      creating: '创建中…',
+      created: '文档已创建',
+      deleted: '文档已删除',
+      delete: '删除',
+      loadSamples: '加载示例文档',
+      clearSamples: '清除示例',
+      samplesLoaded: '已加载 {count} 个示例文档',
+      samplesAlready: '示例已加载',
+      samplesCleared: '已移除 {count} 个示例文档',
+      sample: '示例',
+      empty: '还没有文档。',
+      total: '共 {count} 个',
+      words: '{count} 字',
+      loadFailed: '无法加载文档',
+      viewerNotice:
+        '你在这里的角色是 {role}：只能读，不能写。按钮已禁用，服务器也会拒绝。',
+      quotaExhausted:
+        '此方案的 documents 配额已用完且不允许超额。升级以创建更多。',
+      quotaExhaustedShort: '配额已用完',
+      quotaWarning: '你已使用此方案 documents 配额的 80% 以上。',
+      creditsLow: '积分不多了。每个文档消耗 1 个。',
+      creditsExhausted: '积分已用完。文档仍会创建；计量行会显示已跳过扣费。',
+      refusedQuota:
+        '已拒绝：已使用 {consumed}/{included} 个文档，且方案有硬性上限。',
+      refusedRole: '已拒绝：{role} 角色不能写入。',
+      meteringTitle: '平台记录的内容',
+      meteringUsage: '用量：{used}/{included} 个文档',
+      meteringUsageSkipped: '用量：未记录（此方案没有 documents 配额）',
+      meteringCredits: '积分：消耗 {amount}，剩余 {balance}',
+      meteringCreditsSkipped: '积分：未消耗（无余额）',
+      statuses: {
+        draft: '草稿',
+        in_review: '审阅中',
+        published: '已发布',
+        archived: '已归档',
+      },
+    },
     title: '文档',
-    description: '功能门控文档部分',
+    description: '你工作区的文档：在此处或由代理创建，由平台计量。',
     stats: {
       featureSections: '功能部分',
       featureSectionsSubtitle: '文档功能',
@@ -476,6 +439,19 @@ const messages: Messages = {
     },
   },
   events: {
+    webhooks: {
+      title: '收到的 Webhook',
+      description:
+        '来自平台的签名服务器间投递，由 /api/webhooks/buildbase 为此工作区保存。',
+      empty: '还没有 Webhook。订阅、邀请成员或购买积分后，平台会调用本应用。',
+      refresh: '刷新',
+      event: '事件',
+      received: '收到时间',
+      signature: '签名',
+      verified: '已验证',
+      payload: '负载',
+      when: '平台时间',
+    },
     title: 'SDK事件日志',
     description: '实时SDK事件',
     clearButton: '清除',
@@ -525,8 +501,8 @@ const messages: Messages = {
     },
   },
   notifications: {
-    title: '通知测试',
-    description: '通过BuildBase SDK发送测试通知',
+    title: '通知',
+    description: '从本应用发送一条通知，看看它落在哪里',
     pushCard: {
       title: '浏览器推送通知',
       description: '为此设备启用浏览器推送通知',
@@ -542,7 +518,8 @@ const messages: Messages = {
     },
     fields: {
       eventSlug: '事件标识符',
-      eventSlugHint: '仅推送：任何标识符均有效。邮件：必须匹配已注册的事件。',
+      eventSlugHint:
+        '演示事件是“{slug}”，已在控制台注册并启用邮件和推送。仅推送时任何标识符均可；邮件需要已注册的事件。',
       title: '标题',
       message: '消息',
       url: 'URL',
@@ -601,11 +578,14 @@ const messages: Messages = {
     },
     resultCard: {
       title: '响应',
+      description: '平台对这次发送做了什么。',
+      openInbox: '打开收件箱',
     },
     toast: {
       workspaceRequired: '请先选择工作区',
       sent: '已向{count}名用户发送通知',
       notSent: '通知未发送：{reason}',
+      inboxHint: '看看铃铛和你的收件箱。',
       pushEnabled: '推送通知已启用',
       pushDisabled: '推送通知已禁用',
       pushFailed: '切换推送通知失败',
@@ -640,6 +620,14 @@ const messages: Messages = {
     },
   },
   profile: {
+    agents: {
+      title: '已连接的智能体',
+      description:
+        '你已授权通过 MCP 以你的身份操作的 AI 客户端。断开连接会撤销其访问权限。',
+      guideTitle: '连接智能体',
+      guideDescription:
+        '本应用是一个 MCP 服务器。把它添加到 Claude、Cursor 或 ChatGPT 并用你的 BuildBase 账号登录；智能体随后会以你的权限读取你的工作区和本应用的文档。',
+    },
     title: '用户个人资料',
     description: '用户属性和功能标志',
     identity: {
@@ -902,6 +890,313 @@ const messages: Messages = {
     rejectAll: '全部拒绝',
     savePreferences: '保存偏好',
     customize: '自定义',
+  },
+  inbox: {
+    title: '收件箱',
+    description: '本应用发给你的一切，每条通知一项，无论通过哪个渠道送达。',
+    rules: {
+      live: '新项目通过套接字实时到达，无需刷新。',
+      read: '在此打开或点击链接即视为已读。仅打开邮件不算已读。',
+      email: '每一项都显示邮件和推送做了什么，便于了解某个渠道为何没有动静。',
+    },
+  },
+  tour: {
+    title: '导览',
+    subtitle:
+      '{total} 件可以尝试的事，每一件都是 BuildBase 的一项能力及其来源。',
+    progress: '已完成 {done} / {total}',
+    markDone: '标记完成',
+    undo: '撤销',
+    open: '打开',
+    detected: '自动检测',
+    manual: '自行确认',
+    why: '为什么重要',
+    steps: '怎么做',
+    fromSdk: '来自 SDK',
+    fromConsole: '在控制台配置',
+    fromApp: '在本应用中',
+    requires: '先完成',
+    allDone: '你已全部完成。把它带回家吧。',
+    homeTitle: '逐项尝试所有功能',
+    homeSubtitle:
+      '登录后完成 {groups} 组共 {total} 项任务。每一项展示 BuildBase 的一项能力、它在应用中的样子以及在哪里配置。',
+    homeCta: '开始导览',
+    dashboardCard: '你的导览',
+    next: '下一步',
+    cloneTitle: '克隆这个应用',
+    cloneBody:
+      '这里的每个页面和每项任务都在同一个开源仓库里。查看任何部分如何实现，或克隆它来开始你自己的应用。',
+    browseCode: '浏览代码',
+    copy: '复制',
+    copied: '已复制',
+    dashboardCta: '继续',
+  },
+  help: {
+    title: '帮助中心',
+    description:
+      '本页的所有内容都写在控制台里：政策、文档、常见问题和客户评价。在那里修改，在这里刷新。',
+    notConfigured: {
+      title: '还没有内容',
+      token:
+        '此应用没有组织 API 令牌，无法读取控制台内容。请设置 BUILDBASE_API_TOKEN。',
+      empty: '该组织还没有演示内容。用以下命令生成：',
+    },
+    from: {
+      richContent: '富文本内容',
+      docs: '文档',
+      faqs: 'FAQ 集合',
+      testimonials: '客户评价',
+    },
+    docs: {
+      title: '文档',
+      empty: '还没有已发布的文档。',
+    },
+    faq: {
+      title: '常见问题',
+    },
+    testimonials: {
+      title: '客户怎么说',
+    },
+  },
+  forms: {
+    title: '表单',
+    description: '在控制台创建的表单，按其在线架构渲染，并通过此应用提交。',
+    loading: '正在加载表单…',
+    fromConsole: '字段来自控制台；在那里添加一个并刷新。',
+    submit: '发送',
+    sending: '发送中…',
+    sent: '已发送',
+    hint: '提交会存为集合记录，并触发 form.submitted 事件。',
+    errors: {
+      title: '平台拒绝了此次提交',
+      generic: '有内容未被接受。',
+    },
+    missing: {
+      title: '还没有联系表单',
+      token: '此应用没有组织 API 令牌。请设置 BUILDBASE_API_TOKEN。',
+      form: '该组织没有名为 Contact 的表单。用以下命令生成：',
+    },
+    toast: {
+      sent: '已提交。它现在是平台上的一条记录。',
+    },
+    submissions: {
+      title: '最近提交',
+      description: '从表单的集合中读回。',
+      refresh: '刷新',
+      empty: '还没有提交。',
+    },
+  },
+  collections: {
+    title: '数据集',
+    description: '平台上的自定义数据：带版本的架构，记录挂在在线版本上。',
+    loading: '正在加载记录…',
+    liveVersion: '在线版本 {version}（{name}），{fields} 个字段',
+    noLiveVersion: '没有在线版本。请在控制台发布一个。',
+    refresh: '刷新',
+    empty: '没有记录。生成一些或在控制台添加。',
+    actions: '操作',
+    delete: '删除记录',
+    hint: '在控制台发布一个带额外字段的新版本；刷新后该列会出现在这里。',
+    missing: {
+      title: '还没有 release-notes 数据集',
+      token: '此应用没有组织 API 令牌。请设置 BUILDBASE_API_TOKEN。',
+      collection: '该组织没有 slug 为 release-notes 的数据集。用以下命令生成：',
+    },
+    toast: {
+      deleted: '已在平台上删除记录。',
+      deleteFailed: '无法删除记录。',
+    },
+  },
+  tracking: {
+    title: '追踪',
+    description:
+      '来自控制台的分析和广告标签，在同意后加载，并包含你自己的事件和归因。',
+    loading: '加载中…',
+    consent: {
+      title: '同意',
+      description: '由附加到本应用的标签构成，而不是整个标签库。',
+      noTags:
+        '本应用尚未附加任何标签。请在控制台的设置 → 追踪中添加，并附加到客户端。',
+      privacy: '隐私',
+      analytics: '分析',
+      marketing: '营销',
+      acceptAll: '全部接受',
+      analyticsOnly: '仅分析',
+      denyAll: '全部拒绝',
+      state: '当前状态',
+      unset: '尚未询问',
+    },
+    installed: {
+      title: '已安装的提供商',
+      description: '同意后此浏览器中实际加载的内容。',
+      none: '未加载任何内容。请同意，或在控制台附加标签。',
+    },
+    custom: {
+      title: '发送自定义事件',
+      description: '你自己的事件会进入数据层和每个已安装的供应商。',
+      button: '发送 report_exported',
+      fired: '已发送 {count} 次',
+    },
+    attribution: {
+      title: '归因',
+      description: '访问者来自哪里：在首个页面捕获的点击 ID 和营销活动参数。',
+      empty: '未捕获任何内容。请带上以下参数重新加载',
+    },
+    log: {
+      title: '实时事件日志',
+      description: 'SDK 在此标签页中发送的每个事件，包括它自动发送的。',
+      empty: '还没有事件。浏览一下，或在上方发送一个。',
+    },
+  },
+  automations: {
+    title: '自动化',
+    description:
+      '工作流在控制台中构建；本应用触发它们监听的事件，并读取为你运行的内容。',
+    refresh: '刷新',
+    loading: '加载中…',
+    notConfigured: '未配置 BUILDBASE_API_TOKEN，本应用无法读取工作流运行记录。',
+    error: '无法加载运行记录',
+    runs: {
+      title: '你的运行',
+      description: '平台为你的账户启动的工作流实例。',
+      empty: '还没有运行记录。提交联系表单或注册新用户后刷新。',
+      workflow: '工作流',
+      event: '事件',
+      status: '状态',
+      nodes: '完成节点',
+      started: '开始',
+    },
+    calls: {
+      title: '对本应用的调用',
+      description:
+        '工作流的 HTTP Webhook 动作发送到 /api/buildbase/provision 的内容，已通过共享密钥验证。',
+      empty: '尚未收到配置调用。',
+    },
+  },
+  reports: {
+    title: '报表',
+    description:
+      '每个模块通过相同的图表和计数端点报告；这里展示最近三十天的三项。',
+    notConfigured: '未配置 BUILDBASE_API_TOKEN，本应用无法读取报表。',
+    loading: '加载中…',
+    refresh: '刷新',
+    window: '{from} 至 {to}',
+    unavailable: '不可用',
+    series: {
+      users: {
+        title: '注册',
+        description: '每日新用户。',
+      },
+      forms: {
+        title: '表单提交',
+        description: '每日联系表单提交。',
+      },
+      links: {
+        title: '链接点击',
+        description: '每日短链接点击。',
+      },
+    },
+  },
+  assets: {
+    title: '文件',
+    description: '通过本应用上传、由平台存储并提供的文件。',
+    upload: '上传文件',
+    uploading: '上传中…',
+    limit: '最大 5 MB。图片会显示预览。',
+    uploaded: '已上传',
+    gallery: '文件',
+    empty: '还没有文件，请在上方上传一个。',
+    public: '公开',
+    private: '私有',
+    makePrivate: '设为私有',
+    makePublic: '设为公开',
+    nowPublic: '已公开：URL 恢复可用。',
+    nowPrivate: '已私有：公开 URL 失效。',
+    openUrl: '打开',
+    tooLarge: '该文件超过 5 MB。',
+    loadFailed: '无法连接平台。',
+    notConfigured:
+      '本页通过 API 令牌读取组织。请设置 BUILDBASE_API_TOKEN（控制台 → Settings → Tokens）并重启。',
+  },
+  links: {
+    title: '短链接',
+    description: '由平台重定向并逐次计数的分享链接。',
+    create: '创建短链接',
+    createHint: '任意 URL。平台分配 12 位 id，并记录每次点击的国家和设备。',
+    name: '名称',
+    url: '目标 URL',
+    createButton: '创建',
+    created: '链接已创建',
+    yourLinks: '你的链接',
+    clicksHint: '打开链接后刷新：计数来自平台，而非本页。',
+    refresh: '刷新',
+    empty: '还没有链接。',
+    clicks: '次点击',
+    copy: '复制短链接',
+    copied: '已复制',
+    follow: '打开',
+    changeDestination: '更改目标',
+    save: '保存',
+    cancel: '取消',
+    updated: '目标已更改，短链接保持不变。',
+    chart: '点击数，最近 14 天',
+    chartHint: '所有链接合计，按天。',
+    chartEmpty: '还没有点击。',
+    loadFailed: '无法连接平台。',
+    notConfigured:
+      '本页通过 API 令牌读取组织。请设置 BUILDBASE_API_TOKEN（控制台 → Settings → Tokens）并重启。',
+  },
+  audience: {
+    title: '受众与属性',
+    description:
+      '平台在账户之外保存的个人信息：自定义属性、营销联系人和候补名单。',
+    failed: '无法保存。',
+    notConfigured: '订阅功能需要服务器端的 BUILDBASE_API_TOKEN。',
+    onboarding: {
+      title: '入门清单',
+      description:
+        '勾选三项并保存：SDK 会在浏览器中以你的身份写入 onboarded=true 和你的职位作为用户属性。',
+      items: {
+        profile: '我已填写个人资料',
+        workspace: '我已创建工作区',
+        invite: '我已邀请他人',
+      },
+      role: '你的职位（可选）',
+      save: '完成入门',
+      saved: '已保存。在控制台打开你的记录即可查看。',
+      already: '根据属性，你已完成入门。',
+    },
+    attributes: {
+      title: '你的属性',
+      description: '键在控制台定义（Users → Attributes），值保存在你的用户上。',
+      empty: '还没有属性。',
+    },
+    locale: {
+      title: '国家、时区、货币',
+      description: '列表随 SDK 提供（@buildbase/sdk/data），无需下载。',
+      country: '国家',
+      timezone: '时区',
+      currency: '货币',
+      save: '保存偏好',
+      saved: '偏好已保存为属性。',
+    },
+    newsletter: {
+      title: '订阅通讯',
+      description:
+        '营销联系人独立于账户，没有账户也可以存在。服务器用组织令牌创建它并加入通讯列表。',
+      email: '邮箱',
+      subscribe: '订阅',
+      subscribed: '已订阅',
+      listed: '已加入 {list} 列表。',
+      noList: '联系人已创建；该组织还没有通讯列表。',
+      waitlistHint: '未登录访客可在此加入测试候补名单：',
+    },
+  },
+  waitlist: {
+    title: '加入候补名单',
+    description: '平台的测试版表单：留下姓名和邮箱，管理员在控制台审批。',
+    success: '你已在名单中。管理员将在控制台审批。',
+    note: '表单及其文案来自组织的测试版配置（控制台 → Users → Beta）。',
   },
 };
 

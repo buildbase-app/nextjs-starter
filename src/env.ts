@@ -34,6 +34,12 @@ export const env = createEnv({
 
     // BuildBase OAuth2 — used by /api/auth/oauth2-token and /api/auth/oauth2-profile
     // This is the clientSecret from the OAuth2 auth settings (may differ from the main client secret)
+    // Organization API token (console → Settings → Tokens) for the modules the
+    // SDK does not wrap: content, forms, collections, assets, links, audience,
+    // workflows, reporting. Server-only.
+    BUILDBASE_API_TOKEN: z.string().optional(),
+    // Shared secret for the platform's webhook deliveries.
+    BUILDBASE_WEBHOOK_SECRET: z.string().optional(),
     BUILDBASE_OAUTH2_CLIENT_ID: z.string().optional(),
     BUILDBASE_OAUTH2_CLIENT_SECRET: z.string().optional(),
 
@@ -94,6 +100,8 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     SYSTEM_SECRET: process.env.SYSTEM_SECRET,
     BUILDBASE_CLIENT_SECRET: process.env.BUILDBASE_CLIENT_SECRET,
+    BUILDBASE_API_TOKEN: process.env.BUILDBASE_API_TOKEN,
+    BUILDBASE_WEBHOOK_SECRET: process.env.BUILDBASE_WEBHOOK_SECRET,
     BUILDBASE_OAUTH2_CLIENT_ID: process.env.BUILDBASE_OAUTH2_CLIENT_ID,
     BUILDBASE_OAUTH2_CLIENT_SECRET: process.env.BUILDBASE_OAUTH2_CLIENT_SECRET,
     SENTRY_ORG: process.env.SENTRY_ORG,
