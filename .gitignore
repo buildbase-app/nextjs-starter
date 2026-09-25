@@ -52,3 +52,7 @@ next-env.d.ts
 # pagefind (generated at build time)
 public/pagefind
 .yalc/@buildbase/sdk/*
+
+# next-sitemap output (postbuild)
+/public/sitemap*.xml
+/public/robots.txt
