@@ -1131,6 +1131,10 @@ const messages: Messages = {
     loading: 'लोड हो रहा है…',
     refresh: 'रीफ़्रेश',
     window: '{from} से {to}',
+    counts: {
+      current: 'उपयोगकर्ता, पिछले 30 दिन',
+      previous: 'उपयोगकर्ता, उससे पहले के 30 दिन',
+    },
     unavailable: 'उपलब्ध नहीं',
     series: {
       users: {

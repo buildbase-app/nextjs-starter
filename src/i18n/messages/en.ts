@@ -1128,6 +1128,10 @@ const messages: Messages = {
     loading: 'Loading…',
     refresh: 'Refresh',
     window: '{from} to {to}',
+    counts: {
+      current: 'Users, last 30 days',
+      previous: 'Users, previous 30 days',
+    },
     unavailable: 'Unavailable',
     series: {
       users: {

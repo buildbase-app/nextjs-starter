@@ -1134,6 +1134,10 @@ const messages: Messages = {
     loading: '読み込み中…',
     refresh: '更新',
     window: '{from} 〜 {to}',
+    counts: {
+      current: 'ユーザー（直近30日）',
+      previous: 'ユーザー（その前の30日）',
+    },
     unavailable: '利用不可',
     series: {
       users: {

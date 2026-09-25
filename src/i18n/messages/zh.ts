@@ -1086,6 +1086,10 @@ const messages: Messages = {
     loading: '加载中…',
     refresh: '刷新',
     window: '{from} 至 {to}',
+    counts: {
+      current: '用户（最近 30 天）',
+      previous: '用户（此前 30 天）',
+    },
     unavailable: '不可用',
     series: {
       users: {

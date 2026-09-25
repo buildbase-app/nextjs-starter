@@ -1115,6 +1115,10 @@ const messages: Messages = {
     loading: 'جارٍ التحميل…',
     refresh: 'تحديث',
     window: 'من {from} إلى {to}',
+    counts: {
+      current: 'المستخدمون، آخر 30 يومًا',
+      previous: 'المستخدمون، الـ 30 يومًا السابقة',
+    },
     unavailable: 'غير متاح',
     series: {
       users: {

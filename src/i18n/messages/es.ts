@@ -1148,6 +1148,10 @@ const messages: Messages = {
     loading: 'Cargando…',
     refresh: 'Actualizar',
     window: '{from} a {to}',
+    counts: {
+      current: 'Usuarios, últimos 30 días',
+      previous: 'Usuarios, 30 días anteriores',
+    },
     unavailable: 'No disponible',
     series: {
       users: {

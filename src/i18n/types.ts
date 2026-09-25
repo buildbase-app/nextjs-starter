@@ -1045,6 +1045,7 @@ export interface ReportsMessages {
   loading: string;
   refresh: string;
   window: string;
+  counts: { current: string; previous: string };
   unavailable: string;
   series: {
     users: {
