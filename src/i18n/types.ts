@@ -26,6 +26,15 @@ export interface CommonMessages {
     workspace: string;
     tour: string;
     inbox: string;
+    modules: string;
+    forms: string;
+    collections: string;
+    assets: string;
+    links: string;
+    audience: string;
+    tracking: string;
+    automations: string;
+    reports: string;
   };
   buttons: {
     signIn: string;

@@ -23,6 +23,15 @@ export type TourGroupId =
   | 'push'
   | 'agents'
   | 'webhooks'
+  | 'content'
+  | 'forms'
+  | 'collections'
+  | 'assets'
+  | 'links'
+  | 'audience'
+  | 'tracking'
+  | 'workflows'
+  | 'reports'
   | 'platform';
 
 /** How a task gets ticked. */

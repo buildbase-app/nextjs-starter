@@ -1,7 +1,7 @@
-import type { TourText } from './types';
+import type { TourTextPartial } from './types';
 
 /** The tour's text, Arabic. Mirrors `en.ts` id for id. */
-export const ar: TourText = {
+export const ar: TourTextPartial = {
   groups: {
     start: {
       title: 'ابدأ',

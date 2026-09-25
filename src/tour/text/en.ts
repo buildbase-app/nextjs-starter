@@ -54,6 +54,44 @@ export const en: TourText = {
       title: 'Webhooks',
       summary: 'Platform events mirrored into this app’s own database.',
     },
+    content: {
+      title: 'Content',
+      summary: 'Docs, FAQs and copy written in the console, read by this app.',
+    },
+    forms: {
+      title: 'Forms',
+      summary: 'A form built in the console, rendered and submitted from here.',
+    },
+    collections: {
+      title: 'Collections',
+      summary: 'Custom data with versioned schemas, stored on the platform.',
+    },
+    assets: {
+      title: 'Assets',
+      summary:
+        'Files uploaded through the app, stored and served by the platform.',
+    },
+    links: {
+      title: 'Short links',
+      summary: 'Share links that count every click.',
+    },
+    audience: {
+      title: 'Audience and attributes',
+      summary:
+        'Custom attributes on a user, a waitlist, and a marketing audience.',
+    },
+    tracking: {
+      title: 'Tracking',
+      summary: 'Analytics tags with consent, custom events and attribution.',
+    },
+    workflows: {
+      title: 'Workflows',
+      summary: 'Automations built in the console, started by what you do here.',
+    },
+    reports: {
+      title: 'Reports',
+      summary: 'Every module reports; this app charts a few.',
+    },
     platform: {
       title: 'Platform',
       summary: 'Languages, themes, your data, and taking this repo home.',
@@ -495,6 +533,15 @@ export const en: TourText = {
         'npm install && npm run dev',
       ],
     },
+    // content
+    // forms
+    // collections
+    // assets
+    // links
+    // audience
+    // tracking
+    // workflows
+    // reports
     'delete-account': {
       title: 'Delete your account',
       why: 'GDPR Article 17: erased here and on the platform.',

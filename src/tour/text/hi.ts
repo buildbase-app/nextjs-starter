@@ -1,7 +1,7 @@
-import type { TourText } from './types';
+import type { TourTextPartial } from './types';
 
 /** The tour's text, Hindi. Mirrors `en.ts` id for id. */
-export const hi: TourText = {
+export const hi: TourTextPartial = {
   groups: {
     start: {
       title: 'शुरू करें',

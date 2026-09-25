@@ -9,22 +9,37 @@ import { de } from './de';
 import { ja } from './ja';
 import { zh } from './zh';
 import { ar } from './ar';
-import type { TourText } from './types';
+import type { TourText, TourTextPartial } from './types';
 
-const TEXT: Record<Locale, TourText> = { en, hi, es, fr, de, ja, zh, ar };
+const TEXT: Record<Locale, TourText | TourTextPartial> = {
+  en,
+  hi,
+  es,
+  fr,
+  de,
+  ja,
+  zh,
+  ar,
+};
 
-function textFor(locale: string): TourText {
+function textFor(locale: string): TourTextPartial {
   return TEXT[locale as Locale] ?? en;
 }
 
 /** The groups, worded for a language. */
 export function tourGroups(locale: string): TourGroup[] {
   const text = textFor(locale);
-  return TOUR_GROUP_IDS.map((id) => ({ id, ...text.groups[id] }));
+  return TOUR_GROUP_IDS.map((id) => ({
+    id,
+    ...(text.groups[id] ?? en.groups[id]),
+  }));
 }
 
 /** Every task, worded for a language, in tour order. */
 export function tourTasks(locale: string): TourTask[] {
   const text = textFor(locale);
-  return TOUR_TASKS.map((task) => ({ ...task, ...text.tasks[task.id] }));
+  return TOUR_TASKS.map((task) => ({
+    ...task,
+    ...(text.tasks[task.id] ?? en.tasks[task.id]),
+  }));
 }

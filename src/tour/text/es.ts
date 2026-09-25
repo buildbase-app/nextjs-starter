@@ -1,7 +1,7 @@
-import type { TourText } from './types';
+import type { TourTextPartial } from './types';
 
 /** The tour's text, Spanish. Mirrors `en.ts` id for id. */
-export const es: TourText = {
+export const es: TourTextPartial = {
   groups: {
     start: {
       title: 'Primeros pasos',

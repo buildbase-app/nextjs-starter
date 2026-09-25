@@ -1,7 +1,7 @@
-import type { TourText } from './types';
+import type { TourTextPartial } from './types';
 
 /** Der Text der Tour, Deutsch. */
-export const de: TourText = {
+export const de: TourTextPartial = {
   groups: {
     start: {
       title: 'Erste Schritte',

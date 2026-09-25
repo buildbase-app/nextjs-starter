@@ -71,6 +71,15 @@ export const TASK_IDS = [
   'export-data',
   'clone-it',
   'delete-account',
+  // content
+  // forms
+  // collections
+  // assets
+  // links
+  // audience
+  // tracking
+  // workflows
+  // reports
 ] as const;
 
 export type TaskId = (typeof TASK_IDS)[number];

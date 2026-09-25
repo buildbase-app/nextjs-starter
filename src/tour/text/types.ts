@@ -6,3 +6,11 @@ export interface TourText {
   groups: Record<TourGroupId, { title: string; summary: string }>;
   tasks: Record<TaskId, { title: string; why: string; steps: string[] }>;
 }
+
+/** A translation: any id it lacks falls back to English. */
+export interface TourTextPartial {
+  groups: Partial<Record<TourGroupId, { title: string; summary: string }>>;
+  tasks: Partial<
+    Record<TaskId, { title: string; why: string; steps: string[] }>
+  >;
+}

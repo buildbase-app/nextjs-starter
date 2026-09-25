@@ -1,7 +1,7 @@
-import type { TourText } from './types';
+import type { TourTextPartial } from './types';
 
 /** The tour's text, Simplified Chinese. Mirrors `en.ts`. */
-export const zh: TourText = {
+export const zh: TourTextPartial = {
   groups: {
     start: {
       title: '开始使用',

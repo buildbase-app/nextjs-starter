@@ -1,7 +1,7 @@
-import type { TourText } from './types';
+import type { TourTextPartial } from './types';
 
 /** The tour's text, Japanese. Mirrors `en.ts`. */
-export const ja: TourText = {
+export const ja: TourTextPartial = {
   groups: {
     start: {
       title: 'はじめに',

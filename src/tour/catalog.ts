@@ -920,6 +920,33 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       kind: 'manual',
     },
   },
+  // ── Content ──
+  // (tasks added by the content builder)
+
+  // ── Forms ──
+  // (tasks added by the forms builder)
+
+  // ── Collections ──
+  // (tasks added by the collections builder)
+
+  // ── Assets ──
+  // (tasks added by the assets builder)
+
+  // ── Links ──
+  // (tasks added by the links builder)
+
+  // ── Audience ──
+  // (tasks added by the audience builder)
+
+  // ── Tracking ──
+  // (tasks added by the tracking builder)
+
+  // ── Workflows ──
+  // (tasks added by the workflows builder)
+
+  // ── Reports ──
+  // (tasks added by the reports builder)
+
   // ── Platform ──
   {
     id: 'switch-language',
