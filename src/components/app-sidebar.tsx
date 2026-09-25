@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import {
@@ -11,6 +12,7 @@ import {
   Bell,
   LogOut,
   ChevronUp,
+  ChevronDown,
   ChevronsUpDown,
   CreditCard,
   Coins,
@@ -88,84 +90,57 @@ type ModuleNavKey =
   | 'automations'
   | 'reports';
 
-const menuItems: {
-  navKey: NavKey;
+type NavItem = {
+  navKey: NavKey | ModuleNavKey;
   url: string;
   icon: typeof LayoutDashboard;
-}[] = [
+};
+
+type SectionKey = 'start' | 'product' | 'billing' | 'platform';
+
+/**
+ * The menu in the tour's order: where you start, the product, billing,
+ * then the platform plumbing. Modules - the org-API pages - sit in their
+ * own collapsible section below.
+ */
+const sections: { key: SectionKey; items: NavItem[] }[] = [
   {
-    navKey: 'dashboard',
-    url: '/dashboard',
-    icon: LayoutDashboard,
+    key: 'start',
+    items: [
+      { navKey: 'dashboard', url: '/dashboard', icon: LayoutDashboard },
+      { navKey: 'tour', url: '/dashboard/tour', icon: ListChecks },
+      { navKey: 'inbox', url: '/dashboard/inbox', icon: Inbox },
+    ],
   },
   {
-    navKey: 'tour',
-    url: '/dashboard/tour',
-    icon: ListChecks,
+    key: 'product',
+    items: [
+      { navKey: 'documents', url: '/dashboard/documents', icon: FileText },
+      { navKey: 'team', url: '/dashboard/team', icon: Users },
+      { navKey: 'profile', url: '/dashboard/profile', icon: UserCircle },
+    ],
   },
   {
-    navKey: 'inbox',
-    url: '/dashboard/inbox',
-    icon: Inbox,
+    key: 'billing',
+    items: [
+      { navKey: 'credits', url: '/dashboard/credits', icon: Coins },
+      { navKey: 'invoices', url: '/dashboard/invoices', icon: Receipt },
+      { navKey: 'usage', url: '/dashboard/usage', icon: Gauge },
+    ],
   },
   {
-    navKey: 'documents',
-    url: '/dashboard/documents',
-    icon: FileText,
-  },
-  {
-    navKey: 'credits',
-    url: '/dashboard/credits',
-    icon: Coins,
-  },
-  {
-    navKey: 'invoices',
-    url: '/dashboard/invoices',
-    icon: Receipt,
-  },
-  {
-    navKey: 'usage',
-    url: '/dashboard/usage',
-    icon: Gauge,
-  },
-  {
-    navKey: 'permissions',
-    url: '/dashboard/permissions',
-    icon: Lock,
-  },
-  {
-    navKey: 'events',
-    url: '/dashboard/events',
-    icon: Radio,
-  },
-  {
-    navKey: 'profile',
-    url: '/dashboard/profile',
-    icon: UserCircle,
-  },
-  {
-    navKey: 'team',
-    url: '/dashboard/team',
-    icon: Users,
-  },
-  {
-    navKey: 'notifications',
-    url: '/dashboard/notifications',
-    icon: Bell,
-  },
-  {
-    navKey: 'settings',
-    url: '/dashboard/settings',
-    icon: Settings,
+    key: 'platform',
+    items: [
+      { navKey: 'permissions', url: '/dashboard/permissions', icon: Lock },
+      { navKey: 'events', url: '/dashboard/events', icon: Radio },
+      { navKey: 'notifications', url: '/dashboard/notifications', icon: Bell },
+      { navKey: 'settings', url: '/dashboard/settings', icon: Settings },
+    ],
   },
 ];
 
 /** The platform modules the SDK does not wrap, read through the org API. */
-const moduleItems: {
-  navKey: ModuleNavKey;
-  url: string;
-  icon: typeof LayoutDashboard;
-}[] = [
+const moduleItems: NavItem[] = [
   { navKey: 'forms', url: '/dashboard/forms', icon: ClipboardList },
   { navKey: 'collections', url: '/dashboard/collections', icon: Database },
   { navKey: 'assets', url: '/dashboard/assets', icon: ImageIcon },
@@ -176,10 +151,73 @@ const moduleItems: {
   { navKey: 'reports', url: '/dashboard/reports', icon: PieChart },
 ];
 
+const MODULES_OPEN_KEY = 'sidebar-modules-open';
+const MODULES_EVENT = 'sidebar-modules-open';
+
+/** Whether the visitor left Modules open; null when never chosen or blocked. */
+function readModulesOpen(): boolean | null {
+  try {
+    const v = localStorage.getItem(MODULES_OPEN_KEY);
+    return v === null ? null : v === '1';
+  } catch {
+    return null;
+  }
+}
+
+function writeModulesOpen(open: boolean) {
+  try {
+    localStorage.setItem(MODULES_OPEN_KEY, open ? '1' : '0');
+  } catch {
+    /* not remembered */
+  }
+  window.dispatchEvent(new Event(MODULES_EVENT));
+}
+
+function subscribeModulesOpen(onChange: () => void) {
+  window.addEventListener(MODULES_EVENT, onChange);
+  window.addEventListener('storage', onChange);
+  return () => {
+    window.removeEventListener(MODULES_EVENT, onChange);
+    window.removeEventListener('storage', onChange);
+  };
+}
+
+function NavLink({ item, active }: { item: NavItem; active: boolean }) {
+  const t = useTranslations('common');
+  const title = t(`nav.${item.navKey}`);
+  return (
+    <SidebarMenuItem>
+      <SidebarMenuButton
+        asChild
+        isActive={active}
+        tooltip={title}
+        className="h-7"
+      >
+        <Link href={item.url}>
+          <item.icon />
+          <span>{title}</span>
+        </Link>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  );
+}
+
 export function AppSidebar({ side = 'left' }: { side?: 'left' | 'right' }) {
   const pathname = usePathname();
   const { user, signOut, openWorkspaceSettings } = useSaaSAuth();
   const t = useTranslations('common');
+
+  // As the visitor left it; until they choose, open only on a module page.
+  const inModules = moduleItems.some((item) => item.url === pathname);
+  const modulesStored = useSyncExternalStore(
+    subscribeModulesOpen,
+    readModulesOpen,
+    () => null
+  );
+  const modulesOpen = modulesStored ?? inModules;
+  const toggleModules = () => {
+    writeModulesOpen(!modulesOpen);
+  };
 
   const getInitials = (name?: string) => {
     if (!name) return 'U';
@@ -246,53 +284,52 @@ export function AppSidebar({ side = 'left' }: { side?: 'left' | 'right' }) {
       <SidebarSeparator />
 
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>{t('nav.menu')}</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {menuItems.map((item) => {
-                const title = t(`nav.${item.navKey}`);
-                return (
-                  <SidebarMenuItem key={item.navKey}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={pathname === item.url}
-                      tooltip={title}
-                    >
-                      <Link href={item.url}>
-                        <item.icon />
-                        <span>{title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>{t('nav.modules')}</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {moduleItems.map((item) => {
-                const title = t(`nav.${item.navKey}`);
-                return (
-                  <SidebarMenuItem key={item.navKey}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={pathname === item.url}
-                      tooltip={title}
-                    >
-                      <Link href={item.url}>
-                        <item.icon />
-                        <span>{title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
+        {sections.map((section) => (
+          <SidebarGroup key={section.key} className="py-0">
+            <SidebarGroupLabel className="h-5">
+              {t(`nav.sections.${section.key}`)}
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu className="gap-0">
+                {section.items.map((item) => (
+                  <NavLink
+                    key={item.navKey}
+                    item={item}
+                    active={pathname === item.url}
+                  />
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ))}
+        <SidebarGroup className="py-0">
+          <SidebarGroupLabel asChild className="h-5">
+            <button
+              type="button"
+              onClick={toggleModules}
+              aria-expanded={modulesOpen}
+              aria-controls="sidebar-modules"
+              className="hover:text-sidebar-foreground flex w-full items-center justify-between"
+            >
+              <span>{t('nav.modules')}</span>
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform ${modulesOpen ? '' : '-rotate-90'}`}
+              />
+            </button>
+          </SidebarGroupLabel>
+          {modulesOpen && (
+            <SidebarGroupContent id="sidebar-modules">
+              <SidebarMenu className="gap-0">
+                {moduleItems.map((item) => (
+                  <NavLink
+                    key={item.navKey}
+                    item={item}
+                    active={pathname === item.url}
+                  />
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          )}
         </SidebarGroup>
       </SidebarContent>
 

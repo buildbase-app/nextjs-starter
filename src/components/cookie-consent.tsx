@@ -1,9 +1,27 @@
 'use client';
 
-import { useState, useEffect, useCallback, useSyncExternalStore } from 'react';
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useSyncExternalStore,
+} from 'react';
 import { useTranslations } from 'next-intl';
+import { useTracking } from '@buildbase/sdk/tracking';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+/**
+ * One consent system for the whole app.
+ *
+ * The SDK's tracking consent (`useTracking().consent`) is what decides which
+ * analytics and ad tags load, so every choice made here goes through
+ * `consent.set()`. The SDK keeps that state in memory only, so this module
+ * also keeps the one persisted record (localStorage `cookie-consent`) and
+ * replays it into the SDK on every load. Its categories are the SDK's:
+ * `analytics` and `marketing`, plus `necessary`, which is always on.
+ */
 
 // ---------------------------------------------------------------------------
 // Types & constants
@@ -165,6 +183,14 @@ export function resetCookieConsent() {
   window.dispatchEvent(
     new CustomEvent('cookie-consent-update', { detail: DEFAULT_PREFERENCES })
   );
+}
+
+const OPEN_EVENT = 'cookie-consent-open';
+
+/** Reopen the banner with the current choices, e.g. from a settings page. */
+export function openCookieChoices() {
+  if (typeof window === 'undefined') return;
+  window.dispatchEvent(new CustomEvent(OPEN_EVENT));
 }
 
 // ---------------------------------------------------------------------------
@@ -330,37 +356,95 @@ export function CookieConsent({
   cookiePolicyUrl,
 }: CookieConsentProps) {
   const t = useTranslations('cookieConsent');
+  const { consent } = useTracking();
   const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [prefs, setPrefs] = useState<CookiePreferences>(DEFAULT_PREFERENCES);
 
+  // `consent.set` may change identity between renders; read it through a
+  // ref so replaying the stored choice does not loop.
+  const setSdkConsent = useRef(consent.set);
   useEffect(() => {
-    const stored = getStoredConsent();
-    if (!stored) {
-      const timer = setTimeout(() => setVisible(true), 500);
-      return () => clearTimeout(timer);
+    setSdkConsent.current = consent.set;
+  }, [consent.set]);
+  const sdkState = consent.state;
+
+  // Replay the persisted choice into the SDK: on load, and whenever another
+  // tab or `updateCookieConsent` changes it.
+  useEffect(() => {
+    const sync = () => {
+      const stored = getStoredConsent();
+      if (!stored) return;
+      const { analytics, marketing } = stored.preferences;
+      if (
+        sdkState?.analytics === analytics &&
+        sdkState?.marketing === marketing
+      )
+        return;
+      setSdkConsent.current({ analytics, marketing });
+    };
+    sync();
+    window.addEventListener('cookie-consent-update', sync);
+    window.addEventListener('storage', sync);
+    return () => {
+      window.removeEventListener('cookie-consent-update', sync);
+      window.removeEventListener('storage', sync);
+    };
+  }, [sdkState]);
+
+  // Ask once; reopen on request with the current choices ticked.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    if (!getStoredConsent()) timer = setTimeout(() => setVisible(true), 500);
+    const open = () => {
+      setPrefs(getStoredConsent()?.preferences ?? DEFAULT_PREFERENCES);
+      setShowDetails(true);
+      setVisible(true);
+    };
+    window.addEventListener(OPEN_EVENT, open);
+    return () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener(OPEN_EVENT, open);
+    };
+  }, []);
+
+  const choose = useCallback((next: CookiePreferences) => {
+    storeConsent(next);
+    setSdkConsent.current({
+      analytics: next.analytics,
+      marketing: next.marketing,
+    });
+    setVisible(false);
+    if (next.analytics || next.marketing) {
+      // Ticks the tour's consent task for a signed-in visitor; a 401 for
+      // everyone else is expected and ignored.
+      void fetch('/api/tracking/event', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ consent: true }),
+      }).catch(() => {});
     }
   }, []);
 
-  const handleAcceptAll = useCallback(() => {
-    const allAccepted: CookiePreferences = {
-      necessary: true,
-      analytics: true,
-      marketing: true,
-    };
-    storeConsent(allAccepted);
-    setVisible(false);
-  }, []);
+  const handleAcceptAll = useCallback(
+    () => choose({ necessary: true, analytics: true, marketing: true }),
+    [choose]
+  );
+  const handleRejectAll = useCallback(
+    () => choose(DEFAULT_PREFERENCES),
+    [choose]
+  );
+  const handleSavePreferences = useCallback(
+    () => choose(prefs),
+    [choose, prefs]
+  );
 
-  const handleRejectAll = useCallback(() => {
-    storeConsent(DEFAULT_PREFERENCES);
-    setVisible(false);
-  }, []);
-
-  const handleSavePreferences = useCallback(() => {
-    storeConsent(prefs);
-    setVisible(false);
-  }, [prefs]);
+  // The installed tags behind each category, named so the choice is informed.
+  const vendors = (category: 'analytics' | 'marketing') =>
+    consent.manifest
+      .filter((entry) => entry.category === category)
+      .map((entry) => entry.name)
+      .join(', ');
 
   if (!visible) return null;
 
@@ -426,6 +510,11 @@ export function CookieConsent({
                 <p className="text-muted-foreground text-xs">
                   {t('analytics.description')}
                 </p>
+                {vendors('analytics') && (
+                  <p className="text-muted-foreground text-xs">
+                    {t('loads', { names: vendors('analytics') })}
+                  </p>
+                )}
               </div>
               <input
                 type="checkbox"
@@ -445,6 +534,11 @@ export function CookieConsent({
                 <p className="text-muted-foreground text-xs">
                   {t('marketing.description')}
                 </p>
+                {vendors('marketing') && (
+                  <p className="text-muted-foreground text-xs">
+                    {t('loads', { names: vendors('marketing') })}
+                  </p>
+                )}
               </div>
               <input
                 type="checkbox"

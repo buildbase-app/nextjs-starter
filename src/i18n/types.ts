@@ -27,6 +27,12 @@ export interface CommonMessages {
     tour: string;
     inbox: string;
     modules: string;
+    sections: {
+      start: string;
+      product: string;
+      billing: string;
+      platform: string;
+    };
     forms: string;
     collections: string;
     assets: string;
@@ -850,6 +856,7 @@ export interface CookieConsentMessages {
   acceptAll: string;
   rejectAll: string;
   savePreferences: string;
+  loads: string;
   customize: string;
 }
 
@@ -980,9 +987,7 @@ export interface TrackingMessages {
     privacy: string;
     analytics: string;
     marketing: string;
-    acceptAll: string;
-    analyticsOnly: string;
-    denyAll: string;
+    change: string;
     state: string;
     unset: string;
   };
