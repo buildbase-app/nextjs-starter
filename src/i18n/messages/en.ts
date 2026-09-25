@@ -27,6 +27,12 @@ const messages: Messages = {
       tour: 'Tour',
       inbox: 'Inbox',
       modules: 'Modules',
+      sections: {
+        start: 'Start',
+        product: 'Product',
+        billing: 'Billing',
+        platform: 'Platform',
+      },
       forms: 'Forms',
       collections: 'Collections',
       assets: 'Assets',
@@ -919,6 +925,7 @@ const messages: Messages = {
     acceptAll: 'Accept all',
     rejectAll: 'Reject all',
     savePreferences: 'Save preferences',
+    loads: 'Loads: {names}',
     customize: 'Customize',
   },
   inbox: {
@@ -1056,9 +1063,7 @@ const messages: Messages = {
       privacy: 'Privacy',
       analytics: 'analytics',
       marketing: 'marketing',
-      acceptAll: 'Accept all',
-      analyticsOnly: 'Analytics only',
-      denyAll: 'Deny all',
+      change: 'Change cookie choices',
       state: 'Current state',
       unset: 'not asked yet',
     },
@@ -1123,6 +1128,10 @@ const messages: Messages = {
     loading: 'Loading…',
     refresh: 'Refresh',
     window: '{from} to {to}',
+    counts: {
+      current: 'Users, last 30 days',
+      previous: 'Users, previous 30 days',
+    },
     unavailable: 'Unavailable',
     series: {
       users: {

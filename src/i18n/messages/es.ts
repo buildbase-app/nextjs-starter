@@ -27,6 +27,12 @@ const messages: Messages = {
       tour: 'Recorrido',
       inbox: 'Bandeja',
       modules: 'Módulos',
+      sections: {
+        start: 'Inicio',
+        product: 'Producto',
+        billing: 'Facturación',
+        platform: 'Plataforma',
+      },
       forms: 'Formularios',
       collections: 'Colecciones',
       assets: 'Archivos',
@@ -934,6 +940,7 @@ const messages: Messages = {
     acceptAll: 'Aceptar todo',
     rejectAll: 'Rechazar todo',
     savePreferences: 'Guardar preferencias',
+    loads: 'Carga: {names}',
     customize: 'Personalizar',
   },
   inbox: {
@@ -1074,9 +1081,7 @@ const messages: Messages = {
       privacy: 'Privacidad',
       analytics: 'analítica',
       marketing: 'marketing',
-      acceptAll: 'Aceptar todo',
-      analyticsOnly: 'Solo analítica',
-      denyAll: 'Rechazar todo',
+      change: 'Cambiar preferencias de cookies',
       state: 'Estado actual',
       unset: 'aún no preguntado',
     },
@@ -1143,6 +1148,10 @@ const messages: Messages = {
     loading: 'Cargando…',
     refresh: 'Actualizar',
     window: '{from} a {to}',
+    counts: {
+      current: 'Usuarios, últimos 30 días',
+      previous: 'Usuarios, 30 días anteriores',
+    },
     unavailable: 'No disponible',
     series: {
       users: {

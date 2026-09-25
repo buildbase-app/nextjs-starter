@@ -3,6 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
 import { useTracking } from '@buildbase/sdk/tracking';
+import { openCookieChoices } from '@/components/cookie-consent';
 import { Activity, Check, Radio, ShieldCheck, Compass } from 'lucide-react';
 import {
   Card,
@@ -38,19 +39,6 @@ export function TrackingPanel() {
   void tick;
 
   const state = consent.state;
-  const setConsent = async (next: {
-    analytics: boolean;
-    marketing: boolean;
-  }) => {
-    consent.set(next);
-    if (next.analytics || next.marketing) {
-      await fetch('/api/tracking/event', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ consent: true }),
-      }).catch(() => {});
-    }
-  };
 
   const fire = async () => {
     const n = fired + 1;
@@ -119,32 +107,11 @@ export function TrackingPanel() {
                 ))}
               </ul>
             )}
-            <div className="flex flex-wrap items-center gap-2">
-              <Button
-                size="sm"
-                onClick={() => setConsent({ analytics: true, marketing: true })}
-              >
-                {t('consent.acceptAll')}
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() =>
-                  setConsent({ analytics: true, marketing: false })
-                }
-              >
-                {t('consent.analyticsOnly')}
-              </Button>
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={() =>
-                  setConsent({ analytics: false, marketing: false })
-                }
-              >
-                {t('consent.denyAll')}
-              </Button>
-            </div>
+            {/* One consent system: the banner writes the SDK's state, this
+                reads it. Changing it reopens the same banner. */}
+            <Button size="sm" variant="outline" onClick={openCookieChoices}>
+              {t('consent.change')}
+            </Button>
             <p className="text-muted-foreground text-xs">
               {t('consent.state')}:{' '}
               <code className="font-mono">

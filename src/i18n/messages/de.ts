@@ -27,6 +27,12 @@ const messages: Messages = {
       tour: 'Tour',
       inbox: 'Posteingang',
       modules: 'Module',
+      sections: {
+        start: 'Start',
+        product: 'Produkt',
+        billing: 'Abrechnung',
+        platform: 'Plattform',
+      },
       forms: 'Formulare',
       collections: 'Sammlungen',
       assets: 'Dateien',
@@ -934,6 +940,7 @@ const messages: Messages = {
     acceptAll: 'Alle akzeptieren',
     rejectAll: 'Alle ablehnen',
     savePreferences: 'Einstellungen speichern',
+    loads: 'Lädt: {names}',
     customize: 'Anpassen',
   },
   inbox: {
@@ -1074,9 +1081,7 @@ const messages: Messages = {
       privacy: 'Datenschutz',
       analytics: 'Analyse',
       marketing: 'Marketing',
-      acceptAll: 'Alle akzeptieren',
-      analyticsOnly: 'Nur Analyse',
-      denyAll: 'Alle ablehnen',
+      change: 'Cookie-Auswahl ändern',
       state: 'Aktueller Stand',
       unset: 'noch nicht gefragt',
     },
@@ -1144,6 +1149,10 @@ const messages: Messages = {
     loading: 'Lädt…',
     refresh: 'Aktualisieren',
     window: '{from} bis {to}',
+    counts: {
+      current: 'Nutzer, letzte 30 Tage',
+      previous: 'Nutzer, vorherige 30 Tage',
+    },
     unavailable: 'Nicht verfügbar',
     series: {
       users: {

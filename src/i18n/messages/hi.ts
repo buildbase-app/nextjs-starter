@@ -27,6 +27,12 @@ const messages: Messages = {
       tour: 'टूर',
       inbox: 'इनबॉक्स',
       modules: 'मॉड्यूल',
+      sections: {
+        start: 'शुरुआत',
+        product: 'प्रोडक्ट',
+        billing: 'बिलिंग',
+        platform: 'प्लेटफ़ॉर्म',
+      },
       forms: 'फ़ॉर्म',
       collections: 'कलेक्शन',
       assets: 'एसेट',
@@ -921,6 +927,7 @@ const messages: Messages = {
     acceptAll: 'सभी स्वीकार करें',
     rejectAll: 'सभी अस्वीकार करें',
     savePreferences: 'प्राथमिकताएं सहेजें',
+    loads: 'लोड होता है: {names}',
     customize: 'अनुकूलित करें',
   },
   inbox: {
@@ -1059,9 +1066,7 @@ const messages: Messages = {
       privacy: 'गोपनीयता',
       analytics: 'एनालिटिक्स',
       marketing: 'मार्केटिंग',
-      acceptAll: 'सभी स्वीकारें',
-      analyticsOnly: 'केवल एनालिटिक्स',
-      denyAll: 'सभी अस्वीकारें',
+      change: 'कुकी विकल्प बदलें',
       state: 'वर्तमान स्थिति',
       unset: 'अभी पूछा नहीं गया',
     },
@@ -1126,6 +1131,10 @@ const messages: Messages = {
     loading: 'लोड हो रहा है…',
     refresh: 'रीफ़्रेश',
     window: '{from} से {to}',
+    counts: {
+      current: 'उपयोगकर्ता, पिछले 30 दिन',
+      previous: 'उपयोगकर्ता, उससे पहले के 30 दिन',
+    },
     unavailable: 'उपलब्ध नहीं',
     series: {
       users: {

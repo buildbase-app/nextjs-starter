@@ -27,6 +27,12 @@ const messages: Messages = {
       tour: 'الجولة',
       inbox: 'البريد الوارد',
       modules: 'الوحدات',
+      sections: {
+        start: 'البداية',
+        product: 'المنتج',
+        billing: 'الفوترة',
+        platform: 'المنصة',
+      },
       forms: 'النماذج',
       collections: 'المجموعات',
       assets: 'الملفات',
@@ -911,6 +917,7 @@ const messages: Messages = {
     acceptAll: 'قبول الكل',
     rejectAll: 'رفض الكل',
     savePreferences: 'حفظ التفضيلات',
+    loads: 'يحمّل: {names}',
     customize: 'تخصيص',
   },
   inbox: {
@@ -1044,9 +1051,7 @@ const messages: Messages = {
       privacy: 'الخصوصية',
       analytics: 'تحليلات',
       marketing: 'تسويق',
-      acceptAll: 'قبول الكل',
-      analyticsOnly: 'التحليلات فقط',
-      denyAll: 'رفض الكل',
+      change: 'تغيير خيارات ملفات تعريف الارتباط',
       state: 'الحالة الحالية',
       unset: 'لم يُسأل بعد',
     },
@@ -1110,6 +1115,10 @@ const messages: Messages = {
     loading: 'جارٍ التحميل…',
     refresh: 'تحديث',
     window: 'من {from} إلى {to}',
+    counts: {
+      current: 'المستخدمون، آخر 30 يومًا',
+      previous: 'المستخدمون، الـ 30 يومًا السابقة',
+    },
     unavailable: 'غير متاح',
     series: {
       users: {

@@ -1,7 +1,7 @@
-import type { TourTextPartial } from './types';
+import type { TourText } from './types';
 
 /** The tour's text, Spanish. Mirrors `en.ts` id for id. */
-export const es: TourTextPartial = {
+export const es: TourText = {
   groups: {
     start: {
       title: 'Primeros pasos',
@@ -63,6 +63,49 @@ export const es: TourTextPartial = {
     platform: {
       title: 'Plataforma',
       summary: 'Idiomas, temas, tus datos y llevarte este repositorio a casa.',
+    },
+    content: {
+      title: 'Contenido',
+      summary:
+        'Documentos, preguntas frecuentes y textos escritos en la consola, que esta app lee.',
+    },
+    forms: {
+      title: 'Formularios',
+      summary:
+        'Un formulario creado en la consola, mostrado y enviado desde aquí.',
+    },
+    collections: {
+      title: 'Colecciones',
+      summary:
+        'Datos propios con esquemas versionados, guardados en la plataforma.',
+    },
+    assets: {
+      title: 'Archivos',
+      summary:
+        'Archivos subidos desde la app, guardados y servidos por la plataforma.',
+    },
+    links: {
+      title: 'Enlaces cortos',
+      summary: 'Enlaces para compartir que cuentan cada clic.',
+    },
+    audience: {
+      title: 'Audiencia y atributos',
+      summary:
+        'Atributos propios en un usuario, una lista de espera y una audiencia de marketing.',
+    },
+    tracking: {
+      title: 'Seguimiento',
+      summary:
+        'Etiquetas de analítica con consentimiento, eventos propios y atribución.',
+    },
+    workflows: {
+      title: 'Flujos de trabajo',
+      summary:
+        'Automatizaciones creadas en la consola, que arrancan con lo que haces aquí.',
+    },
+    reports: {
+      title: 'Informes',
+      summary: 'Cada módulo genera informes; esta app grafica algunos.',
     },
   },
   tasks: {
@@ -524,6 +567,300 @@ export const es: TourTextPartial = {
       title: 'Elimina tu cuenta',
       why: 'Artículo 17 del RGPD: borrada aquí y en la plataforma.',
       steps: ['Profile → Delete my account. Esto termina el recorrido.'],
+    },
+    'help-policy': {
+      title: 'Lee el centro de ayuda',
+      why: 'El contenido editorial vive en la consola, no en este repositorio: un bloque de política, documentos, preguntas frecuentes, testimonios. La app lo lee por la API de la organización con un token que solo está en el servidor.',
+      steps: [
+        'Abre el centro de ayuda.',
+        'Lee el bloque de la política de reembolso.',
+        'Cambia su texto en la consola y recarga.',
+      ],
+    },
+    'help-doc': {
+      title: 'Abre un documento',
+      why: 'Los documentos tienen carpetas y una marca de publicado; la app lista las carpetas desde el árbol y muestra solo lo publicado.',
+      steps: [
+        'En el centro de ayuda, elige un documento en la columna izquierda.',
+      ],
+    },
+    'help-faq': {
+      title: 'Despliega una pregunta frecuente',
+      why: 'Una colección de preguntas frecuentes es una lista escogida de preguntas; la misma pregunta puede estar en varias colecciones.',
+      steps: [
+        'En el centro de ayuda, abre una pregunta bajo Frequently asked.',
+        'Añade una en la consola y recarga.',
+      ],
+    },
+    'help-testimonials': {
+      title: 'Mira los testimonios',
+      why: 'Los testimonios son borradores hasta que alguien los publica en la consola.',
+      steps: ['Baja hasta What customers say en el centro de ayuda.'],
+    },
+    'form-submit': {
+      title: 'Envía el formulario de contacto',
+      why: 'El esquema del formulario se crea en la consola y se sirve en público; cada envío se convierte en un registro de colección y dispara form.submitted. Esta app pasa el envío por su propio servidor para añadir sus comprobaciones.',
+      steps: [
+        'Abre Formularios.',
+        'Rellena el formulario de contacto y envíalo.',
+        'Aparece en Latest submissions.',
+      ],
+    },
+    'form-invalid': {
+      title: 'Envía algo que el formulario rechace',
+      why: 'La plataforma valida contra el esquema vigente y devuelve todos los errores a la vez; la app los muestra tal cual llegan.',
+      steps: [
+        'Deja vacío un campo obligatorio o escribe un correo no válido.',
+        'Envía y lee los errores.',
+      ],
+    },
+    'form-console': {
+      title: 'Mira el envío en la consola',
+      why: 'Cada envío es un registro en la colección del formulario, con un gráfico de envíos en el tiempo.',
+      steps: [
+        'Abre la pantalla Forms de la consola y busca el formulario Contact.',
+      ],
+    },
+    'form-workflow': {
+      title: 'Conecta un flujo al formulario',
+      why: 'form.submitted es un disparador de flujos: enviar un correo de confirmación, publicar en Slack, llamar a tu servidor. Se crea en la consola, aquí no hay nada que desplegar.',
+      steps: [
+        'En la consola, crea un flujo con el disparador form.submitted.',
+        'Envía el formulario otra vez y mira cómo se ejecuta la instancia.',
+      ],
+    },
+    'collection-read': {
+      title: 'Lee las notas de versión',
+      why: 'Una colección son datos propios con un esquema versionado. La app lee los registros de la versión vigente, así que cambiar el esquema es publicar, no desplegar.',
+      steps: [
+        'Abre Colecciones.',
+        'Las columnas de la tabla son los campos de la versión vigente.',
+      ],
+    },
+    'collection-delete': {
+      title: 'Borra un registro',
+      why: 'Las escrituras de registros pasan por la API de la organización con el token de la app; la consola muestra el cambio al momento.',
+      steps: [
+        'Borra una nota de versión de la tabla.',
+        'Revisa la pantalla de registros en la consola.',
+      ],
+    },
+    'collection-version': {
+      title: 'Publica una versión nueva',
+      why: 'Las versiones vigentes no cambian. Una versión nueva copia los campos, añades uno, la activas y la tabla gana una columna.',
+      steps: [
+        'En la consola, añade a release-notes una versión con un campo extra y actívala.',
+        'Recarga Colecciones.',
+      ],
+    },
+    'upload-asset': {
+      title: 'Sube un archivo',
+      why: 'La plataforma guarda y sirve los archivos, de hasta 5 MB cada uno, públicos o privados. El navegador nunca ve el token de la organización: el servidor reenvía la subida.',
+      steps: [
+        'Abre Archivos.',
+        'Elige una imagen y espera a que aparezca en la galería con su ancho y alto.',
+      ],
+    },
+    'asset-in-console': {
+      title: 'Míralo en la consola',
+      why: 'El mismo archivo, en la lista de archivos de la organización, con todo lo que la plataforma sabe de él.',
+      steps: [
+        'Abre la pantalla Assets de la consola.',
+        'Busca el archivo que acabas de subir.',
+      ],
+    },
+    'asset-private': {
+      title: 'Hazlo privado',
+      why: 'La visibilidad es un interruptor en la plataforma; la URL pública de un archivo privado deja de funcionar al instante.',
+      steps: [
+        'En la tarjeta del archivo, elige Make private.',
+        'Abre su URL: ya no se sirve.',
+        'Hazlo público otra vez.',
+      ],
+    },
+    'create-link': {
+      title: 'Crea un enlace corto',
+      why: 'La plataforma emite un id de 12 caracteres y redirige con él; el destino lo decides tú.',
+      steps: [
+        'Abre Enlaces cortos.',
+        'Ponle un nombre y créalo para la URL de esta app.',
+      ],
+    },
+    'click-link': {
+      title: 'Haz clic y mira el contador',
+      why: 'Cada clic se registra con su país, dispositivo y hora; el contador de aquí se lee de vuelta desde la plataforma.',
+      steps: [
+        'Elige Follow: la URL corta se abre en una pestaña nueva y llega al destino.',
+        'Vuelve y actualiza: el contador subió.',
+      ],
+    },
+    'change-link-destination': {
+      title: 'Cambia el destino',
+      why: 'La URL corta no cambia, así que los enlaces ya compartidos siguen funcionando.',
+      steps: [
+        'Elige Change destination, escribe otra URL y guarda.',
+        'Sigue el enlace otra vez: llega al sitio nuevo.',
+      ],
+    },
+    'link-analytics-console': {
+      title: 'Mira la pantalla de analítica',
+      why: 'La consola grafica los clics en el tiempo y lista cada uno.',
+      steps: [
+        'Abre la pantalla Links → Analytics de la consola.',
+        'Busca tus clics.',
+      ],
+    },
+    'finish-onboarding': {
+      title: 'Completa la lista de bienvenida',
+      why: 'Los atributos propios son pares clave/valor en el usuario, que el SDK escribe desde el navegador, en tu nombre. Las claves se definen en la consola para poder filtrar por ellas después.',
+      steps: [
+        'Abre Audiencia.',
+        'Marca las tres casillas, añade un cargo y termina.',
+        'La tarjeta de atributos muestra onboarded=true.',
+      ],
+    },
+    'attributes-in-console': {
+      title: 'Mira los atributos en tu registro',
+      why: 'Lo que escribió la app está en tu usuario en la consola, donde un administrador puede filtrar o segmentar por ello.',
+      steps: [
+        'Abre la pantalla Users de la consola y tu propio registro.',
+        'Busca onboarded y role-title.',
+      ],
+    },
+    'set-country': {
+      title: 'Elige país, zona horaria y moneda',
+      why: 'El SDK trae las listas (países, zonas horarias, monedas), así que el selector no necesita descargar nada; la elección se guarda como atributos.',
+      steps: [
+        'En Audiencia, elige un país, una zona horaria y una moneda.',
+        'Guarda las preferencias.',
+      ],
+    },
+    'subscribe-newsletter': {
+      title: 'Suscríbete al boletín',
+      why: 'Un contacto de audiencia es un registro de marketing, aparte de la cuenta: puede existir sin ella y es a quien se envían las campañas.',
+      steps: [
+        'En Audiencia, suscríbete con tu correo.',
+        'El servidor crea el contacto y lo añade a la lista newsletter.',
+      ],
+    },
+    'join-waitlist': {
+      title: 'Apúntate a la lista de espera sin iniciar sesión',
+      why: 'La lista de espera beta de la plataforma: el formulario y sus textos vienen de la consola, y las altas se aprueban allí.',
+      steps: [
+        'Abre /waitlist en una ventana privada.',
+        'Deja un nombre y un correo.',
+        'En la consola, Users → Beta, aprueba el alta.',
+      ],
+    },
+    'tracking-consent': {
+      title: 'Da tu consentimiento y mira cómo cargan las etiquetas',
+      why: 'Las etiquetas de analítica y publicidad se configuran en la consola, no en este código. El SDK las carga solo tras el consentimiento, y el aviso lista lo que de verdad está instalado, nunca un proveedor que no cargó.',
+      steps: [
+        'Abre Seguimiento.',
+        'Lee la lista de consentimiento: se construye con las etiquetas asociadas a esta app.',
+        'Acepta todo, o solo analítica, y mira qué proveedores se instalan.',
+      ],
+    },
+    'tracking-custom-event': {
+      title: 'Dispara un evento propio',
+      why: 'Los registros y las compras se disparan solos; tus propios eventos pasan por track() hacia la capa de datos y cada proveedor instalado.',
+      steps: [
+        'En Seguimiento, pulsa "Track a custom event".',
+        'Míralo aparecer en el registro en vivo con sus parámetros.',
+      ],
+    },
+    'tracking-attribution': {
+      title: 'Mira de dónde vienes',
+      why: 'Los ids de clic y los parámetros de campaña se capturan en la primera página a la que llega un visitante y viajan con cada evento posterior, entre subdominios.',
+      steps: [
+        'Recarga la página de Seguimiento con ?utm_source=demo&utm_campaign=tour.',
+        'Lee la tarjeta de atribución.',
+      ],
+    },
+    'tracking-console-tag': {
+      title: 'Mira la etiqueta en la consola',
+      why: 'GA4, Meta, PostHog, Clarity y once más, cada una con una categoría de consentimiento y un texto de privacidad que la consola genera para tu política.',
+      steps: [
+        'Abre Settings → Tracking en la consola.',
+        'Abre Auth → Clients y mira la etiqueta asociada a esta app.',
+      ],
+    },
+    'workflow-runs': {
+      title: 'Mira tus ejecuciones de flujos',
+      why: 'Los flujos se crean en la consola: disparadores, acciones y condiciones. La app nunca llama a uno; provoca los eventos que escuchan, y puede leer qué se ejecutó para cada persona.',
+      steps: [
+        'Abre Automatizaciones.',
+        'Lee las ejecuciones que la plataforma inició para ti, con estado y número de nodos.',
+      ],
+    },
+    'workflow-cause': {
+      title: 'Haz que se ejecute un flujo',
+      why: 'Un registro, un envío de formulario, un pago o un saldo bajo inicia una ejecución. Nada en la app nombra el flujo.',
+      steps: [
+        'Envía el formulario de contacto en Formularios.',
+        'Vuelve a Automatizaciones y actualiza: aparece una ejecución de "Provision on form".',
+      ],
+    },
+    'workflow-provision-call': {
+      title: 'Recibe una llamada de un flujo',
+      why: 'Una acción HTTP Webhook puede llamar a tu propio servidor. La llamada no va firmada y la cabecera authorization se elimina, así que lleva un secreto compartido en x-webhook-secret, y la ruta es idempotente, porque la plataforma reintenta.',
+      steps: [
+        'Provoca el flujo "Provision on form".',
+        'En Automatizaciones, lee la llamada de aprovisionamiento que la app recibió y guardó.',
+      ],
+    },
+    'workflow-console-run': {
+      title: 'Abre la ejecución en la consola',
+      why: 'Resultados por nodo, registros, reintentos y una cola de mensajes fallidos, sin nada de eso en tu código.',
+      steps: [
+        'Abre Workflows → Instances en la consola.',
+        'Abre tu ejecución y lee la salida de cada nodo.',
+      ],
+    },
+    'reports-view': {
+      title: 'Mira un informe de la plataforma',
+      why: 'Cada módulo tiene endpoints de gráficos y recuentos, los mismos de los que se alimentan los paneles de la consola. Esta app grafica registros, envíos de formularios y clics en enlaces de los últimos treinta días.',
+      steps: [
+        'Abre Informes.',
+        'Lee los tres gráficos y los recuentos principales.',
+      ],
+    },
+    'reports-console': {
+      title: 'Compáralo con el panel de la consola',
+      why: 'Las cifras coinciden porque salen de los mismos endpoints; algunas son agregados que se actualizan cada diez minutos.',
+      steps: [
+        'Abre el panel de la consola y busca la misma curva de registros.',
+      ],
+    },
+    'see-badge': {
+      title: 'Mira la insignia',
+      why: 'Una imagen y un enlace "Built with BuildBase", generados en el servidor sin script ni llamada de red, con un código de referido opcional.',
+      steps: ['Baja hasta el pie de la página de inicio.'],
+    },
+    'slack-alert': {
+      title: 'Recibe un aviso en Slack cuando alguien se registra',
+      why: 'Los avisos para el equipo de hasta 55 eventos del sistema van a una única URL de incoming-webhook de Slack. Solo en la consola: la app solo provoca los eventos.',
+      steps: [
+        'En la consola, Settings → Slack: pega una URL de incoming-webhook y elige "user.registered".',
+        'Registra un usuario de prueba y mira el canal de Slack.',
+      ],
+    },
+    'receive-campaign': {
+      title: 'Recibe una campaña de correo',
+      why: 'El correo a escala de audiencia se escribe y envía desde la consola: plantilla, dominio de envío verificado, lista de audiencia, borradores por destinatario, seguimiento de aperturas y clics.',
+      steps: [
+        'Únete al boletín en Audiencia.',
+        'En la consola, Emails → Campaigns: crea una para esa lista y envíala.',
+        'Léela en tu bandeja de entrada.',
+      ],
+    },
+    'unsubscribe-campaign': {
+      title: 'Date de baja',
+      why: 'La etiqueta {{unsubscribe}} lleva a una página alojada; el contacto queda marcado como dado de baja y se omite a partir de entonces.',
+      steps: [
+        'Pulsa unsubscribe en el correo de la campaña.',
+        'En la consola, busca el contacto en Audience: unsubscribed.',
+      ],
     },
   },
 };

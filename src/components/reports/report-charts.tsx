@@ -63,8 +63,8 @@ export function ReportCharts() {
           {headline.slice(0, 4).map(([k, v]) => (
             <Card key={k}>
               <CardHeader className="pb-2">
-                <CardDescription className="font-mono text-xs">
-                  {k}
+                <CardDescription>
+                  {k === 'current' || k === 'previous' ? t(`counts.${k}`) : k}
                 </CardDescription>
               </CardHeader>
               <CardContent>
