@@ -100,7 +100,7 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'عرض مباشر · 67 مهمة',
+      badge: 'عرض مباشر · {count} مهمة',
       heading: 'كل قدرة من BuildBase، <highlight>مهمة تلو الأخرى</highlight>',
       description:
         'تطبيق حقيقي مبني على BuildBase SDK مع جولة موجهة: سجّل الدخول وجرّب التسجيل ومساحات العمل والفوترة والاستخدام والرصيد والإشعارات والوكلاء والـ webhooks، وكل منها يبيّن مصدره.',
@@ -211,6 +211,7 @@ const messages: Messages = {
       role: {
         title: 'دورك',
         empty: 'غير متوفر',
+        owner: 'المالك',
       },
       email: {
         title: 'البريد الإلكتروني',

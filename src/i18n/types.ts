@@ -202,6 +202,8 @@ export interface DashboardMessages {
     role: {
       title: string;
       empty: string;
+      /** Shown after the workspace role when the viewer created the workspace. */
+      owner: string;
     };
     email: {
       title: string;

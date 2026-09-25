@@ -100,7 +100,7 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'लाइव डेमो · 67 कार्य',
+      badge: 'लाइव डेमो · {count} कार्य',
       heading:
         'BuildBase की हर क्षमता, <highlight>एक बार में एक कार्य</highlight>',
       description:
@@ -213,6 +213,7 @@ const messages: Messages = {
       role: {
         title: 'आपकी भूमिका',
         empty: 'N/A',
+        owner: 'स्वामी',
       },
       email: {
         title: 'ईमेल पता',

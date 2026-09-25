@@ -100,7 +100,7 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: '在线演示 · 67 项任务',
+      badge: '在线演示 · {count} 项任务',
       heading: 'BuildBase 的每一项能力，<highlight>逐项体验</highlight>',
       description:
         '基于 BuildBase SDK 的真实应用，配有引导式导览：登录后依次体验注册、工作区、计费、用量、积分、通知、代理和 Webhook，每一项都说明它来自哪里。',
@@ -208,6 +208,7 @@ const messages: Messages = {
       role: {
         title: '您的角色',
         empty: '不适用',
+        owner: '所有者',
       },
       email: {
         title: '邮箱',

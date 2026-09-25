@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from '@/i18n/routing';
 import { siteConfig } from '@/config/site';
+import { TOUR_TASKS } from '@/tour/catalog';
 import {
   WhenAuthenticated,
   WhenUnauthenticated,
@@ -50,7 +51,7 @@ export function HeroSection() {
         className="gap-1.5 px-3 py-1 text-xs font-medium"
       >
         <span className="bg-primary h-1.5 w-1.5 animate-pulse rounded-full" />
-        {t('hero.badge')}
+        {t('hero.badge', { count: TOUR_TASKS.length })}
       </Badge>
 
       {/* Headline */}

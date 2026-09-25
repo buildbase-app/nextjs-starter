@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import {
   useSaaSAuth,
+  usePermissions,
   useSaaSWorkspaces,
   useSubscription,
   useTrialStatus,
@@ -37,6 +38,7 @@ export default function DashboardPage() {
   const { user, openPlanPicker, openWorkspaceSettings } = useSaaSAuth();
   const { currentWorkspace } = useSaaSWorkspaces();
   const t = useTranslations('dashboard');
+  const { role: workspaceRole, isOwner } = usePermissions();
   const { subscription, loading: subLoading } = useSubscription(
     currentWorkspace?._id ?? ''
   );
@@ -147,8 +149,15 @@ export default function DashboardPage() {
             <CardDescription>{t('cards.role.title')}</CardDescription>
           </CardHeader>
           <CardContent>
+            {/* The workspace role, the one the Team and Permissions pages show.
+                `user.role` is the account's role in the app (`user`), a
+                different thing that read as a contradiction here. */}
             <p className="text-2xl font-bold capitalize">
-              {user?.role || t('cards.role.empty')}
+              {currentWorkspace && workspaceRole
+                ? isOwner
+                  ? `${workspaceRole} · ${t('cards.role.owner')}`
+                  : workspaceRole
+                : t('cards.role.empty')}
             </p>
           </CardContent>
         </Card>

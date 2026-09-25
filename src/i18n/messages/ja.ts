@@ -100,7 +100,7 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'ライブデモ · 67タスク',
+      badge: 'ライブデモ · {count}タスク',
       heading: 'BuildBaseのすべての機能を、<highlight>ひとつずつ</highlight>',
       description:
         'BuildBase SDKで作られた実際のアプリとガイド付きツアー。サインインして、登録、ワークスペース、請求、使用量、クレジット、通知、エージェント、Webhookを順に試し、それぞれの出どころを確認できます。',
@@ -213,6 +213,7 @@ const messages: Messages = {
       role: {
         title: 'あなたの役割',
         empty: 'N/A',
+        owner: 'オーナー',
       },
       email: {
         title: 'メールアドレス',

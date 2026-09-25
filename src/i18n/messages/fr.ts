@@ -100,7 +100,7 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'Démo en direct · 67 tâches',
+      badge: 'Démo en direct · {count} tâches',
       heading:
         'Chaque capacité de BuildBase, <highlight>une tâche à la fois</highlight>',
       description:
@@ -214,6 +214,7 @@ const messages: Messages = {
       role: {
         title: 'Votre rôle',
         empty: 'N/A',
+        owner: 'Propriétaire',
       },
       email: {
         title: 'Adresse e-mail',
