@@ -22,6 +22,14 @@ import {
   Receipt,
   Building2,
   ListChecks,
+  ClipboardList,
+  Database,
+  Image as ImageIcon,
+  Link2,
+  Contact,
+  Activity,
+  Workflow,
+  PieChart,
   Inbox,
 } from 'lucide-react';
 import {
