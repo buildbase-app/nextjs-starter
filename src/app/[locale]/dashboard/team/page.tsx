@@ -40,13 +40,16 @@ export default function TeamPage() {
   const { currentWorkspace, updateUser } = useSaaSWorkspaces();
   const invitationList = useWorkspaceInvitations(currentWorkspace?._id);
   // A pending invitation holds a seat, so the ceiling counts it too.
+  const { settings } = useSaaSSettings();
+  // The org's member ceiling, as the SDK's own members screen passes it; left
+  // out, this page showed no limit where that screen showed 1/50.
   const seatStatus = useSeatStatus(currentWorkspace ?? null, {
     pendingInvitations: invitationList.pendingCount,
+    settingsMaxUsers: settings?.workspace?.maxWorkspaceUsers,
   });
   const [changing, setChanging] = useState<string | null>(null);
 
   const members = currentWorkspace?.users ?? [];
-  const { settings } = useSaaSSettings();
   const roles = settings?.workspace?.roles?.length
     ? settings.workspace.roles
     : (currentWorkspace?.roles ?? []);

@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import {
   useSaaSAuth,
   usePermissions,
+  useSaaSSettings,
   useSaaSWorkspaces,
   useSubscription,
   useTrialStatus,
@@ -43,7 +44,10 @@ export default function DashboardPage() {
     currentWorkspace?._id ?? ''
   );
   const { isTrialing, daysRemaining, trialEndsAt } = useTrialStatus();
-  const seatStatus = useSeatStatus(currentWorkspace ?? null);
+  const { settings } = useSaaSSettings();
+  const seatStatus = useSeatStatus(currentWorkspace ?? null, {
+    settingsMaxUsers: settings?.workspace?.maxWorkspaceUsers,
+  });
 
   const plan = subscription?.plan;
 
