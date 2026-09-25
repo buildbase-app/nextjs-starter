@@ -971,6 +971,298 @@ const messages: Messages = {
     next: 'Siguiente',
     dashboardCta: 'Continuar',
   },
+  help: {
+    title: 'Centro de ayuda',
+    description:
+      'Todo en esta página se escribió en la consola: una política, docs, preguntas frecuentes y testimonios. Cámbialo allí, recarga aquí.',
+    notConfigured: {
+      title: 'Aún no hay contenido',
+      token:
+        'Esta app no tiene token de API de la organización, así que no puede leer contenido de la consola. Define BUILDBASE_API_TOKEN.',
+      empty:
+        'La organización aún no tiene el contenido de demo. Siémbralo con:',
+    },
+    from: {
+      richContent: 'contenido enriquecido',
+      docs: 'docs',
+      faqs: 'colección de FAQ',
+      testimonials: 'testimonios',
+    },
+    docs: {
+      title: 'Documentación',
+      empty: 'Aún no hay docs publicados.',
+    },
+    faq: {
+      title: 'Preguntas frecuentes',
+    },
+    testimonials: {
+      title: 'Lo que dicen los clientes',
+    },
+  },
+  forms: {
+    title: 'Formularios',
+    description:
+      'Un formulario creado en la consola, renderizado desde su esquema en vivo y enviado a través de esta app.',
+    loading: 'Cargando el formulario…',
+    fromConsole: 'Los campos vienen de la consola; añade uno allí y recarga.',
+    submit: 'Enviar',
+    sending: 'Enviando…',
+    sent: 'Enviado',
+    hint: 'Los envíos se guardan como registros de una colección y disparan el evento form.submitted.',
+    errors: {
+      title: 'La plataforma rechazó este envío',
+      generic: 'Algo no fue aceptado.',
+    },
+    missing: {
+      title: 'Aún no hay formulario de contacto',
+      token:
+        'Esta app no tiene token de API de la organización. Define BUILDBASE_API_TOKEN.',
+      form: 'La organización no tiene un formulario llamado Contact. Siémbralo con:',
+    },
+    toast: {
+      sent: 'Enviado. Ya es un registro en la plataforma.',
+    },
+    submissions: {
+      title: 'Últimos envíos',
+      description: 'Leídos desde la colección del formulario.',
+      refresh: 'Actualizar',
+      empty: 'Nada enviado todavía.',
+    },
+  },
+  collections: {
+    title: 'Colecciones',
+    description:
+      'Datos personalizados en la plataforma: un esquema versionado y registros sobre la versión en vivo.',
+    loading: 'Cargando registros…',
+    liveVersion: 'Versión en vivo {version} ({name}), {fields} campos',
+    noLiveVersion: 'Sin versión en vivo. Publica una en la consola.',
+    refresh: 'Actualizar',
+    empty: 'Sin registros. Siembra algunos o añade uno en la consola.',
+    actions: 'Acciones',
+    delete: 'Eliminar registro',
+    hint: 'Publica una nueva versión con un campo extra en la consola; la columna aparece aquí al recargar.',
+    missing: {
+      title: 'Aún no hay colección release-notes',
+      token:
+        'Esta app no tiene token de API de la organización. Define BUILDBASE_API_TOKEN.',
+      collection:
+        'La organización no tiene una colección con slug release-notes. Siémbrala con:',
+    },
+    toast: {
+      deleted: 'Registro eliminado en la plataforma.',
+      deleteFailed: 'No se pudo eliminar el registro.',
+    },
+  },
+  tracking: {
+    title: 'Seguimiento',
+    description:
+      'Etiquetas de analítica y anuncios desde la consola, cargadas tras el consentimiento, con tus propios eventos y atribución.',
+    loading: 'Cargando…',
+    consent: {
+      title: 'Consentimiento',
+      description:
+        'Construido a partir de las etiquetas asignadas a esta app, nunca de toda la biblioteca.',
+      noTags:
+        'Ninguna etiqueta está asignada a esta app. Añade una en la consola en Ajustes → Seguimiento y asígnala al cliente.',
+      privacy: 'Privacidad',
+      analytics: 'analítica',
+      marketing: 'marketing',
+      acceptAll: 'Aceptar todo',
+      analyticsOnly: 'Solo analítica',
+      denyAll: 'Rechazar todo',
+      state: 'Estado actual',
+      unset: 'aún no preguntado',
+    },
+    installed: {
+      title: 'Proveedores instalados',
+      description:
+        'Lo que realmente se cargó en este navegador tras el consentimiento.',
+      none: 'No se cargó nada. Da tu consentimiento o asigna una etiqueta en la consola.',
+    },
+    custom: {
+      title: 'Registrar un evento propio',
+      description:
+        'Tus eventos van a la capa de datos y a cada proveedor instalado.',
+      button: 'Registrar report_exported',
+      fired: 'Enviado {count} vez/veces',
+    },
+    attribution: {
+      title: 'Atribución',
+      description:
+        'De dónde vino este visitante: ids de clic y parámetros de campaña, capturados en la primera página.',
+      empty: 'Nada capturado. Recarga con',
+    },
+    log: {
+      title: 'Registro de eventos en vivo',
+      description:
+        'Cada evento que el SDK envió en esta pestaña, incluidos los que envía por sí mismo.',
+      empty: 'Sin eventos aún. Navega, o registra uno arriba.',
+    },
+  },
+  automations: {
+    title: 'Automatizaciones',
+    description:
+      'Los flujos se construyen en la consola; esta app provoca los eventos que escuchan y lee lo que se ejecutó para ti.',
+    refresh: 'Actualizar',
+    loading: 'Cargando…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN no está configurado, así que esta app no puede leer las ejecuciones.',
+    error: 'No se pudieron cargar las ejecuciones',
+    runs: {
+      title: 'Tus ejecuciones',
+      description:
+        'Instancias de flujo que la plataforma inició para tu cuenta.',
+      empty:
+        'Sin ejecuciones aún. Envía el formulario de contacto o registra un usuario nuevo, y actualiza.',
+      workflow: 'Flujo',
+      event: 'Evento',
+      status: 'Estado',
+      nodes: 'Nodos hechos',
+      started: 'Inicio',
+    },
+    calls: {
+      title: 'Llamadas a esta app',
+      description:
+        'Lo que la acción HTTP Webhook de un flujo envió a /api/buildbase/provision, verificado con secreto compartido.',
+      empty: 'Aún no se recibieron llamadas de aprovisionamiento.',
+    },
+  },
+  reports: {
+    title: 'Informes',
+    description:
+      'Cada módulo informa por los mismos endpoints de gráficos y recuentos; tres de ellos, para los últimos treinta días.',
+    notConfigured:
+      'BUILDBASE_API_TOKEN no está configurado, así que esta app no puede leer informes.',
+    loading: 'Cargando…',
+    refresh: 'Actualizar',
+    window: '{from} a {to}',
+    unavailable: 'No disponible',
+    series: {
+      users: {
+        title: 'Registros',
+        description: 'Usuarios nuevos por día.',
+      },
+      forms: {
+        title: 'Envíos de formulario',
+        description: 'Envíos del formulario de contacto por día.',
+      },
+      links: {
+        title: 'Clics en enlaces',
+        description: 'Clics en enlaces cortos por día.',
+      },
+    },
+  },
+  assets: {
+    title: 'Archivos',
+    description:
+      'Archivos subidos desde esta app, almacenados y servidos por la plataforma.',
+    upload: 'Subir un archivo',
+    uploading: 'Subiendo…',
+    limit: 'Hasta 5 MB. Las imágenes muestran vista previa.',
+    uploaded: 'Subido',
+    gallery: 'Archivos',
+    empty: 'Aún no hay archivos. Sube uno arriba.',
+    public: 'Público',
+    private: 'Privado',
+    makePrivate: 'Hacer privado',
+    makePublic: 'Hacer público',
+    nowPublic: 'Ahora es público: la URL vuelve a funcionar.',
+    nowPrivate: 'Ahora es privado: la URL pública deja de funcionar.',
+    openUrl: 'Abrir',
+    tooLarge: 'Ese archivo supera 5 MB.',
+    loadFailed: 'No se pudo contactar con la plataforma.',
+    notConfigured:
+      'Esta página lee la organización con un token de API. Define BUILDBASE_API_TOKEN (consola → Settings → Tokens) y reinicia.',
+  },
+  links: {
+    title: 'Enlaces cortos',
+    description:
+      'Enlaces para compartir que la plataforma redirige y cuenta, clic a clic.',
+    create: 'Crear un enlace corto',
+    createHint:
+      'Cualquier URL. La plataforma asigna un id de 12 caracteres y registra cada clic con su país y dispositivo.',
+    name: 'Nombre',
+    url: 'URL de destino',
+    createButton: 'Crear',
+    created: 'Enlace creado',
+    yourLinks: 'Tus enlaces',
+    clicksHint:
+      'Sigue un enlace y luego actualiza: el recuento viene de la plataforma, no de esta página.',
+    refresh: 'Actualizar',
+    empty: 'Aún no hay enlaces.',
+    clicks: 'clics',
+    copy: 'Copiar la URL corta',
+    copied: 'Copiado',
+    follow: 'Seguir',
+    changeDestination: 'Cambiar destino',
+    save: 'Guardar',
+    cancel: 'Cancelar',
+    updated: 'Destino cambiado. La URL corta es la misma.',
+    chart: 'Clics, últimos 14 días',
+    chartHint: 'Todos los enlaces juntos, por día.',
+    chartEmpty: 'Aún no hay clics.',
+    loadFailed: 'No se pudo contactar con la plataforma.',
+    notConfigured:
+      'Esta página lee la organización con un token de API. Define BUILDBASE_API_TOKEN (consola → Settings → Tokens) y reinicia.',
+  },
+  audience: {
+    title: 'Audiencia y atributos',
+    description:
+      'Lo que la plataforma guarda de una persona más allá de la cuenta: atributos personalizados, un contacto de marketing y una lista de espera.',
+    failed: 'No se pudo guardar.',
+    notConfigured: 'El boletín necesita BUILDBASE_API_TOKEN en el servidor.',
+    onboarding: {
+      title: 'Lista de bienvenida',
+      description:
+        'Marca las tres y guarda: el SDK escribe onboarded=true y tu cargo como atributos de usuario, en tu navegador, como tú.',
+      items: {
+        profile: 'Completé mi perfil',
+        workspace: 'Creé un espacio de trabajo',
+        invite: 'Invité a alguien',
+      },
+      role: 'Tu cargo (opcional)',
+      save: 'Terminar la bienvenida',
+      saved: 'Guardado. Abre tu registro en la consola para verlo.',
+      already: 'Ya completaste la bienvenida, según tus atributos.',
+    },
+    attributes: {
+      title: 'Tus atributos',
+      description:
+        'Las claves se definen en la consola (Users → Attributes); los valores viven en tu usuario.',
+      empty: 'Aún no hay atributos.',
+    },
+    locale: {
+      title: 'País, zona horaria, moneda',
+      description:
+        'Las listas vienen con el SDK (@buildbase/sdk/data), sin descargas.',
+      country: 'País',
+      timezone: 'Zona horaria',
+      currency: 'Moneda',
+      save: 'Guardar preferencias',
+      saved: 'Preferencias guardadas como atributos.',
+    },
+    newsletter: {
+      title: 'Boletín',
+      description:
+        'Un contacto de marketing es independiente de tu cuenta: puede existir sin ella. El servidor lo crea con el token de la organización y lo añade a la lista del boletín.',
+      email: 'Correo',
+      subscribe: 'Suscribirse',
+      subscribed: 'Suscrito',
+      listed: 'Añadido a la lista {list}.',
+      noList:
+        'Contacto creado; esta organización aún no tiene lista de boletín.',
+      waitlistHint:
+        'Los visitantes sin sesión pueden unirse a la lista de espera beta en',
+    },
+  },
+  waitlist: {
+    title: 'Únete a la lista de espera',
+    description:
+      'El formulario beta de la plataforma: deja tu nombre y correo, un administrador te aprueba en la consola.',
+    success:
+      'Estás en la lista. Un administrador te aprobará desde la consola.',
+    note: 'El formulario y sus textos vienen de la configuración beta de la organización (consola → Users → Beta).',
+  },
 };
 
 export default messages;

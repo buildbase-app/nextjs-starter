@@ -886,6 +886,271 @@ export interface TourMessages {
   dashboardCta: string;
 }
 
+export interface HelpMessages {
+  title: string;
+  description: string;
+  notConfigured: {
+    title: string;
+    token: string;
+    empty: string;
+  };
+  from: {
+    richContent: string;
+    docs: string;
+    faqs: string;
+    testimonials: string;
+  };
+  docs: {
+    title: string;
+    empty: string;
+  };
+  faq: {
+    title: string;
+  };
+  testimonials: {
+    title: string;
+  };
+}
+
+export interface FormsMessages {
+  title: string;
+  description: string;
+  loading: string;
+  fromConsole: string;
+  submit: string;
+  sending: string;
+  sent: string;
+  hint: string;
+  errors: {
+    title: string;
+    generic: string;
+  };
+  missing: {
+    title: string;
+    token: string;
+    form: string;
+  };
+  toast: {
+    sent: string;
+  };
+  submissions: {
+    title: string;
+    description: string;
+    refresh: string;
+    empty: string;
+  };
+}
+
+export interface CollectionsMessages {
+  title: string;
+  description: string;
+  loading: string;
+  liveVersion: string;
+  noLiveVersion: string;
+  refresh: string;
+  empty: string;
+  actions: string;
+  delete: string;
+  hint: string;
+  missing: {
+    title: string;
+    token: string;
+    collection: string;
+  };
+  toast: {
+    deleted: string;
+    deleteFailed: string;
+  };
+}
+
+export interface TrackingMessages {
+  title: string;
+  description: string;
+  loading: string;
+  consent: {
+    title: string;
+    description: string;
+    noTags: string;
+    privacy: string;
+    analytics: string;
+    marketing: string;
+    acceptAll: string;
+    analyticsOnly: string;
+    denyAll: string;
+    state: string;
+    unset: string;
+  };
+  installed: {
+    title: string;
+    description: string;
+    none: string;
+  };
+  custom: {
+    title: string;
+    description: string;
+    button: string;
+    fired: string;
+  };
+  attribution: {
+    title: string;
+    description: string;
+    empty: string;
+  };
+  log: {
+    title: string;
+    description: string;
+    empty: string;
+  };
+}
+
+export interface AutomationsMessages {
+  title: string;
+  description: string;
+  refresh: string;
+  loading: string;
+  notConfigured: string;
+  error: string;
+  runs: {
+    title: string;
+    description: string;
+    empty: string;
+    workflow: string;
+    event: string;
+    status: string;
+    nodes: string;
+    started: string;
+  };
+  calls: {
+    title: string;
+    description: string;
+    empty: string;
+  };
+}
+
+export interface ReportsMessages {
+  title: string;
+  description: string;
+  notConfigured: string;
+  loading: string;
+  refresh: string;
+  window: string;
+  unavailable: string;
+  series: {
+    users: {
+      title: string;
+      description: string;
+    };
+    forms: {
+      title: string;
+      description: string;
+    };
+    links: {
+      title: string;
+      description: string;
+    };
+  };
+}
+
+export interface AssetsMessages {
+  title: string;
+  description: string;
+  upload: string;
+  uploading: string;
+  limit: string;
+  uploaded: string;
+  gallery: string;
+  empty: string;
+  public: string;
+  private: string;
+  makePrivate: string;
+  makePublic: string;
+  nowPublic: string;
+  nowPrivate: string;
+  openUrl: string;
+  tooLarge: string;
+  loadFailed: string;
+  notConfigured: string;
+}
+
+export interface LinksMessages {
+  title: string;
+  description: string;
+  create: string;
+  createHint: string;
+  name: string;
+  url: string;
+  createButton: string;
+  created: string;
+  yourLinks: string;
+  clicksHint: string;
+  refresh: string;
+  empty: string;
+  clicks: string;
+  copy: string;
+  copied: string;
+  follow: string;
+  changeDestination: string;
+  save: string;
+  cancel: string;
+  updated: string;
+  chart: string;
+  chartHint: string;
+  chartEmpty: string;
+  loadFailed: string;
+  notConfigured: string;
+}
+
+export interface AudienceMessages {
+  title: string;
+  description: string;
+  failed: string;
+  notConfigured: string;
+  onboarding: {
+    title: string;
+    description: string;
+    items: {
+      profile: string;
+      workspace: string;
+      invite: string;
+    };
+    role: string;
+    save: string;
+    saved: string;
+    already: string;
+  };
+  attributes: {
+    title: string;
+    description: string;
+    empty: string;
+  };
+  locale: {
+    title: string;
+    description: string;
+    country: string;
+    timezone: string;
+    currency: string;
+    save: string;
+    saved: string;
+  };
+  newsletter: {
+    title: string;
+    description: string;
+    email: string;
+    subscribe: string;
+    subscribed: string;
+    listed: string;
+    noList: string;
+    waitlistHint: string;
+  };
+}
+
+export interface WaitlistMessages {
+  title: string;
+  description: string;
+  success: string;
+  note: string;
+}
+
 // Combined messages type
 export interface Messages {
   common: CommonMessages;
@@ -909,6 +1174,16 @@ export interface Messages {
   changelog: ChangelogMessages;
   tour: TourMessages;
   inbox: InboxMessages;
+  tracking: TrackingMessages;
+  automations: AutomationsMessages;
+  reports: ReportsMessages;
+  help: HelpMessages;
+  forms: FormsMessages;
+  collections: CollectionsMessages;
+  assets: AssetsMessages;
+  links: LinksMessages;
+  audience: AudienceMessages;
+  waitlist: WaitlistMessages;
 }
 
 // For next-intl type inference

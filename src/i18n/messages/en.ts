@@ -956,6 +956,291 @@ const messages: Messages = {
     next: 'Next',
     dashboardCta: 'Continue',
   },
+  help: {
+    title: 'Help center',
+    description:
+      'Everything on this page was written in the console: a policy block, docs, FAQs and testimonials. Change it there, reload here.',
+    notConfigured: {
+      title: 'No content yet',
+      token:
+        'This app has no organization API token, so it cannot read console content. Set BUILDBASE_API_TOKEN.',
+      empty: 'The organization has none of the demo content yet. Seed it with:',
+    },
+    from: {
+      richContent: 'rich content',
+      docs: 'docs',
+      faqs: 'faq collection',
+      testimonials: 'testimonials',
+    },
+    docs: {
+      title: 'Documentation',
+      empty: 'No published docs yet.',
+    },
+    faq: {
+      title: 'Frequently asked',
+    },
+    testimonials: {
+      title: 'What customers say',
+    },
+  },
+  forms: {
+    title: 'Forms',
+    description:
+      'A form built in the console, rendered from its live schema and submitted through this app.',
+    loading: 'Loading the form…',
+    fromConsole: 'Fields come from the console; add one there and reload.',
+    submit: 'Send',
+    sending: 'Sending…',
+    sent: 'Sent',
+    hint: 'Submissions are stored as collection records and fire the form.submitted event.',
+    errors: {
+      title: 'The platform refused this submission',
+      generic: 'Something was not accepted.',
+    },
+    missing: {
+      title: 'No contact form yet',
+      token: 'This app has no organization API token. Set BUILDBASE_API_TOKEN.',
+      form: 'The organization has no form named Contact. Seed it with:',
+    },
+    toast: {
+      sent: 'Submitted. It is now a record on the platform.',
+    },
+    submissions: {
+      title: 'Latest submissions',
+      description: "Read back from the form's collection.",
+      refresh: 'Refresh',
+      empty: 'Nothing submitted yet.',
+    },
+  },
+  collections: {
+    title: 'Collections',
+    description:
+      'Custom data on the platform: a versioned schema, records against the live version.',
+    loading: 'Loading records…',
+    liveVersion: 'Live version {version} ({name}), {fields} fields',
+    noLiveVersion: 'No live version. Publish one in the console.',
+    refresh: 'Refresh',
+    empty: 'No records. Seed some or add one in the console.',
+    actions: 'Actions',
+    delete: 'Delete record',
+    hint: 'Publish a new version with an extra field in the console; the column appears here on reload.',
+    missing: {
+      title: 'No release-notes collection yet',
+      token: 'This app has no organization API token. Set BUILDBASE_API_TOKEN.',
+      collection:
+        'The organization has no collection with slug release-notes. Seed it with:',
+    },
+    toast: {
+      deleted: 'Record deleted on the platform.',
+      deleteFailed: 'Could not delete the record.',
+    },
+  },
+  tracking: {
+    title: 'Tracking',
+    description:
+      'Analytics and ad tags from the console, loaded after consent, with your own events and attribution.',
+    loading: 'Loading…',
+    consent: {
+      title: 'Consent',
+      description:
+        'Built from the tags attached to this app, never from the whole library.',
+      noTags:
+        'No tags are attached to this app yet. Add one in the console under Settings → Tracking and attach it to the client.',
+      privacy: 'Privacy',
+      analytics: 'analytics',
+      marketing: 'marketing',
+      acceptAll: 'Accept all',
+      analyticsOnly: 'Analytics only',
+      denyAll: 'Deny all',
+      state: 'Current state',
+      unset: 'not asked yet',
+    },
+    installed: {
+      title: 'Installed providers',
+      description: 'What actually loaded in this browser after consent.',
+      none: 'Nothing loaded. Give consent, or attach a tag in the console.',
+    },
+    custom: {
+      title: 'Track a custom event',
+      description:
+        'Your own events go to the data layer and every installed vendor.',
+      button: 'Track report_exported',
+      fired: 'Fired {count} time(s)',
+    },
+    attribution: {
+      title: 'Attribution',
+      description:
+        'Where this visitor came from: click ids and campaign parameters, captured on the first page.',
+      empty: 'Nothing captured. Reload with',
+    },
+    log: {
+      title: 'Live event log',
+      description:
+        'Every event the SDK fired in this tab, including the ones it fires on its own.',
+      empty: 'No events yet. Navigate around, or track one above.',
+    },
+  },
+  automations: {
+    title: 'Automations',
+    description:
+      'Workflows are built in the console; this app causes the events they listen for and reads what ran for you.',
+    refresh: 'Refresh',
+    loading: 'Loading…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN is not configured, so this app cannot read workflow runs.',
+    error: 'Could not load runs',
+    runs: {
+      title: 'Your runs',
+      description: 'Workflow instances the platform started for your account.',
+      empty:
+        'No runs yet. Submit the contact form, or sign up a new user, and refresh.',
+      workflow: 'Workflow',
+      event: 'Event',
+      status: 'Status',
+      nodes: 'Nodes done',
+      started: 'Started',
+    },
+    calls: {
+      title: 'Calls into this app',
+      description:
+        "What a workflow's HTTP Webhook action sent to /api/buildbase/provision, verified by shared secret.",
+      empty: 'No provisioning calls received yet.',
+    },
+  },
+  reports: {
+    title: 'Reports',
+    description:
+      'Every module reports through the same chart and count endpoints; three of them, for the last thirty days.',
+    notConfigured:
+      'BUILDBASE_API_TOKEN is not configured, so this app cannot read reports.',
+    loading: 'Loading…',
+    refresh: 'Refresh',
+    window: '{from} to {to}',
+    unavailable: 'Unavailable',
+    series: {
+      users: {
+        title: 'Sign-ups',
+        description: 'New users per day.',
+      },
+      forms: {
+        title: 'Form submissions',
+        description: 'Submissions of the contact form per day.',
+      },
+      links: {
+        title: 'Link clicks',
+        description: 'Short-link clicks per day.',
+      },
+    },
+  },
+  assets: {
+    title: 'Assets',
+    description:
+      'Files uploaded through this app, stored and served by the platform.',
+    upload: 'Upload a file',
+    uploading: 'Uploading…',
+    limit: 'Up to 5 MB. Images show a preview.',
+    uploaded: 'Uploaded',
+    gallery: 'Files',
+    empty: 'No files yet. Upload one above.',
+    public: 'Public',
+    private: 'Private',
+    makePrivate: 'Make private',
+    makePublic: 'Make public',
+    nowPublic: 'Now public: the URL works again.',
+    nowPrivate: 'Now private: the public URL stops working.',
+    openUrl: 'Open',
+    tooLarge: 'That file is over 5 MB.',
+    loadFailed: 'Could not talk to the platform.',
+    notConfigured:
+      'This page reads the organization through an API token. Set BUILDBASE_API_TOKEN (console → Settings → Tokens) and restart.',
+  },
+  links: {
+    title: 'Short links',
+    description:
+      'Share links the platform redirects and counts, one click at a time.',
+    create: 'Create a short link',
+    createHint:
+      'Any URL. The platform issues a 12-character id and records every click with its country and device.',
+    name: 'Name',
+    url: 'Destination URL',
+    createButton: 'Create',
+    created: 'Link created',
+    yourLinks: 'Your links',
+    clicksHint:
+      'Follow a link, then refresh: the count comes from the platform, not from this page.',
+    refresh: 'Refresh',
+    empty: 'No links yet.',
+    clicks: 'clicks',
+    copy: 'Copy the short URL',
+    copied: 'Copied',
+    follow: 'Follow',
+    changeDestination: 'Change destination',
+    save: 'Save',
+    cancel: 'Cancel',
+    updated: 'Destination changed. The short URL is the same.',
+    chart: 'Clicks, last 14 days',
+    chartHint: 'All links together, per day.',
+    chartEmpty: 'No clicks yet.',
+    loadFailed: 'Could not talk to the platform.',
+    notConfigured:
+      'This page reads the organization through an API token. Set BUILDBASE_API_TOKEN (console → Settings → Tokens) and restart.',
+  },
+  audience: {
+    title: 'Audience and attributes',
+    description:
+      'What the platform keeps about a person beyond the account: custom attributes, a marketing contact, and a waitlist.',
+    failed: 'Could not save.',
+    notConfigured: 'The newsletter needs BUILDBASE_API_TOKEN on the server.',
+    onboarding: {
+      title: 'Onboarding checklist',
+      description:
+        'Tick all three and save: the SDK writes onboarded=true and your role title as user attributes, in your browser, as you.',
+      items: {
+        profile: 'I filled in my profile',
+        workspace: 'I created a workspace',
+        invite: 'I invited someone',
+      },
+      role: 'Your role title (optional)',
+      save: 'Finish onboarding',
+      saved: 'Saved. Open your record in the console to see it.',
+      already: 'Already onboarded, according to your attributes.',
+    },
+    attributes: {
+      title: 'Your attributes',
+      description:
+        'Keys are defined in the console (Users → Attributes); values live on your user.',
+      empty: 'No attributes yet.',
+    },
+    locale: {
+      title: 'Country, timezone, currency',
+      description:
+        'The lists come with the SDK (@buildbase/sdk/data), no download.',
+      country: 'Country',
+      timezone: 'Timezone',
+      currency: 'Currency',
+      save: 'Save preferences',
+      saved: 'Preferences saved as attributes.',
+    },
+    newsletter: {
+      title: 'Newsletter',
+      description:
+        'A marketing contact is separate from your account: it can exist without one. The server creates it with the org token and adds it to the newsletter list.',
+      email: 'Email',
+      subscribe: 'Subscribe',
+      subscribed: 'Subscribed',
+      listed: 'Added to the {list} list.',
+      noList:
+        'Contact created; no newsletter list exists on this organization yet.',
+      waitlistHint: 'Signed-out visitors can join the beta waitlist at',
+    },
+  },
+  waitlist: {
+    title: 'Join the waitlist',
+    description:
+      'The platform’s beta form: leave your name and email, an admin approves you in the console.',
+    success: 'You are on the list. An admin will approve you from the console.',
+    note: 'The form and its copy come from the organization’s beta configuration (console → Users → Beta).',
+  },
 };
 
 export default messages;

@@ -21,6 +21,15 @@ export const TOUR_GROUP_IDS: TourGroupId[] = [
   'push',
   'agents',
   'webhooks',
+  'content',
+  'forms',
+  'collections',
+  'assets',
+  'links',
+  'audience',
+  'tracking',
+  'workflows',
+  'reports',
   'platform',
 ];
 
@@ -921,32 +930,567 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
   },
   // ── Content ──
-  // (tasks added by the content builder)
+  {
+    id: 'help-policy',
+    group: 'content',
+    href: '/help',
+    source: {
+      console: {
+        screen: '/dashboard/admin/rich-content',
+        note: 'Rich-text blocks with a slug; this app reads refund-policy.',
+      },
+      app: ['src/lib/platform/content.ts', 'src/app/[locale]/help/page.tsx'],
+    },
+    code: {
+      title: 'src/lib/platform/content.ts',
+      lang: 'ts',
+      body: "const policy = await adminFetch<RichContent>('rich-content/slug/refund-policy');",
+    },
+    detect: {
+      kind: 'action',
+      action: 'content:viewed',
+    },
+  },
+  {
+    id: 'help-doc',
+    group: 'content',
+    href: '/help#docs',
+    source: {
+      console: {
+        screen: '/dashboard/admin/docs',
+        note: 'Docs and folders; only published ones reach the API.',
+      },
+      app: ['src/components/help/docs-browser.tsx'],
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['help-policy'],
+  },
+  {
+    id: 'help-faq',
+    group: 'content',
+    href: '/help#faq',
+    source: {
+      console: {
+        screen: '/dashboard/admin/faqs',
+        note: 'FAQ collections; this app reads the one with slug demo-help.',
+      },
+      app: ['src/components/help/faq-list.tsx'],
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['help-policy'],
+  },
+  {
+    id: 'help-testimonials',
+    group: 'content',
+    href: '/help#testimonials',
+    source: {
+      console: {
+        screen: '/dashboard/admin/testimonials',
+        note: 'Testimonials, published one by one.',
+      },
+      app: ['src/components/help/help-center.tsx'],
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['help-policy'],
+  },
 
   // ── Forms ──
-  // (tasks added by the forms builder)
+  {
+    id: 'form-submit',
+    group: 'forms',
+    href: '/dashboard/forms',
+    source: {
+      console: {
+        screen: '/dashboard/admin/forms',
+        note: 'The form, its fields and its submissions.',
+      },
+      app: ['src/app/api/forms/submit/route.ts', 'src/lib/platform/forms.ts'],
+    },
+    code: {
+      title: 'src/lib/platform/forms.ts',
+      lang: 'ts',
+      body: "await fetch(`${BASE}/api/forms/public/${ORG_ID}/${publicId}/submit`, {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify(data),\n});",
+    },
+    detect: {
+      kind: 'action',
+      action: 'form:submitted',
+    },
+  },
+  {
+    id: 'form-invalid',
+    group: 'forms',
+    href: '/dashboard/forms',
+    source: {
+      app: ['src/app/api/forms/submit/route.ts'],
+    },
+    detect: {
+      kind: 'action',
+      action: 'form:rejected',
+    },
+  },
+  {
+    id: 'form-console',
+    group: 'forms',
+    href: '/dashboard/forms',
+    source: {
+      console: {
+        screen: '/dashboard/admin/forms',
+        note: 'Open the Contact form; each submission is a record of its collection.',
+      },
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['form-submit'],
+  },
+  {
+    id: 'form-workflow',
+    group: 'forms',
+    source: {
+      console: {
+        screen: '/dashboard/admin/workflows',
+        note: 'A workflow on the form.submitted trigger: send an email, post to Slack, call your server.',
+      },
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['form-submit'],
+  },
 
   // ── Collections ──
-  // (tasks added by the collections builder)
+  {
+    id: 'collection-read',
+    group: 'collections',
+    href: '/dashboard/collections',
+    source: {
+      console: {
+        screen: '/dashboard/admin/collections',
+        note: 'Collections, their versions and records.',
+      },
+      app: [
+        'src/lib/platform/collections.ts',
+        'src/app/api/collections/route.ts',
+      ],
+    },
+    code: {
+      title: 'src/lib/platform/collections.ts',
+      lang: 'ts',
+      body: 'const records = await adminFetch(`collections/data/${slug}`, {\n  query: { latest: true, version: live.version },\n});',
+    },
+    detect: {
+      kind: 'action',
+      action: 'collection:viewed',
+    },
+  },
+  {
+    id: 'collection-delete',
+    group: 'collections',
+    href: '/dashboard/collections',
+    source: {
+      app: ['src/app/api/collections/records/route.ts'],
+    },
+    detect: {
+      kind: 'action',
+      action: 'collection:record-deleted',
+    },
+    requires: ['collection-read'],
+  },
+  {
+    id: 'collection-version',
+    group: 'collections',
+    href: '/dashboard/collections',
+    source: {
+      console: {
+        screen: '/dashboard/admin/collections',
+        note: 'Versions are immutable once live; a new version copies the fields and can add more.',
+      },
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['collection-read'],
+  },
 
   // ── Assets ──
-  // (tasks added by the assets builder)
+  {
+    id: 'upload-asset',
+    group: 'assets',
+    href: '/dashboard/assets',
+    source: {
+      console: {
+        screen: '/dashboard/admin/assets',
+        note: 'Every file the organization stores, with size, dimensions and visibility.',
+      },
+      app: [
+        'src/app/api/assets/upload/route.ts',
+        'src/components/modules/assets-panel.tsx',
+      ],
+    },
+    code: {
+      title: 'src/app/api/assets/upload/route.ts',
+      lang: 'ts',
+      body: "const upstream = new FormData();\nupstream.append('file', file, file.name);\nupstream.append('public', 'true');\nawait adminFetch('assets', { method: 'POST', body: upstream });",
+    },
+    detect: {
+      kind: 'action',
+      action: 'asset:uploaded',
+    },
+  },
+  {
+    id: 'asset-in-console',
+    group: 'assets',
+    href: '/dashboard/assets',
+    source: {
+      console: {
+        screen: '/dashboard/admin/assets',
+      },
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['upload-asset'],
+  },
+  {
+    id: 'asset-private',
+    group: 'assets',
+    href: '/dashboard/assets',
+    source: {
+      console: {
+        screen: '/dashboard/admin/assets',
+      },
+      app: ['src/app/api/assets/[id]/visibility/route.ts'],
+    },
+    detect: {
+      kind: 'action',
+      action: 'asset:visibility-changed',
+    },
+    requires: ['upload-asset'],
+  },
 
   // ── Links ──
-  // (tasks added by the links builder)
+  {
+    id: 'create-link',
+    group: 'links',
+    href: '/dashboard/links',
+    source: {
+      console: {
+        screen: '/dashboard/admin/links',
+        note: 'Links made anywhere, with their destination and status.',
+      },
+      app: [
+        'src/app/api/links/route.ts',
+        'src/components/modules/links-panel.tsx',
+      ],
+    },
+    code: {
+      title: 'src/app/api/links/route.ts',
+      lang: 'ts',
+      body: "const created = await adminFetch('links', { method: 'POST', body: { name, url } });\n// created.linkId → `${server}/api/redirect/${orgId}/${created.linkId}`",
+    },
+    detect: {
+      kind: 'action',
+      action: 'link:created',
+    },
+  },
+  {
+    id: 'click-link',
+    group: 'links',
+    href: '/dashboard/links',
+    source: {
+      console: {
+        screen: '/dashboard/admin/links/analytics',
+        note: 'Every click with country, device and time.',
+      },
+      app: ['src/app/api/links/route.ts'],
+    },
+    detect: {
+      kind: 'action',
+      action: 'link:clicked',
+    },
+    requires: ['create-link'],
+  },
+  {
+    id: 'change-link-destination',
+    group: 'links',
+    href: '/dashboard/links',
+    source: {
+      app: ['src/app/api/links/[id]/route.ts'],
+    },
+    detect: {
+      kind: 'action',
+      action: 'link:updated',
+    },
+    requires: ['create-link'],
+  },
+  {
+    id: 'link-analytics-console',
+    group: 'links',
+    href: '/dashboard/links',
+    source: {
+      console: {
+        screen: '/dashboard/admin/links/analytics',
+      },
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['click-link'],
+  },
 
   // ── Audience ──
-  // (tasks added by the audience builder)
+  {
+    id: 'finish-onboarding',
+    group: 'audience',
+    href: '/dashboard/audience',
+    source: {
+      sdk: ['useUserAttributes().updateAttributes()'],
+      console: {
+        screen: '/dashboard/admin/users/attributes',
+        note: 'Attribute keys, their types, and whether the app may read or write them.',
+      },
+      app: ['src/components/modules/audience-panel.tsx'],
+    },
+    code: {
+      title: 'src/components/modules/audience-panel.tsx',
+      lang: 'tsx',
+      body: "const { attributes, updateAttributes } = useUserAttributes();\nawait updateAttributes({ onboarded: true, role-title: 'Founder' });",
+    },
+    detect: {
+      kind: 'action',
+      action: 'attributes:updated',
+    },
+  },
+  {
+    id: 'attributes-in-console',
+    group: 'audience',
+    href: '/dashboard/audience',
+    source: {
+      console: {
+        screen: '/dashboard/admin/users',
+        note: 'Open your own record: the attributes are on it.',
+      },
+    },
+    detect: {
+      kind: 'manual',
+    },
+    requires: ['finish-onboarding'],
+  },
+  {
+    id: 'set-country',
+    group: 'audience',
+    href: '/dashboard/audience',
+    source: {
+      sdk: [
+        'countries, timezones, currencies from @buildbase/sdk/data',
+        'useUserAttributes()',
+      ],
+    },
+    detect: {
+      kind: 'action',
+      action: 'attributes:locale',
+    },
+  },
+  {
+    id: 'subscribe-newsletter',
+    group: 'audience',
+    href: '/dashboard/audience',
+    source: {
+      console: {
+        screen: '/dashboard/admin/audience',
+        note: 'Marketing contacts, with lists, tags and a timeline.',
+      },
+      app: ['src/app/api/audience/subscribe/route.ts'],
+    },
+    code: {
+      title: 'src/app/api/audience/subscribe/route.ts',
+      lang: 'ts',
+      body: "const contact = await adminFetch('audience', { method: 'POST', body: { name, email, source: 'app-newsletter' } });\nawait adminFetch(`audience-lists/${list._id}/members/add`, { method: 'POST', body: { members: [contact._id] } });",
+    },
+    detect: {
+      kind: 'action',
+      action: 'audience:subscribed',
+    },
+  },
+  {
+    id: 'join-waitlist',
+    group: 'audience',
+    href: '/waitlist',
+    source: {
+      sdk: ['<BetaForm />'],
+      console: {
+        screen: '/dashboard/admin/users/beta',
+        note: 'Waitlist signups; approve or reject each one.',
+      },
+      app: ['src/app/[locale]/waitlist/page.tsx'],
+    },
+    detect: {
+      kind: 'manual',
+    },
+  },
 
   // ── Tracking ──
-  // (tasks added by the tracking builder)
-
+  {
+    id: 'tracking-consent',
+    group: 'tracking',
+    href: '/dashboard/tracking',
+    source: {
+      sdk: [
+        'useTracking().consent.manifest',
+        'consent.set({ analytics, marketing })',
+        '<SaaSOSProvider tracking={{ consent: "auto" }}>',
+      ],
+      console: {
+        screen: '/dashboard/admin/setting/tracking',
+        note: 'The tag library: which vendors, which consent category, and the privacy text generated from it.',
+      },
+      app: [
+        'src/components/saas-provider.tsx',
+        'src/components/tracking/tracking-panel.tsx',
+      ],
+    },
+    detect: { kind: 'action', action: 'tracking:consent' },
+  },
+  {
+    id: 'tracking-custom-event',
+    group: 'tracking',
+    href: '/dashboard/tracking',
+    source: {
+      sdk: [
+        'useTracking().track(name, params)',
+        'onEvent(event)',
+        'EVENT_MAPPINGS',
+      ],
+      app: ['src/lib/tracking-bus.ts', 'src/app/api/tracking/event/route.ts'],
+    },
+    code: {
+      title: 'src/components/tracking/tracking-panel.tsx',
+      lang: 'ts',
+      body: "const { track } = useTracking();\ntrack('report_exported', { format: 'csv', rows: 42 });",
+    },
+    detect: { kind: 'action', action: 'tracking:event' },
+    requires: ['tracking-consent'],
+  },
+  {
+    id: 'tracking-attribution',
+    group: 'tracking',
+    href: '/dashboard/tracking',
+    source: {
+      sdk: [
+        'useTracking().attribution',
+        'captureAttribution()',
+        'ATTRIBUTION_PARAMS',
+      ],
+    },
+    detect: { kind: 'manual' },
+  },
+  {
+    id: 'tracking-console-tag',
+    group: 'tracking',
+    source: {
+      console: {
+        screen: '/dashboard/admin/setting/tracking',
+        note: "Add a tag, then attach it to this app's client under Auth → Clients. A tag attached to nothing loads nowhere.",
+      },
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Workflows ──
-  // (tasks added by the workflows builder)
-
+  {
+    id: 'workflow-runs',
+    group: 'workflows',
+    href: '/dashboard/automations',
+    source: {
+      console: {
+        screen: '/dashboard/admin/workflows/instances',
+        note: 'Every run, with per-node results and logs.',
+      },
+      app: [
+        'src/app/api/automations/route.ts',
+        'src/components/automations/instances-card.tsx',
+      ],
+    },
+    code: {
+      title: 'src/app/api/automations/route.ts',
+      lang: 'ts',
+      body: 'const runs = await adminFetch(`workflows/user/${userId}/instances`, {\n  query: { $limit: 25, sort: { startedAt: -1 } },\n});',
+    },
+    detect: { kind: 'action', action: 'automations:viewed' },
+  },
+  {
+    id: 'workflow-cause',
+    group: 'workflows',
+    href: '/dashboard/forms',
+    source: {
+      console: {
+        screen: '/dashboard/admin/workflows',
+        note: 'The graph: a trigger, actions, conditions. Published or it never runs.',
+      },
+    },
+    detect: { kind: 'manual' },
+  },
+  {
+    id: 'workflow-provision-call',
+    group: 'workflows',
+    href: '/dashboard/automations',
+    source: {
+      app: ['src/app/api/buildbase/provision/route.ts'],
+    },
+    code: {
+      title: 'src/app/api/buildbase/provision/route.ts',
+      lang: 'ts',
+      body: "const given = request.headers.get('x-webhook-secret') ?? '';\nif (!timingSafeEqual(given, process.env.BUILDBASE_WEBHOOK_SECRET!)) {\n  return NextResponse.json({ error: 'Forbidden' }, { status: 403 });\n}",
+    },
+    detect: { kind: 'action', action: 'workflow:called' },
+  },
+  {
+    id: 'workflow-console-run',
+    group: 'workflows',
+    source: {
+      console: {
+        screen: '/dashboard/admin/workflows/instances',
+        note: 'Open a run: which nodes completed, what each returned, and the logs.',
+      },
+    },
+    detect: { kind: 'manual' },
+    requires: ['workflow-runs'],
+  },
   // ── Reports ──
-  // (tasks added by the reports builder)
-
+  {
+    id: 'reports-view',
+    group: 'reports',
+    href: '/dashboard/reports',
+    source: {
+      app: [
+        'src/app/api/reports/route.ts',
+        'src/components/reports/report-charts.tsx',
+      ],
+    },
+    code: {
+      title: 'src/app/api/reports/route.ts',
+      lang: 'ts',
+      body: "await adminFetch('users/chart', {\n  query: { groupBy: 'day', filter: { from, to } },\n});",
+    },
+    detect: { kind: 'action', action: 'reports:viewed' },
+  },
+  {
+    id: 'reports-console',
+    group: 'reports',
+    source: {
+      console: {
+        screen: '/dashboard/admin',
+        note: 'The console dashboard combines the same per-module chart endpoints.',
+      },
+    },
+    detect: { kind: 'manual' },
+    requires: ['reports-view'],
+  },
   // ── Platform ──
   {
     id: 'switch-language',
@@ -1011,6 +1555,53 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     detect: {
       kind: 'manual',
     },
+  },
+  {
+    id: 'see-badge',
+    group: 'platform',
+    href: '/',
+    source: {
+      sdk: [
+        '<BuildBaseBadge variant="built-with" theme="auto" size="sm" />',
+        'coerceBadgeRef()',
+      ],
+      app: ['src/components/site-footer.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
+  {
+    id: 'slack-alert',
+    group: 'platform',
+    source: {
+      console: {
+        screen: '/dashboard/admin/setting/slack',
+        note: 'One incoming-webhook URL and a picker over 55 system events. Fire-and-forget, no SDK.',
+      },
+    },
+    detect: { kind: 'manual' },
+  },
+  {
+    id: 'receive-campaign',
+    group: 'platform',
+    source: {
+      console: {
+        screen: '/dashboard/admin/emails/campaigns',
+        note: 'Template, verified sender, audience list, then send. There is no bb.email.send(); one-off mail is a notification.',
+      },
+    },
+    detect: { kind: 'manual' },
+  },
+  {
+    id: 'unsubscribe-campaign',
+    group: 'platform',
+    source: {
+      console: {
+        screen: '/dashboard/admin/emails/unsubscribe-groups',
+        note: '{{unsubscribe}} and {{manage-preference}} resolve to hosted pages; the contact is marked unsubscribed.',
+      },
+    },
+    detect: { kind: 'manual' },
+    requires: ['receive-campaign'],
   },
   {
     id: 'delete-account',

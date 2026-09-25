@@ -534,14 +534,301 @@ export const en: TourText = {
       ],
     },
     // content
+    'help-policy': {
+      title: 'Read the help center',
+      why: 'Editorial content lives in the console, not in this repo: a policy block, docs, FAQs, testimonials. The app reads it over the organization API with a server-only token.',
+      steps: [
+        'Open the help center.',
+        'Read the refund policy block.',
+        'Change its text in the console and reload.',
+      ],
+    },
+    'help-doc': {
+      title: 'Open a doc',
+      why: 'Docs have folders and a published flag; the app lists folders from the tree and shows only what is published.',
+      steps: ['On the help center, pick a doc in the left column.'],
+    },
+    'help-faq': {
+      title: 'Expand a FAQ',
+      why: 'A FAQ collection is a curated list of questions; the same question can sit in several collections.',
+      steps: [
+        'On the help center, open a question under Frequently asked.',
+        'Add one in the console and reload.',
+      ],
+    },
+    'help-testimonials': {
+      title: 'See the testimonials',
+      why: 'Testimonials are drafts until someone publishes them in the console.',
+      steps: ['Scroll to What customers say on the help center.'],
+    },
     // forms
+    'form-submit': {
+      title: 'Submit the contact form',
+      why: 'The form schema is built in the console and served publicly; each submission becomes a collection record and fires form.submitted. This app proxies the submit through its own server to add its checks.',
+      steps: [
+        'Open Forms.',
+        'Fill in the contact form and send it.',
+        'It appears under Latest submissions.',
+      ],
+    },
+    'form-invalid': {
+      title: 'Send something the form refuses',
+      why: 'The platform validates against the live schema and returns every error at once; the app shows them as they came.',
+      steps: [
+        'Leave a required field empty or type an invalid email.',
+        'Send, and read the errors.',
+      ],
+    },
+    'form-console': {
+      title: 'See the submission in the console',
+      why: "Every submission is a record in the form's collection, with a chart of submissions over time.",
+      steps: [
+        'Open the Forms screen in the console and find the Contact form.',
+      ],
+    },
+    'form-workflow': {
+      title: 'Wire a workflow to the form',
+      why: 'form.submitted is a workflow trigger: send a confirmation email, post to Slack, call your server. Built in the console, nothing to deploy here.',
+      steps: [
+        'In the console, create a workflow on the form.submitted trigger.',
+        'Submit the form again and watch the instance run.',
+      ],
+    },
     // collections
+    'collection-read': {
+      title: 'Read the release notes',
+      why: 'A collection is custom data with a versioned schema. The app reads records of the live version, so a schema change is a publish, not a deploy.',
+      steps: [
+        'Open Collections.',
+        "The table columns are the live version's fields.",
+      ],
+    },
+    'collection-delete': {
+      title: 'Delete a record',
+      why: "Record writes go through the organization API with the app's token; the console shows the change at once.",
+      steps: [
+        'Delete one release note from the table.',
+        'Check the records screen in the console.',
+      ],
+    },
+    'collection-version': {
+      title: 'Publish a new version',
+      why: 'Live versions are immutable. A new version copies the fields, you add one, you set it live, and the table gains a column.',
+      steps: [
+        'In the console, add a version to release-notes with an extra field and set it live.',
+        'Reload Collections.',
+      ],
+    },
     // assets
+    'upload-asset': {
+      title: 'Upload a file',
+      why: 'Files are stored and served by the platform, 5 MB each, public or private. The browser never sees the org token: the server forwards the upload.',
+      steps: [
+        'Open Assets.',
+        'Pick an image and wait for it to appear in the gallery, with its width and height.',
+      ],
+    },
+    'asset-in-console': {
+      title: 'See it in the console',
+      why: 'The same file, in the organization’s asset list, with everything the platform knows about it.',
+      steps: [
+        'Open the console’s Assets screen.',
+        'Find the file you just uploaded.',
+      ],
+    },
+    'asset-private': {
+      title: 'Make it private',
+      why: 'Visibility is a switch on the platform; a private file’s public URL stops working at once.',
+      steps: [
+        'On the file card, choose Make private.',
+        'Open its URL: it no longer serves.',
+        'Make it public again.',
+      ],
+    },
     // links
+    'create-link': {
+      title: 'Create a short link',
+      why: 'The platform issues a 12-character id and redirects for it; you keep the destination.',
+      steps: ['Open Short links.', 'Name it and create it for this app’s URL.'],
+    },
+    'click-link': {
+      title: 'Click it and see the count',
+      why: 'Every click is recorded with its country, device and time; the count here is read back from the platform.',
+      steps: [
+        'Choose Follow: the short URL opens in a new tab and lands on the destination.',
+        'Come back and refresh: the count went up.',
+      ],
+    },
+    'change-link-destination': {
+      title: 'Change the destination',
+      why: 'The short URL stays the same, so links already shared keep working.',
+      steps: [
+        'Choose Change destination, enter another URL, save.',
+        'Follow the link again: it lands on the new place.',
+      ],
+    },
+    'link-analytics-console': {
+      title: 'See the analytics screen',
+      why: 'The console charts clicks over time and lists each one.',
+      steps: [
+        'Open the console’s Links → Analytics screen.',
+        'Find your clicks.',
+      ],
+    },
     // audience
+    'finish-onboarding': {
+      title: 'Finish the onboarding checklist',
+      why: 'Custom attributes are key/value pairs on the user, written by the SDK from the browser, as you. The keys are defined in the console so they can be filtered on later.',
+      steps: [
+        'Open Audience.',
+        'Tick all three boxes, add a role title, and finish.',
+        'The attributes card shows onboarded=true.',
+      ],
+    },
+    'attributes-in-console': {
+      title: 'See the attributes on your record',
+      why: 'What the app wrote is on your user in the console, where an admin can filter or segment by it.',
+      steps: [
+        'Open the console’s Users screen and your own record.',
+        'Find onboarded and role-title.',
+      ],
+    },
+    'set-country': {
+      title: 'Pick a country, timezone and currency',
+      why: 'The SDK ships the lists (countries, timezones, currencies) so a picker needs no download; the choice is saved as attributes.',
+      steps: [
+        'On Audience, pick a country, a timezone and a currency.',
+        'Save preferences.',
+      ],
+    },
+    'subscribe-newsletter': {
+      title: 'Subscribe to the newsletter',
+      why: 'An audience contact is a marketing record, separate from the account: it can exist without one and is what campaigns send to.',
+      steps: [
+        'On Audience, subscribe with your email.',
+        'The server creates the contact and adds it to the newsletter list.',
+      ],
+    },
+    'join-waitlist': {
+      title: 'Join the waitlist, signed out',
+      why: 'The platform’s beta waitlist: the form and its copy come from the console, signups are approved there.',
+      steps: [
+        'Open /waitlist in a private window.',
+        'Leave a name and an email.',
+        'In the console, Users → Beta, approve the signup.',
+      ],
+    },
     // tracking
+    'tracking-consent': {
+      title: 'Give consent, and watch tags load',
+      why: 'Analytics and ad tags are set in the console, not in this code. The SDK loads them only after consent, and the banner lists what is actually installed, never a vendor that did not load.',
+      steps: [
+        'Open Tracking.',
+        'Read the consent list: it is built from the tags attached to this app.',
+        'Accept all, or analytics only, and see which providers install.',
+      ],
+    },
+    'tracking-custom-event': {
+      title: 'Fire a custom event',
+      why: 'Sign-ups and purchases fire on their own; your own events go through track() to the data layer and every installed vendor.',
+      steps: [
+        'On Tracking, click "Track a custom event".',
+        'Watch it appear in the live log with its parameters.',
+      ],
+    },
+    'tracking-attribution': {
+      title: 'See where you came from',
+      why: 'Click ids and campaign parameters are captured on the first page a visitor lands on and ride on every later event, across subdomains.',
+      steps: [
+        'Reload the Tracking page with ?utm_source=demo&utm_campaign=tour.',
+        'Read the attribution card.',
+      ],
+    },
+    'tracking-console-tag': {
+      title: 'See the tag in the console',
+      why: 'GA4, Meta, PostHog, Clarity and eleven more, each with a consent category and a privacy text the console generates for your policy.',
+      steps: [
+        'Open Settings → Tracking in the console.',
+        'Open Auth → Clients and see the tag attached to this app.',
+      ],
+    },
     // workflows
+    'workflow-runs': {
+      title: 'See your workflow runs',
+      why: 'Workflows are built in the console: triggers, actions and conditions. The app never calls one; it causes the events they listen for, and can read what ran for each person.',
+      steps: [
+        'Open Automations.',
+        'Read the runs the platform started for you, with status and node counts.',
+      ],
+    },
+    'workflow-cause': {
+      title: 'Cause a workflow to run',
+      why: 'A sign-up, a form submission, a payment or a low balance starts a run. Nothing in the app names the workflow.',
+      steps: [
+        'Submit the contact form on Forms.',
+        'Return to Automations and refresh: a run for "Provision on form" appears.',
+      ],
+    },
+    'workflow-provision-call': {
+      title: 'Receive a call from a workflow',
+      why: 'An HTTP Webhook action can call your own server. The call is unsigned and the authorization header is stripped, so it carries a shared secret in x-webhook-secret and the route is idempotent, because the platform retries.',
+      steps: [
+        'Cause the "Provision on form" workflow.',
+        'On Automations, read the provisioning call the app received and stored.',
+      ],
+    },
+    'workflow-console-run': {
+      title: 'Open the run in the console',
+      why: 'Per-node results, logs, retries and a dead-letter queue, without any of it in your code.',
+      steps: [
+        'Open Workflows → Instances in the console.',
+        "Open your run and read each node's output.",
+      ],
+    },
     // reports
+    'reports-view': {
+      title: 'View a report from the platform',
+      why: 'Every module has chart and count endpoints, the same ones the console dashboards draw from. This app charts sign-ups, form submissions and link clicks for the last thirty days.',
+      steps: [
+        'Open Reports.',
+        'Read the three charts and the headline counts.',
+      ],
+    },
+    'reports-console': {
+      title: 'Compare with the console dashboard',
+      why: 'The numbers agree because they come from the same endpoints; some are rollups refreshed every ten minutes.',
+      steps: ['Open the console dashboard and find the same sign-up curve.'],
+    },
+    'see-badge': {
+      title: 'See the badge',
+      why: 'A "Built with BuildBase" image and link, rendered on the server with no script and no network call, with an optional referral code.',
+      steps: ['Scroll to the footer on the home page.'],
+    },
+    'slack-alert': {
+      title: 'Get a Slack alert when someone signs up',
+      why: 'Team alerts for up to 55 system events go to one Slack incoming-webhook URL. Console only: the app just causes the events.',
+      steps: [
+        'In the console, Settings → Slack: paste an incoming-webhook URL and pick "user.registered".',
+        'Sign up a test user and watch the Slack channel.',
+      ],
+    },
+    'receive-campaign': {
+      title: 'Receive an email campaign',
+      why: 'Audience-scale email is written and sent from the console: template, verified sending domain, audience list, per-recipient drafts, open and click tracking.',
+      steps: [
+        'Join the newsletter on Audience.',
+        'In the console, Emails → Campaigns: create one to that list and send.',
+        'Read it in your inbox.',
+      ],
+    },
+    'unsubscribe-campaign': {
+      title: 'Unsubscribe from it',
+      why: 'The {{unsubscribe}} merge tag resolves to a hosted page; the contact is marked unsubscribed and skipped from then on.',
+      steps: [
+        'Click unsubscribe in the campaign email.',
+        'In the console, find the contact under Audience: unsubscribed.',
+      ],
+    },
     'delete-account': {
       title: 'Delete your account',
       why: 'GDPR Article 17: erased here and on the platform.',

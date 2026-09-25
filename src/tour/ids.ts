@@ -71,15 +71,52 @@ export const TASK_IDS = [
   'export-data',
   'clone-it',
   'delete-account',
+  'see-badge',
+  'slack-alert',
+  'receive-campaign',
+  'unsubscribe-campaign',
   // content
+  'help-policy',
+  'help-doc',
+  'help-faq',
+  'help-testimonials',
   // forms
+  'form-submit',
+  'form-invalid',
+  'form-console',
+  'form-workflow',
   // collections
+  'collection-read',
+  'collection-delete',
+  'collection-version',
   // assets
+  'upload-asset',
+  'asset-in-console',
+  'asset-private',
   // links
+  'create-link',
+  'click-link',
+  'change-link-destination',
+  'link-analytics-console',
   // audience
+  'finish-onboarding',
+  'attributes-in-console',
+  'set-country',
+  'subscribe-newsletter',
+  'join-waitlist',
   // tracking
+  'tracking-consent',
+  'tracking-custom-event',
+  'tracking-attribution',
+  'tracking-console-tag',
   // workflows
+  'workflow-runs',
+  'workflow-cause',
+  'workflow-provision-call',
+  'workflow-console-run',
   // reports
+  'reports-view',
+  'reports-console',
 ] as const;
 
 export type TaskId = (typeof TASK_IDS)[number];

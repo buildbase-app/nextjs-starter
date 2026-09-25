@@ -957,6 +957,298 @@ const messages: Messages = {
     next: '次',
     dashboardCta: '続ける',
   },
+  help: {
+    title: 'ヘルプセンター',
+    description:
+      'このページの内容はすべてコンソールで書かれています：ポリシー、ドキュメント、FAQ、お客様の声。そこで変更し、ここで再読み込みしてください。',
+    notConfigured: {
+      title: 'まだコンテンツがありません',
+      token:
+        'このアプリには組織のAPIトークンがないため、コンソールのコンテンツを読めません。BUILDBASE_API_TOKENを設定してください。',
+      empty: '組織にはまだデモコンテンツがありません。次で作成できます：',
+    },
+    from: {
+      richContent: 'リッチコンテンツ',
+      docs: 'ドキュメント',
+      faqs: 'FAQコレクション',
+      testimonials: 'お客様の声',
+    },
+    docs: {
+      title: 'ドキュメント',
+      empty: '公開されたドキュメントはまだありません。',
+    },
+    faq: {
+      title: 'よくある質問',
+    },
+    testimonials: {
+      title: 'お客様の声',
+    },
+  },
+  forms: {
+    title: 'フォーム',
+    description:
+      'コンソールで作ったフォームを、そのライブスキーマから描画し、このアプリから送信します。',
+    loading: 'フォームを読み込み中…',
+    fromConsole:
+      'フィールドはコンソールから来ます。そこで追加して再読み込みしてください。',
+    submit: '送信',
+    sending: '送信中…',
+    sent: '送信済み',
+    hint: '送信内容はコレクションのレコードとして保存され、form.submittedイベントを発火します。',
+    errors: {
+      title: 'プラットフォームがこの送信を拒否しました',
+      generic: '受け付けられない項目があります。',
+    },
+    missing: {
+      title: 'お問い合わせフォームがまだありません',
+      token:
+        'このアプリには組織のAPIトークンがありません。BUILDBASE_API_TOKENを設定してください。',
+      form: '組織にContactという名前のフォームがありません。次で作成できます：',
+    },
+    toast: {
+      sent: '送信しました。プラットフォーム上のレコードになりました。',
+    },
+    submissions: {
+      title: '最近の送信',
+      description: 'フォームのコレクションから読み戻しています。',
+      refresh: '更新',
+      empty: 'まだ送信はありません。',
+    },
+  },
+  collections: {
+    title: 'コレクション',
+    description:
+      'プラットフォーム上のカスタムデータ：バージョン管理されたスキーマと、ライブバージョンに対するレコード。',
+    loading: 'レコードを読み込み中…',
+    liveVersion: 'ライブバージョン {version}（{name}）、{fields} フィールド',
+    noLiveVersion:
+      'ライブバージョンがありません。コンソールで公開してください。',
+    refresh: '更新',
+    empty: 'レコードがありません。シードするかコンソールで追加してください。',
+    actions: '操作',
+    delete: 'レコードを削除',
+    hint: 'コンソールでフィールドを追加した新バージョンを公開すると、再読み込みでここに列が現れます。',
+    missing: {
+      title: 'release-notesコレクションがまだありません',
+      token:
+        'このアプリには組織のAPIトークンがありません。BUILDBASE_API_TOKENを設定してください。',
+      collection:
+        '組織にスラッグrelease-notesのコレクションがありません。次で作成できます：',
+    },
+    toast: {
+      deleted: 'プラットフォーム上のレコードを削除しました。',
+      deleteFailed: 'レコードを削除できませんでした。',
+    },
+  },
+  tracking: {
+    title: 'トラッキング',
+    description:
+      'コンソールで設定した分析・広告タグを同意後に読み込み、独自イベントとアトリビューションを扱います。',
+    loading: '読み込み中…',
+    consent: {
+      title: '同意',
+      description:
+        'このアプリに紐づくタグから構成され、ライブラリ全体からではありません。',
+      noTags:
+        'このアプリにタグはまだ紐づいていません。コンソールの設定 → トラッキングで追加し、クライアントに紐づけてください。',
+      privacy: 'プライバシー',
+      analytics: '分析',
+      marketing: 'マーケティング',
+      acceptAll: 'すべて許可',
+      analyticsOnly: '分析のみ',
+      denyAll: 'すべて拒否',
+      state: '現在の状態',
+      unset: '未回答',
+    },
+    installed: {
+      title: '読み込まれたプロバイダー',
+      description: '同意後にこのブラウザーで実際に読み込まれたもの。',
+      none: '何も読み込まれていません。同意するか、コンソールでタグを紐づけてください。',
+    },
+    custom: {
+      title: 'カスタムイベントを送る',
+      description:
+        '独自イベントはデータレイヤーと読み込まれた各ベンダーに届きます。',
+      button: 'report_exported を送る',
+      fired: '{count} 回送信',
+    },
+    attribution: {
+      title: 'アトリビューション',
+      description:
+        '訪問者の流入元：最初のページで取得したクリックIDとキャンペーンパラメーター。',
+      empty: '取得なし。次を付けて再読み込み:',
+    },
+    log: {
+      title: 'ライブイベントログ',
+      description: 'このタブでSDKが送ったすべてのイベント（自動送信を含む）。',
+      empty:
+        'イベントはまだありません。ページを移動するか、上で送ってください。',
+    },
+  },
+  automations: {
+    title: '自動化',
+    description:
+      'ワークフローはコンソールで作ります。このアプリはそのイベントを発生させ、あなた向けに実行された内容を読み取ります。',
+    refresh: '更新',
+    loading: '読み込み中…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN が未設定のため、実行履歴を読み取れません。',
+    error: '実行履歴を読み込めませんでした',
+    runs: {
+      title: 'あなたの実行',
+      description:
+        'プラットフォームがあなたのアカウント向けに開始したワークフローインスタンス。',
+      empty:
+        'まだ実行はありません。お問い合わせフォームを送信するか新規ユーザーを登録して更新してください。',
+      workflow: 'ワークフロー',
+      event: 'イベント',
+      status: '状態',
+      nodes: '完了ノード',
+      started: '開始',
+    },
+    calls: {
+      title: 'このアプリへの呼び出し',
+      description:
+        'ワークフローの HTTP Webhook アクションが /api/buildbase/provision に送った内容。共有シークレットで検証済み。',
+      empty: 'プロビジョニング呼び出しはまだありません。',
+    },
+  },
+  reports: {
+    title: 'レポート',
+    description:
+      '各モジュールは同じチャート・カウントのエンドポイントで報告します。直近30日の3つを表示。',
+    notConfigured:
+      'BUILDBASE_API_TOKEN が未設定のため、レポートを読み取れません。',
+    loading: '読み込み中…',
+    refresh: '更新',
+    window: '{from} 〜 {to}',
+    unavailable: '利用不可',
+    series: {
+      users: {
+        title: '登録',
+        description: '1日あたりの新規ユーザー。',
+      },
+      forms: {
+        title: 'フォーム送信',
+        description: '1日あたりのお問い合わせフォーム送信。',
+      },
+      links: {
+        title: 'リンククリック',
+        description: '1日あたりの短縮リンククリック。',
+      },
+    },
+  },
+  assets: {
+    title: 'アセット',
+    description:
+      'このアプリからアップロードし、プラットフォームが保存・配信するファイル。',
+    upload: 'ファイルをアップロード',
+    uploading: 'アップロード中…',
+    limit: '5 MBまで。画像はプレビュー表示されます。',
+    uploaded: 'アップロードしました',
+    gallery: 'ファイル',
+    empty: 'まだファイルがありません。上からアップロードしてください。',
+    public: '公開',
+    private: '非公開',
+    makePrivate: '非公開にする',
+    makePublic: '公開にする',
+    nowPublic: '公開になりました。URLが再び有効です。',
+    nowPrivate: '非公開になりました。公開URLは無効になります。',
+    openUrl: '開く',
+    tooLarge: 'このファイルは5 MBを超えています。',
+    loadFailed: 'プラットフォームに接続できませんでした。',
+    notConfigured:
+      'このページはAPIトークンで組織を読み取ります。BUILDBASE_API_TOKEN（コンソール → Settings → Tokens）を設定して再起動してください。',
+  },
+  links: {
+    title: '短縮リンク',
+    description:
+      'プラットフォームがリダイレクトし、クリックを1件ずつ数える共有リンク。',
+    create: '短縮リンクを作成',
+    createHint:
+      '任意のURL。プラットフォームが12文字のIDを発行し、国とデバイスとともに全クリックを記録します。',
+    name: '名前',
+    url: 'リンク先URL',
+    createButton: '作成',
+    created: 'リンクを作成しました',
+    yourLinks: 'あなたのリンク',
+    clicksHint:
+      'リンクを開いてから更新してください。件数はこのページではなくプラットフォームから来ます。',
+    refresh: '更新',
+    empty: 'まだリンクがありません。',
+    clicks: 'クリック',
+    copy: '短縮URLをコピー',
+    copied: 'コピーしました',
+    follow: '開く',
+    changeDestination: 'リンク先を変更',
+    save: '保存',
+    cancel: 'キャンセル',
+    updated: 'リンク先を変更しました。短縮URLは同じです。',
+    chart: 'クリック数（過去14日）',
+    chartHint: '全リンク合計、日別。',
+    chartEmpty: 'まだクリックがありません。',
+    loadFailed: 'プラットフォームに接続できませんでした。',
+    notConfigured:
+      'このページはAPIトークンで組織を読み取ります。BUILDBASE_API_TOKEN（コンソール → Settings → Tokens）を設定して再起動してください。',
+  },
+  audience: {
+    title: 'オーディエンスと属性',
+    description:
+      'アカウント以外にプラットフォームが保持する情報：カスタム属性、マーケティング連絡先、ウェイトリスト。',
+    failed: '保存できませんでした。',
+    notConfigured:
+      'ニュースレターにはサーバー側のBUILDBASE_API_TOKENが必要です。',
+    onboarding: {
+      title: 'オンボーディングチェックリスト',
+      description:
+        '3つにチェックして保存すると、SDKがブラウザからあなたとして onboarded=true と役職をユーザー属性に書き込みます。',
+      items: {
+        profile: 'プロフィールを入力した',
+        workspace: 'ワークスペースを作成した',
+        invite: '誰かを招待した',
+      },
+      role: '役職（任意）',
+      save: 'オンボーディングを完了',
+      saved: '保存しました。コンソールで自分のレコードを開いて確認できます。',
+      already: '属性によると、すでにオンボーディング済みです。',
+    },
+    attributes: {
+      title: 'あなたの属性',
+      description:
+        'キーはコンソール（Users → Attributes）で定義され、値はユーザーに保存されます。',
+      empty: 'まだ属性がありません。',
+    },
+    locale: {
+      title: '国・タイムゾーン・通貨',
+      description:
+        'リストはSDK（@buildbase/sdk/data）に同梱、ダウンロード不要。',
+      country: '国',
+      timezone: 'タイムゾーン',
+      currency: '通貨',
+      save: '設定を保存',
+      saved: '設定を属性として保存しました。',
+    },
+    newsletter: {
+      title: 'ニュースレター',
+      description:
+        'マーケティング連絡先はアカウントとは別で、アカウントなしでも存在できます。サーバーが組織トークンで作成し、ニュースレターリストに追加します。',
+      email: 'メール',
+      subscribe: '購読',
+      subscribed: '購読しました',
+      listed: '{list} リストに追加しました。',
+      noList:
+        '連絡先を作成しました。この組織にはまだニュースレターリストがありません。',
+      waitlistHint:
+        'サインアウト中の訪問者はベータ版ウェイトリストに参加できます：',
+    },
+  },
+  waitlist: {
+    title: 'ウェイトリストに参加',
+    description:
+      'プラットフォームのベータフォーム：名前とメールを残すと、管理者がコンソールで承認します。',
+    success: 'リストに登録されました。管理者がコンソールから承認します。',
+    note: 'フォームと文言は組織のベータ設定（コンソール → Users → Beta）から来ています。',
+  },
 };
 
 export default messages;

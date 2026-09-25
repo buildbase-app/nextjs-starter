@@ -972,6 +972,301 @@ const messages: Messages = {
     next: 'Suivant',
     dashboardCta: 'Continuer',
   },
+  help: {
+    title: "Centre d'aide",
+    description:
+      'Tout sur cette page a été écrit dans la console : une politique, des docs, une FAQ et des témoignages. Modifiez-le là-bas, rechargez ici.',
+    notConfigured: {
+      title: 'Pas encore de contenu',
+      token:
+        "Cette app n'a pas de jeton d'API d'organisation, elle ne peut donc pas lire le contenu de la console. Définissez BUILDBASE_API_TOKEN.",
+      empty:
+        "L'organisation n'a pas encore le contenu de démo. Initialisez-le avec :",
+    },
+    from: {
+      richContent: 'contenu riche',
+      docs: 'docs',
+      faqs: 'collection FAQ',
+      testimonials: 'témoignages',
+    },
+    docs: {
+      title: 'Documentation',
+      empty: "Aucun doc publié pour l'instant.",
+    },
+    faq: {
+      title: 'Questions fréquentes',
+    },
+    testimonials: {
+      title: 'Ce que disent les clients',
+    },
+  },
+  forms: {
+    title: 'Formulaires',
+    description:
+      'Un formulaire créé dans la console, rendu depuis son schéma en ligne et envoyé via cette app.',
+    loading: 'Chargement du formulaire…',
+    fromConsole:
+      'Les champs viennent de la console ; ajoutez-en un là-bas et rechargez.',
+    submit: 'Envoyer',
+    sending: 'Envoi…',
+    sent: 'Envoyé',
+    hint: "Les envois sont stockés comme enregistrements d'une collection et déclenchent l'événement form.submitted.",
+    errors: {
+      title: 'La plateforme a refusé cet envoi',
+      generic: "Quelque chose n'a pas été accepté.",
+    },
+    missing: {
+      title: 'Pas encore de formulaire de contact',
+      token:
+        "Cette app n'a pas de jeton d'API d'organisation. Définissez BUILDBASE_API_TOKEN.",
+      form: "L'organisation n'a pas de formulaire nommé Contact. Initialisez-le avec :",
+    },
+    toast: {
+      sent: "Envoyé. C'est maintenant un enregistrement sur la plateforme.",
+    },
+    submissions: {
+      title: 'Derniers envois',
+      description: 'Relus depuis la collection du formulaire.',
+      refresh: 'Actualiser',
+      empty: "Rien d'envoyé pour l'instant.",
+    },
+  },
+  collections: {
+    title: 'Collections',
+    description:
+      'Données personnalisées sur la plateforme : un schéma versionné, des enregistrements sur la version en ligne.',
+    loading: 'Chargement des enregistrements…',
+    liveVersion: 'Version en ligne {version} ({name}), {fields} champs',
+    noLiveVersion: 'Aucune version en ligne. Publiez-en une dans la console.',
+    refresh: 'Actualiser',
+    empty:
+      'Aucun enregistrement. Initialisez-en ou ajoutez-en un dans la console.',
+    actions: 'Actions',
+    delete: "Supprimer l'enregistrement",
+    hint: 'Publiez une nouvelle version avec un champ supplémentaire dans la console ; la colonne apparaît ici au rechargement.',
+    missing: {
+      title: 'Pas encore de collection release-notes',
+      token:
+        "Cette app n'a pas de jeton d'API d'organisation. Définissez BUILDBASE_API_TOKEN.",
+      collection:
+        "L'organisation n'a pas de collection avec le slug release-notes. Initialisez-la avec :",
+    },
+    toast: {
+      deleted: 'Enregistrement supprimé sur la plateforme.',
+      deleteFailed: "Impossible de supprimer l'enregistrement.",
+    },
+  },
+  tracking: {
+    title: 'Suivi',
+    description:
+      'Tags d’analyse et de publicité définis dans la console, chargés après consentement, avec vos propres événements et l’attribution.',
+    loading: 'Chargement…',
+    consent: {
+      title: 'Consentement',
+      description:
+        'Construit à partir des tags rattachés à cette app, jamais de toute la bibliothèque.',
+      noTags:
+        'Aucun tag n’est rattaché à cette app. Ajoutez-en un dans la console sous Paramètres → Suivi et rattachez-le au client.',
+      privacy: 'Confidentialité',
+      analytics: 'analyse',
+      marketing: 'marketing',
+      acceptAll: 'Tout accepter',
+      analyticsOnly: 'Analyse seulement',
+      denyAll: 'Tout refuser',
+      state: 'État actuel',
+      unset: 'pas encore demandé',
+    },
+    installed: {
+      title: 'Fournisseurs installés',
+      description:
+        'Ce qui s’est réellement chargé dans ce navigateur après consentement.',
+      none: 'Rien n’est chargé. Donnez votre consentement, ou rattachez un tag dans la console.',
+    },
+    custom: {
+      title: 'Suivre un événement personnalisé',
+      description:
+        'Vos propres événements vont à la couche de données et à chaque fournisseur installé.',
+      button: 'Suivre report_exported',
+      fired: 'Envoyé {count} fois',
+    },
+    attribution: {
+      title: 'Attribution',
+      description:
+        'D’où vient ce visiteur : identifiants de clic et paramètres de campagne, capturés sur la première page.',
+      empty: 'Rien de capturé. Rechargez avec',
+    },
+    log: {
+      title: 'Journal des événements en direct',
+      description:
+        'Chaque événement envoyé par le SDK dans cet onglet, y compris ceux qu’il envoie de lui-même.',
+      empty: 'Pas encore d’événement. Naviguez, ou suivez-en un ci-dessus.',
+    },
+  },
+  automations: {
+    title: 'Automatisations',
+    description:
+      'Les workflows se construisent dans la console ; cette app provoque les événements qu’ils écoutent et lit ce qui a tourné pour vous.',
+    refresh: 'Actualiser',
+    loading: 'Chargement…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN n’est pas configuré, cette app ne peut donc pas lire les exécutions.',
+    error: 'Impossible de charger les exécutions',
+    runs: {
+      title: 'Vos exécutions',
+      description:
+        'Instances de workflow lancées par la plateforme pour votre compte.',
+      empty:
+        'Pas encore d’exécution. Envoyez le formulaire de contact ou inscrivez un nouvel utilisateur, puis actualisez.',
+      workflow: 'Workflow',
+      event: 'Événement',
+      status: 'Statut',
+      nodes: 'Nœuds terminés',
+      started: 'Début',
+    },
+    calls: {
+      title: 'Appels vers cette app',
+      description:
+        'Ce que l’action HTTP Webhook d’un workflow a envoyé à /api/buildbase/provision, vérifié par secret partagé.',
+      empty: 'Aucun appel de provisionnement reçu pour l’instant.',
+    },
+  },
+  reports: {
+    title: 'Rapports',
+    description:
+      'Chaque module rapporte via les mêmes endpoints de graphiques et de comptages ; trois d’entre eux, sur les trente derniers jours.',
+    notConfigured:
+      'BUILDBASE_API_TOKEN n’est pas configuré, cette app ne peut donc pas lire les rapports.',
+    loading: 'Chargement…',
+    refresh: 'Actualiser',
+    window: 'Du {from} au {to}',
+    unavailable: 'Indisponible',
+    series: {
+      users: {
+        title: 'Inscriptions',
+        description: 'Nouveaux utilisateurs par jour.',
+      },
+      forms: {
+        title: 'Envois de formulaire',
+        description: 'Envois du formulaire de contact par jour.',
+      },
+      links: {
+        title: 'Clics sur liens',
+        description: 'Clics sur liens courts par jour.',
+      },
+    },
+  },
+  assets: {
+    title: 'Fichiers',
+    description:
+      'Fichiers envoyés depuis cette app, stockés et servis par la plateforme.',
+    upload: 'Envoyer un fichier',
+    uploading: 'Envoi…',
+    limit: 'Jusqu’à 5 Mo. Les images ont un aperçu.',
+    uploaded: 'Envoyé',
+    gallery: 'Fichiers',
+    empty: 'Aucun fichier pour l’instant. Envoyez-en un ci-dessus.',
+    public: 'Public',
+    private: 'Privé',
+    makePrivate: 'Rendre privé',
+    makePublic: 'Rendre public',
+    nowPublic: 'Désormais public : l’URL fonctionne à nouveau.',
+    nowPrivate: 'Désormais privé : l’URL publique ne fonctionne plus.',
+    openUrl: 'Ouvrir',
+    tooLarge: 'Ce fichier dépasse 5 Mo.',
+    loadFailed: 'Impossible de joindre la plateforme.',
+    notConfigured:
+      'Cette page lit l’organisation via un jeton d’API. Définissez BUILDBASE_API_TOKEN (console → Settings → Tokens) et redémarrez.',
+  },
+  links: {
+    title: 'Liens courts',
+    description:
+      'Des liens de partage que la plateforme redirige et compte, clic après clic.',
+    create: 'Créer un lien court',
+    createHint:
+      'N’importe quelle URL. La plateforme attribue un id de 12 caractères et enregistre chaque clic avec son pays et son appareil.',
+    name: 'Nom',
+    url: 'URL de destination',
+    createButton: 'Créer',
+    created: 'Lien créé',
+    yourLinks: 'Vos liens',
+    clicksHint:
+      'Suivez un lien puis actualisez : le compte vient de la plateforme, pas de cette page.',
+    refresh: 'Actualiser',
+    empty: 'Aucun lien pour l’instant.',
+    clicks: 'clics',
+    copy: 'Copier l’URL courte',
+    copied: 'Copié',
+    follow: 'Suivre',
+    changeDestination: 'Changer la destination',
+    save: 'Enregistrer',
+    cancel: 'Annuler',
+    updated: 'Destination changée. L’URL courte reste la même.',
+    chart: 'Clics, 14 derniers jours',
+    chartHint: 'Tous les liens ensemble, par jour.',
+    chartEmpty: 'Aucun clic pour l’instant.',
+    loadFailed: 'Impossible de joindre la plateforme.',
+    notConfigured:
+      'Cette page lit l’organisation via un jeton d’API. Définissez BUILDBASE_API_TOKEN (console → Settings → Tokens) et redémarrez.',
+  },
+  audience: {
+    title: 'Audience et attributs',
+    description:
+      'Ce que la plateforme garde d’une personne au-delà du compte : attributs personnalisés, contact marketing et liste d’attente.',
+    failed: 'Enregistrement impossible.',
+    notConfigured:
+      'La newsletter a besoin de BUILDBASE_API_TOKEN côté serveur.',
+    onboarding: {
+      title: 'Liste d’intégration',
+      description:
+        'Cochez les trois et enregistrez : le SDK écrit onboarded=true et votre fonction comme attributs utilisateur, dans votre navigateur, en votre nom.',
+      items: {
+        profile: 'J’ai rempli mon profil',
+        workspace: 'J’ai créé un espace de travail',
+        invite: 'J’ai invité quelqu’un',
+      },
+      role: 'Votre fonction (facultatif)',
+      save: 'Terminer l’intégration',
+      saved: 'Enregistré. Ouvrez votre fiche dans la console pour le voir.',
+      already: 'Déjà intégré, d’après vos attributs.',
+    },
+    attributes: {
+      title: 'Vos attributs',
+      description:
+        'Les clés sont définies dans la console (Users → Attributes) ; les valeurs vivent sur votre utilisateur.',
+      empty: 'Aucun attribut pour l’instant.',
+    },
+    locale: {
+      title: 'Pays, fuseau horaire, devise',
+      description:
+        'Les listes sont fournies avec le SDK (@buildbase/sdk/data), sans téléchargement.',
+      country: 'Pays',
+      timezone: 'Fuseau horaire',
+      currency: 'Devise',
+      save: 'Enregistrer les préférences',
+      saved: 'Préférences enregistrées comme attributs.',
+    },
+    newsletter: {
+      title: 'Newsletter',
+      description:
+        'Un contact marketing est distinct de votre compte : il peut exister sans lui. Le serveur le crée avec le jeton de l’organisation et l’ajoute à la liste newsletter.',
+      email: 'E-mail',
+      subscribe: 'S’abonner',
+      subscribed: 'Abonné',
+      listed: 'Ajouté à la liste {list}.',
+      noList:
+        'Contact créé ; cette organisation n’a pas encore de liste newsletter.',
+      waitlistHint:
+        'Les visiteurs non connectés peuvent rejoindre la liste d’attente bêta sur',
+    },
+  },
+  waitlist: {
+    title: 'Rejoindre la liste d’attente',
+    description:
+      'Le formulaire bêta de la plateforme : laissez votre nom et votre e-mail, un administrateur vous approuve dans la console.',
+    success:
+      'Vous êtes sur la liste. Un administrateur vous approuvera depuis la console.',
+    note: 'Le formulaire et ses textes viennent de la configuration bêta de l’organisation (console → Users → Beta).',
+  },
 };
 
 export default messages;

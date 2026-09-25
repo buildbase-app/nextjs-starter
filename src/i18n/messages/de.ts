@@ -971,6 +971,299 @@ const messages: Messages = {
     next: 'Als Nächstes',
     dashboardCta: 'Weiter',
   },
+  help: {
+    title: 'Hilfe-Center',
+    description:
+      'Alles auf dieser Seite wurde in der Konsole geschrieben: eine Richtlinie, Docs, FAQs und Referenzen. Dort ändern, hier neu laden.',
+    notConfigured: {
+      title: 'Noch kein Inhalt',
+      token:
+        'Diese App hat kein Organisations-API-Token und kann daher keine Konsoleninhalte lesen. BUILDBASE_API_TOKEN setzen.',
+      empty: 'Die Organisation hat noch keinen Demo-Inhalt. Anlegen mit:',
+    },
+    from: {
+      richContent: 'Rich Content',
+      docs: 'Docs',
+      faqs: 'FAQ-Sammlung',
+      testimonials: 'Referenzen',
+    },
+    docs: {
+      title: 'Dokumentation',
+      empty: 'Noch keine veröffentlichten Docs.',
+    },
+    faq: {
+      title: 'Häufige Fragen',
+    },
+    testimonials: {
+      title: 'Was Kunden sagen',
+    },
+  },
+  forms: {
+    title: 'Formulare',
+    description:
+      'Ein in der Konsole gebautes Formular, aus seinem Live-Schema gerendert und über diese App abgeschickt.',
+    loading: 'Formular wird geladen…',
+    fromConsole:
+      'Die Felder kommen aus der Konsole; dort eines hinzufügen und neu laden.',
+    submit: 'Senden',
+    sending: 'Wird gesendet…',
+    sent: 'Gesendet',
+    hint: 'Einsendungen werden als Sammlungs-Datensätze gespeichert und lösen das Ereignis form.submitted aus.',
+    errors: {
+      title: 'Die Plattform hat diese Einsendung abgelehnt',
+      generic: 'Etwas wurde nicht akzeptiert.',
+    },
+    missing: {
+      title: 'Noch kein Kontaktformular',
+      token:
+        'Diese App hat kein Organisations-API-Token. BUILDBASE_API_TOKEN setzen.',
+      form: 'Die Organisation hat kein Formular namens Contact. Anlegen mit:',
+    },
+    toast: {
+      sent: 'Abgeschickt. Jetzt ein Datensatz auf der Plattform.',
+    },
+    submissions: {
+      title: 'Letzte Einsendungen',
+      description: 'Aus der Sammlung des Formulars gelesen.',
+      refresh: 'Aktualisieren',
+      empty: 'Noch nichts eingesendet.',
+    },
+  },
+  collections: {
+    title: 'Sammlungen',
+    description:
+      'Eigene Daten auf der Plattform: ein versioniertes Schema, Datensätze gegen die Live-Version.',
+    loading: 'Datensätze werden geladen…',
+    liveVersion: 'Live-Version {version} ({name}), {fields} Felder',
+    noLiveVersion: 'Keine Live-Version. In der Konsole eine veröffentlichen.',
+    refresh: 'Aktualisieren',
+    empty: 'Keine Datensätze. Anlegen oder in der Konsole hinzufügen.',
+    actions: 'Aktionen',
+    delete: 'Datensatz löschen',
+    hint: 'In der Konsole eine neue Version mit einem zusätzlichen Feld veröffentlichen; die Spalte erscheint hier beim Neuladen.',
+    missing: {
+      title: 'Noch keine release-notes-Sammlung',
+      token:
+        'Diese App hat kein Organisations-API-Token. BUILDBASE_API_TOKEN setzen.',
+      collection:
+        'Die Organisation hat keine Sammlung mit dem Slug release-notes. Anlegen mit:',
+    },
+    toast: {
+      deleted: 'Datensatz auf der Plattform gelöscht.',
+      deleteFailed: 'Datensatz konnte nicht gelöscht werden.',
+    },
+  },
+  tracking: {
+    title: 'Tracking',
+    description:
+      'Analyse- und Werbe-Tags aus der Konsole, geladen nach Einwilligung, mit eigenen Ereignissen und Attribution.',
+    loading: 'Lädt…',
+    consent: {
+      title: 'Einwilligung',
+      description:
+        'Aus den Tags dieser App gebildet, nie aus der gesamten Bibliothek.',
+      noTags:
+        'Dieser App ist noch kein Tag zugeordnet. Legen Sie in der Konsole unter Einstellungen → Tracking eines an und ordnen Sie es dem Client zu.',
+      privacy: 'Datenschutz',
+      analytics: 'Analyse',
+      marketing: 'Marketing',
+      acceptAll: 'Alle akzeptieren',
+      analyticsOnly: 'Nur Analyse',
+      denyAll: 'Alle ablehnen',
+      state: 'Aktueller Stand',
+      unset: 'noch nicht gefragt',
+    },
+    installed: {
+      title: 'Installierte Anbieter',
+      description:
+        'Was in diesem Browser nach der Einwilligung tatsächlich geladen wurde.',
+      none: 'Nichts geladen. Willigen Sie ein oder ordnen Sie in der Konsole ein Tag zu.',
+    },
+    custom: {
+      title: 'Eigenes Ereignis senden',
+      description:
+        'Eigene Ereignisse gehen an den Data Layer und jeden installierten Anbieter.',
+      button: 'report_exported senden',
+      fired: '{count} Mal gesendet',
+    },
+    attribution: {
+      title: 'Attribution',
+      description:
+        'Woher dieser Besucher kam: Klick-IDs und Kampagnenparameter, auf der ersten Seite erfasst.',
+      empty: 'Nichts erfasst. Neu laden mit',
+    },
+    log: {
+      title: 'Live-Ereignisprotokoll',
+      description:
+        'Jedes Ereignis, das das SDK in diesem Tab gesendet hat, auch die eigenen.',
+      empty:
+        'Noch keine Ereignisse. Navigieren Sie, oder senden Sie oben eines.',
+    },
+  },
+  automations: {
+    title: 'Automatisierungen',
+    description:
+      'Workflows werden in der Konsole gebaut; diese App löst die Ereignisse aus, auf die sie hören, und liest, was für Sie gelaufen ist.',
+    refresh: 'Aktualisieren',
+    loading: 'Lädt…',
+    notConfigured:
+      'BUILDBASE_API_TOKEN ist nicht gesetzt, daher kann diese App keine Workflow-Läufe lesen.',
+    error: 'Läufe konnten nicht geladen werden',
+    runs: {
+      title: 'Ihre Läufe',
+      description:
+        'Workflow-Instanzen, die die Plattform für Ihr Konto gestartet hat.',
+      empty:
+        'Noch keine Läufe. Senden Sie das Kontaktformular oder registrieren Sie einen neuen Nutzer, dann aktualisieren.',
+      workflow: 'Workflow',
+      event: 'Ereignis',
+      status: 'Status',
+      nodes: 'Knoten fertig',
+      started: 'Gestartet',
+    },
+    calls: {
+      title: 'Aufrufe in diese App',
+      description:
+        'Was die HTTP-Webhook-Aktion eines Workflows an /api/buildbase/provision gesendet hat, per gemeinsamem Geheimnis geprüft.',
+      empty: 'Noch keine Provisionierungsaufrufe empfangen.',
+    },
+  },
+  reports: {
+    title: 'Berichte',
+    description:
+      'Jedes Modul berichtet über dieselben Chart- und Zähl-Endpunkte; drei davon, für die letzten dreißig Tage.',
+    notConfigured:
+      'BUILDBASE_API_TOKEN ist nicht gesetzt, daher kann diese App keine Berichte lesen.',
+    loading: 'Lädt…',
+    refresh: 'Aktualisieren',
+    window: '{from} bis {to}',
+    unavailable: 'Nicht verfügbar',
+    series: {
+      users: {
+        title: 'Registrierungen',
+        description: 'Neue Nutzer pro Tag.',
+      },
+      forms: {
+        title: 'Formulareingänge',
+        description: 'Eingänge des Kontaktformulars pro Tag.',
+      },
+      links: {
+        title: 'Link-Klicks',
+        description: 'Klicks auf Kurzlinks pro Tag.',
+      },
+    },
+  },
+  assets: {
+    title: 'Dateien',
+    description:
+      'Über diese App hochgeladene Dateien, gespeichert und ausgeliefert von der Plattform.',
+    upload: 'Datei hochladen',
+    uploading: 'Wird hochgeladen…',
+    limit: 'Bis 5 MB. Bilder zeigen eine Vorschau.',
+    uploaded: 'Hochgeladen',
+    gallery: 'Dateien',
+    empty: 'Noch keine Dateien. Laden Sie oben eine hoch.',
+    public: 'Öffentlich',
+    private: 'Privat',
+    makePrivate: 'Privat machen',
+    makePublic: 'Öffentlich machen',
+    nowPublic: 'Jetzt öffentlich: Die URL funktioniert wieder.',
+    nowPrivate: 'Jetzt privat: Die öffentliche URL funktioniert nicht mehr.',
+    openUrl: 'Öffnen',
+    tooLarge: 'Diese Datei ist größer als 5 MB.',
+    loadFailed: 'Die Plattform war nicht erreichbar.',
+    notConfigured:
+      'Diese Seite liest die Organisation über ein API-Token. Setzen Sie BUILDBASE_API_TOKEN (Konsole → Settings → Tokens) und starten Sie neu.',
+  },
+  links: {
+    title: 'Kurzlinks',
+    description:
+      'Teil-Links, die die Plattform weiterleitet und zählt, Klick für Klick.',
+    create: 'Kurzlink erstellen',
+    createHint:
+      'Beliebige URL. Die Plattform vergibt eine 12-stellige ID und protokolliert jeden Klick mit Land und Gerät.',
+    name: 'Name',
+    url: 'Ziel-URL',
+    createButton: 'Erstellen',
+    created: 'Link erstellt',
+    yourLinks: 'Ihre Links',
+    clicksHint:
+      'Folgen Sie einem Link und aktualisieren Sie: Die Zahl kommt von der Plattform, nicht von dieser Seite.',
+    refresh: 'Aktualisieren',
+    empty: 'Noch keine Links.',
+    clicks: 'Klicks',
+    copy: 'Kurz-URL kopieren',
+    copied: 'Kopiert',
+    follow: 'Folgen',
+    changeDestination: 'Ziel ändern',
+    save: 'Speichern',
+    cancel: 'Abbrechen',
+    updated: 'Ziel geändert. Die Kurz-URL bleibt gleich.',
+    chart: 'Klicks, letzte 14 Tage',
+    chartHint: 'Alle Links zusammen, pro Tag.',
+    chartEmpty: 'Noch keine Klicks.',
+    loadFailed: 'Die Plattform war nicht erreichbar.',
+    notConfigured:
+      'Diese Seite liest die Organisation über ein API-Token. Setzen Sie BUILDBASE_API_TOKEN (Konsole → Settings → Tokens) und starten Sie neu.',
+  },
+  audience: {
+    title: 'Zielgruppe und Attribute',
+    description:
+      'Was die Plattform über eine Person jenseits des Kontos führt: eigene Attribute, ein Marketingkontakt und eine Warteliste.',
+    failed: 'Speichern fehlgeschlagen.',
+    notConfigured: 'Der Newsletter braucht BUILDBASE_API_TOKEN auf dem Server.',
+    onboarding: {
+      title: 'Onboarding-Checkliste',
+      description:
+        'Alle drei abhaken und speichern: Das SDK schreibt onboarded=true und Ihre Funktion als Nutzerattribute, in Ihrem Browser, als Sie.',
+      items: {
+        profile: 'Ich habe mein Profil ausgefüllt',
+        workspace: 'Ich habe einen Workspace erstellt',
+        invite: 'Ich habe jemanden eingeladen',
+      },
+      role: 'Ihre Funktion (optional)',
+      save: 'Onboarding abschließen',
+      saved: 'Gespeichert. Öffnen Sie Ihren Datensatz in der Konsole.',
+      already: 'Laut Ihren Attributen bereits abgeschlossen.',
+    },
+    attributes: {
+      title: 'Ihre Attribute',
+      description:
+        'Schlüssel werden in der Konsole definiert (Users → Attributes); Werte liegen an Ihrem Nutzer.',
+      empty: 'Noch keine Attribute.',
+    },
+    locale: {
+      title: 'Land, Zeitzone, Währung',
+      description:
+        'Die Listen kommen mit dem SDK (@buildbase/sdk/data), ohne Download.',
+      country: 'Land',
+      timezone: 'Zeitzone',
+      currency: 'Währung',
+      save: 'Einstellungen speichern',
+      saved: 'Einstellungen als Attribute gespeichert.',
+    },
+    newsletter: {
+      title: 'Newsletter',
+      description:
+        'Ein Marketingkontakt ist vom Konto getrennt: Er kann auch ohne eines existieren. Der Server legt ihn mit dem Org-Token an und fügt ihn der Newsletter-Liste hinzu.',
+      email: 'E-Mail',
+      subscribe: 'Abonnieren',
+      subscribed: 'Abonniert',
+      listed: 'Zur Liste {list} hinzugefügt.',
+      noList:
+        'Kontakt angelegt; diese Organisation hat noch keine Newsletter-Liste.',
+      waitlistHint:
+        'Nicht angemeldete Besucher können der Beta-Warteliste beitreten unter',
+    },
+  },
+  waitlist: {
+    title: 'Auf die Warteliste',
+    description:
+      'Das Beta-Formular der Plattform: Name und E-Mail hinterlassen, ein Admin schaltet Sie in der Konsole frei.',
+    success:
+      'Sie stehen auf der Liste. Ein Admin schaltet Sie aus der Konsole frei.',
+    note: 'Formular und Texte kommen aus der Beta-Konfiguration der Organisation (Konsole → Users → Beta).',
+  },
 };
 
 export default messages;
