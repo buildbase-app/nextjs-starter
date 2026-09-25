@@ -29,8 +29,15 @@ export const siteConfig = {
   },
 } as const;
 
-/** Absolute GitHub URL for a file in this repo. */
+/** The command a visitor runs to take the app home. */
+export const cloneCommand = `git clone ${siteConfig.repo}.git`;
+
+/**
+ * Absolute GitHub URL for a path in this repo. A folder, or a glob like
+ * `src/app/api/auth/*`, opens the folder view; a file opens the file.
+ */
 export function sourceUrl(path: string): string {
-  const clean = path.replace(/^\/+/, '');
-  return `${siteConfig.repo}/blob/${siteConfig.repoBranch}/${clean}`;
+  const clean = path.replace(/^\/+/, '').replace(/\/\*$/, '');
+  const isFile = /\.[a-z0-9]+$/i.test(clean.split('/').pop() ?? '');
+  return `${siteConfig.repo}/${isFile ? 'blob' : 'tree'}/${siteConfig.repoBranch}/${clean}`;
 }

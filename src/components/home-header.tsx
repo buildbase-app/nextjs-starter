@@ -2,6 +2,7 @@
 
 import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { RepoLink } from '@/components/repo-link';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
@@ -79,6 +80,7 @@ export function HomeHeader({ title }: HomeHeaderProps) {
         </nav>
       </div>
       <div className="flex items-center gap-2">
+        <RepoLink label={t('footer.links.github')} />
         <LanguageSwitcher />
         <ThemeToggle />
         <AuthButton />

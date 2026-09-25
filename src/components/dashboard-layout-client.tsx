@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useRouter as useLocaleRouter } from '@/i18n/routing';
 import { useLocale, useTranslations } from 'next-intl';
 import { isRtlLocale, type Locale } from '@/i18n/config';
+import { RepoLink } from '@/components/repo-link';
 import {
   useSaaSAuth,
   WhenAuthenticated,
@@ -68,6 +69,7 @@ export function DashboardLayoutClient({
               <SidebarTrigger />
               <Separator orientation="vertical" className="h-6" />
               <div className="flex-1" />
+              <RepoLink label={t('footer.links.github')} />
               {/* One item per notification, however it was delivered; opening
                   the panel marks items seen, clicking one marks it read. */}
               <NotificationBell

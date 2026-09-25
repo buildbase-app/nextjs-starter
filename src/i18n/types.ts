@@ -67,6 +67,7 @@ export interface CommonMessages {
       blog: string;
       changelog: string;
       tour: string;
+      github: string;
       privacy: string;
       terms: string;
     };
@@ -883,6 +884,11 @@ export interface TourMessages {
   homeCta: string;
   dashboardCard: string;
   next: string;
+  cloneTitle: string;
+  cloneBody: string;
+  browseCode: string;
+  copy: string;
+  copied: string;
   dashboardCta: string;
 }
 

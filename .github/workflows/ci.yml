@@ -76,6 +76,9 @@ jobs:
             exit 1
           fi
 
+      - name: Tour source links
+        run: npm run check:tour
+
       - name: Generate Prisma Client
         run: npx prisma generate
 

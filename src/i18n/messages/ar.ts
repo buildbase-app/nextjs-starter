@@ -68,6 +68,7 @@ const messages: Messages = {
         blog: 'المدونة',
         changelog: 'سجل التغييرات',
         tour: 'الجولة',
+        github: 'المصدر على GitHub',
         privacy: 'سياسة الخصوصية',
         terms: 'شروط الخدمة',
       },
@@ -944,6 +945,12 @@ const messages: Messages = {
     homeCta: 'ابدأ الجولة',
     dashboardCard: 'جولتك',
     next: 'التالي',
+    cloneTitle: 'استنسخ هذا التطبيق',
+    cloneBody:
+      'كل صفحة وكل مهمة هنا موجودة في مستودع مفتوح واحد. اقرأ كيف يعمل أي جزء، أو استنسخه وابدأ تطبيقك الخاص منه.',
+    browseCode: 'تصفح الكود',
+    copy: 'نسخ',
+    copied: 'تم النسخ',
     dashboardCta: 'متابعة',
   },
   help: {

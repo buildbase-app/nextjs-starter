@@ -68,6 +68,7 @@ const messages: Messages = {
         blog: 'ブログ',
         changelog: '変更履歴',
         tour: 'ツアー',
+        github: 'GitHubのソース',
         privacy: 'プライバシーポリシー',
         terms: '利用規約',
       },
@@ -955,6 +956,12 @@ const messages: Messages = {
     homeCta: 'ツアーを始める',
     dashboardCard: 'あなたのツアー',
     next: '次',
+    cloneTitle: 'このアプリをクローン',
+    cloneBody:
+      'ここにあるすべてのページとタスクは、ひとつの公開リポジトリにあります。仕組みを読むことも、クローンして自分のアプリを始めることもできます。',
+    browseCode: 'コードを見る',
+    copy: 'コピー',
+    copied: 'コピーしました',
     dashboardCta: '続ける',
   },
   help: {

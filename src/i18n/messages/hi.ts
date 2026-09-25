@@ -68,6 +68,7 @@ const messages: Messages = {
         blog: 'ब्लॉग',
         changelog: 'परिवर्तन लॉग',
         tour: 'टूर',
+        github: 'GitHub पर सोर्स',
         privacy: 'गोपनीयता नीति',
         terms: 'सेवा की शर्तें',
       },
@@ -956,6 +957,12 @@ const messages: Messages = {
     homeCta: 'टूर शुरू करें',
     dashboardCard: 'आपका टूर',
     next: 'अगला',
+    cloneTitle: 'इस ऐप को क्लोन करें',
+    cloneBody:
+      'यहाँ का हर पेज और हर कार्य एक खुली रिपॉज़िटरी में है। देखें कि कोई भी हिस्सा कैसे काम करता है, या इसे क्लोन करके अपना ऐप शुरू करें।',
+    browseCode: 'कोड देखें',
+    copy: 'कॉपी करें',
+    copied: 'कॉपी हो गया',
     dashboardCta: 'जारी रखें',
   },
   help: {

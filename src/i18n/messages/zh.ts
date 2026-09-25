@@ -68,6 +68,7 @@ const messages: Messages = {
         blog: '博客',
         changelog: '更新日志',
         tour: '导览',
+        github: 'GitHub 源码',
         privacy: '隐私政策',
         terms: '服务条款',
       },
@@ -922,6 +923,12 @@ const messages: Messages = {
     homeCta: '开始导览',
     dashboardCard: '你的导览',
     next: '下一步',
+    cloneTitle: '克隆这个应用',
+    cloneBody:
+      '这里的每个页面和每项任务都在同一个开源仓库里。查看任何部分如何实现，或克隆它来开始你自己的应用。',
+    browseCode: '浏览代码',
+    copy: '复制',
+    copied: '已复制',
     dashboardCta: '继续',
   },
   help: {

@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { CONSOLE_URL } from '@/tour/catalog';
+import { sourceUrl } from '@/config/site';
 import { tourGroups, tourTasks } from '@/tour/text';
 import type { TourTask } from '@/tour/types';
 
@@ -284,7 +285,7 @@ function TaskDetail({
             {source.app.map((s) => (
               <a
                 key={s}
-                href={`https://github.com/buildbase-app/nextjs-starter/blob/main/${s}`}
+                href={sourceUrl(s)}
                 target="_blank"
                 rel="noreferrer"
                 className="text-primary block truncate font-mono text-xs underline-offset-4 hover:underline"

@@ -68,6 +68,7 @@ const messages: Messages = {
         blog: 'Blog',
         changelog: 'Journal des modifications',
         tour: 'Visite',
+        github: 'Code sur GitHub',
         privacy: 'Politique de confidentialité',
         terms: "Conditions d'utilisation",
       },
@@ -970,6 +971,12 @@ const messages: Messages = {
     homeCta: 'Commencer la visite',
     dashboardCard: 'Votre visite',
     next: 'Suivant',
+    cloneTitle: 'Clonez cette app',
+    cloneBody:
+      'Chaque page et chaque tâche ici sont dans un seul dépôt ouvert. Voyez comment tout fonctionne, ou clonez-le pour démarrer votre propre app.',
+    browseCode: 'Parcourir le code',
+    copy: 'Copier',
+    copied: 'Copié',
     dashboardCta: 'Continuer',
   },
   help: {

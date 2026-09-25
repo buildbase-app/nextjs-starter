@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { TourList } from '@/components/tour/tour-list';
+import { CloneCard } from '@/components/tour/clone-card';
 import { TOUR_TASKS } from '@/tour/catalog';
 
 export default async function TourPage({
@@ -18,6 +19,7 @@ export default async function TourPage({
           {t('subtitle', { total: TOUR_TASKS.length })}
         </p>
       </div>
+      <CloneCard />
       <TourList initialOpen={task} />
     </div>
   );
