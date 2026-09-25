@@ -6,6 +6,7 @@ import { env } from '@/env';
 import { SaaSOSProvider } from '@buildbase/sdk/react';
 import { useLocale } from 'next-intl';
 import { Locale } from '@/i18n/config';
+import { pushTrackingEvent } from '@/lib/tracking-bus';
 
 const config = {
   serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
@@ -53,6 +54,19 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
       version={ApiVersion.V1}
       orgId={config.orgId}
       locale={locale}
+      // Analytics and ad tags come from the console (Settings → Tracking)
+      // and load only after consent. Every event the SDK fires goes through
+      // `onEvent` into a small in-memory log the Tracking page renders.
+      tracking={{
+        enabled: true,
+        consent: 'auto',
+        autoPageview: true,
+        events: { mode: 'auto' },
+        debug: process.env.NODE_ENV !== 'production',
+        onEvent: (event) => {
+          pushTrackingEvent(event);
+        },
+      }}
       defaultPermissions={{
         admin: ['create', 'share', 'delete'],
         editor: ['create', 'share'],

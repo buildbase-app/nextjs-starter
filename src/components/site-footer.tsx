@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
+import { BuildBaseBadge } from '@buildbase/sdk/react';
 
 interface SiteFooterProps {
   title: string;
@@ -81,7 +82,9 @@ export async function SiteFooter({ title }: SiteFooterProps) {
           <p className="text-muted-foreground text-xs">
             © {year} {title}. {t('footer.rights')}.
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            {/* The platform's badge: an image and a link, no script, no network call. */}
+            <BuildBaseBadge variant="built-with" theme="auto" size="sm" />
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
