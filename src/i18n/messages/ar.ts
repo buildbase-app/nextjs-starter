@@ -640,6 +640,25 @@ const messages: Messages = {
       denied: 'مرفوض',
       grantedStatus: 'ممنوح',
     },
+    appPermissions: {
+      title: 'صلاحيات تطبيقك',
+      description:
+        'معرّفة في لوحة تحكم BuildBase، لا في شيفرة هذا التطبيق. يقرر التطبيق ما يعرضه، ويسأل الخادم الخلفي BuildBase قبل أن ينفّذ.',
+      empty:
+        'لم تعرّف هذه المؤسسة أي صلاحيات خاصة بها بعد. أضف واحدة في لوحة التحكم ضمن Workspaces ثم Settings.',
+      permission: 'الصلاحية',
+      inApp: 'في التطبيق',
+      backend: 'الخادم الخلفي',
+      allowed: 'مسموح',
+      denied: 'مرفوض',
+      tryIt: 'جرّب',
+      codeOnly: 'موجودة في شيفرة هذا التطبيق فقط، لذا يتحقق منها المتصفح وحده',
+      tried: {
+        allowed: 'تم: سمح الخادم الخلفي بذلك',
+        refused: 'رفضه الخادم الخلفي',
+        error: 'تعذّر التحقق',
+      },
+    },
   },
   profile: {
     agents: {

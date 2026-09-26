@@ -645,6 +645,25 @@ const messages: Messages = {
       denied: 'अस्वीकृत',
       grantedStatus: 'स्वीकृत',
     },
+    appPermissions: {
+      title: 'आपके ऐप की अनुमतियाँ',
+      description:
+        'BuildBase कंसोल में परिभाषित, इस ऐप के कोड में नहीं। ऐप तय करता है कि क्या दिखाना है; आपका बैकएंड कुछ करने से पहले BuildBase से पूछता है।',
+      empty:
+        'इस संगठन ने अभी तक अपनी कोई अनुमति परिभाषित नहीं की है। कंसोल में Workspaces, Settings में एक जोड़ें।',
+      permission: 'अनुमति',
+      inApp: 'ऐप में',
+      backend: 'आपका बैकएंड',
+      allowed: 'अनुमति है',
+      denied: 'अस्वीकृत',
+      tryIt: 'आज़माएँ',
+      codeOnly: 'केवल इस ऐप के कोड में, इसलिए केवल ब्राउज़र इसे जाँचता है',
+      tried: {
+        allowed: 'हो गया: आपके बैकएंड ने अनुमति दी',
+        refused: 'आपके बैकएंड ने अस्वीकार किया',
+        error: 'जाँच नहीं हो सकी',
+      },
+    },
   },
   profile: {
     agents: {

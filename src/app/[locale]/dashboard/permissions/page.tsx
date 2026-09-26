@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import {
   usePermissions,
+  useSaaSSettings,
   WhenWorkspaceRoles,
   WhenPermission,
 } from '@buildbase/sdk/react';
@@ -16,6 +17,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, XCircle, Shield, Users } from 'lucide-react';
+import { AppPermissionsCard } from '@/components/permissions/app-permissions-card';
 
 function PermissionRow({
   slug,
@@ -53,6 +55,11 @@ function PermissionRow({
 export default function PermissionsPage() {
   const t = useTranslations('permissions');
   const { role, isOwner, permissions } = usePermissions();
+  const { settings } = useSaaSSettings();
+  // Every role the organization defines, custom ones included. A fixed list
+  // here once named `member`, a role nobody can hold, so editors and viewers
+  // were told they were not members of their own workspace.
+  const memberRoles = ['owner', ...(settings?.workspace?.roles ?? [])];
 
   const denied = t('matrix.denied');
   const grantedStatus = t('matrix.grantedStatus');
@@ -135,14 +142,14 @@ export default function PermissionsPage() {
               </CardTitle>
               <CardDescription>
                 <code className="text-xs">
-                  WhenWorkspaceRoles roles={['owner', 'admin', 'member']}
+                  WhenWorkspaceRoles roles={JSON.stringify(memberRoles)}
                 </code>
               </CardDescription>
             </div>
           </CardHeader>
           <CardContent>
             <WhenWorkspaceRoles
-              roles={['owner', 'admin', 'member']}
+              roles={memberRoles}
               fallback={
                 <p className="text-muted-foreground text-sm">
                   {t('allMembers.notMember')}
@@ -156,6 +163,8 @@ export default function PermissionsPage() {
           </CardContent>
         </Card>
       </div>
+
+      <AppPermissionsCard />
 
       <Card>
         <CardHeader>

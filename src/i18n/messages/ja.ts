@@ -645,6 +645,25 @@ const messages: Messages = {
       denied: '拒否',
       grantedStatus: '付与済み',
     },
+    appPermissions: {
+      title: 'アプリ独自の権限',
+      description:
+        'このアプリのコードではなく、BuildBase コンソールで定義されています。表示内容はアプリが決め、実行前にはバックエンドが BuildBase に確認します。',
+      empty:
+        'この組織はまだ独自の権限を定義していません。コンソールの Workspaces > Settings で追加してください。',
+      permission: '権限',
+      inApp: 'アプリ',
+      backend: 'バックエンド',
+      allowed: '許可',
+      denied: '拒否',
+      tryIt: '試す',
+      codeOnly: 'このアプリのコードにのみあるため、ブラウザだけが確認します',
+      tried: {
+        allowed: '完了: バックエンドが許可しました',
+        refused: 'バックエンドが拒否しました',
+        error: '確認できませんでした',
+      },
+    },
   },
   profile: {
     agents: {

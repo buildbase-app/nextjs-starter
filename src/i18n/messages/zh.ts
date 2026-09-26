@@ -625,6 +625,25 @@ const messages: Messages = {
       denied: '拒绝',
       grantedStatus: '已授权',
     },
+    appPermissions: {
+      title: '你的应用权限',
+      description:
+        '在 BuildBase 控制台中定义，而不是在本应用的代码中。应用决定显示什么；你的后端在执行操作前会询问 BuildBase。',
+      empty:
+        '该组织尚未定义自己的权限。请在控制台的 Workspaces > Settings 中添加。',
+      permission: '权限',
+      inApp: '应用内',
+      backend: '你的后端',
+      allowed: '允许',
+      denied: '拒绝',
+      tryIt: '试一试',
+      codeOnly: '仅存在于本应用代码中，因此只有浏览器会检查',
+      tried: {
+        allowed: '完成：后端已允许',
+        refused: '被后端拒绝',
+        error: '无法检查',
+      },
+    },
   },
   profile: {
     agents: {

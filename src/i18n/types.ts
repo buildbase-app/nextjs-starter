@@ -582,6 +582,23 @@ export interface PermissionsMessages {
     denied: string;
     grantedStatus: string;
   };
+  appPermissions: {
+    title: string;
+    description: string;
+    empty: string;
+    permission: string;
+    inApp: string;
+    backend: string;
+    allowed: string;
+    denied: string;
+    tryIt: string;
+    codeOnly: string;
+    tried: {
+      allowed: string;
+      refused: string;
+      error: string;
+    };
+  };
 }
 
 export interface ProfileMessages {

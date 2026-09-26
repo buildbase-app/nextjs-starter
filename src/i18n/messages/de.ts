@@ -655,6 +655,25 @@ const messages: Messages = {
       denied: 'Verweigert',
       grantedStatus: 'Erteilt',
     },
+    appPermissions: {
+      title: 'Berechtigungen Ihrer App',
+      description:
+        'In der BuildBase-Konsole definiert, nicht im Code dieser App. Die App entscheidet, was sie zeigt; Ihr Backend fragt BuildBase, bevor es handelt.',
+      empty:
+        'Diese Organisation hat noch keine eigenen Berechtigungen definiert. Fügen Sie eine in der Konsole unter Workspaces, Einstellungen hinzu.',
+      permission: 'Berechtigung',
+      inApp: 'In der App',
+      backend: 'Ihr Backend',
+      allowed: 'Erlaubt',
+      denied: 'Verweigert',
+      tryIt: 'Ausprobieren',
+      codeOnly: 'Nur im Code dieser App, daher prüft nur der Browser',
+      tried: {
+        allowed: 'Erledigt: Ihr Backend hat es erlaubt',
+        refused: 'Von Ihrem Backend abgelehnt',
+        error: 'Prüfung nicht möglich',
+      },
+    },
   },
   profile: {
     agents: {

@@ -653,6 +653,26 @@ const messages: Messages = {
       denied: 'Refusé',
       grantedStatus: 'Accordé',
     },
+    appPermissions: {
+      title: 'Les permissions de votre app',
+      description:
+        "Définies dans la console BuildBase, pas dans le code de cette app. L'app décide de ce qu'elle affiche ; votre backend interroge BuildBase avant d'agir.",
+      empty:
+        "Cette organisation n'a encore défini aucune permission propre. Ajoutez-en une dans la console, sous Workspaces, Paramètres.",
+      permission: 'Permission',
+      inApp: "Dans l'app",
+      backend: 'Votre backend',
+      allowed: 'Autorisé',
+      denied: 'Refusé',
+      tryIt: 'Essayer',
+      codeOnly:
+        'Seulement dans le code de cette app, donc seul le navigateur le vérifie',
+      tried: {
+        allowed: "Fait : votre backend l'a autorisé",
+        refused: 'Refusé par votre backend',
+        error: 'Vérification impossible',
+      },
+    },
   },
   profile: {
     agents: {
