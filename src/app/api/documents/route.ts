@@ -9,9 +9,10 @@ import {
   asTags,
   isStatus,
   readJson,
-  requireWrite,
+  requirePermission,
   resolveWorkspace,
 } from './_shared';
+import { DOCUMENT_PERMISSIONS } from '@/lib/documents/roles';
 
 /** GET /api/documents?workspaceId=&status=&tag=&q=&limit=&cursor= */
 export async function GET(request: NextRequest) {
@@ -42,7 +43,7 @@ export async function POST(request: NextRequest) {
   if (!resolved.ok) return resolved.response;
   const { ctx } = resolved;
 
-  const forbidden = await requireWrite(ctx);
+  const forbidden = await requirePermission(ctx, DOCUMENT_PERMISSIONS.create);
   if (forbidden) return forbidden;
 
   const title = typeof body.title === 'string' ? body.title.trim() : '';

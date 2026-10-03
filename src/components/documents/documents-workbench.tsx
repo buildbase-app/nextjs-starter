@@ -35,7 +35,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { canWriteDocuments } from '@/lib/documents/roles';
+import { DOCUMENT_PERMISSIONS } from '@/lib/documents/roles';
 
 /*
  * The demo's own product: documents in a workspace. Every write goes to
@@ -88,11 +88,15 @@ const STATUS_STYLE: Record<Status, string> = {
 export function DocumentsWorkbench() {
   const t = useTranslations('documents.workbench');
   const { currentWorkspace } = useSaaSWorkspaces();
-  const { role } = usePermissions();
+  const { role, can } = usePermissions();
   const quotaCtx = useQuotaUsageContext();
   const creditCtx = useCreditBalanceContext();
   const workspaceId = currentWorkspace?._id ?? null;
-  const writer = canWriteDocuments(role);
+  // The organization's own keys, granted per role (custom roles too) in the
+  // console. The server checks the same keys; hiding is only a courtesy.
+  const writer = can(DOCUMENT_PERMISSIONS.create);
+  const editor = can(DOCUMENT_PERMISSIONS.edit);
+  const deleter = can(DOCUMENT_PERMISSIONS.delete);
 
   const [items, setItems] = useState<DocumentSummary[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
@@ -302,7 +306,7 @@ export function DocumentsWorkbench() {
           </Notice>
         )}
       </WhenCreditsLow>
-      {!writer && role && (
+      {!writer && !editor && !deleter && role && (
         <Notice icon={Lock} tone="info">
           {t('viewerNotice', { role })}
         </Notice>
@@ -431,7 +435,7 @@ export function DocumentsWorkbench() {
                     </div>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
-                    {writer ? (
+                    {editor ? (
                       <select
                         value={doc.status}
                         onChange={(e) =>
@@ -464,9 +468,9 @@ export function DocumentsWorkbench() {
                       size="icon"
                       variant="ghost"
                       className="h-7 w-7"
-                      disabled={!writer || busy === doc.id}
+                      disabled={!deleter || busy === doc.id}
                       title={
-                        writer
+                        deleter
                           ? t('delete')
                           : t('viewerNotice', { role: role ?? '' })
                       }

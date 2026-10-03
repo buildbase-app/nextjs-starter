@@ -16,7 +16,12 @@ import {
   getWorkspaceStats,
   DOCUMENT_STATUSES,
 } from '@/lib/documents';
-import { resolveWorkspaceRole, canWrite } from '@/lib/server-auth';
+import {
+  hasAppPermission,
+  resolveMemberGrants,
+  type MemberGrants,
+} from '@/lib/server-auth';
+import { DOCUMENT_PERMISSIONS } from '@/lib/documents/roles';
 import { buildLlmsFullTxt } from './content';
 import { detect } from '@/tour/progress';
 
@@ -50,12 +55,13 @@ class ToolError extends Error {}
 /**
  * Pick the workspace a tool should act on: explicit argument, then the
  * workspace pinned in the token, then — if the user has exactly one — that.
- * Always confirms membership with the platform and returns the role.
+ * Always confirms membership with the platform and returns what the member
+ * may do there, custom roles included.
  */
 async function resolveWorkspace(
   ctx: McpToolContext,
   workspaceId?: string
-): Promise<{ workspaceId: string; role: string }> {
+): Promise<{ workspaceId: string; grants: MemberGrants }> {
   const userId = ctx.auth.userId;
   if (!userId) throw new ToolError('Token has no user — re-authenticate.');
   await tick(ctx, 'mcp:tool-called');
@@ -72,9 +78,9 @@ async function resolveWorkspace(
       );
   }
 
-  const role = await resolveWorkspaceRole(ctx.bb, id, userId);
-  if (!role) throw new ToolError(`You are not a member of workspace ${id}.`);
-  return { workspaceId: id, role };
+  const grants = await resolveMemberGrants(ctx.bb, id, userId);
+  if (!grants) throw new ToolError(`You are not a member of workspace ${id}.`);
+  return { workspaceId: id, grants };
 }
 
 /** The tour: tick a task from inside a tool, as the person the token is for. */
@@ -180,12 +186,14 @@ export const documentTools = [
       idempotentHint: false,
     },
     execute: async (input, ctx) => {
-      const { workspaceId, role } = await resolveWorkspace(
+      const { workspaceId, grants } = await resolveWorkspace(
         ctx,
         input.workspaceId
       );
-      if (!canWrite(role))
-        throw new ToolError(`Role "${role}" cannot create documents.`);
+      if (!(await hasAppPermission(grants, DOCUMENT_PERMISSIONS.create)))
+        throw new ToolError(
+          `Role "${grants.role}" lacks ${DOCUMENT_PERMISSIONS.create}.`
+        );
       const { document, metering } = await createDocument(
         ctx.bb,
         workspaceId,
@@ -214,12 +222,14 @@ export const documentTools = [
       idempotentHint: true,
     },
     execute: async (input, ctx) => {
-      const { workspaceId, role } = await resolveWorkspace(
+      const { workspaceId, grants } = await resolveWorkspace(
         ctx,
         input.workspaceId
       );
-      if (!canWrite(role))
-        throw new ToolError(`Role "${role}" cannot update documents.`);
+      if (!(await hasAppPermission(grants, DOCUMENT_PERMISSIONS.edit)))
+        throw new ToolError(
+          `Role "${grants.role}" lacks ${DOCUMENT_PERMISSIONS.edit}.`
+        );
       const doc = await updateDocument(
         workspaceId,
         input.documentId,

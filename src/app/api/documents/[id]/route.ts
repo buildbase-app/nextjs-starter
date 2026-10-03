@@ -4,9 +4,10 @@ import {
   asTags,
   isStatus,
   readJson,
-  requireWrite,
+  requirePermission,
   resolveWorkspace,
 } from '../_shared';
+import { DOCUMENT_PERMISSIONS } from '@/lib/documents/roles';
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -26,7 +27,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
   const resolved = await resolveWorkspace(request, body);
   if (!resolved.ok) return resolved.response;
   const { ctx } = resolved;
-  const forbidden = await requireWrite(ctx);
+  const forbidden = await requirePermission(ctx, DOCUMENT_PERMISSIONS.edit);
   if (forbidden) return forbidden;
 
   const { id } = await params;
@@ -58,7 +59,7 @@ export async function DELETE(request: NextRequest, { params }: Params) {
   const resolved = await resolveWorkspace(request);
   if (!resolved.ok) return resolved.response;
   const { ctx } = resolved;
-  const forbidden = await requireWrite(ctx);
+  const forbidden = await requirePermission(ctx, DOCUMENT_PERMISSIONS.delete);
   if (forbidden) return forbidden;
 
   const { id } = await params;

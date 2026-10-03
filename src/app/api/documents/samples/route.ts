@@ -1,13 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { clearSampleDocuments, seedSampleDocuments } from '@/lib/documents';
-import { readJson, requireWrite, resolveWorkspace } from '../_shared';
+import { readJson, requirePermission, resolveWorkspace } from '../_shared';
+import { DOCUMENT_PERMISSIONS } from '@/lib/documents/roles';
 
 /** POST /api/documents/samples { workspaceId } — load the sample set once. */
 export async function POST(request: NextRequest) {
   const body = await readJson(request);
   const resolved = await resolveWorkspace(request, body);
   if (!resolved.ok) return resolved.response;
-  const forbidden = await requireWrite(resolved.ctx);
+  const forbidden = await requirePermission(
+    resolved.ctx,
+    DOCUMENT_PERMISSIONS.create
+  );
   if (forbidden) return forbidden;
   const { ctx } = resolved;
   const result = await seedSampleDocuments(ctx.workspaceId, {
@@ -21,7 +25,10 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   const resolved = await resolveWorkspace(request);
   if (!resolved.ok) return resolved.response;
-  const forbidden = await requireWrite(resolved.ctx);
+  const forbidden = await requirePermission(
+    resolved.ctx,
+    DOCUMENT_PERMISSIONS.delete
+  );
   if (forbidden) return forbidden;
   const { ctx } = resolved;
   const removed = await clearSampleDocuments(ctx.workspaceId, {
