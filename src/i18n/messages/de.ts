@@ -318,6 +318,18 @@ const messages: Messages = {
       openButton: 'Gefahrenzone öffnen',
     },
     sections: {
+      security: {
+        label: 'Sicherheit',
+        description: 'Passkeys und wie du dich anmeldest',
+      },
+      devices: {
+        label: 'Geräte',
+        description: 'Browser und Rechner, auf denen du angemeldet bist',
+      },
+      'connected-agents': {
+        label: 'Verbundene Agenten',
+        description: 'KI-Agenten mit Zugriff über MCP',
+      },
       profile: {
         label: 'Profil',
         description: 'Ihr Name, Avatar und persönliche Daten',

@@ -316,6 +316,18 @@ const messages: Messages = {
       openButton: 'Abrir zona de peligro',
     },
     sections: {
+      security: {
+        label: 'Seguridad',
+        description: 'Llaves de acceso y cómo inicias sesión',
+      },
+      devices: {
+        label: 'Dispositivos',
+        description: 'Navegadores y equipos con sesión iniciada',
+      },
+      'connected-agents': {
+        label: 'Agentes conectados',
+        description: 'Agentes de IA con acceso por MCP',
+      },
       profile: {
         label: 'Perfil',
         description: 'Tu nombre, avatar y datos personales',

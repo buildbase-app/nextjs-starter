@@ -314,6 +314,18 @@ const messages: Messages = {
       openButton: 'Open danger zone',
     },
     sections: {
+      security: {
+        label: 'Security',
+        description: 'Passkeys and how you sign in',
+      },
+      devices: {
+        label: 'Devices',
+        description: 'Browsers and machines you are signed in on',
+      },
+      'connected-agents': {
+        label: 'Connected agents',
+        description: 'AI agents you granted access over MCP',
+      },
       profile: {
         label: 'Profile',
         description: 'Your name, avatar, and personal details',

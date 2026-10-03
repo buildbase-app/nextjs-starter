@@ -315,6 +315,18 @@ const messages: Messages = {
       openButton: '危険ゾーンを開く',
     },
     sections: {
+      security: {
+        label: 'セキュリティ',
+        description: 'パスキーとサインイン方法',
+      },
+      devices: {
+        label: 'デバイス',
+        description: 'サインインしているブラウザとマシン',
+      },
+      'connected-agents': {
+        label: '接続中のエージェント',
+        description: 'MCP経由でアクセスを許可したAIエージェント',
+      },
       profile: {
         label: 'プロフィール',
         description: '名前、アバター、個人データ',

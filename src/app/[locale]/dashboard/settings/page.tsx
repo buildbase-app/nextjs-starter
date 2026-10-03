@@ -22,6 +22,9 @@ import {
   ShieldCheck,
   Trash2,
   ChevronRight,
+  Fingerprint,
+  MonitorSmartphone,
+  Bot,
 } from 'lucide-react';
 
 type Section = Parameters<
@@ -30,6 +33,9 @@ type Section = Parameters<
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   profile: User,
+  security: Fingerprint,
+  devices: MonitorSmartphone,
+  'connected-agents': Bot,
   general: Building2,
   users: Users,
   subscription: CreditCard,
@@ -43,6 +49,9 @@ const SECTION_ICONS: Record<string, React.ElementType> = {
 
 const SAFE_SECTIONS: Section[] = [
   'profile',
+  'security',
+  'devices',
+  'connected-agents',
   'general',
   'users',
   'subscription',

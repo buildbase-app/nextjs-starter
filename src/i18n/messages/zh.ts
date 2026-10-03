@@ -308,6 +308,18 @@ const messages: Messages = {
       openButton: '打开危险区域',
     },
     sections: {
+      security: {
+        label: '安全',
+        description: '通行密钥和登录方式',
+      },
+      devices: {
+        label: '设备',
+        description: '你已登录的浏览器和设备',
+      },
+      'connected-agents': {
+        label: '已连接的代理',
+        description: '你通过 MCP 授权的 AI 代理',
+      },
       profile: {
         label: '个人资料',
         description: '您的姓名、头像和个人详情',

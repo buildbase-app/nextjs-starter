@@ -315,6 +315,18 @@ const messages: Messages = {
       openButton: 'खतरे का ज़ोन खोलें',
     },
     sections: {
+      security: {
+        label: 'सुरक्षा',
+        description: 'पासकी और आप कैसे साइन इन करते हैं',
+      },
+      devices: {
+        label: 'डिवाइस',
+        description: 'वे ब्राउज़र और मशीनें जिन पर आप साइन इन हैं',
+      },
+      'connected-agents': {
+        label: 'जुड़े हुए एजेंट',
+        description: 'वे AI एजेंट जिन्हें आपने MCP पर पहुँच दी है',
+      },
       profile: {
         label: 'प्रोफ़ाइल',
         description: 'आपका नाम, अवतार और व्यक्तिगत डेटा',

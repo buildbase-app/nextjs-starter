@@ -309,6 +309,9 @@ export interface SettingsMessages {
   };
   sections: {
     profile: SettingsSectionItem;
+    security: SettingsSectionItem;
+    devices: SettingsSectionItem;
+    'connected-agents': SettingsSectionItem;
     general: SettingsSectionItem;
     users: SettingsSectionItem;
     subscription: SettingsSectionItem;

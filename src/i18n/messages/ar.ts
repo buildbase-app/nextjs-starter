@@ -312,6 +312,18 @@ const messages: Messages = {
       openButton: 'فتح منطقة الخطر',
     },
     sections: {
+      security: {
+        label: 'الأمان',
+        description: 'مفاتيح المرور وطريقة تسجيل الدخول',
+      },
+      devices: {
+        label: 'الأجهزة',
+        description: 'المتصفحات والأجهزة المسجّل دخولك عليها',
+      },
+      'connected-agents': {
+        label: 'الوكلاء المتصلون',
+        description: 'وكلاء الذكاء الاصطناعي الذين منحتهم وصولًا عبر MCP',
+      },
       profile: {
         label: 'الملف الشخصي',
         description: 'اسمك وصورتك الرمزية وتفاصيلك الشخصية',
