@@ -49,9 +49,13 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       },
       app: ['src/components/saas-provider.tsx', 'src/app/api/auth/*'],
     },
+    // Ticked by the code exchange in /api/auth/token, not by the SDK's
+    // `user:created` event: that event fires only for an account the SDK
+    // itself creates, so anyone who signed in with an account they already
+    // had was still told to create one.
     detect: {
-      kind: 'sdk-event',
-      event: 'user:created',
+      kind: 'action',
+      action: 'auth:signed-in',
     },
   },
   {
