@@ -5,6 +5,7 @@ import {
   usePermissions,
   WhenWorkspaceRoles,
   WhenPermission,
+  useSaaSSettings,
 } from '@buildbase/sdk/react';
 import { Permission } from '@buildbase/sdk';
 import {
@@ -55,6 +56,11 @@ export default function PermissionsPage() {
   const { role, isOwner, permissions, can, appPermissionDefinitions } =
     usePermissions();
   const ta = useTranslations('account.permissions');
+  const { settings } = useSaaSSettings();
+  const memberRoles = [
+    'owner',
+    ...(settings?.workspace?.roles ?? ['admin', 'member']),
+  ];
 
   const denied = t('matrix.denied');
   const grantedStatus = t('matrix.grantedStatus');
@@ -107,7 +113,7 @@ export default function PermissionsPage() {
               </CardTitle>
               <CardDescription>
                 <code className="text-xs">
-                  WhenWorkspaceRoles roles={['owner', 'admin']}
+                  {"WhenWorkspaceRoles roles={['owner', 'admin']}"}
                 </code>
               </CardDescription>
             </div>
@@ -137,14 +143,16 @@ export default function PermissionsPage() {
               </CardTitle>
               <CardDescription>
                 <code className="text-xs">
-                  WhenWorkspaceRoles roles={['owner', 'admin', 'member']}
+                  {`WhenWorkspaceRoles roles={[${memberRoles.map((r) => `'${r}'`).join(', ')}]}`}
                 </code>
               </CardDescription>
             </div>
           </CardHeader>
           <CardContent>
+            {/* Every role the organization defines - custom roles included -
+                not a list this app hard-codes. */}
             <WhenWorkspaceRoles
-              roles={['owner', 'admin', 'member']}
+              roles={memberRoles}
               fallback={
                 <p className="text-muted-foreground text-sm">
                   {t('allMembers.notMember')}
