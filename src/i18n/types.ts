@@ -137,6 +137,13 @@ export interface HomeMessages {
 }
 
 export interface DashboardMessages {
+  roles: {
+    owner: string;
+    admin: string;
+    member: string;
+    editor: string;
+    viewer: string;
+  };
   title: string;
   welcome: string;
   trial: {
@@ -156,6 +163,15 @@ export interface DashboardMessages {
     choosePlan: string;
   };
   subscription: {
+    statuses: {
+      active: string;
+      trialing: string;
+      canceled: string;
+      past_due: string;
+      paused: string;
+      incomplete: string;
+      unpaid: string;
+    };
     title: string;
     description: string;
     loading: string;

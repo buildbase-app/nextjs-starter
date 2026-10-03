@@ -143,6 +143,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: 'المالك',
+      admin: 'مسؤول',
+      member: 'عضو',
+      editor: 'محرّر',
+      viewer: 'مشاهد',
+    },
     title: 'لوحة التحكم',
     welcome: 'مرحباً بعودتك، {name}!',
     trial: {
@@ -163,6 +170,15 @@ const messages: Messages = {
       choosePlan: 'اختر خطة',
     },
     subscription: {
+      statuses: {
+        active: 'نشط',
+        trialing: 'فترة تجريبية',
+        canceled: 'ملغى',
+        past_due: 'متأخر السداد',
+        paused: 'متوقف مؤقتًا',
+        incomplete: 'غير مكتمل',
+        unpaid: 'غير مدفوع',
+      },
       title: 'الاشتراك',
       description: 'خطتك الحالية',
       loading: 'جاري التحميل...',

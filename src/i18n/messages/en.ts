@@ -144,6 +144,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: 'Owner',
+      admin: 'Admin',
+      member: 'Member',
+      editor: 'Editor',
+      viewer: 'Viewer',
+    },
     title: 'Dashboard',
     welcome: 'Welcome back, {name}!',
     trial: {
@@ -164,6 +171,15 @@ const messages: Messages = {
       choosePlan: 'Choose a plan',
     },
     subscription: {
+      statuses: {
+        active: 'Active',
+        trialing: 'Trialing',
+        canceled: 'Canceled',
+        past_due: 'Past due',
+        paused: 'Paused',
+        incomplete: 'Incomplete',
+        unpaid: 'Unpaid',
+      },
       title: 'Subscription',
       description: 'Your current plan',
       loading: 'Loading...',

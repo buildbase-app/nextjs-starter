@@ -7,6 +7,7 @@ import {
   useSubscription,
   useTrialStatus,
   useSeatStatus,
+  usePermissions,
   WhenTrialing,
   WhenTrialEnding,
   WhenNotTrialing,
@@ -23,6 +24,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { SubscriptionStatus } from '@buildbase/sdk';
 import { Badge } from '@/components/ui/badge';
 import { TourProgressCard } from '@/components/tour/tour-progress-card';
 import { CancelResume } from '@/components/billing/cancel-resume';
@@ -35,6 +37,11 @@ import {
   Users,
   CheckCircle2,
 } from 'lucide-react';
+
+/** Workspace roles the SDK ships; anything else is the organization's own. */
+const KNOWN_ROLES: string[] = ['owner', 'admin', 'member', 'editor', 'viewer'];
+/** Stripe subscription statuses the SDK enumerates. */
+const KNOWN_STATUSES: string[] = Object.values(SubscriptionStatus);
 
 export default function DashboardPage() {
   const { user, openPlanPicker, openWorkspaceSettings } = useSaaSAuth();
@@ -52,6 +59,25 @@ export default function DashboardPage() {
   useCheckoutCompleted();
 
   const plan = subscription?.plan;
+
+  // The role that decides what this person may do here is the workspace one,
+  // not the platform account role (which is "user" for everybody). A role the
+  // organization invented keeps its own name; the built-in ones are
+  // translated.
+  const { role } = usePermissions();
+  const roleLabel = role
+    ? KNOWN_ROLES.includes(role)
+      ? t(`roles.${role}` as 'roles.owner')
+      : role
+    : null;
+  // Stripe's status codes, in the reader's language; an unknown one is shown
+  // as it came rather than hidden.
+  const status = subscription?.subscription?.subscriptionStatus;
+  const statusLabel = status
+    ? KNOWN_STATUSES.includes(status)
+      ? t(`subscription.statuses.${status}` as 'subscription.statuses.active')
+      : status
+    : null;
 
   return (
     <div className="space-y-6">
@@ -165,7 +191,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold capitalize">
-              {user?.role || t('cards.role.empty')}
+              {roleLabel ?? t('cards.role.empty')}
             </p>
           </CardContent>
         </Card>
@@ -211,16 +237,14 @@ export default function DashboardPage() {
               <div>
                 <p className="text-xl font-bold">{plan.name}</p>
                 <p className="text-muted-foreground mt-0.5 text-sm">
-                  {subscription?.subscription?.subscriptionStatus
-                    ? t('subscription.status', {
-                        status: subscription.subscription?.subscriptionStatus,
-                      })
+                  {statusLabel
+                    ? t('subscription.status', { status: statusLabel })
                     : t('subscription.activeSubscription')}
                 </p>
               </div>
               <div className="flex items-center gap-2">
                 <Badge variant="outline" className="capitalize">
-                  {subscription?.subscription?.subscriptionStatus ?? 'active'}
+                  {statusLabel ?? t('subscription.statuses.active')}
                 </Badge>
                 <CancelResume
                   workspaceId={currentWorkspace?._id ?? ''}

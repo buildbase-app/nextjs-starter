@@ -143,6 +143,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: '所有者',
+      admin: '管理员',
+      member: '成员',
+      editor: '编辑者',
+      viewer: '查看者',
+    },
     title: '仪表板',
     welcome: '欢迎回来，{name}！',
     trial: {
@@ -162,6 +169,15 @@ const messages: Messages = {
       choosePlan: '选择计划',
     },
     subscription: {
+      statuses: {
+        active: '有效',
+        trialing: '试用中',
+        canceled: '已取消',
+        past_due: '逾期未付',
+        paused: '已暂停',
+        incomplete: '未完成',
+        unpaid: '未付款',
+      },
       title: '订阅',
       description: '您当前的计划',
       loading: '加载中...',

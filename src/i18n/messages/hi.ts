@@ -144,6 +144,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: 'स्वामी',
+      admin: 'प्रशासक',
+      member: 'सदस्य',
+      editor: 'संपादक',
+      viewer: 'दर्शक',
+    },
     title: 'डैशबोर्ड',
     welcome: 'वापस आने पर स्वागत है, {name}!',
     trial: {
@@ -164,6 +171,15 @@ const messages: Messages = {
       choosePlan: 'प्लान चुनें',
     },
     subscription: {
+      statuses: {
+        active: 'सक्रिय',
+        trialing: 'परीक्षण में',
+        canceled: 'रद्द',
+        past_due: 'भुगतान बकाया',
+        paused: 'रोका गया',
+        incomplete: 'अधूरा',
+        unpaid: 'अदत्त',
+      },
       title: 'सदस्यता',
       description: 'आपका वर्तमान प्लान',
       loading: 'लोड हो रहा है...',

@@ -144,6 +144,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: 'Propietario',
+      admin: 'Administrador',
+      member: 'Miembro',
+      editor: 'Editor',
+      viewer: 'Lector',
+    },
     title: 'Panel',
     welcome: '¡Bienvenido de nuevo, {name}!',
     trial: {
@@ -164,6 +171,15 @@ const messages: Messages = {
       choosePlan: 'Elegir plan',
     },
     subscription: {
+      statuses: {
+        active: 'Activa',
+        trialing: 'En prueba',
+        canceled: 'Cancelada',
+        past_due: 'Pago vencido',
+        paused: 'En pausa',
+        incomplete: 'Incompleta',
+        unpaid: 'Sin pagar',
+      },
       title: 'Suscripción',
       description: 'Tu plan actual',
       loading: 'Cargando...',

@@ -143,6 +143,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: 'オーナー',
+      admin: '管理者',
+      member: 'メンバー',
+      editor: '編集者',
+      viewer: '閲覧者',
+    },
     title: 'ダッシュボード',
     welcome: 'おかえりなさい、{name}！',
     trial: {
@@ -163,6 +170,15 @@ const messages: Messages = {
       choosePlan: 'プランを選択',
     },
     subscription: {
+      statuses: {
+        active: '有効',
+        trialing: 'トライアル中',
+        canceled: '解約済み',
+        past_due: '支払い遅延',
+        paused: '一時停止',
+        incomplete: '未完了',
+        unpaid: '未払い',
+      },
       title: 'サブスクリプション',
       description: '現在のプラン',
       loading: '読み込み中...',
