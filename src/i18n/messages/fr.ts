@@ -1285,6 +1285,18 @@ const messages: Messages = {
     note: 'Le formulaire et ses textes viennent de la configuration bêta de l’organisation (console → Users → Beta).',
   },
   account: {
+    exports: {
+      csv: 'Exporter en CSV',
+      locked: 'Exporter',
+      lockedHint:
+        'Les exports font partie d’une offre payante. Choisissez une offre pour les débloquer.',
+    },
+    creditPacks: {
+      title: 'Packs de crédits',
+      description:
+        'Rechargez n’importe quelle offre. Les crédits paient la création de documents et les actions IA.',
+      credits: '{count} crédits',
+    },
     permissions: {
       title: 'Les permissions de votre organisation',
       description:

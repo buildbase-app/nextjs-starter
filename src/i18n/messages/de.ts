@@ -1282,6 +1282,18 @@ const messages: Messages = {
     note: 'Formular und Texte kommen aus der Beta-Konfiguration der Organisation (Konsole → Users → Beta).',
   },
   account: {
+    exports: {
+      csv: 'CSV exportieren',
+      locked: 'Exportieren',
+      lockedHint:
+        'Exporte sind Teil eines kostenpflichtigen Plans. Wähle einen Plan, um sie freizuschalten.',
+    },
+    creditPacks: {
+      title: 'Credit-Pakete',
+      description:
+        'Lade jeden Plan auf. Credits bezahlen das Erstellen von Dokumenten und KI-Aktionen.',
+      credits: '{count} Credits',
+    },
     permissions: {
       title: 'Die Berechtigungen deiner Organisation',
       description:

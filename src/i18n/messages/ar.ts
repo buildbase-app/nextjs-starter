@@ -1242,6 +1242,17 @@ const messages: Messages = {
     note: 'يأتي النموذج ونصوصه من إعداد الإصدار التجريبي للمؤسسة (وحدة التحكم → Users → Beta).',
   },
   account: {
+    exports: {
+      csv: 'تصدير CSV',
+      locked: 'تصدير',
+      lockedHint: 'التصدير جزء من خطة مدفوعة. اختر خطة لفتحه.',
+    },
+    creditPacks: {
+      title: 'حزم الأرصدة',
+      description:
+        'اشحن أي خطة. تُستخدم الأرصدة لإنشاء المستندات وإجراءات الذكاء الاصطناعي.',
+      credits: '{count} رصيد',
+    },
     permissions: {
       title: 'أذونات مؤسستك',
       description:

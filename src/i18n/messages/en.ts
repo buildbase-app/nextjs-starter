@@ -1259,6 +1259,18 @@ const messages: Messages = {
     note: 'The form and its copy come from the organization’s beta configuration (console → Users → Beta).',
   },
   account: {
+    exports: {
+      csv: 'Export CSV',
+      locked: 'Export',
+      lockedHint:
+        'Exports are part of a paid plan. Choose a plan to unlock them.',
+    },
+    creditPacks: {
+      title: 'Credit packs',
+      description:
+        'Top up any plan. Credits pay for document creation and AI actions.',
+      credits: '{count} credits',
+    },
     permissions: {
       title: "Your organization's permissions",
       description:

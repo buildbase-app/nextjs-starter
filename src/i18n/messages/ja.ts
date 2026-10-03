@@ -1267,6 +1267,18 @@ const messages: Messages = {
     note: 'フォームと文言は組織のベータ設定（コンソール → Users → Beta）から来ています。',
   },
   account: {
+    exports: {
+      csv: 'CSVをエクスポート',
+      locked: 'エクスポート',
+      lockedHint:
+        'エクスポートは有料プランの機能です。プランを選んで有効にしてください。',
+    },
+    creditPacks: {
+      title: 'クレジットパック',
+      description:
+        'どのプランにも追加できます。クレジットはドキュメント作成とAI操作に使われます。',
+      credits: '{count}クレジット',
+    },
     permissions: {
       title: '組織の権限',
       description:

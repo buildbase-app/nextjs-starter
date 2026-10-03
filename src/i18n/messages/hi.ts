@@ -1262,6 +1262,18 @@ const messages: Messages = {
     note: 'फ़ॉर्म और उसका पाठ संगठन की बीटा कॉन्फ़िगरेशन से आता है (कंसोल → Users → Beta)।',
   },
   account: {
+    exports: {
+      csv: 'CSV निर्यात करें',
+      locked: 'निर्यात',
+      lockedHint:
+        'निर्यात सशुल्क प्लान का हिस्सा है। अनलॉक करने के लिए प्लान चुनें।',
+    },
+    creditPacks: {
+      title: 'क्रेडिट पैक',
+      description:
+        'किसी भी प्लान को टॉप-अप करें। क्रेडिट से दस्तावेज़ बनाना और AI क्रियाएँ होती हैं।',
+      credits: '{count} क्रेडिट',
+    },
     permissions: {
       title: 'आपके संगठन की अनुमतियाँ',
       description:

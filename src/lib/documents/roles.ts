@@ -29,3 +29,6 @@ export const DEFAULT_DOCUMENT_PERMISSIONS: Record<string, string[]> =
       Object.values(DOCUMENT_PERMISSIONS),
     ])
   );
+
+/** The plan feature that unlocks document exports, sold in the console's plans. */
+export const EXPORT_FEATURE = 'advanced-exports';

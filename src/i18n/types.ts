@@ -1166,6 +1166,16 @@ export interface WaitlistMessages {
 
 // Combined messages type
 export interface AccountMessages {
+  exports: {
+    csv: string;
+    locked: string;
+    lockedHint: string;
+  };
+  creditPacks: {
+    title: string;
+    description: string;
+    credits: string;
+  };
   permissions: {
     title: string;
     description: string;

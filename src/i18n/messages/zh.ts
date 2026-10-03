@@ -1209,6 +1209,16 @@ const messages: Messages = {
     note: '表单及其文案来自组织的测试版配置（控制台 → Users → Beta）。',
   },
   account: {
+    exports: {
+      csv: '导出 CSV',
+      locked: '导出',
+      lockedHint: '导出属于付费套餐功能。选择一个套餐即可解锁。',
+    },
+    creditPacks: {
+      title: '积分包',
+      description: '可为任何套餐充值。积分用于创建文档和 AI 操作。',
+      credits: '{count} 积分',
+    },
     permissions: {
       title: '你的组织的权限',
       description:

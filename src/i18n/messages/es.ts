@@ -1281,6 +1281,18 @@ const messages: Messages = {
     note: 'El formulario y sus textos vienen de la configuración beta de la organización (consola → Users → Beta).',
   },
   account: {
+    exports: {
+      csv: 'Exportar CSV',
+      locked: 'Exportar',
+      lockedHint:
+        'Las exportaciones forman parte de un plan de pago. Elige un plan para desbloquearlas.',
+    },
+    creditPacks: {
+      title: 'Paquetes de créditos',
+      description:
+        'Recarga cualquier plan. Los créditos pagan la creación de documentos y las acciones de IA.',
+      credits: '{count} créditos',
+    },
     permissions: {
       title: 'Los permisos de tu organización',
       description:

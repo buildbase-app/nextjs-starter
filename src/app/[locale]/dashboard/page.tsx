@@ -26,6 +26,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { TourProgressCard } from '@/components/tour/tour-progress-card';
 import { CancelResume } from '@/components/billing/cancel-resume';
+import { useCheckoutCompleted } from '@buildbase/sdk/tracking';
 import {
   AlertTriangle,
   Calendar,
@@ -45,6 +46,10 @@ export default function DashboardPage() {
   );
   const { isTrialing, daysRemaining, trialEndsAt } = useTrialStatus();
   const seatStatus = useSeatStatus(currentWorkspace ?? null);
+  // Stripe returns here after checkout. Fires `purchase` once for a checkout
+  // that is in flight (same id as the subscription's bb_event_id); a no-op
+  // on any other visit, and a refresh cannot count the sale twice.
+  useCheckoutCompleted();
 
   const plan = subscription?.plan;
 
