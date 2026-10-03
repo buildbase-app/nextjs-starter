@@ -22,7 +22,8 @@
     "postbuild": "next-sitemap && pagefind --site .next/server/app --output-path public/pagefind",
     "build:analyze": "ANALYZE=true npm run build",
     "prepare": "husky",
-    "check:tour": "node scripts/check-tour-sources.mjs"
+    "check:tour": "node scripts/check-tour-sources.mjs",
+    "content:pull": "node scripts/pull-content.mjs"
   },
   "dependencies": {
     "@buildbase/sdk": "0.0.76",
