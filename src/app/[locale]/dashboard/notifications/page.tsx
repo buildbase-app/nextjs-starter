@@ -34,6 +34,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Link } from '@/i18n/routing';
+import { PreferencesCard } from '@/components/notifications/preferences-card';
 import {
   DEMO_EVENT_SLUG,
   DEMO_EVENT_DEFAULTS,
@@ -172,6 +173,8 @@ export default function NotificationsTestPage() {
         <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
         <p className="text-muted-foreground">{t('description')}</p>
       </div>
+
+      <PreferencesCard workspaceId={currentWorkspace?._id} />
 
       <Card>
         <CardHeader>

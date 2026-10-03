@@ -12,6 +12,7 @@ const messages: Messages = {
       menu: 'Menü',
       selectWorkspace: 'Arbeitsbereich wählen',
       profile: 'Profil',
+      security: 'Sicherheit',
       manageWorkspace: 'Arbeitsbereich verwalten',
       generalSettings: 'Allgemeine Einstellungen',
       userManagement: 'Benutzerverwaltung',
@@ -1279,6 +1280,118 @@ const messages: Messages = {
     success:
       'Sie stehen auf der Liste. Ein Admin schaltet Sie aus der Konsole frei.',
     note: 'Formular und Texte kommen aus der Beta-Konfiguration der Organisation (Konsole → Users → Beta).',
+  },
+  account: {
+    permissions: {
+      title: 'Die Berechtigungen deiner Organisation',
+      description:
+        'In der BuildBase-Konsole definierte Schlüssel, pro Rolle vergeben, eigene Rollen eingeschlossen. Dokumente prüft sie auch auf dem Server.',
+      empty:
+        'Diese Organisation hat noch keine eigenen Berechtigungen definiert. Führe npm run seed:org aus oder lege Schlüssel in der Konsole unter Workspace settings → Permissions an.',
+    },
+    security: {
+      title: 'Sicherheit',
+      description:
+        'Wo du überall angemeldet bist, welchen Geräten du vertraust und wie du das beendest.',
+      sessions: {
+        title: 'Sitzungen',
+        description:
+          'Jede Anmeldung ist eine Sitzung auf der Plattform. Meldest du eine ab, funktioniert sie sofort nirgends mehr.',
+        signOut: 'Abmelden',
+        empty: 'Keine weiteren Sitzungen.',
+      },
+      devices: {
+        title: 'Geräte',
+        description:
+          'Browser und Rechner, von denen du dich angemeldet hast. Ein vertrautes Gerät überspringt zusätzliche Prüfungen.',
+        signOut: 'Abmelden',
+        empty: 'Noch keine Geräte.',
+      },
+      everywhere: {
+        title: 'Überall abmelden',
+        description:
+          'Beendet jede deiner Sitzungen auf jedem Gerät, auch diese.',
+        button: 'Überall abmelden',
+        failed: 'Überall abmelden ist fehlgeschlagen. Versuche es erneut.',
+        confirmTitle: 'Von allen Geräten abmelden?',
+        confirmBody:
+          'Jede Sitzung endet jetzt auf jedem Gerät, und du musst dich auch hier neu anmelden.',
+        cancel: 'Abbrechen',
+        working: 'Wird abgemeldet…',
+      },
+      passkeys: {
+        title: 'Passkeys',
+        description:
+          'Melde dich per Fingerabdruck, Gesicht oder Geräte-PIN an. Passkeys werden auf der gehosteten Anmeldedomain registriert, daher öffnet sich dafür der SDK-Bildschirm.',
+        button: 'Passkeys verwalten',
+      },
+      agents: {
+        title: 'Verbundene Agenten',
+        description:
+          'KI-Agenten, denen du über MCP Zugriff gegeben hast. Prüfe und widerrufe sie in deinem Profil.',
+        button: 'Profil öffnen',
+      },
+    },
+    invitations: {
+      title: 'Einladungen für dich',
+      description:
+        'Workspaces, die dich eingeladen haben. Nach dem Annehmen wechselst du in den Workspace.',
+    },
+    subscription: {
+      cancel: 'Plan kündigen',
+      canceling: 'Wird gekündigt…',
+      resume: 'Plan behalten',
+      resuming: 'Wird fortgesetzt…',
+      endsOn: 'Endet am {date}',
+      canceled: 'Der Plan endet zum Ende dieses Zeitraums.',
+      resumed: 'Der Plan läuft weiter.',
+      failed: 'Das hat nicht geklappt. Versuche es erneut.',
+    },
+    invoice: {
+      details: 'Details',
+      title: 'Rechnung {number}',
+      loading: 'Rechnung wird geladen…',
+      missing: 'Rechnung nicht gefunden.',
+      status: 'Status',
+      amountDue: 'Fälliger Betrag',
+      amountPaid: 'Bezahlter Betrag',
+      created: 'Ausgestellt',
+      due: 'Fällig',
+      note: 'Hinweis',
+      open: 'Gehostete Rechnung öffnen',
+      pdf: 'PDF herunterladen',
+    },
+    preferences: {
+      title: 'Deine Benachrichtigungseinstellungen',
+      description:
+        'Wähle pro Ereignis, ob es dich per E-Mail oder Push erreicht. Was du nicht änderst, folgt der Workspace-Vorgabe.',
+      loading: 'Deine Einstellungen werden geladen…',
+      empty:
+        'Dieser Workspace hat noch keine Benachrichtigungsereignisse. Sende unten eines, dann erscheint es hier.',
+      failed: 'Deine Einstellungen konnten nicht gespeichert werden.',
+      saved: 'Einstellung gespeichert.',
+      required:
+        'Dieses Ereignis ist in diesem Workspace verpflichtend und kann nicht abgeschaltet werden.',
+      requiredBadge: 'Pflicht',
+      email: 'E-Mail',
+      push: 'Push',
+      useDefault: 'Workspace-Vorgabe verwenden',
+      refresh: 'Aktualisieren',
+    },
+    console: {
+      title: 'Mit einer Vorlage starten',
+      description:
+        'Fertige Sets in der BuildBase-Konsole. Klone eines, und es landet ausgefüllt in deiner Organisation.',
+      workflowTemplates: {
+        title: 'Workflow-Vorlagen',
+        description:
+          'Zehn Workflows: Testphase endet, Zahlung fehlgeschlagen, Formular an Webhook, CRM-Sync und mehr.',
+      },
+      emailLibrary: {
+        title: 'E-Mail-Vorlagenbibliothek',
+        description: 'Über hundert E-Mail-Vorlagen, kostenlos in jedem Plan.',
+      },
+    },
   },
 };
 

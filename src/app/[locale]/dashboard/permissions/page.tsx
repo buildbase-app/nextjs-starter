@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2, XCircle, Shield, Users } from 'lucide-react';
+import { CheckCircle2, KeyRound, XCircle, Shield, Users } from 'lucide-react';
 
 function PermissionRow({
   slug,
@@ -52,7 +52,9 @@ function PermissionRow({
 
 export default function PermissionsPage() {
   const t = useTranslations('permissions');
-  const { role, isOwner, permissions } = usePermissions();
+  const { role, isOwner, permissions, can, appPermissionDefinitions } =
+    usePermissions();
+  const ta = useTranslations('account.permissions');
 
   const denied = t('matrix.denied');
   const grantedStatus = t('matrix.grantedStatus');
@@ -156,6 +158,53 @@ export default function PermissionsPage() {
           </CardContent>
         </Card>
       </div>
+
+      <Card>
+        <CardHeader className="flex flex-row items-center gap-2">
+          <KeyRound className="h-5 w-5" />
+          <div>
+            <CardTitle className="text-base">{ta('title')}</CardTitle>
+            <CardDescription>{ta('description')}</CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {appPermissionDefinitions.length === 0 ? (
+            <p className="text-muted-foreground text-sm">{ta('empty')}</p>
+          ) : (
+            <div className="divide-y">
+              {appPermissionDefinitions.map((def) => (
+                <div
+                  key={def.key}
+                  className="flex items-center justify-between gap-4 py-1.5 text-sm"
+                >
+                  <div className="min-w-0">
+                    <span>{def.label}</span>{' '}
+                    <span className="text-muted-foreground font-mono text-xs">
+                      {def.key}
+                    </span>
+                    {def.group && (
+                      <Badge variant="outline" className="ml-2 text-xs">
+                        {def.group}
+                      </Badge>
+                    )}
+                  </div>
+                  {can(def.key) ? (
+                    <span className="flex shrink-0 items-center gap-1.5 text-green-600 dark:text-green-400">
+                      <CheckCircle2 className="h-4 w-4" />
+                      {grantedStatus}
+                    </span>
+                  ) : (
+                    <span className="flex shrink-0 items-center gap-1.5 text-red-600 dark:text-red-400">
+                      <XCircle className="h-4 w-4" />
+                      {denied}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>

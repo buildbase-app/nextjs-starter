@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   useInvoices,
@@ -15,6 +16,7 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, FileText, CreditCard, RefreshCw } from 'lucide-react';
+import { InvoiceDetail } from '@/components/billing/invoice-detail';
 
 const STATUS_COLORS: Record<string, string> = {
   paid: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
@@ -34,6 +36,8 @@ function formatCurrency(amount: number, currency: string) {
 
 export default function InvoicesPage() {
   const t = useTranslations('invoices');
+  const ta = useTranslations('account.invoice');
+  const [openInvoice, setOpenInvoice] = useState<string | null>(null);
   const { currentWorkspace } = useSaaSWorkspaces();
   const { invoices, hasMore, loading, error, refetch } = useInvoices(
     currentWorkspace?._id
@@ -144,6 +148,13 @@ export default function InvoicesPage() {
                       </td>
                       <td className="py-2 text-right">
                         <div className="flex items-center justify-end gap-2">
+                          <button
+                            type="button"
+                            onClick={() => setOpenInvoice(inv.id)}
+                            className="text-primary hover:text-primary/80 text-xs"
+                          >
+                            {ta('details')}
+                          </button>
                           {inv.hosted_invoice_url && (
                             <a
                               href={inv.hosted_invoice_url}
@@ -183,6 +194,11 @@ export default function InvoicesPage() {
           )}
         </CardContent>
       </Card>
+      <InvoiceDetail
+        workspaceId={currentWorkspace?._id}
+        invoiceId={openInvoice}
+        onClose={() => setOpenInvoice(null)}
+      />
     </div>
   );
 }

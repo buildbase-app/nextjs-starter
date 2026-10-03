@@ -122,17 +122,17 @@ export const es: TourText = {
       title: 'Confía en este dispositivo',
       why: 'Un dispositivo de confianza mantiene la sesión 90 días y se salta comprobaciones extra. Cada dispositivo y sesión aparece en la lista y se puede cerrar.',
       steps: [
-        'Durante el inicio de sesión, elige Trust this device.',
-        'Abre Profile → Devices and sessions para verlo en la lista.',
+        'Al iniciar sesión, elige Confiar en este dispositivo.',
+        'Abre Seguridad para verlo en la lista de dispositivos.',
       ],
     },
     'add-passkey': {
       title: 'Añade una passkey',
       why: 'Inicio de sesión sin contraseña con huella, cara o PIN del dispositivo. Se activa por organización en la consola; nada que construir.',
       steps: [
-        'Abre Profile → Security.',
-        'Añade una passkey y sigue las indicaciones de tu navegador.',
-        'Cierra sesión e inicia con ella.',
+        'Abre Seguridad y elige Añadir una llave de acceso.',
+        'Sigue las indicaciones de tu navegador.',
+        'Cierra sesión y vuelve a entrar con ella.',
       ],
     },
     'see-session': {
@@ -147,8 +147,8 @@ export const es: TourText = {
       title: 'Cierra sesión en todas partes',
       why: 'Termina cada sesión en cada dispositivo de la plataforma, no solo en el navegador en el que estás.',
       steps: [
-        'Abre Profile → Devices and sessions.',
-        'Cierra otra sesión, o usa Sign out everywhere.',
+        'Abre Seguridad.',
+        'Cierra otra sesión o usa Cerrar sesión en todas partes.',
       ],
     },
     'first-workspace': {
@@ -275,7 +275,7 @@ export const es: TourText = {
     'view-invoice': {
       title: 'Consulta una factura',
       why: 'Las facturas vienen de Stripe a través de la plataforma, con un PDF alojado.',
-      steps: ['Abre Invoices y abre la más reciente.'],
+      steps: ['Abre Facturas y elige Detalles en la más reciente.'],
     },
     'billing-portal': {
       title: 'Abre el portal de facturación',
@@ -402,7 +402,8 @@ export const es: TourText = {
       title: 'Mira un rol personalizado',
       why: 'Los roles y sus permisos se definen por organización en la consola.',
       steps: [
-        'Lee los roles en Permissions: esta demo define admin, editor y viewer.',
+        'Abre Permisos y lee las claves propias de la organización.',
+        'Esta demo añade un rol personalizado “reviewer” que solo puede cambiar el estado de un documento.',
       ],
     },
     'inbox-first-item': {
@@ -445,14 +446,16 @@ export const es: TourText = {
       title: 'Desactiva un canal para ti',
       why: 'Cada miembro elige cómo se le interrumpe; el admin del espacio de trabajo fija los valores por defecto y puede marcar un evento como obligatorio.',
       steps: [
-        'Settings → Notifications.',
-        'Desactiva el email para "Comment added"; envía de nuevo y mira cómo llega solo a la bandeja.',
+        'Abre Notificaciones → Tus preferencias de notificación.',
+        'Desactiva el correo para un evento; envíalo de nuevo y verás que solo llega a la bandeja.',
       ],
     },
     'required-event': {
       title: 'Mira un evento obligatorio',
       why: 'Un admin puede hacer obligatorio un evento; los miembros no pueden desactivarlo.',
-      steps: ['Settings → Notifications: "Weekly report" está bloqueado.'],
+      steps: [
+        'Notificaciones → Tus preferencias de notificación: un evento obligatorio está bloqueado.',
+      ],
     },
     'delivery-log': {
       title: 'Mira el registro de entregas de la consola',

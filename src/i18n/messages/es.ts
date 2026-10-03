@@ -12,6 +12,7 @@ const messages: Messages = {
       menu: 'Menú',
       selectWorkspace: 'Seleccionar espacio de trabajo',
       profile: 'Perfil',
+      security: 'Seguridad',
       manageWorkspace: 'Gestionar espacio de trabajo',
       generalSettings: 'Configuración general',
       userManagement: 'Gestión de usuarios',
@@ -1278,6 +1279,119 @@ const messages: Messages = {
     success:
       'Estás en la lista. Un administrador te aprobará desde la consola.',
     note: 'El formulario y sus textos vienen de la configuración beta de la organización (consola → Users → Beta).',
+  },
+  account: {
+    permissions: {
+      title: 'Los permisos de tu organización',
+      description:
+        'Claves definidas en la consola de BuildBase y concedidas por rol, incluidos los roles personalizados. Documentos también las comprueba en el servidor.',
+      empty:
+        'Esta organización aún no ha definido sus propios permisos. Ejecuta npm run seed:org o añade claves en la consola, en Workspace settings → Permissions.',
+    },
+    security: {
+      title: 'Seguridad',
+      description:
+        'Todos los lugares donde tienes la sesión iniciada, los dispositivos de confianza y las formas de cerrarlos.',
+      sessions: {
+        title: 'Sesiones',
+        description:
+          'Cada inicio de sesión es una sesión en la plataforma. Ciérrala y deja de funcionar en todas partes, al instante.',
+        signOut: 'Cerrar sesión',
+        empty: 'No hay otras sesiones.',
+      },
+      devices: {
+        title: 'Dispositivos',
+        description:
+          'Navegadores y equipos desde los que has iniciado sesión. Un dispositivo de confianza omite comprobaciones adicionales.',
+        signOut: 'Cerrar sesión',
+        empty: 'Aún no hay dispositivos.',
+      },
+      everywhere: {
+        title: 'Cerrar sesión en todas partes',
+        description:
+          'Termina todas tus sesiones en todos los dispositivos, incluida esta.',
+        button: 'Cerrar sesión en todas partes',
+        failed: 'No se pudo cerrar sesión en todas partes. Inténtalo de nuevo.',
+        confirmTitle: '¿Cerrar sesión en todos los dispositivos?',
+        confirmBody:
+          'Todas las sesiones terminan ahora, en todos los dispositivos, y tendrás que volver a iniciar sesión aquí también.',
+        cancel: 'Cancelar',
+        working: 'Cerrando sesión…',
+      },
+      passkeys: {
+        title: 'Llaves de acceso',
+        description:
+          'Inicia sesión con huella, rostro o PIN del dispositivo. Las llaves se registran en el dominio de inicio de sesión alojado, por eso se abre la pantalla del SDK.',
+        button: 'Gestionar llaves de acceso',
+      },
+      agents: {
+        title: 'Agentes conectados',
+        description:
+          'Agentes de IA a los que diste acceso por MCP. Revísalos y revócalos en tu perfil.',
+        button: 'Abrir perfil',
+      },
+    },
+    invitations: {
+      title: 'Invitaciones pendientes',
+      description:
+        'Espacios de trabajo que te han invitado. Al aceptar, cambias a ese espacio.',
+    },
+    subscription: {
+      cancel: 'Cancelar plan',
+      canceling: 'Cancelando…',
+      resume: 'Mantener plan',
+      resuming: 'Reanudando…',
+      endsOn: 'Termina el {date}',
+      canceled: 'El plan termina al final de este periodo.',
+      resumed: 'El plan continúa.',
+      failed: 'No funcionó. Inténtalo de nuevo.',
+    },
+    invoice: {
+      details: 'Detalles',
+      title: 'Factura {number}',
+      loading: 'Cargando la factura…',
+      missing: 'Factura no encontrada.',
+      status: 'Estado',
+      amountDue: 'Importe pendiente',
+      amountPaid: 'Importe pagado',
+      created: 'Emitida',
+      due: 'Vence',
+      note: 'Nota',
+      open: 'Abrir factura alojada',
+      pdf: 'Descargar PDF',
+    },
+    preferences: {
+      title: 'Tus preferencias de notificación',
+      description:
+        'Elige, por evento, si te llega por correo o push. Lo que no cambies sigue el valor del espacio de trabajo.',
+      loading: 'Cargando tus preferencias…',
+      empty:
+        'Este espacio de trabajo aún no tiene eventos de notificación. Envía uno abajo y aparecerá aquí.',
+      failed: 'No se pudieron guardar tus preferencias.',
+      saved: 'Preferencia guardada.',
+      required:
+        'Este evento es obligatorio en este espacio de trabajo y no se puede desactivar.',
+      requiredBadge: 'Obligatorio',
+      email: 'Correo',
+      push: 'Push',
+      useDefault: 'Usar el valor del espacio de trabajo',
+      refresh: 'Actualizar',
+    },
+    console: {
+      title: 'Empieza con una plantilla',
+      description:
+        'Conjuntos listos en la consola de BuildBase. Clona uno y llega a tu organización ya rellenado.',
+      workflowTemplates: {
+        title: 'Plantillas de flujos',
+        description:
+          'Diez flujos: fin de prueba, pago fallido, formulario a webhook, sincronización con CRM y más.',
+      },
+      emailLibrary: {
+        title: 'Biblioteca de plantillas de correo',
+        description:
+          'Más de cien plantillas de correo, gratis en todos los planes.',
+      },
+    },
   },
 };
 

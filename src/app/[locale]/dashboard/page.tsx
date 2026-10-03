@@ -11,6 +11,7 @@ import {
   WhenTrialEnding,
   WhenNotTrialing,
   WhenSubscription,
+  PendingInvitations,
   WhenNoSubscription,
   WhenSubscriptionToPlans,
 } from '@buildbase/sdk/react';
@@ -24,6 +25,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TourProgressCard } from '@/components/tour/tour-progress-card';
+import { CancelResume } from '@/components/billing/cancel-resume';
 import {
   AlertTriangle,
   Calendar,
@@ -37,6 +39,7 @@ export default function DashboardPage() {
   const { user, openPlanPicker, openWorkspaceSettings } = useSaaSAuth();
   const { currentWorkspace } = useSaaSWorkspaces();
   const t = useTranslations('dashboard');
+  const ta = useTranslations('account');
   const { subscription, loading: subLoading } = useSubscription(
     currentWorkspace?._id ?? ''
   );
@@ -53,6 +56,15 @@ export default function DashboardPage() {
           {t('welcome', { name: user?.name || '' })}
         </p>
       </div>
+
+      {/* Invitations waiting for this person, from other workspaces. Hidden
+          when there are none; accepting one switches to that workspace. */}
+      <PendingInvitations
+        hideWhenEmpty
+        switchOnAccept
+        title={ta('invitations.title')}
+        description={ta('invitations.description')}
+      />
 
       <WhenTrialEnding daysThreshold={5}>
         <Card className="border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950">
@@ -205,6 +217,10 @@ export default function DashboardPage() {
                 <Badge variant="outline" className="capitalize">
                   {subscription?.subscription?.subscriptionStatus ?? 'active'}
                 </Badge>
+                <CancelResume
+                  workspaceId={currentWorkspace?._id ?? ''}
+                  subscription={subscription?.subscription}
+                />
                 <Button variant="outline" size="sm" onClick={openPlanPicker}>
                   <Zap className="mr-1.5 h-3.5 w-3.5" />
                   {t('subscription.changePlan')}

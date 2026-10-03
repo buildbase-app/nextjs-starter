@@ -122,17 +122,17 @@ export const de: TourText = {
       title: 'Diesem Gerät vertrauen',
       why: 'Ein vertrauenswürdiges Gerät bleibt 90 Tage angemeldet und überspringt zusätzliche Prüfungen. Jedes Gerät und jede Sitzung wird aufgelistet und kann abgemeldet werden.',
       steps: [
-        'Wählen Sie bei der Anmeldung Diesem Gerät vertrauen.',
-        'Öffnen Sie Profil → Geräte und Sitzungen, um es in der Liste zu sehen.',
+        'Wähle bei der Anmeldung „Diesem Gerät vertrauen“.',
+        'Öffne Sicherheit, um es unter Geräte zu sehen.',
       ],
     },
     'add-passkey': {
       title: 'Passkey hinzufügen',
       why: 'Passwortlose Anmeldung per Fingerabdruck, Gesicht oder Geräte-PIN. Pro Organisation in der Konsole aktiviert; nichts zu bauen.',
       steps: [
-        'Öffnen Sie Profil → Sicherheit.',
-        'Fügen Sie einen Passkey hinzu und folgen Sie der Aufforderung Ihres Browsers.',
-        'Melden Sie sich ab und damit wieder an.',
+        'Öffne Sicherheit und wähle „Passkey hinzufügen“.',
+        'Folge der Anleitung deines Browsers.',
+        'Melde dich ab und mit dem Passkey wieder an.',
       ],
     },
     'see-session': {
@@ -147,8 +147,8 @@ export const de: TourText = {
       title: 'Überall abmelden',
       why: 'Beendet jede Sitzung auf jedem Gerät auf der Plattform, nicht nur im Browser, in dem Sie gerade sind.',
       steps: [
-        'Öffnen Sie Profil → Geräte und Sitzungen.',
-        'Melden Sie eine andere Sitzung ab, oder nutzen Sie Überall abmelden.',
+        'Öffne Sicherheit.',
+        'Melde eine andere Sitzung ab oder nutze „Überall abmelden“.',
       ],
     },
     'first-workspace': {
@@ -283,7 +283,7 @@ export const de: TourText = {
     'view-invoice': {
       title: 'Eine Rechnung ansehen',
       why: 'Rechnungen kommen von Stripe über die Plattform, mit gehostetem PDF.',
-      steps: ['Öffnen Sie Rechnungen und dann die neueste.'],
+      steps: ['Öffne Rechnungen und wähle „Details“ bei der neuesten.'],
     },
     'billing-portal': {
       title: 'Das Abrechnungsportal öffnen',
@@ -412,7 +412,8 @@ export const de: TourText = {
       title: 'Eine eigene Rolle sehen',
       why: 'Rollen und ihre Berechtigungen werden pro Organisation in der Konsole definiert.',
       steps: [
-        'Lesen Sie die Rollen unter Berechtigungen: diese Demo definiert admin, editor und viewer.',
+        'Öffne Berechtigungen und lies die eigenen Schlüssel der Organisation.',
+        'Diese Demo fügt eine eigene Rolle „reviewer“ hinzu, die nur den Status eines Dokuments ändern darf.',
       ],
     },
     'inbox-first-item': {
@@ -457,15 +458,15 @@ export const de: TourText = {
       title: 'Einen Kanal für sich selbst abschalten',
       why: 'Jedes Mitglied wählt, wie es unterbrochen wird; der Workspace-Admin setzt die Standardwerte und kann ein Ereignis als erforderlich markieren.',
       steps: [
-        'Einstellungen → Benachrichtigungen.',
-        'Schalten Sie E-Mail für „Comment added“ ab; senden Sie erneut und sehen Sie es nur im Posteingang ankommen.',
+        'Öffne Benachrichtigungen → Deine Benachrichtigungseinstellungen.',
+        'Schalte E-Mail für ein Ereignis aus; sende es erneut und sieh, dass es nur im Posteingang ankommt.',
       ],
     },
     'required-event': {
       title: 'Ein erforderliches Ereignis sehen',
       why: 'Ein Admin kann ein Ereignis erforderlich machen; Mitglieder können es nicht abschalten.',
       steps: [
-        'Einstellungen → Benachrichtigungen: „Weekly report“ ist gesperrt.',
+        'Benachrichtigungen → Deine Benachrichtigungseinstellungen: Ein Pflichtereignis ist gesperrt.',
       ],
     },
     'delivery-log': {
