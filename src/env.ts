@@ -40,6 +40,7 @@ export const env = createEnv({
     BUILDBASE_API_TOKEN: z.string().optional(),
     // Shared secret for the platform's webhook deliveries.
     BUILDBASE_WEBHOOK_SECRET: z.string().optional(),
+    BUILDBASE_CONTENT_WEBHOOK_SECRET: z.string().optional(),
     BUILDBASE_OAUTH2_CLIENT_ID: z.string().optional(),
     BUILDBASE_OAUTH2_CLIENT_SECRET: z.string().optional(),
 
@@ -102,6 +103,8 @@ export const env = createEnv({
     BUILDBASE_CLIENT_SECRET: process.env.BUILDBASE_CLIENT_SECRET,
     BUILDBASE_API_TOKEN: process.env.BUILDBASE_API_TOKEN,
     BUILDBASE_WEBHOOK_SECRET: process.env.BUILDBASE_WEBHOOK_SECRET,
+    BUILDBASE_CONTENT_WEBHOOK_SECRET:
+      process.env.BUILDBASE_CONTENT_WEBHOOK_SECRET,
     BUILDBASE_OAUTH2_CLIENT_ID: process.env.BUILDBASE_OAUTH2_CLIENT_ID,
     BUILDBASE_OAUTH2_CLIENT_SECRET: process.env.BUILDBASE_OAUTH2_CLIENT_SECRET,
     SENTRY_ORG: process.env.SENTRY_ORG,
