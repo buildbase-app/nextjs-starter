@@ -71,7 +71,7 @@ export const env = createEnv({
       .string()
       .url('NEXT_PUBLIC_BUILDBASE_SERVER_URL must be a valid URL')
       .optional()
-      .default('https://api.buildbase.app'),
+      .default('https://api.console.buildbase.app'),
 
     NEXT_PUBLIC_BUILDBASE_ORG_ID: z
       .string()
