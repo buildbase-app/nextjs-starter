@@ -26,7 +26,7 @@
     "content:pull": "node scripts/pull-content.mjs"
   },
   "dependencies": {
-    "@buildbase/sdk": "0.0.76",
+    "@buildbase/sdk": "0.0.78",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
