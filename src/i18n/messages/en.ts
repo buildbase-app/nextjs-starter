@@ -12,6 +12,7 @@ const messages: Messages = {
       menu: 'Menu',
       selectWorkspace: 'Select workspace',
       profile: 'Profile',
+      security: 'Security',
       manageWorkspace: 'Manage Workspace',
       generalSettings: 'General Settings',
       userManagement: 'User Management',
@@ -143,6 +144,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: 'Owner',
+      admin: 'Admin',
+      member: 'Member',
+      editor: 'Editor',
+      viewer: 'Viewer',
+    },
     title: 'Dashboard',
     welcome: 'Welcome back, {name}!',
     trial: {
@@ -163,6 +171,15 @@ const messages: Messages = {
       choosePlan: 'Choose a plan',
     },
     subscription: {
+      statuses: {
+        active: 'Active',
+        trialing: 'Trialing',
+        canceled: 'Canceled',
+        past_due: 'Past due',
+        paused: 'Paused',
+        incomplete: 'Incomplete',
+        unpaid: 'Unpaid',
+      },
       title: 'Subscription',
       description: 'Your current plan',
       loading: 'Loading...',
@@ -313,6 +330,18 @@ const messages: Messages = {
       openButton: 'Open danger zone',
     },
     sections: {
+      security: {
+        label: 'Security',
+        description: 'Passkeys and how you sign in',
+      },
+      devices: {
+        label: 'Devices',
+        description: 'Browsers and machines you are signed in on',
+      },
+      'connected-agents': {
+        label: 'Connected agents',
+        description: 'AI agents you granted access over MCP',
+      },
       profile: {
         label: 'Profile',
         description: 'Your name, avatar, and personal details',
@@ -1256,6 +1285,130 @@ const messages: Messages = {
       'The platform’s beta form: leave your name and email, an admin approves you in the console.',
     success: 'You are on the list. An admin will approve you from the console.',
     note: 'The form and its copy come from the organization’s beta configuration (console → Users → Beta).',
+  },
+  account: {
+    exports: {
+      csv: 'Export CSV',
+      locked: 'Export',
+      lockedHint:
+        'Exports are part of a paid plan. Choose a plan to unlock them.',
+    },
+    creditPacks: {
+      title: 'Credit packs',
+      description:
+        'Top up any plan. Credits pay for document creation and AI actions.',
+      credits: '{count} credits',
+    },
+    permissions: {
+      title: "Your organization's permissions",
+      description:
+        'Keys defined in the BuildBase console and granted per role, custom roles included. Documents checks these on the server too.',
+      empty:
+        'This organization has not defined its own permissions yet. Run npm run seed:org, or add keys in the console under Workspace settings → Permissions.',
+    },
+    security: {
+      title: 'Security',
+      description:
+        'Every place you are signed in, the devices you trust, and the ways to end them.',
+      sessions: {
+        title: 'Sessions',
+        description:
+          'Each sign-in is a session on the platform. Sign one out and it stops working everywhere, at once.',
+        signOut: 'Sign out',
+        empty: 'No other sessions.',
+      },
+      devices: {
+        title: 'Devices',
+        description:
+          'Browsers and machines you have signed in from. A trusted device skips extra checks.',
+        signOut: 'Sign out',
+        empty: 'No devices yet.',
+      },
+      everywhere: {
+        title: 'Sign out everywhere',
+        description:
+          'Ends every session you have, on every device, including this one.',
+        button: 'Sign out everywhere',
+        failed: 'Could not sign out everywhere. Try again.',
+        confirmTitle: 'Sign out of every device?',
+        confirmBody:
+          'Every session ends now, on every device, and you will need to sign in again here too.',
+        cancel: 'Cancel',
+        working: 'Signing out…',
+      },
+      passkeys: {
+        title: 'Passkeys',
+        description:
+          'Sign in with a fingerprint, face or device PIN. Passkeys register on the hosted sign-in domain, so this opens the SDK screen for it.',
+        button: 'Manage passkeys',
+      },
+      agents: {
+        title: 'Connected agents',
+        description:
+          'AI agents you granted access over MCP. Review and revoke them on your profile.',
+        button: 'Open profile',
+      },
+    },
+    invitations: {
+      title: 'Invitations waiting for you',
+      description:
+        'Workspaces that invited you. Accepting switches you to the workspace.',
+    },
+    subscription: {
+      cancel: 'Cancel plan',
+      canceling: 'Canceling…',
+      resume: 'Keep plan',
+      resuming: 'Resuming…',
+      endsOn: 'Ends on {date}',
+      canceled: 'The plan ends at the end of this period.',
+      resumed: 'The plan continues.',
+      failed: 'That did not work. Try again.',
+    },
+    invoice: {
+      details: 'Details',
+      title: 'Invoice {number}',
+      loading: 'Loading the invoice…',
+      missing: 'Invoice not found.',
+      status: 'Status',
+      amountDue: 'Amount due',
+      amountPaid: 'Amount paid',
+      created: 'Issued',
+      due: 'Due',
+      note: 'Note',
+      open: 'Open hosted invoice',
+      pdf: 'Download PDF',
+    },
+    preferences: {
+      title: 'Your notification preferences',
+      description:
+        'Choose, per event, whether it reaches you by email or push. Anything you leave alone follows the workspace default.',
+      loading: 'Loading your preferences…',
+      empty:
+        'This workspace has no notification events yet. Send one below and it appears here.',
+      failed: 'Your preferences could not be saved.',
+      saved: 'Preference saved.',
+      required:
+        'This event is required in this workspace and cannot be turned off.',
+      requiredBadge: 'Required',
+      email: 'Email',
+      push: 'Push',
+      useDefault: 'Use the workspace default',
+      refresh: 'Refresh',
+    },
+    console: {
+      title: 'Start from a template',
+      description:
+        'Ready-made sets in the BuildBase console. Clone one and it lands in your organization, filled in.',
+      workflowTemplates: {
+        title: 'Workflow templates',
+        description:
+          'Ten workflows: trial ending, payment failed, form to webhook, CRM sync and more.',
+      },
+      emailLibrary: {
+        title: 'Email template library',
+        description: 'More than a hundred email templates, free on every plan.',
+      },
+    },
   },
 };
 

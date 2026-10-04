@@ -164,7 +164,7 @@ export const FEATURES: FeatureEntry[] = [
   {
     slug: 'agents',
     title: 'AI agents over MCP',
-    path: '/dashboard/agents',
+    path: '/dashboard/profile',
     summary:
       'A remote MCP server at /api/mcp with OAuth 2.1 + PKCE, discovery documents under /.well-known, and a connect guide for Claude, ChatGPT, Cursor and VS Code.',
     sdk: [

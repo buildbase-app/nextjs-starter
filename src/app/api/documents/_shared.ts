@@ -1,10 +1,11 @@
 import 'server-only';
 import { NextRequest, NextResponse } from 'next/server';
 import {
-  canWrite,
   getWorkspaceContext,
+  hasAppPermission,
   type WorkspaceContext,
 } from '@/lib/server-auth';
+import type { DocumentPermission } from '@/lib/documents/roles';
 import { detect } from '@/tour/progress';
 import { DOCUMENT_STATUSES, type DocumentStatus } from '@/lib/documents';
 
@@ -43,13 +44,16 @@ export async function resolveWorkspace(
 }
 
 /**
- * Writes need a writing role. A viewer who tries anyway gets 403 and, as a
- * side effect, ticks the tour task about exactly that.
+ * Each write needs its own key (`app:documents:create`, `:edit`, `:delete`),
+ * as the organization granted it to the member's role in the console. A
+ * member without it gets 403 and, as a side effect, ticks the tour task about
+ * exactly that.
  */
-export async function requireWrite(
-  ctx: WorkspaceContext
+export async function requirePermission(
+  ctx: WorkspaceContext,
+  permission: DocumentPermission
 ): Promise<NextResponse | null> {
-  if (canWrite(ctx.role)) return null;
+  if (await hasAppPermission(ctx, permission)) return null;
   await detect(
     ctx.userId,
     { kind: 'action', action: 'permission:refused' },
@@ -58,7 +62,7 @@ export async function requireWrite(
     }
   );
   return NextResponse.json(
-    { error: 'Forbidden', role: ctx.role },
+    { error: 'Forbidden', role: ctx.role, permission },
     { status: 403 }
   );
 }

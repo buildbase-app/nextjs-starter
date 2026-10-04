@@ -1,8 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma, setAuditContext } from '@/lib/db';
 import { logger } from '@/lib/logger';
-import { getSessionContext } from '@/lib/server-auth';
+import { getSessionContext, type SessionContext } from '@/lib/server-auth';
 import { detect } from '@/tour/progress';
+
+/**
+ * Mirrors SDK lifecycle events into the local database.
+ *
+ * The browser forwards every event here, so the body is whatever the browser
+ * chose to send - it says WHICH user or workspace changed, never what is true
+ * about it. Each event re-reads the facts from the platform as the session's
+ * user, the same trust model as `server-auth.ts`: a person can only refresh
+ * their own profile and the workspaces they belong to.
+ */
 
 type EventType =
   | 'user:created'
@@ -19,263 +29,177 @@ type EventType =
   | 'workspace:invitation-declined'
   | 'workspace:invitation-revoked';
 
-interface IUser {
-  _id: string;
-  id?: string;
-  name: string;
-  email: string;
-  image?: string;
-  role: string;
-  emailVerified?: boolean;
-  timezone?: string;
-  language?: string;
-  country?: string;
-  currency?: string;
+const WORKSPACE_SYNC_EVENTS = new Set<EventType>([
+  'workspace:created',
+  'workspace:updated',
+  'workspace:changed',
+  'workspace:user-added',
+  'workspace:user-removed',
+  'workspace:user-role-changed',
+]);
+
+type Outcome = 'ok' | 'forbidden';
+
+/** The workspace an event is about, from either payload shape the SDK sends. */
+function workspaceIdOf(data: unknown): string | undefined {
+  const d = (data ?? {}) as {
+    workspace?: { _id?: unknown };
+    workspaceId?: unknown;
+  };
+  const id = d.workspace?._id ?? d.workspaceId;
+  return typeof id === 'string' && id ? id : undefined;
 }
 
-interface IWorkspace {
-  _id: string;
-  name: string;
-  workspaceId: string;
+/** Mirror the session's own profile - never a user named in the body. */
+async function syncSelf(session: SessionContext): Promise<Outcome> {
+  const user = await session.bb.users.getProfile();
+  const fields = {
+    email: user.email,
+    name: user.name,
+    image: user.image || null,
+    role: user.role || 'user',
+    // emailVerified is not on the profile; /api/auth/token sets it at login.
+    timezone: user.timezone || null,
+    language: user.language || null,
+    country: user.country || null,
+    currency: user.currency || null,
+  };
+  await prisma.user.upsert({
+    where: { id: session.userId },
+    update: fields,
+    create: { id: session.userId, ...fields },
+  });
+  return 'ok';
+}
+
+/**
+ * Re-read a workspace and its member list from the platform and make the
+ * local mirror match. Refused unless the session's user is a member.
+ */
+async function syncWorkspace(
+  session: SessionContext,
+  workspaceId: string
+): Promise<Outcome> {
+  let members;
+  try {
+    members = await session.bb.users.list(workspaceId);
+  } catch {
+    return 'forbidden';
+  }
+  const memberId = (m: (typeof members)[number]) =>
+    typeof m.user === 'string' ? m.user : (m.user.id ?? m.user._id);
+  if (!members.some((m) => memberId(m) === session.userId)) return 'forbidden';
+
+  const workspace = await session.bb.workspace.get(workspaceId);
+  await prisma.workspace.upsert({
+    where: { id: workspaceId },
+    update: { name: workspace.name },
+    create: { id: workspaceId, name: workspace.name },
+  });
+
+  const ids = members.map(memberId);
+  await prisma.$transaction([
+    prisma.userWorkspace.deleteMany({
+      where: { workspaceId, userId: { notIn: ids } },
+    }),
+    ...members.map((m) =>
+      prisma.userWorkspace.upsert({
+        where: { userId_workspaceId: { userId: memberId(m), workspaceId } },
+        update: { userRole: m.role },
+        create: { userId: memberId(m), workspaceId, userRole: m.role },
+      })
+    ),
+  ]);
+  return 'ok';
+}
+
+/**
+ * Drop a deleted workspace from the mirror. Only a recorded member may, and
+ * only once the platform no longer lists the workspace for them.
+ */
+async function removeWorkspace(
+  session: SessionContext,
+  workspaceId: string
+): Promise<Outcome> {
+  const membership = await prisma.userWorkspace.findUnique({
+    where: { userId_workspaceId: { userId: session.userId, workspaceId } },
+  });
+  if (!membership) return 'forbidden';
+  const live = await session.bb.workspace.list();
+  if (live.some((w) => w._id === workspaceId)) return 'ok';
+  await prisma.$transaction([
+    prisma.userWorkspace.deleteMany({ where: { workspaceId } }),
+    prisma.workspace.deleteMany({ where: { id: workspaceId } }),
+  ]);
+  return 'ok';
 }
 
 export async function POST(request: NextRequest) {
+  let eventType: EventType;
+  let data: unknown;
   try {
-    const body = await request.json();
-    const { eventType, data } = body as { eventType: EventType; data: unknown };
+    const body = (await request.json()) as {
+      eventType?: unknown;
+      data?: unknown;
+    };
+    if (typeof body?.eventType !== 'string') throw new Error('no eventType');
+    eventType = body.eventType as EventType;
+    data = body.data;
+  } catch {
+    return NextResponse.json(
+      { success: false, error: 'Expected a JSON body with an eventType' },
+      { status: 400 }
+    );
+  }
 
-    // Set audit context from event data when available
-    const eventData = data as Record<string, unknown>;
-    const eventUser = eventData.user as IUser | undefined;
-    const eventUserId = eventData.userId as string | undefined;
-    const eventWorkspace = eventData.workspace as IWorkspace | undefined;
-    setAuditContext({
-      userId: eventUser?.id || eventUser?._id || eventUserId || undefined,
-      workspaceId:
-        eventWorkspace?._id || (eventData.workspaceId as string) || undefined,
-      ipAddress:
-        request.headers.get('x-forwarded-for') ||
-        request.headers.get('x-real-ip') ||
-        undefined,
-      userAgent: request.headers.get('user-agent') || undefined,
-      source: 'event',
-    });
+  const session = await getSessionContext();
+  if (!session) {
+    return NextResponse.json(
+      { success: false, error: 'Not signed in' },
+      { status: 401 }
+    );
+  }
 
-    switch (eventType) {
-      case 'user:created': {
-        const { user } = data as { user: IUser };
-        const userId = user.id || user._id;
-        await prisma.user.upsert({
-          where: { id: userId },
-          update: {
-            email: user.email,
-            name: user.name,
-            image: user.image || null,
-            role: user.role || 'user',
-            emailVerified: user.emailVerified || false,
-            timezone: user.timezone || null,
-            language: user.language || null,
-            country: user.country || null,
-            currency: user.currency || null,
-          },
-          create: {
-            id: userId,
-            email: user.email,
-            name: user.name,
-            image: user.image || null,
-            role: user.role || 'user',
-            emailVerified: user.emailVerified || false,
-            timezone: user.timezone || null,
-            language: user.language || null,
-            country: user.country || null,
-            currency: user.currency || null,
-          },
-        });
-        break;
-      }
+  const workspaceId = workspaceIdOf(data);
+  setAuditContext({
+    userId: session.userId,
+    workspaceId,
+    ipAddress:
+      request.headers.get('x-forwarded-for') ||
+      request.headers.get('x-real-ip') ||
+      undefined,
+    userAgent: request.headers.get('user-agent') || undefined,
+    source: 'event',
+  });
 
-      case 'user:updated': {
-        const { user } = data as { user: IUser };
-        const userId = user.id || user._id;
-        await prisma.user.upsert({
-          where: { id: userId },
-          update: {
-            email: user.email,
-            name: user.name,
-            image: user.image || null,
-            role: user.role || 'user',
-            emailVerified: user.emailVerified || false,
-            timezone: user.timezone || null,
-            language: user.language || null,
-            country: user.country || null,
-            currency: user.currency || null,
-          },
-          create: {
-            id: userId,
-            email: user.email,
-            name: user.name,
-            image: user.image || null,
-            role: user.role || 'user',
-            emailVerified: user.emailVerified || false,
-            timezone: user.timezone || null,
-            language: user.language || null,
-            country: user.country || null,
-            currency: user.currency || null,
-          },
-        });
-        break;
-      }
-
-      case 'workspace:created': {
-        const { workspace } = data as { workspace: IWorkspace };
-        await prisma.workspace.upsert({
-          where: { id: workspace._id },
-          update: { name: workspace.name },
-          create: {
-            id: workspace._id,
-            name: workspace.name,
-          },
-        });
-        break;
-      }
-
-      case 'workspace:updated': {
-        const { workspace } = data as { workspace: IWorkspace };
-        await prisma.workspace.upsert({
-          where: { id: workspace._id },
-          update: { name: workspace.name },
-          create: {
-            id: workspace._id,
-            name: workspace.name,
-          },
-        });
-        break;
-      }
-
-      case 'workspace:deleted': {
-        const { workspace } = data as { workspace: IWorkspace };
-        await prisma.workspace
-          .delete({
-            where: { id: workspace._id },
-          })
-          .catch(() => {
-            // Workspace may not exist in our DB
-          });
-        break;
-      }
-
-      case 'workspace:user-added': {
-        const { userId, workspace, role } = data as {
-          userId: string;
-          workspace: IWorkspace;
-          role: string;
-        };
-
-        // Ensure workspace exists
-        await prisma.workspace.upsert({
-          where: { id: workspace._id },
-          update: { name: workspace.name },
-          create: {
-            id: workspace._id,
-            name: workspace.name,
-          },
-        });
-
-        // Add user to workspace
-        await prisma.userWorkspace.upsert({
-          where: {
-            userId_workspaceId: {
-              userId,
-              workspaceId: workspace._id,
-            },
-          },
-          update: { userRole: role },
-          create: {
-            userId,
-            workspaceId: workspace._id,
-            userRole: role,
-          },
-        });
-        break;
-      }
-
-      case 'workspace:user-removed': {
-        const { userId, workspace } = data as {
-          userId: string;
-          workspace: IWorkspace;
-        };
-        await prisma.userWorkspace
-          .delete({
-            where: {
-              userId_workspaceId: {
-                userId,
-                workspaceId: workspace._id,
-              },
-            },
-          })
-          .catch(() => {
-            // Record may not exist
-          });
-        break;
-      }
-
-      case 'workspace:user-role-changed': {
-        const { userId, workspace, newRole } = data as {
-          userId: string;
-          workspace: IWorkspace;
-          previousRole: string;
-          newRole: string;
-        };
-        await prisma.userWorkspace.update({
-          where: {
-            userId_workspaceId: {
-              userId,
-              workspaceId: workspace._id,
-            },
-          },
-          data: { userRole: newRole },
-        });
-        break;
-      }
-
-      case 'workspace:changed': {
-        const { workspace } = data as { workspace: IWorkspace };
-        if (workspace) {
-          await prisma.workspace.upsert({
-            where: { id: workspace._id },
-            update: { name: workspace.name },
-            create: {
-              id: workspace._id,
-              name: workspace.name,
-            },
-          });
-        }
-        break;
-      }
-
-      case 'workspace:invitation-sent':
-      case 'workspace:invitation-accepted':
-      case 'workspace:invitation-declined':
-      case 'workspace:invitation-revoked':
-        // Membership follows through workspace:user-added; nothing to mirror.
-        break;
-
-      default:
-        logger.warn('Unknown event type received', { eventType });
+  try {
+    let outcome: Outcome = 'ok';
+    if (eventType === 'user:created' || eventType === 'user:updated') {
+      outcome = await syncSelf(session);
+    } else if (eventType === 'workspace:deleted') {
+      if (workspaceId) outcome = await removeWorkspace(session, workspaceId);
+    } else if (WORKSPACE_SYNC_EVENTS.has(eventType)) {
+      if (workspaceId) outcome = await syncWorkspace(session, workspaceId);
+    } else if (!eventType.startsWith('workspace:invitation-')) {
+      // Invitations mirror nothing: membership follows through user-added.
+      logger.warn('Unknown event type received', { eventType });
     }
 
-    // The tour ticks off tasks from the trace they leave. The person is the
-    // session cookie's, never the body's: the body is whatever the browser
-    // chose to send.
-    const session = await getSessionContext();
-    if (session) {
-      await detect(session.userId, { kind: 'sdk-event', event: eventType });
+    if (outcome === 'forbidden') {
+      return NextResponse.json(
+        { success: false, error: 'Not a member of this workspace' },
+        { status: 403 }
+      );
     }
+
+    // The tour ticks off tasks from the trace they leave.
+    await detect(session.userId, { kind: 'sdk-event', event: eventType });
 
     logger.debug('Event processed successfully', { eventType });
     return NextResponse.json({ success: true });
   } catch (error) {
     logger.error('Event handling failed', {
+      eventType,
       error: error instanceof Error ? error.message : 'Unknown error',
     });
     return NextResponse.json(

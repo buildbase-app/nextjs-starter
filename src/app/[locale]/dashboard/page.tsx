@@ -7,10 +7,12 @@ import {
   useSubscription,
   useTrialStatus,
   useSeatStatus,
+  usePermissions,
   WhenTrialing,
   WhenTrialEnding,
   WhenNotTrialing,
   WhenSubscription,
+  PendingInvitations,
   WhenNoSubscription,
   WhenSubscriptionToPlans,
 } from '@buildbase/sdk/react';
@@ -22,8 +24,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { SubscriptionStatus } from '@buildbase/sdk';
 import { Badge } from '@/components/ui/badge';
 import { TourProgressCard } from '@/components/tour/tour-progress-card';
+import { CancelResume } from '@/components/billing/cancel-resume';
+import { useCheckoutCompleted } from '@buildbase/sdk/tracking';
 import {
   AlertTriangle,
   Calendar,
@@ -33,17 +38,46 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 
+/** Workspace roles the SDK ships; anything else is the organization's own. */
+const KNOWN_ROLES: string[] = ['owner', 'admin', 'member', 'editor', 'viewer'];
+/** Stripe subscription statuses the SDK enumerates. */
+const KNOWN_STATUSES: string[] = Object.values(SubscriptionStatus);
+
 export default function DashboardPage() {
   const { user, openPlanPicker, openWorkspaceSettings } = useSaaSAuth();
   const { currentWorkspace } = useSaaSWorkspaces();
   const t = useTranslations('dashboard');
+  const ta = useTranslations('account');
   const { subscription, loading: subLoading } = useSubscription(
     currentWorkspace?._id ?? ''
   );
   const { isTrialing, daysRemaining, trialEndsAt } = useTrialStatus();
   const seatStatus = useSeatStatus(currentWorkspace ?? null);
+  // Stripe returns here after checkout. Fires `purchase` once for a checkout
+  // that is in flight (same id as the subscription's bb_event_id); a no-op
+  // on any other visit, and a refresh cannot count the sale twice.
+  useCheckoutCompleted();
 
   const plan = subscription?.plan;
+
+  // The role that decides what this person may do here is the workspace one,
+  // not the platform account role (which is "user" for everybody). A role the
+  // organization invented keeps its own name; the built-in ones are
+  // translated.
+  const { role } = usePermissions();
+  const roleLabel = role
+    ? KNOWN_ROLES.includes(role)
+      ? t(`roles.${role}` as 'roles.owner')
+      : role
+    : null;
+  // Stripe's status codes, in the reader's language; an unknown one is shown
+  // as it came rather than hidden.
+  const status = subscription?.subscription?.subscriptionStatus;
+  const statusLabel = status
+    ? KNOWN_STATUSES.includes(status)
+      ? t(`subscription.statuses.${status}` as 'subscription.statuses.active')
+      : status
+    : null;
 
   return (
     <div className="space-y-6">
@@ -53,6 +87,15 @@ export default function DashboardPage() {
           {t('welcome', { name: user?.name || '' })}
         </p>
       </div>
+
+      {/* Invitations waiting for this person, from other workspaces. Hidden
+          when there are none; accepting one switches to that workspace. */}
+      <PendingInvitations
+        hideWhenEmpty
+        switchOnAccept
+        title={ta('invitations.title')}
+        description={ta('invitations.description')}
+      />
 
       <WhenTrialEnding daysThreshold={5}>
         <Card className="border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950">
@@ -148,7 +191,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold capitalize">
-              {user?.role || t('cards.role.empty')}
+              {roleLabel ?? t('cards.role.empty')}
             </p>
           </CardContent>
         </Card>
@@ -194,17 +237,19 @@ export default function DashboardPage() {
               <div>
                 <p className="text-xl font-bold">{plan.name}</p>
                 <p className="text-muted-foreground mt-0.5 text-sm">
-                  {subscription?.subscription?.subscriptionStatus
-                    ? t('subscription.status', {
-                        status: subscription.subscription?.subscriptionStatus,
-                      })
+                  {statusLabel
+                    ? t('subscription.status', { status: statusLabel })
                     : t('subscription.activeSubscription')}
                 </p>
               </div>
               <div className="flex items-center gap-2">
                 <Badge variant="outline" className="capitalize">
-                  {subscription?.subscription?.subscriptionStatus ?? 'active'}
+                  {statusLabel ?? t('subscription.statuses.active')}
                 </Badge>
+                <CancelResume
+                  workspaceId={currentWorkspace?._id ?? ''}
+                  subscription={subscription?.subscription}
+                />
                 <Button variant="outline" size="sm" onClick={openPlanPicker}>
                   <Zap className="mr-1.5 h-3.5 w-3.5" />
                   {t('subscription.changePlan')}

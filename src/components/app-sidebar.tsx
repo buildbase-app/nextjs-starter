@@ -33,6 +33,7 @@ import {
   Workflow,
   PieChart,
   Inbox,
+  ShieldCheck,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -76,6 +77,7 @@ type NavKey =
   | 'permissions'
   | 'events'
   | 'profile'
+  | 'security'
   | 'team'
   | 'notifications'
   | 'settings';
@@ -118,6 +120,7 @@ const sections: { key: SectionKey; items: NavItem[] }[] = [
       { navKey: 'documents', url: '/dashboard/documents', icon: FileText },
       { navKey: 'team', url: '/dashboard/team', icon: Users },
       { navKey: 'profile', url: '/dashboard/profile', icon: UserCircle },
+      { navKey: 'security', url: '/dashboard/security', icon: ShieldCheck },
     ],
   },
   {

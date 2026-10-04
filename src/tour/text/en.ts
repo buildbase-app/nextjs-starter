@@ -112,15 +112,15 @@ export const en: TourText = {
       why: 'A trusted device stays signed in for 90 days and skips extra checks. Every device and session is listed, and can be signed out.',
       steps: [
         'During sign-in, choose Trust this device.',
-        'Open Profile → Devices and sessions to see it listed.',
+        'Open Security to see it listed under Devices.',
       ],
     },
     'add-passkey': {
       title: 'Add a passkey',
       why: 'Passwordless sign-in with a fingerprint, face or device PIN. Enabled per organization in the console; nothing to build.',
       steps: [
-        'Open Profile → Security.',
-        'Add a passkey and follow your browser’s prompt.',
+        'Open Security and choose Add a passkey.',
+        'Follow your browser’s prompt.',
         'Sign out and sign in with it.',
       ],
     },
@@ -136,7 +136,7 @@ export const en: TourText = {
       title: 'Sign out everywhere',
       why: 'Ends every session on every device on the platform, not just the browser you are in.',
       steps: [
-        'Open Profile → Devices and sessions.',
+        'Open Security.',
         'Sign out another session, or use Sign out everywhere.',
       ],
     },
@@ -259,7 +259,7 @@ export const en: TourText = {
     'view-invoice': {
       title: 'View an invoice',
       why: 'Invoices come from Stripe through the platform, with a hosted PDF.',
-      steps: ['Open Invoices and open the latest one.'],
+      steps: ['Open Invoices and choose Details on the latest one.'],
     },
     'billing-portal': {
       title: 'Open the billing portal',
@@ -375,7 +375,8 @@ export const en: TourText = {
       title: 'See a custom role',
       why: 'Roles and their permissions are defined per organization in the console.',
       steps: [
-        'Read the roles on Permissions: this demo defines admin, editor and viewer.',
+        'Open Permissions and read the organization’s own keys.',
+        'This demo adds a custom “reviewer” role that may change a document’s status and nothing else.',
       ],
     },
     'inbox-first-item': {
@@ -416,14 +417,16 @@ export const en: TourText = {
       title: 'Turn a channel off for yourself',
       why: 'Each member chooses how they are interrupted; the workspace admin sets the defaults and can mark an event required.',
       steps: [
-        'Settings → Notifications.',
-        'Turn email off for "Comment added"; send again and see it arrive in the inbox only.',
+        'Open Notifications → Your notification preferences.',
+        'Turn email off for an event; send it again and see it arrive in the inbox only.',
       ],
     },
     'required-event': {
       title: 'See a required event',
       why: 'An admin can make an event required; members cannot switch it off.',
-      steps: ['Settings → Notifications: "Weekly report" is locked.'],
+      steps: [
+        'Notifications → Your notification preferences: a required event is locked.',
+      ],
     },
     'delivery-log': {
       title: 'See the console’s delivery log',

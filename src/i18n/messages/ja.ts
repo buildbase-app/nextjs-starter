@@ -12,6 +12,7 @@ const messages: Messages = {
       menu: 'メニュー',
       selectWorkspace: 'ワークスペースを選択',
       profile: 'プロフィール',
+      security: 'セキュリティ',
       manageWorkspace: 'ワークスペースを管理',
       generalSettings: '一般設定',
       userManagement: 'ユーザー管理',
@@ -142,6 +143,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: 'オーナー',
+      admin: '管理者',
+      member: 'メンバー',
+      editor: '編集者',
+      viewer: '閲覧者',
+    },
     title: 'ダッシュボード',
     welcome: 'おかえりなさい、{name}！',
     trial: {
@@ -162,6 +170,15 @@ const messages: Messages = {
       choosePlan: 'プランを選択',
     },
     subscription: {
+      statuses: {
+        active: '有効',
+        trialing: 'トライアル中',
+        canceled: '解約済み',
+        past_due: '支払い遅延',
+        paused: '一時停止',
+        incomplete: '未完了',
+        unpaid: '未払い',
+      },
       title: 'サブスクリプション',
       description: '現在のプラン',
       loading: '読み込み中...',
@@ -314,6 +331,18 @@ const messages: Messages = {
       openButton: '危険ゾーンを開く',
     },
     sections: {
+      security: {
+        label: 'セキュリティ',
+        description: 'パスキーとサインイン方法',
+      },
+      devices: {
+        label: 'デバイス',
+        description: 'サインインしているブラウザとマシン',
+      },
+      'connected-agents': {
+        label: '接続中のエージェント',
+        description: 'MCP経由でアクセスを許可したAIエージェント',
+      },
       profile: {
         label: 'プロフィール',
         description: '名前、アバター、個人データ',
@@ -1264,6 +1293,131 @@ const messages: Messages = {
       'プラットフォームのベータフォーム：名前とメールを残すと、管理者がコンソールで承認します。',
     success: 'リストに登録されました。管理者がコンソールから承認します。',
     note: 'フォームと文言は組織のベータ設定（コンソール → Users → Beta）から来ています。',
+  },
+  account: {
+    exports: {
+      csv: 'CSVをエクスポート',
+      locked: 'エクスポート',
+      lockedHint:
+        'エクスポートは有料プランの機能です。プランを選んで有効にしてください。',
+    },
+    creditPacks: {
+      title: 'クレジットパック',
+      description:
+        'どのプランにも追加できます。クレジットはドキュメント作成とAI操作に使われます。',
+      credits: '{count}クレジット',
+    },
+    permissions: {
+      title: '組織の権限',
+      description:
+        'BuildBaseコンソールで定義し、ロールごとに付与したキー（カスタムロールを含む）。ドキュメントはサーバー側でもこれを確認します。',
+      empty:
+        'この組織はまだ独自の権限を定義していません。npm run seed:org を実行するか、コンソールの Workspace settings → Permissions でキーを追加してください。',
+    },
+    security: {
+      title: 'セキュリティ',
+      description:
+        'サインインしているすべての場所、信頼しているデバイス、そしてそれらを終了する方法。',
+      sessions: {
+        title: 'セッション',
+        description:
+          'サインインごとにプラットフォーム上のセッションが作られます。サインアウトすると、どこでも即座に使えなくなります。',
+        signOut: 'サインアウト',
+        empty: 'ほかのセッションはありません。',
+      },
+      devices: {
+        title: 'デバイス',
+        description:
+          'サインインに使ったブラウザやマシン。信頼済みデバイスは追加の確認を省略します。',
+        signOut: 'サインアウト',
+        empty: 'まだデバイスはありません。',
+      },
+      everywhere: {
+        title: 'すべての場所からサインアウト',
+        description:
+          'このデバイスを含め、すべてのデバイスのすべてのセッションを終了します。',
+        button: 'すべての場所からサインアウト',
+        failed:
+          'すべての場所からのサインアウトに失敗しました。もう一度お試しください。',
+        confirmTitle: 'すべてのデバイスからサインアウトしますか？',
+        confirmBody:
+          'すべてのデバイスのすべてのセッションが今すぐ終了し、ここでも再度サインインが必要になります。',
+        cancel: 'キャンセル',
+        working: 'サインアウト中…',
+      },
+      passkeys: {
+        title: 'パスキー',
+        description:
+          '指紋、顔、デバイスPINでサインインします。パスキーはホストされたサインインドメインに登録されるため、SDKの画面を開きます。',
+        button: 'パスキーを管理',
+      },
+      agents: {
+        title: '接続中のエージェント',
+        description:
+          'MCP経由でアクセスを許可したAIエージェント。プロフィールで確認・取り消しできます。',
+        button: 'プロフィールを開く',
+      },
+    },
+    invitations: {
+      title: 'あなたへの招待',
+      description:
+        'あなたを招待したワークスペース。承認するとそのワークスペースに切り替わります。',
+    },
+    subscription: {
+      cancel: 'プランを解約',
+      canceling: '解約中…',
+      resume: 'プランを継続',
+      resuming: '再開中…',
+      endsOn: '{date} に終了',
+      canceled: 'プランはこの期間の終わりに終了します。',
+      resumed: 'プランは継続されます。',
+      failed: 'うまくいきませんでした。もう一度お試しください。',
+    },
+    invoice: {
+      details: '詳細',
+      title: '請求書 {number}',
+      loading: '請求書を読み込み中…',
+      missing: '請求書が見つかりません。',
+      status: 'ステータス',
+      amountDue: '請求額',
+      amountPaid: '支払済み額',
+      created: '発行日',
+      due: '支払期日',
+      note: '備考',
+      open: 'ホストされた請求書を開く',
+      pdf: 'PDFをダウンロード',
+    },
+    preferences: {
+      title: 'あなたの通知設定',
+      description:
+        'イベントごとに、メールとプッシュのどちらで受け取るかを選べます。変更しないものはワークスペースの既定に従います。',
+      loading: '設定を読み込み中…',
+      empty:
+        'このワークスペースにはまだ通知イベントがありません。下から送信するとここに表示されます。',
+      failed: '設定を保存できませんでした。',
+      saved: '設定を保存しました。',
+      required:
+        'このイベントはこのワークスペースで必須のため、オフにできません。',
+      requiredBadge: '必須',
+      email: 'メール',
+      push: 'プッシュ',
+      useDefault: 'ワークスペースの既定を使う',
+      refresh: '更新',
+    },
+    console: {
+      title: 'テンプレートから始める',
+      description:
+        'BuildBaseコンソールの既製セット。複製すると、記入済みで組織に追加されます。',
+      workflowTemplates: {
+        title: 'ワークフローテンプレート',
+        description:
+          '10個のワークフロー：トライアル終了、支払い失敗、フォームからWebhook、CRM同期など。',
+      },
+      emailLibrary: {
+        title: 'メールテンプレートライブラリ',
+        description: '100以上のメールテンプレート。すべてのプランで無料です。',
+      },
+    },
   },
 };
 

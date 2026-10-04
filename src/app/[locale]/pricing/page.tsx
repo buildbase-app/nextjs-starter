@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { HomeHeader } from '@/components/home-header';
 import { PricingSection } from '@/components/pricing-section';
+import { CreditPacks } from '@/components/billing/credit-packs';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 import type { Locale } from '@/i18n/config';
 import { buildMarketingMetadata } from '@/lib/seo/marketing-metadata';
@@ -39,6 +40,7 @@ export default async function PricingPageRoute({ params }: PricingPageProps) {
       <main id="main-content" className="flex-1 px-6 py-12">
         <div className="mx-auto max-w-6xl">
           <PricingSection title={t('title')} description={t('subtitle')} />
+          <CreditPacks />
         </div>
       </main>
     </div>

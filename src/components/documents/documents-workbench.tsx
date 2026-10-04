@@ -11,6 +11,9 @@ import {
   WhenQuotaThreshold,
   WhenCreditsLow,
   WhenCreditsExhausted,
+  WhenWorkspaceFeatureEnabled,
+  WhenWorkspaceFeatureDisabled,
+  useSaaSAuth,
 } from '@buildbase/sdk/react';
 import { toast } from 'sonner';
 import {
@@ -23,6 +26,7 @@ import {
   Coins,
   Lock,
   Gauge,
+  Download,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,7 +39,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { canWriteDocuments } from '@/lib/documents/roles';
+import { DOCUMENT_PERMISSIONS, EXPORT_FEATURE } from '@/lib/documents/roles';
 
 /*
  * The demo's own product: documents in a workspace. Every write goes to
@@ -88,11 +92,17 @@ const STATUS_STYLE: Record<Status, string> = {
 export function DocumentsWorkbench() {
   const t = useTranslations('documents.workbench');
   const { currentWorkspace } = useSaaSWorkspaces();
-  const { role } = usePermissions();
+  const { role, can } = usePermissions();
+  const { openPlanPicker } = useSaaSAuth();
+  const tx = useTranslations('account.exports');
   const quotaCtx = useQuotaUsageContext();
   const creditCtx = useCreditBalanceContext();
   const workspaceId = currentWorkspace?._id ?? null;
-  const writer = canWriteDocuments(role);
+  // The organization's own keys, granted per role (custom roles too) in the
+  // console. The server checks the same keys; hiding is only a courtesy.
+  const writer = can(DOCUMENT_PERMISSIONS.create);
+  const editor = can(DOCUMENT_PERMISSIONS.edit);
+  const deleter = can(DOCUMENT_PERMISSIONS.delete);
 
   const [items, setItems] = useState<DocumentSummary[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
@@ -302,7 +312,7 @@ export function DocumentsWorkbench() {
           </Notice>
         )}
       </WhenCreditsLow>
-      {!writer && role && (
+      {!writer && !editor && !deleter && role && (
         <Notice icon={Lock} tone="info">
           {t('viewerNotice', { role })}
         </Notice>
@@ -322,6 +332,33 @@ export function DocumentsWorkbench() {
                 aria-label={t('search')}
               />
             </div>
+            {workspaceId && (
+              <>
+                {/* A paid feature: the plan decides, and the export route
+                    checks the same flag on the server. */}
+                <WhenWorkspaceFeatureEnabled slug={EXPORT_FEATURE}>
+                  <Button asChild size="sm" variant="outline">
+                    <a
+                      href={`/api/documents/export?workspaceId=${workspaceId}`}
+                    >
+                      <Download className="mr-1.5 h-3.5 w-3.5" />
+                      {tx('csv')}
+                    </a>
+                  </Button>
+                </WhenWorkspaceFeatureEnabled>
+                <WhenWorkspaceFeatureDisabled slug={EXPORT_FEATURE}>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={openPlanPicker}
+                    title={tx('lockedHint')}
+                  >
+                    <Lock className="mr-1.5 h-3.5 w-3.5" />
+                    {tx('locked')}
+                  </Button>
+                </WhenWorkspaceFeatureDisabled>
+              </>
+            )}
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as Status | '')}
@@ -431,7 +468,7 @@ export function DocumentsWorkbench() {
                     </div>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
-                    {writer ? (
+                    {editor ? (
                       <select
                         value={doc.status}
                         onChange={(e) =>
@@ -464,9 +501,9 @@ export function DocumentsWorkbench() {
                       size="icon"
                       variant="ghost"
                       className="h-7 w-7"
-                      disabled={!writer || busy === doc.id}
+                      disabled={!deleter || busy === doc.id}
                       title={
-                        writer
+                        deleter
                           ? t('delete')
                           : t('viewerNotice', { role: role ?? '' })
                       }

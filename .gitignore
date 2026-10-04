@@ -56,3 +56,6 @@ public/pagefind
 # next-sitemap output (postbuild)
 /public/sitemap*.xml
 /public/robots.txt
+
+# content pulled at build time (npm run content:pull)
+.buildbase

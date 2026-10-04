@@ -23,6 +23,7 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
+import { WebMcpTools } from '@/components/agents/web-mcp-tools';
 
 export function DashboardLayoutClient({
   children,
@@ -93,6 +94,7 @@ export function DashboardLayoutClient({
               <WhenPendingInvitations>
                 <PendingInvitations className="mb-6" />
               </WhenPendingInvitations>
+              <WebMcpTools />
               {children}
             </div>
           </SidebarInset>

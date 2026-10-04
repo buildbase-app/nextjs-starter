@@ -126,16 +126,16 @@ export const fr: TourText = {
       title: 'Faire confiance à cet appareil',
       why: 'Un appareil de confiance reste connecté 90 jours et évite les vérifications supplémentaires. Chaque appareil et chaque session sont listés et peuvent être déconnectés.',
       steps: [
-        'Pendant la connexion, choisissez Faire confiance à cet appareil.',
-        'Ouvrez Profil → Appareils et sessions pour le voir listé.',
+        'Lors de la connexion, choisissez Faire confiance à cet appareil.',
+        'Ouvrez Sécurité pour le voir dans la liste des appareils.',
       ],
     },
     'add-passkey': {
       title: 'Ajouter une passkey',
       why: 'Connexion sans mot de passe par empreinte, visage ou code de l’appareil. Activée par organisation dans la console ; rien à construire.',
       steps: [
-        'Ouvrez Profil → Sécurité.',
-        'Ajoutez une passkey et suivez l’invite de votre navigateur.',
+        'Ouvrez Sécurité et choisissez Ajouter une clé d’accès.',
+        'Suivez les instructions de votre navigateur.',
         'Déconnectez-vous puis reconnectez-vous avec elle.',
       ],
     },
@@ -151,7 +151,7 @@ export const fr: TourText = {
       title: 'Se déconnecter partout',
       why: 'Met fin à chaque session sur chaque appareil de la plateforme, pas seulement au navigateur où vous êtes.',
       steps: [
-        'Ouvrez Profil → Appareils et sessions.',
+        'Ouvrez Sécurité.',
         'Déconnectez une autre session, ou utilisez Se déconnecter partout.',
       ],
     },
@@ -284,7 +284,7 @@ export const fr: TourText = {
     'view-invoice': {
       title: 'Voir une facture',
       why: 'Les factures viennent de Stripe via la plateforme, avec un PDF hébergé.',
-      steps: ['Ouvrez Factures et ouvrez la plus récente.'],
+      steps: ['Ouvrez Factures et choisissez Détails sur la plus récente.'],
     },
     'billing-portal': {
       title: 'Ouvrir le portail de facturation',
@@ -413,7 +413,8 @@ export const fr: TourText = {
       title: 'Voir un rôle personnalisé',
       why: 'Les rôles et leurs permissions sont définis par organisation dans la console.',
       steps: [
-        'Lisez les rôles sur Permissions : cette démo définit admin, editor et viewer.',
+        'Ouvrez Permissions et lisez les clés propres à l’organisation.',
+        'Cette démo ajoute un rôle personnalisé « reviewer » qui ne peut que changer le statut d’un document.',
       ],
     },
     'inbox-first-item': {
@@ -458,14 +459,16 @@ export const fr: TourText = {
       title: 'Désactiver un canal pour vous-même',
       why: 'Chaque membre choisit comment il est interrompu ; l’administrateur de l’espace de travail fixe les valeurs par défaut et peut rendre un événement obligatoire.',
       steps: [
-        'Paramètres → Notifications.',
-        'Désactivez l’e-mail pour « Comment added » ; renvoyez et voyez-le arriver seulement dans la boîte de réception.',
+        'Ouvrez Notifications → Vos préférences de notification.',
+        'Désactivez l’e-mail pour un événement ; renvoyez-le et voyez-le arriver uniquement dans la boîte de réception.',
       ],
     },
     'required-event': {
       title: 'Voir un événement obligatoire',
       why: 'Un administrateur peut rendre un événement obligatoire ; les membres ne peuvent pas le désactiver.',
-      steps: ['Paramètres → Notifications : « Weekly report » est verrouillé.'],
+      steps: [
+        'Notifications → Vos préférences de notification : un événement obligatoire est verrouillé.',
+      ],
     },
     'delivery-log': {
       title: 'Voir le journal de livraison de la console',

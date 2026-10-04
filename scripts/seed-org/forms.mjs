@@ -57,6 +57,13 @@ export async function seed(api) {
       collectionVersionId: String(version._id),
     });
   }
+  // A form is created unpublished, and the public fields and submit routes
+  // answer 404 for it - the Forms page would have nothing to render.
+  // `published` is only accepted on update, so set it here; this also repairs
+  // a form an earlier run of this script left unpublished.
+  if (!form.published) {
+    form = await api.patch(`forms/${form._id}`, { published: true });
+  }
   const publicId = String(form.formId ?? '')
     .split('/')
     .filter(Boolean)

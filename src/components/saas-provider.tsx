@@ -7,6 +7,7 @@ import { SaaSOSProvider } from '@buildbase/sdk/react';
 import { useLocale } from 'next-intl';
 import { Locale } from '@/i18n/config';
 import { pushTrackingEvent } from '@/lib/tracking-bus';
+import { DEFAULT_DOCUMENT_PERMISSIONS } from '@/lib/documents/roles';
 
 const config = {
   serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
@@ -67,11 +68,9 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
           pushTrackingEvent(event);
         },
       }}
-      defaultPermissions={{
-        admin: ['create', 'share', 'delete'],
-        editor: ['create', 'share'],
-        viewer: ['share'],
-      }}
+      // Used only for keys the organization has not defined in the console;
+      // once it has, its grants (custom roles included) decide.
+      defaultPermissions={DEFAULT_DOCUMENT_PERMISSIONS}
       auth={{
         clientId: config.clientId,
         redirectUrl: config.redirectUrl,

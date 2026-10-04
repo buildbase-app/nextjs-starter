@@ -12,6 +12,7 @@ const messages: Messages = {
       menu: '菜单',
       selectWorkspace: '选择工作区',
       profile: '个人资料',
+      security: '安全',
       manageWorkspace: '管理工作区',
       generalSettings: '常规设置',
       userManagement: '用户管理',
@@ -142,6 +143,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: '所有者',
+      admin: '管理员',
+      member: '成员',
+      editor: '编辑者',
+      viewer: '查看者',
+    },
     title: '仪表板',
     welcome: '欢迎回来，{name}！',
     trial: {
@@ -161,6 +169,15 @@ const messages: Messages = {
       choosePlan: '选择计划',
     },
     subscription: {
+      statuses: {
+        active: '有效',
+        trialing: '试用中',
+        canceled: '已取消',
+        past_due: '逾期未付',
+        paused: '已暂停',
+        incomplete: '未完成',
+        unpaid: '未付款',
+      },
       title: '订阅',
       description: '您当前的计划',
       loading: '加载中...',
@@ -307,6 +324,18 @@ const messages: Messages = {
       openButton: '打开危险区域',
     },
     sections: {
+      security: {
+        label: '安全',
+        description: '通行密钥和登录方式',
+      },
+      devices: {
+        label: '设备',
+        description: '你已登录的浏览器和设备',
+      },
+      'connected-agents': {
+        label: '已连接的代理',
+        description: '你通过 MCP 授权的 AI 代理',
+      },
       profile: {
         label: '个人资料',
         description: '您的姓名、头像和个人详情',
@@ -1206,6 +1235,121 @@ const messages: Messages = {
     description: '平台的测试版表单：留下姓名和邮箱，管理员在控制台审批。',
     success: '你已在名单中。管理员将在控制台审批。',
     note: '表单及其文案来自组织的测试版配置（控制台 → Users → Beta）。',
+  },
+  account: {
+    exports: {
+      csv: '导出 CSV',
+      locked: '导出',
+      lockedHint: '导出属于付费套餐功能。选择一个套餐即可解锁。',
+    },
+    creditPacks: {
+      title: '积分包',
+      description: '可为任何套餐充值。积分用于创建文档和 AI 操作。',
+      credits: '{count} 积分',
+    },
+    permissions: {
+      title: '你的组织的权限',
+      description:
+        '在 BuildBase 控制台中定义并按角色授予的权限键，包括自定义角色。文档在服务器端也会检查它们。',
+      empty:
+        '该组织尚未定义自己的权限。运行 npm run seed:org，或在控制台的 Workspace settings → Permissions 中添加权限键。',
+    },
+    security: {
+      title: '安全',
+      description: '你登录的所有位置、你信任的设备，以及结束它们的方式。',
+      sessions: {
+        title: '会话',
+        description:
+          '每次登录都是平台上的一个会话。退出某个会话后，它会立即在所有地方失效。',
+        signOut: '退出',
+        empty: '没有其他会话。',
+      },
+      devices: {
+        title: '设备',
+        description: '你登录过的浏览器和设备。受信任的设备会跳过额外检查。',
+        signOut: '退出',
+        empty: '暂无设备。',
+      },
+      everywhere: {
+        title: '在所有设备上退出',
+        description: '结束你在所有设备上的所有会话，包括当前设备。',
+        button: '在所有设备上退出',
+        failed: '无法在所有设备上退出，请重试。',
+        confirmTitle: '要从所有设备退出吗？',
+        confirmBody: '所有设备上的所有会话将立即结束，你在这里也需要重新登录。',
+        cancel: '取消',
+        working: '正在退出…',
+      },
+      passkeys: {
+        title: '通行密钥',
+        description:
+          '使用指纹、面容或设备 PIN 登录。通行密钥注册在托管的登录域名上，因此这里会打开 SDK 的界面。',
+        button: '管理通行密钥',
+      },
+      agents: {
+        title: '已连接的代理',
+        description:
+          '你通过 MCP 授予访问权限的 AI 代理。可在个人资料中查看和撤销。',
+        button: '打开个人资料',
+      },
+    },
+    invitations: {
+      title: '等待你处理的邀请',
+      description: '邀请了你的工作区。接受后会切换到该工作区。',
+    },
+    subscription: {
+      cancel: '取消套餐',
+      canceling: '正在取消…',
+      resume: '保留套餐',
+      resuming: '正在恢复…',
+      endsOn: '于 {date} 结束',
+      canceled: '套餐将在本周期结束时终止。',
+      resumed: '套餐将继续。',
+      failed: '操作未成功，请重试。',
+    },
+    invoice: {
+      details: '详情',
+      title: '发票 {number}',
+      loading: '正在加载发票…',
+      missing: '未找到发票。',
+      status: '状态',
+      amountDue: '应付金额',
+      amountPaid: '已付金额',
+      created: '开具日期',
+      due: '到期日',
+      note: '备注',
+      open: '打开托管发票',
+      pdf: '下载 PDF',
+    },
+    preferences: {
+      title: '你的通知偏好',
+      description:
+        '为每个事件选择通过邮件还是推送通知你。未更改的项目沿用工作区默认设置。',
+      loading: '正在加载你的偏好…',
+      empty: '该工作区还没有通知事件。在下方发送一个，它就会出现在这里。',
+      failed: '无法保存你的偏好。',
+      saved: '偏好已保存。',
+      required: '此事件在该工作区为必需，无法关闭。',
+      requiredBadge: '必需',
+      email: '邮件',
+      push: '推送',
+      useDefault: '使用工作区默认设置',
+      refresh: '刷新',
+    },
+    console: {
+      title: '从模板开始',
+      description:
+        'BuildBase 控制台中的现成模板。克隆一个，它就会填好内容出现在你的组织中。',
+      workflowTemplates: {
+        title: '工作流模板',
+        description:
+          '十个工作流：试用结束、付款失败、表单到 Webhook、CRM 同步等。',
+      },
+      emailLibrary: {
+        title: '邮件模板库',
+        description: '一百多个邮件模板，所有套餐均免费。',
+      },
+    },
   },
 };
 

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { hasAdminApi } from '@/lib/buildbase-admin';
+import { AdminApiError, hasAdminApi } from '@/lib/buildbase-admin';
 import { getSessionContext } from '@/lib/server-auth';
 import { findForm, getFields, listSubmissions } from '@/lib/platform/forms';
 
@@ -16,9 +16,17 @@ export async function GET() {
   if (!form) {
     return NextResponse.json({ error: 'not_found' }, { status: 404 });
   }
-  const [fields, submissions] = await Promise.all([
-    getFields(form.publicId),
-    listSubmissions(form._id).catch(() => []),
-  ]);
+  let fields;
+  try {
+    fields = await getFields(form.publicId);
+  } catch (error) {
+    // The platform serves fields only for a published form; say so rather
+    // than surfacing its 404 as a 500.
+    if (error instanceof AdminApiError && error.status === 404) {
+      return NextResponse.json({ error: 'not_published' }, { status: 404 });
+    }
+    throw error;
+  }
+  const submissions = await listSubmissions(form._id).catch(() => []);
   return NextResponse.json({ form, fields, submissions });
 }

@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     try {
       contact = await adminFetch<AudienceRow>('audience', {
         method: 'POST',
-        body: { name, email, source: 'app-newsletter' },
+        body: { name, email, source: 'newsletter' },
       });
     } catch (error) {
       // Already a contact: find them and carry on to the list.

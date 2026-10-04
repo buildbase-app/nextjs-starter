@@ -49,15 +49,19 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       },
       app: ['src/components/saas-provider.tsx', 'src/app/api/auth/*'],
     },
+    // Ticked by the code exchange in /api/auth/token, not by the SDK's
+    // `user:created` event: that event fires only for an account the SDK
+    // itself creates, so anyone who signed in with an account they already
+    // had was still told to create one.
     detect: {
-      kind: 'sdk-event',
-      event: 'user:created',
+      kind: 'action',
+      action: 'auth:signed-in',
     },
   },
   {
     id: 'trust-device',
     group: 'start',
-    href: '/dashboard/profile',
+    href: '/dashboard/security',
     source: {
       sdk: ['<Devices />', '<Sessions />', 'useSessions()'],
       console: {
@@ -72,7 +76,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'add-passkey',
     group: 'start',
-    href: '/dashboard/profile',
+    href: '/dashboard/security',
     source: {
       sdk: ['openWorkspaceSettings("security")'],
       console: {
@@ -108,7 +112,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'sign-out-everywhere',
     group: 'start',
-    href: '/dashboard/profile',
+    href: '/dashboard/security',
     source: {
       sdk: ['signOut({ everywhere: true })', 'SessionsApi.revoke()'],
     },
@@ -237,7 +241,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'accept-invitation',
     group: 'team',
-    href: '/dashboard/team',
+    href: '/dashboard',
     source: {
       sdk: [
         'useMyInvitations()',
@@ -732,7 +736,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'notification-preferences',
     group: 'notifications',
-    href: '/dashboard/settings',
+    href: '/dashboard/notifications',
     source: {
       sdk: [
         'openWorkspaceSettings("notifications")',
@@ -740,13 +744,14 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       ],
     },
     detect: {
-      kind: 'manual',
+      kind: 'action',
+      action: 'notifications:preferences-saved',
     },
   },
   {
     id: 'required-event',
     group: 'notifications',
-    href: '/dashboard/settings',
+    href: '/dashboard/notifications',
     source: {
       sdk: ['updateNotificationPreferences({ required: true })'],
     },

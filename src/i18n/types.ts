@@ -12,6 +12,7 @@ export interface CommonMessages {
     menu: string;
     selectWorkspace: string;
     profile: string;
+    security: string;
     manageWorkspace: string;
     generalSettings: string;
     userManagement: string;
@@ -136,6 +137,13 @@ export interface HomeMessages {
 }
 
 export interface DashboardMessages {
+  roles: {
+    owner: string;
+    admin: string;
+    member: string;
+    editor: string;
+    viewer: string;
+  };
   title: string;
   welcome: string;
   trial: {
@@ -155,6 +163,15 @@ export interface DashboardMessages {
     choosePlan: string;
   };
   subscription: {
+    statuses: {
+      active: string;
+      trialing: string;
+      canceled: string;
+      past_due: string;
+      paused: string;
+      incomplete: string;
+      unpaid: string;
+    };
     title: string;
     description: string;
     loading: string;
@@ -308,6 +325,9 @@ export interface SettingsMessages {
   };
   sections: {
     profile: SettingsSectionItem;
+    security: SettingsSectionItem;
+    devices: SettingsSectionItem;
+    'connected-agents': SettingsSectionItem;
     general: SettingsSectionItem;
     users: SettingsSectionItem;
     subscription: SettingsSectionItem;
@@ -1164,6 +1184,114 @@ export interface WaitlistMessages {
 }
 
 // Combined messages type
+export interface AccountMessages {
+  exports: {
+    csv: string;
+    locked: string;
+    lockedHint: string;
+  };
+  creditPacks: {
+    title: string;
+    description: string;
+    credits: string;
+  };
+  permissions: {
+    title: string;
+    description: string;
+    empty: string;
+  };
+  security: {
+    title: string;
+    description: string;
+    sessions: {
+      title: string;
+      description: string;
+      signOut: string;
+      empty: string;
+    };
+    devices: {
+      title: string;
+      description: string;
+      signOut: string;
+      empty: string;
+    };
+    everywhere: {
+      title: string;
+      description: string;
+      button: string;
+      failed: string;
+      confirmTitle: string;
+      confirmBody: string;
+      cancel: string;
+      working: string;
+    };
+    passkeys: {
+      title: string;
+      description: string;
+      button: string;
+    };
+    agents: {
+      title: string;
+      description: string;
+      button: string;
+    };
+  };
+  invitations: {
+    title: string;
+    description: string;
+  };
+  subscription: {
+    cancel: string;
+    canceling: string;
+    resume: string;
+    resuming: string;
+    endsOn: string;
+    canceled: string;
+    resumed: string;
+    failed: string;
+  };
+  invoice: {
+    details: string;
+    title: string;
+    loading: string;
+    missing: string;
+    status: string;
+    amountDue: string;
+    amountPaid: string;
+    created: string;
+    due: string;
+    note: string;
+    open: string;
+    pdf: string;
+  };
+  preferences: {
+    title: string;
+    description: string;
+    loading: string;
+    empty: string;
+    failed: string;
+    saved: string;
+    required: string;
+    requiredBadge: string;
+    email: string;
+    push: string;
+    useDefault: string;
+    refresh: string;
+  };
+  console: {
+    title: string;
+    description: string;
+    workflowTemplates: {
+      title: string;
+      description: string;
+    };
+    emailLibrary: {
+      title: string;
+      description: string;
+    };
+  };
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1196,6 +1324,7 @@ export interface Messages {
   links: LinksMessages;
   audience: AudienceMessages;
   waitlist: WaitlistMessages;
+  account: AccountMessages;
 }
 
 // For next-intl type inference

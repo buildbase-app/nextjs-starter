@@ -1,5 +1,5 @@
 import 'server-only';
-import { auth, withSession } from '@/lib/buildbase';
+import { auth, settings, withSession } from '@/lib/buildbase';
 import { logger } from '@/lib/logger';
 
 /**
@@ -25,10 +25,18 @@ export interface SessionContext {
   bb: ReturnType<typeof withSession>;
 }
 
-export interface WorkspaceContext extends SessionContext {
+export interface WorkspaceContext extends SessionContext, MemberGrants {
   workspaceId: string;
   /** The caller's role inside the workspace (owner / admin / member / …). */
   role: string;
+}
+
+/** What the platform says a member may do in one workspace. */
+export interface MemberGrants {
+  role: string;
+  isOwner: boolean;
+  /** Platform keys (`workspace:*`) and the organization's own keys. */
+  permissions: Set<string>;
 }
 
 /** Resolve the caller from the session cookie. Returns null when signed out. */
@@ -65,14 +73,73 @@ export async function getWorkspaceContext(
   const session = await getSessionContext();
   if (!session) return null;
 
-  const role = await resolveWorkspaceRole(
+  const grants = await resolveMemberGrants(
     session.bb,
     workspaceId,
     session.userId
   );
-  if (!role) return null;
+  if (!grants) return null;
 
-  return { ...session, workspaceId, role };
+  return { ...session, workspaceId, ...grants };
+}
+
+/**
+ * The member's role and permissions in a workspace, as the platform resolves
+ * them: the organization's custom roles and the keys it granted to each in
+ * the console. Null when the user is not a member. Falls back to the member
+ * list on a server too old to answer, with no keys granted.
+ */
+export async function resolveMemberGrants(
+  bb: ReturnType<typeof withSession>,
+  workspaceId: string,
+  userId: string
+): Promise<MemberGrants | null> {
+  try {
+    const answer = await bb.workspace.permissions(workspaceId);
+    if (!answer.role) return null;
+    return {
+      role: answer.role,
+      isOwner: answer.isOwner,
+      permissions: new Set(answer.permissions),
+    };
+  } catch (error) {
+    logger.debug('Workspace permissions lookup failed, using the role', {
+      workspaceId,
+      error: error instanceof Error ? error.message : String(error),
+    });
+    const role = await resolveWorkspaceRole(bb, workspaceId, userId);
+    return role ? { role, isOwner: false, permissions: new Set() } : null;
+  }
+}
+
+/** The organization's own permission keys, re-read at most once a minute. */
+let catalogue: { keys: Set<string>; at: number } | null = null;
+async function organizationKeys(): Promise<Set<string>> {
+  if (catalogue && Date.now() - catalogue.at < 60_000) return catalogue.keys;
+  try {
+    const org = await settings.get();
+    const defined = org.workspace?.customPermissions ?? [];
+    catalogue = { keys: new Set(defined.map((p) => p.key)), at: Date.now() };
+  } catch {
+    catalogue = { keys: new Set(), at: Date.now() };
+  }
+  return catalogue.keys;
+}
+
+/**
+ * Whether a member may do something the app guards with its own key
+ * (`app:documents:create`). The owner always may. Otherwise the platform's
+ * answer decides - which is what makes a custom role made in the console
+ * work here. A key the organization has not defined yet falls back to the
+ * role rule, so an org that never opened the permissions screen still works.
+ */
+export async function hasAppPermission(
+  grants: MemberGrants,
+  key: string
+): Promise<boolean> {
+  if (grants.isOwner || grants.permissions.has(key)) return true;
+  if ((await organizationKeys()).has(key)) return false;
+  return canWrite(grants.role);
 }
 
 /**

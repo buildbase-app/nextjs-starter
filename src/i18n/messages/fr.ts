@@ -12,6 +12,7 @@ const messages: Messages = {
       menu: 'Menu',
       selectWorkspace: "Sélectionner l'espace",
       profile: 'Profil',
+      security: 'Sécurité',
       manageWorkspace: "Gérer l'espace",
       generalSettings: 'Paramètres généraux',
       userManagement: 'Gestion des utilisateurs',
@@ -144,6 +145,13 @@ const messages: Messages = {
     },
   },
   dashboard: {
+    roles: {
+      owner: 'Propriétaire',
+      admin: 'Administrateur',
+      member: 'Membre',
+      editor: 'Éditeur',
+      viewer: 'Lecteur',
+    },
     title: 'Tableau de bord',
     welcome: 'Bon retour, {name} !',
     trial: {
@@ -164,6 +172,15 @@ const messages: Messages = {
       choosePlan: 'Choisir un plan',
     },
     subscription: {
+      statuses: {
+        active: 'Active',
+        trialing: 'Essai en cours',
+        canceled: 'Annulée',
+        past_due: 'Paiement en retard',
+        paused: 'En pause',
+        incomplete: 'Incomplète',
+        unpaid: 'Impayée',
+      },
       title: 'Abonnement',
       description: 'Votre plan actuel',
       loading: 'Chargement...',
@@ -317,6 +334,18 @@ const messages: Messages = {
       openButton: 'Ouvrir la zone de danger',
     },
     sections: {
+      security: {
+        label: 'Sécurité',
+        description: 'Clés d’accès et façon de vous connecter',
+      },
+      devices: {
+        label: 'Appareils',
+        description: 'Navigateurs et machines où vous êtes connecté',
+      },
+      'connected-agents': {
+        label: 'Agents connectés',
+        description: 'Agents IA auxquels vous avez donné accès via MCP',
+      },
       profile: {
         label: 'Profil',
         description: 'Votre nom, avatar et données personnelles',
@@ -1282,6 +1311,131 @@ const messages: Messages = {
     success:
       'Vous êtes sur la liste. Un administrateur vous approuvera depuis la console.',
     note: 'Le formulaire et ses textes viennent de la configuration bêta de l’organisation (console → Users → Beta).',
+  },
+  account: {
+    exports: {
+      csv: 'Exporter en CSV',
+      locked: 'Exporter',
+      lockedHint:
+        'Les exports font partie d’une offre payante. Choisissez une offre pour les débloquer.',
+    },
+    creditPacks: {
+      title: 'Packs de crédits',
+      description:
+        'Rechargez n’importe quelle offre. Les crédits paient la création de documents et les actions IA.',
+      credits: '{count} crédits',
+    },
+    permissions: {
+      title: 'Les permissions de votre organisation',
+      description:
+        'Clés définies dans la console BuildBase et accordées par rôle, rôles personnalisés compris. Documents les vérifie aussi côté serveur.',
+      empty:
+        'Cette organisation n’a pas encore défini ses propres permissions. Lancez npm run seed:org, ou ajoutez des clés dans la console, sous Workspace settings → Permissions.',
+    },
+    security: {
+      title: 'Sécurité',
+      description:
+        'Tous les endroits où vous êtes connecté, les appareils de confiance, et les moyens d’y mettre fin.',
+      sessions: {
+        title: 'Sessions',
+        description:
+          'Chaque connexion est une session sur la plateforme. Déconnectez-en une et elle cesse de fonctionner partout, immédiatement.',
+        signOut: 'Déconnecter',
+        empty: 'Aucune autre session.',
+      },
+      devices: {
+        title: 'Appareils',
+        description:
+          'Navigateurs et machines depuis lesquels vous vous êtes connecté. Un appareil de confiance évite les vérifications supplémentaires.',
+        signOut: 'Déconnecter',
+        empty: 'Aucun appareil pour l’instant.',
+      },
+      everywhere: {
+        title: 'Se déconnecter partout',
+        description:
+          'Met fin à toutes vos sessions, sur tous les appareils, y compris celui-ci.',
+        button: 'Se déconnecter partout',
+        failed: 'Impossible de se déconnecter partout. Réessayez.',
+        confirmTitle: 'Se déconnecter de tous les appareils ?',
+        confirmBody:
+          'Toutes les sessions se terminent maintenant, sur tous les appareils, et vous devrez aussi vous reconnecter ici.',
+        cancel: 'Annuler',
+        working: 'Déconnexion…',
+      },
+      passkeys: {
+        title: 'Clés d’accès',
+        description:
+          'Connectez-vous par empreinte, visage ou code de l’appareil. Les clés s’enregistrent sur le domaine de connexion hébergé, d’où l’ouverture de l’écran du SDK.',
+        button: 'Gérer les clés d’accès',
+      },
+      agents: {
+        title: 'Agents connectés',
+        description:
+          'Les agents IA auxquels vous avez donné accès via MCP. Consultez-les et révoquez-les depuis votre profil.',
+        button: 'Ouvrir le profil',
+      },
+    },
+    invitations: {
+      title: 'Invitations en attente',
+      description:
+        'Les espaces de travail qui vous ont invité. Accepter vous fait passer dans cet espace.',
+    },
+    subscription: {
+      cancel: 'Annuler l’offre',
+      canceling: 'Annulation…',
+      resume: 'Conserver l’offre',
+      resuming: 'Reprise…',
+      endsOn: 'Se termine le {date}',
+      canceled: 'L’offre se termine à la fin de cette période.',
+      resumed: 'L’offre continue.',
+      failed: 'Cela n’a pas fonctionné. Réessayez.',
+    },
+    invoice: {
+      details: 'Détails',
+      title: 'Facture {number}',
+      loading: 'Chargement de la facture…',
+      missing: 'Facture introuvable.',
+      status: 'Statut',
+      amountDue: 'Montant dû',
+      amountPaid: 'Montant payé',
+      created: 'Émise',
+      due: 'Échéance',
+      note: 'Note',
+      open: 'Ouvrir la facture hébergée',
+      pdf: 'Télécharger le PDF',
+    },
+    preferences: {
+      title: 'Vos préférences de notification',
+      description:
+        'Choisissez, par événement, s’il vous parvient par e-mail ou push. Ce que vous ne touchez pas suit la valeur de l’espace de travail.',
+      loading: 'Chargement de vos préférences…',
+      empty:
+        'Cet espace de travail n’a encore aucun événement de notification. Envoyez-en un ci-dessous et il apparaîtra ici.',
+      failed: 'Vos préférences n’ont pas pu être enregistrées.',
+      saved: 'Préférence enregistrée.',
+      required:
+        'Cet événement est obligatoire dans cet espace de travail et ne peut pas être désactivé.',
+      requiredBadge: 'Obligatoire',
+      email: 'E-mail',
+      push: 'Push',
+      useDefault: 'Utiliser la valeur de l’espace de travail',
+      refresh: 'Actualiser',
+    },
+    console: {
+      title: 'Partir d’un modèle',
+      description:
+        'Des ensembles prêts à l’emploi dans la console BuildBase. Clonez-en un et il arrive dans votre organisation, déjà rempli.',
+      workflowTemplates: {
+        title: 'Modèles de workflows',
+        description:
+          'Dix workflows : fin d’essai, paiement échoué, formulaire vers webhook, synchronisation CRM et plus.',
+      },
+      emailLibrary: {
+        title: 'Bibliothèque de modèles d’e-mails',
+        description:
+          'Plus de cent modèles d’e-mails, gratuits sur toutes les offres.',
+      },
+    },
   },
 };
 
