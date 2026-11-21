@@ -380,7 +380,7 @@ export const fr: TourText = {
       title: 'Recharger automatiquement',
       why: "Un espace de travail à court de crédits s'arrête. La recharge automatique achète un pack avec la carte enregistrée avant que cela n'arrive, dans un plafond mensuel fixé par le client.",
       steps: [
-        'Ouvrez Crédits et trouvez « Recharge automatique ».',
+        'Ouvrez Crédits et appuyez sur « Configurer la recharge automatique ».',
         'Ajoutez une carte, choisissez un seuil et un pack, puis activez-la.',
       ],
     },
