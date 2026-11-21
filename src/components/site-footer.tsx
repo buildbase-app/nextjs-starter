@@ -3,7 +3,7 @@ import { Link } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { BuildBaseBadge } from '@buildbase/sdk/react';
-import { Github } from 'lucide-react';
+import { GitHubIcon } from '@/components/icons/brand';
 import { siteConfig } from '@/config/site';
 
 interface SiteFooterProps {
@@ -92,7 +92,7 @@ export async function SiteFooter({ title }: SiteFooterProps) {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-xs"
             >
-              <Github className="h-3.5 w-3.5" />
+              <GitHubIcon className="h-3.5 w-3.5" />
               {t('footer.links.github')}
             </a>
             <BuildBaseBadge variant="built-with" theme="auto" size="sm" />

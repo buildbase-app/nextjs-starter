@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Check, Copy, Github } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
+import { GitHubIcon } from '@/components/icons/brand';
 import { Button } from '@/components/ui/button';
 import { cloneCommand, siteConfig } from '@/config/site';
 
@@ -29,7 +30,7 @@ export function CloneCard() {
     <div className="bg-card flex flex-col gap-4 rounded-xl border p-5 md:flex-row md:items-center">
       <div className="flex-1 space-y-1">
         <h2 className="flex items-center gap-2 font-semibold">
-          <Github className="h-4 w-4" /> {t('cloneTitle')}
+          <GitHubIcon className="h-4 w-4" /> {t('cloneTitle')}
         </h2>
         <p className="text-muted-foreground text-sm">{t('cloneBody')}</p>
         <div className="bg-muted mt-2 flex items-center gap-2 rounded-md px-3 py-2 font-mono text-xs">

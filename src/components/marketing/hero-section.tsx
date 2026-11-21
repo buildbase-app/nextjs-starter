@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowRight, Github } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { GitHubIcon } from '@/components/icons/brand';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -84,7 +85,7 @@ export function HeroSection() {
         </WhenAuthenticated>
         <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
           <a href={siteConfig.repo} target="_blank" rel="noopener noreferrer">
-            <Github className="h-4 w-4" />
+            <GitHubIcon className="h-4 w-4" />
             {t('hero.viewSource')}
           </a>
         </Button>
