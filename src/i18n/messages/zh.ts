@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      billing: '账单',
       home: '首页',
       dashboard: '仪表板',
       documents: '文档',
@@ -1468,6 +1469,29 @@ const messages: Messages = {
     turnOn: '开启',
     turnOff: '关闭',
     saved: '已保存。',
+  },
+  billingHub: {
+    title: '账单',
+    description:
+      '工作区套餐之外：套餐之上的附加项，以及你自己的套餐和积分。这些都是 SDK 自带的界面。',
+    addOns: {
+      title: '附加项',
+      description:
+        '工作区在套餐之外购买的额外内容，来自控制台的目录。它们在工作区的订阅界面中。',
+      open: '管理附加项',
+    },
+    personalCredits: {
+      title: '你自己的积分',
+      description: '属于你而非某个工作区的积分钱包，包含购买记录和自动充值。',
+      open: '打开你的积分',
+    },
+    personal: {
+      title: '你自己的套餐',
+      description:
+        '以个人身份拥有的套餐，与任何工作区分开。当控制台向个人销售套餐时显示。',
+    },
+    inPage:
+      '卡片信息和 3-D 安全验证会在这些界面内打开，无需跳转到 Stripe 网站。',
   },
 };
 
