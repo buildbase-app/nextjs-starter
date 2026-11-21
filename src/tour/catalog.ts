@@ -722,6 +722,27 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       kind: 'manual',
     },
   },
+  {
+    id: 'enterprise-sso',
+    group: 'permissions',
+    href: '/dashboard/enterprise',
+    source: {
+      sdk: [
+        '<EnterpriseAccess />',
+        "openWorkspaceSettings('enterprise')",
+        '<WorkspaceAccessRefused />',
+      ],
+      console: {
+        screen: '/dashboard/admin/auth',
+        note: 'Enterprise sign-on runs through your own WorkOS account; a company then sets up its single sign-on, directory sync and policy itself.',
+      },
+      app: [
+        'src/app/[locale]/dashboard/enterprise/page.tsx',
+        'src/components/dashboard-layout-client.tsx',
+      ],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Notifications ──
   {
     id: 'inbox-first-item',

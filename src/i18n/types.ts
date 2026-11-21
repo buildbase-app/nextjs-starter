@@ -3,6 +3,7 @@
 
 export interface CommonMessages {
   nav: {
+    enterprise: string;
     home: string;
     dashboard: string;
     documents: string;

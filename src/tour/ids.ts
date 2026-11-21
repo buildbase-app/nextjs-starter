@@ -49,6 +49,7 @@ export const TASK_IDS = [
   'permission-matrix',
   'forbidden-action',
   'custom-role',
+  'enterprise-sso',
   'inbox-first-item',
   'send-notification',
   'inbox-live',
