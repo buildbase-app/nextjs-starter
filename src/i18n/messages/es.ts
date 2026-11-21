@@ -1299,6 +1299,19 @@ const messages: Messages = {
         'Claves definidas en la consola de BuildBase y concedidas por rol, incluidos los roles personalizados. Documentos también las comprueba en el servidor.',
       empty:
         'Esta organización aún no ha definido sus propios permisos. Ejecuta npm run seed:org o añade claves en la consola, en Workspace settings → Permissions.',
+      permission: 'Permiso',
+      inApp: 'En la app',
+      backend: 'Tu backend',
+      allowed: 'Permitido',
+      denied: 'Denegado',
+      tryIt: 'Probar',
+      codeOnly:
+        'Solo en el código de esta app, así que solo lo comprueba el navegador',
+      tried: {
+        allowed: 'Hecho: tu backend lo permitió',
+        refused: 'Rechazado por tu backend',
+        error: 'No se pudo comprobar',
+      },
     },
     security: {
       title: 'Seguridad',

@@ -1303,6 +1303,19 @@ const messages: Messages = {
         'Clés définies dans la console BuildBase et accordées par rôle, rôles personnalisés compris. Documents les vérifie aussi côté serveur.',
       empty:
         'Cette organisation n’a pas encore défini ses propres permissions. Lancez npm run seed:org, ou ajoutez des clés dans la console, sous Workspace settings → Permissions.',
+      permission: 'Permission',
+      inApp: "Dans l'app",
+      backend: 'Votre backend',
+      allowed: 'Autorisé',
+      denied: 'Refusé',
+      tryIt: 'Essayer',
+      codeOnly:
+        'Seulement dans le code de cette app, donc seul le navigateur le vérifie',
+      tried: {
+        allowed: "Fait : votre backend l'a autorisé",
+        refused: 'Refusé par votre backend',
+        error: 'Vérification impossible',
+      },
     },
     security: {
       title: 'Sécurité',
