@@ -101,7 +101,7 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'Live demo · 67 tasks',
+      badge: 'Live demo · {count} tasks',
       heading:
         'Every BuildBase capability, <highlight>one task at a time</highlight>',
       description:
