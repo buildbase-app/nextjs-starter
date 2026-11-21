@@ -1293,6 +1293,31 @@ const messages: Messages = {
     browse: '浏览商店',
     couponHint: '试试优惠码 DEMO10，可享 9 折。',
   },
+  reviews: {
+    title: '你的评价',
+    ratingLabel: '你的评分',
+    outOf: '5 星中的 {rating} 星',
+    textLabel: '你觉得怎么样？',
+    placeholder: '你觉得怎么样？（可选）',
+    submit: '发布评价',
+    update: '保存修改',
+    saving: '正在保存…',
+    saved: '谢谢！你的评价已发布。',
+    cancel: '取消',
+    edit: '修改你的评价',
+    yours: '你的评价',
+    verifiedBuyer: '已验证买家',
+    summary: '{average} / 5（{count, plural, other {# 条评价}}）',
+    closed: {
+      reviews_off: '此商品不接受评价。',
+      not_paid: '付款后即可评价。',
+      refunded: '已退款的购买无法评价。',
+      not_delivered: '送达后即可评价。',
+      booking_not_ended: '预约结束后即可评价。',
+      not_open_yet: '评价将于 {date} 开放。',
+      window_closed: '评价期限已过。',
+    },
+  },
 };
 
 export default messages;

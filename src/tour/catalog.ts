@@ -552,6 +552,27 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     detect: { kind: 'manual' },
   },
+  {
+    id: 'marketplace-review',
+    group: 'billing',
+    href: '/dashboard/orders',
+    source: {
+      sdk: [
+        'useOrderReviews(orderId)',
+        'reviewWindowOpen(line.window)',
+        'useItemReviews(itemId)',
+      ],
+      console: {
+        screen: '/dashboard/billing/item-types',
+        note: 'An item type’s Review section turns buyer reviews on, with when they open and for how long; Selling, Reviews moderates them.',
+      },
+      app: [
+        'src/components/reviews/order-reviews.tsx',
+        'src/components/reviews/item-rating.tsx',
+      ],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',

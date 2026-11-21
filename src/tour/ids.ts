@@ -38,6 +38,7 @@ export const TASK_IDS = [
   'marketplace-buy',
   'marketplace-book',
   'marketplace-cart',
+  'marketplace-review',
   'record-usage',
   'usage-threshold',
   'usage-limit',

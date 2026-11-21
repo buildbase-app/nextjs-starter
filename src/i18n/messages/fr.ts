@@ -1379,6 +1379,32 @@ const messages: Messages = {
     browse: 'Voir la boutique',
     couponHint: 'Essayez le code DEMO10 pour 10 % de réduction.',
   },
+  reviews: {
+    title: 'Votre avis',
+    ratingLabel: 'Votre note',
+    outOf: '{rating} sur 5 étoiles',
+    textLabel: "Qu'en avez-vous pensé ?",
+    placeholder: "Qu'en avez-vous pensé ? (facultatif)",
+    submit: "Publier l'avis",
+    update: 'Enregistrer',
+    saving: 'Enregistrement…',
+    saved: 'Merci ! Votre avis est publié.',
+    cancel: 'Annuler',
+    edit: 'Modifier votre avis',
+    yours: 'Votre avis',
+    verifiedBuyer: 'Acheteur vérifié',
+    summary: '{average} sur 5 ({count, plural, one {# avis} other {# avis}})',
+    closed: {
+      reviews_off: "Cet article n'accepte pas d'avis.",
+      not_paid: 'Vous pourrez donner votre avis une fois le paiement effectué.',
+      refunded: 'Un achat remboursé ne peut pas être évalué.',
+      not_delivered: 'Vous pourrez donner votre avis après la livraison.',
+      booking_not_ended:
+        'Vous pourrez donner votre avis après votre rendez-vous.',
+      not_open_yet: 'Les avis ouvrent le {date}.',
+      window_closed: 'Le délai pour donner votre avis est passé.',
+    },
+  },
 };
 
 export default messages;

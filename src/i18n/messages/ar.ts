@@ -1331,6 +1331,32 @@ const messages: Messages = {
     browse: 'تصفح المتجر',
     couponHint: 'جرّب الرمز DEMO10 للحصول على خصم 10%.',
   },
+  reviews: {
+    title: 'مراجعتك',
+    ratingLabel: 'تقييمك',
+    outOf: '{rating} من 5 نجوم',
+    textLabel: 'ما رأيك؟',
+    placeholder: 'ما رأيك؟ (اختياري)',
+    submit: 'انشر المراجعة',
+    update: 'احفظ التغييرات',
+    saving: 'جارٍ الحفظ…',
+    saved: 'شكرًا! نُشرت مراجعتك.',
+    cancel: 'إلغاء',
+    edit: 'عدّل مراجعتك',
+    yours: 'مراجعتك',
+    verifiedBuyer: 'مشترٍ موثّق',
+    summary:
+      '{average} من 5 ({count, plural, one {مراجعة واحدة} other {# مراجعات}})',
+    closed: {
+      reviews_off: 'هذا المنتج لا يقبل المراجعات.',
+      not_paid: 'يمكنك المراجعة بعد اكتمال الدفع.',
+      refunded: 'لا يمكن مراجعة عملية شراء مستردة.',
+      not_delivered: 'يمكنك المراجعة بعد التسليم.',
+      booking_not_ended: 'يمكنك المراجعة بعد انتهاء موعدك.',
+      not_open_yet: 'تُفتح المراجعات في {date}.',
+      window_closed: 'انتهت مدة مراجعة هذا المنتج.',
+    },
+  },
 };
 
 export default messages;

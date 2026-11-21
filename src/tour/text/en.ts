@@ -340,6 +340,14 @@ export const en: TourText = {
         'Open Cart, apply the code DEMO10, and check out.',
       ],
     },
+    'marketplace-review': {
+      title: 'Review a purchase',
+      why: 'Only verified buyers review, once the purchase is paid or the booking has ended; ratings then show on the item for everyone.',
+      steps: [
+        'Open a paid order in Orders and rate it.',
+        'See the rating and your words on the item in the Shop.',
+      ],
+    },
     'record-usage': {
       title: 'Record usage',
       why: 'Your app meters what it does (a document created, a video processed); the plan says how much is included.',

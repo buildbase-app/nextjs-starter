@@ -359,6 +359,14 @@ export const es: TourText = {
         'Abre el Carrito, aplica el código DEMO10 y paga.',
       ],
     },
+    'marketplace-review': {
+      title: 'Reseña una compra',
+      why: 'Solo los compradores verificados reseñan, cuando la compra está pagada o la reserva ha terminado; la valoración aparece luego en el artículo para todos.',
+      steps: [
+        'Abre un pedido pagado en Pedidos y valóralo.',
+        'Mira la valoración y tu texto en el artículo de la Tienda.',
+      ],
+    },
     'record-usage': {
       title: 'Registra uso',
       why: 'Tu app mide lo que hace (un documento creado, un vídeo procesado); el plan dice cuánto está incluido.',

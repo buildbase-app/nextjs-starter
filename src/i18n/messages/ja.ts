@@ -1361,6 +1361,31 @@ const messages: Messages = {
     browse: 'ショップを見る',
     couponHint: 'コード DEMO10 で10%オフになります。',
   },
+  reviews: {
+    title: 'あなたのレビュー',
+    ratingLabel: 'あなたの評価',
+    outOf: '5つ星中{rating}',
+    textLabel: 'いかがでしたか？',
+    placeholder: 'いかがでしたか？（任意）',
+    submit: 'レビューを投稿',
+    update: '変更を保存',
+    saving: '保存しています…',
+    saved: 'ありがとうございます。レビューを投稿しました。',
+    cancel: 'キャンセル',
+    edit: 'レビューを編集',
+    yours: 'あなたのレビュー',
+    verifiedBuyer: '認証済みの購入者',
+    summary: '5点中{average}（{count, plural, other {#件のレビュー}}）',
+    closed: {
+      reviews_off: 'この商品はレビューを受け付けていません。',
+      not_paid: '支払い後にレビューできます。',
+      refunded: '返金された購入はレビューできません。',
+      not_delivered: '配達後にレビューできます。',
+      booking_not_ended: '予約の終了後にレビューできます。',
+      not_open_yet: 'レビューは{date}から受け付けます。',
+      window_closed: 'レビューの受付期間は終了しました。',
+    },
+  },
 };
 
 export default messages;

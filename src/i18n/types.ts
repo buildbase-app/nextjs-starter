@@ -1270,6 +1270,32 @@ export interface CartMessages {
   couponHint: string;
 }
 
+export interface ReviewsMessages {
+  title: string;
+  ratingLabel: string;
+  outOf: string;
+  textLabel: string;
+  placeholder: string;
+  submit: string;
+  update: string;
+  saving: string;
+  saved: string;
+  cancel: string;
+  edit: string;
+  yours: string;
+  verifiedBuyer: string;
+  summary: string;
+  closed: {
+    reviews_off: string;
+    not_paid: string;
+    refunded: string;
+    not_delivered: string;
+    booking_not_ended: string;
+    not_open_yet: string;
+    window_closed: string;
+  };
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1308,6 +1334,7 @@ export interface Messages {
   orders: OrdersMessages;
   bookings: BookingsMessages;
   cart: CartMessages;
+  reviews: ReviewsMessages;
 }
 
 // For next-intl type inference
