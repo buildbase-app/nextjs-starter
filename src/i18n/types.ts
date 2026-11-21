@@ -3,6 +3,7 @@
 
 export interface CommonMessages {
   nav: {
+    billing: string;
     home: string;
     dashboard: string;
     documents: string;
@@ -1408,6 +1409,26 @@ export interface AutoTopUpMessages {
   saved: string;
 }
 
+export interface BillingHubMessages {
+  title: string;
+  description: string;
+  addOns: {
+    title: string;
+    description: string;
+    open: string;
+  };
+  personalCredits: {
+    title: string;
+    description: string;
+    open: string;
+  };
+  personal: {
+    title: string;
+    description: string;
+  };
+  inPage: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1445,6 +1466,7 @@ export interface Messages {
   goals: GoalsMessages;
   creditHolds: CreditHoldsMessages;
   autoTopUp: AutoTopUpMessages;
+  billingHub: BillingHubMessages;
 }
 
 // For next-intl type inference
