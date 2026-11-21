@@ -210,7 +210,10 @@ The Worker is about 6.5 MB gzipped, so it needs the Workers Paid plan
    Without Hyperdrive the Worker connects with `DATABASE_URL` directly. Either
    way, `src/lib/db.ts` opens a fresh client per request, as Workers require.
 
-2. **Deploy**, either:
+2. **Deploy.** `.github/workflows/deploy-cloudflare.yml` deploys every push to
+   `main` once the repository secret `CLOUDFLARE_API_TOKEN` is set (the file
+   lists the permissions it needs and the public build values it uses). Or
+   deploy another way:
    - **From Git (Workers Builds):** in the Cloudflare dashboard, Workers &
      Pages → Create → Import a repository. Build command
      `npx opennextjs-cloudflare build`, deploy command
