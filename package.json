@@ -101,7 +101,10 @@
     "wrangler": "^4.166.0"
   },
   "overrides": {
-    "minimatch": "^10.0.0"
+    "minimatch": "^10.0.0",
+    "@opennextjs/aws": {
+      "cookie": "0.7.2"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
