@@ -85,11 +85,14 @@ test('a company employee signs in through their identity provider', async ({
   };
   expect(session.sessionId).toBeTruthy();
 
-  // The enterprise screen shows the company with single sign-on on.
-  await page.goto('/en/dashboard/enterprise');
-  await expect(page.getByText(/single sign-on is on/i).first()).toBeVisible({
-    timeout: 20_000,
-  });
+  // The SDK's Single sign-on screen shows the company with it on.
+  await page.goto('/en/dashboard?settings=enterprise');
+  await expect(
+    page
+      .getByRole('dialog')
+      .getByText(/single sign-on is on/i)
+      .first()
+  ).toBeVisible({ timeout: 20_000 });
 
   expect(errors, errors.join('\n')).toEqual([]);
 });
