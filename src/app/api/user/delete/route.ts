@@ -1,22 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Prisma } from '@prisma/client';
-import { prisma, setAuditContext } from '@/lib/db';
-import { getSessionUser } from '@/lib/session';
+import { ApiVersion, WorkspaceApi, isReauthRequired } from '@buildbase/sdk';
+import { env } from '@/env';
+import { SESSION_COOKIE_NAME } from '@/lib/buildbase';
+import { setAuditContext } from '@/lib/db';
+import { eraseLocalUser } from '@/lib/account/erase';
+import { getSessionContext } from '@/lib/server-auth';
 import { logger } from '@/lib/logger';
 
 /**
- * GDPR Data Deletion — Right to Erasure (Article 17)
- * Deletes all personal data associated with the authenticated user.
- * Audit logs are anonymized (userId set to null) rather than deleted for compliance.
+ * Delete my account - GDPR Right to Erasure (Article 17), on the platform
+ * and here.
+ *
+ * 1. The platform account: `requestAccountDeletion()` with the session from
+ *    the httpOnly cookie. Deleting an account needs a sign-in from the last
+ *    10 minutes, so an older session is refused `403 reauth_required`. That
+ *    refusal goes back to the page as it is, and the page sends the person
+ *    to "Confirm it's you" (`requireReverification`), then they press Delete
+ *    again. A person who still owns or pays for a workspace with other
+ *    members is refused 409 with those workspaces named.
+ * 2. This app's copy: erased at once when the platform deleted the account
+ *    now. When the organization delays deletions (`deleteAfter`), the
+ *    platform's `user.deleted` webhook erases it when the time comes, and
+ *    the person can still cancel until then.
+ *
+ * Identity comes from the session only, never from the request: the only
+ * account this can delete is the one signed in.
  */
 export async function DELETE(request: NextRequest) {
-  // Identity comes from the session, NOT from a bearer token.
-  //
-  // A signed token is only as trustworthy as whatever issued it, and this
-  // route is irreversible: it erases a user. Reading the id from the session
-  // means the only account that can be deleted is the one actually signed in,
-  // regardless of what any token claims.
-  const session = await getSessionUser();
+  const session = await getSessionContext();
   if (!session) {
     return NextResponse.json(
       { success: false, message: 'Unauthorized' },
@@ -24,78 +35,105 @@ export async function DELETE(request: NextRequest) {
     );
   }
 
-  const { userId } = session;
+  const { userId, sessionId } = session;
+  const ipAddress =
+    request.headers.get('x-forwarded-for') ||
+    request.headers.get('x-real-ip') ||
+    null;
 
   setAuditContext({
     userId,
-    ipAddress:
-      request.headers.get('x-forwarded-for') ||
-      request.headers.get('x-real-ip') ||
-      undefined,
+    ipAddress: ipAddress ?? undefined,
     userAgent: request.headers.get('user-agent') || undefined,
     source: 'api',
   });
 
+  const api = new WorkspaceApi({
+    serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
+    version: ApiVersion.V1,
+    orgId: env.NEXT_PUBLIC_BUILDBASE_ORG_ID,
+    sessionId,
+  });
+
+  let result: { deleteAfter: string | null; deleted: boolean };
   try {
-    const user = await prisma.user.findUnique({ where: { id: userId } });
-    if (!user) {
+    result = await api.requestAccountDeletion();
+  } catch (error) {
+    if (isReauthRequired(error)) {
       return NextResponse.json(
-        { success: false, message: 'User not found' },
-        { status: 404 }
+        {
+          success: false,
+          code: 'reauth_required',
+          factors: error.factors ?? [],
+        },
+        { status: 403 }
       );
     }
-
-    // Run all deletions in a transaction
-    await prisma.$transaction([
-      // 1. Remove all workspace memberships
-      prisma.userWorkspace.deleteMany({ where: { userId } }),
-
-      // 2. Anonymize audit logs (keep for compliance, remove PII)
-      prisma.auditLog.updateMany({
-        where: { userId },
-        data: {
-          userId: null,
-          ipAddress: null,
-          userAgent: null,
-          before: Prisma.DbNull,
-          after: Prisma.DbNull,
+    const refusal = error as {
+      code?: string;
+      status?: number;
+      workspaces?: { id: string; name: string }[];
+      message?: string;
+    };
+    if (
+      refusal.code === 'owns_workspaces' ||
+      refusal.code === 'pays_for_workspaces'
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: refusal.code,
+          workspaces: refusal.workspaces ?? [],
         },
-      }),
-
-      // 3. Delete user record
-      prisma.user.delete({ where: { id: userId } }),
-    ]);
-
-    // Log the deletion event (with anonymized record since user is now gone)
-    await prisma.auditLog.create({
-      data: {
-        action: 'gdpr_delete',
-        model: 'User',
-        recordId: userId,
-        userId: null,
-        ipAddress:
-          request.headers.get('x-forwarded-for') ||
-          request.headers.get('x-real-ip') ||
-          null,
-        source: 'api',
-      },
-    });
-
-    logger.info('GDPR data deletion completed', { userId });
-
-    return NextResponse.json({
-      success: true,
-      message: 'All personal data has been deleted',
-      deletedAt: new Date().toISOString(),
-    });
-  } catch (error) {
-    logger.error('GDPR data deletion failed', {
+        { status: 409 }
+      );
+    }
+    logger.error('Account deletion refused by the platform', {
       userId,
-      error: error instanceof Error ? error.message : 'Unknown error',
+      code: refusal.code,
+      error: refusal.message ?? String(error),
     });
     return NextResponse.json(
-      { success: false, message: 'Failed to delete data' },
-      { status: 500 }
+      {
+        success: false,
+        code: refusal.code ?? 'deletion_failed',
+        message: 'The account could not be deleted',
+      },
+      { status: refusal.status && refusal.status >= 400 ? refusal.status : 502 }
     );
   }
+
+  if (!result.deleted) {
+    // Scheduled: the platform deletes it at `deleteAfter` and tells us.
+    return NextResponse.json(
+      { success: true, deleted: false, deleteAfter: result.deleteAfter },
+      { status: 202 }
+    );
+  }
+
+  try {
+    await eraseLocalUser(userId, { ipAddress, source: 'api' });
+  } catch (error) {
+    // The platform account is gone either way; the webhook retries the
+    // local erase, so report it and still end the session here.
+    logger.error('Local erase after account deletion failed', {
+      userId,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+
+  // The platform ended the session with the account: drop the cookie too.
+  const response = NextResponse.json({
+    success: true,
+    deleted: true,
+    deletedAt: new Date().toISOString(),
+  });
+  response.cookies.set(SESSION_COOKIE_NAME, '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 0,
+  });
+  return response;
 }

@@ -1385,6 +1385,34 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: 'Your data',
+    description:
+      'Download everything this app and the platform hold about you, or delete your account here and on the platform.',
+    export: {
+      button: 'Export my data',
+      working: 'Preparing…',
+    },
+    delete: {
+      button: 'Delete my account',
+      working: 'Deleting…',
+      areYouSure:
+        'Delete your account? This cannot be undone, and it ends your session.',
+      recent: 'You signed in recently, so you can delete your account now.',
+      needsConfirm:
+        "Deleting needs a sign-in from the last 10 minutes. You will be asked to confirm it's you first.",
+      confirmNow: "Confirm it's you now",
+      confirmFirst:
+        "Confirm it's you first. You'll come back here; then press Delete my account again.",
+      scheduled:
+        'Your account will be deleted on {date}. Until then you can cancel by signing in.',
+      scheduledNoDate:
+        'Your account deletion is scheduled. Until then you can cancel by signing in.',
+      ownsWorkspaces:
+        'You still own or pay for workspaces with other members: {names}. Remove the other members and cancel the subscription, or delete those workspaces first.',
+    },
+    failed: 'Something went wrong. Please try again.',
+  },
 };
 
 export default messages;
