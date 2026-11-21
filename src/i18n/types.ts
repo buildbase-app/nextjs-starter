@@ -1357,6 +1357,22 @@ export interface GoalsMessages {
   alsoDocuments: string;
 }
 
+export interface CreditHoldsMessages {
+  title: string;
+  description: string;
+  start: string;
+  held: string;
+  finish: string;
+  cancel: string;
+  settled: string;
+  settledExtra: string;
+  released: string;
+  insufficient: string;
+  notOpen: string;
+  failed: string;
+  jobDescription: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1392,6 +1408,7 @@ export interface Messages {
   yourData: YourDataMessages;
   entitlements: EntitlementsMessages;
   goals: GoalsMessages;
+  creditHolds: CreditHoldsMessages;
 }
 
 // For next-intl type inference

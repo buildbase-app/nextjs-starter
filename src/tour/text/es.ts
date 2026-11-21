@@ -343,6 +343,14 @@ export const es: TourText = {
         'Observa cómo cambian el saldo de la barra lateral y la línea de medición.',
       ],
     },
+    'credit-hold': {
+      title: 'Reserva créditos para un trabajo de coste desconocido',
+      why: 'Un trabajo de IA o una exportación grande cuesta lo que cuesta: reserva primero una estimación para que no se gaste de más el saldo, y cobra después el importe real.',
+      steps: [
+        'Abre Créditos y pulsa «Iniciar un trabajo».',
+        'Termínalo y mira lo que se devolvió, o cancélalo y mira cómo se libera la reserva.',
+      ],
+    },
     'credits-low': {
       title: 'Quédate con poco saldo',
       why: 'Una puerta en un umbral, para que puedas ofrecer una recarga antes de que se agote.',

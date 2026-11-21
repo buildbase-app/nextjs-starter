@@ -1480,6 +1480,24 @@ const messages: Messages = {
     alsoDocuments:
       'This app also records document_created whenever you create a document.',
   },
+  creditHolds: {
+    title: 'Hold credits, settle later',
+    description:
+      'For work whose cost is only known afterwards: hold an estimate, then settle what it really cost. Less gives the rest back; cancelling releases it all.',
+    start: 'Start a job (hold {amount})',
+    held: 'Holding {amount} credits until {time}.',
+    finish: 'Finish: it cost {cost}',
+    cancel: 'Cancel the job',
+    settled: 'Charged {settled}; {returned} went back to the balance.',
+    settledExtra:
+      'Charged {settled}: the work cost {extra} more than the hold.',
+    released: 'Released: {returned} back to the balance.',
+    insufficient:
+      'Not enough credits to hold the estimate ({available} available).',
+    notOpen: 'That hold is no longer open: it expired or was already settled.',
+    failed: 'The hold could not be changed.',
+    jobDescription: 'Demo job (held, then settled)',
+  },
 };
 
 export default messages;

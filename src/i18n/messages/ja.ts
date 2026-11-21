@@ -1488,6 +1488,24 @@ const messages: Messages = {
     alsoDocuments:
       'このアプリは、ドキュメントを作成するたびに document_created も記録します。',
   },
+  creditHolds: {
+    title: 'クレジットを確保して後で精算',
+    description:
+      '終わるまでコストがわからない作業向け: 見積もりを確保し、実際にかかった分を精算します。少なければ残りが戻り、キャンセルすると全額が解放されます。',
+    start: 'ジョブを開始（{amount} を確保）',
+    held: '{time} まで {amount} クレジットを確保中。',
+    finish: '完了: コストは {cost}',
+    cancel: 'ジョブをキャンセル',
+    settled: '{settled} を請求し、{returned} を残高に戻しました。',
+    settledExtra:
+      '{settled} を請求しました: 確保分より {extra} 多くかかりました。',
+    released: '解放しました: {returned} を残高に戻しました。',
+    insufficient:
+      '見積もりを確保するのに十分なクレジットがありません（利用可能 {available}）。',
+    notOpen: 'この確保はすでに終了しています。期限切れか、精算済みです。',
+    failed: '確保を変更できませんでした。',
+    jobDescription: 'デモジョブ（確保して精算）',
+  },
 };
 
 export default messages;

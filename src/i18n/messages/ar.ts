@@ -1459,6 +1459,22 @@ const messages: Messages = {
     alsoDocuments:
       'يسجّل هذا التطبيق أيضًا document_created كلما أنشأت مستندًا.',
   },
+  creditHolds: {
+    title: 'احجز الاعتمادات وسوِّها لاحقًا',
+    description:
+      'للعمل الذي لا تُعرف تكلفته إلا بعده: احجز تقديرًا ثم سوِّ تكلفته الفعلية. الأقل يعيد الباقي، والإلغاء يحرر الحجز كله.',
+    start: 'ابدأ مهمة (احجز {amount})',
+    held: 'محجوز {amount} اعتمادًا حتى {time}.',
+    finish: 'أنهِ: كلّفت {cost}',
+    cancel: 'ألغِ المهمة',
+    settled: 'خُصم {settled}، وعاد {returned} إلى الرصيد.',
+    settledExtra: 'خُصم {settled}: كلّف العمل {extra} أكثر من الحجز.',
+    released: 'حُرّر الحجز: عاد {returned} إلى الرصيد.',
+    insufficient: 'لا توجد اعتمادات كافية لحجز التقدير (المتاح {available}).',
+    notOpen: 'هذا الحجز لم يعد مفتوحًا: انتهت صلاحيته أو سُوّي بالفعل.',
+    failed: 'تعذّر تغيير الحجز.',
+    jobDescription: 'مهمة تجريبية (حُجزت ثم سُوّيت)',
+  },
 };
 
 export default messages;

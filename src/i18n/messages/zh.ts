@@ -1416,6 +1416,22 @@ const messages: Messages = {
     notSent: '未发送：你在 Cookie 横幅中拒绝了分析。',
     alsoDocuments: '每当你创建文档时，本应用也会记录 document_created。',
   },
+  creditHolds: {
+    title: '先预留积分，后结算',
+    description:
+      '适用于事后才知道成本的工作：先预留一个估算值，再按实际成本结算。用得少会退回剩余部分；取消则全部释放。',
+    start: '开始任务（预留 {amount}）',
+    held: '已预留 {amount} 积分，至 {time}。',
+    finish: '完成：实际花费 {cost}',
+    cancel: '取消任务',
+    settled: '扣除 {settled}；{returned} 已退回余额。',
+    settledExtra: '扣除 {settled}：工作比预留多花了 {extra}。',
+    released: '已释放：{returned} 退回余额。',
+    insufficient: '积分不足，无法预留估算值（可用 {available}）。',
+    notOpen: '该预留已不再有效：已过期或已结算。',
+    failed: '无法更改该预留。',
+    jobDescription: '演示任务（先预留，后结算）',
+  },
 };
 
 export default messages;

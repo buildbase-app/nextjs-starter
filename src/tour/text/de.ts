@@ -353,6 +353,14 @@ export const de: TourText = {
         'Beobachten Sie, wie sich das Guthaben in der Seitenleiste und die Messzeile ändern.',
       ],
     },
+    'credit-hold': {
+      title: 'Credits für Arbeit mit unbekannten Kosten reservieren',
+      why: 'Ein KI-Auftrag oder ein großer Export kostet, was er kostet: reserviere zuerst eine Schätzung, damit das Guthaben nicht überzogen wird, und buche dann den echten Betrag ab.',
+      steps: [
+        'Öffne Credits und drück auf „Auftrag starten“.',
+        'Schließ ihn ab und sieh, was zurückkam, oder brich ihn ab und sieh die Reservierung freigegeben.',
+      ],
+    },
     'credits-low': {
       title: 'Knapp werden',
       why: 'Ein Gate an einer Schwelle, damit Sie ein Aufladen anbieten können, bevor es aufgebraucht ist.',

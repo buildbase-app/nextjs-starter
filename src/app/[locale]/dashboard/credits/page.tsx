@@ -31,6 +31,7 @@ import {
   ArrowDownCircle,
   Package,
 } from 'lucide-react';
+import { CreditHoldCard } from '@/components/credits/credit-hold-card';
 
 function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
   const t = useTranslations('credits');
@@ -317,6 +318,11 @@ export default function CreditsPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Credit holds: reserve an estimate, settle the real cost */}
+      {currentWorkspace?._id && (
+        <CreditHoldCard workspaceId={currentWorkspace._id} />
+      )}
 
       {/* Transaction history */}
       <Card>

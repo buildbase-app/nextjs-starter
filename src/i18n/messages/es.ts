@@ -1502,6 +1502,24 @@ const messages: Messages = {
     alsoDocuments:
       'Esta app también registra document_created cada vez que creas un documento.',
   },
+  creditHolds: {
+    title: 'Reserva créditos, liquida después',
+    description:
+      'Para trabajo cuyo coste solo se conoce al final: reserva una estimación y luego liquida lo que costó de verdad. Si cuesta menos, se devuelve el resto; cancelar lo libera todo.',
+    start: 'Iniciar un trabajo (reservar {amount})',
+    held: 'Reservados {amount} créditos hasta las {time}.',
+    finish: 'Terminar: costó {cost}',
+    cancel: 'Cancelar el trabajo',
+    settled: 'Se cobraron {settled}; {returned} volvieron al saldo.',
+    settledExtra:
+      'Se cobraron {settled}: el trabajo costó {extra} más que la reserva.',
+    released: 'Liberado: {returned} volvieron al saldo.',
+    insufficient:
+      'No hay créditos suficientes para reservar la estimación ({available} disponibles).',
+    notOpen: 'Esa reserva ya no está abierta: caducó o ya se liquidó.',
+    failed: 'No se pudo cambiar la reserva.',
+    jobDescription: 'Trabajo de demostración (reservado y luego liquidado)',
+  },
 };
 
 export default messages;
