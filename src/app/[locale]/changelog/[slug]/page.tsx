@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 import { MdxRenderer } from '@/components/marketing/mdx/mdx-renderer';
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld';
 import { changelog } from '@/content/changelog';
@@ -64,6 +65,7 @@ export default async function ChangelogEntryPage({
   params,
 }: ChangelogEntryPageProps) {
   const { slug, locale } = await params;
+  setRequestLocale(locale);
   const entry = await changelog.getBySlug(slug);
 
   if (!entry) notFound();

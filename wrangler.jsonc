@@ -20,6 +20,10 @@
   // Serves the Worker on this hostname (zone must be in the same Cloudflare
   // account). Change or remove it when deploying your own copy.
   "routes": [{ "pattern": "demo.buildbase.app", "custom_domain": true }],
+  // Bundle without esbuild's keepNames: it wraps functions in __name(...),
+  // which breaks functions that are stringified into inline <script> tags
+  // (next-themes' theme script threw "__name is not defined" in browsers).
+  "keep_names": false,
   "upload_source_maps": true,
   "observability": { "enabled": true },
 
