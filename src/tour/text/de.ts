@@ -385,6 +385,14 @@ export const de: TourText = {
         'Ändere unter Bestellungen deine Stufe oder kündige zum Ende des Zeitraums.',
       ],
     },
+    'marketplace-download': {
+      title: 'Dateien herunterladen und einen Lizenzschlüssel erhalten',
+      why: 'Digitale Waren werden für dich ausgeliefert: Dateien aus den Releases des Verkäufers, jedes Update, das er veröffentlicht, und Lizenzschlüssel mit ihren Aktivierungen.',
+      steps: [
+        'Kaufe im Shop das Planning toolkit.',
+        'Öffne die Bestellung unter Bestellungen, lade das Arbeitsbuch herunter und kopiere deinen Lizenzschlüssel.',
+      ],
+    },
     'record-usage': {
       title: 'Nutzung erfassen',
       why: 'Ihre App misst, was sie tut (ein erstelltes Dokument, ein verarbeitetes Video); der Plan sagt, wie viel enthalten ist.',

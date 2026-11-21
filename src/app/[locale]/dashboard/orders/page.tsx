@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import {
+  HoldingFiles,
   HoldingKeys,
   orderDisplayStatus,
   useHoldings,
@@ -29,7 +30,8 @@ import { ItemSubscriptions } from '@/components/orders/item-subscriptions';
  * after checkout Stripe sends them here; `waitForPayment` reads an open
  * order again every two seconds until Stripe's payment reaches the app.
  * Opening an order (`?id=`) lists what it granted (`useHoldings`): the
- * seller's message, a link, license keys. A paid order also takes the
+ * seller's message, a link, files to download (`<HoldingFiles>`, each
+ * release the buyer may have) and license keys (`<HoldingKeys>`). A paid order also takes the
  * buyer's review of each line (`useOrderReviews`), once its window opens.
  */
 export default function OrdersPage() {
@@ -155,6 +157,8 @@ function OrderDetail({ id }: { id: string }) {
             {holdings.map((h) =>
               h.kind === 'license_key' ? (
                 <HoldingKeys key={h._id} holding={h} canRemove />
+              ) : h.kind === 'file' ? (
+                <HoldingFiles key={h._id} holding={h} />
               ) : h.content?.url ? (
                 <a
                   key={h._id}

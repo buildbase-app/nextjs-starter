@@ -386,6 +386,14 @@ export const fr: TourText = {
         'Dans Commandes, changez de formule ou annulez à la fin de la période.',
       ],
     },
+    'marketplace-download': {
+      title: 'Télécharger des fichiers et obtenir une clé de licence',
+      why: 'Les produits numériques sont livrés pour vous : les fichiers des versions du vendeur, chaque mise à jour publiée et des clés de licence avec leurs activations.',
+      steps: [
+        'Dans la Boutique, achetez le Planning toolkit.',
+        'Ouvrez la commande dans Commandes pour télécharger le cahier et copier votre clé de licence.',
+      ],
+    },
     'record-usage': {
       title: 'Enregistrer de l’usage',
       why: 'Votre app mesure ce qu’elle fait (un document créé, une vidéo traitée) ; le plan dit ce qui est inclus.',
