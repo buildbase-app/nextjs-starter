@@ -1299,6 +1299,19 @@ const messages: Messages = {
         'Claves definidas en la consola de BuildBase y concedidas por rol, incluidos los roles personalizados. Documentos también las comprueba en el servidor.',
       empty:
         'Esta organización aún no ha definido sus propios permisos. Ejecuta npm run seed:org o añade claves en la consola, en Workspace settings → Permissions.',
+      permission: 'Permiso',
+      inApp: 'En la app',
+      backend: 'Tu backend',
+      allowed: 'Permitido',
+      denied: 'Denegado',
+      tryIt: 'Probar',
+      codeOnly:
+        'Solo en el código de esta app, así que solo lo comprueba el navegador',
+      tried: {
+        allowed: 'Hecho: tu backend lo permitió',
+        refused: 'Rechazado por tu backend',
+        error: 'No se pudo comprobar',
+      },
     },
     security: {
       title: 'Seguridad',
@@ -1403,6 +1416,79 @@ const messages: Messages = {
         description:
           'Más de cien plantillas de correo, gratis en todos los planes.',
       },
+    },
+  },
+  yourData: {
+    title: 'Tus datos',
+    description:
+      'Descarga todo lo que esta app y la plataforma guardan sobre ti, o elimina tu cuenta aquí y en la plataforma.',
+    export: {
+      button: 'Exportar mis datos',
+      working: 'Preparando…',
+    },
+    delete: {
+      button: 'Eliminar mi cuenta',
+      working: 'Eliminando…',
+      areYouSure:
+        '¿Eliminar tu cuenta? No se puede deshacer y cierra tu sesión.',
+      recent:
+        'Iniciaste sesión hace poco, así que puedes eliminar tu cuenta ahora.',
+      needsConfirm:
+        'Para eliminarla hace falta haber iniciado sesión en los últimos 10 minutos. Primero te pediremos que confirmes que eres tú.',
+      confirmNow: 'Confirmar que eres tú ahora',
+      confirmFirst:
+        'Primero confirma que eres tú. Volverás aquí; después pulsa de nuevo «Eliminar mi cuenta».',
+      scheduled:
+        'Tu cuenta se eliminará el {date}. Hasta entonces puedes cancelarlo iniciando sesión.',
+      scheduledNoDate:
+        'La eliminación de tu cuenta está programada. Hasta entonces puedes cancelarla iniciando sesión.',
+      ownsWorkspaces:
+        'Todavía eres dueño de espacios de trabajo con otros miembros, o pagas por ellos: {names}. Quita a los demás miembros y cancela la suscripción, o elimina primero esos espacios.',
+    },
+    failed: 'Algo salió mal. Inténtalo de nuevo.',
+  },
+  entitlements: {
+    title: 'Lo que incluye tu plan',
+    description:
+      'Se comprueba por slug con los derechos del servidor: el plan, más cualquier complemento o concesión encima. Solo un no explícito bloquea.',
+    columns: {
+      slug: 'Slug',
+      kind: 'Tipo',
+      answer: 'Respuesta',
+      detail: 'Detalle',
+      source: 'Origen',
+    },
+    kind: {
+      feature: 'Función',
+      limit: 'Límite',
+      quota: 'Cuota',
+      unknown: 'No está en el plan',
+    },
+    state: {
+      granted: 'Incluido',
+      locked: 'Bloqueado',
+      unknown: 'Desconocido, permitido',
+    },
+    detail: {
+      unlimited: 'Ilimitado',
+      quota: '{used} de {limit} usados, quedan {remaining} en este periodo',
+      limit: '{used} de {limit}, caben {remaining} más',
+    },
+    source: {
+      plan: 'El plan',
+      floor: 'Elevado por una concesión',
+      add: 'Plan más un complemento',
+      override: 'Fijado por el equipo',
+      default: 'Predeterminado',
+    },
+    pressure: {
+      nearing: 'Casi lleno',
+      reached: 'Límite alcanzado',
+    },
+    gate: {
+      title: 'Exportaciones avanzadas, tras una barrera',
+      upgrade: 'Mejora tu plan para exportar',
+      included: 'Incluido en tu plan',
     },
   },
   goals: {

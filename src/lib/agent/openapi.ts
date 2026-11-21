@@ -381,11 +381,24 @@ export function buildOpenApiSpec() {
       '/api/user/delete': {
         delete: {
           tags: ['account'],
-          summary: 'GDPR erasure (Art. 17)',
+          summary:
+            'GDPR erasure (Art. 17): deletes the platform account, then this app’s copy',
           operationId: 'deleteUserData',
           responses: {
-            '200': { description: 'Anonymised.' },
+            '200': { description: 'Deleted now; the session has ended.' },
+            '202': {
+              description:
+                'Deletion scheduled for `deleteAfter`; cancellable until then.',
+            },
             '401': unauthorized,
+            '403': {
+              description:
+                '`reauth_required`: confirm it is you (a sign-in from the last 10 minutes), then retry.',
+            },
+            '409': {
+              description:
+                '`owns_workspaces` or `pays_for_workspaces`, with the workspaces named.',
+            },
           },
         },
       },

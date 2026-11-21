@@ -1280,6 +1280,18 @@ const messages: Messages = {
         'Keys defined in the BuildBase console and granted per role, custom roles included. Documents checks these on the server too.',
       empty:
         'This organization has not defined its own permissions yet. Run npm run seed:org, or add keys in the console under Workspace settings → Permissions.',
+      permission: 'Permission',
+      inApp: 'In the app',
+      backend: 'Your backend',
+      allowed: 'Allowed',
+      denied: 'Denied',
+      tryIt: 'Try it',
+      codeOnly: "Only in this app's code, so only the browser checks it",
+      tried: {
+        allowed: 'Done: your backend allowed it',
+        refused: 'Refused by your backend',
+        error: 'Could not check',
+      },
     },
     security: {
       title: 'Security',
@@ -1383,6 +1395,78 @@ const messages: Messages = {
         title: 'Email template library',
         description: 'More than a hundred email templates, free on every plan.',
       },
+    },
+  },
+  yourData: {
+    title: 'Your data',
+    description:
+      'Download everything this app and the platform hold about you, or delete your account here and on the platform.',
+    export: {
+      button: 'Export my data',
+      working: 'Preparing…',
+    },
+    delete: {
+      button: 'Delete my account',
+      working: 'Deleting…',
+      areYouSure:
+        'Delete your account? This cannot be undone, and it ends your session.',
+      recent: 'You signed in recently, so you can delete your account now.',
+      needsConfirm:
+        "Deleting needs a sign-in from the last 10 minutes. You will be asked to confirm it's you first.",
+      confirmNow: "Confirm it's you now",
+      confirmFirst:
+        "Confirm it's you first. You'll come back here; then press Delete my account again.",
+      scheduled:
+        'Your account will be deleted on {date}. Until then you can cancel by signing in.',
+      scheduledNoDate:
+        'Your account deletion is scheduled. Until then you can cancel by signing in.',
+      ownsWorkspaces:
+        'You still own or pay for workspaces with other members: {names}. Remove the other members and cancel the subscription, or delete those workspaces first.',
+    },
+    failed: 'Something went wrong. Please try again.',
+  },
+  entitlements: {
+    title: 'What your plan includes',
+    description:
+      "Checked by slug against the server's entitlement: the plan, plus any add-on or grant on top. Only an explicit no locks.",
+    columns: {
+      slug: 'Slug',
+      kind: 'Kind',
+      answer: 'Answer',
+      detail: 'Detail',
+      source: 'From',
+    },
+    kind: {
+      feature: 'Feature',
+      limit: 'Limit',
+      quota: 'Quota',
+      unknown: 'Not in the plan',
+    },
+    state: {
+      granted: 'Included',
+      locked: 'Locked',
+      unknown: 'Unknown, allowed',
+    },
+    detail: {
+      unlimited: 'Unlimited',
+      quota: '{used} of {limit} used, {remaining} left this period',
+      limit: '{used} of {limit}, room for {remaining} more',
+    },
+    source: {
+      plan: 'The plan',
+      floor: 'Raised by a grant',
+      add: 'Plan plus an add-on',
+      override: 'Set by the team',
+      default: 'Default',
+    },
+    pressure: {
+      nearing: 'Nearly full',
+      reached: 'Limit reached',
+    },
+    gate: {
+      title: 'Advanced exports, behind a gate',
+      upgrade: 'Upgrade to export',
+      included: 'Included in your plan',
     },
   },
   goals: {

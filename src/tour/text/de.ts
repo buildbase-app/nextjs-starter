@@ -395,6 +395,14 @@ export const de: TourText = {
         'Öffnen Sie Profil: die dort gelisteten Funktionen sind Ihre, nicht die des Workspace.',
       ],
     },
+    'entitlement-check': {
+      title: 'Den Tarif per Slug fragen',
+      why: 'Sperre nach dem, was der Tarif enthält, nicht nach seinem Namen: Add-ons und Zuteilungen zählen mit, und ein umbenannter Tarif bricht nichts.',
+      steps: [
+        'Öffne Dokumente und lies „Was dein Tarif enthält“.',
+        'Wechsle den Tarif und schau noch einmal: die Antworten folgen ihm.',
+      ],
+    },
     'permission-matrix': {
       title: 'Ihre Berechtigungsmatrix lesen',
       why: 'Was Ihre Rolle in diesem Workspace erlaubt, aufgelöst von der Plattform.',

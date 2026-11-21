@@ -1174,6 +1174,21 @@ export interface AccountMessages {
     title: string;
     description: string;
     empty: string;
+    permission: string;
+    /** What the SDK's can() says in the browser: decides what to show. */
+    inApp: string;
+    /** What this app's backend is told when it asks BuildBase: decides what happens. */
+    backend: string;
+    allowed: string;
+    denied: string;
+    tryIt: string;
+    /** A key only this app's code names, unknown to BuildBase. */
+    codeOnly: string;
+    tried: {
+      allowed: string;
+      refused: string;
+      error: string;
+    };
   };
   security: {
     title: string;
@@ -1267,6 +1282,72 @@ export interface AccountMessages {
   };
 }
 
+export interface YourDataMessages {
+  title: string;
+  description: string;
+  export: {
+    button: string;
+    working: string;
+  };
+  delete: {
+    button: string;
+    working: string;
+    areYouSure: string;
+    recent: string;
+    needsConfirm: string;
+    confirmNow: string;
+    confirmFirst: string;
+    scheduled: string;
+    scheduledNoDate: string;
+    ownsWorkspaces: string;
+  };
+  failed: string;
+}
+
+export interface EntitlementsMessages {
+  title: string;
+  description: string;
+  columns: {
+    slug: string;
+    kind: string;
+    answer: string;
+    detail: string;
+    source: string;
+  };
+  kind: {
+    feature: string;
+    limit: string;
+    quota: string;
+    unknown: string;
+  };
+  state: {
+    granted: string;
+    locked: string;
+    unknown: string;
+  };
+  detail: {
+    unlimited: string;
+    quota: string;
+    limit: string;
+  };
+  source: {
+    plan: string;
+    floor: string;
+    add: string;
+    override: string;
+    default: string;
+  };
+  pressure: {
+    nearing: string;
+    reached: string;
+  };
+  gate: {
+    title: string;
+    upgrade: string;
+    included: string;
+  };
+}
+
 export interface GoalsMessages {
   title: string;
   description: string;
@@ -1308,6 +1389,8 @@ export interface Messages {
   audience: AudienceMessages;
   waitlist: WaitlistMessages;
   account: AccountMessages;
+  yourData: YourDataMessages;
+  entitlements: EntitlementsMessages;
   goals: GoalsMessages;
 }
 

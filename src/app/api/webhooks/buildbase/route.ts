@@ -3,6 +3,7 @@ import { parseWebhookEvent } from '@buildbase/sdk';
 import type { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/db';
 import { logger } from '@/lib/logger';
+import { eraseLocalUser } from '@/lib/account/erase';
 import { detect } from '@/tour/progress';
 
 /**
@@ -80,6 +81,22 @@ export async function POST(request: NextRequest) {
 
   // The tour: a webhook has no session, so credit the people it is about -
   // every member of the workspace it names, plus the user it names.
+  // An account deleted on the platform (by the person after a scheduled
+  // wait, from the console, or an idle guest swept away): erase this app's
+  // copy too. A retry finds nothing left and does nothing.
+  if (event.event === 'user.deleted' && userId) {
+    try {
+      await eraseLocalUser(userId, { source: 'webhook' });
+    } catch (error) {
+      logger.error('Local erase for user.deleted failed', {
+        userId,
+        error: error instanceof Error ? error.message : String(error),
+      });
+      return NextResponse.json({ error: 'Erase failed' }, { status: 500 });
+    }
+    return NextResponse.json({ received: true });
+  }
+
   const people = new Set<string>();
   if (userId) people.add(userId);
   if (workspaceId) {

@@ -191,7 +191,7 @@ Built-in read-only BuildBase tools plus \`list_documents\`, \`search_documents\`
 \`GET /api/user/export\` returns the user profile, workspace memberships and audit log as JSON.
 
 ## Erasure (Article 17)
-\`DELETE /api/user/delete\` anonymises the local mirror; the platform record is deleted through the console.
+\`DELETE /api/user/delete\` deletes the platform account (after a recent sign-in) and erases the local mirror; a delayed deletion is erased when the \`user.deleted\` webhook arrives.
 
 ## Retention
 - Audit logs: 24 months

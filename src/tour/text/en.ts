@@ -358,6 +358,14 @@ export const en: TourText = {
         'Open Profile: the features listed there are yours, not the workspace’s.',
       ],
     },
+    'entitlement-check': {
+      title: 'Ask the plan by slug',
+      why: 'Gate on what the plan includes, not on its name: add-ons and grants count too, and renaming a plan breaks nothing.',
+      steps: [
+        'Open Documents and read What your plan includes.',
+        'Change the plan, then look again: the answers follow it.',
+      ],
+    },
     'permission-matrix': {
       title: 'Read your permission matrix',
       why: 'What your role in this workspace allows, resolved by the platform.',
