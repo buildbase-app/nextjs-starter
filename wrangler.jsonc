@@ -5,7 +5,7 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   // The Worker's name in your Cloudflare account. If you change it, change
   // WORKER_SELF_REFERENCE's "service" below to match.
-  "name": "nextjs-starter",
+  "name": "demo-buildbase-app",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-11-13",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -15,17 +15,27 @@
   },
   "services": [
     // Lets the Worker call itself for on-demand revalidation.
-    { "binding": "WORKER_SELF_REFERENCE", "service": "nextjs-starter" },
+    { "binding": "WORKER_SELF_REFERENCE", "service": "demo-buildbase-app" },
   ],
+  // Serves the Worker on this hostname (zone must be in the same Cloudflare
+  // account). Change or remove it when deploying your own copy.
+  "routes": [{ "pattern": "demo.buildbase.app", "custom_domain": true }],
   "upload_source_maps": true,
   "observability": { "enabled": true },
 
-  // Optional, recommended for Postgres: Hyperdrive pools database connections
-  // at Cloudflare's edge. Create one with
-  //   npx wrangler hyperdrive create nextjs-starter-db --connection-string="postgres://..."
-  // then uncomment and paste its id. Without it the app connects with
-  // DATABASE_URL directly (src/lib/db.ts).
-  // "hyperdrive": [{ "binding": "HYPERDRIVE", "id": "<your-hyperdrive-id>" }],
+  // Hyperdrive pools Postgres connections at Cloudflare's edge. This id is the
+  // demo.buildbase.app deployment's; in your own account create one with
+  //   npx wrangler hyperdrive create my-db --connection-string="postgres://..."
+  // and paste its id, or delete this entry to connect with DATABASE_URL
+  // directly (src/lib/db.ts). localConnectionString is only used by local
+  // tooling (cf:preview, and the deploy step's emulator); it is never uploaded.
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "308d63e8ff284edf80aeef41d4f47220",
+      "localConnectionString": "postgresql://postgres:postgres@localhost:5432/buildbase",
+    },
+  ],
 
   // Secrets (SYSTEM_SECRET, BUILDBASE_CLIENT_SECRET, DATABASE_URL, ...) are not
   // kept here. Set them with `npx wrangler secret put NAME` or in the dashboard
