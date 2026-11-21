@@ -375,6 +375,14 @@ export const es: TourText = {
         'En Pedidos, cambia de nivel o cancela al final del periodo.',
       ],
     },
+    'marketplace-download': {
+      title: 'Descarga archivos y obtén una clave de licencia',
+      why: 'Los productos digitales se entregan solos: archivos de las versiones del vendedor, cada actualización que publique y claves de licencia con sus activaciones.',
+      steps: [
+        'En la Tienda, compra el Planning toolkit.',
+        'Abre el pedido en Pedidos para descargar el cuaderno y copiar tu clave de licencia.',
+      ],
+    },
     'record-usage': {
       title: 'Registra uso',
       why: 'Tu app mide lo que hace (un documento creado, un vídeo procesado); el plan dice cuánto está incluido.',

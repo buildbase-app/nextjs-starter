@@ -594,6 +594,24 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     detect: { kind: 'manual' },
   },
+  {
+    id: 'marketplace-download',
+    group: 'billing',
+    href: '/dashboard/shop',
+    source: {
+      sdk: [
+        'useHoldings({ orderId })',
+        '<HoldingFiles holding />',
+        '<HoldingKeys holding canRemove />',
+      ],
+      console: {
+        screen: '/dashboard/billing/item-types',
+        note: 'Start an item type from the License starter: files from a release series, and a license key per unit.',
+      },
+      app: ['src/app/[locale]/dashboard/orders/page.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',

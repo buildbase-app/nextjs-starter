@@ -356,6 +356,14 @@ export const en: TourText = {
         "In Orders, change your tier or cancel it at the period's end.",
       ],
     },
+    'marketplace-download': {
+      title: 'Download files and get a license key',
+      why: "Digital goods are delivered for you: files from the seller's releases, every update they publish, and license keys with their activations.",
+      steps: [
+        'In the Shop, buy the Planning toolkit.',
+        'Open the order in Orders to download the workbook and copy your license key.',
+      ],
+    },
     'record-usage': {
       title: 'Record usage',
       why: 'Your app meters what it does (a document created, a video processed); the plan says how much is included.',
