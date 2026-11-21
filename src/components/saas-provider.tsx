@@ -69,6 +69,13 @@ async function updateAuthToken(workspaceId: string) {
   return null;
 }
 
+// Plans, add-ons and credit packs open Stripe Checkout in a dialog on this
+// page (the SDK's EmbeddedCheckoutDialog) instead of leaving for Stripe's.
+// A module constant, so the provider's value stays the same across renders.
+const UI: SaaSOSProviderProps['ui'] = {
+  behavior: { checkoutMode: 'embedded' },
+};
+
 export function SaaSProvider({ children }: { children: React.ReactNode }) {
   const locale = useLocale() as Locale;
   // An affiliate's link (?ref=CODE): the SDK keeps a signed referral token
@@ -87,10 +94,11 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
       orgId={config.orgId}
       locale={locale}
       // Stripe.js, which the SDK never imports itself: it lets the card
-      // dialog (useInAppPayment) and 3-D Secure on a held plan change run
-      // inside the app. Checkout still goes to Stripe's page.
+      // dialog (useInAppPayment), 3-D Secure on a held plan change and
+      // embedded Checkout run inside the app.
       loadStripe={loadStripeForSdk}
       loadConnectAndInitialize={loadConnectForSdk}
+      ui={UI}
       // Analytics and ad tags come from the console (Settings → Tracking)
       // and load only after consent. Every event the SDK fires goes through
       // `onEvent` into a small in-memory log the Tracking page renders.

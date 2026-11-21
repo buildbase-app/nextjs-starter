@@ -39,8 +39,9 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     // js.stripe.com: Stripe.js, for the SDK's card dialog and 3-D Secure;
     // connect-js.stripe.com: Connect.js, for seller and payout onboarding.
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://js.stripe.com https://connect-js.stripe.com",
-    // Stripe's card fields, 3-D Secure challenges and Connect screens are iframes.
-    "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://connect-js.stripe.com",
+    // Stripe's card fields, 3-D Secure challenges and Connect screens are
+    // iframes; checkout.stripe.com is embedded Checkout's own frame.
+    "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://connect-js.stripe.com https://checkout.stripe.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data:",
