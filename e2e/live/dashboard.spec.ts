@@ -11,22 +11,15 @@ const PAGES = [
   '/dashboard/tour',
   '/dashboard/inbox',
   '/dashboard/documents',
-  '/dashboard/team',
   '/dashboard/profile',
-  '/dashboard/security',
   '/dashboard/credits',
-  '/dashboard/invoices',
-  '/dashboard/billing',
   '/dashboard/usage',
   '/dashboard/affiliates',
   '/dashboard/shop',
   '/dashboard/orders',
-  '/dashboard/selling',
   '/dashboard/permissions',
-  '/dashboard/enterprise',
   '/dashboard/events',
   '/dashboard/notifications',
-  '/dashboard/settings',
 ];
 
 test('the session cookie restores a session', async ({ page }) => {
@@ -57,3 +50,14 @@ for (const path of PAGES) {
     expect(errors, errors.join('\n')).toEqual([]);
   });
 }
+
+test('?settings=<section> opens that section of the SDK settings dialog', async ({
+  page,
+}) => {
+  await page.goto('/en/dashboard?settings=users');
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible({ timeout: 20_000 });
+  await expect(dialog.getByText(/members/i).first()).toBeVisible();
+  // The parameter is dropped so a reload does not open it again.
+  await expect(page).not.toHaveURL(/settings=/);
+});

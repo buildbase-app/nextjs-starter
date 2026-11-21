@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useRouter as useLocaleRouter } from '@/i18n/routing';
 import { useLocale, useTranslations } from 'next-intl';
@@ -26,6 +26,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { WebMcpTools } from '@/components/agents/web-mcp-tools';
+import { SettingsDeepLink } from '@/components/settings-deep-link';
 
 export function DashboardLayoutClient({
   children,
@@ -105,6 +106,10 @@ export function DashboardLayoutClient({
                 <PendingInvitations className="mb-6" />
               </WhenPendingInvitations>
               <WebMcpTools />
+              {/* ?settings=<section> opens that section of the SDK's dialog. */}
+              <Suspense fallback={null}>
+                <SettingsDeepLink />
+              </Suspense>
               {children}
             </div>
           </SidebarInset>

@@ -3,22 +3,17 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
-      selling: '販売',
       orders: '注文',
       shop: 'ショップ',
       affiliates: 'アフィリエイト',
-      enterprise: 'エンタープライズ',
-      billing: '請求',
       home: 'ホーム',
       dashboard: 'ダッシュボード',
       documents: 'ドキュメント',
-      team: 'チーム',
       notifications: '通知',
       settings: '設定',
       menu: 'メニュー',
       selectWorkspace: 'ワークスペースを選択',
       profile: 'プロフィール',
-      security: 'セキュリティ',
       manageWorkspace: 'ワークスペースを管理',
       generalSettings: '一般設定',
       userManagement: 'ユーザー管理',
@@ -29,7 +24,6 @@ const messages: Messages = {
       usage: '使用状況',
       permissions: '権限',
       events: 'イベント',
-      invoices: '請求書',
       workspace: 'ワークスペース',
       tour: 'ツアー',
       inbox: '受信箱',
@@ -275,122 +269,6 @@ const messages: Messages = {
       },
     },
   },
-  team: {
-    title: 'チーム',
-    description: 'ワークスペースメンバー',
-    inviteMember: 'メンバーを招待',
-    seatLimitReached:
-      'シート制限に達しました — 追加メンバーを招待するにはプランをアップグレードしてください。',
-    cards: {
-      members: 'メンバー',
-      includedSeats: '含まれるシート',
-      maxUsers: '最大ユーザー数',
-      availableSeats: '利用可能なシート',
-    },
-    memberList: {
-      title: 'メンバー',
-      count: 'このワークスペースに{count}名のメンバー',
-      empty:
-        'メンバーが読み込まれていません。認証されていることを確認してください。',
-      roleFallback: 'メンバー',
-      changeRole: 'ロールを変更',
-    },
-    invite: {
-      title: 'メールで招待',
-      description:
-        'アドレスにアカウントは不要です。メールが届き、リンクを開いて登録またはサインインし、承諾します。',
-      noPermission: 'あなたのロールではメンバーを招待できません。',
-      emailPlaceholder: 'name@company.com',
-      role: 'ロール',
-      send: '招待を送信',
-      sent: '{email} に招待を送信しました',
-      failed: '問題が発生しました',
-      resent: '招待を再送しました',
-      revoked: '招待を取り消しました',
-      seatNote: '保留中の招待 {count} 件は、回答があるまで席を確保します。',
-      pendingTitle: '保留中',
-      loading: '読み込み中…',
-      none: '保留中はありません。',
-      invitedBy: '{name} が招待',
-      pendingLabel: '保留中',
-      expires: '{date} に期限切れ',
-      cooldown: '{seconds}秒後に再送できます',
-      resend: '再送',
-      revoke: '取り消し',
-    },
-    roleChanged: 'ロールを {role} に変更しました',
-    manage: {
-      title: 'メンバーを管理',
-      description: '役割と招待を管理するには設定パネルを開いてください',
-      openSettings: 'メンバー設定を開く',
-      permissions: '権限',
-    },
-  },
-  settings: {
-    title: '設定',
-    description: 'ワークスペース設定',
-    card: {
-      title: 'ワークスペース設定',
-      description: 'セクションをクリックして設定パネルを開きます',
-    },
-    danger: {
-      openButton: '危険ゾーンを開く',
-    },
-    sections: {
-      security: {
-        label: 'セキュリティ',
-        description: 'パスキーとサインイン方法',
-      },
-      devices: {
-        label: 'デバイス',
-        description: 'サインインしているブラウザとマシン',
-      },
-      'connected-agents': {
-        label: '接続中のエージェント',
-        description: 'MCP経由でアクセスを許可したAIエージェント',
-      },
-      profile: {
-        label: 'プロフィール',
-        description: '名前、アバター、個人データ',
-      },
-      general: {
-        label: '一般',
-        description: 'ワークスペース名、スラッグ、基本設定',
-      },
-      users: {
-        label: 'メンバーと招待',
-        description: 'チームメンバー、役割、保留中の招待を管理',
-      },
-      subscription: {
-        label: 'サブスクリプション',
-        description: '現在のプランを確認・変更',
-      },
-      usage: {
-        label: '使用状況',
-        description: 'クォータ消費と使用履歴',
-      },
-      credits: {
-        label: 'クレジット',
-        description: 'クレジット残高とチャージオプション',
-      },
-      features: {
-        label: 'フィーチャーフラグ',
-        description: 'ワークスペース機能の有効/無効',
-      },
-      notifications: {
-        label: '通知',
-        description: 'メールおよびプッシュ通知の設定',
-      },
-      permissions: {
-        label: '権限',
-        description: 'ロールベースアクセス制御の設定',
-      },
-      danger: {
-        label: '危険ゾーン',
-        description: 'ワークスペースの削除または所有権の移転',
-      },
-    },
-  },
   documents: {
     featureGates: {
       title: '機能ゲート',
@@ -535,30 +413,6 @@ const messages: Messages = {
       roleChanged: '役割が変更されました',
       workspaceCreated: 'ワークスペースが作成されました',
       workspaceDeleted: 'ワークスペースが削除されました',
-    },
-  },
-  invoices: {
-    title: '請求書',
-    description: '請求履歴',
-    refresh: '更新',
-    billingPortal: '請求ポータル',
-    billingPortalOpening: '開いています…',
-    error: '請求書の読み込みエラー。',
-    card: {
-      title: '請求書履歴',
-      found: '{count}件の請求書が見つかりました',
-      empty:
-        'まだ請求書がありません。有料プランに登録後、請求書がここに表示されます。',
-    },
-    table: {
-      date: '日付',
-      amount: '金額',
-      status: 'ステータス',
-      description: '説明',
-      links: 'リンク',
-      view: '表示',
-      pdf: 'PDF',
-      loadMore: 'もっと読み込む',
     },
   },
   notifications: {
@@ -1484,30 +1338,6 @@ const messages: Messages = {
     failed: '確保を変更できませんでした。',
     jobDescription: 'デモジョブ（確保して精算）',
   },
-  billingHub: {
-    title: '請求',
-    description:
-      'ワークスペースのプランを超えるもの: プランに追加するアドオンと、あなた自身のプランとクレジット。いずれも SDK 自身の画面です。',
-    addOns: {
-      title: 'アドオン',
-      description:
-        'ワークスペースがプランに加えて購入する追加機能で、コンソールのカタログから表示されます。ワークスペースのサブスクリプション画面にあります。',
-      open: 'アドオンを管理',
-    },
-    personalCredits: {
-      title: 'あなた自身のクレジット',
-      description:
-        'ワークスペースではなくあなたに属するクレジット残高です。購入履歴と自動チャージもここにあります。',
-      open: 'クレジットを開く',
-    },
-    personal: {
-      title: 'あなた自身のプラン',
-      description:
-        'どのワークスペースとも別の、個人としてのプランです。コンソールが個人向けにプランを販売すると表示されます。',
-    },
-    inPage:
-      'カード情報の入力と 3-D セキュアは、Stripe のサイトに移動せずにこれらの画面内で開きます。',
-  },
   autoTopUp: {
     title: '自動チャージ',
     description:
@@ -1555,16 +1385,6 @@ const messages: Messages = {
     yourOrder: 'ご注文',
     total: '合計',
     whatYouGot: '受け取ったもの',
-  },
-  selling: {
-    title: '販売',
-    description:
-      'このアプリで自分の商品を販売します。販売を開始し、Stripe の登録を完了して、商品を出品し、各販売を確認できます。',
-  },
-  enterprise: {
-    title: 'エンタープライズ',
-    description:
-      '自社の IT 管理者が設定する、会社向けのシングルサインオンとディレクトリ同期です。',
   },
 };
 

@@ -123,16 +123,16 @@ export const es: TourText = {
       why: 'Un dispositivo de confianza mantiene la sesión 90 días y se salta comprobaciones extra. Cada dispositivo y sesión aparece en la lista y se puede cerrar.',
       steps: [
         'Al iniciar sesión, elige Confiar en este dispositivo.',
-        'Abre Seguridad para verlo en la lista de dispositivos.',
+        'Abre Dispositivos en la configuración para verlo en la lista.',
       ],
     },
     'add-passkey': {
       title: 'Añade una passkey',
       why: 'Inicio de sesión sin contraseña con huella, cara o PIN del dispositivo. Se activa por organización en la consola; nada que construir.',
       steps: [
-        'Abre Seguridad y elige Añadir una llave de acceso.',
-        'Sigue las indicaciones de tu navegador.',
-        'Cierra sesión y vuelve a entrar con ella.',
+        'Abre Seguridad en la configuración y elige Añadir una clave de acceso.',
+        'Sigue las indicaciones del navegador.',
+        'Cierra sesión e inicia sesión con ella.',
       ],
     },
     'see-session': {
@@ -147,7 +147,7 @@ export const es: TourText = {
       title: 'Cierra sesión en todas partes',
       why: 'Termina cada sesión en cada dispositivo de la plataforma, no solo en el navegador en el que estás.',
       steps: [
-        'Abre Seguridad.',
+        'Abre Seguridad en la configuración.',
         'Cierra otra sesión o usa Cerrar sesión en todas partes.',
       ],
     },
@@ -205,15 +205,15 @@ export const es: TourText = {
       title: 'Invita a alguien por email',
       why: 'La dirección no necesita cuenta. Reciben un email, siguen el enlace, se registran o inician sesión y aceptan. Una invitación pendiente ocupa un asiento.',
       steps: [
-        'Abre Team.',
-        'Escribe una dirección de email que puedas leer y un rol, y envía.',
+        'Abre Miembros en la configuración.',
+        'Escribe un correo que puedas leer y un rol, y envía la invitación.',
       ],
     },
     'pending-seat': {
       title: 'Mira cómo la invitación pendiente ocupa un asiento',
-      why: 'Los asientos se facturan mientras una invitación está pendiente, así el recuento de asientos en Team y el plan coinciden.',
+      why: 'Las plazas se cobran mientras una invitación está pendiente, así que el número de plazas en Miembros y el plan coinciden.',
       steps: [
-        'En Team, lee las tarjetas de asientos y la nota bajo el formulario de invitación: la fila pendiente cuenta.',
+        'En Miembros, mira el número de plazas: la invitación pendiente cuenta.',
       ],
     },
     'accept-invitation': {
@@ -228,7 +228,7 @@ export const es: TourText = {
       title: 'Cambia el rol de un miembro',
       why: 'Los roles son por espacio de trabajo y se definen en la consola. Se avisa al miembro por email y en su bandeja de entrada.',
       steps: [
-        'En Team, elige otro rol junto a un miembro que no sea el propietario.',
+        'En Miembros, elige otro rol para un miembro que no sea el propietario.',
       ],
     },
     'viewer-limits': {
@@ -283,7 +283,9 @@ export const es: TourText = {
     'view-invoice': {
       title: 'Consulta una factura',
       why: 'Las facturas vienen de Stripe a través de la plataforma, con un PDF alojado.',
-      steps: ['Abre Facturas y elige Detalles en la más reciente.'],
+      steps: [
+        'Abre Plan y facturación en la configuración, luego Facturas, y abre la más reciente.',
+      ],
     },
     'billing-portal': {
       title: 'Abre el portal de facturación',
@@ -307,27 +309,29 @@ export const es: TourText = {
       title: 'Mira cómo cambia el precio por asiento cuando se une un miembro',
       why: 'Los planes por asiento facturan miembros e invitaciones pendientes. El SDK calcula el mismo número que factura la plataforma.',
       steps: [
-        'En Team, invita a alguien; lee la línea de asientos y la tarjeta de plan.',
+        'En Miembros, invita a alguien; luego compara las plazas en Plan y facturación.',
       ],
     },
     'buy-add-on': {
       title: 'Compra un complemento',
       why: 'Vende algo más que planes: una función de por vida, un paquete de cuota, un puesto extra. Lo que concede se suma al instante a los derechos del plan.',
       steps: [
-        'Abre Facturación y pulsa «Gestionar complementos».',
-        'Compra uno; las comprobaciones de la página Documentos lo reflejan.',
+        'Abre Plan y facturación en la configuración y elige Comprar complementos.',
+        'Compra uno; las comprobaciones de derechos de la página Documentos lo reflejan.',
       ],
     },
     'personal-plan': {
       title: 'Un plan propio',
       why: 'No todo pertenece a un equipo: una persona puede tener un plan y créditos para sí misma, separados de todos los espacios de trabajo.',
-      steps: ['Abre Facturación y mira «Tu propio plan».'],
+      steps: [
+        'Abre Facturación en la configuración, en tu cuenta, para ver un plan propio.',
+      ],
     },
     'start-selling': {
       title: 'Empieza a vender',
       why: 'Tus usuarios también pueden vender: la plataforma gestiona la cuenta de Stripe del vendedor, tu comisión y cada venta.',
       steps: [
-        'Abre Vender y empieza a vender con las condiciones de la app.',
+        'Abre Ventas personales en la configuración y empieza a vender con las condiciones de la app.',
         'Completa el alta en Stripe y luego añade y publica un artículo.',
       ],
     },
@@ -471,7 +475,7 @@ export const es: TourText = {
       title: 'Inicio de sesión único para la empresa de un cliente',
       why: 'Los clientes más grandes quieren que su gente inicie sesión con su propio proveedor de identidad, con sincronización de directorio y sus propias reglas. La pantalla del SDK permite al administrador de la empresa configurarlo sin tu equipo.',
       steps: [
-        'Abre Empresa.',
+        'Abre Inicio de sesión único en la configuración.',
         'Sigue la configuración o lee por qué aún no está disponible.',
       ],
     },

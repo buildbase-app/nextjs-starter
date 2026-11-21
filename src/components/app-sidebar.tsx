@@ -21,12 +21,9 @@ import {
   Lock,
   Radio,
   UserCircle,
-  Receipt,
   Handshake,
   Store,
   Package,
-  BadgeDollarSign,
-  Wallet,
   Building2,
   ListChecks,
   ClipboardList,
@@ -38,7 +35,6 @@ import {
   Workflow,
   PieChart,
   Inbox,
-  ShieldCheck,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -77,19 +73,13 @@ type NavKey =
   | 'inbox'
   | 'documents'
   | 'credits'
-  | 'invoices'
   | 'affiliates'
   | 'shop'
   | 'orders'
-  | 'selling'
-  | 'billing'
   | 'usage'
   | 'permissions'
-  | 'enterprise'
   | 'events'
   | 'profile'
-  | 'security'
-  | 'team'
   | 'notifications'
   | 'settings';
 
@@ -105,9 +95,11 @@ type ModuleNavKey =
 
 type NavItem = {
   navKey: NavKey | ModuleNavKey;
-  url: string;
   icon: typeof LayoutDashboard;
-};
+} & (
+  | { url: string; opensSettings?: never }
+  | { url?: never; opensSettings: true }
+);
 
 type SectionKey = 'start' | 'product' | 'billing' | 'platform';
 
@@ -129,32 +121,28 @@ const sections: { key: SectionKey; items: NavItem[] }[] = [
     key: 'product',
     items: [
       { navKey: 'documents', url: '/dashboard/documents', icon: FileText },
-      { navKey: 'team', url: '/dashboard/team', icon: Users },
       { navKey: 'profile', url: '/dashboard/profile', icon: UserCircle },
-      { navKey: 'security', url: '/dashboard/security', icon: ShieldCheck },
     ],
   },
   {
     key: 'billing',
     items: [
       { navKey: 'credits', url: '/dashboard/credits', icon: Coins },
-      { navKey: 'invoices', url: '/dashboard/invoices', icon: Receipt },
-      { navKey: 'billing', url: '/dashboard/billing', icon: Wallet },
       { navKey: 'usage', url: '/dashboard/usage', icon: Gauge },
       { navKey: 'affiliates', url: '/dashboard/affiliates', icon: Handshake },
       { navKey: 'shop', url: '/dashboard/shop', icon: Store },
       { navKey: 'orders', url: '/dashboard/orders', icon: Package },
-      { navKey: 'selling', url: '/dashboard/selling', icon: BadgeDollarSign },
     ],
   },
   {
     key: 'platform',
     items: [
       { navKey: 'permissions', url: '/dashboard/permissions', icon: Lock },
-      { navKey: 'enterprise', url: '/dashboard/enterprise', icon: Building2 },
       { navKey: 'events', url: '/dashboard/events', icon: Radio },
       { navKey: 'notifications', url: '/dashboard/notifications', icon: Bell },
-      { navKey: 'settings', url: '/dashboard/settings', icon: Settings },
+      // The SDK's settings dialog: profile, security, members, plan and
+      // invoices, add-ons, credits, selling, single sign-on and more.
+      { navKey: 'settings', opensSettings: true, icon: Settings },
     ],
   },
 ];
@@ -204,7 +192,22 @@ function subscribeModulesOpen(onChange: () => void) {
 
 function NavLink({ item, active }: { item: NavItem; active: boolean }) {
   const t = useTranslations('common');
+  const { openWorkspaceSettings } = useSaaSAuth();
   const title = t(`nav.${item.navKey}`);
+  if (item.opensSettings) {
+    return (
+      <SidebarMenuItem>
+        <SidebarMenuButton
+          tooltip={title}
+          className="h-7"
+          onClick={() => openWorkspaceSettings()}
+        >
+          <item.icon />
+          <span>{title}</span>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    );
+  }
   return (
     <SidebarMenuItem>
       <SidebarMenuButton

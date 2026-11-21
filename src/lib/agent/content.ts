@@ -33,7 +33,7 @@ export const FEATURES: FeatureEntry[] = [
   {
     slug: 'workspaces',
     title: 'Multi-tenant workspaces and seats',
-    path: '/dashboard/team',
+    path: '/dashboard?settings=users',
     summary:
       'Users belong to many workspaces with owner/admin/member/viewer roles; seat limits come from the plan.',
     sdk: [
@@ -62,7 +62,7 @@ export const FEATURES: FeatureEntry[] = [
   {
     slug: 'invoices',
     title: 'Invoices',
-    path: '/dashboard/invoices',
+    path: '/dashboard?settings=subscription',
     summary:
       'Stripe invoices listed in-app with hosted and PDF links; opens the billing portal.',
     sdk: ['useInvoices', 'useBillingPortal'],
@@ -156,7 +156,7 @@ export const FEATURES: FeatureEntry[] = [
   {
     slug: 'security',
     title: 'Devices, sessions and connected agents',
-    path: '/dashboard/security',
+    path: '/dashboard?settings=devices',
     summary:
       'See and revoke signed-in devices, sessions and the AI agents that hold a grant.',
     sdk: ['Devices', 'Sessions', 'ConnectedAgents'],

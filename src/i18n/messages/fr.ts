@@ -3,22 +3,17 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
-      selling: 'Vendre',
       orders: 'Commandes',
       shop: 'Boutique',
       affiliates: 'Affiliés',
-      enterprise: 'Entreprise',
-      billing: 'Facturation',
       home: 'Accueil',
       dashboard: 'Tableau de bord',
       documents: 'Documents',
-      team: 'Équipe',
       notifications: 'Notifications',
       settings: 'Paramètres',
       menu: 'Menu',
       selectWorkspace: "Sélectionner l'espace",
       profile: 'Profil',
-      security: 'Sécurité',
       manageWorkspace: "Gérer l'espace",
       generalSettings: 'Paramètres généraux',
       userManagement: 'Gestion des utilisateurs',
@@ -29,7 +24,6 @@ const messages: Messages = {
       usage: 'Utilisation',
       permissions: 'Permissions',
       events: 'Événements',
-      invoices: 'Factures',
       workspace: 'Espace de travail',
       tour: 'Visite',
       inbox: 'Boîte de réception',
@@ -276,124 +270,6 @@ const messages: Messages = {
       },
     },
   },
-  team: {
-    title: 'Équipe',
-    description: "Membres de l'espace de travail",
-    inviteMember: 'Inviter un membre',
-    seatLimitReached:
-      'Limite de sièges atteinte — mettez à niveau votre plan pour inviter plus de membres.',
-    cards: {
-      members: 'Membres',
-      includedSeats: 'Sièges inclus',
-      maxUsers: 'Utilisateurs max.',
-      availableSeats: 'Sièges disponibles',
-    },
-    memberList: {
-      title: 'Membres',
-      count: '{count} membre(s) dans cet espace',
-      empty: "Aucun membre chargé. Assurez-vous d'être authentifié.",
-      roleFallback: 'membre',
-      changeRole: 'Changer le rôle',
-    },
-    invite: {
-      title: 'Inviter par e-mail',
-      description:
-        'L’adresse n’a pas besoin de compte. La personne reçoit un e-mail, suit le lien, s’inscrit ou se connecte, puis accepte.',
-      noPermission: 'Votre rôle ne peut pas inviter de membres.',
-      emailPlaceholder: 'nom@entreprise.com',
-      role: 'Rôle',
-      send: 'Envoyer l’invitation',
-      sent: 'Invitation envoyée à {email}',
-      failed: 'Une erreur est survenue',
-      resent: 'Invitation renvoyée',
-      revoked: 'Invitation révoquée',
-      seatNote:
-        '{count} invitation(s) en attente occupe(nt) un siège jusqu’à réponse.',
-      pendingTitle: 'En attente',
-      loading: 'Chargement…',
-      none: 'Rien en attente.',
-      invitedBy: 'Invité par {name}',
-      pendingLabel: 'En attente',
-      expires: 'expire le {date}',
-      cooldown: 'Renvoi possible dans {seconds}s',
-      resend: 'Renvoyer',
-      revoke: 'Révoquer',
-    },
-    roleChanged: 'Rôle changé en {role}',
-    manage: {
-      title: 'Gérer les membres',
-      description:
-        'Ouvrez le panneau de paramètres pour gérer les rôles et les invitations',
-      openSettings: 'Ouvrir les paramètres des membres',
-      permissions: 'Permissions',
-    },
-  },
-  settings: {
-    title: 'Paramètres',
-    description: "Configuration de l'espace de travail",
-    card: {
-      title: "Paramètres de l'espace de travail",
-      description:
-        'Cliquez sur une section pour ouvrir le panneau de paramètres',
-    },
-    danger: {
-      openButton: 'Ouvrir la zone de danger',
-    },
-    sections: {
-      security: {
-        label: 'Sécurité',
-        description: 'Clés d’accès et façon de vous connecter',
-      },
-      devices: {
-        label: 'Appareils',
-        description: 'Navigateurs et machines où vous êtes connecté',
-      },
-      'connected-agents': {
-        label: 'Agents connectés',
-        description: 'Agents IA auxquels vous avez donné accès via MCP',
-      },
-      profile: {
-        label: 'Profil',
-        description: 'Votre nom, avatar et données personnelles',
-      },
-      general: {
-        label: 'Général',
-        description: "Nom de l'espace, identifiant et configuration de base",
-      },
-      users: {
-        label: 'Membres et invitations',
-        description: 'Gérer les membres, rôles et invitations en attente',
-      },
-      subscription: {
-        label: 'Abonnement',
-        description: 'Voir et changer votre plan actuel',
-      },
-      usage: {
-        label: 'Utilisation',
-        description: "Consommation des quotas et historique d'utilisation",
-      },
-      credits: {
-        label: 'Crédits',
-        description: 'Solde de crédits et options de recharge',
-      },
-      features: {
-        label: 'Indicateurs de fonctionnalités',
-        description: "Activer/désactiver les fonctionnalités de l'espace",
-      },
-      notifications: {
-        label: 'Notifications',
-        description: 'Préférences de notifications par e-mail et push',
-      },
-      permissions: {
-        label: 'Permissions',
-        description: "Configuration du contrôle d'accès basé sur les rôles",
-      },
-      danger: {
-        label: 'Zone de danger',
-        description: "Supprimer l'espace ou transférer la propriété",
-      },
-    },
-  },
   documents: {
     featureGates: {
       title: 'Portes de fonctionnalités',
@@ -539,30 +415,6 @@ const messages: Messages = {
       roleChanged: 'Rôle modifié',
       workspaceCreated: 'Espace créé',
       workspaceDeleted: 'Espace supprimé',
-    },
-  },
-  invoices: {
-    title: 'Factures',
-    description: 'Historique de facturation',
-    refresh: 'Actualiser',
-    billingPortal: 'Portail de facturation',
-    billingPortalOpening: 'Ouverture…',
-    error: 'Erreur lors du chargement des factures.',
-    card: {
-      title: 'Historique des factures',
-      found: '{count} facture(s) trouvée(s)',
-      empty:
-        "Aucune facture pour l'instant. Les factures apparaissent ici après votre abonnement à un plan payant.",
-    },
-    table: {
-      date: 'Date',
-      amount: 'Montant',
-      status: 'Statut',
-      description: 'Description',
-      links: 'Liens',
-      view: 'Voir',
-      pdf: 'PDF',
-      loadMore: 'Charger plus',
     },
   },
   notifications: {
@@ -1503,30 +1355,6 @@ const messages: Messages = {
     failed: "La réservation n'a pas pu être modifiée.",
     jobDescription: 'Tâche de démonstration (réservée, puis réglée)',
   },
-  billingHub: {
-    title: 'Facturation',
-    description:
-      "Au-delà du forfait de l'espace de travail : des modules en sus, ainsi qu'un forfait et des crédits à vous. Ce sont les écrans du SDK lui-même.",
-    addOns: {
-      title: 'Modules complémentaires',
-      description:
-        "Des extras qu'un espace de travail achète en plus de son forfait, depuis le catalogue de la console. Ils sont dans l'écran d'abonnement de l'espace.",
-      open: 'Gérer les modules',
-    },
-    personalCredits: {
-      title: 'Vos propres crédits',
-      description:
-        'Un solde de crédits qui vous appartient, pas à un espace de travail, avec ses achats et sa recharge automatique.',
-      open: 'Ouvrir vos crédits',
-    },
-    personal: {
-      title: 'Votre propre forfait',
-      description:
-        'Un forfait pour vous en tant que personne, distinct de tout espace de travail. Affiché dès que la console vend des forfaits aux personnes.',
-    },
-    inPage:
-      "Les données de carte et 3-D Secure s'ouvrent dans ces écrans, sans passer par le site de Stripe.",
-  },
   autoTopUp: {
     title: 'Recharge automatique',
     description:
@@ -1575,16 +1403,6 @@ const messages: Messages = {
     yourOrder: 'Votre commande',
     total: 'Total',
     whatYouGot: 'Ce que vous avez reçu',
-  },
-  selling: {
-    title: 'Vendre',
-    description:
-      "Vendez vos propres articles dans cette application : commencez à vendre, terminez l'inscription Stripe, publiez des articles et suivez chaque vente.",
-  },
-  enterprise: {
-    title: 'Entreprise',
-    description:
-      "Authentification unique et synchronisation d'annuaire pour votre entreprise, configurées par votre propre service informatique.",
   },
 };
 

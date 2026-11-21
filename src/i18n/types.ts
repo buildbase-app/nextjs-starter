@@ -3,22 +3,17 @@
 
 export interface CommonMessages {
   nav: {
-    selling: string;
     orders: string;
     shop: string;
     affiliates: string;
-    enterprise: string;
-    billing: string;
     home: string;
     dashboard: string;
     documents: string;
-    team: string;
     notifications: string;
     settings: string;
     menu: string;
     selectWorkspace: string;
     profile: string;
-    security: string;
     manageWorkspace: string;
     generalSettings: string;
     userManagement: string;
@@ -29,7 +24,6 @@ export interface CommonMessages {
     usage: string;
     permissions: string;
     events: string;
-    invoices: string;
     workspace: string;
     tour: string;
     inbox: string;
@@ -265,85 +259,9 @@ export interface DashboardMessages {
   };
 }
 
-export interface TeamMessages {
-  title: string;
-  description: string;
-  inviteMember: string;
-  seatLimitReached: string;
-  cards: {
-    members: string;
-    includedSeats: string;
-    maxUsers: string;
-    availableSeats: string;
-  };
-  memberList: {
-    title: string;
-    count: string;
-    empty: string;
-    roleFallback: string;
-    changeRole: string;
-  };
-  invite: {
-    title: string;
-    description: string;
-    noPermission: string;
-    emailPlaceholder: string;
-    role: string;
-    send: string;
-    sent: string;
-    failed: string;
-    resent: string;
-    revoked: string;
-    seatNote: string;
-    pendingTitle: string;
-    loading: string;
-    none: string;
-    invitedBy: string;
-    pendingLabel: string;
-    expires: string;
-    cooldown: string;
-    resend: string;
-    revoke: string;
-  };
-  roleChanged: string;
-  manage: {
-    title: string;
-    description: string;
-    openSettings: string;
-    permissions: string;
-  };
-}
-
 export interface SettingsSectionItem {
   label: string;
   description: string;
-}
-
-export interface SettingsMessages {
-  title: string;
-  description: string;
-  card: {
-    title: string;
-    description: string;
-  };
-  danger: {
-    openButton: string;
-  };
-  sections: {
-    profile: SettingsSectionItem;
-    security: SettingsSectionItem;
-    devices: SettingsSectionItem;
-    'connected-agents': SettingsSectionItem;
-    general: SettingsSectionItem;
-    users: SettingsSectionItem;
-    subscription: SettingsSectionItem;
-    usage: SettingsSectionItem;
-    credits: SettingsSectionItem;
-    features: SettingsSectionItem;
-    notifications: SettingsSectionItem;
-    permissions: SettingsSectionItem;
-    danger: SettingsSectionItem;
-  };
 }
 
 export interface DocumentsFeatureSection {
@@ -463,30 +381,6 @@ export interface EventsMessages {
     roleChanged: string;
     workspaceCreated: string;
     workspaceDeleted: string;
-  };
-}
-
-export interface InvoicesMessages {
-  title: string;
-  description: string;
-  refresh: string;
-  billingPortal: string;
-  billingPortalOpening: string;
-  error: string;
-  card: {
-    title: string;
-    found: string;
-    empty: string;
-  };
-  table: {
-    date: string;
-    amount: string;
-    status: string;
-    description: string;
-    links: string;
-    view: string;
-    pdf: string;
-    loadMore: string;
   };
 }
 
@@ -1357,26 +1251,6 @@ export interface CreditHoldsMessages {
   jobDescription: string;
 }
 
-export interface BillingHubMessages {
-  title: string;
-  description: string;
-  addOns: {
-    title: string;
-    description: string;
-    open: string;
-  };
-  personalCredits: {
-    title: string;
-    description: string;
-    open: string;
-  };
-  personal: {
-    title: string;
-    description: string;
-  };
-  inPage: string;
-}
-
 export interface AutoTopUpMessages {
   title: string;
   description: string;
@@ -1424,25 +1298,12 @@ export interface OrdersMessages {
   whatYouGot: string;
 }
 
-export interface SellingMessages {
-  title: string;
-  description: string;
-}
-
-export interface EnterpriseMessages {
-  title: string;
-  description: string;
-}
-
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
   dashboard: DashboardMessages;
-  team: TeamMessages;
-  settings: SettingsMessages;
   documents: DocumentsMessages;
   events: EventsMessages;
-  invoices: InvoicesMessages;
   notifications: NotificationsMessages;
   permissions: PermissionsMessages;
   profile: ProfileMessages;
@@ -1469,14 +1330,11 @@ export interface Messages {
   entitlements: EntitlementsMessages;
   goals: GoalsMessages;
   creditHolds: CreditHoldsMessages;
-  billingHub: BillingHubMessages;
   autoTopUp: AutoTopUpMessages;
   yourData: YourDataMessages;
   affiliates: AffiliatesMessages;
   shop: ShopMessages;
   orders: OrdersMessages;
-  selling: SellingMessages;
-  enterprise: EnterpriseMessages;
 }
 
 // For next-intl type inference
