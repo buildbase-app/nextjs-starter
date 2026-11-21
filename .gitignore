@@ -70,5 +70,6 @@ cloudflare-env.d.ts
 
 # Signed-in end-to-end tests
 e2e/.auth/
+playwright-report/
 playwright-report-live/
 test-results/
