@@ -1369,6 +1369,32 @@ const messages: Messages = {
     browse: 'Ver la tienda',
     couponHint: 'Prueba el código DEMO10 para un 10 % de descuento.',
   },
+  reviews: {
+    title: 'Tu reseña',
+    ratingLabel: 'Tu valoración',
+    outOf: '{rating} de 5 estrellas',
+    textLabel: '¿Qué te pareció?',
+    placeholder: '¿Qué te pareció? (opcional)',
+    submit: 'Publicar reseña',
+    update: 'Guardar cambios',
+    saving: 'Guardando…',
+    saved: '¡Gracias! Tu reseña está publicada.',
+    cancel: 'Cancelar',
+    edit: 'Editar tu reseña',
+    yours: 'Tu reseña',
+    verifiedBuyer: 'Comprador verificado',
+    summary:
+      '{average} de 5 ({count, plural, one {# reseña} other {# reseñas}})',
+    closed: {
+      reviews_off: 'Este artículo no admite reseñas.',
+      not_paid: 'Podrás reseñarlo cuando esté pagado.',
+      refunded: 'Una compra reembolsada no se puede reseñar.',
+      not_delivered: 'Podrás reseñarlo cuando se entregue.',
+      booking_not_ended: 'Podrás reseñarlo cuando termine tu reserva.',
+      not_open_yet: 'Las reseñas se abren el {date}.',
+      window_closed: 'Ya pasó el plazo para reseñarlo.',
+    },
+  },
 };
 
 export default messages;

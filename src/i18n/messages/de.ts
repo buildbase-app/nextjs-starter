@@ -1371,6 +1371,32 @@ const messages: Messages = {
     browse: 'Zum Shop',
     couponHint: 'Probiere den Code DEMO10 für 10 % Rabatt.',
   },
+  reviews: {
+    title: 'Deine Bewertung',
+    ratingLabel: 'Deine Bewertung',
+    outOf: '{rating} von 5 Sternen',
+    textLabel: 'Wie fandest du es?',
+    placeholder: 'Wie fandest du es? (optional)',
+    submit: 'Bewertung veröffentlichen',
+    update: 'Änderungen speichern',
+    saving: 'Wird gespeichert…',
+    saved: 'Danke! Deine Bewertung ist veröffentlicht.',
+    cancel: 'Abbrechen',
+    edit: 'Bewertung bearbeiten',
+    yours: 'Deine Bewertung',
+    verifiedBuyer: 'Verifizierter Käufer',
+    summary:
+      '{average} von 5 ({count, plural, one {# Bewertung} other {# Bewertungen}})',
+    closed: {
+      reviews_off: 'Dieser Artikel nimmt keine Bewertungen an.',
+      not_paid: 'Du kannst bewerten, sobald bezahlt ist.',
+      refunded: 'Ein erstatteter Kauf kann nicht bewertet werden.',
+      not_delivered: 'Du kannst bewerten, sobald geliefert ist.',
+      booking_not_ended: 'Du kannst bewerten, wenn dein Termin vorbei ist.',
+      not_open_yet: 'Bewertungen sind ab {date} möglich.',
+      window_closed: 'Die Frist für eine Bewertung ist abgelaufen.',
+    },
+  },
 };
 
 export default messages;

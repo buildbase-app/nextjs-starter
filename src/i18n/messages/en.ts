@@ -1353,6 +1353,32 @@ const messages: Messages = {
     browse: 'Browse the shop',
     couponHint: 'Try the code DEMO10 for 10% off.',
   },
+  reviews: {
+    title: 'Your review',
+    ratingLabel: 'Your rating',
+    outOf: '{rating} out of 5 stars',
+    textLabel: 'What did you think?',
+    placeholder: 'What did you think? (optional)',
+    submit: 'Post review',
+    update: 'Save changes',
+    saving: 'Saving…',
+    saved: 'Thanks! Your review is posted.',
+    cancel: 'Cancel',
+    edit: 'Edit your review',
+    yours: 'Your review',
+    verifiedBuyer: 'Verified buyer',
+    summary:
+      '{average} out of 5 ({count, plural, one {# review} other {# reviews}})',
+    closed: {
+      reviews_off: 'This item does not take reviews.',
+      not_paid: 'You can review this once it is paid.',
+      refunded: 'A refunded purchase cannot be reviewed.',
+      not_delivered: 'You can review this once it is delivered.',
+      booking_not_ended: 'You can review this after your booking ends.',
+      not_open_yet: 'Reviews open on {date}.',
+      window_closed: 'The time to review this has passed.',
+    },
+  },
 };
 
 export default messages;

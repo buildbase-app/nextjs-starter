@@ -369,6 +369,14 @@ export const de: TourText = {
         'Öffne den Warenkorb, löse den Code DEMO10 ein und bezahle.',
       ],
     },
+    'marketplace-review': {
+      title: 'Einen Kauf bewerten',
+      why: 'Nur verifizierte Käufer bewerten, sobald bezahlt ist oder der Termin vorbei ist; die Bewertung erscheint dann für alle am Artikel.',
+      steps: [
+        'Öffne eine bezahlte Bestellung unter Bestellungen und bewerte sie.',
+        'Sieh dir die Bewertung und deinen Text am Artikel im Shop an.',
+      ],
+    },
     'record-usage': {
       title: 'Nutzung erfassen',
       why: 'Ihre App misst, was sie tut (ein erstelltes Dokument, ein verarbeitetes Video); der Plan sagt, wie viel enthalten ist.',

@@ -1354,6 +1354,32 @@ const messages: Messages = {
     browse: 'दुकान देखें',
     couponHint: '10% छूट के लिए कोड DEMO10 आज़माएँ।',
   },
+  reviews: {
+    title: 'आपकी समीक्षा',
+    ratingLabel: 'आपकी रेटिंग',
+    outOf: '5 में से {rating} स्टार',
+    textLabel: 'आपको कैसा लगा?',
+    placeholder: 'आपको कैसा लगा? (वैकल्पिक)',
+    submit: 'समीक्षा पोस्ट करें',
+    update: 'बदलाव सहेजें',
+    saving: 'सहेजा जा रहा है…',
+    saved: 'धन्यवाद! आपकी समीक्षा पोस्ट हो गई।',
+    cancel: 'रद्द करें',
+    edit: 'अपनी समीक्षा बदलें',
+    yours: 'आपकी समीक्षा',
+    verifiedBuyer: 'सत्यापित खरीदार',
+    summary:
+      '5 में से {average} ({count, plural, one {# समीक्षा} other {# समीक्षाएँ}})',
+    closed: {
+      reviews_off: 'यह आइटम समीक्षाएँ नहीं लेता।',
+      not_paid: 'भुगतान होने के बाद आप समीक्षा कर सकते हैं।',
+      refunded: 'धनवापसी वाली खरीद की समीक्षा नहीं हो सकती।',
+      not_delivered: 'डिलीवरी के बाद आप समीक्षा कर सकते हैं।',
+      booking_not_ended: 'बुकिंग खत्म होने के बाद आप समीक्षा कर सकते हैं।',
+      not_open_yet: 'समीक्षाएँ {date} को खुलेंगी।',
+      window_closed: 'इसकी समीक्षा का समय निकल चुका है।',
+    },
+  },
 };
 
 export default messages;

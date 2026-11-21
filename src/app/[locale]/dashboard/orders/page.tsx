@@ -21,13 +21,15 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLastOrderId } from '@/lib/marketplace';
+import { OrderReviews } from '@/components/reviews/order-reviews';
 
 /**
  * What the signed-in person bought, read with the SDK's order hooks. Right
  * after checkout Stripe sends them here; `waitForPayment` reads an open
  * order again every two seconds until Stripe's payment reaches the app.
  * Opening an order (`?id=`) lists what it granted (`useHoldings`): the
- * seller's message, a link, license keys.
+ * seller's message, a link, license keys. A paid order also takes the
+ * buyer's review of each line (`useOrderReviews`), once its window opens.
  */
 export default function OrdersPage() {
   const t = useTranslations('orders');
@@ -166,6 +168,7 @@ function OrderDetail({ id }: { id: string }) {
             )}
           </div>
         )}
+        <OrderReviews orderId={order._id} />
       </CardContent>
     </Card>
   );

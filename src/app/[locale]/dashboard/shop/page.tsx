@@ -21,6 +21,7 @@ import {
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { LAST_ORDER_KEY } from '@/lib/marketplace';
+import { ItemRating } from '@/components/reviews/item-rating';
 
 /**
  * The marketplace's catalog: every published item, from every seller, with
@@ -135,6 +136,7 @@ function ItemCard({
       </CardHeader>
       <CardContent className="flex-1 space-y-2 text-sm">
         {item.summary && <p>{item.summary}</p>}
+        <ItemRating itemId={item._id} />
         {price && (
           <p className="font-medium">
             {price.mode === 'free'

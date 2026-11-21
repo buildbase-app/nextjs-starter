@@ -370,6 +370,14 @@ export const fr: TourText = {
         'Ouvrez le Panier, appliquez le code DEMO10 et payez.',
       ],
     },
+    'marketplace-review': {
+      title: 'Donner son avis sur un achat',
+      why: "Seuls les acheteurs vérifiés donnent un avis, une fois l'achat payé ou le rendez-vous terminé ; la note s'affiche ensuite sur l'article pour tous.",
+      steps: [
+        'Ouvrez une commande payée dans Commandes et notez-la.',
+        "Retrouvez la note et votre texte sur l'article dans la Boutique.",
+      ],
+    },
     'record-usage': {
       title: 'Enregistrer de l’usage',
       why: 'Votre app mesure ce qu’elle fait (un document créé, une vidéo traitée) ; le plan dit ce qui est inclus.',
