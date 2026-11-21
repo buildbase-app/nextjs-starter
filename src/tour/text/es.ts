@@ -323,6 +323,22 @@ export const es: TourText = {
       why: 'No todo pertenece a un equipo: una persona puede tener un plan y créditos para sí misma, separados de todos los espacios de trabajo.',
       steps: ['Abre Facturación y mira «Tu propio plan».'],
     },
+    'start-selling': {
+      title: 'Empieza a vender',
+      why: 'Tus usuarios también pueden vender: la plataforma gestiona la cuenta de Stripe del vendedor, tu comisión y cada venta.',
+      steps: [
+        'Abre Vender y empieza a vender con las condiciones de la app.',
+        'Completa el alta en Stripe y luego añade y publica un artículo.',
+      ],
+    },
+    'marketplace-buy': {
+      title: 'Compra a un vendedor',
+      why: 'Un botón al pago de Stripe: el stock se reserva mientras el comprador paga, y el pedido muestra lo que recibió.',
+      steps: [
+        'Abre la Tienda y compra un artículo publicado.',
+        'Tras pagar, Pedidos muestra el pedido y lo que te dio.',
+      ],
+    },
     'record-usage': {
       title: 'Registra uso',
       why: 'Tu app mide lo que hace (un documento creado, un vídeo procesado); el plan dice cuánto está incluido.',

@@ -302,6 +302,22 @@ export const en: TourText = {
       why: 'Not everything belongs to a team: a person can hold a plan and credits for themselves, kept apart from every workspace.',
       steps: ['Open Billing and look at Your own plan.'],
     },
+    'start-selling': {
+      title: 'Start selling',
+      why: "Your users can sell too: the platform handles the seller's Stripe account, your fee, and every sale.",
+      steps: [
+        "Open Selling and start selling under the app's terms.",
+        "Finish Stripe's onboarding, then add and publish an item.",
+      ],
+    },
+    'marketplace-buy': {
+      title: 'Buy from a seller',
+      why: "One button to Stripe's checkout: stock is held while the buyer pays, and the order shows what they got.",
+      steps: [
+        'Open Shop and buy a published item.',
+        'After paying, Orders shows the order and what it gave you.',
+      ],
+    },
     'record-usage': {
       title: 'Record usage',
       why: 'Your app meters what it does (a document created, a video processed); the plan says how much is included.',

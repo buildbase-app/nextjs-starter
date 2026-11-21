@@ -3,6 +3,9 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      selling: 'Verkaufen',
+      orders: 'Bestellungen',
+      shop: 'Shop',
       affiliates: 'Affiliates',
       billing: 'Abrechnung',
       home: 'Startseite',
@@ -1593,6 +1596,34 @@ const messages: Messages = {
     title: 'Affiliates',
     description:
       'Tritt einem Programm über seinen Einladungslink bei, teile deinen eigenen Link und sieh, was du verdient hast. Wer über deinen Link kommt, wird dir beim Kauf gutgeschrieben.',
+  },
+  shop: {
+    title: 'Shop',
+    description:
+      'Alles, was deine Verkäufer veröffentlicht haben. Gekauft wird über Stripes Checkout, danach steht es unter Bestellungen.',
+    empty:
+      'Noch steht nichts zum Verkauf. Sobald ein Verkäufer einen Artikel veröffentlicht, erscheint er hier.',
+    by: 'von {seller}',
+    free: 'Kostenlos',
+    notForSale: 'Derzeit nicht verkäuflich',
+  },
+  orders: {
+    title: 'Bestellungen',
+    description:
+      'Was du gekauft hast und was dir jede Bestellung gebracht hat.',
+    empty: 'Du hast noch nichts gekauft.',
+    browse: 'Zum Shop',
+    from: 'von {seller}',
+    open: 'Öffnen',
+    loading: 'Bestellung wird geladen…',
+    yourOrder: 'Deine Bestellung',
+    total: 'Gesamt',
+    whatYouGot: 'Was du bekommen hast',
+  },
+  selling: {
+    title: 'Verkaufen',
+    description:
+      'Verkaufe eigene Artikel in dieser App: starte den Verkauf, schließe Stripes Einrichtung ab, stelle Artikel ein und verfolge jeden Verkauf.',
   },
 };
 

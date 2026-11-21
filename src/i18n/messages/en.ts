@@ -3,6 +3,9 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      selling: 'Selling',
+      orders: 'Orders',
+      shop: 'Shop',
       affiliates: 'Affiliates',
       billing: 'Billing',
       home: 'Home',
@@ -1570,6 +1573,33 @@ const messages: Messages = {
     title: 'Affiliates',
     description:
       'Join a program from its invitation link, share your own link, and see what you earned. Anyone arriving on your link is credited to you when they buy.',
+  },
+  shop: {
+    title: 'Shop',
+    description:
+      "Everything your sellers have published. Buying goes through Stripe's checkout and lands in Orders.",
+    empty:
+      'Nothing is for sale yet. Once a seller publishes an item, it appears here.',
+    by: 'by {seller}',
+    free: 'Free',
+    notForSale: 'Not for sale right now',
+  },
+  orders: {
+    title: 'Orders',
+    description: 'What you bought, with what each order gave you.',
+    empty: "You haven't bought anything yet.",
+    browse: 'Browse the shop',
+    from: 'from {seller}',
+    open: 'Open',
+    loading: 'Loading your order…',
+    yourOrder: 'Your order',
+    total: 'Total',
+    whatYouGot: 'What you got',
+  },
+  selling: {
+    title: 'Selling',
+    description:
+      "Sell your own items in this app: start selling, finish Stripe's onboarding, list items, and follow each sale.",
   },
 };
 

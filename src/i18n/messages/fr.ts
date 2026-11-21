@@ -3,6 +3,9 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      selling: 'Vendre',
+      orders: 'Commandes',
+      shop: 'Boutique',
       affiliates: 'Affiliés',
       billing: 'Facturation',
       home: 'Accueil',
@@ -1599,6 +1602,34 @@ const messages: Messages = {
     title: 'Affiliés',
     description:
       "Rejoignez un programme depuis son lien d'invitation, partagez votre propre lien et suivez vos gains. Toute personne arrivée par votre lien vous est attribuée lorsqu'elle achète.",
+  },
+  shop: {
+    title: 'Boutique',
+    description:
+      "Tout ce que vos vendeurs ont publié. L'achat passe par le paiement Stripe et apparaît dans Commandes.",
+    empty:
+      "Rien n'est encore en vente. Dès qu'un vendeur publie un article, il apparaît ici.",
+    by: 'par {seller}',
+    free: 'Gratuit',
+    notForSale: 'Pas en vente pour le moment',
+  },
+  orders: {
+    title: 'Commandes',
+    description:
+      'Ce que vous avez acheté, avec ce que chaque commande vous a donné.',
+    empty: "Vous n'avez encore rien acheté.",
+    browse: 'Voir la boutique',
+    from: 'de {seller}',
+    open: 'Ouvrir',
+    loading: 'Chargement de votre commande…',
+    yourOrder: 'Votre commande',
+    total: 'Total',
+    whatYouGot: 'Ce que vous avez reçu',
+  },
+  selling: {
+    title: 'Vendre',
+    description:
+      "Vendez vos propres articles dans cette application : commencez à vendre, terminez l'inscription Stripe, publiez des articles et suivez chaque vente.",
   },
 };
 

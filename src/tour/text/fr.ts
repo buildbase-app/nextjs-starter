@@ -334,6 +334,22 @@ export const fr: TourText = {
       why: "Tout n'appartient pas à une équipe : une personne peut détenir un forfait et des crédits pour elle-même, à part de tout espace de travail.",
       steps: ['Ouvrez Facturation et regardez « Votre propre forfait ».'],
     },
+    'start-selling': {
+      title: 'Commencer à vendre',
+      why: 'Vos utilisateurs peuvent vendre aussi : la plateforme gère le compte Stripe du vendeur, votre commission et chaque vente.',
+      steps: [
+        "Ouvrez Vendre et commencez selon les conditions de l'application.",
+        "Terminez l'inscription Stripe, puis ajoutez et publiez un article.",
+      ],
+    },
+    'marketplace-buy': {
+      title: 'Acheter à un vendeur',
+      why: "Un bouton vers le paiement Stripe : le stock est réservé pendant le paiement, et la commande montre ce que l'acheteur a reçu.",
+      steps: [
+        'Ouvrez la Boutique et achetez un article publié.',
+        "Après paiement, Commandes affiche la commande et ce qu'elle vous a donné.",
+      ],
+    },
     'record-usage': {
       title: 'Enregistrer de l’usage',
       why: 'Votre app mesure ce qu’elle fait (un document créé, une vidéo traitée) ; le plan dit ce qui est inclus.',

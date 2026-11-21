@@ -3,6 +3,9 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      selling: '销售',
+      orders: '订单',
+      shop: '商店',
       affiliates: '推广联盟',
       billing: '账单',
       home: '首页',
@@ -1498,6 +1501,32 @@ const messages: Messages = {
     title: '推广联盟',
     description:
       '通过邀请链接加入推广计划，分享你自己的链接，并查看你的收益。通过你的链接到来的人购买时，会计入你的名下。',
+  },
+  shop: {
+    title: '商店',
+    description:
+      '你的卖家发布的所有商品。购买通过 Stripe 结账完成，并显示在订单中。',
+    empty: '暂时没有在售商品。卖家发布商品后会显示在这里。',
+    by: '来自 {seller}',
+    free: '免费',
+    notForSale: '暂不出售',
+  },
+  orders: {
+    title: '订单',
+    description: '你购买的商品，以及每个订单给你的内容。',
+    empty: '你还没有购买任何东西。',
+    browse: '浏览商店',
+    from: '来自 {seller}',
+    open: '打开',
+    loading: '正在加载你的订单…',
+    yourOrder: '你的订单',
+    total: '合计',
+    whatYouGot: '你获得的内容',
+  },
+  selling: {
+    title: '销售',
+    description:
+      '在此应用中出售你自己的商品：开始销售，完成 Stripe 入驻，上架商品，并跟进每笔销售。',
   },
 };
 

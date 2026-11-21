@@ -3,6 +3,9 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      selling: 'Vender',
+      orders: 'Pedidos',
+      shop: 'Tienda',
       affiliates: 'Afiliados',
       billing: 'Facturación',
       home: 'Inicio',
@@ -1593,6 +1596,33 @@ const messages: Messages = {
     title: 'Afiliados',
     description:
       'Únete a un programa desde su enlace de invitación, comparte tu propio enlace y mira lo que has ganado. Quien llegue por tu enlace se te atribuye cuando compra.',
+  },
+  shop: {
+    title: 'Tienda',
+    description:
+      'Todo lo que han publicado tus vendedores. La compra pasa por el pago de Stripe y aparece en Pedidos.',
+    empty:
+      'Todavía no hay nada a la venta. Cuando un vendedor publique un artículo, aparecerá aquí.',
+    by: 'de {seller}',
+    free: 'Gratis',
+    notForSale: 'No está a la venta ahora',
+  },
+  orders: {
+    title: 'Pedidos',
+    description: 'Lo que compraste y lo que te dio cada pedido.',
+    empty: 'Todavía no has comprado nada.',
+    browse: 'Ver la tienda',
+    from: 'de {seller}',
+    open: 'Abrir',
+    loading: 'Cargando tu pedido…',
+    yourOrder: 'Tu pedido',
+    total: 'Total',
+    whatYouGot: 'Lo que recibiste',
+  },
+  selling: {
+    title: 'Vender',
+    description:
+      'Vende tus propios artículos en esta app: empieza a vender, completa el alta en Stripe, publica artículos y sigue cada venta.',
   },
 };
 
