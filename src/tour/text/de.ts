@@ -353,6 +353,14 @@ export const de: TourText = {
         'Beobachten Sie, wie sich das Guthaben in der Seitenleiste und die Messzeile ändern.',
       ],
     },
+    'credit-hold': {
+      title: 'Credits für Arbeit mit unbekannten Kosten reservieren',
+      why: 'Ein KI-Auftrag oder ein großer Export kostet, was er kostet: reserviere zuerst eine Schätzung, damit das Guthaben nicht überzogen wird, und buche dann den echten Betrag ab.',
+      steps: [
+        'Öffne Credits und drück auf „Auftrag starten“.',
+        'Schließ ihn ab und sieh, was zurückkam, oder brich ihn ab und sieh die Reservierung freigegeben.',
+      ],
+    },
     'credits-low': {
       title: 'Knapp werden',
       why: 'Ein Gate an einer Schwelle, damit Sie ein Aufladen anbieten können, bevor es aufgebraucht ist.',
@@ -401,6 +409,14 @@ export const de: TourText = {
       why: 'Nutzer-Funktionen folgen der Person über Workspaces hinweg; Workspace-Funktionen folgen dem Tenant.',
       steps: [
         'Öffnen Sie Profil: die dort gelisteten Funktionen sind Ihre, nicht die des Workspace.',
+      ],
+    },
+    'entitlement-check': {
+      title: 'Den Tarif per Slug fragen',
+      why: 'Sperre nach dem, was der Tarif enthält, nicht nach seinem Namen: Add-ons und Zuteilungen zählen mit, und ein umbenannter Tarif bricht nichts.',
+      steps: [
+        'Öffne Dokumente und lies „Was dein Tarif enthält“.',
+        'Wechsle den Tarif und schau noch einmal: die Antworten folgen ihm.',
       ],
     },
     'permission-matrix': {
@@ -797,6 +813,14 @@ export const de: TourText = {
       steps: [
         'Laden Sie die Tracking-Seite mit ?utm_source=demo&utm_campaign=tour neu.',
         'Lesen Sie die Attributionskarte.',
+      ],
+    },
+    'tracking-goal': {
+      title: 'Ein Ziel zählen',
+      why: 'Seitenaufrufe sagen, wohin die Leute gingen; Ziele sagen, was sie taten. Beides landet in den Analytics der Konsole, und beides respektiert ein Nein im Cookie-Banner.',
+      steps: [
+        'Öffne Tracking und drück auf „Ziel erfassen“.',
+        'Erstelle ein Dokument: das erfasst auch document_created.',
       ],
     },
     'tracking-console-tag': {

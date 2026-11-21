@@ -531,6 +531,21 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
   },
   {
+    id: 'credit-hold',
+    group: 'credits',
+    href: '/dashboard/credits',
+    source: {
+      sdk: [
+        'useReserveCredits(workspaceId)',
+        'reserve({ amount, idempotencyKey })',
+        'settle(holdId, { amount })',
+        'release(holdId)',
+      ],
+      app: ['src/components/credits/credit-hold-card.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
+  {
     id: 'credits-low',
     group: 'credits',
     href: '/dashboard/documents',
@@ -629,6 +644,26 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       console: {
         screen: '/dashboard/admin/users/features',
       },
+    },
+    detect: {
+      kind: 'manual',
+    },
+  },
+  {
+    id: 'entitlement-check',
+    group: 'features',
+    href: '/dashboard/documents',
+    source: {
+      sdk: [
+        "useEntitlement('advanced-exports')",
+        "useLimit('max-users', { current })",
+        '<WhenEntitled slug="advanced-exports">',
+      ],
+      console: {
+        screen: '/dashboard/admin/subscriptions/plans',
+        note: 'Features, limits and quotas by slug; each plan version says what it includes.',
+      },
+      app: ['src/components/billing/plan-entitlements-card.tsx'],
     },
     detect: {
       kind: 'manual',
@@ -1426,6 +1461,23 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     detect: { kind: 'manual' },
   },
   {
+    id: 'tracking-goal',
+    group: 'tracking',
+    href: '/dashboard/tracking',
+    source: {
+      sdk: ["trackGoal('tour_goal', props)", "trackGoal('document_created')"],
+      console: {
+        screen: '/dashboard/admin/setting/analytics',
+        note: 'Open reports: goals sit beside pages, sources and locations. Nothing is counted for a visitor who refused analytics.',
+      },
+      app: [
+        'src/components/tracking/goals-card.tsx',
+        'src/components/documents/documents-workbench.tsx',
+      ],
+    },
+    detect: { kind: 'action', action: 'tracking:goal' },
+  },
+  {
     id: 'tracking-console-tag',
     group: 'tracking',
     source: {
@@ -1569,7 +1621,10 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     group: 'platform',
     href: '/dashboard/profile',
     source: {
-      app: ['src/app/api/user/export/route.ts'],
+      app: [
+        'src/components/account/your-data-card.tsx',
+        'src/app/api/user/export/route.ts',
+      ],
     },
     detect: {
       kind: 'action',
@@ -1643,7 +1698,20 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     group: 'platform',
     href: '/dashboard/profile',
     source: {
-      app: ['src/app/api/user/delete/route.ts'],
+      sdk: [
+        'WorkspaceApi.requestAccountDeletion()',
+        "useSaaSAuth().requireReverification()  // Confirm it's you",
+        "webhook 'user.deleted'",
+      ],
+      console: {
+        screen: '/dashboard/admin/users',
+        note: 'Deleting needs a sign-in from the last 10 minutes; the org may delay deletions so they can be cancelled.',
+      },
+      app: [
+        'src/components/account/your-data-card.tsx',
+        'src/app/api/user/delete/route.ts',
+        'src/lib/account/erase.ts',
+      ],
     },
     detect: {
       kind: 'manual',

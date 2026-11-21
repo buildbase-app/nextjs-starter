@@ -1397,6 +1397,107 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: 'Your data',
+    description:
+      'Download everything this app and the platform hold about you, or delete your account here and on the platform.',
+    export: {
+      button: 'Export my data',
+      working: 'Preparing…',
+    },
+    delete: {
+      button: 'Delete my account',
+      working: 'Deleting…',
+      areYouSure:
+        'Delete your account? This cannot be undone, and it ends your session.',
+      recent: 'You signed in recently, so you can delete your account now.',
+      needsConfirm:
+        "Deleting needs a sign-in from the last 10 minutes. You will be asked to confirm it's you first.",
+      confirmNow: "Confirm it's you now",
+      confirmFirst:
+        "Confirm it's you first. You'll come back here; then press Delete my account again.",
+      scheduled:
+        'Your account will be deleted on {date}. Until then you can cancel by signing in.',
+      scheduledNoDate:
+        'Your account deletion is scheduled. Until then you can cancel by signing in.',
+      ownsWorkspaces:
+        'You still own or pay for workspaces with other members: {names}. Remove the other members and cancel the subscription, or delete those workspaces first.',
+    },
+    failed: 'Something went wrong. Please try again.',
+  },
+  entitlements: {
+    title: 'What your plan includes',
+    description:
+      "Checked by slug against the server's entitlement: the plan, plus any add-on or grant on top. Only an explicit no locks.",
+    columns: {
+      slug: 'Slug',
+      kind: 'Kind',
+      answer: 'Answer',
+      detail: 'Detail',
+      source: 'From',
+    },
+    kind: {
+      feature: 'Feature',
+      limit: 'Limit',
+      quota: 'Quota',
+      unknown: 'Not in the plan',
+    },
+    state: {
+      granted: 'Included',
+      locked: 'Locked',
+      unknown: 'Unknown, allowed',
+    },
+    detail: {
+      unlimited: 'Unlimited',
+      quota: '{used} of {limit} used, {remaining} left this period',
+      limit: '{used} of {limit}, room for {remaining} more',
+    },
+    source: {
+      plan: 'The plan',
+      floor: 'Raised by a grant',
+      add: 'Plan plus an add-on',
+      override: 'Set by the team',
+      default: 'Default',
+    },
+    pressure: {
+      nearing: 'Nearly full',
+      reached: 'Limit reached',
+    },
+    gate: {
+      title: 'Advanced exports, behind a gate',
+      upgrade: 'Upgrade to export',
+      included: 'Included in your plan',
+    },
+  },
+  goals: {
+    title: 'Web analytics goals',
+    description:
+      "Count the moments that matter, beside page views in the console's Analytics. Goals follow the cookie banner: after a no, nothing is sent.",
+    record: 'Record a goal',
+    recorded:
+      "Recorded {name} {count, plural, one {once} other {# times}}. It shows in the console's Analytics under Goals.",
+    notSent: 'Not sent: you refused analytics in the cookie banner.',
+    alsoDocuments:
+      'This app also records document_created whenever you create a document.',
+  },
+  creditHolds: {
+    title: 'Hold credits, settle later',
+    description:
+      'For work whose cost is only known afterwards: hold an estimate, then settle what it really cost. Less gives the rest back; cancelling releases it all.',
+    start: 'Start a job (hold {amount})',
+    held: 'Holding {amount} credits until {time}.',
+    finish: 'Finish: it cost {cost}',
+    cancel: 'Cancel the job',
+    settled: 'Charged {settled}; {returned} went back to the balance.',
+    settledExtra:
+      'Charged {settled}: the work cost {extra} more than the hold.',
+    released: 'Released: {returned} back to the balance.',
+    insufficient:
+      'Not enough credits to hold the estimate ({available} available).',
+    notOpen: 'That hold is no longer open: it expired or was already settled.',
+    failed: 'The hold could not be changed.',
+    jobDescription: 'Demo job (held, then settled)',
+  },
   autoTopUp: {
     title: 'Auto top-up',
     on: 'On',

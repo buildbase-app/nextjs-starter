@@ -37,6 +37,7 @@ export const TASK_IDS = [
   'usage-log',
   'see-balance',
   'spend-credits',
+  'credit-hold',
   'credits-low',
   'buy-credits',
   'auto-top-up',
@@ -44,6 +45,7 @@ export const TASK_IDS = [
   'feature-off',
   'feature-on',
   'user-feature',
+  'entitlement-check',
   'permission-matrix',
   'forbidden-action',
   'custom-role',
@@ -109,6 +111,7 @@ export const TASK_IDS = [
   'tracking-consent',
   'tracking-custom-event',
   'tracking-attribution',
+  'tracking-goal',
   'tracking-console-tag',
   // workflows
   'workflow-runs',

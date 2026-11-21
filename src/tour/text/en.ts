@@ -318,6 +318,14 @@ export const en: TourText = {
         'Watch the sidebar balance and the metering line change.',
       ],
     },
+    'credit-hold': {
+      title: 'Hold credits for work of unknown cost',
+      why: "An AI job or a large export costs what it costs: hold an estimate first so the balance can't be overspent, then charge the real amount.",
+      steps: [
+        'Open Credits and press Start a job.',
+        'Finish it and see what came back, or cancel it and see the hold released.',
+      ],
+    },
     'credits-low': {
       title: 'Run low',
       why: 'A gate at a threshold, so you can offer a top-up before it runs out.',
@@ -364,6 +372,14 @@ export const en: TourText = {
       why: 'User features follow the person across workspaces; workspace features follow the tenant.',
       steps: [
         'Open Profile: the features listed there are yours, not the workspace’s.',
+      ],
+    },
+    'entitlement-check': {
+      title: 'Ask the plan by slug',
+      why: 'Gate on what the plan includes, not on its name: add-ons and grants count too, and renaming a plan breaks nothing.',
+      steps: [
+        'Open Documents and read What your plan includes.',
+        'Change the plan, then look again: the answers follow it.',
       ],
     },
     'permission-matrix': {
@@ -753,6 +769,14 @@ export const en: TourText = {
       steps: [
         'Reload the Tracking page with ?utm_source=demo&utm_campaign=tour.',
         'Read the attribution card.',
+      ],
+    },
+    'tracking-goal': {
+      title: 'Count a goal',
+      why: "Page views say where people went; goals say what they did. Both land in the console's Analytics, and both respect a no in the cookie banner.",
+      steps: [
+        'Open Tracking and press Record a goal.',
+        'Create a document: that records document_created too.',
       ],
     },
     'tracking-console-tag': {

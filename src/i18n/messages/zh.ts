@@ -1338,6 +1338,100 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: '你的数据',
+    description:
+      '下载本应用和平台保存的所有关于你的数据，或在此处和平台上删除你的账户。',
+    export: {
+      button: '导出我的数据',
+      working: '正在准备…',
+    },
+    delete: {
+      button: '删除我的账户',
+      working: '正在删除…',
+      areYouSure: '确定删除你的账户吗？此操作无法撤销，并会结束你的会话。',
+      recent: '你最近登录过，现在就可以删除账户。',
+      needsConfirm:
+        '删除账户需要最近 10 分钟内的登录。系统会先请你确认是本人操作。',
+      confirmNow: '立即确认是本人',
+      confirmFirst:
+        '请先确认是本人。你会回到这里，然后再次点击“删除我的账户”。',
+      scheduled: '你的账户将于 {date} 删除。在此之前，登录即可取消。',
+      scheduledNoDate: '你的账户已安排删除。在此之前，登录即可取消。',
+      ownsWorkspaces:
+        '你仍拥有或付费的工作区中还有其他成员：{names}。请先移除其他成员并取消订阅，或先删除这些工作区。',
+    },
+    failed: '出了点问题，请重试。',
+  },
+  entitlements: {
+    title: '你的套餐包含什么',
+    description:
+      '按标识（slug）对照服务器的权益进行检查：套餐，加上其上的任何附加项或授予。只有明确拒绝才会锁定。',
+    columns: {
+      slug: '标识',
+      kind: '类型',
+      answer: '结果',
+      detail: '详情',
+      source: '来源',
+    },
+    kind: {
+      feature: '功能',
+      limit: '上限',
+      quota: '配额',
+      unknown: '套餐中没有',
+    },
+    state: {
+      granted: '已包含',
+      locked: '已锁定',
+      unknown: '未知，允许',
+    },
+    detail: {
+      unlimited: '无限制',
+      quota: '已用 {used}/{limit}，本周期剩余 {remaining}',
+      limit: '{used}/{limit}，还可增加 {remaining}',
+    },
+    source: {
+      plan: '套餐',
+      floor: '由授予提升',
+      add: '套餐加附加项',
+      override: '由团队设定',
+      default: '默认',
+    },
+    pressure: {
+      nearing: '接近上限',
+      reached: '已达上限',
+    },
+    gate: {
+      title: '高级导出，受权益控制',
+      upgrade: '升级以导出',
+      included: '已包含在你的套餐中',
+    },
+  },
+  goals: {
+    title: '网站分析目标',
+    description:
+      '在控制台的分析中，与页面浏览一起统计重要时刻。目标遵循 Cookie 横幅：拒绝后不会发送任何内容。',
+    record: '记录一个目标',
+    recorded: '已记录 {name} {count} 次。它会显示在控制台分析的“目标”中。',
+    notSent: '未发送：你在 Cookie 横幅中拒绝了分析。',
+    alsoDocuments: '每当你创建文档时，本应用也会记录 document_created。',
+  },
+  creditHolds: {
+    title: '先预留积分，后结算',
+    description:
+      '适用于事后才知道成本的工作：先预留一个估算值，再按实际成本结算。用得少会退回剩余部分；取消则全部释放。',
+    start: '开始任务（预留 {amount}）',
+    held: '已预留 {amount} 积分，至 {time}。',
+    finish: '完成：实际花费 {cost}',
+    cancel: '取消任务',
+    settled: '扣除 {settled}；{returned} 已退回余额。',
+    settledExtra: '扣除 {settled}：工作比预留多花了 {extra}。',
+    released: '已释放：{returned} 退回余额。',
+    insufficient: '积分不足，无法预留估算值（可用 {available}）。',
+    notOpen: '该预留已不再有效：已过期或已结算。',
+    failed: '无法更改该预留。',
+    jobDescription: '演示任务（先预留，后结算）',
+  },
   autoTopUp: {
     title: '自动充值',
     on: '已开启',

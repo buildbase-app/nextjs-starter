@@ -343,6 +343,14 @@ export const es: TourText = {
         'Observa cómo cambian el saldo de la barra lateral y la línea de medición.',
       ],
     },
+    'credit-hold': {
+      title: 'Reserva créditos para un trabajo de coste desconocido',
+      why: 'Un trabajo de IA o una exportación grande cuesta lo que cuesta: reserva primero una estimación para que no se gaste de más el saldo, y cobra después el importe real.',
+      steps: [
+        'Abre Créditos y pulsa «Iniciar un trabajo».',
+        'Termínalo y mira lo que se devolvió, o cancélalo y mira cómo se libera la reserva.',
+      ],
+    },
     'credits-low': {
       title: 'Quédate con poco saldo',
       why: 'Una puerta en un umbral, para que puedas ofrecer una recarga antes de que se agote.',
@@ -391,6 +399,14 @@ export const es: TourText = {
       why: 'Las funciones de usuario siguen a la persona entre espacios de trabajo; las de espacio de trabajo siguen al inquilino.',
       steps: [
         'Abre Profile: las funciones que aparecen ahí son tuyas, no del espacio de trabajo.',
+      ],
+    },
+    'entitlement-check': {
+      title: 'Pregunta al plan por slug',
+      why: 'Bloquea según lo que incluye el plan, no según su nombre: los complementos y las concesiones también cuentan, y renombrar un plan no rompe nada.',
+      steps: [
+        'Abre Documentos y lee «Lo que incluye tu plan».',
+        'Cambia de plan y vuelve a mirar: las respuestas lo siguen.',
       ],
     },
     'permission-matrix': {
@@ -786,6 +802,14 @@ export const es: TourText = {
       steps: [
         'Recarga la página de Seguimiento con ?utm_source=demo&utm_campaign=tour.',
         'Lee la tarjeta de atribución.',
+      ],
+    },
+    'tracking-goal': {
+      title: 'Cuenta un objetivo',
+      why: 'Las páginas vistas dicen adónde fue la gente; los objetivos, qué hizo. Ambos llegan a la analítica de la consola y ambos respetan un no en el banner de cookies.',
+      steps: [
+        'Abre Seguimiento y pulsa «Registrar un objetivo».',
+        'Crea un documento: eso también registra document_created.',
       ],
     },
     'tracking-console-tag': {

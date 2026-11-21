@@ -32,6 +32,7 @@ import {
   Package,
 } from 'lucide-react';
 import { AutoTopUpCard } from '@/components/credits/auto-top-up-card';
+import { CreditHoldCard } from '@/components/credits/credit-hold-card';
 
 function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
   const t = useTranslations('credits');
@@ -323,6 +324,11 @@ export default function CreditsPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Credit holds: reserve an estimate, settle the real cost */}
+      {currentWorkspace?._id && (
+        <CreditHoldCard workspaceId={currentWorkspace._id} />
+      )}
 
       {/* Transaction history */}
       <Card>

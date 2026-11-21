@@ -1422,6 +1422,110 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: 'Vos données',
+    description:
+      'Téléchargez tout ce que cette application et la plateforme conservent sur vous, ou supprimez votre compte ici et sur la plateforme.',
+    export: {
+      button: 'Exporter mes données',
+      working: 'Préparation…',
+    },
+    delete: {
+      button: 'Supprimer mon compte',
+      working: 'Suppression…',
+      areYouSure:
+        "Supprimer votre compte ? C'est irréversible, et votre session prendra fin.",
+      recent:
+        'Vous vous êtes connecté récemment : vous pouvez supprimer votre compte maintenant.',
+      needsConfirm:
+        "La suppression exige une connexion datant de moins de 10 minutes. On vous demandera d'abord de confirmer que c'est bien vous.",
+      confirmNow: "Confirmer que c'est vous maintenant",
+      confirmFirst:
+        "Confirmez d'abord que c'est bien vous. Vous reviendrez ici ; appuyez alors de nouveau sur « Supprimer mon compte ».",
+      scheduled:
+        "Votre compte sera supprimé le {date}. D'ici là, vous pouvez annuler en vous connectant.",
+      scheduledNoDate:
+        "La suppression de votre compte est programmée. D'ici là, vous pouvez l'annuler en vous connectant.",
+      ownsWorkspaces:
+        "Vous possédez ou payez encore des espaces de travail avec d'autres membres : {names}. Retirez les autres membres et résiliez l'abonnement, ou supprimez d'abord ces espaces.",
+    },
+    failed: "Une erreur s'est produite. Veuillez réessayer.",
+  },
+  entitlements: {
+    title: 'Ce que votre forfait inclut',
+    description:
+      'Vérifié par slug auprès des droits du serveur : le forfait, plus tout module ou attribution en sus. Seul un refus explicite verrouille.',
+    columns: {
+      slug: 'Slug',
+      kind: 'Type',
+      answer: 'Réponse',
+      detail: 'Détail',
+      source: 'Origine',
+    },
+    kind: {
+      feature: 'Fonction',
+      limit: 'Limite',
+      quota: 'Quota',
+      unknown: 'Absent du forfait',
+    },
+    state: {
+      granted: 'Inclus',
+      locked: 'Verrouillé',
+      unknown: 'Inconnu, autorisé',
+    },
+    detail: {
+      unlimited: 'Illimité',
+      quota: '{used} sur {limit} utilisés, {remaining} restants sur la période',
+      limit: '{used} sur {limit}, place pour {remaining} de plus',
+    },
+    source: {
+      plan: 'Le forfait',
+      floor: 'Relevé par une attribution',
+      add: 'Forfait plus un module',
+      override: "Fixé par l'équipe",
+      default: 'Par défaut',
+    },
+    pressure: {
+      nearing: 'Presque plein',
+      reached: 'Limite atteinte',
+    },
+    gate: {
+      title: 'Exports avancés, derrière une barrière',
+      upgrade: "Passer à l'offre supérieure pour exporter",
+      included: 'Inclus dans votre forfait',
+    },
+  },
+  goals: {
+    title: "Objectifs d'analyse web",
+    description:
+      "Comptez les moments qui comptent, à côté des pages vues, dans l'Analytics de la console. Les objectifs suivent la bannière de cookies : après un refus, rien n'est envoyé.",
+    record: 'Enregistrer un objectif',
+    recorded:
+      "{name} enregistré {count, plural, one {une fois} other {# fois}}. Il apparaît dans l'Analytics de la console, sous Objectifs.",
+    notSent:
+      "Non envoyé : vous avez refusé l'analyse dans la bannière de cookies.",
+    alsoDocuments:
+      'Cette application enregistre aussi document_created chaque fois que vous créez un document.',
+  },
+  creditHolds: {
+    title: 'Réserver des crédits, régler ensuite',
+    description:
+      "Pour un travail dont le coût n'est connu qu'après coup : réservez une estimation, puis réglez ce qu'il a vraiment coûté. Moins rend le reste ; annuler libère tout.",
+    start: 'Lancer une tâche (réserver {amount})',
+    held: "{amount} crédits réservés jusqu'à {time}.",
+    finish: 'Terminer : elle a coûté {cost}',
+    cancel: 'Annuler la tâche',
+    settled: '{settled} débités ; {returned} sont revenus au solde.',
+    settledExtra:
+      '{settled} débités : le travail a coûté {extra} de plus que la réservation.',
+    released: 'Libéré : {returned} revenus au solde.',
+    insufficient:
+      "Pas assez de crédits pour réserver l'estimation ({available} disponibles).",
+    notOpen:
+      "Cette réservation n'est plus ouverte : elle a expiré ou a déjà été réglée.",
+    failed: "La réservation n'a pas pu être modifiée.",
+    jobDescription: 'Tâche de démonstration (réservée, puis réglée)',
+  },
   autoTopUp: {
     title: 'Recharge automatique',
     on: 'Activée',

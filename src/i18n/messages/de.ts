@@ -1417,6 +1417,109 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: 'Deine Daten',
+    description:
+      'Lade alles herunter, was diese App und die Plattform über dich speichern, oder lösche dein Konto hier und auf der Plattform.',
+    export: {
+      button: 'Meine Daten exportieren',
+      working: 'Wird vorbereitet…',
+    },
+    delete: {
+      button: 'Mein Konto löschen',
+      working: 'Wird gelöscht…',
+      areYouSure:
+        'Dein Konto löschen? Das lässt sich nicht rückgängig machen und beendet deine Sitzung.',
+      recent:
+        'Du hast dich vor Kurzem angemeldet und kannst dein Konto jetzt löschen.',
+      needsConfirm:
+        'Zum Löschen ist eine Anmeldung aus den letzten 10 Minuten nötig. Du wirst zuerst gebeten zu bestätigen, dass du es bist.',
+      confirmNow: 'Jetzt bestätigen, dass du es bist',
+      confirmFirst:
+        'Bestätige zuerst, dass du es bist. Du kommst hierher zurück; drück dann noch einmal auf „Mein Konto löschen“.',
+      scheduled:
+        'Dein Konto wird am {date} gelöscht. Bis dahin kannst du es mit einer Anmeldung abbrechen.',
+      scheduledNoDate:
+        'Die Löschung deines Kontos ist geplant. Bis dahin kannst du sie mit einer Anmeldung abbrechen.',
+      ownsWorkspaces:
+        'Dir gehören noch Arbeitsbereiche mit anderen Mitgliedern, oder du bezahlst für sie: {names}. Entferne die anderen Mitglieder und kündige das Abo, oder lösche diese Arbeitsbereiche zuerst.',
+    },
+    failed: 'Etwas ist schiefgelaufen. Bitte versuch es noch einmal.',
+  },
+  entitlements: {
+    title: 'Was dein Tarif enthält',
+    description:
+      'Per Slug gegen die Berechtigung des Servers geprüft: der Tarif plus jedes Add-on oder jede Zuteilung obendrauf. Nur ein ausdrückliches Nein sperrt.',
+    columns: {
+      slug: 'Slug',
+      kind: 'Art',
+      answer: 'Antwort',
+      detail: 'Details',
+      source: 'Herkunft',
+    },
+    kind: {
+      feature: 'Funktion',
+      limit: 'Limit',
+      quota: 'Kontingent',
+      unknown: 'Nicht im Tarif',
+    },
+    state: {
+      granted: 'Enthalten',
+      locked: 'Gesperrt',
+      unknown: 'Unbekannt, erlaubt',
+    },
+    detail: {
+      unlimited: 'Unbegrenzt',
+      quota: '{used} von {limit} genutzt, {remaining} übrig in diesem Zeitraum',
+      limit: '{used} von {limit}, Platz für {remaining} weitere',
+    },
+    source: {
+      plan: 'Der Tarif',
+      floor: 'Durch eine Zuteilung angehoben',
+      add: 'Tarif plus Add-on',
+      override: 'Vom Team festgelegt',
+      default: 'Standard',
+    },
+    pressure: {
+      nearing: 'Fast voll',
+      reached: 'Limit erreicht',
+    },
+    gate: {
+      title: 'Erweiterte Exporte hinter einer Sperre',
+      upgrade: 'Upgrade zum Exportieren',
+      included: 'In deinem Tarif enthalten',
+    },
+  },
+  goals: {
+    title: 'Web-Analytics-Ziele',
+    description:
+      'Zähle die Momente, auf die es ankommt, neben den Seitenaufrufen in den Analytics der Konsole. Ziele folgen dem Cookie-Banner: nach einem Nein wird nichts gesendet.',
+    record: 'Ziel erfassen',
+    recorded:
+      '{name} {count, plural, one {einmal} other {#-mal}} erfasst. Es erscheint in den Analytics der Konsole unter Ziele.',
+    notSent: 'Nicht gesendet: Du hast Analytics im Cookie-Banner abgelehnt.',
+    alsoDocuments:
+      'Diese App erfasst außerdem document_created, wenn du ein Dokument erstellst.',
+  },
+  creditHolds: {
+    title: 'Credits reservieren, später abrechnen',
+    description:
+      'Für Arbeit, deren Kosten erst danach feststehen: Reserviere eine Schätzung und rechne dann ab, was sie wirklich gekostet hat. Weniger gibt den Rest zurück; Abbrechen gibt alles frei.',
+    start: 'Auftrag starten ({amount} reservieren)',
+    held: '{amount} Credits reserviert bis {time}.',
+    finish: 'Abschließen: hat {cost} gekostet',
+    cancel: 'Auftrag abbrechen',
+    settled: '{settled} abgebucht; {returned} gingen zurück aufs Guthaben.',
+    settledExtra:
+      '{settled} abgebucht: die Arbeit kostete {extra} mehr als reserviert.',
+    released: 'Freigegeben: {returned} zurück aufs Guthaben.',
+    insufficient:
+      'Nicht genug Credits, um die Schätzung zu reservieren ({available} verfügbar).',
+    notOpen:
+      'Diese Reservierung ist nicht mehr offen: sie ist abgelaufen oder wurde schon abgerechnet.',
+    failed: 'Die Reservierung konnte nicht geändert werden.',
+    jobDescription: 'Demo-Auftrag (reserviert, dann abgerechnet)',
+  },
   autoTopUp: {
     title: 'Automatisches Aufladen',
     on: 'An',

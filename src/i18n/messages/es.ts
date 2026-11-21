@@ -1418,6 +1418,108 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: 'Tus datos',
+    description:
+      'Descarga todo lo que esta app y la plataforma guardan sobre ti, o elimina tu cuenta aquí y en la plataforma.',
+    export: {
+      button: 'Exportar mis datos',
+      working: 'Preparando…',
+    },
+    delete: {
+      button: 'Eliminar mi cuenta',
+      working: 'Eliminando…',
+      areYouSure:
+        '¿Eliminar tu cuenta? No se puede deshacer y cierra tu sesión.',
+      recent:
+        'Iniciaste sesión hace poco, así que puedes eliminar tu cuenta ahora.',
+      needsConfirm:
+        'Para eliminarla hace falta haber iniciado sesión en los últimos 10 minutos. Primero te pediremos que confirmes que eres tú.',
+      confirmNow: 'Confirmar que eres tú ahora',
+      confirmFirst:
+        'Primero confirma que eres tú. Volverás aquí; después pulsa de nuevo «Eliminar mi cuenta».',
+      scheduled:
+        'Tu cuenta se eliminará el {date}. Hasta entonces puedes cancelarlo iniciando sesión.',
+      scheduledNoDate:
+        'La eliminación de tu cuenta está programada. Hasta entonces puedes cancelarla iniciando sesión.',
+      ownsWorkspaces:
+        'Todavía eres dueño de espacios de trabajo con otros miembros, o pagas por ellos: {names}. Quita a los demás miembros y cancela la suscripción, o elimina primero esos espacios.',
+    },
+    failed: 'Algo salió mal. Inténtalo de nuevo.',
+  },
+  entitlements: {
+    title: 'Lo que incluye tu plan',
+    description:
+      'Se comprueba por slug con los derechos del servidor: el plan, más cualquier complemento o concesión encima. Solo un no explícito bloquea.',
+    columns: {
+      slug: 'Slug',
+      kind: 'Tipo',
+      answer: 'Respuesta',
+      detail: 'Detalle',
+      source: 'Origen',
+    },
+    kind: {
+      feature: 'Función',
+      limit: 'Límite',
+      quota: 'Cuota',
+      unknown: 'No está en el plan',
+    },
+    state: {
+      granted: 'Incluido',
+      locked: 'Bloqueado',
+      unknown: 'Desconocido, permitido',
+    },
+    detail: {
+      unlimited: 'Ilimitado',
+      quota: '{used} de {limit} usados, quedan {remaining} en este periodo',
+      limit: '{used} de {limit}, caben {remaining} más',
+    },
+    source: {
+      plan: 'El plan',
+      floor: 'Elevado por una concesión',
+      add: 'Plan más un complemento',
+      override: 'Fijado por el equipo',
+      default: 'Predeterminado',
+    },
+    pressure: {
+      nearing: 'Casi lleno',
+      reached: 'Límite alcanzado',
+    },
+    gate: {
+      title: 'Exportaciones avanzadas, tras una barrera',
+      upgrade: 'Mejora tu plan para exportar',
+      included: 'Incluido en tu plan',
+    },
+  },
+  goals: {
+    title: 'Objetivos de analítica web',
+    description:
+      'Cuenta los momentos que importan junto a las páginas vistas en la analítica de la consola. Los objetivos siguen al banner de cookies: tras un no, no se envía nada.',
+    record: 'Registrar un objetivo',
+    recorded:
+      'Registrado {name} {count, plural, one {una vez} other {# veces}}. Aparece en la analítica de la consola, en Objetivos.',
+    notSent: 'No se envió: rechazaste la analítica en el banner de cookies.',
+    alsoDocuments:
+      'Esta app también registra document_created cada vez que creas un documento.',
+  },
+  creditHolds: {
+    title: 'Reserva créditos, liquida después',
+    description:
+      'Para trabajo cuyo coste solo se conoce al final: reserva una estimación y luego liquida lo que costó de verdad. Si cuesta menos, se devuelve el resto; cancelar lo libera todo.',
+    start: 'Iniciar un trabajo (reservar {amount})',
+    held: 'Reservados {amount} créditos hasta las {time}.',
+    finish: 'Terminar: costó {cost}',
+    cancel: 'Cancelar el trabajo',
+    settled: 'Se cobraron {settled}; {returned} volvieron al saldo.',
+    settledExtra:
+      'Se cobraron {settled}: el trabajo costó {extra} más que la reserva.',
+    released: 'Liberado: {returned} volvieron al saldo.',
+    insufficient:
+      'No hay créditos suficientes para reservar la estimación ({available} disponibles).',
+    notOpen: 'Esa reserva ya no está abierta: caducó o ya se liquidó.',
+    failed: 'No se pudo cambiar la reserva.',
+    jobDescription: 'Trabajo de demostración (reservado y luego liquidado)',
+  },
   autoTopUp: {
     title: 'Recarga automática',
     on: 'Activada',

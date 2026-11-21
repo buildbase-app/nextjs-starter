@@ -354,6 +354,14 @@ export const fr: TourText = {
         'Regardez le solde de la barre latérale et la ligne de mesure changer.',
       ],
     },
+    'credit-hold': {
+      title: 'Réserver des crédits pour un travail au coût inconnu',
+      why: "Une tâche d'IA ou un gros export coûte ce qu'il coûte : réservez d'abord une estimation pour que le solde ne soit pas dépassé, puis débitez le montant réel.",
+      steps: [
+        'Ouvrez Crédits et appuyez sur « Lancer une tâche ».',
+        'Terminez-la et voyez ce qui revient, ou annulez-la et voyez la réservation libérée.',
+      ],
+    },
     'credits-low': {
       title: 'Arriver à court',
       why: 'Un gate à un seuil, pour proposer une recharge avant que le solde soit épuisé.',
@@ -402,6 +410,14 @@ export const fr: TourText = {
       why: 'Les fonctionnalités utilisateur suivent la personne d’un espace à l’autre ; les fonctionnalités d’espace de travail suivent le tenant.',
       steps: [
         'Ouvrez Profil : les fonctionnalités listées là sont les vôtres, pas celles de l’espace de travail.',
+      ],
+    },
+    'entitlement-check': {
+      title: 'Interroger le forfait par slug',
+      why: 'Filtrez sur ce que le forfait inclut, pas sur son nom : les modules et les attributions comptent aussi, et renommer un forfait ne casse rien.',
+      steps: [
+        'Ouvrez Documents et lisez « Ce que votre forfait inclut ».',
+        'Changez de forfait puis regardez à nouveau : les réponses suivent.',
       ],
     },
     'permission-matrix': {
@@ -803,6 +819,14 @@ export const fr: TourText = {
       steps: [
         'Rechargez la page Suivi avec ?utm_source=demo&utm_campaign=tour.',
         'Lisez la carte d’attribution.',
+      ],
+    },
+    'tracking-goal': {
+      title: 'Compter un objectif',
+      why: "Les pages vues disent où les gens sont allés ; les objectifs, ce qu'ils ont fait. Les deux arrivent dans l'Analytics de la console, et les deux respectent un refus dans la bannière de cookies.",
+      steps: [
+        'Ouvrez Suivi et appuyez sur « Enregistrer un objectif ».',
+        'Créez un document : cela enregistre aussi document_created.',
       ],
     },
     'tracking-console-tag': {

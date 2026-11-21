@@ -1282,6 +1282,97 @@ export interface AccountMessages {
   };
 }
 
+export interface YourDataMessages {
+  title: string;
+  description: string;
+  export: {
+    button: string;
+    working: string;
+  };
+  delete: {
+    button: string;
+    working: string;
+    areYouSure: string;
+    recent: string;
+    needsConfirm: string;
+    confirmNow: string;
+    confirmFirst: string;
+    scheduled: string;
+    scheduledNoDate: string;
+    ownsWorkspaces: string;
+  };
+  failed: string;
+}
+
+export interface EntitlementsMessages {
+  title: string;
+  description: string;
+  columns: {
+    slug: string;
+    kind: string;
+    answer: string;
+    detail: string;
+    source: string;
+  };
+  kind: {
+    feature: string;
+    limit: string;
+    quota: string;
+    unknown: string;
+  };
+  state: {
+    granted: string;
+    locked: string;
+    unknown: string;
+  };
+  detail: {
+    unlimited: string;
+    quota: string;
+    limit: string;
+  };
+  source: {
+    plan: string;
+    floor: string;
+    add: string;
+    override: string;
+    default: string;
+  };
+  pressure: {
+    nearing: string;
+    reached: string;
+  };
+  gate: {
+    title: string;
+    upgrade: string;
+    included: string;
+  };
+}
+
+export interface GoalsMessages {
+  title: string;
+  description: string;
+  record: string;
+  recorded: string;
+  notSent: string;
+  alsoDocuments: string;
+}
+
+export interface CreditHoldsMessages {
+  title: string;
+  description: string;
+  start: string;
+  held: string;
+  finish: string;
+  cancel: string;
+  settled: string;
+  settledExtra: string;
+  released: string;
+  insufficient: string;
+  notOpen: string;
+  failed: string;
+  jobDescription: string;
+}
+
 export interface AutoTopUpMessages {
   title: string;
   on: string;
@@ -1349,6 +1440,10 @@ export interface Messages {
   audience: AudienceMessages;
   waitlist: WaitlistMessages;
   account: AccountMessages;
+  yourData: YourDataMessages;
+  entitlements: EntitlementsMessages;
+  goals: GoalsMessages;
+  creditHolds: CreditHoldsMessages;
   autoTopUp: AutoTopUpMessages;
 }
 
