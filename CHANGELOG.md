@@ -12,6 +12,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sentry error monitoring integration with session replay
 - Global error boundary (`src/app/global-error.tsx`)
 - Sentry utility functions (`src/lib/sentry.ts`)
+- Deploys to Cloudflare Workers (OpenNext) as well as Vercel and Docker, with a
+  GitHub Actions deploy on push to `main` once `CLOUDFLARE_API_TOKEN` is set.
+
+### Changed
+
+- `@buildbase/sdk` 1.8.0 (from 0.0.78). The deprecated hook keys
+  (`isLoading`, `refreshAttributes`, `refreshFeatures`) and the profile's `_id`
+  are replaced by `loading`, `refetch` and `id`.
+- The cookie banner is the SDK's `CookieBanner`; the answer lives in the
+  `bb_consent` cookie, so visitors who answered the old banner are asked once
+  more. `openCookieBanner()` reopens it from the Tracking page.
+- The server content client names the template (`source: 'nextjs-starter'`) in
+  the SDK's `X-BuildBase-Client` header.
+- Brand icons (GitHub, X, LinkedIn, Facebook) are inline Simple Icons marks
+  (`src/components/icons/brand.tsx`), since lucide-react deprecated its own.
+- Zod 4 forms replace deprecated ones (`z.url()`, `z.email()`, `z.uuid()`,
+  `.loose()`, `z.ZodType`), and React's `SubmitEvent` replaces `FormEvent`.
 
 ## [0.2.0] - 2026-09-24
 
