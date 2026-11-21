@@ -32,8 +32,11 @@ function buildbaseConnectSources(): string[] {
 function addSecurityHeaders(response: NextResponse): NextResponse {
   const cspDirectives = [
     "default-src 'self'",
-    // 'unsafe-eval' required for Contentlayer MDX runtime
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+    // 'unsafe-eval' required for Contentlayer MDX runtime.
+    // static.cloudflareinsights.com: Cloudflare Web Analytics, which
+    // Cloudflare injects when the site is served through it (its beacon
+    // reports to cloudflareinsights.com, covered by connect-src https:).
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data:",
