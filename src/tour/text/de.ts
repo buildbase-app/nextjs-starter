@@ -416,7 +416,7 @@ export const de: TourText = {
       title: 'Automatisch aufladen',
       why: 'Ein Arbeitsbereich ohne Credits hört auf zu arbeiten. Automatisches Aufladen kauft vorher ein Paket mit der gespeicherten Karte, innerhalb eines monatlichen Limits, das der Kunde festlegt.',
       steps: [
-        'Öffne Credits und such „Automatisches Aufladen“.',
+        'Öffne Credits und drück auf „Automatisches Aufladen einrichten“.',
         'Füg eine Karte hinzu, wähl Schwellenwert und Paket und schalte es ein.',
       ],
     },
@@ -475,6 +475,14 @@ export const de: TourText = {
       steps: [
         'Öffne Berechtigungen und lies die eigenen Schlüssel der Organisation.',
         'Diese Demo fügt eine eigene Rolle „reviewer“ hinzu, die nur den Status eines Dokuments ändern darf.',
+      ],
+    },
+    'enterprise-sso': {
+      title: 'Single Sign-on für die Firma eines Kunden',
+      why: 'Größere Kunden wollen, dass sich ihre Leute über ihren eigenen Identitätsanbieter anmelden, mit Verzeichnissynchronisierung und eigenen Regeln. Mit dem Bildschirm des SDK richtet der Admin der Firma das ohne dein Team ein.',
+      steps: [
+        'Öffne Enterprise.',
+        'Folge der Einrichtung oder lies, warum sie noch nicht verfügbar ist.',
       ],
     },
     'inbox-first-item': {
