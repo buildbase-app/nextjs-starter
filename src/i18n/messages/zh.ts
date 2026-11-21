@@ -1228,6 +1228,18 @@ const messages: Messages = {
         '在 BuildBase 控制台中定义并按角色授予的权限键，包括自定义角色。文档在服务器端也会检查它们。',
       empty:
         '该组织尚未定义自己的权限。运行 npm run seed:org，或在控制台的 Workspace settings → Permissions 中添加权限键。',
+      permission: '权限',
+      inApp: '应用内',
+      backend: '你的后端',
+      allowed: '允许',
+      denied: '拒绝',
+      tryIt: '试一试',
+      codeOnly: '仅存在于本应用代码中，因此只有浏览器会检查',
+      tried: {
+        allowed: '完成：后端已允许',
+        refused: '被后端拒绝',
+        error: '无法检查',
+      },
     },
     security: {
       title: '安全',

@@ -650,6 +650,15 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     group: 'permissions',
     href: '/dashboard/permissions',
     source: {
+      sdk: [
+        'usePermissions().can(key)',
+        'bb.workspace.permissions(workspaceId)',
+        'bb.workspace.can(workspaceId, key)',
+      ],
+      app: [
+        'src/components/permissions/app-permissions-card.tsx',
+        'src/app/api/permissions/route.ts',
+      ],
       console: {
         screen: '/dashboard/admin/workspaces/settings',
         note: 'Roles and their permissions.',
