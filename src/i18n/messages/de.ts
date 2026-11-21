@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      bookings: 'Buchungen',
       orders: 'Bestellungen',
       shop: 'Shop',
       affiliates: 'Affiliates',
@@ -1335,6 +1336,7 @@ const messages: Messages = {
     by: 'von {seller}',
     free: 'Kostenlos',
     notForSale: 'Derzeit nicht verkäuflich',
+    pickTime: 'Zuerst eine Zeit wählen',
   },
   orders: {
     title: 'Bestellungen',
@@ -1348,6 +1350,14 @@ const messages: Messages = {
     yourOrder: 'Deine Bestellung',
     total: 'Gesamt',
     whatYouGot: 'Was du bekommen hast',
+  },
+  bookings: {
+    title: 'Buchungen',
+    description:
+      'Die Zeiten, die du gebucht hast, jeweils mit Kalenderdatei. Sage eine ab oder verschiebe sie im Rahmen der Regeln des Verkäufers.',
+    empty: 'Du hast noch keine Zeit gebucht.',
+    browse: 'Eine Zeit im Shop buchen',
+    loading: 'Deine Buchungen werden geladen…',
   },
 };
 

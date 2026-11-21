@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      bookings: '预约',
       orders: '订单',
       shop: '商店',
       affiliates: '推广联盟',
@@ -1258,6 +1259,7 @@ const messages: Messages = {
     by: '来自 {seller}',
     free: '免费',
     notForSale: '暂不出售',
+    pickTime: '请先选择时间',
   },
   orders: {
     title: '订单',
@@ -1270,6 +1272,14 @@ const messages: Messages = {
     yourOrder: '你的订单',
     total: '合计',
     whatYouGot: '你获得的内容',
+  },
+  bookings: {
+    title: '预约',
+    description:
+      '你预约的时间，每个都附带日历文件。可在卖家的规则内取消或改期。',
+    empty: '你还没有预约任何时间。',
+    browse: '在商店预约时间',
+    loading: '正在加载你的预约…',
   },
 };
 

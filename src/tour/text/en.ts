@@ -324,6 +324,14 @@ export const en: TourText = {
         'After paying, Orders shows the order and what it gave you.',
       ],
     },
+    'marketplace-book': {
+      title: 'Book a time',
+      why: "Sell a time on a seller's calendar: open slots in the buyer's own zone, the seat held while they pay, and a calendar file once it is booked.",
+      steps: [
+        'In the Shop, pick a time on the 30-minute coaching call and pay.',
+        'Open Bookings to add it to your calendar, or cancel or move it.',
+      ],
+    },
     'record-usage': {
       title: 'Record usage',
       why: 'Your app meters what it does (a document created, a video processed); the plan says how much is included.',

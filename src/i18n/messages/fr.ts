@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      bookings: 'Réservations',
       orders: 'Commandes',
       shop: 'Boutique',
       affiliates: 'Affiliés',
@@ -1343,6 +1344,7 @@ const messages: Messages = {
     by: 'par {seller}',
     free: 'Gratuit',
     notForSale: 'Pas en vente pour le moment',
+    pickTime: "Choisissez d'abord un horaire",
   },
   orders: {
     title: 'Commandes',
@@ -1356,6 +1358,14 @@ const messages: Messages = {
     yourOrder: 'Votre commande',
     total: 'Total',
     whatYouGot: 'Ce que vous avez reçu',
+  },
+  bookings: {
+    title: 'Réservations',
+    description:
+      'Les créneaux que vous avez réservés, chacun avec son fichier de calendrier. Annulez ou déplacez-en un selon les règles du vendeur.',
+    empty: "Vous n'avez encore réservé aucun créneau.",
+    browse: 'Réserver un créneau dans la boutique',
+    loading: 'Chargement de vos réservations…',
   },
 };
 

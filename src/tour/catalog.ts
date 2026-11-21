@@ -513,6 +513,28 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     detect: { kind: 'manual' },
   },
+  {
+    id: 'marketplace-book',
+    group: 'billing',
+    href: '/dashboard/shop',
+    source: {
+      sdk: [
+        '<SlotPicker itemId variantId value onChange />',
+        '<BuyButton slotStart />',
+        'useMyBookings()',
+        '<BookingDetails booking onChanged />',
+      ],
+      console: {
+        screen: '/dashboard/billing/item-types',
+        note: 'Start an item type from the Appointment starter (Book a time); each item then carries the seller’s weekly hours.',
+      },
+      app: [
+        'src/app/[locale]/dashboard/shop/page.tsx',
+        'src/app/[locale]/dashboard/bookings/page.tsx',
+      ],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',

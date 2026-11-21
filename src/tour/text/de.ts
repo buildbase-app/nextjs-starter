@@ -353,6 +353,14 @@ export const de: TourText = {
         'Nach der Zahlung zeigt Bestellungen die Bestellung und was sie dir gebracht hat.',
       ],
     },
+    'marketplace-book': {
+      title: 'Eine Zeit buchen',
+      why: 'Verkaufe eine Zeit im Kalender des Verkäufers: freie Termine in der Zeitzone des Käufers, der Platz bleibt während der Zahlung reserviert, und nach der Buchung gibt es eine Kalenderdatei.',
+      steps: [
+        'Wähle im Shop eine Zeit für das 30-minütige Coaching-Gespräch und bezahle.',
+        'Öffne Buchungen, um sie in deinen Kalender zu übernehmen, abzusagen oder zu verschieben.',
+      ],
+    },
     'record-usage': {
       title: 'Nutzung erfassen',
       why: 'Ihre App misst, was sie tut (ein erstelltes Dokument, ein verarbeitetes Video); der Plan sagt, wie viel enthalten ist.',

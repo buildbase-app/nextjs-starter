@@ -36,6 +36,7 @@ export const TASK_IDS = [
   'personal-plan',
   'start-selling',
   'marketplace-buy',
+  'marketplace-book',
   'record-usage',
   'usage-threshold',
   'usage-limit',

@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      bookings: '予約',
       orders: '注文',
       shop: 'ショップ',
       affiliates: 'アフィリエイト',
@@ -1326,6 +1327,7 @@ const messages: Messages = {
     by: '{seller}',
     free: '無料',
     notForSale: '現在は販売していません',
+    pickTime: '先に時間を選んでください',
   },
   orders: {
     title: '注文',
@@ -1338,6 +1340,14 @@ const messages: Messages = {
     yourOrder: 'ご注文',
     total: '合計',
     whatYouGot: '受け取ったもの',
+  },
+  bookings: {
+    title: '予約',
+    description:
+      '予約した時間と、それぞれのカレンダーファイルです。販売者のルールの範囲でキャンセルや変更ができます。',
+    empty: 'まだ予約はありません。',
+    browse: 'ショップで時間を予約する',
+    loading: '予約を読み込んでいます…',
   },
 };
 
