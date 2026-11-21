@@ -1423,35 +1423,6 @@ const messages: Messages = {
       },
     },
   },
-  yourData: {
-    title: 'Vos données',
-    description:
-      'Téléchargez tout ce que cette application et la plateforme conservent sur vous, ou supprimez votre compte ici et sur la plateforme.',
-    export: {
-      button: 'Exporter mes données',
-      working: 'Préparation…',
-    },
-    delete: {
-      button: 'Supprimer mon compte',
-      working: 'Suppression…',
-      areYouSure:
-        "Supprimer votre compte ? C'est irréversible, et votre session prendra fin.",
-      recent:
-        'Vous vous êtes connecté récemment : vous pouvez supprimer votre compte maintenant.',
-      needsConfirm:
-        "La suppression exige une connexion datant de moins de 10 minutes. On vous demandera d'abord de confirmer que c'est bien vous.",
-      confirmNow: "Confirmer que c'est vous maintenant",
-      confirmFirst:
-        "Confirmez d'abord que c'est bien vous. Vous reviendrez ici ; appuyez alors de nouveau sur « Supprimer mon compte ».",
-      scheduled:
-        "Votre compte sera supprimé le {date}. D'ici là, vous pouvez annuler en vous connectant.",
-      scheduledNoDate:
-        "La suppression de votre compte est programmée. D'ici là, vous pouvez l'annuler en vous connectant.",
-      ownsWorkspaces:
-        "Vous possédez ou payez encore des espaces de travail avec d'autres membres : {names}. Retirez les autres membres et résiliez l'abonnement, ou supprimez d'abord ces espaces.",
-    },
-    failed: "Une erreur s'est produite. Veuillez réessayer.",
-  },
   entitlements: {
     title: 'Ce que votre forfait inclut',
     description:
@@ -1527,49 +1498,6 @@ const messages: Messages = {
     failed: "La réservation n'a pas pu être modifiée.",
     jobDescription: 'Tâche de démonstration (réservée, puis réglée)',
   },
-  autoTopUp: {
-    title: 'Recharge automatique',
-    on: 'Activée',
-    off: 'Désactivée',
-    description:
-      'Achetez un pack de crédits avec la carte enregistrée dès que le solde passe sous un seuil, au plus un nombre de fois fixé par mois.',
-    loading: 'Chargement du réglage…',
-    unavailable:
-      "La recharge automatique n'est pas disponible pour cet espace de travail.",
-    paused: {
-      payment_failed:
-        'En pause : quatre paiements de suite ont été refusés. Réglez le problème de carte, puis reprenez.',
-      no_payment_method:
-        'En pause : aucune carte à débiter. Ajoutez-en une, puis reprenez.',
-      monthly_cap:
-        'En pause : les recharges de ce mois ont atteint le plafond. Il est levé le 1er.',
-      dunning: "En pause : l'abonnement a une facture impayée.",
-      currency_unavailable:
-        "En pause : le pack n'a pas de prix dans la devise de cet espace de travail. Choisissez-en un autre.",
-      package_unavailable:
-        "En pause : le pack n'est plus en vente. Choisissez-en un autre.",
-      tax_requires_checkout:
-        "En pause : la taxe est collectée, ce qu'une recharge par carte enregistrée ne sait pas encore faire. Achetez les packs à la main.",
-      terms_changed:
-        'En pause : les crédits ou le prix du pack ont changé. Reprendre accepte les nouvelles conditions.',
-      other: 'En pause ({reason}).',
-    },
-    resume: 'Reprendre',
-    threshold: 'Quand le solde passe sous',
-    pack: 'Acheter ce pack',
-    packOption: '{name} ({credits} crédits)',
-    monthlyCap: 'Au plus par mois ({min}–{max})',
-    usage: '{used} recharges sur {cap} utilisées ce mois-ci.',
-    lastTopUp: 'Dernière recharge : {date}.',
-    card: 'Débite la carte {brand} se terminant par {last4}',
-    noCard: "Aucune carte enregistrée pour l'instant",
-    addCard: 'Ajouter une carte',
-    changeCard: 'Changer de carte',
-    save: 'Enregistrer',
-    turnOn: 'Activer',
-    turnOff: 'Désactiver',
-    saved: 'Enregistré.',
-  },
   billingHub: {
     title: 'Facturation',
     description:
@@ -1593,6 +1521,27 @@ const messages: Messages = {
     },
     inPage:
       "Les données de carte et 3-D Secure s'ouvrent dans ces écrans, sans passer par le site de Stripe.",
+  },
+  autoTopUp: {
+    title: 'Recharge automatique',
+    description:
+      "Achetez un pack de crédits avec la carte enregistrée dès que le solde passe sous un seuil, dans un plafond mensuel. L'écran des crédits du SDK contient le réglage, la carte et la raison d'une pause.",
+    open: 'Configurer la recharge automatique',
+  },
+  yourData: {
+    title: 'Vos données',
+    description:
+      'Téléchargez tout ce que cette application et la plateforme conservent sur vous, ou supprimez votre compte.',
+    export: {
+      button: 'Exporter mes données',
+      working: 'Préparation…',
+    },
+    delete: {
+      button: 'Supprimer mon compte',
+      where:
+        "Ouvre l'écran Sécurité : il vous demande de confirmer que c'est vous si votre connexion date de plus de 10 minutes, et cette application efface sa copie de vous quand la plateforme a supprimé le compte.",
+    },
+    failed: "Une erreur s'est produite. Veuillez réessayer.",
   },
 };
 

@@ -1283,28 +1283,6 @@ export interface AccountMessages {
   };
 }
 
-export interface YourDataMessages {
-  title: string;
-  description: string;
-  export: {
-    button: string;
-    working: string;
-  };
-  delete: {
-    button: string;
-    working: string;
-    areYouSure: string;
-    recent: string;
-    needsConfirm: string;
-    confirmNow: string;
-    confirmFirst: string;
-    scheduled: string;
-    scheduledNoDate: string;
-    ownsWorkspaces: string;
-  };
-  failed: string;
-}
-
 export interface EntitlementsMessages {
   title: string;
   description: string;
@@ -1374,41 +1352,6 @@ export interface CreditHoldsMessages {
   jobDescription: string;
 }
 
-export interface AutoTopUpMessages {
-  title: string;
-  on: string;
-  off: string;
-  description: string;
-  loading: string;
-  unavailable: string;
-  paused: {
-    payment_failed: string;
-    no_payment_method: string;
-    monthly_cap: string;
-    dunning: string;
-    currency_unavailable: string;
-    package_unavailable: string;
-    tax_requires_checkout: string;
-    terms_changed: string;
-    other: string;
-  };
-  resume: string;
-  threshold: string;
-  pack: string;
-  packOption: string;
-  monthlyCap: string;
-  usage: string;
-  lastTopUp: string;
-  card: string;
-  noCard: string;
-  addCard: string;
-  changeCard: string;
-  save: string;
-  turnOn: string;
-  turnOff: string;
-  saved: string;
-}
-
 export interface BillingHubMessages {
   title: string;
   description: string;
@@ -1427,6 +1370,26 @@ export interface BillingHubMessages {
     description: string;
   };
   inPage: string;
+}
+
+export interface AutoTopUpMessages {
+  title: string;
+  description: string;
+  open: string;
+}
+
+export interface YourDataMessages {
+  title: string;
+  description: string;
+  export: {
+    button: string;
+    working: string;
+  };
+  delete: {
+    button: string;
+    where: string;
+  };
+  failed: string;
 }
 
 export interface Messages {
@@ -1461,12 +1424,12 @@ export interface Messages {
   audience: AudienceMessages;
   waitlist: WaitlistMessages;
   account: AccountMessages;
-  yourData: YourDataMessages;
   entitlements: EntitlementsMessages;
   goals: GoalsMessages;
   creditHolds: CreditHoldsMessages;
-  autoTopUp: AutoTopUpMessages;
   billingHub: BillingHubMessages;
+  autoTopUp: AutoTopUpMessages;
+  yourData: YourDataMessages;
 }
 
 // For next-intl type inference

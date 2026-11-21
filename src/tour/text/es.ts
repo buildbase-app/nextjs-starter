@@ -382,7 +382,7 @@ export const es: TourText = {
       title: 'Recarga automáticamente',
       why: 'Un espacio de trabajo que se queda sin créditos deja de funcionar. La recarga automática compra un paquete con la tarjeta guardada antes de que pase, dentro de un límite mensual que fija el cliente.',
       steps: [
-        'Abre Créditos y busca «Recarga automática».',
+        'Abre Créditos y pulsa «Configurar la recarga automática».',
         'Añade una tarjeta, elige un umbral y un paquete, y actívala.',
       ],
     },

@@ -392,7 +392,7 @@ export const de: TourText = {
       title: 'Automatisch aufladen',
       why: 'Ein Arbeitsbereich ohne Credits hört auf zu arbeiten. Automatisches Aufladen kauft vorher ein Paket mit der gespeicherten Karte, innerhalb eines monatlichen Limits, das der Kunde festlegt.',
       steps: [
-        'Öffne Credits und such „Automatisches Aufladen“.',
+        'Öffne Credits und drück auf „Automatisches Aufladen einrichten“.',
         'Füg eine Karte hinzu, wähl Schwellenwert und Paket und schalte es ein.',
       ],
     },

@@ -31,7 +31,6 @@ import {
   ArrowDownCircle,
   Package,
 } from 'lucide-react';
-import { AutoTopUpCard } from '@/components/credits/auto-top-up-card';
 import { CreditHoldCard } from '@/components/credits/credit-hold-card';
 
 function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
@@ -121,8 +120,10 @@ function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
 
 export default function CreditsPage() {
   const t = useTranslations('credits');
+  const tat = useTranslations('autoTopUp');
   const { currentWorkspace } = useSaaSWorkspaces();
-  const { openCreditStore, openPlanPicker } = useSaaSAuth();
+  const { openCreditStore, openPlanPicker, openWorkspaceSettings } =
+    useSaaSAuth();
   const { consumeCredits, loading: consuming } = useConsumeCredits(
     currentWorkspace?._id
   );
@@ -253,10 +254,23 @@ export default function CreditsPage() {
         <CreditPackagesPanel workspaceId={currentWorkspace._id} />
       )}
 
-      {/* Auto top-up: buy a pack on the saved card under a threshold */}
-      {currentWorkspace?._id && (
-        <AutoTopUpCard workspaceId={currentWorkspace._id} />
-      )}
+      {/* Auto top-up: the SDK's credits screen has it, with the card,
+          the monthly cap and why it paused. */}
+      <Card>
+        <CardHeader className="flex flex-row items-start justify-between gap-4">
+          <div>
+            <CardTitle className="text-base">{tat('title')}</CardTitle>
+            <CardDescription>{tat('description')}</CardDescription>
+          </div>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => openWorkspaceSettings('credits')}
+          >
+            {tat('open')}
+          </Button>
+        </CardHeader>
+      </Card>
 
       {/* Expiring credits */}
       <Card>
