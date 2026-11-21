@@ -1429,6 +1429,11 @@ export interface SellingMessages {
   description: string;
 }
 
+export interface EnterpriseMessages {
+  title: string;
+  description: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1471,6 +1476,7 @@ export interface Messages {
   shop: ShopMessages;
   orders: OrdersMessages;
   selling: SellingMessages;
+  enterprise: EnterpriseMessages;
 }
 
 // For next-intl type inference

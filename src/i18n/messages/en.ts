@@ -1553,6 +1553,11 @@ const messages: Messages = {
     description:
       "Sell your own items in this app: start selling, finish Stripe's onboarding, list items, and follow each sale.",
   },
+  enterprise: {
+    title: 'Enterprise',
+    description:
+      'Single sign-on and directory sync for your company, set up by your own IT admin.',
+  },
 };
 
 export default messages;

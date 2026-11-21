@@ -1581,6 +1581,11 @@ const messages: Messages = {
     description:
       "Vendez vos propres articles dans cette application : commencez à vendre, terminez l'inscription Stripe, publiez des articles et suivez chaque vente.",
   },
+  enterprise: {
+    title: 'Entreprise',
+    description:
+      "Authentification unique et synchronisation d'annuaire pour votre entreprise, configurées par votre propre service informatique.",
+  },
 };
 
 export default messages;
