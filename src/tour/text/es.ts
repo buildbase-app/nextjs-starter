@@ -443,6 +443,14 @@ export const es: TourText = {
         'Esta demo añade un rol personalizado “reviewer” que solo puede cambiar el estado de un documento.',
       ],
     },
+    'enterprise-sso': {
+      title: 'Inicio de sesión único para la empresa de un cliente',
+      why: 'Los clientes más grandes quieren que su gente inicie sesión con su propio proveedor de identidad, con sincronización de directorio y sus propias reglas. La pantalla del SDK permite al administrador de la empresa configurarlo sin tu equipo.',
+      steps: [
+        'Abre Empresa.',
+        'Sigue la configuración o lee por qué aún no está disponible.',
+      ],
+    },
     'inbox-first-item': {
       title: 'Encuentra tu primera notificación',
       why: 'Todo lo que la app te envía llega a una bandeja de entrada a la que puedes volver: un elemento por notificación, se haya entregado como se haya entregado.',

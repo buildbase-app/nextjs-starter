@@ -453,6 +453,14 @@ export const de: TourText = {
         'Diese Demo fügt eine eigene Rolle „reviewer“ hinzu, die nur den Status eines Dokuments ändern darf.',
       ],
     },
+    'enterprise-sso': {
+      title: 'Single Sign-on für die Firma eines Kunden',
+      why: 'Größere Kunden wollen, dass sich ihre Leute über ihren eigenen Identitätsanbieter anmelden, mit Verzeichnissynchronisierung und eigenen Regeln. Mit dem Bildschirm des SDK richtet der Admin der Firma das ohne dein Team ein.',
+      steps: [
+        'Öffne Enterprise.',
+        'Folge der Einrichtung oder lies, warum sie noch nicht verfügbar ist.',
+      ],
+    },
     'inbox-first-item': {
       title: 'Ihre erste Benachrichtigung finden',
       why: 'Alles, was die App Ihnen schickt, landet in einem Posteingang, zu dem Sie zurückkehren können: ein Eintrag pro Benachrichtigung, egal wie sie zugestellt wurde.',

@@ -454,6 +454,14 @@ export const fr: TourText = {
         'Cette démo ajoute un rôle personnalisé « reviewer » qui ne peut que changer le statut d’un document.',
       ],
     },
+    'enterprise-sso': {
+      title: "Authentification unique pour l'entreprise d'un client",
+      why: "Les grands clients veulent que leurs équipes se connectent via leur propre fournisseur d'identité, avec synchronisation de l'annuaire et leurs propres règles. L'écran du SDK permet à l'administrateur de l'entreprise de tout configurer sans votre équipe.",
+      steps: [
+        'Ouvrez Entreprise.',
+        "Suivez la configuration, ou lisez pourquoi elle n'est pas encore disponible.",
+      ],
+    },
     'inbox-first-item': {
       title: 'Trouver votre première notification',
       why: 'Tout ce que l’app vous envoie arrive dans une boîte de réception où vous pouvez revenir : un élément par notification, quel que soit le canal de livraison.',

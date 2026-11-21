@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      enterprise: 'Empresa',
       billing: 'Facturación',
       home: 'Inicio',
       dashboard: 'Panel',

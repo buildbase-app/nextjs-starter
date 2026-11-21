@@ -416,6 +416,14 @@ export const en: TourText = {
         'This demo adds a custom “reviewer” role that may change a document’s status and nothing else.',
       ],
     },
+    'enterprise-sso': {
+      title: "Single sign-on for a customer's company",
+      why: "Larger customers want their people to sign in through their own identity provider, with directory sync and their own rules. The SDK's screen lets the company's admin set that up without your team.",
+      steps: [
+        'Open Enterprise.',
+        "Follow the setup, or read why it isn't available yet.",
+      ],
+    },
     'inbox-first-item': {
       title: 'Find your first notification',
       why: 'Everything the app sends you lands in an inbox you can come back to: one item per notification, however it was delivered.',
