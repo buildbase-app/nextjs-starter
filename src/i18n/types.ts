@@ -259,11 +259,6 @@ export interface DashboardMessages {
   };
 }
 
-export interface SettingsSectionItem {
-  label: string;
-  description: string;
-}
-
 export interface DocumentsFeatureSection {
   label: string;
   description: string;
@@ -385,6 +380,11 @@ export interface EventsMessages {
 }
 
 export interface NotificationsMessages {
+  preferencesLink: {
+    title: string;
+    description: string;
+    open: string;
+  };
   title: string;
   description: string;
   pushCard: {
@@ -503,6 +503,7 @@ export interface PermissionsMessages {
 }
 
 export interface ProfileMessages {
+  editAccount: string;
   agents: {
     title: string;
     description: string;
@@ -547,6 +548,7 @@ export interface ProfileMessages {
 }
 
 export interface UsageMessages {
+  openSettings: string;
   title: string;
   description: string;
   loading: string;
@@ -634,6 +636,7 @@ export interface ErrorMessages {
 }
 
 export interface CreditsMessages {
+  openSettings: string;
   title: string;
   description: string;
   balance: string;
@@ -643,15 +646,6 @@ export interface CreditsMessages {
   choosePlan: string;
   noCredits: string;
   buyMore: string;
-  packages: {
-    title: string;
-    loading: string;
-    error: string;
-    empty: string;
-    credits: string;
-    validFor: string;
-    buyNow: string;
-  };
   testConsume: {
     title: string;
     description: string;
@@ -663,30 +657,6 @@ export interface CreditsMessages {
   lowCredits: {
     title: string;
     description: string;
-  };
-  expiring: {
-    title: string;
-    description: string;
-    expiresIn: string;
-    noExpiring: string;
-    days: string;
-    loading: string;
-  };
-  transactions: {
-    title: string;
-    description: string;
-    empty: string;
-    loading: string;
-    columns: {
-      type: string;
-      amount: string;
-      balance: string;
-      description: string;
-    };
-    types: {
-      credit: string;
-      debit: string;
-    };
   };
 }
 
@@ -1154,20 +1124,6 @@ export interface AccountMessages {
     open: string;
     pdf: string;
   };
-  preferences: {
-    title: string;
-    description: string;
-    loading: string;
-    empty: string;
-    failed: string;
-    saved: string;
-    required: string;
-    requiredBadge: string;
-    email: string;
-    push: string;
-    useDefault: string;
-    refresh: string;
-  };
   console: {
     title: string;
     description: string;
@@ -1251,12 +1207,6 @@ export interface CreditHoldsMessages {
   jobDescription: string;
 }
 
-export interface AutoTopUpMessages {
-  title: string;
-  description: string;
-  open: string;
-}
-
 export interface YourDataMessages {
   title: string;
   description: string;
@@ -1330,7 +1280,6 @@ export interface Messages {
   entitlements: EntitlementsMessages;
   goals: GoalsMessages;
   creditHolds: CreditHoldsMessages;
-  autoTopUp: AutoTopUpMessages;
   yourData: YourDataMessages;
   affiliates: AffiliatesMessages;
   shop: ShopMessages;

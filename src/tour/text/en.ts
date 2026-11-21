@@ -385,14 +385,14 @@ export const en: TourText = {
       title: 'Top up automatically',
       why: 'A workspace that runs out of credits stops working. Auto top-up buys a pack on the saved card before that happens, within a monthly cap the customer sets.',
       steps: [
-        'Open Credits and press Set up auto top-up.',
+        'Open Credits in the settings and set up auto top-up.',
         'Add a card, pick a threshold and a pack, and turn it on.',
       ],
     },
     'credit-transactions': {
       title: 'Read the transactions',
       why: 'Every grant, purchase and spend is a row, with the bucket it came from.',
-      steps: ['On Credits, scroll to Transactions.'],
+      steps: ['Open Credits in the settings and read Recent transactions.'],
     },
     'feature-off': {
       title: 'See a feature that is off',
@@ -492,16 +492,14 @@ export const en: TourText = {
       title: 'Turn a channel off for yourself',
       why: 'Each member chooses how they are interrupted; the workspace admin sets the defaults and can mark an event required.',
       steps: [
-        'Open Notifications → Your notification preferences.',
-        'Turn email off for an event; send it again and see it arrive in the inbox only.',
+        'Open Notifications in the settings.',
+        'Turn email off for an event; send it again from the Notifications page and see it arrive in the inbox only.',
       ],
     },
     'required-event': {
       title: 'See a required event',
       why: 'An admin can make an event required; members cannot switch it off.',
-      steps: [
-        'Notifications → Your notification preferences: a required event is locked.',
-      ],
+      steps: ['In Notifications in the settings, a required event is locked.'],
     },
     'delivery-log': {
       title: 'See the console’s delivery log',

@@ -418,6 +418,12 @@ const messages: Messages = {
     },
   },
   notifications: {
+    preferencesLink: {
+      title: 'Vos préférences de notification',
+      description:
+        "Les événements qui vous parviennent par e-mail, dans l'app ou en push se règlent dans l'écran Notifications du SDK.",
+      open: 'Ouvrir les préférences',
+    },
     title: 'Notifications',
     description:
       'Envoyez une notification depuis cette app et regardez où elle arrive',
@@ -541,6 +547,7 @@ const messages: Messages = {
     },
   },
   profile: {
+    editAccount: 'Modifier votre compte',
     agents: {
       title: 'Agents connectés',
       description:
@@ -586,6 +593,7 @@ const messages: Messages = {
     },
   },
   usage: {
+    openSettings: 'Ouvrir Utilisation dans les paramètres',
     title: 'Utilisation des quotas',
     description: 'Consommation des quotas en temps réel',
     loading: 'Chargement des quotas...',
@@ -664,6 +672,7 @@ const messages: Messages = {
     },
   },
   credits: {
+    openSettings: 'Packs, recharge automatique et historique',
     title: 'Crédits',
     description:
       "Utilisez des crédits pour des actions premium. Gérez les packs dans les paramètres de l'espace.",
@@ -675,15 +684,6 @@ const messages: Messages = {
     noCredits:
       "Vous n'avez plus de crédits. Achetez-en davantage pour continuer à utiliser les fonctionnalités premium.",
     buyMore: 'Acheter des crédits',
-    packages: {
-      title: 'Packs de crédits',
-      loading: 'Chargement des packs…',
-      error: 'Erreur lors du chargement des packs.',
-      empty: "Aucun pack de crédits configuré pour l'instant.",
-      credits: 'crédits',
-      validFor: 'Valable {days} jours',
-      buyNow: 'Acheter maintenant',
-    },
     testConsume: {
       title: 'Tester la consommation de crédits',
       description:
@@ -698,30 +698,6 @@ const messages: Messages = {
       title: 'Peu de crédits',
       description:
         'Votre solde de crédits est faible. Rechargez maintenant pour éviter les interruptions.',
-    },
-    expiring: {
-      title: 'Crédits expirant bientôt',
-      description: 'Crédits expirant dans les 30 prochains jours',
-      expiresIn: 'Expire le {date}',
-      noExpiring: "Aucun crédit n'expire bientôt",
-      days: '{count} crédits',
-      loading: 'Chargement...',
-    },
-    transactions: {
-      title: 'Historique des transactions',
-      description: 'Ajouts et déductions de crédits récents',
-      empty: 'Aucune transaction pour le moment',
-      loading: 'Chargement...',
-      columns: {
-        type: 'Type',
-        amount: 'Montant',
-        balance: 'Solde après',
-        description: 'Description',
-      },
-      types: {
-        credit: 'Crédit',
-        debit: 'Débit',
-      },
     },
   },
   errors: {
@@ -1247,23 +1223,6 @@ const messages: Messages = {
       open: 'Ouvrir la facture hébergée',
       pdf: 'Télécharger le PDF',
     },
-    preferences: {
-      title: 'Vos préférences de notification',
-      description:
-        'Choisissez, par événement, s’il vous parvient par e-mail ou push. Ce que vous ne touchez pas suit la valeur de l’espace de travail.',
-      loading: 'Chargement de vos préférences…',
-      empty:
-        'Cet espace de travail n’a encore aucun événement de notification. Envoyez-en un ci-dessous et il apparaîtra ici.',
-      failed: 'Vos préférences n’ont pas pu être enregistrées.',
-      saved: 'Préférence enregistrée.',
-      required:
-        'Cet événement est obligatoire dans cet espace de travail et ne peut pas être désactivé.',
-      requiredBadge: 'Obligatoire',
-      email: 'E-mail',
-      push: 'Push',
-      useDefault: 'Utiliser la valeur de l’espace de travail',
-      refresh: 'Actualiser',
-    },
     console: {
       title: 'Partir d’un modèle',
       description:
@@ -1354,12 +1313,6 @@ const messages: Messages = {
       "Cette réservation n'est plus ouverte : elle a expiré ou a déjà été réglée.",
     failed: "La réservation n'a pas pu être modifiée.",
     jobDescription: 'Tâche de démonstration (réservée, puis réglée)',
-  },
-  autoTopUp: {
-    title: 'Recharge automatique',
-    description:
-      "Achetez un pack de crédits avec la carte enregistrée dès que le solde passe sous un seuil, dans un plafond mensuel. L'écran des crédits du SDK contient le réglage, la carte et la raison d'une pause.",
-    open: 'Configurer la recharge automatique',
   },
   yourData: {
     title: 'Vos données',

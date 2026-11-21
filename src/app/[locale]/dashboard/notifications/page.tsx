@@ -34,7 +34,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Link } from '@/i18n/routing';
-import { PreferencesCard } from '@/components/notifications/preferences-card';
 import {
   DEMO_EVENT_SLUG,
   DEMO_EVENT_DEFAULTS,
@@ -46,7 +45,7 @@ type Urgency = '' | 'very-low' | 'low' | 'normal' | 'high';
 
 export default function NotificationsTestPage() {
   const t = useTranslations('notifications');
-  const { user } = useSaaSAuth();
+  const { user, openWorkspaceSettings } = useSaaSAuth();
   const { currentWorkspace } = useSaaSWorkspaces();
   const { isSubscribed, subscribe, unsubscribe } = usePushNotifications();
 
@@ -174,7 +173,27 @@ export default function NotificationsTestPage() {
         <p className="text-muted-foreground">{t('description')}</p>
       </div>
 
-      <PreferencesCard workspaceId={currentWorkspace?._id} />
+      {/* Each person's channel choices per event are the SDK's own
+          Notifications screen; this page sends events and sets up push. */}
+      <Card>
+        <CardHeader className="flex flex-row items-start justify-between gap-4">
+          <div>
+            <CardTitle className="text-base">
+              {t('preferencesLink.title')}
+            </CardTitle>
+            <CardDescription>
+              {t('preferencesLink.description')}
+            </CardDescription>
+          </div>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => openWorkspaceSettings('notifications')}
+          >
+            {t('preferencesLink.open')}
+          </Button>
+        </CardHeader>
+      </Card>
 
       <Card>
         <CardHeader>

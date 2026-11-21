@@ -420,14 +420,16 @@ export const de: TourText = {
       title: 'Automatisch aufladen',
       why: 'Ein Arbeitsbereich ohne Credits hört auf zu arbeiten. Automatisches Aufladen kauft vorher ein Paket mit der gespeicherten Karte, innerhalb eines monatlichen Limits, das der Kunde festlegt.',
       steps: [
-        'Öffne Credits und drück auf „Automatisches Aufladen einrichten“.',
-        'Füg eine Karte hinzu, wähl Schwellenwert und Paket und schalte es ein.',
+        'Öffne Guthaben in den Einstellungen und richte automatisches Aufladen ein.',
+        'Füge eine Karte hinzu, wähle einen Schwellenwert und ein Paket und schalte es ein.',
       ],
     },
     'credit-transactions': {
       title: 'Die Transaktionen lesen',
       why: 'Jede Gutschrift, jeder Kauf und jede Ausgabe ist eine Zeile, mit dem Topf, aus dem sie stammt.',
-      steps: ['Scrollen Sie unter Credits zu Transaktionen.'],
+      steps: [
+        'Öffne Guthaben in den Einstellungen und lies die letzten Transaktionen.',
+      ],
     },
     'feature-off': {
       title: 'Eine ausgeschaltete Funktion sehen',
@@ -531,15 +533,15 @@ export const de: TourText = {
       title: 'Einen Kanal für sich selbst abschalten',
       why: 'Jedes Mitglied wählt, wie es unterbrochen wird; der Workspace-Admin setzt die Standardwerte und kann ein Ereignis als erforderlich markieren.',
       steps: [
-        'Öffne Benachrichtigungen → Deine Benachrichtigungseinstellungen.',
-        'Schalte E-Mail für ein Ereignis aus; sende es erneut und sieh, dass es nur im Posteingang ankommt.',
+        'Öffne Benachrichtigungen in den Einstellungen.',
+        'Schalte E-Mail für ein Ereignis aus, sende es auf der Seite Benachrichtigungen erneut und sieh, dass es nur im Posteingang ankommt.',
       ],
     },
     'required-event': {
       title: 'Ein erforderliches Ereignis sehen',
       why: 'Ein Admin kann ein Ereignis erforderlich machen; Mitglieder können es nicht abschalten.',
       steps: [
-        'Benachrichtigungen → Deine Benachrichtigungseinstellungen: Ein Pflichtereignis ist gesperrt.',
+        'Unter Benachrichtigungen in den Einstellungen ist ein Pflichtereignis gesperrt.',
       ],
     },
     'delivery-log': {

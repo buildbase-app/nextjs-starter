@@ -421,14 +421,16 @@ export const fr: TourText = {
       title: 'Recharger automatiquement',
       why: "Un espace de travail à court de crédits s'arrête. La recharge automatique achète un pack avec la carte enregistrée avant que cela n'arrive, dans un plafond mensuel fixé par le client.",
       steps: [
-        'Ouvrez Crédits et appuyez sur « Configurer la recharge automatique ».',
+        'Ouvrez Crédits dans les paramètres et configurez la recharge automatique.',
         'Ajoutez une carte, choisissez un seuil et un pack, puis activez-la.',
       ],
     },
     'credit-transactions': {
       title: 'Lire les transactions',
       why: 'Chaque attribution, achat et dépense est une ligne, avec le lot dont elle provient.',
-      steps: ['Sur Crédits, descendez jusqu’à Transactions.'],
+      steps: [
+        'Ouvrez Crédits dans les paramètres et lisez les transactions récentes.',
+      ],
     },
     'feature-off': {
       title: 'Voir une fonctionnalité désactivée',
@@ -532,15 +534,15 @@ export const fr: TourText = {
       title: 'Désactiver un canal pour vous-même',
       why: 'Chaque membre choisit comment il est interrompu ; l’administrateur de l’espace de travail fixe les valeurs par défaut et peut rendre un événement obligatoire.',
       steps: [
-        'Ouvrez Notifications → Vos préférences de notification.',
-        'Désactivez l’e-mail pour un événement ; renvoyez-le et voyez-le arriver uniquement dans la boîte de réception.',
+        'Ouvrez Notifications dans les paramètres.',
+        "Désactivez l'e-mail pour un événement ; renvoyez-le depuis la page Notifications et voyez-le arriver seulement dans la boîte de réception.",
       ],
     },
     'required-event': {
       title: 'Voir un événement obligatoire',
       why: 'Un administrateur peut rendre un événement obligatoire ; les membres ne peuvent pas le désactiver.',
       steps: [
-        'Notifications → Vos préférences de notification : un événement obligatoire est verrouillé.',
+        'Dans Notifications, dans les paramètres, un événement obligatoire est verrouillé.',
       ],
     },
     'delivery-log': {
