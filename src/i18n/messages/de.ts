@@ -1300,6 +1300,18 @@ const messages: Messages = {
         'In der BuildBase-Konsole definierte Schlüssel, pro Rolle vergeben, eigene Rollen eingeschlossen. Dokumente prüft sie auch auf dem Server.',
       empty:
         'Diese Organisation hat noch keine eigenen Berechtigungen definiert. Führe npm run seed:org aus oder lege Schlüssel in der Konsole unter Workspace settings → Permissions an.',
+      permission: 'Berechtigung',
+      inApp: 'In der App',
+      backend: 'Dein Backend',
+      allowed: 'Erlaubt',
+      denied: 'Verweigert',
+      tryIt: 'Ausprobieren',
+      codeOnly: 'Nur im Code dieser App, daher prüft nur der Browser',
+      tried: {
+        allowed: 'Erledigt: Dein Backend hat es erlaubt',
+        refused: 'Von deinem Backend abgelehnt',
+        error: 'Prüfung nicht möglich',
+      },
     },
     security: {
       title: 'Sicherheit',
@@ -1404,6 +1416,90 @@ const messages: Messages = {
         description: 'Über hundert E-Mail-Vorlagen, kostenlos in jedem Plan.',
       },
     },
+  },
+  yourData: {
+    title: 'Deine Daten',
+    description:
+      'Lade alles herunter, was diese App und die Plattform über dich speichern, oder lösche dein Konto hier und auf der Plattform.',
+    export: {
+      button: 'Meine Daten exportieren',
+      working: 'Wird vorbereitet…',
+    },
+    delete: {
+      button: 'Mein Konto löschen',
+      working: 'Wird gelöscht…',
+      areYouSure:
+        'Dein Konto löschen? Das lässt sich nicht rückgängig machen und beendet deine Sitzung.',
+      recent:
+        'Du hast dich vor Kurzem angemeldet und kannst dein Konto jetzt löschen.',
+      needsConfirm:
+        'Zum Löschen ist eine Anmeldung aus den letzten 10 Minuten nötig. Du wirst zuerst gebeten zu bestätigen, dass du es bist.',
+      confirmNow: 'Jetzt bestätigen, dass du es bist',
+      confirmFirst:
+        'Bestätige zuerst, dass du es bist. Du kommst hierher zurück; drück dann noch einmal auf „Mein Konto löschen“.',
+      scheduled:
+        'Dein Konto wird am {date} gelöscht. Bis dahin kannst du es mit einer Anmeldung abbrechen.',
+      scheduledNoDate:
+        'Die Löschung deines Kontos ist geplant. Bis dahin kannst du sie mit einer Anmeldung abbrechen.',
+      ownsWorkspaces:
+        'Dir gehören noch Arbeitsbereiche mit anderen Mitgliedern, oder du bezahlst für sie: {names}. Entferne die anderen Mitglieder und kündige das Abo, oder lösche diese Arbeitsbereiche zuerst.',
+    },
+    failed: 'Etwas ist schiefgelaufen. Bitte versuch es noch einmal.',
+  },
+  entitlements: {
+    title: 'Was dein Tarif enthält',
+    description:
+      'Per Slug gegen die Berechtigung des Servers geprüft: der Tarif plus jedes Add-on oder jede Zuteilung obendrauf. Nur ein ausdrückliches Nein sperrt.',
+    columns: {
+      slug: 'Slug',
+      kind: 'Art',
+      answer: 'Antwort',
+      detail: 'Details',
+      source: 'Herkunft',
+    },
+    kind: {
+      feature: 'Funktion',
+      limit: 'Limit',
+      quota: 'Kontingent',
+      unknown: 'Nicht im Tarif',
+    },
+    state: {
+      granted: 'Enthalten',
+      locked: 'Gesperrt',
+      unknown: 'Unbekannt, erlaubt',
+    },
+    detail: {
+      unlimited: 'Unbegrenzt',
+      quota: '{used} von {limit} genutzt, {remaining} übrig in diesem Zeitraum',
+      limit: '{used} von {limit}, Platz für {remaining} weitere',
+    },
+    source: {
+      plan: 'Der Tarif',
+      floor: 'Durch eine Zuteilung angehoben',
+      add: 'Tarif plus Add-on',
+      override: 'Vom Team festgelegt',
+      default: 'Standard',
+    },
+    pressure: {
+      nearing: 'Fast voll',
+      reached: 'Limit erreicht',
+    },
+    gate: {
+      title: 'Erweiterte Exporte hinter einer Sperre',
+      upgrade: 'Upgrade zum Exportieren',
+      included: 'In deinem Tarif enthalten',
+    },
+  },
+  goals: {
+    title: 'Web-Analytics-Ziele',
+    description:
+      'Zähle die Momente, auf die es ankommt, neben den Seitenaufrufen in den Analytics der Konsole. Ziele folgen dem Cookie-Banner: nach einem Nein wird nichts gesendet.',
+    record: 'Ziel erfassen',
+    recorded:
+      '{name} {count, plural, one {einmal} other {#-mal}} erfasst. Es erscheint in den Analytics der Konsole unter Ziele.',
+    notSent: 'Nicht gesendet: Du hast Analytics im Cookie-Banner abgelehnt.',
+    alsoDocuments:
+      'Diese App erfasst außerdem document_created, wenn du ein Dokument erstellst.',
   },
   creditHolds: {
     title: 'Credits reservieren, später abrechnen',

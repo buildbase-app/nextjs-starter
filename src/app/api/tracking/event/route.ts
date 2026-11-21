@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
   const body = (await request.json().catch(() => ({}))) as {
     name?: string;
     consent?: boolean;
+    goal?: string;
   };
   if (body.consent) {
     await detect(session.userId, {
@@ -27,6 +28,13 @@ export async function POST(request: NextRequest) {
       session.userId,
       { kind: 'action', action: 'tracking:event' },
       { name: body.name }
+    );
+  }
+  if (typeof body.goal === 'string' && body.goal) {
+    await detect(
+      session.userId,
+      { kind: 'action', action: 'tracking:goal' },
+      { goal: body.goal.slice(0, 64) }
     );
   }
   return NextResponse.json({ ok: true });

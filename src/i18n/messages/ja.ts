@@ -1287,6 +1287,18 @@ const messages: Messages = {
         'BuildBaseコンソールで定義し、ロールごとに付与したキー（カスタムロールを含む）。ドキュメントはサーバー側でもこれを確認します。',
       empty:
         'この組織はまだ独自の権限を定義していません。npm run seed:org を実行するか、コンソールの Workspace settings → Permissions でキーを追加してください。',
+      permission: '権限',
+      inApp: 'アプリ',
+      backend: 'バックエンド',
+      allowed: '許可',
+      denied: '拒否',
+      tryIt: '試す',
+      codeOnly: 'このアプリのコードにのみあるため、ブラウザだけが確認します',
+      tried: {
+        allowed: '完了: バックエンドが許可しました',
+        refused: 'バックエンドが拒否しました',
+        error: '確認できませんでした',
+      },
     },
     security: {
       title: 'セキュリティ',
@@ -1392,6 +1404,89 @@ const messages: Messages = {
         description: '100以上のメールテンプレート。すべてのプランで無料です。',
       },
     },
+  },
+  yourData: {
+    title: 'あなたのデータ',
+    description:
+      'このアプリとプラットフォームが保持しているあなたのデータをすべてダウンロードするか、このアプリとプラットフォームからアカウントを削除します。',
+    export: {
+      button: 'データをエクスポート',
+      working: '準備中…',
+    },
+    delete: {
+      button: 'アカウントを削除',
+      working: '削除中…',
+      areYouSure:
+        'アカウントを削除しますか？元に戻すことはできず、セッションも終了します。',
+      recent: '最近サインインしたため、今すぐアカウントを削除できます。',
+      needsConfirm:
+        '削除には直近 10 分以内のサインインが必要です。まずご本人確認をお願いします。',
+      confirmNow: '今すぐ本人確認する',
+      confirmFirst:
+        'まずご本人確認をしてください。このページに戻ったら、もう一度「アカウントを削除」を押してください。',
+      scheduled:
+        'アカウントは {date} に削除されます。それまではサインインすれば取り消せます。',
+      scheduledNoDate:
+        'アカウントの削除が予定されています。それまではサインインすれば取り消せます。',
+      ownsWorkspaces:
+        'ほかのメンバーがいるワークスペースを所有しているか、その料金を支払っています: {names}。ほかのメンバーを外してサブスクリプションを解約するか、先にそれらのワークスペースを削除してください。',
+    },
+    failed: '問題が発生しました。もう一度お試しください。',
+  },
+  entitlements: {
+    title: 'プランに含まれるもの',
+    description:
+      'サーバーの利用権限をスラッグで確認します。プランに加え、アドオンや付与分も含みます。明示的に拒否された場合のみロックされます。',
+    columns: {
+      slug: 'スラッグ',
+      kind: '種類',
+      answer: '回答',
+      detail: '詳細',
+      source: '出どころ',
+    },
+    kind: {
+      feature: '機能',
+      limit: '上限',
+      quota: 'クォータ',
+      unknown: 'プランにない',
+    },
+    state: {
+      granted: '含まれる',
+      locked: 'ロック',
+      unknown: '不明（許可）',
+    },
+    detail: {
+      unlimited: '無制限',
+      quota: '{limit} 件中 {used} 件使用、今期間の残り {remaining} 件',
+      limit: '{limit} 件中 {used} 件、あと {remaining} 件追加可能',
+    },
+    source: {
+      plan: 'プラン',
+      floor: '付与で引き上げ',
+      add: 'プラン＋アドオン',
+      override: 'チームが設定',
+      default: '既定',
+    },
+    pressure: {
+      nearing: '残りわずか',
+      reached: '上限に到達',
+    },
+    gate: {
+      title: '高度なエクスポート（ゲート付き）',
+      upgrade: 'アップグレードしてエクスポート',
+      included: 'プランに含まれています',
+    },
+  },
+  goals: {
+    title: 'ウェブ解析のゴール',
+    description:
+      '大切な瞬間を、コンソールの Analytics でページビューと並べて数えます。ゴールは Cookie バナーに従い、拒否された後は何も送信されません。',
+    record: 'ゴールを記録',
+    recorded:
+      '{name} を {count} 回記録しました。コンソールの Analytics の「ゴール」に表示されます。',
+    notSent: '送信されていません: Cookie バナーで解析を拒否しています。',
+    alsoDocuments:
+      'このアプリは、ドキュメントを作成するたびに document_created も記録します。',
   },
   creditHolds: {
     title: 'クレジットを確保して後で精算',

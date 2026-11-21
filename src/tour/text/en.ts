@@ -366,6 +366,14 @@ export const en: TourText = {
         'Open Profile: the features listed there are yours, not the workspace’s.',
       ],
     },
+    'entitlement-check': {
+      title: 'Ask the plan by slug',
+      why: 'Gate on what the plan includes, not on its name: add-ons and grants count too, and renaming a plan breaks nothing.',
+      steps: [
+        'Open Documents and read What your plan includes.',
+        'Change the plan, then look again: the answers follow it.',
+      ],
+    },
     'permission-matrix': {
       title: 'Read your permission matrix',
       why: 'What your role in this workspace allows, resolved by the platform.',
@@ -753,6 +761,14 @@ export const en: TourText = {
       steps: [
         'Reload the Tracking page with ?utm_source=demo&utm_campaign=tour.',
         'Read the attribution card.',
+      ],
+    },
+    'tracking-goal': {
+      title: 'Count a goal',
+      why: "Page views say where people went; goals say what they did. Both land in the console's Analytics, and both respect a no in the cookie banner.",
+      steps: [
+        'Open Tracking and press Record a goal.',
+        'Create a document: that records document_created too.',
       ],
     },
     'tracking-console-tag': {

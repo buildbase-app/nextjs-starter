@@ -323,6 +323,14 @@ export const zh: TourText = {
       why: '用户功能跨工作区跟随这个人；工作区功能跟随租户。',
       steps: ['打开个人资料：那里列出的功能属于你，而不是工作区。'],
     },
+    'entitlement-check': {
+      title: '按标识询问套餐',
+      why: '按套餐包含的内容控制，而不是按套餐名称：附加项和授予也会计入，重命名套餐也不会出问题。',
+      steps: [
+        '打开文档，查看“你的套餐包含什么”。',
+        '更换套餐后再看一次：结果会随之变化。',
+      ],
+    },
     'permission-matrix': {
       title: '阅读你的权限矩阵',
       why: '你在这个工作区中的角色允许做什么，由平台解析。',
@@ -681,6 +689,14 @@ export const zh: TourText = {
       steps: [
         '带上 ?utm_source=demo&utm_campaign=tour 重新加载 Tracking 页面。',
         '阅读来源归因卡片。',
+      ],
+    },
+    'tracking-goal': {
+      title: '统计一个目标',
+      why: '页面浏览说明人们去了哪里；目标说明他们做了什么。两者都进入控制台的分析，也都尊重 Cookie 横幅中的拒绝。',
+      steps: [
+        '打开追踪，点击“记录一个目标”。',
+        '创建一个文档：这也会记录 document_created。',
       ],
     },
     'tracking-console-tag': {

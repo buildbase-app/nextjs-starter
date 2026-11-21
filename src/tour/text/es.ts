@@ -393,6 +393,14 @@ export const es: TourText = {
         'Abre Profile: las funciones que aparecen ahí son tuyas, no del espacio de trabajo.',
       ],
     },
+    'entitlement-check': {
+      title: 'Pregunta al plan por slug',
+      why: 'Bloquea según lo que incluye el plan, no según su nombre: los complementos y las concesiones también cuentan, y renombrar un plan no rompe nada.',
+      steps: [
+        'Abre Documentos y lee «Lo que incluye tu plan».',
+        'Cambia de plan y vuelve a mirar: las respuestas lo siguen.',
+      ],
+    },
     'permission-matrix': {
       title: 'Lee tu matriz de permisos',
       why: 'Lo que permite tu rol en este espacio de trabajo, resuelto por la plataforma.',
@@ -786,6 +794,14 @@ export const es: TourText = {
       steps: [
         'Recarga la página de Seguimiento con ?utm_source=demo&utm_campaign=tour.',
         'Lee la tarjeta de atribución.',
+      ],
+    },
+    'tracking-goal': {
+      title: 'Cuenta un objetivo',
+      why: 'Las páginas vistas dicen adónde fue la gente; los objetivos, qué hizo. Ambos llegan a la analítica de la consola y ambos respetan un no en el banner de cookies.',
+      steps: [
+        'Abre Seguimiento y pulsa «Registrar un objetivo».',
+        'Crea un documento: eso también registra document_created.',
       ],
     },
     'tracking-console-tag': {

@@ -20,6 +20,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ConnectedAgentsCard } from '@/components/agents/connected-agents-card';
+import { YourDataCard } from '@/components/account/your-data-card';
 import {
   CheckCircle2,
   XCircle,
@@ -296,6 +297,8 @@ export default function ProfilePage() {
           )}
         </CardContent>
       </Card>
+
+      <YourDataCard />
     </div>
   );
 }
