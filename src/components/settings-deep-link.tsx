@@ -2,7 +2,11 @@
 
 import { useEffect } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { SETTINGS_SCREENS, useSaaSAuth } from '@buildbase/sdk/react';
+import {
+  SETTINGS_SCREENS,
+  useSaaSAuth,
+  useSaaSWorkspaces,
+} from '@buildbase/sdk/react';
 
 type Section = Parameters<
   ReturnType<typeof useSaaSAuth>['openWorkspaceSettings']
@@ -21,10 +25,15 @@ export function SettingsDeepLink() {
   const router = useRouter();
   const pathname = usePathname();
   const { isAuthenticated, openWorkspaceSettings } = useSaaSAuth();
+  const { currentWorkspace } = useSaaSWorkspaces();
+  const workspaceId = currentWorkspace?._id;
   const section = params.get('settings');
 
   useEffect(() => {
-    if (!isAuthenticated || !section) return;
+    // The dialog's workspace sections (members, plan and billing, selling,
+    // single sign-on...) need the current workspace: opening before it has
+    // loaded opens nothing, and the parameter would be gone by then.
+    if (!isAuthenticated || !workspaceId || !section) return;
     if (SETTINGS_SCREENS.has(section as NonNullable<Section>)) {
       openWorkspaceSettings(section as Section);
     }
@@ -36,6 +45,7 @@ export function SettingsDeepLink() {
     });
   }, [
     isAuthenticated,
+    workspaceId,
     section,
     params,
     pathname,
