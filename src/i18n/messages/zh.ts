@@ -902,31 +902,6 @@ const messages: Messages = {
       description: '所有最新的更新、改进和修复。',
     },
   },
-  cookieConsent: {
-    title: '我们使用Cookie',
-    descriptionBefore:
-      '我们使用Cookie来改善您的体验、分析流量并个性化内容。您可以选择允许哪些Cookie。请阅读我们的',
-    policyLinkPrivacy: '隐私政策',
-    policyLinkCookie: 'Cookie政策',
-    dismissAriaLabel: '暂时关闭',
-    necessary: {
-      title: '必要',
-      description: '网站功能所必需。无法禁用。',
-    },
-    analytics: {
-      title: '分析',
-      description: '帮助我们了解访客如何使用我们的网站。',
-    },
-    marketing: {
-      title: '营销',
-      description: '用于投放相关广告和追踪营销活动。',
-    },
-    acceptAll: '全部接受',
-    rejectAll: '全部拒绝',
-    savePreferences: '保存偏好',
-    loads: '加载：{names}',
-    customize: '自定义',
-  },
   inbox: {
     title: '收件箱',
     description: '本应用发给你的一切，每条通知一项，无论通过哪个渠道送达。',

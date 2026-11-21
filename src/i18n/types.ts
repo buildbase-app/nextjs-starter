@@ -855,31 +855,6 @@ export interface ChangelogMessages {
   };
 }
 
-export interface CookieConsentMessages {
-  title: string;
-  descriptionBefore: string;
-  policyLinkPrivacy: string;
-  policyLinkCookie: string;
-  dismissAriaLabel: string;
-  necessary: {
-    title: string;
-    description: string;
-  };
-  analytics: {
-    title: string;
-    description: string;
-  };
-  marketing: {
-    title: string;
-    description: string;
-  };
-  acceptAll: string;
-  rejectAll: string;
-  savePreferences: string;
-  loads: string;
-  customize: string;
-}
-
 export interface InboxMessages {
   title: string;
   description: string;
@@ -1309,7 +1284,6 @@ export interface Messages {
   creditStore: CreditStoreMessages;
   pricing: PricingMessages;
   errors: ErrorMessages;
-  cookieConsent: CookieConsentMessages;
   blog: BlogMessages;
   changelog: ChangelogMessages;
   tour: TourMessages;
