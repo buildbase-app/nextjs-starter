@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'アフィリエイト',
       enterprise: 'エンタープライズ',
       billing: '請求',
       home: 'ホーム',
@@ -1524,6 +1525,11 @@ const messages: Messages = {
         'セキュリティ画面を開きます。サインインから 10 分以上経っていれば本人確認を求め、プラットフォームがアカウントを削除すると、このアプリも保持しているあなたのデータを消去します。',
     },
     failed: '問題が発生しました。もう一度お試しください。',
+  },
+  affiliates: {
+    title: 'アフィリエイト',
+    description:
+      '招待リンクからプログラムに参加し、自分のリンクを共有して、獲得額を確認します。あなたのリンクから来た人が購入すると、あなたの成果になります。',
   },
 };
 

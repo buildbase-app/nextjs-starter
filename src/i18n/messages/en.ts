@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'Affiliates',
       enterprise: 'Enterprise',
       billing: 'Billing',
       home: 'Home',
@@ -1516,6 +1517,11 @@ const messages: Messages = {
         "Opens the Security screen: it asks you to confirm it's you if your sign-in is older than 10 minutes, and this app erases its copy of you when the platform has deleted the account.",
     },
     failed: 'Something went wrong. Please try again.',
+  },
+  affiliates: {
+    title: 'Affiliates',
+    description:
+      'Join a program from its invitation link, share your own link, and see what you earned. Anyone arriving on your link is credited to you when they buy.',
   },
 };
 

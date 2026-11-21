@@ -140,6 +140,14 @@ export const en: TourText = {
         'Sign out another session, or use Sign out everywhere.',
       ],
     },
+    'guest-upgrade': {
+      title: 'Try it as a guest, keep it as an account',
+      why: 'Let people in before they sign up: a guest works like anyone else, and creating an account later keeps their id and everything they made.',
+      steps: [
+        'Sign out, then on the sign-in page continue as a guest (when the console allows guests).',
+        'Create your account from the banner on the dashboard.',
+      ],
+    },
     'first-workspace': {
       title: 'Notice your first workspace',
       why: 'A workspace is the tenant: every plan, quota, credit balance and member belongs to one. The platform created your first one on sign-up.',
@@ -798,6 +806,14 @@ export const en: TourText = {
       steps: [
         'Open Tracking and press Record a goal.',
         'Create a document: that records document_created too.',
+      ],
+    },
+    'affiliate-program': {
+      title: 'Join an affiliate program',
+      why: 'Customers who bring customers: an affiliate shares a link, the SDK remembers who sent each visitor, and the sale is credited to them at checkout.',
+      steps: [
+        "Open a program's invitation link (Affiliates with ?program=…) and join.",
+        'Share your link; Affiliates shows clicks, commissions and payouts.',
       ],
     },
     'tracking-console-tag': {

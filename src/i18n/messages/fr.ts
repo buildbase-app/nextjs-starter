@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'Affiliés',
       enterprise: 'Entreprise',
       billing: 'Facturation',
       home: 'Accueil',
@@ -1543,6 +1544,11 @@ const messages: Messages = {
         "Ouvre l'écran Sécurité : il vous demande de confirmer que c'est vous si votre connexion date de plus de 10 minutes, et cette application efface sa copie de vous quand la plateforme a supprimé le compte.",
     },
     failed: "Une erreur s'est produite. Veuillez réessayer.",
+  },
+  affiliates: {
+    title: 'Affiliés',
+    description:
+      "Rejoignez un programme depuis son lien d'invitation, partagez votre propre lien et suivez vos gains. Toute personne arrivée par votre lien vous est attribuée lorsqu'elle achète.",
   },
 };
 

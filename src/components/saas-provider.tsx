@@ -1,10 +1,12 @@
 'use client';
 
 import { ApiVersion, type EventType, type EventData } from '@buildbase/sdk';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { env } from '@/env';
 import { SaaSOSProvider, type SaaSOSProviderProps } from '@buildbase/sdk/react';
 import { loadStripe } from '@stripe/stripe-js';
+import { loadConnectAndInitialize } from '@stripe/connect-js/pure';
+import { captureReferral } from '@buildbase/sdk/tracking';
 import { useLocale } from 'next-intl';
 import { Locale } from '@/i18n/config';
 import { pushTrackingEvent } from '@/lib/tracking-bus';
@@ -19,6 +21,15 @@ type LoadStripeForSdk = NonNullable<SaaSOSProviderProps['loadStripe']>;
  */
 const loadStripeForSdk: LoadStripeForSdk = (publishableKey) =>
   loadStripe(publishableKey) as unknown as ReturnType<LoadStripeForSdk>;
+
+/**
+ * Stripe Connect.js for the SDK's seller and affiliate-payout screens, which
+ * mount Stripe's own onboarding inside the app. Same structural-type gap as
+ * Stripe.js above.
+ */
+const loadConnectForSdk = loadConnectAndInitialize as unknown as NonNullable<
+  SaaSOSProviderProps['loadConnectAndInitialize']
+>;
 
 const config = {
   serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
@@ -60,6 +71,15 @@ async function updateAuthToken(workspaceId: string) {
 
 export function SaaSProvider({ children }: { children: React.ReactNode }) {
   const locale = useLocale() as Locale;
+  // An affiliate's link (?ref=CODE): the SDK keeps a signed referral token
+  // for this browser, and its checkouts send it so the sale is credited.
+  // Nothing is kept once marketing consent is refused.
+  useEffect(() => {
+    void captureReferral({
+      serverUrl: config.serverUrl,
+      orgId: config.orgId,
+    });
+  }, []);
   return (
     <SaaSOSProvider
       serverUrl={config.serverUrl}
@@ -70,6 +90,7 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
       // dialog (useInAppPayment) and 3-D Secure on a held plan change run
       // inside the app. Checkout still goes to Stripe's page.
       loadStripe={loadStripeForSdk}
+      loadConnectAndInitialize={loadConnectForSdk}
       // Analytics and ad tags come from the console (Settings → Tracking)
       // and load only after consent. Every event the SDK fires goes through
       // `onEvent` into a small in-memory log the Tracking page renders.

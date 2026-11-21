@@ -14,6 +14,7 @@ import {
   WhenPendingInvitations,
   PendingInvitations,
   WorkspaceAccessRefused,
+  GuestUpgrade,
 } from '@buildbase/sdk/react';
 import {
   SidebarProvider,
@@ -31,7 +32,7 @@ export function DashboardLayoutClient({
 }: {
   children: React.ReactNode;
 }) {
-  const { isAuthenticated, status } = useSaaSAuth();
+  const { isAuthenticated, status, user } = useSaaSAuth();
   const router = useRouter();
   const localeRouter = useLocaleRouter();
   // The sidebar is pinned by side, not by writing direction; in RTL it
@@ -96,6 +97,10 @@ export function DashboardLayoutClient({
                   sign-on required), in the server's words, with Confirm it's
                   you or Sign in again. Renders nothing until one is heard. */}
               <WorkspaceAccessRefused className="mb-6" />
+              {/* A guest (continued without an account on the sign-in page)
+                  keeps their work by creating an account: the SDK's own
+                  form, which keeps their id and data. */}
+              {user?.isAnonymous && <GuestUpgrade className="mb-6" />}
               <WhenPendingInvitations>
                 <PendingInvitations className="mb-6" />
               </WhenPendingInvitations>

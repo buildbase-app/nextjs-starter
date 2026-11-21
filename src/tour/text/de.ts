@@ -151,6 +151,14 @@ export const de: TourText = {
         'Melde eine andere Sitzung ab oder nutze „Überall abmelden“.',
       ],
     },
+    'guest-upgrade': {
+      title: 'Als Gast ausprobieren, als Konto behalten',
+      why: 'Lass Leute rein, bevor sie sich registrieren: Ein Gast arbeitet wie alle anderen, und ein späteres Konto behält seine ID und alles, was er erstellt hat.',
+      steps: [
+        'Melde dich ab und mach auf der Anmeldeseite als Gast weiter (wenn die Konsole Gäste erlaubt).',
+        'Erstelle dein Konto über das Banner im Dashboard.',
+      ],
+    },
     'first-workspace': {
       title: 'Ihren ersten Workspace bemerken',
       why: 'Ein Workspace ist der Tenant: jeder Plan, jedes Kontingent, jedes Credit-Guthaben und jedes Mitglied gehört zu einem. Die Plattform hat Ihren ersten bei der Registrierung angelegt.',
@@ -842,6 +850,14 @@ export const de: TourText = {
       steps: [
         'Öffne Tracking und drück auf „Ziel erfassen“.',
         'Erstelle ein Dokument: das erfasst auch document_created.',
+      ],
+    },
+    'affiliate-program': {
+      title: 'Einem Affiliate-Programm beitreten',
+      why: 'Kunden, die Kunden bringen: Ein Affiliate teilt einen Link, das SDK merkt sich, wer jeden Besucher geschickt hat, und der Verkauf wird ihm beim Checkout gutgeschrieben.',
+      steps: [
+        'Öffne den Einladungslink eines Programms (Affiliates mit ?program=…) und tritt bei.',
+        'Teile deinen Link; Affiliates zeigt Klicks, Provisionen und Auszahlungen.',
       ],
     },
     'tracking-console-tag': {

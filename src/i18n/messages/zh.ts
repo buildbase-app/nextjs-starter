@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: '推广联盟',
       enterprise: '企业',
       billing: '账单',
       home: '首页',
@@ -1451,6 +1452,11 @@ const messages: Messages = {
         '打开安全界面：如果你登录已超过 10 分钟，它会请你确认是本人操作；平台删除账户后，本应用也会删除它保存的你的数据。',
     },
     failed: '出了点问题，请重试。',
+  },
+  affiliates: {
+    title: '推广联盟',
+    description:
+      '通过邀请链接加入推广计划，分享你自己的链接，并查看你的收益。通过你的链接到来的人购买时，会计入你的名下。',
   },
 };
 

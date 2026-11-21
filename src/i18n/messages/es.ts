@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'Afiliados',
       enterprise: 'Empresa',
       billing: 'Facturación',
       home: 'Inicio',
@@ -1537,6 +1538,11 @@ const messages: Messages = {
         'Abre la pantalla de Seguridad: te pide confirmar que eres tú si iniciaste sesión hace más de 10 minutos, y esta app borra su copia de ti cuando la plataforma ha eliminado la cuenta.',
     },
     failed: 'Algo salió mal. Inténtalo de nuevo.',
+  },
+  affiliates: {
+    title: 'Afiliados',
+    description:
+      'Únete a un programa desde su enlace de invitación, comparte tu propio enlace y mira lo que has ganado. Quien llegue por tu enlace se te atribuye cuando compra.',
   },
 };
 

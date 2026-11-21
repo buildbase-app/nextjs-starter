@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'Affiliates',
       enterprise: 'Enterprise',
       billing: 'Abrechnung',
       home: 'Startseite',
@@ -1537,6 +1538,11 @@ const messages: Messages = {
         'Öffnet den Sicherheitsbildschirm: Er bittet dich zu bestätigen, dass du es bist, wenn deine Anmeldung älter als 10 Minuten ist, und diese App löscht ihre Kopie von dir, sobald die Plattform das Konto gelöscht hat.',
     },
     failed: 'Etwas ist schiefgelaufen. Bitte versuch es noch einmal.',
+  },
+  affiliates: {
+    title: 'Affiliates',
+    description:
+      'Tritt einem Programm über seinen Einladungslink bei, teile deinen eigenen Link und sieh, was du verdient hast. Wer über deinen Link kommt, wird dir beim Kauf gutgeschrieben.',
   },
 };
 

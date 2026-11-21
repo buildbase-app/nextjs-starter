@@ -151,6 +151,14 @@ export const es: TourText = {
         'Cierra otra sesión o usa Cerrar sesión en todas partes.',
       ],
     },
+    'guest-upgrade': {
+      title: 'Pruébalo como invitado, consérvalo como cuenta',
+      why: 'Deja entrar a la gente antes de registrarse: un invitado trabaja como cualquiera, y crear una cuenta después conserva su id y todo lo que hizo.',
+      steps: [
+        'Cierra sesión y, en la página de inicio de sesión, continúa como invitado (si la consola permite invitados).',
+        'Crea tu cuenta desde el aviso del panel.',
+      ],
+    },
     'first-workspace': {
       title: 'Fíjate en tu primer espacio de trabajo',
       why: 'Un espacio de trabajo es el inquilino: cada plan, cuota, saldo de créditos y miembro pertenece a uno. La plataforma creó el primero al registrarte.',
@@ -831,6 +839,14 @@ export const es: TourText = {
       steps: [
         'Abre Seguimiento y pulsa «Registrar un objetivo».',
         'Crea un documento: eso también registra document_created.',
+      ],
+    },
+    'affiliate-program': {
+      title: 'Únete a un programa de afiliados',
+      why: 'Clientes que traen clientes: un afiliado comparte un enlace, el SDK recuerda quién envió a cada visitante y la venta se le atribuye al pagar.',
+      steps: [
+        'Abre el enlace de invitación de un programa (Afiliados con ?program=…) y únete.',
+        'Comparte tu enlace; Afiliados muestra clics, comisiones y pagos.',
       ],
     },
     'tracking-console-tag': {

@@ -3,6 +3,7 @@
 
 export interface CommonMessages {
   nav: {
+    affiliates: string;
     enterprise: string;
     billing: string;
     home: string;
@@ -1393,6 +1394,11 @@ export interface YourDataMessages {
   failed: string;
 }
 
+export interface AffiliatesMessages {
+  title: string;
+  description: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1431,6 +1437,7 @@ export interface Messages {
   billingHub: BillingHubMessages;
   autoTopUp: AutoTopUpMessages;
   yourData: YourDataMessages;
+  affiliates: AffiliatesMessages;
 }
 
 // For next-intl type inference
