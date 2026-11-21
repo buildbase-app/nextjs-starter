@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { z, ZodSchema } from 'zod';
+import { z } from 'zod';
 
 /**
  * Validation error response type
@@ -7,14 +7,14 @@ import { z, ZodSchema } from 'zod';
 export interface ValidationError {
   success: false;
   error: string;
-  details?: z.ZodIssue[];
+  details?: z.core.$ZodIssue[];
 }
 
 /**
  * Validates request body against a Zod schema
  * Returns parsed data or a NextResponse with validation errors
  */
-export async function validateBody<T extends ZodSchema>(
+export async function validateBody<T extends z.ZodType>(
   request: Request,
   schema: T
 ): Promise<z.infer<T> | NextResponse<ValidationError>> {
@@ -49,7 +49,7 @@ export async function validateBody<T extends ZodSchema>(
  * Validates URL search params against a Zod schema
  * Returns parsed data or a NextResponse with validation errors
  */
-export function validateParams<T extends ZodSchema>(
+export function validateParams<T extends z.ZodType>(
   searchParams: URLSearchParams,
   schema: T
 ): z.infer<T> | NextResponse<ValidationError> {
@@ -82,12 +82,12 @@ export function isValidationError<T>(
 /**
  * Simple validation function that returns result with errors
  */
-export function validate<T extends ZodSchema>(
+export function validate<T extends z.ZodType>(
   data: unknown,
   schema: T
 ):
   | { success: true; data: z.infer<T> }
-  | { success: false; errors: z.ZodIssue[] } {
+  | { success: false; errors: z.core.$ZodIssue[] } {
   const result = schema.safeParse(data);
 
   if (!result.success) {
