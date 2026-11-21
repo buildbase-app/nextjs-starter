@@ -212,8 +212,15 @@ The Worker is about 6.5 MB gzipped, so it needs the Workers Paid plan
 
 2. **Deploy.** `.github/workflows/deploy-cloudflare.yml` deploys every push to
    `main` once the repository secret `CLOUDFLARE_API_TOKEN` is set (the file
-   lists the permissions it needs and the public build values it uses). Or
-   deploy another way:
+   lists the permissions it needs and the public build values it uses). In a
+   fork or a copy, first set your own values as repository **variables**
+   (Settings → Secrets and variables → Actions → Variables):
+   `CLOUDFLARE_ACCOUNT_ID`, `NEXT_PUBLIC_BUILDBASE_ORG_ID`,
+   `NEXT_PUBLIC_BUILDBASE_CLIENT_ID` and `NEXT_PUBLIC_SITE_URL`, and change the
+   Worker `name`, the `WORKER_SELF_REFERENCE` service and the `routes` in
+   `wrangler.jsonc`. Only this repository falls back to the demo's values: a
+   copy skips the deploy until its variables are set, and stops while
+   `wrangler.jsonc` still names the demo's Worker. Or deploy another way:
    - **From Git (Workers Builds):** in the Cloudflare dashboard, Workers &
      Pages → Create → Import a repository. Build command
      `npx opennextjs-cloudflare build`, deploy command
@@ -226,6 +233,11 @@ The Worker is about 6.5 MB gzipped, so it needs the Workers Paid plan
 
 3. To try it locally first, put the server variables in `.dev.vars` (git
    ignored) and run `npm run cf:preview`.
+
+Keep the `@opennextjs/aws` → `cookie: 0.7.2` entry in `package.json`'s
+`overrides`, even though nothing imports it: without it every request that
+carries a cookie fails on Workers with `Cannot read properties of undefined
+(reading 'parse')` (Cloudflare error 1101).
 
 Caching is off by default on Cloudflare: ISR and `revalidateTag` render fresh on
 each request. To cache, see the note in `open-next.config.ts`.
