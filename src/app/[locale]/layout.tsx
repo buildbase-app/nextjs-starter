@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from 'next-intl/server';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SaaSProvider } from '@/components/saas-provider';
 import { QueryProvider } from '@/components/query-provider';
@@ -103,6 +107,11 @@ export default async function LocaleLayout({
   if (!locales.includes(locale as Locale)) {
     notFound();
   }
+
+  // Lets next-intl read the locale from params instead of request headers,
+  // so pages that also call it can be prerendered (and served statically on
+  // Cloudflare, where MDX cannot be evaluated at request time).
+  setRequestLocale(locale);
 
   const messages = await getMessages();
   const isRtl = isRtlLocale(locale as Locale);

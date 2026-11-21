@@ -10,7 +10,7 @@ import { blog } from '@/content/blog';
 import type { Locale } from '@/i18n/config';
 import { buildMarketingMetadata } from '@/lib/seo/marketing-metadata';
 import { localePath } from '@/lib/i18n-url';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 interface AuthorPageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -38,6 +38,7 @@ export async function generateMetadata({
 
 export default async function AuthorPage({ params }: AuthorPageProps) {
   const { slug, locale } = await params;
+  setRequestLocale(locale);
   const localeTyped = locale as Locale;
   const t = await getTranslations({ locale: localeTyped, namespace: 'blog' });
 

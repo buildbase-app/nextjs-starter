@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { MdxRenderer } from '@/components/marketing/mdx/mdx-renderer';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 import { terms } from '@/content/pages/terms';
@@ -24,6 +24,7 @@ export async function generateMetadata({
 
 export default async function TermsPage({ params }: TermsPageProps) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const [content, t] = await Promise.all([
     terms.get(locale as Locale),
     getTranslations({ locale, namespace: 'common' }),
