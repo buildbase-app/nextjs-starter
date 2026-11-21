@@ -313,6 +313,19 @@ export const fr: TourText = {
         'Sur Équipe, invitez quelqu’un ; lisez la ligne des sièges et la carte du plan.',
       ],
     },
+    'buy-add-on': {
+      title: 'Acheter un module',
+      why: "Vendez plus que des forfaits : une fonction à vie, un lot de quota, une place en plus. Ce qu'il accorde rejoint aussitôt les droits du forfait.",
+      steps: [
+        'Ouvrez Facturation et appuyez sur « Gérer les modules ».',
+        'Achetez-en un ; les vérifications de la page Documents suivent.',
+      ],
+    },
+    'personal-plan': {
+      title: 'Un forfait à soi',
+      why: "Tout n'appartient pas à une équipe : une personne peut détenir un forfait et des crédits pour elle-même, à part de tout espace de travail.",
+      steps: ['Ouvrez Facturation et regardez « Votre propre forfait ».'],
+    },
     'record-usage': {
       title: 'Enregistrer de l’usage',
       why: 'Votre app mesure ce qu’elle fait (un document créé, une vidéo traitée) ; le plan dit ce qui est inclus.',
@@ -380,7 +393,7 @@ export const fr: TourText = {
       title: 'Recharger automatiquement',
       why: "Un espace de travail à court de crédits s'arrête. La recharge automatique achète un pack avec la carte enregistrée avant que cela n'arrive, dans un plafond mensuel fixé par le client.",
       steps: [
-        'Ouvrez Crédits et trouvez « Recharge automatique ».',
+        'Ouvrez Crédits et appuyez sur « Configurer la recharge automatique ».',
         'Ajoutez une carte, choisissez un seuil et un pack, puis activez-la.',
       ],
     },

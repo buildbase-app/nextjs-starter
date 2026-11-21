@@ -302,6 +302,19 @@ export const es: TourText = {
         'En Team, invita a alguien; lee la línea de asientos y la tarjeta de plan.',
       ],
     },
+    'buy-add-on': {
+      title: 'Compra un complemento',
+      why: 'Vende algo más que planes: una función de por vida, un paquete de cuota, un puesto extra. Lo que concede se suma al instante a los derechos del plan.',
+      steps: [
+        'Abre Facturación y pulsa «Gestionar complementos».',
+        'Compra uno; las comprobaciones de la página Documentos lo reflejan.',
+      ],
+    },
+    'personal-plan': {
+      title: 'Un plan propio',
+      why: 'No todo pertenece a un equipo: una persona puede tener un plan y créditos para sí misma, separados de todos los espacios de trabajo.',
+      steps: ['Abre Facturación y mira «Tu propio plan».'],
+    },
     'record-usage': {
       title: 'Registra uso',
       why: 'Tu app mide lo que hace (un documento creado, un vídeo procesado); el plan dice cuánto está incluido.',
@@ -369,7 +382,7 @@ export const es: TourText = {
       title: 'Recarga automáticamente',
       why: 'Un espacio de trabajo que se queda sin créditos deja de funcionar. La recarga automática compra un paquete con la tarjeta guardada antes de que pase, dentro de un límite mensual que fija el cliente.',
       steps: [
-        'Abre Créditos y busca «Recarga automática».',
+        'Abre Créditos y pulsa «Configurar la recarga automática».',
         'Añade una tarjeta, elige un umbral y un paquete, y actívala.',
       ],
     },

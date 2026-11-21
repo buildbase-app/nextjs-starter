@@ -431,6 +431,37 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     requires: ['subscribe'],
   },
+  {
+    id: 'buy-add-on',
+    group: 'billing',
+    href: '/dashboard/billing',
+    source: {
+      sdk: [
+        "openWorkspaceSettings('subscription')  // its Add-ons section",
+        'useWorkspaceAddOns() / usePurchaseAddOn()  // to build your own',
+      ],
+      console: {
+        screen: '/dashboard/admin/subscriptions/plans',
+        note: 'Add-ons: one-time, lifetime, consumable or recurring, each granting features, limits or quota on top of the plan.',
+      },
+      app: ['src/app/[locale]/dashboard/billing/page.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
+  {
+    id: 'personal-plan',
+    group: 'billing',
+    href: '/dashboard/billing',
+    source: {
+      sdk: ['<AccountBilling />', "openWorkspaceSettings('account-credits')"],
+      console: {
+        screen: '/dashboard/admin/subscriptions/plans',
+        note: 'A plan group sold to people rather than workspaces; the person gets their own Billing and Credits screens.',
+      },
+      app: ['src/app/[locale]/dashboard/billing/page.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',
@@ -580,16 +611,14 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     href: '/dashboard/credits',
     source: {
       sdk: [
-        'useCreditAutoTopUp(workspaceId)',
-        'update({ enabled, threshold, creditPackageId, monthlyCap })',
-        'resume()',
-        'addPaymentMethod()',
+        "openWorkspaceSettings('credits')  // its Auto top-up section",
+        'useCreditAutoTopUp()  // to build your own',
       ],
       console: {
         screen: '/dashboard/admin/subscriptions/credit-packages',
         note: 'The packs a top-up can buy; the org decides whether customers may turn auto top-up on, and the monthly cap range.',
       },
-      app: ['src/components/credits/auto-top-up-card.tsx'],
+      app: ['src/app/[locale]/dashboard/credits/page.tsx'],
     },
     detect: { kind: 'manual' },
   },
@@ -1720,9 +1749,8 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     href: '/dashboard/profile',
     source: {
       sdk: [
-        'WorkspaceApi.requestAccountDeletion()',
-        "useSaaSAuth().requireReverification()  // Confirm it's you",
-        "webhook 'user.deleted'",
+        "openWorkspaceSettings('security')  // Delete account, with Confirm it's you",
+        "webhook 'user.deleted'  // erases this app's copy",
       ],
       console: {
         screen: '/dashboard/admin/users',
@@ -1730,7 +1758,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       },
       app: [
         'src/components/account/your-data-card.tsx',
-        'src/app/api/user/delete/route.ts',
+        'src/app/api/webhooks/buildbase/route.ts',
         'src/lib/account/erase.ts',
       ],
     },

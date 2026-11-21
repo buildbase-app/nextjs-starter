@@ -281,6 +281,19 @@ export const en: TourText = {
       why: 'Per-seat plans bill members and pending invitations. The SDK computes the same number the platform bills.',
       steps: ['On Team, invite someone; read the seat line and the plan card.'],
     },
+    'buy-add-on': {
+      title: 'Buy an add-on',
+      why: "Sell more than plans: a lifetime feature, a pack of a quota, an extra seat. What it grants joins the plan's entitlement at once.",
+      steps: [
+        'Open Billing and press Manage add-ons.',
+        "Buy one; the Documents page's entitlement checks follow.",
+      ],
+    },
+    'personal-plan': {
+      title: 'A plan of your own',
+      why: 'Not everything belongs to a team: a person can hold a plan and credits for themselves, kept apart from every workspace.',
+      steps: ['Open Billing and look at Your own plan.'],
+    },
     'record-usage': {
       title: 'Record usage',
       why: 'Your app meters what it does (a document created, a video processed); the plan says how much is included.',
@@ -342,7 +355,7 @@ export const en: TourText = {
       title: 'Top up automatically',
       why: 'A workspace that runs out of credits stops working. Auto top-up buys a pack on the saved card before that happens, within a monthly cap the customer sets.',
       steps: [
-        'Open Credits and find Auto top-up.',
+        'Open Credits and press Set up auto top-up.',
         'Add a card, pick a threshold and a pack, and turn it on.',
       ],
     },

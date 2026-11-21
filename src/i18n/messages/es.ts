@@ -4,6 +4,7 @@ const messages: Messages = {
   common: {
     nav: {
       enterprise: 'Empresa',
+      billing: 'Facturación',
       home: 'Inicio',
       dashboard: 'Panel',
       documents: 'Documentos',
@@ -1419,35 +1420,6 @@ const messages: Messages = {
       },
     },
   },
-  yourData: {
-    title: 'Tus datos',
-    description:
-      'Descarga todo lo que esta app y la plataforma guardan sobre ti, o elimina tu cuenta aquí y en la plataforma.',
-    export: {
-      button: 'Exportar mis datos',
-      working: 'Preparando…',
-    },
-    delete: {
-      button: 'Eliminar mi cuenta',
-      working: 'Eliminando…',
-      areYouSure:
-        '¿Eliminar tu cuenta? No se puede deshacer y cierra tu sesión.',
-      recent:
-        'Iniciaste sesión hace poco, así que puedes eliminar tu cuenta ahora.',
-      needsConfirm:
-        'Para eliminarla hace falta haber iniciado sesión en los últimos 10 minutos. Primero te pediremos que confirmes que eres tú.',
-      confirmNow: 'Confirmar que eres tú ahora',
-      confirmFirst:
-        'Primero confirma que eres tú. Volverás aquí; después pulsa de nuevo «Eliminar mi cuenta».',
-      scheduled:
-        'Tu cuenta se eliminará el {date}. Hasta entonces puedes cancelarlo iniciando sesión.',
-      scheduledNoDate:
-        'La eliminación de tu cuenta está programada. Hasta entonces puedes cancelarla iniciando sesión.',
-      ownsWorkspaces:
-        'Todavía eres dueño de espacios de trabajo con otros miembros, o pagas por ellos: {names}. Quita a los demás miembros y cancela la suscripción, o elimina primero esos espacios.',
-    },
-    failed: 'Algo salió mal. Inténtalo de nuevo.',
-  },
   entitlements: {
     title: 'Lo que incluye tu plan',
     description:
@@ -1521,48 +1493,50 @@ const messages: Messages = {
     failed: 'No se pudo cambiar la reserva.',
     jobDescription: 'Trabajo de demostración (reservado y luego liquidado)',
   },
+  billingHub: {
+    title: 'Facturación',
+    description:
+      'Más allá del plan del espacio de trabajo: complementos encima, y un plan y créditos propios. Son las pantallas del propio SDK.',
+    addOns: {
+      title: 'Complementos',
+      description:
+        'Extras que un espacio de trabajo compra además de su plan, del catálogo de la consola. Están en la pantalla de suscripción del espacio de trabajo.',
+      open: 'Gestionar complementos',
+    },
+    personalCredits: {
+      title: 'Tus propios créditos',
+      description:
+        'Un saldo de créditos que es tuyo, no de un espacio de trabajo, con sus compras y su recarga automática.',
+      open: 'Abrir tus créditos',
+    },
+    personal: {
+      title: 'Tu propio plan',
+      description:
+        'Un plan para ti como persona, separado de cualquier espacio de trabajo. Se muestra cuando la consola vende planes a personas.',
+    },
+    inPage:
+      'Los datos de la tarjeta y 3-D Secure se abren dentro de estas pantallas, sin ir al sitio de Stripe.',
+  },
   autoTopUp: {
     title: 'Recarga automática',
-    on: 'Activada',
-    off: 'Desactivada',
     description:
-      'Compra un paquete de créditos con la tarjeta guardada cuando el saldo baje de un umbral, como máximo un número fijado de veces al mes.',
-    loading: 'Cargando la configuración…',
-    unavailable:
-      'La recarga automática no está disponible para este espacio de trabajo.',
-    paused: {
-      payment_failed:
-        'En pausa: se rechazaron cuatro pagos seguidos. Arregla la tarjeta y reanuda.',
-      no_payment_method:
-        'En pausa: no hay tarjeta a la que cobrar. Añade una y reanuda.',
-      monthly_cap:
-        'En pausa: las recargas de este mes llegaron al límite. Se levanta el día 1.',
-      dunning: 'En pausa: la suscripción tiene una factura impagada.',
-      currency_unavailable:
-        'En pausa: el paquete no tiene precio en la moneda de este espacio de trabajo. Elige otro.',
-      package_unavailable:
-        'En pausa: el paquete ya no está a la venta. Elige otro.',
-      tax_requires_checkout:
-        'En pausa: se cobran impuestos, algo que una recarga con tarjeta guardada aún no puede hacer. Compra los paquetes a mano.',
-      terms_changed:
-        'En pausa: cambiaron los créditos o el precio del paquete. Reanudar acepta las nuevas condiciones.',
-      other: 'En pausa ({reason}).',
+      'Compra un paquete de créditos con la tarjeta guardada cuando el saldo baje de un umbral, dentro de un límite mensual. La pantalla de créditos del SDK tiene la configuración, la tarjeta y el motivo de una pausa.',
+    open: 'Configurar la recarga automática',
+  },
+  yourData: {
+    title: 'Tus datos',
+    description:
+      'Descarga todo lo que esta app y la plataforma guardan sobre ti, o elimina tu cuenta.',
+    export: {
+      button: 'Exportar mis datos',
+      working: 'Preparando…',
     },
-    resume: 'Reanudar',
-    threshold: 'Cuando el saldo baje de',
-    pack: 'Comprar este paquete',
-    packOption: '{name} ({credits} créditos)',
-    monthlyCap: 'Como máximo al mes ({min}–{max})',
-    usage: '{used} de {cap} recargas usadas este mes.',
-    lastTopUp: 'Última recarga: {date}.',
-    card: 'Cobra a {brand} terminada en {last4}',
-    noCard: 'Aún no hay tarjeta guardada',
-    addCard: 'Añadir una tarjeta',
-    changeCard: 'Cambiar la tarjeta',
-    save: 'Guardar',
-    turnOn: 'Activar',
-    turnOff: 'Desactivar',
-    saved: 'Guardado.',
+    delete: {
+      button: 'Eliminar mi cuenta',
+      where:
+        'Abre la pantalla de Seguridad: te pide confirmar que eres tú si iniciaste sesión hace más de 10 minutos, y esta app borra su copia de ti cuando la plataforma ha eliminado la cuenta.',
+    },
+    failed: 'Algo salió mal. Inténtalo de nuevo.',
   },
 };
 

@@ -4,6 +4,7 @@ const messages: Messages = {
   common: {
     nav: {
       enterprise: 'Enterprise',
+      billing: 'Abrechnung',
       home: 'Startseite',
       dashboard: 'Dashboard',
       documents: 'Dokumente',
@@ -1418,35 +1419,6 @@ const messages: Messages = {
       },
     },
   },
-  yourData: {
-    title: 'Deine Daten',
-    description:
-      'Lade alles herunter, was diese App und die Plattform über dich speichern, oder lösche dein Konto hier und auf der Plattform.',
-    export: {
-      button: 'Meine Daten exportieren',
-      working: 'Wird vorbereitet…',
-    },
-    delete: {
-      button: 'Mein Konto löschen',
-      working: 'Wird gelöscht…',
-      areYouSure:
-        'Dein Konto löschen? Das lässt sich nicht rückgängig machen und beendet deine Sitzung.',
-      recent:
-        'Du hast dich vor Kurzem angemeldet und kannst dein Konto jetzt löschen.',
-      needsConfirm:
-        'Zum Löschen ist eine Anmeldung aus den letzten 10 Minuten nötig. Du wirst zuerst gebeten zu bestätigen, dass du es bist.',
-      confirmNow: 'Jetzt bestätigen, dass du es bist',
-      confirmFirst:
-        'Bestätige zuerst, dass du es bist. Du kommst hierher zurück; drück dann noch einmal auf „Mein Konto löschen“.',
-      scheduled:
-        'Dein Konto wird am {date} gelöscht. Bis dahin kannst du es mit einer Anmeldung abbrechen.',
-      scheduledNoDate:
-        'Die Löschung deines Kontos ist geplant. Bis dahin kannst du sie mit einer Anmeldung abbrechen.',
-      ownsWorkspaces:
-        'Dir gehören noch Arbeitsbereiche mit anderen Mitgliedern, oder du bezahlst für sie: {names}. Entferne die anderen Mitglieder und kündige das Abo, oder lösche diese Arbeitsbereiche zuerst.',
-    },
-    failed: 'Etwas ist schiefgelaufen. Bitte versuch es noch einmal.',
-  },
   entitlements: {
     title: 'Was dein Tarif enthält',
     description:
@@ -1521,48 +1493,50 @@ const messages: Messages = {
     failed: 'Die Reservierung konnte nicht geändert werden.',
     jobDescription: 'Demo-Auftrag (reserviert, dann abgerechnet)',
   },
+  billingHub: {
+    title: 'Abrechnung',
+    description:
+      'Über den Tarif des Arbeitsbereichs hinaus: Add-ons obendrauf sowie ein eigener Tarif und eigene Credits. Das sind die Bildschirme des SDK selbst.',
+    addOns: {
+      title: 'Add-ons',
+      description:
+        'Extras, die ein Arbeitsbereich zusätzlich zu seinem Tarif kauft, aus dem Katalog der Konsole. Sie stehen im Abo-Bildschirm des Arbeitsbereichs.',
+      open: 'Add-ons verwalten',
+    },
+    personalCredits: {
+      title: 'Deine eigenen Credits',
+      description:
+        'Ein Credit-Guthaben, das dir gehört und nicht einem Arbeitsbereich, mit seinen Käufen und automatischem Aufladen.',
+      open: 'Deine Credits öffnen',
+    },
+    personal: {
+      title: 'Dein eigener Tarif',
+      description:
+        'Ein Tarif für dich als Person, getrennt von jedem Arbeitsbereich. Erscheint, sobald die Konsole Tarife an Personen verkauft.',
+    },
+    inPage:
+      'Kartendaten und 3-D Secure öffnen sich in diesen Bildschirmen, ohne zur Stripe-Seite zu wechseln.',
+  },
   autoTopUp: {
     title: 'Automatisches Aufladen',
-    on: 'An',
-    off: 'Aus',
     description:
-      'Kauf mit der gespeicherten Karte ein Credit-Paket, sobald das Guthaben unter einen Schwellenwert fällt, höchstens so oft im Monat wie festgelegt.',
-    loading: 'Einstellung wird geladen…',
-    unavailable:
-      'Automatisches Aufladen ist für diesen Arbeitsbereich nicht verfügbar.',
-    paused: {
-      payment_failed:
-        'Pausiert: vier Zahlungen in Folge wurden abgelehnt. Bring die Karte in Ordnung und setz dann fort.',
-      no_payment_method:
-        'Pausiert: Es gibt keine Karte zum Belasten. Füg eine hinzu und setz dann fort.',
-      monthly_cap:
-        'Pausiert: Die Aufladungen dieses Monats haben das Limit erreicht. Es endet am 1.',
-      dunning: 'Pausiert: Das Abo hat eine unbezahlte Rechnung.',
-      currency_unavailable:
-        'Pausiert: Das Paket hat keinen Preis in der Währung dieses Arbeitsbereichs. Wähl ein anderes.',
-      package_unavailable:
-        'Pausiert: Das Paket wird nicht mehr verkauft. Wähl ein anderes.',
-      tax_requires_checkout:
-        'Pausiert: Es wird Steuer erhoben, was eine Aufladung mit gespeicherter Karte noch nicht kann. Kauf Pakete von Hand.',
-      terms_changed:
-        'Pausiert: Credits oder Preis des Pakets haben sich geändert. Fortsetzen stimmt den neuen Bedingungen zu.',
-      other: 'Pausiert ({reason}).',
+      'Kauf mit der gespeicherten Karte ein Credit-Paket, sobald das Guthaben unter einen Schwellenwert fällt, innerhalb eines monatlichen Limits. Der Credits-Bildschirm des SDK enthält die Einstellung, die Karte und den Grund einer Pause.',
+    open: 'Automatisches Aufladen einrichten',
+  },
+  yourData: {
+    title: 'Deine Daten',
+    description:
+      'Lade alles herunter, was diese App und die Plattform über dich speichern, oder lösche dein Konto.',
+    export: {
+      button: 'Meine Daten exportieren',
+      working: 'Wird vorbereitet…',
     },
-    resume: 'Fortsetzen',
-    threshold: 'Wenn das Guthaben fällt unter',
-    pack: 'Dieses Paket kaufen',
-    packOption: '{name} ({credits} Credits)',
-    monthlyCap: 'Höchstens pro Monat ({min}–{max})',
-    usage: '{used} von {cap} Aufladungen in diesem Monat genutzt.',
-    lastTopUp: 'Letzte Aufladung: {date}.',
-    card: 'Belastet {brand} mit Endziffern {last4}',
-    noCard: 'Noch keine Karte gespeichert',
-    addCard: 'Karte hinzufügen',
-    changeCard: 'Karte ändern',
-    save: 'Speichern',
-    turnOn: 'Einschalten',
-    turnOff: 'Ausschalten',
-    saved: 'Gespeichert.',
+    delete: {
+      button: 'Mein Konto löschen',
+      where:
+        'Öffnet den Sicherheitsbildschirm: Er bittet dich zu bestätigen, dass du es bist, wenn deine Anmeldung älter als 10 Minuten ist, und diese App löscht ihre Kopie von dir, sobald die Plattform das Konto gelöscht hat.',
+    },
+    failed: 'Etwas ist schiefgelaufen. Bitte versuch es noch einmal.',
   },
 };
 

@@ -312,6 +312,19 @@ export const de: TourText = {
         'Laden Sie unter Team jemanden ein; lesen Sie die Sitzzeile und die Plan-Karte.',
       ],
     },
+    'buy-add-on': {
+      title: 'Ein Add-on kaufen',
+      why: 'Verkaufe mehr als Tarife: eine lebenslange Funktion, ein Paket eines Kontingents, einen zusätzlichen Platz. Was es gewährt, zählt sofort zur Berechtigung des Tarifs.',
+      steps: [
+        'Öffne Abrechnung und drück auf „Add-ons verwalten“.',
+        'Kauf eines; die Berechtigungsprüfungen auf der Dokumente-Seite folgen.',
+      ],
+    },
+    'personal-plan': {
+      title: 'Ein eigener Tarif',
+      why: 'Nicht alles gehört einem Team: Eine Person kann einen Tarif und Credits für sich selbst haben, getrennt von jedem Arbeitsbereich.',
+      steps: ['Öffne Abrechnung und sieh dir „Dein eigener Tarif“ an.'],
+    },
     'record-usage': {
       title: 'Nutzung erfassen',
       why: 'Ihre App misst, was sie tut (ein erstelltes Dokument, ein verarbeitetes Video); der Plan sagt, wie viel enthalten ist.',
@@ -379,7 +392,7 @@ export const de: TourText = {
       title: 'Automatisch aufladen',
       why: 'Ein Arbeitsbereich ohne Credits hört auf zu arbeiten. Automatisches Aufladen kauft vorher ein Paket mit der gespeicherten Karte, innerhalb eines monatlichen Limits, das der Kunde festlegt.',
       steps: [
-        'Öffne Credits und such „Automatisches Aufladen“.',
+        'Öffne Credits und drück auf „Automatisches Aufladen einrichten“.',
         'Füg eine Karte hinzu, wähl Schwellenwert und Paket und schalte es ein.',
       ],
     },

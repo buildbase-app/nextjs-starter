@@ -31,6 +31,8 @@ export const TASK_IDS = [
   'upgrade',
   'cancel-resume',
   'seat-price',
+  'buy-add-on',
+  'personal-plan',
   'record-usage',
   'usage-threshold',
   'usage-limit',

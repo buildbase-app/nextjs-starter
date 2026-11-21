@@ -4,6 +4,7 @@ const messages: Messages = {
   common: {
     nav: {
       enterprise: '企业',
+      billing: '账单',
       home: '首页',
       dashboard: '仪表板',
       documents: '文档',
@@ -1339,31 +1340,6 @@ const messages: Messages = {
       },
     },
   },
-  yourData: {
-    title: '你的数据',
-    description:
-      '下载本应用和平台保存的所有关于你的数据，或在此处和平台上删除你的账户。',
-    export: {
-      button: '导出我的数据',
-      working: '正在准备…',
-    },
-    delete: {
-      button: '删除我的账户',
-      working: '正在删除…',
-      areYouSure: '确定删除你的账户吗？此操作无法撤销，并会结束你的会话。',
-      recent: '你最近登录过，现在就可以删除账户。',
-      needsConfirm:
-        '删除账户需要最近 10 分钟内的登录。系统会先请你确认是本人操作。',
-      confirmNow: '立即确认是本人',
-      confirmFirst:
-        '请先确认是本人。你会回到这里，然后再次点击“删除我的账户”。',
-      scheduled: '你的账户将于 {date} 删除。在此之前，登录即可取消。',
-      scheduledNoDate: '你的账户已安排删除。在此之前，登录即可取消。',
-      ownsWorkspaces:
-        '你仍拥有或付费的工作区中还有其他成员：{names}。请先移除其他成员并取消订阅，或先删除这些工作区。',
-    },
-    failed: '出了点问题，请重试。',
-  },
   entitlements: {
     title: '你的套餐包含什么',
     description:
@@ -1433,42 +1409,48 @@ const messages: Messages = {
     failed: '无法更改该预留。',
     jobDescription: '演示任务（先预留，后结算）',
   },
+  billingHub: {
+    title: '账单',
+    description:
+      '工作区套餐之外：套餐之上的附加项，以及你自己的套餐和积分。这些都是 SDK 自带的界面。',
+    addOns: {
+      title: '附加项',
+      description:
+        '工作区在套餐之外购买的额外内容，来自控制台的目录。它们在工作区的订阅界面中。',
+      open: '管理附加项',
+    },
+    personalCredits: {
+      title: '你自己的积分',
+      description: '属于你而非某个工作区的积分钱包，包含购买记录和自动充值。',
+      open: '打开你的积分',
+    },
+    personal: {
+      title: '你自己的套餐',
+      description:
+        '以个人身份拥有的套餐，与任何工作区分开。当控制台向个人销售套餐时显示。',
+    },
+    inPage:
+      '卡片信息和 3-D 安全验证会在这些界面内打开，无需跳转到 Stripe 网站。',
+  },
   autoTopUp: {
     title: '自动充值',
-    on: '已开启',
-    off: '已关闭',
     description:
-      '每当余额低于阈值时，使用已保存的卡购买一个积分包，每月最多设定的次数。',
-    loading: '正在加载设置…',
-    unavailable: '此工作区不支持自动充值。',
-    paused: {
-      payment_failed: '已暂停：连续四次付款被拒。请处理卡片问题后恢复。',
-      no_payment_method: '已暂停：没有可扣款的卡。请添加一张后恢复。',
-      monthly_cap: '已暂停：本月充值次数已达上限，将于 1 日解除。',
-      dunning: '已暂停：订阅有未付账单。',
-      currency_unavailable:
-        '已暂停：该积分包在此工作区的货币下没有价格。请换一个。',
-      package_unavailable: '已暂停：该积分包已停售。请换一个。',
-      tax_requires_checkout:
-        '已暂停：当前需要征税，已保存卡的自动充值暂不支持。请手动购买积分包。',
-      terms_changed: '已暂停：积分包的积分或价格已变更。恢复即表示同意新条款。',
-      other: '已暂停（{reason}）。',
+      '每当余额低于阈值时，在每月上限内用已保存的卡购买积分包。设置、银行卡和暂停原因都在 SDK 的积分界面中。',
+    open: '设置自动充值',
+  },
+  yourData: {
+    title: '你的数据',
+    description: '下载本应用和平台保存的所有关于你的数据，或删除你的账户。',
+    export: {
+      button: '导出我的数据',
+      working: '正在准备…',
     },
-    resume: '恢复',
-    threshold: '当余额低于',
-    pack: '购买此积分包',
-    packOption: '{name}（{credits} 积分）',
-    monthlyCap: '每月最多（{min}–{max}）',
-    usage: '本月已用 {used}/{cap} 次充值。',
-    lastTopUp: '上次充值：{date}。',
-    card: '从尾号 {last4} 的 {brand} 扣款',
-    noCard: '尚未保存卡片',
-    addCard: '添加卡片',
-    changeCard: '更换卡片',
-    save: '保存',
-    turnOn: '开启',
-    turnOff: '关闭',
-    saved: '已保存。',
+    delete: {
+      button: '删除我的账户',
+      where:
+        '打开安全界面：如果你登录已超过 10 分钟，它会请你确认是本人操作；平台删除账户后，本应用也会删除它保存的你的数据。',
+    },
+    failed: '出了点问题，请重试。',
   },
 };
 
