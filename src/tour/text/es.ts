@@ -476,6 +476,14 @@ export const es: TourText = {
         'Cambia de plan y vuelve a mirar: las respuestas lo siguen.',
       ],
     },
+    gates: {
+      title: 'Mostrar u ocultar por rol, límite y plan',
+      why: 'Componentes que muestran un botón, una oferta de mejora o nada según la respuesta de la plataforma, así una pantalla nunca comprueba nombres de planes.',
+      steps: [
+        'Abre Documentos y baja hasta la tarjeta de controles.',
+        'Mira qué muestra cada control para tu rol, miembros, vídeos y planes.',
+      ],
+    },
     'permission-matrix': {
       title: 'Lee tu matriz de permisos',
       why: 'Lo que permite tu rol en este espacio de trabajo, resuelto por la plataforma.',

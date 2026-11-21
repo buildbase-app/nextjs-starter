@@ -54,6 +54,7 @@ export const TASK_IDS = [
   'feature-on',
   'user-feature',
   'entitlement-check',
+  'gates',
   'permission-matrix',
   'forbidden-action',
   'custom-role',

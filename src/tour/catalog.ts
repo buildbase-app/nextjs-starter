@@ -809,6 +809,23 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       kind: 'manual',
     },
   },
+  {
+    id: 'gates',
+    group: 'features',
+    href: '/dashboard/documents',
+    source: {
+      sdk: [
+        "<WhenRoles roles={['admin']} />",
+        '<WhenWithinLimit slug current />',
+        '<WhenLimitReached slug current />',
+        '<WhenQuotaAvailable slug />',
+        '<WhenNotEntitled slug />',
+        '<WhenUserEntitled slug />',
+      ],
+      app: ['src/components/billing/gates-card.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Permissions ──
   {
     id: 'permission-matrix',

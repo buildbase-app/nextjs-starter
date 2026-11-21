@@ -1318,6 +1318,33 @@ const messages: Messages = {
       window_closed: '评价期限已过。',
     },
   },
+  gates: {
+    title: '按角色、上限和方案显示或隐藏',
+    description:
+      '每个门控根据平台针对你和此工作区的答复显示其内容或替代内容，加载时不会把任何人挡在外面。',
+    roles: {
+      shown: '你是应用的管理员之一',
+      hidden: '只有应用的管理员能看到',
+    },
+    limit: {
+      invite: '邀请成员',
+      full: '所有席位已满',
+      room: '还有空余席位',
+      upgrade: '获取更多席位',
+    },
+    quota: {
+      available: '你可以添加视频',
+      used: '本月视频额度已用完',
+    },
+    upsell: {
+      cta: '分析功能在更高方案中',
+      included: '你的方案包含分析功能',
+    },
+    personal: {
+      cta: '升级到 Personal Pro',
+      included: '你享有优先支持',
+    },
+  },
 };
 
 export default messages;

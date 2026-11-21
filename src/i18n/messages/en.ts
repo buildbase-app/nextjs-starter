@@ -1379,6 +1379,33 @@ const messages: Messages = {
       window_closed: 'The time to review this has passed.',
     },
   },
+  gates: {
+    title: 'Show or hide by role, limit and plan',
+    description:
+      "Each gate renders its children or its fallback from the platform's answer for you and this workspace, and never locks anyone out while it loads.",
+    roles: {
+      shown: "You are one of the app's admins",
+      hidden: "Only the app's admins see this",
+    },
+    limit: {
+      invite: 'Invite a member',
+      full: 'Every seat is taken',
+      room: 'Seats left',
+      upgrade: 'Get more seats',
+    },
+    quota: {
+      available: 'You can add a video',
+      used: 'No videos left this month',
+    },
+    upsell: {
+      cta: 'Analytics is on a higher plan',
+      included: 'Analytics is in your plan',
+    },
+    personal: {
+      cta: 'Get Personal Pro',
+      included: 'Priority support is yours',
+    },
+  },
 };
 
 export default messages;

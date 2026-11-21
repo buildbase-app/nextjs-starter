@@ -1397,6 +1397,33 @@ const messages: Messages = {
       window_closed: 'Die Frist für eine Bewertung ist abgelaufen.',
     },
   },
+  gates: {
+    title: 'Nach Rolle, Limit und Plan ein- oder ausblenden',
+    description:
+      'Jedes Gate zeigt seinen Inhalt oder seinen Ersatz nach der Antwort der Plattform für dich und diesen Workspace und sperrt niemanden aus, solange es lädt.',
+    roles: {
+      shown: 'Du bist ein Admin der App',
+      hidden: 'Nur die Admins der App sehen das',
+    },
+    limit: {
+      invite: 'Mitglied einladen',
+      full: 'Alle Plätze sind belegt',
+      room: 'Plätze frei',
+      upgrade: 'Mehr Plätze holen',
+    },
+    quota: {
+      available: 'Du kannst ein Video hinzufügen',
+      used: 'Diesen Monat keine Videos mehr',
+    },
+    upsell: {
+      cta: 'Analytics gibt es in einem höheren Plan',
+      included: 'Analytics ist in deinem Plan',
+    },
+    personal: {
+      cta: 'Personal Pro holen',
+      included: 'Priority-Support gehört dir',
+    },
+  },
 };
 
 export default messages;

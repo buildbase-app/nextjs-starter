@@ -16,6 +16,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { DocumentsWorkbench } from '@/components/documents/documents-workbench';
 import { PlanEntitlementsCard } from '@/components/billing/plan-entitlements-card';
+import { GatesCard } from '@/components/billing/gates-card';
 import {
   FileText,
   Lock,
@@ -149,6 +150,7 @@ export default function DocumentsPage() {
       </div>
 
       <PlanEntitlementsCard />
+      <GatesCard />
 
       <Card>
         <CardHeader>

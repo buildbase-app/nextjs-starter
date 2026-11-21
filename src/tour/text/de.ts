@@ -486,6 +486,14 @@ export const de: TourText = {
         'Wechsle den Tarif und schau noch einmal: die Antworten folgen ihm.',
       ],
     },
+    gates: {
+      title: 'Nach Rolle, Limit und Plan ein- oder ausblenden',
+      why: 'Komponenten, die nach der Antwort der Plattform einen Button, ein Upgrade-Angebot oder nichts zeigen, sodass eine Seite nie selbst Plannamen prüft.',
+      steps: [
+        'Öffne Dokumente und scrolle zur Gates-Karte.',
+        'Sieh, was jedes Gate für deine Rolle, Mitglieder, Videos und Pläne zeigt.',
+      ],
+    },
     'permission-matrix': {
       title: 'Ihre Berechtigungsmatrix lesen',
       why: 'Was Ihre Rolle in diesem Workspace erlaubt, aufgelöst von der Plattform.',
