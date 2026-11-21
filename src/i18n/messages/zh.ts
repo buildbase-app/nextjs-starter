@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      cart: '购物车',
       bookings: '预约',
       orders: '订单',
       shop: '商店',
@@ -1260,6 +1261,9 @@ const messages: Messages = {
     free: '免费',
     notForSale: '暂不出售',
     pickTime: '请先选择时间',
+    addToCart: '加入购物车',
+    added: '已加入购物车。',
+    viewCart: '购物车 ({count})',
   },
   orders: {
     title: '订单',
@@ -1280,6 +1284,14 @@ const messages: Messages = {
     empty: '你还没有预约任何时间。',
     browse: '在商店预约时间',
     loading: '正在加载你的预约…',
+  },
+  cart: {
+    title: '购物车',
+    description:
+      '来自任意卖家的商品，在同一个 Stripe 页面一起付款。每个卖家各有一笔订单。',
+    empty: '你的购物车是空的。',
+    browse: '浏览商店',
+    couponHint: '试试优惠码 DEMO10，可享 9 折。',
   },
 };
 

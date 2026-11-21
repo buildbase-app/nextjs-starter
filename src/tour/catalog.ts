@@ -535,6 +535,23 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     detect: { kind: 'manual' },
   },
+  {
+    id: 'marketplace-cart',
+    group: 'billing',
+    href: '/dashboard/shop',
+    source: {
+      sdk: ['useCart().add(line)', '<CartSummary coupons successUrl />'],
+      console: {
+        screen: '/dashboard/billing/selling',
+        note: 'Billing, Selling, Coupons: New coupon makes a code that works on every seller’s items.',
+      },
+      app: [
+        'src/app/[locale]/dashboard/shop/page.tsx',
+        'src/app/[locale]/dashboard/cart/page.tsx',
+      ],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',

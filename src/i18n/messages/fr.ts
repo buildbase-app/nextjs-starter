@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      cart: 'Panier',
       bookings: 'Réservations',
       orders: 'Commandes',
       shop: 'Boutique',
@@ -1345,6 +1346,9 @@ const messages: Messages = {
     free: 'Gratuit',
     notForSale: 'Pas en vente pour le moment',
     pickTime: "Choisissez d'abord un horaire",
+    addToCart: 'Ajouter au panier',
+    added: 'Ajouté à votre panier.',
+    viewCart: 'Panier ({count})',
   },
   orders: {
     title: 'Commandes',
@@ -1366,6 +1370,14 @@ const messages: Messages = {
     empty: "Vous n'avez encore réservé aucun créneau.",
     browse: 'Réserver un créneau dans la boutique',
     loading: 'Chargement de vos réservations…',
+  },
+  cart: {
+    title: 'Panier',
+    description:
+      "Des articles de n'importe quel vendeur, payés ensemble sur une seule page Stripe. Chaque vendeur reçoit sa propre commande.",
+    empty: 'Votre panier est vide.',
+    browse: 'Voir la boutique',
+    couponHint: 'Essayez le code DEMO10 pour 10 % de réduction.',
   },
 };
 

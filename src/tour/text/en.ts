@@ -332,6 +332,14 @@ export const en: TourText = {
         'Open Bookings to add it to your calendar, or cancel or move it.',
       ],
     },
+    'marketplace-cart': {
+      title: 'Check out a cart with a coupon',
+      why: 'Buyers pay for items from several sellers on one Stripe page, with a code for money off; each seller still gets their own order.',
+      steps: [
+        'In the Shop, add two items to your cart.',
+        'Open Cart, apply the code DEMO10, and check out.',
+      ],
+    },
     'record-usage': {
       title: 'Record usage',
       why: 'Your app meters what it does (a document created, a video processed); the plan says how much is included.',

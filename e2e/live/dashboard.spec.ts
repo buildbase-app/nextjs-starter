@@ -18,6 +18,7 @@ const PAGES = [
   '/dashboard/shop',
   '/dashboard/orders',
   '/dashboard/bookings',
+  '/dashboard/cart',
   '/dashboard/permissions',
   '/dashboard/events',
   '/dashboard/notifications',

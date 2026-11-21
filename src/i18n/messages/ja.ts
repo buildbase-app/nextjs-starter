@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      cart: 'カート',
       bookings: '予約',
       orders: '注文',
       shop: 'ショップ',
@@ -1328,6 +1329,9 @@ const messages: Messages = {
     free: '無料',
     notForSale: '現在は販売していません',
     pickTime: '先に時間を選んでください',
+    addToCart: 'カートに追加',
+    added: 'カートに追加しました。',
+    viewCart: 'カート ({count})',
   },
   orders: {
     title: '注文',
@@ -1348,6 +1352,14 @@ const messages: Messages = {
     empty: 'まだ予約はありません。',
     browse: 'ショップで時間を予約する',
     loading: '予約を読み込んでいます…',
+  },
+  cart: {
+    title: 'カート',
+    description:
+      'どの販売者の商品も、1つのStripeページでまとめて支払えます。販売者ごとに注文が作られます。',
+    empty: 'カートは空です。',
+    browse: 'ショップを見る',
+    couponHint: 'コード DEMO10 で10%オフになります。',
   },
 };
 

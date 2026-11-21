@@ -36,6 +36,7 @@ import {
   PieChart,
   Inbox,
   CalendarDays,
+  ShoppingCart,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -78,6 +79,7 @@ type NavKey =
   | 'shop'
   | 'orders'
   | 'bookings'
+  | 'cart'
   | 'usage'
   | 'permissions'
   | 'events'
@@ -133,6 +135,7 @@ const sections: { key: SectionKey; items: NavItem[] }[] = [
       { navKey: 'usage', url: '/dashboard/usage', icon: Gauge },
       { navKey: 'affiliates', url: '/dashboard/affiliates', icon: Handshake },
       { navKey: 'shop', url: '/dashboard/shop', icon: Store },
+      { navKey: 'cart', url: '/dashboard/cart', icon: ShoppingCart },
       { navKey: 'orders', url: '/dashboard/orders', icon: Package },
       { navKey: 'bookings', url: '/dashboard/bookings', icon: CalendarDays },
     ],

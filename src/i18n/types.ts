@@ -3,6 +3,7 @@
 
 export interface CommonMessages {
   nav: {
+    cart: string;
     bookings: string;
     orders: string;
     shop: string;
@@ -1235,6 +1236,9 @@ export interface ShopMessages {
   free: string;
   notForSale: string;
   pickTime: string;
+  addToCart: string;
+  added: string;
+  viewCart: string;
 }
 
 export interface OrdersMessages {
@@ -1256,6 +1260,14 @@ export interface BookingsMessages {
   empty: string;
   browse: string;
   loading: string;
+}
+
+export interface CartMessages {
+  title: string;
+  description: string;
+  empty: string;
+  browse: string;
+  couponHint: string;
 }
 
 export interface Messages {
@@ -1295,6 +1307,7 @@ export interface Messages {
   shop: ShopMessages;
   orders: OrdersMessages;
   bookings: BookingsMessages;
+  cart: CartMessages;
 }
 
 // For next-intl type inference

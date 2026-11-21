@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      cart: 'Carrito',
       bookings: 'Reservas',
       orders: 'Pedidos',
       shop: 'Tienda',
@@ -1336,6 +1337,9 @@ const messages: Messages = {
     free: 'Gratis',
     notForSale: 'No está a la venta ahora',
     pickTime: 'Elige primero una hora',
+    addToCart: 'Añadir al carrito',
+    added: 'Añadido a tu carrito.',
+    viewCart: 'Carrito ({count})',
   },
   orders: {
     title: 'Pedidos',
@@ -1356,6 +1360,14 @@ const messages: Messages = {
     empty: 'Aún no has reservado ninguna hora.',
     browse: 'Reserva una hora en la tienda',
     loading: 'Cargando tus reservas…',
+  },
+  cart: {
+    title: 'Carrito',
+    description:
+      'Artículos de cualquier vendedor, pagados juntos en una sola página de Stripe. Cada vendedor recibe su propio pedido.',
+    empty: 'Tu carrito está vacío.',
+    browse: 'Ver la tienda',
+    couponHint: 'Prueba el código DEMO10 para un 10 % de descuento.',
   },
 };
 
