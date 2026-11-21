@@ -15,6 +15,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "test:e2e:live": "playwright test -c playwright.live.config.ts",
     "check": "npm run lint && npm run format:check && npm run typecheck",
     "build": "contentlayer2 build && prisma generate && next build",
     "content:build": "contentlayer2 build",

@@ -67,3 +67,8 @@ public/pagefind
 .dev.vars*
 !.dev.vars.example
 cloudflare-env.d.ts
+
+# Signed-in end-to-end tests
+e2e/.auth/
+playwright-report-live/
+test-results/
