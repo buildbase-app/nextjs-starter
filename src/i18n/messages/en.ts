@@ -1338,6 +1338,12 @@ const messages: Messages = {
     yourOrder: 'Your order',
     total: 'Total',
     whatYouGot: 'What you got',
+    fulfilment: {
+      due: 'Waiting for the seller',
+      in_progress: 'The seller is working on it',
+      fulfilled: 'Delivered',
+      returned: 'Returned',
+    },
   },
   bookings: {
     title: 'Bookings',

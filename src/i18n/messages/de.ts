@@ -1356,6 +1356,12 @@ const messages: Messages = {
     yourOrder: 'Deine Bestellung',
     total: 'Gesamt',
     whatYouGot: 'Was du bekommen hast',
+    fulfilment: {
+      due: 'Wartet auf den Verkäufer',
+      in_progress: 'Der Verkäufer arbeitet daran',
+      fulfilled: 'Geliefert',
+      returned: 'Zurückgegeben',
+    },
   },
   bookings: {
     title: 'Buchungen',

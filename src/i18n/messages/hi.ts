@@ -1339,6 +1339,12 @@ const messages: Messages = {
     yourOrder: 'आपका ऑर्डर',
     total: 'कुल',
     whatYouGot: 'आपको क्या मिला',
+    fulfilment: {
+      due: 'विक्रेता की प्रतीक्षा',
+      in_progress: 'विक्रेता इस पर काम कर रहा है',
+      fulfilled: 'पहुँचा दिया गया',
+      returned: 'लौटाया गया',
+    },
   },
   bookings: {
     title: 'बुकिंग',
