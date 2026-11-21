@@ -487,6 +487,14 @@ export const fr: TourText = {
         'Changez de forfait puis regardez à nouveau : les réponses suivent.',
       ],
     },
+    gates: {
+      title: "Afficher ou masquer selon le rôle, la limite et l'offre",
+      why: "Des composants qui affichent un bouton, une offre de mise à niveau ou rien selon la réponse de la plateforme, pour qu'un écran ne teste jamais lui-même les noms d'offres.",
+      steps: [
+        "Ouvrez Documents et faites défiler jusqu'à la carte des gardes.",
+        'Voyez ce que chaque garde affiche pour votre rôle, vos membres, vos vidéos et vos offres.',
+      ],
+    },
     'permission-matrix': {
       title: 'Lire votre matrice de permissions',
       why: 'Ce que votre rôle dans cet espace de travail autorise, résolu par la plateforme.',

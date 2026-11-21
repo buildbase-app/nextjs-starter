@@ -1296,6 +1296,33 @@ export interface ReviewsMessages {
   };
 }
 
+export interface GatesMessages {
+  title: string;
+  description: string;
+  roles: {
+    shown: string;
+    hidden: string;
+  };
+  limit: {
+    invite: string;
+    full: string;
+    room: string;
+    upgrade: string;
+  };
+  quota: {
+    available: string;
+    used: string;
+  };
+  upsell: {
+    cta: string;
+    included: string;
+  };
+  personal: {
+    cta: string;
+    included: string;
+  };
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1335,6 +1362,7 @@ export interface Messages {
   bookings: BookingsMessages;
   cart: CartMessages;
   reviews: ReviewsMessages;
+  gates: GatesMessages;
 }
 
 // For next-intl type inference

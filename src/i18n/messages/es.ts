@@ -1395,6 +1395,33 @@ const messages: Messages = {
       window_closed: 'Ya pasó el plazo para reseñarlo.',
     },
   },
+  gates: {
+    title: 'Mostrar u ocultar por rol, límite y plan',
+    description:
+      'Cada control muestra su contenido o su alternativa según la respuesta de la plataforma para ti y este espacio de trabajo, y nunca bloquea a nadie mientras carga.',
+    roles: {
+      shown: 'Eres uno de los administradores de la app',
+      hidden: 'Solo los administradores de la app ven esto',
+    },
+    limit: {
+      invite: 'Invitar a un miembro',
+      full: 'Todas las plazas están ocupadas',
+      room: 'Quedan plazas',
+      upgrade: 'Consigue más plazas',
+    },
+    quota: {
+      available: 'Puedes añadir un vídeo',
+      used: 'No quedan vídeos este mes',
+    },
+    upsell: {
+      cta: 'Analítica está en un plan superior',
+      included: 'Analítica está en tu plan',
+    },
+    personal: {
+      cta: 'Consigue Personal Pro',
+      included: 'Tienes soporte prioritario',
+    },
+  },
 };
 
 export default messages;

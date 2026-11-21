@@ -449,6 +449,14 @@ export const en: TourText = {
         'Change the plan, then look again: the answers follow it.',
       ],
     },
+    gates: {
+      title: 'Show or hide by role, limit and plan',
+      why: "Components that render a button, an upsell or nothing from the platform's answer, so a screen never checks plan names itself.",
+      steps: [
+        'Open Documents and scroll to the gates card.',
+        'See what each gate shows for your role, members, videos and plans.',
+      ],
+    },
     'permission-matrix': {
       title: 'Read your permission matrix',
       why: 'What your role in this workspace allows, resolved by the platform.',

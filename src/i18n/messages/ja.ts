@@ -1386,6 +1386,33 @@ const messages: Messages = {
       window_closed: 'レビューの受付期間は終了しました。',
     },
   },
+  gates: {
+    title: '役割・上限・プランで表示を切り替える',
+    description:
+      '各ゲートは、あなたとこのワークスペースに対するプラットフォームの回答に応じて中身か代替を表示し、読み込み中に誰かを締め出すことはありません。',
+    roles: {
+      shown: 'あなたはアプリの管理者です',
+      hidden: 'アプリの管理者だけが表示できます',
+    },
+    limit: {
+      invite: 'メンバーを招待',
+      full: 'すべての席が埋まっています',
+      room: '席に空きがあります',
+      upgrade: '席を追加する',
+    },
+    quota: {
+      available: '動画を追加できます',
+      used: '今月の動画は残っていません',
+    },
+    upsell: {
+      cta: 'アナリティクスは上位プランです',
+      included: 'アナリティクスはプランに含まれています',
+    },
+    personal: {
+      cta: 'Personal Pro にする',
+      included: '優先サポートを利用できます',
+    },
+  },
 };
 
 export default messages;

@@ -1405,6 +1405,33 @@ const messages: Messages = {
       window_closed: 'Le délai pour donner votre avis est passé.',
     },
   },
+  gates: {
+    title: "Afficher ou masquer selon le rôle, la limite et l'offre",
+    description:
+      'Chaque garde affiche son contenu ou son remplacement selon la réponse de la plateforme pour vous et cet espace de travail, et ne bloque personne pendant le chargement.',
+    roles: {
+      shown: "Vous êtes l'un des administrateurs de l'application",
+      hidden: "Seuls les administrateurs de l'application voient ceci",
+    },
+    limit: {
+      invite: 'Inviter un membre',
+      full: 'Toutes les places sont prises',
+      room: 'Il reste des places',
+      upgrade: 'Obtenir plus de places',
+    },
+    quota: {
+      available: 'Vous pouvez ajouter une vidéo',
+      used: 'Plus de vidéos ce mois-ci',
+    },
+    upsell: {
+      cta: "L'analytique est dans une offre supérieure",
+      included: "L'analytique est incluse dans votre offre",
+    },
+    personal: {
+      cta: 'Passer à Personal Pro',
+      included: 'Le support prioritaire est à vous',
+    },
+  },
 };
 
 export default messages;
