@@ -9,6 +9,9 @@ name: Signed-in E2E
 #   BUILDBASE_E2E_USER_ID    optional: the test user's id; only an owner or
 #                            admin token may name one, otherwise the session
 #                            is the token's own user
+#   BUILDBASE_E2E_SSO_EMAIL     optional: an identity-provider test user whose
+#   BUILDBASE_E2E_SSO_PASSWORD  email domain belongs to an active enterprise;
+#                               without them the enterprise SSO test is skipped
 # Until BUILDBASE_E2E_API_TOKEN is set, this workflow skips instead of failing.
 
 on:
@@ -36,6 +39,8 @@ jobs:
       NEXT_PUBLIC_BUILDBASE_SERVER_URL: https://api.console.buildbase.app
       BUILDBASE_E2E_API_TOKEN: ${{ secrets.BUILDBASE_E2E_API_TOKEN }}
       BUILDBASE_E2E_USER_ID: ${{ secrets.BUILDBASE_E2E_USER_ID }}
+      BUILDBASE_E2E_SSO_EMAIL: ${{ secrets.BUILDBASE_E2E_SSO_EMAIL }}
+      BUILDBASE_E2E_SSO_PASSWORD: ${{ secrets.BUILDBASE_E2E_SSO_PASSWORD }}
 
     steps:
       - name: Check for the API token

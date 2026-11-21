@@ -28,7 +28,14 @@ export default defineConfig({
       name: 'signed-in',
       dependencies: ['setup'],
       testMatch: /\.spec\.ts$/,
+      testIgnore: /sso\.spec\.ts$/,
       use: { ...devices['Desktop Chrome'], storageState: SIGNED_IN_STATE },
+    },
+    {
+      // Signs in from scratch, through the company's identity provider.
+      name: 'sso',
+      testMatch: /sso\.spec\.ts$/,
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
 });
