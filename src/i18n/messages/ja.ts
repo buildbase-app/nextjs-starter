@@ -1561,6 +1561,11 @@ const messages: Messages = {
     description:
       'このアプリで自分の商品を販売します。販売を開始し、Stripe の登録を完了して、商品を出品し、各販売を確認できます。',
   },
+  enterprise: {
+    title: 'エンタープライズ',
+    description:
+      '自社の IT 管理者が設定する、会社向けのシングルサインオンとディレクトリ同期です。',
+  },
 };
 
 export default messages;

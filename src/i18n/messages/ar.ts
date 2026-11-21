@@ -1529,6 +1529,11 @@ const messages: Messages = {
     description:
       'بِع منتجاتك في هذا التطبيق: ابدأ البيع، وأكمل إعداد Stripe، واعرض منتجاتك، وتابع كل عملية بيع.',
   },
+  enterprise: {
+    title: 'المؤسسات',
+    description:
+      'تسجيل دخول موحّد ومزامنة الدليل لشركتك، يُعدّها مسؤول تقنية المعلومات لديك.',
+  },
 };
 
 export default messages;

@@ -1487,6 +1487,10 @@ const messages: Messages = {
     description:
       '在此应用中出售你自己的商品：开始销售，完成 Stripe 入驻，上架商品，并跟进每笔销售。',
   },
+  enterprise: {
+    title: '企业',
+    description: '由你公司自己的 IT 管理员设置的单点登录和目录同步。',
+  },
 };
 
 export default messages;

@@ -1575,6 +1575,11 @@ const messages: Messages = {
     description:
       'Verkaufe eigene Artikel in dieser App: starte den Verkauf, schließe Stripes Einrichtung ab, stelle Artikel ein und verfolge jeden Verkauf.',
   },
+  enterprise: {
+    title: 'Enterprise',
+    description:
+      'Single Sign-on und Verzeichnissynchronisierung für dein Unternehmen, eingerichtet von deiner eigenen IT.',
+  },
 };
 
 export default messages;

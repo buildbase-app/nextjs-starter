@@ -1574,6 +1574,11 @@ const messages: Messages = {
     description:
       'Vende tus propios artículos en esta app: empieza a vender, completa el alta en Stripe, publica artículos y sigue cada venta.',
   },
+  enterprise: {
+    title: 'Empresa',
+    description:
+      'Inicio de sesión único y sincronización de directorio para tu empresa, configurados por tu propio equipo de TI.',
+  },
 };
 
 export default messages;
