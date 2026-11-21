@@ -3,22 +3,17 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
-      selling: 'बेचना',
       orders: 'ऑर्डर',
       shop: 'दुकान',
       affiliates: 'एफ़िलिएट',
-      enterprise: 'एंटरप्राइज़',
-      billing: 'बिलिंग',
       home: 'होम',
       dashboard: 'डैशबोर्ड',
       documents: 'दस्तावेज़',
-      team: 'टीम',
       notifications: 'सूचनाएं',
       settings: 'सेटिंग्स',
       menu: 'मेनू',
       selectWorkspace: 'वर्कस्पेस चुनें',
       profile: 'प्रोफ़ाइल',
-      security: 'सुरक्षा',
       manageWorkspace: 'वर्कस्पेस प्रबंधित करें',
       generalSettings: 'सामान्य सेटिंग्स',
       userManagement: 'उपयोगकर्ता प्रबंधन',
@@ -29,7 +24,6 @@ const messages: Messages = {
       usage: 'उपयोग',
       permissions: 'अनुमतियां',
       events: 'घटनाएं',
-      invoices: 'चालान',
       workspace: 'वर्कस्पेस',
       tour: 'टूर',
       inbox: 'इनबॉक्स',
@@ -275,122 +269,6 @@ const messages: Messages = {
       },
     },
   },
-  team: {
-    title: 'टीम',
-    description: 'वर्कस्पेस सदस्य',
-    inviteMember: 'सदस्य आमंत्रित करें',
-    seatLimitReached:
-      'सीट सीमा पहुंच गई — अधिक सदस्यों को आमंत्रित करने के लिए अपना प्लान अपग्रेड करें।',
-    cards: {
-      members: 'सदस्य',
-      includedSeats: 'शामिल सीटें',
-      maxUsers: 'अधिकतम उपयोगकर्ता',
-      availableSeats: 'उपलब्ध सीटें',
-    },
-    memberList: {
-      title: 'सदस्य',
-      count: 'इस वर्कस्पेस में {count} सदस्य',
-      empty: 'कोई सदस्य लोड नहीं हुए। सुनिश्चित करें कि आप प्रमाणित हैं।',
-      roleFallback: 'सदस्य',
-      changeRole: 'भूमिका बदलें',
-    },
-    invite: {
-      title: 'ईमेल से आमंत्रित करें',
-      description:
-        'पते का खाता होना ज़रूरी नहीं। उन्हें ईमेल मिलता है, लिंक खोलते हैं, साइन अप या इन करते हैं और स्वीकार करते हैं।',
-      noPermission: 'आपकी भूमिका सदस्यों को आमंत्रित नहीं कर सकती।',
-      emailPlaceholder: 'name@company.com',
-      role: 'भूमिका',
-      send: 'आमंत्रण भेजें',
-      sent: '{email} को आमंत्रण भेजा गया',
-      failed: 'कुछ गलत हो गया',
-      resent: 'आमंत्रण फिर भेजा गया',
-      revoked: 'आमंत्रण रद्द किया गया',
-      seatNote: '{count} लंबित आमंत्रण जवाब मिलने तक सीट रोके रखते हैं।',
-      pendingTitle: 'लंबित',
-      loading: 'लोड हो रहा है…',
-      none: 'कुछ लंबित नहीं।',
-      invitedBy: '{name} द्वारा आमंत्रित',
-      pendingLabel: 'लंबित',
-      expires: '{date} को समाप्त',
-      cooldown: '{seconds} सेकंड में फिर भेज सकेंगे',
-      resend: 'फिर भेजें',
-      revoke: 'रद्द करें',
-    },
-    roleChanged: 'भूमिका बदलकर {role} की गई',
-    manage: {
-      title: 'सदस्य प्रबंधित करें',
-      description:
-        'भूमिकाएं और आमंत्रण प्रबंधित करने के लिए सेटिंग्स पैनल खोलें',
-      openSettings: 'सदस्य सेटिंग्स खोलें',
-      permissions: 'अनुमतियां',
-    },
-  },
-  settings: {
-    title: 'सेटिंग्स',
-    description: 'वर्कस्पेस कॉन्फ़िगरेशन',
-    card: {
-      title: 'वर्कस्पेस सेटिंग्स',
-      description: 'सेटिंग्स पैनल खोलने के लिए किसी भी अनुभाग पर क्लिक करें',
-    },
-    danger: {
-      openButton: 'खतरे का ज़ोन खोलें',
-    },
-    sections: {
-      security: {
-        label: 'सुरक्षा',
-        description: 'पासकी और आप कैसे साइन इन करते हैं',
-      },
-      devices: {
-        label: 'डिवाइस',
-        description: 'वे ब्राउज़र और मशीनें जिन पर आप साइन इन हैं',
-      },
-      'connected-agents': {
-        label: 'जुड़े हुए एजेंट',
-        description: 'वे AI एजेंट जिन्हें आपने MCP पर पहुँच दी है',
-      },
-      profile: {
-        label: 'प्रोफ़ाइल',
-        description: 'आपका नाम, अवतार और व्यक्तिगत डेटा',
-      },
-      general: {
-        label: 'सामान्य',
-        description: 'वर्कस्पेस नाम, स्लग और बुनियादी कॉन्फ़िगरेशन',
-      },
-      users: {
-        label: 'सदस्य और आमंत्रण',
-        description: 'टीम सदस्य, भूमिकाएं और लंबित आमंत्रण प्रबंधित करें',
-      },
-      subscription: {
-        label: 'सदस्यता',
-        description: 'अपना वर्तमान प्लान देखें और बदलें',
-      },
-      usage: {
-        label: 'उपयोग',
-        description: 'कोटा उपभोग और उपयोग इतिहास',
-      },
-      credits: {
-        label: 'क्रेडिट',
-        description: 'क्रेडिट बैलेंस और रिचार्ज विकल्प',
-      },
-      features: {
-        label: 'फ़ीचर फ़्लैग',
-        description: 'वर्कस्पेस सुविधाएं सक्षम/अक्षम करें',
-      },
-      notifications: {
-        label: 'सूचनाएं',
-        description: 'ईमेल और पुश सूचना प्राथमिकताएं',
-      },
-      permissions: {
-        label: 'अनुमतियां',
-        description: 'भूमिका-आधारित एक्सेस नियंत्रण कॉन्फ़िगरेशन',
-      },
-      danger: {
-        label: 'खतरे का ज़ोन',
-        description: 'वर्कस्पेस हटाएं या स्वामित्व स्थानांतरित करें',
-      },
-    },
-  },
   documents: {
     featureGates: {
       title: 'फ़ीचर गेट',
@@ -535,30 +413,6 @@ const messages: Messages = {
       roleChanged: 'भूमिका बदली गई',
       workspaceCreated: 'वर्कस्पेस बनाया गया',
       workspaceDeleted: 'वर्कस्पेस हटाया गया',
-    },
-  },
-  invoices: {
-    title: 'चालान',
-    description: 'बिलिंग इतिहास',
-    refresh: 'रीफ्रेश करें',
-    billingPortal: 'बिलिंग पोर्टल',
-    billingPortalOpening: 'खुल रहा है…',
-    error: 'चालान लोड करने में त्रुटि।',
-    card: {
-      title: 'चालान इतिहास',
-      found: '{count} चालान मिले',
-      empty:
-        'अभी कोई चालान नहीं। भुगतान प्लान की सदस्यता के बाद चालान यहां दिखाई देंगे।',
-    },
-    table: {
-      date: 'दिनांक',
-      amount: 'राशि',
-      status: 'स्थिति',
-      description: 'विवरण',
-      links: 'लिंक',
-      view: 'देखें',
-      pdf: 'PDF',
-      loadMore: 'और लोड करें',
     },
   },
   notifications: {
@@ -1477,30 +1331,6 @@ const messages: Messages = {
     failed: 'होल्ड बदला नहीं जा सका।',
     jobDescription: 'डेमो काम (रोका, फिर निपटाया)',
   },
-  billingHub: {
-    title: 'बिलिंग',
-    description:
-      'वर्कस्पेस के प्लान से आगे: उसके ऊपर ऐड-ऑन, और आपका अपना प्लान और क्रेडिट। ये SDK की अपनी स्क्रीनें हैं।',
-    addOns: {
-      title: 'ऐड-ऑन',
-      description:
-        'कंसोल के कैटलॉग से वे अतिरिक्त चीज़ें जो वर्कस्पेस अपने प्लान के ऊपर खरीदता है। ये वर्कस्पेस की सदस्यता स्क्रीन में हैं।',
-      open: 'ऐड-ऑन प्रबंधित करें',
-    },
-    personalCredits: {
-      title: 'आपके अपने क्रेडिट',
-      description:
-        'एक क्रेडिट वॉलेट जो आपका है, किसी वर्कस्पेस का नहीं, अपनी खरीदों और स्वचालित टॉप-अप के साथ।',
-      open: 'अपने क्रेडिट खोलें',
-    },
-    personal: {
-      title: 'आपका अपना प्लान',
-      description:
-        'एक व्यक्ति के रूप में आपके लिए प्लान, किसी भी वर्कस्पेस से अलग। जब कंसोल लोगों को प्लान बेचता है तब दिखता है।',
-    },
-    inPage:
-      'कार्ड विवरण और 3-D Secure इन्हीं स्क्रीनों में खुलते हैं, Stripe की साइट पर गए बिना।',
-  },
   autoTopUp: {
     title: 'स्वचालित टॉप-अप',
     description:
@@ -1548,16 +1378,6 @@ const messages: Messages = {
     yourOrder: 'आपका ऑर्डर',
     total: 'कुल',
     whatYouGot: 'आपको क्या मिला',
-  },
-  selling: {
-    title: 'बेचना',
-    description:
-      'इस ऐप में अपने आइटम बेचें: बेचना शुरू करें, Stripe का ऑनबोर्डिंग पूरा करें, आइटम सूचीबद्ध करें, और हर बिक्री पर नज़र रखें।',
-  },
-  enterprise: {
-    title: 'एंटरप्राइज़',
-    description:
-      'आपकी कंपनी के लिए सिंगल साइन-ऑन और डायरेक्टरी सिंक, आपके अपने IT एडमिन द्वारा सेट किया गया।',
   },
 };
 

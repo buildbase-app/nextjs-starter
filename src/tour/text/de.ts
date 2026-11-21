@@ -123,15 +123,15 @@ export const de: TourText = {
       why: 'Ein vertrauenswürdiges Gerät bleibt 90 Tage angemeldet und überspringt zusätzliche Prüfungen. Jedes Gerät und jede Sitzung wird aufgelistet und kann abgemeldet werden.',
       steps: [
         'Wähle bei der Anmeldung „Diesem Gerät vertrauen“.',
-        'Öffne Sicherheit, um es unter Geräte zu sehen.',
+        'Öffne Geräte in den Einstellungen, um es in der Liste zu sehen.',
       ],
     },
     'add-passkey': {
       title: 'Passkey hinzufügen',
       why: 'Passwortlose Anmeldung per Fingerabdruck, Gesicht oder Geräte-PIN. Pro Organisation in der Konsole aktiviert; nichts zu bauen.',
       steps: [
-        'Öffne Sicherheit und wähle „Passkey hinzufügen“.',
-        'Folge der Anleitung deines Browsers.',
+        'Öffne Sicherheit in den Einstellungen und wähle „Passkey hinzufügen“.',
+        'Folge der Aufforderung deines Browsers.',
         'Melde dich ab und mit dem Passkey wieder an.',
       ],
     },
@@ -147,7 +147,7 @@ export const de: TourText = {
       title: 'Überall abmelden',
       why: 'Beendet jede Sitzung auf jedem Gerät auf der Plattform, nicht nur im Browser, in dem Sie gerade sind.',
       steps: [
-        'Öffne Sicherheit.',
+        'Öffne Sicherheit in den Einstellungen.',
         'Melde eine andere Sitzung ab oder nutze „Überall abmelden“.',
       ],
     },
@@ -211,15 +211,15 @@ export const de: TourText = {
       title: 'Jemanden per E-Mail einladen',
       why: 'Die Adresse braucht kein Konto. Die Person bekommt eine E-Mail, folgt dem Link, registriert sich oder meldet sich an und nimmt an. Eine ausstehende Einladung belegt einen Sitz.',
       steps: [
-        'Öffnen Sie Team.',
-        'Geben Sie eine E-Mail-Adresse ein, die Sie lesen können, und eine Rolle, und senden Sie.',
+        'Öffne Mitglieder in den Einstellungen.',
+        'Gib eine E-Mail-Adresse, die du lesen kannst, und eine Rolle ein und sende die Einladung.',
       ],
     },
     'pending-seat': {
       title: 'Sehen, wie die ausstehende Einladung einen Sitz belegt',
-      why: 'Sitze werden abgerechnet, solange eine Einladung aussteht, damit die Sitzzahl unter Team und im Plan übereinstimmen.',
+      why: 'Plätze werden berechnet, solange eine Einladung offen ist, daher stimmen die Plätze unter Mitglieder und im Plan überein.',
       steps: [
-        'Lesen Sie unter Team die Sitzkarten und den Hinweis unter dem Einladungsformular: die ausstehende Zeile wird mitgezählt.',
+        'Lies unter Mitglieder die Anzahl der Plätze: Die offene Einladung wird mitgezählt.',
       ],
     },
     'accept-invitation': {
@@ -234,7 +234,7 @@ export const de: TourText = {
       title: 'Die Rolle eines Mitglieds ändern',
       why: 'Rollen gelten pro Workspace und werden in der Konsole definiert. Das Mitglied erfährt es per E-Mail und im Posteingang.',
       steps: [
-        'Wählen Sie unter Team neben einem Mitglied, das nicht der Eigentümer ist, eine andere Rolle.',
+        'Wähle unter Mitglieder eine andere Rolle für ein Mitglied, das nicht der Eigentümer ist.',
       ],
     },
     'viewer-limits': {
@@ -291,7 +291,9 @@ export const de: TourText = {
     'view-invoice': {
       title: 'Eine Rechnung ansehen',
       why: 'Rechnungen kommen von Stripe über die Plattform, mit gehostetem PDF.',
-      steps: ['Öffne Rechnungen und wähle „Details“ bei der neuesten.'],
+      steps: [
+        'Öffne Plan & Abrechnung in den Einstellungen, dann Rechnungen, und öffne die neueste.',
+      ],
     },
     'billing-portal': {
       title: 'Das Abrechnungsportal öffnen',
@@ -317,28 +319,30 @@ export const de: TourText = {
       title: 'Sehen, wie sich der Sitzpreis ändert, wenn ein Mitglied beitritt',
       why: 'Pläne pro Sitz berechnen Mitglieder und ausstehende Einladungen. Das SDK berechnet dieselbe Zahl, die die Plattform abrechnet.',
       steps: [
-        'Laden Sie unter Team jemanden ein; lesen Sie die Sitzzeile und die Plan-Karte.',
+        'Lade unter Mitglieder jemanden ein und vergleiche dann die Plätze unter Plan & Abrechnung.',
       ],
     },
     'buy-add-on': {
       title: 'Ein Add-on kaufen',
       why: 'Verkaufe mehr als Tarife: eine lebenslange Funktion, ein Paket eines Kontingents, einen zusätzlichen Platz. Was es gewährt, zählt sofort zur Berechtigung des Tarifs.',
       steps: [
-        'Öffne Abrechnung und drück auf „Add-ons verwalten“.',
-        'Kauf eines; die Berechtigungsprüfungen auf der Dokumente-Seite folgen.',
+        'Öffne Plan & Abrechnung in den Einstellungen und wähle „Add-ons kaufen“.',
+        'Kaufe eines; die Berechtigungsprüfungen auf der Seite Dokumente folgen.',
       ],
     },
     'personal-plan': {
       title: 'Ein eigener Tarif',
       why: 'Nicht alles gehört einem Team: Eine Person kann einen Tarif und Credits für sich selbst haben, getrennt von jedem Arbeitsbereich.',
-      steps: ['Öffne Abrechnung und sieh dir „Dein eigener Tarif“ an.'],
+      steps: [
+        'Öffne Abrechnung in den Einstellungen unter deinem Konto, um einen eigenen Plan zu sehen.',
+      ],
     },
     'start-selling': {
       title: 'Verkaufen starten',
       why: 'Auch deine Nutzer können verkaufen: Die Plattform kümmert sich um das Stripe-Konto des Verkäufers, deine Gebühr und jeden Verkauf.',
       steps: [
-        'Öffne Verkaufen und starte zu den Bedingungen der App.',
-        'Schließe Stripes Einrichtung ab, dann füge einen Artikel hinzu und veröffentliche ihn.',
+        'Öffne Persönlich verkaufen in den Einstellungen und beginne zu den Bedingungen der App zu verkaufen.',
+        'Schließe Stripes Einrichtung ab, füge dann einen Artikel hinzu und veröffentliche ihn.',
       ],
     },
     'marketplace-buy': {
@@ -481,7 +485,7 @@ export const de: TourText = {
       title: 'Single Sign-on für die Firma eines Kunden',
       why: 'Größere Kunden wollen, dass sich ihre Leute über ihren eigenen Identitätsanbieter anmelden, mit Verzeichnissynchronisierung und eigenen Regeln. Mit dem Bildschirm des SDK richtet der Admin der Firma das ohne dein Team ein.',
       steps: [
-        'Öffne Enterprise.',
+        'Öffne Single Sign-On in den Einstellungen.',
         'Folge der Einrichtung oder lies, warum sie noch nicht verfügbar ist.',
       ],
     },

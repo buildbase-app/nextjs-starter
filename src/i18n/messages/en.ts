@@ -3,22 +3,17 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
-      selling: 'Selling',
       orders: 'Orders',
       shop: 'Shop',
       affiliates: 'Affiliates',
-      enterprise: 'Enterprise',
-      billing: 'Billing',
       home: 'Home',
       dashboard: 'Dashboard',
       documents: 'Documents',
-      team: 'Team',
       notifications: 'Notifications',
       settings: 'Settings',
       menu: 'Menu',
       selectWorkspace: 'Select workspace',
       profile: 'Profile',
-      security: 'Security',
       manageWorkspace: 'Manage Workspace',
       generalSettings: 'General Settings',
       userManagement: 'User Management',
@@ -29,7 +24,6 @@ const messages: Messages = {
       usage: 'Usage',
       permissions: 'Permissions',
       events: 'Events',
-      invoices: 'Invoices',
       workspace: 'Workspace',
       tour: 'Tour',
       inbox: 'Inbox',
@@ -274,122 +268,6 @@ const messages: Messages = {
       },
     },
   },
-  team: {
-    title: 'Team',
-    description: 'Workspace members',
-    inviteMember: 'Invite member',
-    seatLimitReached:
-      'Seat limit reached — upgrade your plan to invite more members.',
-    cards: {
-      members: 'Members',
-      includedSeats: 'Included seats',
-      maxUsers: 'Max users',
-      availableSeats: 'Available seats',
-    },
-    memberList: {
-      title: 'Members',
-      count: '{count} member(s) in this workspace',
-      empty: 'No members loaded. Make sure you are authenticated.',
-      roleFallback: 'member',
-      changeRole: 'Change role',
-    },
-    invite: {
-      title: 'Invite by email',
-      description:
-        'The address needs no account yet. They get an email, follow the link, sign up or in, and accept.',
-      noPermission: 'Your role cannot invite members.',
-      emailPlaceholder: 'name@company.com',
-      role: 'Role',
-      send: 'Send invitation',
-      sent: 'Invitation sent to {email}',
-      failed: 'Something went wrong',
-      resent: 'Invitation sent again',
-      revoked: 'Invitation revoked',
-      seatNote: '{count} pending invitation(s) hold a seat until answered.',
-      pendingTitle: 'Pending',
-      loading: 'Loading…',
-      none: 'Nothing pending.',
-      invitedBy: 'Invited by {name}',
-      pendingLabel: 'Pending',
-      expires: 'expires {date}',
-      cooldown: 'Resend available in {seconds}s',
-      resend: 'Resend',
-      revoke: 'Revoke',
-    },
-    roleChanged: 'Role changed to {role}',
-    manage: {
-      title: 'Manage members',
-      description:
-        'Open the workspace settings panel to manage roles and invitations',
-      openSettings: 'Open member settings',
-      permissions: 'Permissions',
-    },
-  },
-  settings: {
-    title: 'Settings',
-    description: 'Workspace settings',
-    card: {
-      title: 'Workspace settings',
-      description: 'Click any section to open the BuildBase settings panel',
-    },
-    danger: {
-      openButton: 'Open danger zone',
-    },
-    sections: {
-      security: {
-        label: 'Security',
-        description: 'Passkeys and how you sign in',
-      },
-      devices: {
-        label: 'Devices',
-        description: 'Browsers and machines you are signed in on',
-      },
-      'connected-agents': {
-        label: 'Connected agents',
-        description: 'AI agents you granted access over MCP',
-      },
-      profile: {
-        label: 'Profile',
-        description: 'Your name, avatar, and personal details',
-      },
-      general: {
-        label: 'General',
-        description: 'Workspace name, slug, and basic settings',
-      },
-      users: {
-        label: 'Members & invitations',
-        description: 'Manage team members, roles, and pending invites',
-      },
-      subscription: {
-        label: 'Subscription',
-        description: 'View and change your current plan',
-      },
-      usage: {
-        label: 'Usage',
-        description: 'Quota consumption and usage history',
-      },
-      credits: {
-        label: 'Credits',
-        description: 'Credit balance and top-up options',
-      },
-      features: {
-        label: 'Feature flags',
-        description: 'Workspace-level feature toggles',
-      },
-      notifications: {
-        label: 'Notifications',
-        description: 'Email and push notification preferences',
-      },
-      permissions: {
-        label: 'Permissions',
-        description: 'Role-based access control settings',
-      },
-      danger: {
-        label: 'Danger zone',
-        description: 'Delete workspace or transfer ownership',
-      },
-    },
-  },
   documents: {
     featureGates: {
       title: 'Feature gates',
@@ -535,30 +413,6 @@ const messages: Messages = {
       roleChanged: 'Role Changed',
       workspaceCreated: 'Workspace Created',
       workspaceDeleted: 'Workspace Deleted',
-    },
-  },
-  invoices: {
-    title: 'Invoices',
-    description: 'Billing history',
-    refresh: 'Refresh',
-    billingPortal: 'Billing portal',
-    billingPortalOpening: 'Opening…',
-    error: 'Failed to load invoices.',
-    card: {
-      title: 'Invoice history',
-      found: '{count} invoice(s) found',
-      empty:
-        'No invoices yet. Invoices appear here after you subscribe to a paid plan.',
-    },
-    table: {
-      date: 'Date',
-      amount: 'Amount',
-      status: 'Status',
-      description: 'Description',
-      links: 'Links',
-      view: 'View',
-      pdf: 'PDF',
-      loadMore: 'Load more',
     },
   },
   notifications: {
@@ -1476,30 +1330,6 @@ const messages: Messages = {
     failed: 'The hold could not be changed.',
     jobDescription: 'Demo job (held, then settled)',
   },
-  billingHub: {
-    title: 'Billing',
-    description:
-      "Beyond the workspace's plan: add-ons on top of it, and a plan and credits of your own. These are the SDK's own screens.",
-    addOns: {
-      title: 'Add-ons',
-      description:
-        "Extras a workspace buys on top of its plan, from the console's catalog. They're in the workspace's subscription screen.",
-      open: 'Manage add-ons',
-    },
-    personalCredits: {
-      title: 'Your own credits',
-      description:
-        'A credit wallet that belongs to you, not a workspace, with its purchases and auto top-up.',
-      open: 'Open your credits',
-    },
-    personal: {
-      title: 'Your own plan',
-      description:
-        'A plan for you as a person, separate from any workspace. Shown once the console sells plans to people.',
-    },
-    inPage:
-      "Card details and 3-D Secure open inside these screens, without leaving for Stripe's site.",
-  },
   autoTopUp: {
     title: 'Auto top-up',
     description:
@@ -1547,16 +1377,6 @@ const messages: Messages = {
     yourOrder: 'Your order',
     total: 'Total',
     whatYouGot: 'What you got',
-  },
-  selling: {
-    title: 'Selling',
-    description:
-      "Sell your own items in this app: start selling, finish Stripe's onboarding, list items, and follow each sale.",
-  },
-  enterprise: {
-    title: 'Enterprise',
-    description:
-      'Single sign-on and directory sync for your company, set up by your own IT admin.',
   },
 };
 

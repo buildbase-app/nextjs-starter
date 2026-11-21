@@ -3,22 +3,17 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
-      selling: 'Verkaufen',
       orders: 'Bestellungen',
       shop: 'Shop',
       affiliates: 'Affiliates',
-      enterprise: 'Enterprise',
-      billing: 'Abrechnung',
       home: 'Startseite',
       dashboard: 'Dashboard',
       documents: 'Dokumente',
-      team: 'Team',
       notifications: 'Benachrichtigungen',
       settings: 'Einstellungen',
       menu: 'Menü',
       selectWorkspace: 'Arbeitsbereich wählen',
       profile: 'Profil',
-      security: 'Sicherheit',
       manageWorkspace: 'Arbeitsbereich verwalten',
       generalSettings: 'Allgemeine Einstellungen',
       userManagement: 'Benutzerverwaltung',
@@ -29,7 +24,6 @@ const messages: Messages = {
       usage: 'Nutzung',
       permissions: 'Berechtigungen',
       events: 'Ereignisse',
-      invoices: 'Rechnungen',
       workspace: 'Arbeitsbereich',
       tour: 'Tour',
       inbox: 'Posteingang',
@@ -275,126 +269,6 @@ const messages: Messages = {
       },
     },
   },
-  team: {
-    title: 'Team',
-    description: 'Mitglieder des Arbeitsbereichs',
-    inviteMember: 'Mitglied einladen',
-    seatLimitReached:
-      'Sitzlimit erreicht — führen Sie ein Upgrade durch, um mehr Mitglieder einzuladen.',
-    cards: {
-      members: 'Mitglieder',
-      includedSeats: 'Enthaltene Sitze',
-      maxUsers: 'Max. Benutzer',
-      availableSeats: 'Verfügbare Sitze',
-    },
-    memberList: {
-      title: 'Mitglieder',
-      count: '{count} Mitglied(er) in diesem Arbeitsbereich',
-      empty:
-        'Keine Mitglieder geladen. Stellen Sie sicher, dass Sie authentifiziert sind.',
-      roleFallback: 'Mitglied',
-      changeRole: 'Rolle ändern',
-    },
-    invite: {
-      title: 'Per E-Mail einladen',
-      description:
-        'Die Adresse braucht noch kein Konto. Die Person erhält eine E-Mail, folgt dem Link, registriert sich oder meldet sich an und nimmt an.',
-      noPermission: 'Ihre Rolle darf keine Mitglieder einladen.',
-      emailPlaceholder: 'name@firma.de',
-      role: 'Rolle',
-      send: 'Einladung senden',
-      sent: 'Einladung an {email} gesendet',
-      failed: 'Etwas ist schiefgelaufen',
-      resent: 'Einladung erneut gesendet',
-      revoked: 'Einladung zurückgezogen',
-      seatNote:
-        '{count} offene Einladung(en) belegen einen Platz, bis sie beantwortet sind.',
-      pendingTitle: 'Offen',
-      loading: 'Wird geladen…',
-      none: 'Nichts offen.',
-      invitedBy: 'Eingeladen von {name}',
-      pendingLabel: 'Offen',
-      expires: 'läuft ab am {date}',
-      cooldown: 'Erneut senden in {seconds}s',
-      resend: 'Erneut senden',
-      revoke: 'Zurückziehen',
-    },
-    roleChanged: 'Rolle geändert zu {role}',
-    manage: {
-      title: 'Mitglieder verwalten',
-      description:
-        'Öffnen Sie das Einstellungspanel, um Rollen und Einladungen zu verwalten',
-      openSettings: 'Mitgliedereinstellungen öffnen',
-      permissions: 'Berechtigungen',
-    },
-  },
-  settings: {
-    title: 'Einstellungen',
-    description: 'Konfiguration des Arbeitsbereichs',
-    card: {
-      title: 'Arbeitsbereich-Einstellungen',
-      description:
-        'Klicken Sie auf einen Abschnitt, um das Einstellungspanel zu öffnen',
-    },
-    danger: {
-      openButton: 'Gefahrenzone öffnen',
-    },
-    sections: {
-      security: {
-        label: 'Sicherheit',
-        description: 'Passkeys und wie du dich anmeldest',
-      },
-      devices: {
-        label: 'Geräte',
-        description: 'Browser und Rechner, auf denen du angemeldet bist',
-      },
-      'connected-agents': {
-        label: 'Verbundene Agenten',
-        description: 'KI-Agenten mit Zugriff über MCP',
-      },
-      profile: {
-        label: 'Profil',
-        description: 'Ihr Name, Avatar und persönliche Daten',
-      },
-      general: {
-        label: 'Allgemein',
-        description: 'Arbeitsbereichsname, Slug und grundlegende Konfiguration',
-      },
-      users: {
-        label: 'Mitglieder & Einladungen',
-        description:
-          'Teammitglieder, Rollen und ausstehende Einladungen verwalten',
-      },
-      subscription: {
-        label: 'Abonnement',
-        description: 'Ihren aktuellen Plan anzeigen und ändern',
-      },
-      usage: {
-        label: 'Nutzung',
-        description: 'Kontingentverbrauch und Nutzungsverlauf',
-      },
-      credits: {
-        label: 'Credits',
-        description: 'Credit-Guthaben und Aufladoptionen',
-      },
-      features: {
-        label: 'Feature-Flags',
-        description: 'Arbeitsbereichsfunktionen aktivieren/deaktivieren',
-      },
-      notifications: {
-        label: 'Benachrichtigungen',
-        description: 'E-Mail- und Push-Benachrichtigungseinstellungen',
-      },
-      permissions: {
-        label: 'Berechtigungen',
-        description: 'Rollenbasierte Zugriffskontrolle konfigurieren',
-      },
-      danger: {
-        label: 'Gefahrenzone',
-        description: 'Arbeitsbereich löschen oder Eigentumsübertragung',
-      },
-    },
-  },
   documents: {
     featureGates: {
       title: 'Feature-Gates',
@@ -539,30 +413,6 @@ const messages: Messages = {
       roleChanged: 'Rolle geändert',
       workspaceCreated: 'Arbeitsbereich erstellt',
       workspaceDeleted: 'Arbeitsbereich gelöscht',
-    },
-  },
-  invoices: {
-    title: 'Rechnungen',
-    description: 'Abrechnungsverlauf',
-    refresh: 'Aktualisieren',
-    billingPortal: 'Abrechnungsportal',
-    billingPortalOpening: 'Wird geöffnet…',
-    error: 'Fehler beim Laden der Rechnungen.',
-    card: {
-      title: 'Rechnungsverlauf',
-      found: '{count} Rechnung(en) gefunden',
-      empty:
-        'Noch keine Rechnungen. Rechnungen erscheinen hier nach dem Abonnieren eines kostenpflichtigen Plans.',
-    },
-    table: {
-      date: 'Datum',
-      amount: 'Betrag',
-      status: 'Status',
-      description: 'Beschreibung',
-      links: 'Links',
-      view: 'Ansehen',
-      pdf: 'PDF',
-      loadMore: 'Mehr laden',
     },
   },
   notifications: {
@@ -1497,30 +1347,6 @@ const messages: Messages = {
     failed: 'Die Reservierung konnte nicht geändert werden.',
     jobDescription: 'Demo-Auftrag (reserviert, dann abgerechnet)',
   },
-  billingHub: {
-    title: 'Abrechnung',
-    description:
-      'Über den Tarif des Arbeitsbereichs hinaus: Add-ons obendrauf sowie ein eigener Tarif und eigene Credits. Das sind die Bildschirme des SDK selbst.',
-    addOns: {
-      title: 'Add-ons',
-      description:
-        'Extras, die ein Arbeitsbereich zusätzlich zu seinem Tarif kauft, aus dem Katalog der Konsole. Sie stehen im Abo-Bildschirm des Arbeitsbereichs.',
-      open: 'Add-ons verwalten',
-    },
-    personalCredits: {
-      title: 'Deine eigenen Credits',
-      description:
-        'Ein Credit-Guthaben, das dir gehört und nicht einem Arbeitsbereich, mit seinen Käufen und automatischem Aufladen.',
-      open: 'Deine Credits öffnen',
-    },
-    personal: {
-      title: 'Dein eigener Tarif',
-      description:
-        'Ein Tarif für dich als Person, getrennt von jedem Arbeitsbereich. Erscheint, sobald die Konsole Tarife an Personen verkauft.',
-    },
-    inPage:
-      'Kartendaten und 3-D Secure öffnen sich in diesen Bildschirmen, ohne zur Stripe-Seite zu wechseln.',
-  },
   autoTopUp: {
     title: 'Automatisches Aufladen',
     description:
@@ -1569,16 +1395,6 @@ const messages: Messages = {
     yourOrder: 'Deine Bestellung',
     total: 'Gesamt',
     whatYouGot: 'Was du bekommen hast',
-  },
-  selling: {
-    title: 'Verkaufen',
-    description:
-      'Verkaufe eigene Artikel in dieser App: starte den Verkauf, schließe Stripes Einrichtung ab, stelle Artikel ein und verfolge jeden Verkauf.',
-  },
-  enterprise: {
-    title: 'Enterprise',
-    description:
-      'Single Sign-on und Verzeichnissynchronisierung für dein Unternehmen, eingerichtet von deiner eigenen IT.',
   },
 };
 

@@ -127,15 +127,15 @@ export const fr: TourText = {
       why: 'Un appareil de confiance reste connecté 90 jours et évite les vérifications supplémentaires. Chaque appareil et chaque session sont listés et peuvent être déconnectés.',
       steps: [
         'Lors de la connexion, choisissez Faire confiance à cet appareil.',
-        'Ouvrez Sécurité pour le voir dans la liste des appareils.',
+        'Ouvrez Appareils dans les paramètres pour le voir dans la liste.',
       ],
     },
     'add-passkey': {
       title: 'Ajouter une passkey',
       why: 'Connexion sans mot de passe par empreinte, visage ou code de l’appareil. Activée par organisation dans la console ; rien à construire.',
       steps: [
-        'Ouvrez Sécurité et choisissez Ajouter une clé d’accès.',
-        'Suivez les instructions de votre navigateur.',
+        "Ouvrez Sécurité dans les paramètres et choisissez Ajouter une clé d'accès.",
+        'Suivez les instructions du navigateur.',
         'Déconnectez-vous puis reconnectez-vous avec elle.',
       ],
     },
@@ -151,8 +151,8 @@ export const fr: TourText = {
       title: 'Se déconnecter partout',
       why: 'Met fin à chaque session sur chaque appareil de la plateforme, pas seulement au navigateur où vous êtes.',
       steps: [
-        'Ouvrez Sécurité.',
-        'Déconnectez une autre session, ou utilisez Se déconnecter partout.',
+        'Ouvrez Sécurité dans les paramètres.',
+        'Déconnectez une autre session ou utilisez Se déconnecter partout.',
       ],
     },
     'guest-upgrade': {
@@ -212,15 +212,15 @@ export const fr: TourText = {
       title: 'Inviter quelqu’un par e-mail',
       why: 'L’adresse n’a pas besoin de compte. La personne reçoit un e-mail, suit le lien, s’inscrit ou se connecte, et accepte. Une invitation en attente occupe un siège.',
       steps: [
-        'Ouvrez Équipe.',
-        'Saisissez une adresse e-mail que vous pouvez consulter et un rôle, puis envoyez.',
+        'Ouvrez Membres dans les paramètres.',
+        'Saisissez une adresse e-mail que vous pouvez lire et un rôle, puis envoyez.',
       ],
     },
     'pending-seat': {
       title: 'Voir l’invitation en attente occuper un siège',
-      why: 'Les sièges sont facturés tant qu’une invitation est en attente, pour que le nombre de sièges sur Équipe et sur le plan concordent.',
+      why: "Les places sont facturées tant qu'une invitation est en attente : le nombre de places dans Membres et le plan concordent.",
       steps: [
-        'Sur Équipe, lisez les cartes de sièges et la note sous le formulaire d’invitation : la ligne en attente est comptée.',
+        "Dans Membres, regardez le nombre de places : l'invitation en attente est comptée.",
       ],
     },
     'accept-invitation': {
@@ -235,7 +235,7 @@ export const fr: TourText = {
       title: 'Changer le rôle d’un membre',
       why: 'Les rôles sont par espace de travail et définis dans la console. Le membre est prévenu par e-mail et dans sa boîte de réception.',
       steps: [
-        'Sur Équipe, choisissez un autre rôle à côté d’un membre qui n’est pas le propriétaire.',
+        "Dans Membres, choisissez un autre rôle pour un membre qui n'est pas le propriétaire.",
       ],
     },
     'viewer-limits': {
@@ -292,7 +292,9 @@ export const fr: TourText = {
     'view-invoice': {
       title: 'Voir une facture',
       why: 'Les factures viennent de Stripe via la plateforme, avec un PDF hébergé.',
-      steps: ['Ouvrez Factures et choisissez Détails sur la plus récente.'],
+      steps: [
+        'Ouvrez Plan et facturation dans les paramètres, puis Factures, et ouvrez la plus récente.',
+      ],
     },
     'billing-portal': {
       title: 'Ouvrir le portail de facturation',
@@ -318,27 +320,29 @@ export const fr: TourText = {
       title: 'Voir le prix des sièges changer quand un membre rejoint',
       why: 'Les plans par siège facturent les membres et les invitations en attente. Le SDK calcule le même montant que celui facturé par la plateforme.',
       steps: [
-        'Sur Équipe, invitez quelqu’un ; lisez la ligne des sièges et la carte du plan.',
+        "Dans Membres, invitez quelqu'un, puis comparez les places dans Plan et facturation.",
       ],
     },
     'buy-add-on': {
       title: 'Acheter un module',
       why: "Vendez plus que des forfaits : une fonction à vie, un lot de quota, une place en plus. Ce qu'il accorde rejoint aussitôt les droits du forfait.",
       steps: [
-        'Ouvrez Facturation et appuyez sur « Gérer les modules ».',
-        'Achetez-en un ; les vérifications de la page Documents suivent.',
+        'Ouvrez Plan et facturation dans les paramètres et choisissez Acheter des modules.',
+        'Achetez-en un ; les vérifications de droits de la page Documents suivent.',
       ],
     },
     'personal-plan': {
       title: 'Un forfait à soi',
       why: "Tout n'appartient pas à une équipe : une personne peut détenir un forfait et des crédits pour elle-même, à part de tout espace de travail.",
-      steps: ['Ouvrez Facturation et regardez « Votre propre forfait ».'],
+      steps: [
+        'Ouvrez Facturation dans les paramètres, sous votre compte, pour voir un plan à vous.',
+      ],
     },
     'start-selling': {
       title: 'Commencer à vendre',
       why: 'Vos utilisateurs peuvent vendre aussi : la plateforme gère le compte Stripe du vendeur, votre commission et chaque vente.',
       steps: [
-        "Ouvrez Vendre et commencez selon les conditions de l'application.",
+        "Ouvrez Ventes personnelles dans les paramètres et commencez à vendre selon les conditions de l'application.",
         "Terminez l'inscription Stripe, puis ajoutez et publiez un article.",
       ],
     },
@@ -482,7 +486,7 @@ export const fr: TourText = {
       title: "Authentification unique pour l'entreprise d'un client",
       why: "Les grands clients veulent que leurs équipes se connectent via leur propre fournisseur d'identité, avec synchronisation de l'annuaire et leurs propres règles. L'écran du SDK permet à l'administrateur de l'entreprise de tout configurer sans votre équipe.",
       steps: [
-        'Ouvrez Entreprise.',
+        'Ouvrez Authentification unique dans les paramètres.',
         "Suivez la configuration, ou lisez pourquoi elle n'est pas encore disponible.",
       ],
     },

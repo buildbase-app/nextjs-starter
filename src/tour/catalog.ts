@@ -61,7 +61,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'trust-device',
     group: 'start',
-    href: '/dashboard/security',
+    href: '/dashboard?settings=devices',
     source: {
       sdk: ['<Devices />', '<Sessions />', 'useSessions()'],
       console: {
@@ -76,7 +76,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'add-passkey',
     group: 'start',
-    href: '/dashboard/security',
+    href: '/dashboard?settings=security',
     source: {
       sdk: ['openWorkspaceSettings("security")'],
       console: {
@@ -112,7 +112,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'sign-out-everywhere',
     group: 'start',
-    href: '/dashboard/security',
+    href: '/dashboard?settings=security',
     source: {
       sdk: ['signOut({ everywhere: true })', 'SessionsApi.revoke()'],
     },
@@ -187,7 +187,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'rename-workspace',
     group: 'workspaces',
-    href: '/dashboard/settings',
+    href: '/dashboard?settings=general',
     source: {
       sdk: ['openWorkspaceSettings("general")', 'ui.settings.* switches'],
     },
@@ -199,7 +199,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'workspace-settings-screens',
     group: 'workspaces',
-    href: '/dashboard/settings',
+    href: '/dashboard?settings=general',
     source: {
       sdk: ['SETTINGS_SCREENS', '<SaaSOSProvider ui={{ settings: {...} }}>'],
     },
@@ -210,7 +210,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'delete-workspace',
     group: 'workspaces',
-    href: '/dashboard/settings',
+    href: '/dashboard?settings=danger',
     source: {
       sdk: [
         'useSaaSWorkspaces().deleteWorkspace()',
@@ -227,7 +227,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'invite-member',
     group: 'team',
-    href: '/dashboard/team',
+    href: '/dashboard?settings=users',
     source: {
       sdk: ['useSaaSWorkspaces().inviteMember()', 'useWorkspaceInvitations()'],
       console: {
@@ -243,7 +243,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'pending-seat',
     group: 'team',
-    href: '/dashboard/team',
+    href: '/dashboard?settings=users',
     source: {
       sdk: ['useSeatStatus(workspace, { pendingInvitations })'],
     },
@@ -272,7 +272,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'change-role',
     group: 'team',
-    href: '/dashboard/team',
+    href: '/dashboard?settings=users',
     source: {
       sdk: ['useSaaSWorkspaces().updateUser(workspaceId, userId, { role })'],
       console: {
@@ -301,7 +301,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'revoke-invitation',
     group: 'team',
-    href: '/dashboard/team',
+    href: '/dashboard?settings=users',
     source: {
       sdk: ['useWorkspaceInvitations().revoke()'],
     },
@@ -313,7 +313,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'seat-limit',
     group: 'team',
-    href: '/dashboard/team',
+    href: '/dashboard?settings=users',
     source: {
       sdk: ['useSeatStatus()'],
       console: {
@@ -387,7 +387,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'view-invoice',
     group: 'billing',
-    href: '/dashboard/invoices',
+    href: '/dashboard?settings=subscription',
     source: {
       sdk: ['useInvoices()', 'useInvoice()'],
     },
@@ -436,7 +436,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'seat-price',
     group: 'billing',
-    href: '/dashboard/team',
+    href: '/dashboard?settings=subscription',
     source: {
       sdk: ['getSeatPricing()', 'calculateTotalSubscriptionCents()'],
     },
@@ -448,7 +448,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'buy-add-on',
     group: 'billing',
-    href: '/dashboard/billing',
+    href: '/dashboard?settings=subscription',
     source: {
       sdk: [
         "openWorkspaceSettings('subscription')  // its Add-ons section",
@@ -458,28 +458,28 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
         screen: '/dashboard/admin/subscriptions/plans',
         note: 'Add-ons: one-time, lifetime, consumable or recurring, each granting features, limits or quota on top of the plan.',
       },
-      app: ['src/app/[locale]/dashboard/billing/page.tsx'],
+      app: ['src/components/settings-deep-link.tsx'],
     },
     detect: { kind: 'manual' },
   },
   {
     id: 'personal-plan',
     group: 'billing',
-    href: '/dashboard/billing',
+    href: '/dashboard?settings=billing',
     source: {
       sdk: ['<AccountBilling />', "openWorkspaceSettings('account-credits')"],
       console: {
         screen: '/dashboard/admin/subscriptions/plans',
         note: 'A plan group sold to people rather than workspaces; the person gets their own Billing and Credits screens.',
       },
-      app: ['src/app/[locale]/dashboard/billing/page.tsx'],
+      app: ['src/components/settings-deep-link.tsx'],
     },
     detect: { kind: 'manual' },
   },
   {
     id: 'start-selling',
     group: 'billing',
-    href: '/dashboard/selling',
+    href: '/dashboard?settings=my-selling',
     source: {
       sdk: [
         '<SellerHome subject={{ user: true }} />',
@@ -490,7 +490,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
         screen: '/dashboard/admin/payment',
         note: 'Save Stripe keys under Billing, Credentials; then Billing, Selling walks the setup and turns selling on.',
       },
-      app: ['src/app/[locale]/dashboard/selling/page.tsx'],
+      app: ['src/components/settings-deep-link.tsx'],
     },
     detect: { kind: 'manual' },
   },
@@ -805,7 +805,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'enterprise-sso',
     group: 'permissions',
-    href: '/dashboard/enterprise',
+    href: '/dashboard?settings=enterprise',
     source: {
       sdk: [
         '<EnterpriseAccess />',
@@ -817,7 +817,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
         note: 'Enterprise sign-on runs through your own WorkOS account; a company then sets up its single sign-on, directory sync and policy itself.',
       },
       app: [
-        'src/app/[locale]/dashboard/enterprise/page.tsx',
+        'src/components/settings-deep-link.tsx',
         'src/components/dashboard-layout-client.tsx',
       ],
     },
@@ -1715,7 +1715,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'rtl',
     group: 'platform',
-    href: '/dashboard/settings',
+    href: '/dashboard',
     source: {
       sdk: ['dir from useTranslation()'],
     },

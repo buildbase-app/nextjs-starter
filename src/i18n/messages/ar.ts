@@ -3,22 +3,17 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
-      selling: 'البيع',
       orders: 'الطلبات',
       shop: 'المتجر',
       affiliates: 'الشركاء بالعمولة',
-      enterprise: 'المؤسسات',
-      billing: 'الفوترة',
       home: 'الرئيسية',
       dashboard: 'لوحة التحكم',
       documents: 'المستندات',
-      team: 'الفريق',
       notifications: 'الإشعارات',
       settings: 'الإعدادات',
       menu: 'القائمة',
       selectWorkspace: 'اختر مساحة العمل',
       profile: 'الملف الشخصي',
-      security: 'الأمان',
       manageWorkspace: 'إدارة مساحة العمل',
       generalSettings: 'الإعدادات العامة',
       userManagement: 'إدارة المستخدمين',
@@ -29,7 +24,6 @@ const messages: Messages = {
       usage: 'الاستخدام',
       permissions: 'الأذونات',
       events: 'الأحداث',
-      invoices: 'الفواتير',
       workspace: 'مساحة العمل',
       tour: 'الجولة',
       inbox: 'البريد الوارد',
@@ -273,121 +267,6 @@ const messages: Messages = {
       },
     },
   },
-  team: {
-    title: 'الفريق',
-    description: 'أعضاء مساحة العمل',
-    inviteMember: 'دعوة عضو',
-    seatLimitReached:
-      'تم الوصول لحد المقاعد — قم بترقية خطتك لدعوة المزيد من الأعضاء.',
-    cards: {
-      members: 'الأعضاء',
-      includedSeats: 'المقاعد المشمولة',
-      maxUsers: 'الحد الأقصى للمستخدمين',
-      availableSeats: 'المقاعد المتاحة',
-    },
-    memberList: {
-      title: 'الأعضاء',
-      count: '{count} عضو في هذه مساحة العمل',
-      empty: 'لم يتم تحميل أعضاء. تأكد من تسجيل الدخول.',
-      roleFallback: 'عضو',
-      changeRole: 'تغيير الدور',
-    },
-    invite: {
-      title: 'دعوة عبر البريد',
-      description:
-        'لا يحتاج العنوان إلى حساب. يصل بريد، يتبع الرابط، يسجّل أو يدخل، ثم يقبل.',
-      noPermission: 'دورك لا يستطيع دعوة الأعضاء.',
-      emailPlaceholder: 'name@company.com',
-      role: 'الدور',
-      send: 'إرسال الدعوة',
-      sent: 'أُرسلت الدعوة إلى {email}',
-      failed: 'حدث خطأ ما',
-      resent: 'أُعيد إرسال الدعوة',
-      revoked: 'أُلغيت الدعوة',
-      seatNote: '{count} دعوة معلّقة تحجز مقعدًا حتى الرد عليها.',
-      pendingTitle: 'معلّقة',
-      loading: 'جارٍ التحميل…',
-      none: 'لا شيء معلّق.',
-      invitedBy: 'بدعوة من {name}',
-      pendingLabel: 'معلّقة',
-      expires: 'تنتهي في {date}',
-      cooldown: 'يمكن إعادة الإرسال خلال {seconds} ث',
-      resend: 'إعادة الإرسال',
-      revoke: 'إلغاء',
-    },
-    roleChanged: 'تغيّر الدور إلى {role}',
-    manage: {
-      title: 'إدارة الأعضاء',
-      description: 'افتح لوحة إعدادات مساحة العمل لإدارة الأدوار والدعوات',
-      openSettings: 'فتح إعدادات الأعضاء',
-      permissions: 'الأذونات',
-    },
-  },
-  settings: {
-    title: 'الإعدادات',
-    description: 'إعدادات مساحة العمل',
-    card: {
-      title: 'إعدادات مساحة العمل',
-      description: 'انقر على أي قسم لفتح لوحة إعدادات BuildBase',
-    },
-    danger: {
-      openButton: 'فتح منطقة الخطر',
-    },
-    sections: {
-      security: {
-        label: 'الأمان',
-        description: 'مفاتيح المرور وطريقة تسجيل الدخول',
-      },
-      devices: {
-        label: 'الأجهزة',
-        description: 'المتصفحات والأجهزة المسجّل دخولك عليها',
-      },
-      'connected-agents': {
-        label: 'الوكلاء المتصلون',
-        description: 'وكلاء الذكاء الاصطناعي الذين منحتهم وصولًا عبر MCP',
-      },
-      profile: {
-        label: 'الملف الشخصي',
-        description: 'اسمك وصورتك الرمزية وتفاصيلك الشخصية',
-      },
-      general: {
-        label: 'عام',
-        description: 'اسم مساحة العمل والـslug والإعدادات الأساسية',
-      },
-      users: {
-        label: 'الأعضاء والدعوات',
-        description: 'إدارة أعضاء الفريق والأدوار والدعوات المعلقة',
-      },
-      subscription: {
-        label: 'الاشتراك',
-        description: 'عرض وتغيير خطتك الحالية',
-      },
-      usage: {
-        label: 'الاستخدام',
-        description: 'استهلاك الحصص وسجل الاستخدام',
-      },
-      credits: {
-        label: 'الاعتمادات',
-        description: 'رصيد الاعتمادات وخيارات الإضافة',
-      },
-      features: {
-        label: 'علامات الميزات',
-        description: 'تبديلات الميزات على مستوى مساحة العمل',
-      },
-      notifications: {
-        label: 'الإشعارات',
-        description: 'تفضيلات إشعارات البريد الإلكتروني والدفع',
-      },
-      permissions: {
-        label: 'الأذونات',
-        description: 'إعدادات التحكم في الوصول القائم على الأدوار',
-      },
-      danger: {
-        label: 'منطقة الخطر',
-        description: 'حذف مساحة العمل أو نقل الملكية',
-      },
-    },
-  },
   documents: {
     featureGates: {
       title: 'بوابات الميزات',
@@ -530,30 +409,6 @@ const messages: Messages = {
       roleChanged: 'تغيير الدور',
       workspaceCreated: 'إنشاء مساحة عمل',
       workspaceDeleted: 'حذف مساحة عمل',
-    },
-  },
-  invoices: {
-    title: 'الفواتير',
-    description: 'سجل الفواتير',
-    refresh: 'تحديث',
-    billingPortal: 'بوابة الفوترة',
-    billingPortalOpening: 'جاري الفتح…',
-    error: 'فشل تحميل الفواتير.',
-    card: {
-      title: 'سجل الفواتير',
-      found: 'تم العثور على {count} فاتورة',
-      empty:
-        'لا توجد فواتير بعد. ستظهر الفواتير هنا بعد الاشتراك في خطة مدفوعة.',
-    },
-    table: {
-      date: 'التاريخ',
-      amount: 'المبلغ',
-      status: 'الحالة',
-      description: 'الوصف',
-      links: 'الروابط',
-      view: 'عرض',
-      pdf: 'PDF',
-      loadMore: 'تحميل المزيد',
     },
   },
   notifications: {
@@ -1454,30 +1309,6 @@ const messages: Messages = {
     failed: 'تعذّر تغيير الحجز.',
     jobDescription: 'مهمة تجريبية (حُجزت ثم سُوّيت)',
   },
-  billingHub: {
-    title: 'الفوترة',
-    description:
-      'ما يتجاوز خطة مساحة العمل: إضافات فوقها، وخطة واعتمادات خاصة بك. هذه شاشات SDK نفسها.',
-    addOns: {
-      title: 'الإضافات',
-      description:
-        'إضافات تشتريها مساحة العمل فوق خطتها، من كتالوج وحدة التحكم. تجدها في شاشة اشتراك مساحة العمل.',
-      open: 'إدارة الإضافات',
-    },
-    personalCredits: {
-      title: 'اعتماداتك الخاصة',
-      description:
-        'محفظة اعتمادات تخصك أنت لا مساحة العمل، مع مشترياتها وإعادة الشحن التلقائي.',
-      open: 'افتح اعتماداتك',
-    },
-    personal: {
-      title: 'خطتك الخاصة',
-      description:
-        'خطة لك شخصيًا، منفصلة عن أي مساحة عمل. تظهر بمجرد أن تبيع وحدة التحكم خططًا للأفراد.',
-    },
-    inPage:
-      'تفتح بيانات البطاقة والتحقق ثلاثي الأبعاد داخل هذه الشاشات، دون مغادرة إلى موقع Stripe.',
-  },
   autoTopUp: {
     title: 'إعادة الشحن التلقائي',
     description:
@@ -1523,16 +1354,6 @@ const messages: Messages = {
     yourOrder: 'طلبك',
     total: 'الإجمالي',
     whatYouGot: 'ما حصلت عليه',
-  },
-  selling: {
-    title: 'البيع',
-    description:
-      'بِع منتجاتك في هذا التطبيق: ابدأ البيع، وأكمل إعداد Stripe، واعرض منتجاتك، وتابع كل عملية بيع.',
-  },
-  enterprise: {
-    title: 'المؤسسات',
-    description:
-      'تسجيل دخول موحّد ومزامنة الدليل لشركتك، يُعدّها مسؤول تقنية المعلومات لديك.',
   },
 };
 

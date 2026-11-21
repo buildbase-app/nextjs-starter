@@ -3,22 +3,17 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
-      selling: '销售',
       orders: '订单',
       shop: '商店',
       affiliates: '推广联盟',
-      enterprise: '企业',
-      billing: '账单',
       home: '首页',
       dashboard: '仪表板',
       documents: '文档',
-      team: '团队',
       notifications: '通知',
       settings: '设置',
       menu: '菜单',
       selectWorkspace: '选择工作区',
       profile: '个人资料',
-      security: '安全',
       manageWorkspace: '管理工作区',
       generalSettings: '常规设置',
       userManagement: '用户管理',
@@ -29,7 +24,6 @@ const messages: Messages = {
       usage: '使用情况',
       permissions: '权限',
       events: '事件',
-      invoices: '发票',
       workspace: '工作区',
       tour: '导览',
       inbox: '收件箱',
@@ -270,120 +264,6 @@ const messages: Messages = {
       },
     },
   },
-  team: {
-    title: '团队',
-    description: '工作区成员',
-    inviteMember: '邀请成员',
-    seatLimitReached: '席位限制已达到 — 升级计划以邀请更多成员。',
-    cards: {
-      members: '成员',
-      includedSeats: '包含席位',
-      maxUsers: '最大用户数',
-      availableSeats: '可用席位',
-    },
-    memberList: {
-      title: '成员',
-      count: '此工作区有{count}名成员',
-      empty: '未加载成员。请确保您已登录。',
-      roleFallback: '成员',
-      changeRole: '更改角色',
-    },
-    invite: {
-      title: '通过邮箱邀请',
-      description:
-        '该地址无需已有账户。对方收到邮件，点击链接，注册或登录后接受即可。',
-      noPermission: '你的角色无法邀请成员。',
-      emailPlaceholder: 'name@company.com',
-      role: '角色',
-      send: '发送邀请',
-      sent: '已向 {email} 发送邀请',
-      failed: '出了点问题',
-      resent: '已重新发送邀请',
-      revoked: '已撤销邀请',
-      seatNote: '{count} 条待处理邀请在得到答复前占用席位。',
-      pendingTitle: '待处理',
-      loading: '加载中…',
-      none: '没有待处理的邀请。',
-      invitedBy: '由 {name} 邀请',
-      pendingLabel: '待处理',
-      expires: '{date} 过期',
-      cooldown: '{seconds} 秒后可重发',
-      resend: '重发',
-      revoke: '撤销',
-    },
-    roleChanged: '角色已改为 {role}',
-    manage: {
-      title: '管理成员',
-      description: '打开工作区设置面板以管理角色和邀请',
-      openSettings: '打开成员设置',
-      permissions: '权限',
-    },
-  },
-  settings: {
-    title: '设置',
-    description: '工作区设置',
-    card: {
-      title: '工作区设置',
-      description: '点击任意部分打开BuildBase设置面板',
-    },
-    danger: {
-      openButton: '打开危险区域',
-    },
-    sections: {
-      security: {
-        label: '安全',
-        description: '通行密钥和登录方式',
-      },
-      devices: {
-        label: '设备',
-        description: '你已登录的浏览器和设备',
-      },
-      'connected-agents': {
-        label: '已连接的代理',
-        description: '你通过 MCP 授权的 AI 代理',
-      },
-      profile: {
-        label: '个人资料',
-        description: '您的姓名、头像和个人详情',
-      },
-      general: {
-        label: '常规',
-        description: '工作区名称、标识符和基本设置',
-      },
-      users: {
-        label: '成员与邀请',
-        description: '管理团队成员、角色和待处理邀请',
-      },
-      subscription: {
-        label: '订阅',
-        description: '查看和更改您当前的计划',
-      },
-      usage: {
-        label: '使用情况',
-        description: '配额消耗和使用历史',
-      },
-      credits: {
-        label: '积分',
-        description: '积分余额和充值选项',
-      },
-      features: {
-        label: '功能标志',
-        description: '工作区级功能开关',
-      },
-      notifications: {
-        label: '通知',
-        description: '邮件和推送通知偏好设置',
-      },
-      permissions: {
-        label: '权限',
-        description: '基于角色的访问控制设置',
-      },
-      danger: {
-        label: '危险区域',
-        description: '删除工作区或转让所有权',
-      },
-    },
-  },
   documents: {
     featureGates: {
       title: '功能门控',
@@ -516,29 +396,6 @@ const messages: Messages = {
       roleChanged: '角色已更改',
       workspaceCreated: '工作区已创建',
       workspaceDeleted: '工作区已删除',
-    },
-  },
-  invoices: {
-    title: '发票',
-    description: '账单历史',
-    refresh: '刷新',
-    billingPortal: '账单门户',
-    billingPortalOpening: '正在打开…',
-    error: '加载发票失败。',
-    card: {
-      title: '发票历史',
-      found: '找到 {count} 张发票',
-      empty: '暂无发票。订阅付费计划后，发票将显示在此处。',
-    },
-    table: {
-      date: '日期',
-      amount: '金额',
-      status: '状态',
-      description: '描述',
-      links: '链接',
-      view: '查看',
-      pdf: 'PDF',
-      loadMore: '加载更多',
     },
   },
   notifications: {
@@ -1413,29 +1270,6 @@ const messages: Messages = {
     failed: '无法更改该预留。',
     jobDescription: '演示任务（先预留，后结算）',
   },
-  billingHub: {
-    title: '账单',
-    description:
-      '工作区套餐之外：套餐之上的附加项，以及你自己的套餐和积分。这些都是 SDK 自带的界面。',
-    addOns: {
-      title: '附加项',
-      description:
-        '工作区在套餐之外购买的额外内容，来自控制台的目录。它们在工作区的订阅界面中。',
-      open: '管理附加项',
-    },
-    personalCredits: {
-      title: '你自己的积分',
-      description: '属于你而非某个工作区的积分钱包，包含购买记录和自动充值。',
-      open: '打开你的积分',
-    },
-    personal: {
-      title: '你自己的套餐',
-      description:
-        '以个人身份拥有的套餐，与任何工作区分开。当控制台向个人销售套餐时显示。',
-    },
-    inPage:
-      '卡片信息和 3-D 安全验证会在这些界面内打开，无需跳转到 Stripe 网站。',
-  },
   autoTopUp: {
     title: '自动充值',
     description:
@@ -1481,15 +1315,6 @@ const messages: Messages = {
     yourOrder: '你的订单',
     total: '合计',
     whatYouGot: '你获得的内容',
-  },
-  selling: {
-    title: '销售',
-    description:
-      '在此应用中出售你自己的商品：开始销售，完成 Stripe 入驻，上架商品，并跟进每笔销售。',
-  },
-  enterprise: {
-    title: '企业',
-    description: '由你公司自己的 IT 管理员设置的单点登录和目录同步。',
   },
 };
 

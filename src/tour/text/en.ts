@@ -112,14 +112,14 @@ export const en: TourText = {
       why: 'A trusted device stays signed in for 90 days and skips extra checks. Every device and session is listed, and can be signed out.',
       steps: [
         'During sign-in, choose Trust this device.',
-        'Open Security to see it listed under Devices.',
+        'Open Devices in the settings to see it listed.',
       ],
     },
     'add-passkey': {
       title: 'Add a passkey',
       why: 'Passwordless sign-in with a fingerprint, face or device PIN. Enabled per organization in the console; nothing to build.',
       steps: [
-        'Open Security and choose Add a passkey.',
+        'Open Security in the settings and choose Add a passkey.',
         'Follow your browser’s prompt.',
         'Sign out and sign in with it.',
       ],
@@ -136,7 +136,7 @@ export const en: TourText = {
       title: 'Sign out everywhere',
       why: 'Ends every session on every device on the platform, not just the browser you are in.',
       steps: [
-        'Open Security.',
+        'Open Security in the settings.',
         'Sign out another session, or use Sign out everywhere.',
       ],
     },
@@ -194,15 +194,15 @@ export const en: TourText = {
       title: 'Invite someone by email',
       why: 'The address needs no account. They get an email, follow the link, sign up or in, and accept. A pending invitation holds a seat.',
       steps: [
-        'Open Team.',
+        'Open Members in the settings.',
         'Enter an email address you can read and a role, and send.',
       ],
     },
     'pending-seat': {
       title: 'See the pending invitation hold a seat',
-      why: 'Seats are billed while an invitation is pending, so the seat count on Team and the plan agree.',
+      why: 'Seats are billed while an invitation is pending, so the seat count in Members and the plan agree.',
       steps: [
-        'On Team, read the seat cards and the note under the invite form: the pending row is counted.',
+        'In Members, read the seat count: the pending invitation is counted.',
       ],
     },
     'accept-invitation': {
@@ -217,7 +217,7 @@ export const en: TourText = {
       title: 'Change a member’s role',
       why: 'Roles are per workspace and defined in the console. The member is told by email and in their inbox.',
       steps: [
-        'On Team, pick another role next to a member who is not the owner.',
+        'In Members, pick another role next to a member who is not the owner.',
       ],
     },
     'viewer-limits': {
@@ -267,7 +267,9 @@ export const en: TourText = {
     'view-invoice': {
       title: 'View an invoice',
       why: 'Invoices come from Stripe through the platform, with a hosted PDF.',
-      steps: ['Open Invoices and choose Details on the latest one.'],
+      steps: [
+        'Open Plan & Billing in the settings, then Invoices, and open the latest one.',
+      ],
     },
     'billing-portal': {
       title: 'Open the billing portal',
@@ -287,26 +289,30 @@ export const en: TourText = {
     'seat-price': {
       title: 'See seat pricing change when a member joins',
       why: 'Per-seat plans bill members and pending invitations. The SDK computes the same number the platform bills.',
-      steps: ['On Team, invite someone; read the seat line and the plan card.'],
+      steps: [
+        'In Members, invite someone; then compare the seats in Plan & Billing.',
+      ],
     },
     'buy-add-on': {
       title: 'Buy an add-on',
       why: "Sell more than plans: a lifetime feature, a pack of a quota, an extra seat. What it grants joins the plan's entitlement at once.",
       steps: [
-        'Open Billing and press Manage add-ons.',
+        'Open Plan & Billing in the settings and choose Buy add-ons.',
         "Buy one; the Documents page's entitlement checks follow.",
       ],
     },
     'personal-plan': {
       title: 'A plan of your own',
       why: 'Not everything belongs to a team: a person can hold a plan and credits for themselves, kept apart from every workspace.',
-      steps: ['Open Billing and look at Your own plan.'],
+      steps: [
+        'Open Billing in the settings, under your account, to see a plan of your own.',
+      ],
     },
     'start-selling': {
       title: 'Start selling',
       why: "Your users can sell too: the platform handles the seller's Stripe account, your fee, and every sale.",
       steps: [
-        "Open Selling and start selling under the app's terms.",
+        "Open Personal selling in the settings and start selling under the app's terms.",
         "Finish Stripe's onboarding, then add and publish an item.",
       ],
     },
@@ -444,7 +450,7 @@ export const en: TourText = {
       title: "Single sign-on for a customer's company",
       why: "Larger customers want their people to sign in through their own identity provider, with directory sync and their own rules. The SDK's screen lets the company's admin set that up without your team.",
       steps: [
-        'Open Enterprise.',
+        'Open Single sign-on in the settings.',
         "Follow the setup, or read why it isn't available yet.",
       ],
     },
