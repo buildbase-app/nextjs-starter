@@ -1417,6 +1417,49 @@ const messages: Messages = {
       },
     },
   },
+  autoTopUp: {
+    title: 'Automatisches Aufladen',
+    on: 'An',
+    off: 'Aus',
+    description:
+      'Kauf mit der gespeicherten Karte ein Credit-Paket, sobald das Guthaben unter einen Schwellenwert fällt, höchstens so oft im Monat wie festgelegt.',
+    loading: 'Einstellung wird geladen…',
+    unavailable:
+      'Automatisches Aufladen ist für diesen Arbeitsbereich nicht verfügbar.',
+    paused: {
+      payment_failed:
+        'Pausiert: vier Zahlungen in Folge wurden abgelehnt. Bring die Karte in Ordnung und setz dann fort.',
+      no_payment_method:
+        'Pausiert: Es gibt keine Karte zum Belasten. Füg eine hinzu und setz dann fort.',
+      monthly_cap:
+        'Pausiert: Die Aufladungen dieses Monats haben das Limit erreicht. Es endet am 1.',
+      dunning: 'Pausiert: Das Abo hat eine unbezahlte Rechnung.',
+      currency_unavailable:
+        'Pausiert: Das Paket hat keinen Preis in der Währung dieses Arbeitsbereichs. Wähl ein anderes.',
+      package_unavailable:
+        'Pausiert: Das Paket wird nicht mehr verkauft. Wähl ein anderes.',
+      tax_requires_checkout:
+        'Pausiert: Es wird Steuer erhoben, was eine Aufladung mit gespeicherter Karte noch nicht kann. Kauf Pakete von Hand.',
+      terms_changed:
+        'Pausiert: Credits oder Preis des Pakets haben sich geändert. Fortsetzen stimmt den neuen Bedingungen zu.',
+      other: 'Pausiert ({reason}).',
+    },
+    resume: 'Fortsetzen',
+    threshold: 'Wenn das Guthaben fällt unter',
+    pack: 'Dieses Paket kaufen',
+    packOption: '{name} ({credits} Credits)',
+    monthlyCap: 'Höchstens pro Monat ({min}–{max})',
+    usage: '{used} von {cap} Aufladungen in diesem Monat genutzt.',
+    lastTopUp: 'Letzte Aufladung: {date}.',
+    card: 'Belastet {brand} mit Endziffern {last4}',
+    noCard: 'Noch keine Karte gespeichert',
+    addCard: 'Karte hinzufügen',
+    changeCard: 'Karte ändern',
+    save: 'Speichern',
+    turnOn: 'Einschalten',
+    turnOff: 'Ausschalten',
+    saved: 'Gespeichert.',
+  },
 };
 
 export default messages;

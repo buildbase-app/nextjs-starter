@@ -1405,6 +1405,48 @@ const messages: Messages = {
       },
     },
   },
+  autoTopUp: {
+    title: '自動チャージ',
+    on: 'オン',
+    off: 'オフ',
+    description:
+      '残高がしきい値を下回るたびに、保存済みのカードでクレジットパックを購入します。月あたりの回数には上限があります。',
+    loading: '設定を読み込み中…',
+    unavailable: 'このワークスペースでは自動チャージを利用できません。',
+    paused: {
+      payment_failed:
+        '一時停止中: 4 回連続で支払いが拒否されました。カードを確認してから再開してください。',
+      no_payment_method:
+        '一時停止中: 請求できるカードがありません。カードを追加してから再開してください。',
+      monthly_cap:
+        '一時停止中: 今月のチャージ回数が上限に達しました。1 日に解除されます。',
+      dunning: '一時停止中: サブスクリプションに未払いの請求書があります。',
+      currency_unavailable:
+        '一時停止中: このワークスペースの通貨でパックの価格が設定されていません。別のパックを選んでください。',
+      package_unavailable:
+        '一時停止中: このパックは販売終了しました。別のパックを選んでください。',
+      tax_requires_checkout:
+        '一時停止中: 税を徴収しているため、保存済みカードでのチャージはまだできません。パックは手動で購入してください。',
+      terms_changed:
+        '一時停止中: パックのクレジット数か価格が変わりました。再開すると新しい条件に同意したことになります。',
+      other: '一時停止中（{reason}）。',
+    },
+    resume: '再開',
+    threshold: '残高がこの値を下回ったら',
+    pack: '購入するパック',
+    packOption: '{name}（{credits} クレジット）',
+    monthlyCap: '月あたりの上限（{min}〜{max}）',
+    usage: '今月のチャージ: {cap} 回中 {used} 回使用。',
+    lastTopUp: '前回のチャージ: {date}。',
+    card: '{brand}（末尾 {last4}）に請求',
+    noCard: '保存済みのカードはまだありません',
+    addCard: 'カードを追加',
+    changeCard: 'カードを変更',
+    save: '保存',
+    turnOn: 'オンにする',
+    turnOff: 'オフにする',
+    saved: '保存しました。',
+  },
 };
 
 export default messages;

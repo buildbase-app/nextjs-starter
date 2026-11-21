@@ -560,6 +560,25 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
   },
   {
+    id: 'auto-top-up',
+    group: 'credits',
+    href: '/dashboard/credits',
+    source: {
+      sdk: [
+        'useCreditAutoTopUp(workspaceId)',
+        'update({ enabled, threshold, creditPackageId, monthlyCap })',
+        'resume()',
+        'addPaymentMethod()',
+      ],
+      console: {
+        screen: '/dashboard/admin/subscriptions/credit-packages',
+        note: 'The packs a top-up can buy; the org decides whether customers may turn auto top-up on, and the monthly cap range.',
+      },
+      app: ['src/components/credits/auto-top-up-card.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
+  {
     id: 'credit-transactions',
     group: 'credits',
     href: '/dashboard/credits',

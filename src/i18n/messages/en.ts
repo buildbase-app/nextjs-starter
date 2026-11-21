@@ -1397,6 +1397,48 @@ const messages: Messages = {
       },
     },
   },
+  autoTopUp: {
+    title: 'Auto top-up',
+    on: 'On',
+    off: 'Off',
+    description:
+      'Buy a credit pack on the saved card whenever the balance falls under a threshold, at most a set number of times a month.',
+    loading: 'Loading the setting…',
+    unavailable: "Auto top-up isn't available for this workspace.",
+    paused: {
+      payment_failed:
+        'Paused: four payments in a row were declined. Fix the card, then resume.',
+      no_payment_method:
+        'Paused: there is no card to charge. Add one, then resume.',
+      monthly_cap:
+        "Paused: this month's top-ups reached the cap. It lifts on the 1st.",
+      dunning: 'Paused: the subscription has an unpaid invoice.',
+      currency_unavailable:
+        "Paused: the pack has no price in this workspace's currency. Choose another.",
+      package_unavailable:
+        'Paused: the pack is no longer on sale. Choose another.',
+      tax_requires_checkout:
+        "Paused: tax is collected, which a saved-card top-up can't do yet. Buy packs by hand.",
+      terms_changed:
+        "Paused: the pack's credits or price changed. Resuming agrees to the new terms.",
+      other: 'Paused ({reason}).',
+    },
+    resume: 'Resume',
+    threshold: 'When the balance falls under',
+    pack: 'Buy this pack',
+    packOption: '{name} ({credits} credits)',
+    monthlyCap: 'At most per month ({min}–{max})',
+    usage: '{used} of {cap} top-ups used this month.',
+    lastTopUp: 'Last top-up: {date}.',
+    card: 'Charges {brand} ending {last4}',
+    noCard: 'No card saved yet',
+    addCard: 'Add a card',
+    changeCard: 'Change card',
+    save: 'Save',
+    turnOn: 'Turn on',
+    turnOff: 'Turn off',
+    saved: 'Saved.',
+  },
 };
 
 export default messages;

@@ -357,6 +357,14 @@ export const es: TourText = {
         'En Credits, compra el paquete de 100 créditos con la tarjeta de prueba.',
       ],
     },
+    'auto-top-up': {
+      title: 'Recarga automáticamente',
+      why: 'Un espacio de trabajo que se queda sin créditos deja de funcionar. La recarga automática compra un paquete con la tarjeta guardada antes de que pase, dentro de un límite mensual que fija el cliente.',
+      steps: [
+        'Abre Créditos y busca «Recarga automática».',
+        'Añade una tarjeta, elige un umbral y un paquete, y actívala.',
+      ],
+    },
     'credit-transactions': {
       title: 'Lee las transacciones',
       why: 'Cada concesión, compra y gasto es una fila, con el bloque del que salió.',

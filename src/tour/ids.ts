@@ -39,6 +39,7 @@ export const TASK_IDS = [
   'spend-credits',
   'credits-low',
   'buy-credits',
+  'auto-top-up',
   'credit-transactions',
   'feature-off',
   'feature-on',

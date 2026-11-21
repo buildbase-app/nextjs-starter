@@ -330,6 +330,14 @@ export const en: TourText = {
       why: 'Packages are defined in the console; checkout is Stripe’s.',
       steps: ['On Credits, buy the 100-credit package with the test card.'],
     },
+    'auto-top-up': {
+      title: 'Top up automatically',
+      why: 'A workspace that runs out of credits stops working. Auto top-up buys a pack on the saved card before that happens, within a monthly cap the customer sets.',
+      steps: [
+        'Open Credits and find Auto top-up.',
+        'Add a card, pick a threshold and a pack, and turn it on.',
+      ],
+    },
     'credit-transactions': {
       title: 'Read the transactions',
       why: 'Every grant, purchase and spend is a row, with the bucket it came from.',
