@@ -133,7 +133,7 @@ export function BlogSearch() {
         <span>{t('search.trigger')}</span>
         <kbd className="bg-muted text-muted-foreground ml-2 hidden rounded px-1.5 py-0.5 font-mono text-xs sm:inline-block">
           {typeof navigator !== 'undefined' &&
-          navigator.platform?.includes('Mac')
+          /Mac|iPhone|iPad/.test(navigator.userAgent)
             ? '⌘K'
             : 'Ctrl+K'}
         </kbd>

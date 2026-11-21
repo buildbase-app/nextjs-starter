@@ -157,7 +157,7 @@ export function DocumentsWorkbench() {
     await Promise.all([quotaCtx.refetch(), creditCtx.refetch()]);
   };
 
-  const create = async (e: React.FormEvent) => {
+  const create = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!workspaceId) return;
     setBusy('create');
