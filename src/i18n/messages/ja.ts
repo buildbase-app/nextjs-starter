@@ -1418,6 +1418,31 @@ const messages: Messages = {
   itemSubscriptions: {
     title: 'あなたの定期購入',
   },
+  gifts: {
+    send: 'ギフトとして贈る',
+    title: 'どなたへ贈りますか？',
+    email: '相手のメール',
+    name: '相手の名前（任意）',
+    message: 'メッセージ（任意）',
+    pay: 'ギフトの代金を支払う',
+    starting: '支払い画面を開いています…',
+    cancel: 'キャンセル',
+    pageTitle: 'あなたへのギフト',
+    noLink: 'このページはメールのリンクからギフトを開きます。',
+    loading: 'ギフトを開いています…',
+    fromName: '{name}さんからのギフト',
+    fromSomeone: 'あなたへのギフト',
+    bySeller: '{seller}より',
+    claimToAccount: '自分のアカウントに追加',
+    claimAsGuest: 'アカウントなしで受け取る',
+    claiming: '受け取っています…',
+    signInHint:
+      'アカウントに保存して注文で確認するには、先にサインインしてください。',
+    claimedToAccount: 'アカウントに追加されました。',
+    openOrders: '注文を開く',
+    claimedAsGuest: '受け取りました。内容は次のとおりです：',
+    claimedAt: '{date}に受け取り',
+  },
 };
 
 export default messages;

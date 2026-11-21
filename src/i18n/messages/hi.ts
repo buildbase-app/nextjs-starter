@@ -1412,6 +1412,31 @@ const messages: Messages = {
   itemSubscriptions: {
     title: 'आपकी सदस्यताएँ',
   },
+  gifts: {
+    send: 'उपहार के रूप में भेजें',
+    title: 'यह किसके लिए है?',
+    email: 'उनका ईमेल',
+    name: 'उनका नाम (वैकल्पिक)',
+    message: 'उनके लिए संदेश (वैकल्पिक)',
+    pay: 'उपहार का भुगतान करें',
+    starting: 'चेकआउट खुल रहा है…',
+    cancel: 'रद्द करें',
+    pageTitle: 'आपके लिए एक उपहार',
+    noLink: 'यह पेज ईमेल के लिंक से उपहार खोलता है।',
+    loading: 'आपका उपहार खुल रहा है…',
+    fromName: '{name} की ओर से उपहार',
+    fromSomeone: 'आपके लिए एक उपहार',
+    bySeller: '{seller} से',
+    claimToAccount: 'इसे मेरे खाते में जोड़ें',
+    claimAsGuest: 'बिना खाते के लें',
+    claiming: 'लिया जा रहा है…',
+    signInHint:
+      'इसे अपने खाते में रखने और ऑर्डर में देखने के लिए पहले साइन इन करें।',
+    claimedToAccount: 'यह आपके खाते में है।',
+    openOrders: 'ऑर्डर खोलें',
+    claimedAsGuest: 'यह आपका है। इससे आपको यह मिलता है:',
+    claimedAt: '{date} को लिया गया',
+  },
 };
 
 export default messages;

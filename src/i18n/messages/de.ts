@@ -1429,6 +1429,31 @@ const messages: Messages = {
   itemSubscriptions: {
     title: 'Deine Abos',
   },
+  gifts: {
+    send: 'Als Geschenk senden',
+    title: 'Für wen ist es?',
+    email: 'Ihre E-Mail',
+    name: 'Ihr Name (optional)',
+    message: 'Eine Nachricht (optional)',
+    pay: 'Geschenk bezahlen',
+    starting: 'Kasse wird geöffnet…',
+    cancel: 'Abbrechen',
+    pageTitle: 'Ein Geschenk für dich',
+    noLink: 'Diese Seite öffnet ein Geschenk über den Link in seiner E-Mail.',
+    loading: 'Dein Geschenk wird geöffnet…',
+    fromName: 'Ein Geschenk von {name}',
+    fromSomeone: 'Ein Geschenk für dich',
+    bySeller: 'von {seller}',
+    claimToAccount: 'Zu meinem Konto hinzufügen',
+    claimAsGuest: 'Ohne Konto annehmen',
+    claiming: 'Wird angenommen…',
+    signInHint:
+      'Melde dich zuerst an, um es in deinem Konto zu behalten und unter Bestellungen zu sehen.',
+    claimedToAccount: 'Es ist in deinem Konto.',
+    openOrders: 'Bestellungen öffnen',
+    claimedAsGuest: 'Es gehört dir. Das bekommst du:',
+    claimedAt: 'Angenommen am {date}',
+  },
 };
 
 export default messages;

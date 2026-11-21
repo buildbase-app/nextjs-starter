@@ -383,6 +383,14 @@ export const es: TourText = {
         'Abre el pedido en Pedidos para descargar el cuaderno y copiar tu clave de licencia.',
       ],
     },
+    'marketplace-gift': {
+      title: 'Envía un artículo como regalo',
+      why: 'El comprador paga, quien lo recibe obtiene un correo con un enlace y lo recibe en su cuenta o sin cuenta.',
+      steps: [
+        'En la Tienda, elige Enviar como regalo en Written plan review y págalo.',
+        'Abre el enlace del regalo del correo del destinatario y recíbelo.',
+      ],
+    },
     'record-usage': {
       title: 'Registra uso',
       why: 'Tu app mide lo que hace (un documento creado, un vídeo procesado); el plan dice cuánto está incluido.',

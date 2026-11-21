@@ -1350,6 +1350,30 @@ const messages: Messages = {
   itemSubscriptions: {
     title: '你的订阅',
   },
+  gifts: {
+    send: '作为礼物送出',
+    title: '送给谁？',
+    email: '对方的邮箱',
+    name: '对方的名字（可选）',
+    message: '给对方的留言（可选）',
+    pay: '为礼物付款',
+    starting: '正在打开结账…',
+    cancel: '取消',
+    pageTitle: '送你的礼物',
+    noLink: '此页面通过邮件中的链接打开礼物。',
+    loading: '正在打开你的礼物…',
+    fromName: '来自 {name} 的礼物',
+    fromSomeone: '送你的礼物',
+    bySeller: '来自 {seller}',
+    claimToAccount: '添加到我的账户',
+    claimAsGuest: '无需账户领取',
+    claiming: '正在领取…',
+    signInHint: '先登录即可保存到你的账户，并在订单中查看。',
+    claimedToAccount: '已在你的账户中。',
+    openOrders: '打开订单',
+    claimedAsGuest: '已归你所有。它包含：',
+    claimedAt: '领取于 {date}',
+  },
 };
 
 export default messages;

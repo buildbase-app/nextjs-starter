@@ -364,6 +364,14 @@ export const en: TourText = {
         'Open the order in Orders to download the workbook and copy your license key.',
       ],
     },
+    'marketplace-gift': {
+      title: 'Send an item as a gift',
+      why: 'A buyer pays, the recipient gets an email with a link, and claims it into their account or without one.',
+      steps: [
+        'In the Shop, choose Send as a gift on the Written plan review and pay for it.',
+        "Open the gift link from the recipient's email and claim it.",
+      ],
+    },
     'record-usage': {
       title: 'Record usage',
       why: 'Your app meters what it does (a document created, a video processed); the plan says how much is included.',

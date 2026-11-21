@@ -612,6 +612,23 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     detect: { kind: 'manual' },
   },
+  {
+    id: 'marketplace-gift',
+    group: 'billing',
+    href: '/dashboard/shop',
+    source: {
+      sdk: [
+        'useOrdersApi().checkout(itemId, { gift: { recipientEmail, claimUrl } })',
+        'useGift({ giftId, token })',
+        'claim()',
+      ],
+      app: [
+        'src/components/shop/gift-form.tsx',
+        'src/components/shop/gift-claim.tsx',
+      ],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',

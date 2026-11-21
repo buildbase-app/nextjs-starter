@@ -394,6 +394,14 @@ export const fr: TourText = {
         'Ouvrez la commande dans Commandes pour télécharger le cahier et copier votre clé de licence.',
       ],
     },
+    'marketplace-gift': {
+      title: 'Offrir un article',
+      why: "L'acheteur paie, le destinataire reçoit un e-mail avec un lien et récupère le cadeau dans son compte ou sans compte.",
+      steps: [
+        'Dans la Boutique, choisissez Offrir en cadeau sur Written plan review et payez.',
+        "Ouvrez le lien du cadeau depuis l'e-mail du destinataire et récupérez-le.",
+      ],
+    },
     'record-usage': {
       title: 'Enregistrer de l’usage',
       why: 'Votre app mesure ce qu’elle fait (un document créé, une vidéo traitée) ; le plan dit ce qui est inclus.',

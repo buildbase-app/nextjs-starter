@@ -1427,6 +1427,31 @@ const messages: Messages = {
   itemSubscriptions: {
     title: 'Tus suscripciones',
   },
+  gifts: {
+    send: 'Enviar como regalo',
+    title: '¿Para quién es?',
+    email: 'Su correo',
+    name: 'Su nombre (opcional)',
+    message: 'Una nota (opcional)',
+    pay: 'Pagar el regalo',
+    starting: 'Abriendo el pago…',
+    cancel: 'Cancelar',
+    pageTitle: 'Un regalo para ti',
+    noLink: 'Esta página abre un regalo desde el enlace de su correo.',
+    loading: 'Abriendo tu regalo…',
+    fromName: 'Un regalo de {name}',
+    fromSomeone: 'Un regalo para ti',
+    bySeller: 'de {seller}',
+    claimToAccount: 'Añadirlo a mi cuenta',
+    claimAsGuest: 'Recibirlo sin cuenta',
+    claiming: 'Recibiendo…',
+    signInHint:
+      'Inicia sesión primero para guardarlo en tu cuenta y verlo en Pedidos.',
+    claimedToAccount: 'Ya está en tu cuenta.',
+    openOrders: 'Abrir Pedidos',
+    claimedAsGuest: 'Es tuyo. Esto es lo que te da:',
+    claimedAt: 'Recibido el {date}',
+  },
 };
 
 export default messages;

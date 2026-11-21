@@ -1334,6 +1334,31 @@ export interface ItemSubscriptionsMessages {
   title: string;
 }
 
+export interface GiftsMessages {
+  send: string;
+  title: string;
+  email: string;
+  name: string;
+  message: string;
+  pay: string;
+  starting: string;
+  cancel: string;
+  pageTitle: string;
+  noLink: string;
+  loading: string;
+  fromName: string;
+  fromSomeone: string;
+  bySeller: string;
+  claimToAccount: string;
+  claimAsGuest: string;
+  claiming: string;
+  signInHint: string;
+  claimedToAccount: string;
+  openOrders: string;
+  claimedAsGuest: string;
+  claimedAt: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1375,6 +1400,7 @@ export interface Messages {
   reviews: ReviewsMessages;
   gates: GatesMessages;
   itemSubscriptions: ItemSubscriptionsMessages;
+  gifts: GiftsMessages;
 }
 
 // For next-intl type inference
