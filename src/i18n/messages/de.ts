@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      billing: 'Abrechnung',
       home: 'Startseite',
       dashboard: 'Dashboard',
       documents: 'Dokumente',
@@ -1490,6 +1491,30 @@ const messages: Messages = {
       'Diese Reservierung ist nicht mehr offen: sie ist abgelaufen oder wurde schon abgerechnet.',
     failed: 'Die Reservierung konnte nicht geändert werden.',
     jobDescription: 'Demo-Auftrag (reserviert, dann abgerechnet)',
+  },
+  billingHub: {
+    title: 'Abrechnung',
+    description:
+      'Über den Tarif des Arbeitsbereichs hinaus: Add-ons obendrauf sowie ein eigener Tarif und eigene Credits. Das sind die Bildschirme des SDK selbst.',
+    addOns: {
+      title: 'Add-ons',
+      description:
+        'Extras, die ein Arbeitsbereich zusätzlich zu seinem Tarif kauft, aus dem Katalog der Konsole. Sie stehen im Abo-Bildschirm des Arbeitsbereichs.',
+      open: 'Add-ons verwalten',
+    },
+    personalCredits: {
+      title: 'Deine eigenen Credits',
+      description:
+        'Ein Credit-Guthaben, das dir gehört und nicht einem Arbeitsbereich, mit seinen Käufen und automatischem Aufladen.',
+      open: 'Deine Credits öffnen',
+    },
+    personal: {
+      title: 'Dein eigener Tarif',
+      description:
+        'Ein Tarif für dich als Person, getrennt von jedem Arbeitsbereich. Erscheint, sobald die Konsole Tarife an Personen verkauft.',
+    },
+    inPage:
+      'Kartendaten und 3-D Secure öffnen sich in diesen Bildschirmen, ohne zur Stripe-Seite zu wechseln.',
   },
   autoTopUp: {
     title: 'Automatisches Aufladen',

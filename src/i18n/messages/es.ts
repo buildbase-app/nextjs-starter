@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      billing: 'Facturación',
       home: 'Inicio',
       dashboard: 'Panel',
       documents: 'Documentos',
@@ -1490,6 +1491,30 @@ const messages: Messages = {
     notOpen: 'Esa reserva ya no está abierta: caducó o ya se liquidó.',
     failed: 'No se pudo cambiar la reserva.',
     jobDescription: 'Trabajo de demostración (reservado y luego liquidado)',
+  },
+  billingHub: {
+    title: 'Facturación',
+    description:
+      'Más allá del plan del espacio de trabajo: complementos encima, y un plan y créditos propios. Son las pantallas del propio SDK.',
+    addOns: {
+      title: 'Complementos',
+      description:
+        'Extras que un espacio de trabajo compra además de su plan, del catálogo de la consola. Están en la pantalla de suscripción del espacio de trabajo.',
+      open: 'Gestionar complementos',
+    },
+    personalCredits: {
+      title: 'Tus propios créditos',
+      description:
+        'Un saldo de créditos que es tuyo, no de un espacio de trabajo, con sus compras y su recarga automática.',
+      open: 'Abrir tus créditos',
+    },
+    personal: {
+      title: 'Tu propio plan',
+      description:
+        'Un plan para ti como persona, separado de cualquier espacio de trabajo. Se muestra cuando la consola vende planes a personas.',
+    },
+    inPage:
+      'Los datos de la tarjeta y 3-D Secure se abren dentro de estas pantallas, sin ir al sitio de Stripe.',
   },
   autoTopUp: {
     title: 'Recarga automática',

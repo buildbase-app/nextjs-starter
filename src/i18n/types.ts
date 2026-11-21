@@ -3,6 +3,7 @@
 
 export interface CommonMessages {
   nav: {
+    billing: string;
     home: string;
     dashboard: string;
     documents: string;
@@ -1351,6 +1352,26 @@ export interface CreditHoldsMessages {
   jobDescription: string;
 }
 
+export interface BillingHubMessages {
+  title: string;
+  description: string;
+  addOns: {
+    title: string;
+    description: string;
+    open: string;
+  };
+  personalCredits: {
+    title: string;
+    description: string;
+    open: string;
+  };
+  personal: {
+    title: string;
+    description: string;
+  };
+  inPage: string;
+}
+
 export interface AutoTopUpMessages {
   title: string;
   description: string;
@@ -1406,6 +1427,7 @@ export interface Messages {
   entitlements: EntitlementsMessages;
   goals: GoalsMessages;
   creditHolds: CreditHoldsMessages;
+  billingHub: BillingHubMessages;
   autoTopUp: AutoTopUpMessages;
   yourData: YourDataMessages;
 }

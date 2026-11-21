@@ -3,11 +3,22 @@
 import { ApiVersion, type EventType, type EventData } from '@buildbase/sdk';
 import React from 'react';
 import { env } from '@/env';
-import { SaaSOSProvider } from '@buildbase/sdk/react';
+import { SaaSOSProvider, type SaaSOSProviderProps } from '@buildbase/sdk/react';
+import { loadStripe } from '@stripe/stripe-js';
 import { useLocale } from 'next-intl';
 import { Locale } from '@/i18n/config';
 import { pushTrackingEvent } from '@/lib/tracking-bus';
 import { DEFAULT_DOCUMENT_PERMISSIONS } from '@/lib/documents/roles';
+
+type LoadStripeForSdk = NonNullable<SaaSOSProviderProps['loadStripe']>;
+
+/**
+ * Stripe.js for the SDK. Its own type spells `locale` as Stripe's union of
+ * locale codes where the SDK's is a plain string; the SDK only ever passes
+ * one of its eight locales, all of which Stripe accepts.
+ */
+const loadStripeForSdk: LoadStripeForSdk = (publishableKey) =>
+  loadStripe(publishableKey) as unknown as ReturnType<LoadStripeForSdk>;
 
 const config = {
   serverUrl: env.NEXT_PUBLIC_BUILDBASE_SERVER_URL,
@@ -55,6 +66,10 @@ export function SaaSProvider({ children }: { children: React.ReactNode }) {
       version={ApiVersion.V1}
       orgId={config.orgId}
       locale={locale}
+      // Stripe.js, which the SDK never imports itself: it lets the card
+      // dialog (useInAppPayment) and 3-D Secure on a held plan change run
+      // inside the app. Checkout still goes to Stripe's page.
+      loadStripe={loadStripeForSdk}
       // Analytics and ad tags come from the console (Settings → Tracking)
       // and load only after consent. Every event the SDK fires goes through
       // `onEvent` into a small in-memory log the Tracking page renders.

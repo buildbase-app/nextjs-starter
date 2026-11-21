@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      billing: '請求',
       home: 'ホーム',
       dashboard: 'ダッシュボード',
       documents: 'ドキュメント',
@@ -1477,6 +1478,30 @@ const messages: Messages = {
     notOpen: 'この確保はすでに終了しています。期限切れか、精算済みです。',
     failed: '確保を変更できませんでした。',
     jobDescription: 'デモジョブ（確保して精算）',
+  },
+  billingHub: {
+    title: '請求',
+    description:
+      'ワークスペースのプランを超えるもの: プランに追加するアドオンと、あなた自身のプランとクレジット。いずれも SDK 自身の画面です。',
+    addOns: {
+      title: 'アドオン',
+      description:
+        'ワークスペースがプランに加えて購入する追加機能で、コンソールのカタログから表示されます。ワークスペースのサブスクリプション画面にあります。',
+      open: 'アドオンを管理',
+    },
+    personalCredits: {
+      title: 'あなた自身のクレジット',
+      description:
+        'ワークスペースではなくあなたに属するクレジット残高です。購入履歴と自動チャージもここにあります。',
+      open: 'クレジットを開く',
+    },
+    personal: {
+      title: 'あなた自身のプラン',
+      description:
+        'どのワークスペースとも別の、個人としてのプランです。コンソールが個人向けにプランを販売すると表示されます。',
+    },
+    inPage:
+      'カード情報の入力と 3-D セキュアは、Stripe のサイトに移動せずにこれらの画面内で開きます。',
   },
   autoTopUp: {
     title: '自動チャージ',

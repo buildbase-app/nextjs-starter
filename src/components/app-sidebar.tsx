@@ -22,6 +22,7 @@ import {
   Radio,
   UserCircle,
   Receipt,
+  Wallet,
   Building2,
   ListChecks,
   ClipboardList,
@@ -73,6 +74,7 @@ type NavKey =
   | 'documents'
   | 'credits'
   | 'invoices'
+  | 'billing'
   | 'usage'
   | 'permissions'
   | 'events'
@@ -128,6 +130,7 @@ const sections: { key: SectionKey; items: NavItem[] }[] = [
     items: [
       { navKey: 'credits', url: '/dashboard/credits', icon: Coins },
       { navKey: 'invoices', url: '/dashboard/invoices', icon: Receipt },
+      { navKey: 'billing', url: '/dashboard/billing', icon: Wallet },
       { navKey: 'usage', url: '/dashboard/usage', icon: Gauge },
     ],
   },

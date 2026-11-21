@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      billing: 'Billing',
       home: 'Home',
       dashboard: 'Dashboard',
       documents: 'Documents',
@@ -1469,6 +1470,30 @@ const messages: Messages = {
     notOpen: 'That hold is no longer open: it expired or was already settled.',
     failed: 'The hold could not be changed.',
     jobDescription: 'Demo job (held, then settled)',
+  },
+  billingHub: {
+    title: 'Billing',
+    description:
+      "Beyond the workspace's plan: add-ons on top of it, and a plan and credits of your own. These are the SDK's own screens.",
+    addOns: {
+      title: 'Add-ons',
+      description:
+        "Extras a workspace buys on top of its plan, from the console's catalog. They're in the workspace's subscription screen.",
+      open: 'Manage add-ons',
+    },
+    personalCredits: {
+      title: 'Your own credits',
+      description:
+        'A credit wallet that belongs to you, not a workspace, with its purchases and auto top-up.',
+      open: 'Open your credits',
+    },
+    personal: {
+      title: 'Your own plan',
+      description:
+        'A plan for you as a person, separate from any workspace. Shown once the console sells plans to people.',
+    },
+    inPage:
+      "Card details and 3-D Secure open inside these screens, without leaving for Stripe's site.",
   },
   autoTopUp: {
     title: 'Auto top-up',

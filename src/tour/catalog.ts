@@ -431,6 +431,37 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     requires: ['subscribe'],
   },
+  {
+    id: 'buy-add-on',
+    group: 'billing',
+    href: '/dashboard/billing',
+    source: {
+      sdk: [
+        "openWorkspaceSettings('subscription')  // its Add-ons section",
+        'useWorkspaceAddOns() / usePurchaseAddOn()  // to build your own',
+      ],
+      console: {
+        screen: '/dashboard/admin/subscriptions/plans',
+        note: 'Add-ons: one-time, lifetime, consumable or recurring, each granting features, limits or quota on top of the plan.',
+      },
+      app: ['src/app/[locale]/dashboard/billing/page.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
+  {
+    id: 'personal-plan',
+    group: 'billing',
+    href: '/dashboard/billing',
+    source: {
+      sdk: ['<AccountBilling />', "openWorkspaceSettings('account-credits')"],
+      console: {
+        screen: '/dashboard/admin/subscriptions/plans',
+        note: 'A plan group sold to people rather than workspaces; the person gets their own Billing and Credits screens.',
+      },
+      app: ['src/app/[locale]/dashboard/billing/page.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',

@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      billing: 'Facturation',
       home: 'Accueil',
       dashboard: 'Tableau de bord',
       documents: 'Documents',
@@ -1496,6 +1497,30 @@ const messages: Messages = {
       "Cette réservation n'est plus ouverte : elle a expiré ou a déjà été réglée.",
     failed: "La réservation n'a pas pu être modifiée.",
     jobDescription: 'Tâche de démonstration (réservée, puis réglée)',
+  },
+  billingHub: {
+    title: 'Facturation',
+    description:
+      "Au-delà du forfait de l'espace de travail : des modules en sus, ainsi qu'un forfait et des crédits à vous. Ce sont les écrans du SDK lui-même.",
+    addOns: {
+      title: 'Modules complémentaires',
+      description:
+        "Des extras qu'un espace de travail achète en plus de son forfait, depuis le catalogue de la console. Ils sont dans l'écran d'abonnement de l'espace.",
+      open: 'Gérer les modules',
+    },
+    personalCredits: {
+      title: 'Vos propres crédits',
+      description:
+        'Un solde de crédits qui vous appartient, pas à un espace de travail, avec ses achats et sa recharge automatique.',
+      open: 'Ouvrir vos crédits',
+    },
+    personal: {
+      title: 'Votre propre forfait',
+      description:
+        'Un forfait pour vous en tant que personne, distinct de tout espace de travail. Affiché dès que la console vend des forfaits aux personnes.',
+    },
+    inPage:
+      "Les données de carte et 3-D Secure s'ouvrent dans ces écrans, sans passer par le site de Stripe.",
   },
   autoTopUp: {
     title: 'Recharge automatique',
