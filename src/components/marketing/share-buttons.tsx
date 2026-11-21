@@ -2,7 +2,8 @@
 
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import { Check, Copy, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
+import { FacebookIcon, LinkedInIcon, XIcon } from '@/components/icons/brand';
 
 interface ShareButtonsProps {
   url: string;
@@ -32,7 +33,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           className="text-muted-foreground hover:text-foreground rounded-md p-2 transition-colors"
           aria-label={t('shareAriaX')}
         >
-          <Twitter className="size-4" />
+          <XIcon className="size-4" />
         </a>
         <a
           href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
@@ -41,7 +42,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           className="text-muted-foreground hover:text-foreground rounded-md p-2 transition-colors"
           aria-label={t('shareAriaLinkedin')}
         >
-          <Linkedin className="size-4" />
+          <LinkedInIcon className="size-4" />
         </a>
         <a
           href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
@@ -50,7 +51,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           className="text-muted-foreground hover:text-foreground rounded-md p-2 transition-colors"
           aria-label={t('shareAriaFacebook')}
         >
-          <Facebook className="size-4" />
+          <FacebookIcon className="size-4" />
         </a>
         <button
           onClick={handleCopy}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 
 interface TocItem {
   id: string;
@@ -9,33 +9,46 @@ interface TocItem {
 }
 
 /**
- * Read headings from the DOM once after mount. Uses useSyncExternalStore
- * with a snapshot to avoid the "setState in effect" lint error.
+ * Headings read from the DOM after mount, through useSyncExternalStore (no
+ * setState in an effect). `subscribe` must keep one identity: an inline one
+ * is re-subscribed on every render, and a subscribe that reports a change
+ * each time loops until React gives up ("Maximum update depth exceeded").
+ * So it lives at module level and only notifies when the headings changed,
+ * e.g. after a client-side move to another post.
  */
-function useHeadings(): TocItem[] {
-  const cached = useRef<TocItem[]>([]);
+const EMPTY: TocItem[] = [];
+let headingsSnapshot: TocItem[] = EMPTY;
 
+function readHeadings(): TocItem[] {
+  return Array.from(document.querySelectorAll('article h2, article h3'))
+    .filter((el) => el.id)
+    .map((el) => ({
+      id: el.id,
+      text: el.textContent ?? '',
+      level: el.tagName === 'H2' ? 2 : 3,
+    }));
+}
+
+const keyOf = (items: TocItem[]) =>
+  items.map((i) => `${i.level}:${i.id}:${i.text}`).join('|');
+
+function subscribeHeadings(onChange: () => void) {
+  const next = readHeadings();
+  if (keyOf(next) !== keyOf(headingsSnapshot)) {
+    headingsSnapshot = next;
+    onChange();
+  }
+  return () => {};
+}
+
+const getHeadings = () => headingsSnapshot;
+const getServerHeadings = () => EMPTY;
+
+function useHeadings(): TocItem[] {
   return useSyncExternalStore(
-    // subscribe — headings are static after first paint, no-op
-    (cb) => {
-      // Read on first subscribe (client mount)
-      const headings = Array.from(
-        document.querySelectorAll('article h2, article h3')
-      );
-      cached.current = headings
-        .filter((el) => el.id)
-        .map((el) => ({
-          id: el.id,
-          text: el.textContent ?? '',
-          level: el.tagName === 'H2' ? 2 : 3,
-        }));
-      cb();
-      return () => {};
-    },
-    // getSnapshot
-    () => cached.current,
-    // getServerSnapshot
-    () => []
+    subscribeHeadings,
+    getHeadings,
+    getServerHeadings
   );
 }
 

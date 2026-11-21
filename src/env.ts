@@ -18,7 +18,6 @@ export const env = createEnv({
   server: {
     // Database
     DATABASE_URL: z
-      .string()
       .url('DATABASE_URL must be a valid PostgreSQL connection URL')
       .optional(),
 
@@ -62,14 +61,12 @@ export const env = createEnv({
   client: {
     // Site URL
     NEXT_PUBLIC_SITE_URL: z
-      .string()
       .url('NEXT_PUBLIC_SITE_URL must be a valid URL')
       .optional()
       .default('https://example.com'),
 
     // BuildBase SDK
     NEXT_PUBLIC_BUILDBASE_SERVER_URL: z
-      .string()
       .url('NEXT_PUBLIC_BUILDBASE_SERVER_URL must be a valid URL')
       .optional()
       .default('https://api.console.buildbase.app'),
@@ -83,13 +80,12 @@ export const env = createEnv({
       .min(1, 'NEXT_PUBLIC_BUILDBASE_CLIENT_ID is required'),
 
     NEXT_PUBLIC_BUILDBASE_REDIRECT_URL: z
-      .string()
       .url('NEXT_PUBLIC_BUILDBASE_REDIRECT_URL must be a valid URL')
       .optional()
       .default('http://localhost:3000'),
 
     // Sentry (client-side)
-    NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
+    NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
   },
 
   /**

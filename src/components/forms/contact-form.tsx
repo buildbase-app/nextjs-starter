@@ -72,7 +72,7 @@ export function ContactForm() {
     void load();
   }, [load]);
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!payload) return;
     setSending(true);

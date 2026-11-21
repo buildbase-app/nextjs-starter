@@ -7,7 +7,7 @@ import { z } from 'zod';
 export const emailSchema = z
   .string()
   .min(1, 'Email is required')
-  .email('Invalid email address');
+  .pipe(z.email('Invalid email address'));
 
 export const passwordSchema = z
   .string()
@@ -21,9 +21,9 @@ export const nameSchema = z
   .min(2, 'Name must be at least 2 characters')
   .max(100, 'Name must be less than 100 characters');
 
-export const urlSchema = z.string().url('Invalid URL');
+export const urlSchema = z.url('Invalid URL');
 
-export const uuidSchema = z.string().uuid('Invalid ID format');
+export const uuidSchema = z.uuid('Invalid ID format');
 
 // ============================================
 // Auth Schemas
@@ -111,7 +111,7 @@ export const workspaceTokenSchema = z
   .object({
     workspaceId: z.string().min(1, 'Workspace ID is required'),
   })
-  .passthrough();
+  .loose();
 
 export const paginationSchema = z.object({
   page: z.coerce.number().int().positive().default(1),

@@ -68,7 +68,7 @@ export function InvitationsCard({ canInvite, list }: Props) {
 
   const pending = invitations.filter((i) => i.status === 'invited');
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!workspaceId || !email.trim()) return;
     setSending(true);
