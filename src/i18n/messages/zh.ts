@@ -1432,6 +1432,43 @@ const messages: Messages = {
     failed: '无法更改该预留。',
     jobDescription: '演示任务（先预留，后结算）',
   },
+  autoTopUp: {
+    title: '自动充值',
+    on: '已开启',
+    off: '已关闭',
+    description:
+      '每当余额低于阈值时，使用已保存的卡购买一个积分包，每月最多设定的次数。',
+    loading: '正在加载设置…',
+    unavailable: '此工作区不支持自动充值。',
+    paused: {
+      payment_failed: '已暂停：连续四次付款被拒。请处理卡片问题后恢复。',
+      no_payment_method: '已暂停：没有可扣款的卡。请添加一张后恢复。',
+      monthly_cap: '已暂停：本月充值次数已达上限，将于 1 日解除。',
+      dunning: '已暂停：订阅有未付账单。',
+      currency_unavailable:
+        '已暂停：该积分包在此工作区的货币下没有价格。请换一个。',
+      package_unavailable: '已暂停：该积分包已停售。请换一个。',
+      tax_requires_checkout:
+        '已暂停：当前需要征税，已保存卡的自动充值暂不支持。请手动购买积分包。',
+      terms_changed: '已暂停：积分包的积分或价格已变更。恢复即表示同意新条款。',
+      other: '已暂停（{reason}）。',
+    },
+    resume: '恢复',
+    threshold: '当余额低于',
+    pack: '购买此积分包',
+    packOption: '{name}（{credits} 积分）',
+    monthlyCap: '每月最多（{min}–{max}）',
+    usage: '本月已用 {used}/{cap} 次充值。',
+    lastTopUp: '上次充值：{date}。',
+    card: '从尾号 {last4} 的 {brand} 扣款',
+    noCard: '尚未保存卡片',
+    addCard: '添加卡片',
+    changeCard: '更换卡片',
+    save: '保存',
+    turnOn: '开启',
+    turnOff: '关闭',
+    saved: '已保存。',
+  },
 };
 
 export default messages;

@@ -31,6 +31,7 @@ import {
   ArrowDownCircle,
   Package,
 } from 'lucide-react';
+import { AutoTopUpCard } from '@/components/credits/auto-top-up-card';
 import { CreditHoldCard } from '@/components/credits/credit-hold-card';
 
 function CreditPackagesPanel({ workspaceId }: { workspaceId: string }) {
@@ -250,6 +251,11 @@ export default function CreditsPage() {
       {/* Credit packages — programmatic purchase */}
       {currentWorkspace?._id && (
         <CreditPackagesPanel workspaceId={currentWorkspace._id} />
+      )}
+
+      {/* Auto top-up: buy a pack on the saved card under a threshold */}
+      {currentWorkspace?._id && (
+        <AutoTopUpCard workspaceId={currentWorkspace._id} />
       )}
 
       {/* Expiring credits */}

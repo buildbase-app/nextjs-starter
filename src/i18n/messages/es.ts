@@ -1520,6 +1520,49 @@ const messages: Messages = {
     failed: 'No se pudo cambiar la reserva.',
     jobDescription: 'Trabajo de demostración (reservado y luego liquidado)',
   },
+  autoTopUp: {
+    title: 'Recarga automática',
+    on: 'Activada',
+    off: 'Desactivada',
+    description:
+      'Compra un paquete de créditos con la tarjeta guardada cuando el saldo baje de un umbral, como máximo un número fijado de veces al mes.',
+    loading: 'Cargando la configuración…',
+    unavailable:
+      'La recarga automática no está disponible para este espacio de trabajo.',
+    paused: {
+      payment_failed:
+        'En pausa: se rechazaron cuatro pagos seguidos. Arregla la tarjeta y reanuda.',
+      no_payment_method:
+        'En pausa: no hay tarjeta a la que cobrar. Añade una y reanuda.',
+      monthly_cap:
+        'En pausa: las recargas de este mes llegaron al límite. Se levanta el día 1.',
+      dunning: 'En pausa: la suscripción tiene una factura impagada.',
+      currency_unavailable:
+        'En pausa: el paquete no tiene precio en la moneda de este espacio de trabajo. Elige otro.',
+      package_unavailable:
+        'En pausa: el paquete ya no está a la venta. Elige otro.',
+      tax_requires_checkout:
+        'En pausa: se cobran impuestos, algo que una recarga con tarjeta guardada aún no puede hacer. Compra los paquetes a mano.',
+      terms_changed:
+        'En pausa: cambiaron los créditos o el precio del paquete. Reanudar acepta las nuevas condiciones.',
+      other: 'En pausa ({reason}).',
+    },
+    resume: 'Reanudar',
+    threshold: 'Cuando el saldo baje de',
+    pack: 'Comprar este paquete',
+    packOption: '{name} ({credits} créditos)',
+    monthlyCap: 'Como máximo al mes ({min}–{max})',
+    usage: '{used} de {cap} recargas usadas este mes.',
+    lastTopUp: 'Última recarga: {date}.',
+    card: 'Cobra a {brand} terminada en {last4}',
+    noCard: 'Aún no hay tarjeta guardada',
+    addCard: 'Añadir una tarjeta',
+    changeCard: 'Cambiar la tarjeta',
+    save: 'Guardar',
+    turnOn: 'Activar',
+    turnOff: 'Desactivar',
+    saved: 'Guardado.',
+  },
 };
 
 export default messages;

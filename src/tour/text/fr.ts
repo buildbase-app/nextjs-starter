@@ -376,6 +376,14 @@ export const fr: TourText = {
         'Sur Crédits, achetez le pack de 100 crédits avec la carte de test.',
       ],
     },
+    'auto-top-up': {
+      title: 'Recharger automatiquement',
+      why: "Un espace de travail à court de crédits s'arrête. La recharge automatique achète un pack avec la carte enregistrée avant que cela n'arrive, dans un plafond mensuel fixé par le client.",
+      steps: [
+        'Ouvrez Crédits et trouvez « Recharge automatique ».',
+        'Ajoutez une carte, choisissez un seuil et un pack, puis activez-la.',
+      ],
+    },
     'credit-transactions': {
       title: 'Lire les transactions',
       why: 'Chaque attribution, achat et dépense est une ligne, avec le lot dont elle provient.',

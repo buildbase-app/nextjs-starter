@@ -1373,6 +1373,41 @@ export interface CreditHoldsMessages {
   jobDescription: string;
 }
 
+export interface AutoTopUpMessages {
+  title: string;
+  on: string;
+  off: string;
+  description: string;
+  loading: string;
+  unavailable: string;
+  paused: {
+    payment_failed: string;
+    no_payment_method: string;
+    monthly_cap: string;
+    dunning: string;
+    currency_unavailable: string;
+    package_unavailable: string;
+    tax_requires_checkout: string;
+    terms_changed: string;
+    other: string;
+  };
+  resume: string;
+  threshold: string;
+  pack: string;
+  packOption: string;
+  monthlyCap: string;
+  usage: string;
+  lastTopUp: string;
+  card: string;
+  noCard: string;
+  addCard: string;
+  changeCard: string;
+  save: string;
+  turnOn: string;
+  turnOff: string;
+  saved: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1409,6 +1444,7 @@ export interface Messages {
   entitlements: EntitlementsMessages;
   goals: GoalsMessages;
   creditHolds: CreditHoldsMessages;
+  autoTopUp: AutoTopUpMessages;
 }
 
 // For next-intl type inference

@@ -375,6 +375,14 @@ export const de: TourText = {
         'Kaufen Sie unter Credits das 100-Credit-Paket mit der Testkarte.',
       ],
     },
+    'auto-top-up': {
+      title: 'Automatisch aufladen',
+      why: 'Ein Arbeitsbereich ohne Credits hört auf zu arbeiten. Automatisches Aufladen kauft vorher ein Paket mit der gespeicherten Karte, innerhalb eines monatlichen Limits, das der Kunde festlegt.',
+      steps: [
+        'Öffne Credits und such „Automatisches Aufladen“.',
+        'Füg eine Karte hinzu, wähl Schwellenwert und Paket und schalte es ein.',
+      ],
+    },
     'credit-transactions': {
       title: 'Die Transaktionen lesen',
       why: 'Jede Gutschrift, jeder Kauf und jede Ausgabe ist eine Zeile, mit dem Topf, aus dem sie stammt.',
