@@ -333,6 +333,22 @@ export const de: TourText = {
       why: 'Nicht alles gehört einem Team: Eine Person kann einen Tarif und Credits für sich selbst haben, getrennt von jedem Arbeitsbereich.',
       steps: ['Öffne Abrechnung und sieh dir „Dein eigener Tarif“ an.'],
     },
+    'start-selling': {
+      title: 'Verkaufen starten',
+      why: 'Auch deine Nutzer können verkaufen: Die Plattform kümmert sich um das Stripe-Konto des Verkäufers, deine Gebühr und jeden Verkauf.',
+      steps: [
+        'Öffne Verkaufen und starte zu den Bedingungen der App.',
+        'Schließe Stripes Einrichtung ab, dann füge einen Artikel hinzu und veröffentliche ihn.',
+      ],
+    },
+    'marketplace-buy': {
+      title: 'Bei einem Verkäufer kaufen',
+      why: 'Ein Knopf zu Stripes Checkout: Der Bestand wird reserviert, während der Käufer zahlt, und die Bestellung zeigt, was er bekommen hat.',
+      steps: [
+        'Öffne den Shop und kaufe einen veröffentlichten Artikel.',
+        'Nach der Zahlung zeigt Bestellungen die Bestellung und was sie dir gebracht hat.',
+      ],
+    },
     'record-usage': {
       title: 'Nutzung erfassen',
       why: 'Ihre App misst, was sie tut (ein erstelltes Dokument, ein verarbeitetes Video); der Plan sagt, wie viel enthalten ist.',

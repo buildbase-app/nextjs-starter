@@ -3,6 +3,9 @@
 
 export interface CommonMessages {
   nav: {
+    selling: string;
+    orders: string;
+    shop: string;
     affiliates: string;
     enterprise: string;
     billing: string;
@@ -1399,6 +1402,33 @@ export interface AffiliatesMessages {
   description: string;
 }
 
+export interface ShopMessages {
+  title: string;
+  description: string;
+  empty: string;
+  by: string;
+  free: string;
+  notForSale: string;
+}
+
+export interface OrdersMessages {
+  title: string;
+  description: string;
+  empty: string;
+  browse: string;
+  from: string;
+  open: string;
+  loading: string;
+  yourOrder: string;
+  total: string;
+  whatYouGot: string;
+}
+
+export interface SellingMessages {
+  title: string;
+  description: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1438,6 +1468,9 @@ export interface Messages {
   autoTopUp: AutoTopUpMessages;
   yourData: YourDataMessages;
   affiliates: AffiliatesMessages;
+  shop: ShopMessages;
+  orders: OrdersMessages;
+  selling: SellingMessages;
 }
 
 // For next-intl type inference

@@ -34,6 +34,8 @@ export const TASK_IDS = [
   'seat-price',
   'buy-add-on',
   'personal-plan',
+  'start-selling',
+  'marketplace-buy',
   'record-usage',
   'usage-threshold',
   'usage-limit',

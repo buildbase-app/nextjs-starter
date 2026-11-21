@@ -3,6 +3,9 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      selling: 'البيع',
+      orders: 'الطلبات',
+      shop: 'المتجر',
       affiliates: 'الشركاء بالعمولة',
       enterprise: 'المؤسسات',
       billing: 'الفوترة',
@@ -1499,6 +1502,32 @@ const messages: Messages = {
     title: 'الشركاء بالعمولة',
     description:
       'انضم إلى برنامج من رابط دعوته، وشارك رابطك الخاص، وشاهد ما ربحته. أي شخص يصل عبر رابطك يُحتسب لك عند الشراء.',
+  },
+  shop: {
+    title: 'المتجر',
+    description:
+      'كل ما نشره البائعون. يتم الشراء عبر صفحة الدفع في Stripe ويظهر في الطلبات.',
+    empty: 'لا يوجد شيء للبيع بعد. عندما ينشر بائع منتجًا، سيظهر هنا.',
+    by: 'من {seller}',
+    free: 'مجاني',
+    notForSale: 'غير معروض للبيع حاليًا',
+  },
+  orders: {
+    title: 'الطلبات',
+    description: 'ما اشتريته، مع ما منحك إياه كل طلب.',
+    empty: 'لم تشترِ أي شيء بعد.',
+    browse: 'تصفّح المتجر',
+    from: 'من {seller}',
+    open: 'فتح',
+    loading: 'جارٍ تحميل طلبك…',
+    yourOrder: 'طلبك',
+    total: 'الإجمالي',
+    whatYouGot: 'ما حصلت عليه',
+  },
+  selling: {
+    title: 'البيع',
+    description:
+      'بِع منتجاتك في هذا التطبيق: ابدأ البيع، وأكمل إعداد Stripe، واعرض منتجاتك، وتابع كل عملية بيع.',
   },
 };
 

@@ -3,6 +3,9 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      selling: '販売',
+      orders: '注文',
+      shop: 'ショップ',
       affiliates: 'アフィリエイト',
       enterprise: 'エンタープライズ',
       billing: '請求',
@@ -1530,6 +1533,33 @@ const messages: Messages = {
     title: 'アフィリエイト',
     description:
       '招待リンクからプログラムに参加し、自分のリンクを共有して、獲得額を確認します。あなたのリンクから来た人が購入すると、あなたの成果になります。',
+  },
+  shop: {
+    title: 'ショップ',
+    description:
+      '出品者が公開したすべての商品です。購入は Stripe のチェックアウトで行われ、注文に表示されます。',
+    empty:
+      'まだ販売中の商品はありません。出品者が商品を公開するとここに表示されます。',
+    by: '{seller}',
+    free: '無料',
+    notForSale: '現在は販売していません',
+  },
+  orders: {
+    title: '注文',
+    description: '購入したものと、各注文で得たものです。',
+    empty: 'まだ何も購入していません。',
+    browse: 'ショップを見る',
+    from: '{seller}',
+    open: '開く',
+    loading: '注文を読み込み中…',
+    yourOrder: 'ご注文',
+    total: '合計',
+    whatYouGot: '受け取ったもの',
+  },
+  selling: {
+    title: '販売',
+    description:
+      'このアプリで自分の商品を販売します。販売を開始し、Stripe の登録を完了して、商品を出品し、各販売を確認できます。',
   },
 };
 

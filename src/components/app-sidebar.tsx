@@ -23,6 +23,9 @@ import {
   UserCircle,
   Receipt,
   Handshake,
+  Store,
+  Package,
+  BadgeDollarSign,
   Wallet,
   Building2,
   ListChecks,
@@ -76,6 +79,9 @@ type NavKey =
   | 'credits'
   | 'invoices'
   | 'affiliates'
+  | 'shop'
+  | 'orders'
+  | 'selling'
   | 'billing'
   | 'usage'
   | 'permissions'
@@ -136,6 +142,9 @@ const sections: { key: SectionKey; items: NavItem[] }[] = [
       { navKey: 'billing', url: '/dashboard/billing', icon: Wallet },
       { navKey: 'usage', url: '/dashboard/usage', icon: Gauge },
       { navKey: 'affiliates', url: '/dashboard/affiliates', icon: Handshake },
+      { navKey: 'shop', url: '/dashboard/shop', icon: Store },
+      { navKey: 'orders', url: '/dashboard/orders', icon: Package },
+      { navKey: 'selling', url: '/dashboard/selling', icon: BadgeDollarSign },
     ],
   },
   {

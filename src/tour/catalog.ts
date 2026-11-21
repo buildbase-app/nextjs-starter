@@ -476,6 +476,43 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     detect: { kind: 'manual' },
   },
+  {
+    id: 'start-selling',
+    group: 'billing',
+    href: '/dashboard/selling',
+    source: {
+      sdk: [
+        '<SellerHome subject={{ user: true }} />',
+        '<SellerItems />',
+        '<SellerSales />',
+      ],
+      console: {
+        screen: '/dashboard/admin/payment',
+        note: 'Save Stripe keys under Billing, Credentials; then Billing, Selling walks the setup and turns selling on.',
+      },
+      app: ['src/app/[locale]/dashboard/selling/page.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
+  {
+    id: 'marketplace-buy',
+    group: 'billing',
+    href: '/dashboard/shop',
+    source: {
+      sdk: [
+        'usePublishedItems()',
+        '<BuyButton itemId variantId priceId />',
+        'useMyOrders()',
+        'useMyOrder(id, { waitForPayment: true })',
+        'useHoldings({ orderId })',
+      ],
+      app: [
+        'src/app/[locale]/dashboard/shop/page.tsx',
+        'src/app/[locale]/dashboard/orders/page.tsx',
+      ],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',
