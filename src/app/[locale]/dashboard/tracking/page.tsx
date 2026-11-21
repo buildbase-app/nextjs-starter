@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { TrackingPanel } from '@/components/tracking/tracking-panel';
+import { GoalsCard } from '@/components/tracking/goals-card';
 
 export default async function TrackingPage() {
   const t = await getTranslations('tracking');
@@ -10,6 +11,7 @@ export default async function TrackingPage() {
         <p className="text-muted-foreground">{t('description')}</p>
       </div>
       <TrackingPanel />
+      <GoalsCard />
     </div>
   );
 }

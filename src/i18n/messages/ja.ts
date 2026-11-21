@@ -1477,6 +1477,17 @@ const messages: Messages = {
       included: 'プランに含まれています',
     },
   },
+  goals: {
+    title: 'ウェブ解析のゴール',
+    description:
+      '大切な瞬間を、コンソールの Analytics でページビューと並べて数えます。ゴールは Cookie バナーに従い、拒否された後は何も送信されません。',
+    record: 'ゴールを記録',
+    recorded:
+      '{name} を {count} 回記録しました。コンソールの Analytics の「ゴール」に表示されます。',
+    notSent: '送信されていません: Cookie バナーで解析を拒否しています。',
+    alsoDocuments:
+      'このアプリは、ドキュメントを作成するたびに document_created も記録します。',
+  },
 };
 
 export default messages;

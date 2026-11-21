@@ -1469,6 +1469,17 @@ const messages: Messages = {
       included: 'Included in your plan',
     },
   },
+  goals: {
+    title: 'Web analytics goals',
+    description:
+      "Count the moments that matter, beside page views in the console's Analytics. Goals follow the cookie banner: after a no, nothing is sent.",
+    record: 'Record a goal',
+    recorded:
+      "Recorded {name} {count, plural, one {once} other {# times}}. It shows in the console's Analytics under Goals.",
+    notSent: 'Not sent: you refused analytics in the cookie banner.',
+    alsoDocuments:
+      'This app also records document_created whenever you create a document.',
+  },
 };
 
 export default messages;

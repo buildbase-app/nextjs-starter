@@ -799,6 +799,14 @@ export const de: TourText = {
         'Lesen Sie die Attributionskarte.',
       ],
     },
+    'tracking-goal': {
+      title: 'Ein Ziel zählen',
+      why: 'Seitenaufrufe sagen, wohin die Leute gingen; Ziele sagen, was sie taten. Beides landet in den Analytics der Konsole, und beides respektiert ein Nein im Cookie-Banner.',
+      steps: [
+        'Öffne Tracking und drück auf „Ziel erfassen“.',
+        'Erstelle ein Dokument: das erfasst auch document_created.',
+      ],
+    },
     'tracking-console-tag': {
       title: 'Das Tag in der Konsole sehen',
       why: 'GA4, Meta, PostHog, Clarity und elf weitere, jeweils mit einer Einwilligungskategorie und einem Datenschutztext, den die Konsole für Ihre Richtlinie erzeugt.',

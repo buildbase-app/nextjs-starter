@@ -1491,6 +1491,17 @@ const messages: Messages = {
       included: 'Incluido en tu plan',
     },
   },
+  goals: {
+    title: 'Objetivos de analítica web',
+    description:
+      'Cuenta los momentos que importan junto a las páginas vistas en la analítica de la consola. Los objetivos siguen al banner de cookies: tras un no, no se envía nada.',
+    record: 'Registrar un objetivo',
+    recorded:
+      'Registrado {name} {count, plural, one {una vez} other {# veces}}. Aparece en la analítica de la consola, en Objetivos.',
+    notSent: 'No se envió: rechazaste la analítica en el banner de cookies.',
+    alsoDocuments:
+      'Esta app también registra document_created cada vez que creas un documento.',
+  },
 };
 
 export default messages;

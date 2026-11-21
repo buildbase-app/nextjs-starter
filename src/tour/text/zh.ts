@@ -683,6 +683,14 @@ export const zh: TourText = {
         '阅读来源归因卡片。',
       ],
     },
+    'tracking-goal': {
+      title: '统计一个目标',
+      why: '页面浏览说明人们去了哪里；目标说明他们做了什么。两者都进入控制台的分析，也都尊重 Cookie 横幅中的拒绝。',
+      steps: [
+        '打开追踪，点击“记录一个目标”。',
+        '创建一个文档：这也会记录 document_created。',
+      ],
+    },
     'tracking-console-tag': {
       title: '在控制台查看标签',
       why: 'GA4、Meta、PostHog、Clarity 等十五种，每种都有同意类别和控制台为你的隐私政策生成的说明文字。',

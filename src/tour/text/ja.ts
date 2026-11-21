@@ -764,6 +764,14 @@ export const ja: TourText = {
         '流入元のカードを読みます。',
       ],
     },
+    'tracking-goal': {
+      title: 'ゴールを数える',
+      why: 'ページビューは人がどこへ行ったかを、ゴールは何をしたかを示します。どちらもコンソールの Analytics に届き、Cookie バナーでの拒否を尊重します。',
+      steps: [
+        'トラッキングを開き、「ゴールを記録」を押します。',
+        'ドキュメントを作成すると、document_created も記録されます。',
+      ],
+    },
     'tracking-console-tag': {
       title: 'コンソールでタグを見る',
       why: 'GA4、Meta、PostHog、Clarity など 15 種類。それぞれに同意のカテゴリーと、ポリシー用にコンソールが生成するプライバシー文があります。',

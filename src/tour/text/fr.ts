@@ -805,6 +805,14 @@ export const fr: TourText = {
         'Lisez la carte d’attribution.',
       ],
     },
+    'tracking-goal': {
+      title: 'Compter un objectif',
+      why: "Les pages vues disent où les gens sont allés ; les objectifs, ce qu'ils ont fait. Les deux arrivent dans l'Analytics de la console, et les deux respectent un refus dans la bannière de cookies.",
+      steps: [
+        'Ouvrez Suivi et appuyez sur « Enregistrer un objectif ».',
+        'Créez un document : cela enregistre aussi document_created.',
+      ],
+    },
     'tracking-console-tag': {
       title: 'Retrouvez la balise dans la console',
       why: 'GA4, Meta, PostHog, Clarity et onze autres, chacun avec une catégorie de consentement et un texte de confidentialité que la console génère pour votre politique.',

@@ -16,6 +16,7 @@ import {
   useSaaSAuth,
 } from '@buildbase/sdk/react';
 import { toast } from 'sonner';
+import { trackGoal } from '@buildbase/sdk/tracking';
 import {
   FileText,
   Plus,
@@ -188,6 +189,9 @@ export function DocumentsWorkbench() {
       setLastMetering(data.metering ?? null);
       setForm({ title: '', content: '', status: 'draft', tags: '' });
       toast.success(t('created'));
+      // A web analytics goal: counted in the console's Analytics, and only
+      // for a visitor who did not refuse analytics.
+      trackGoal('document_created', { status: form.status });
       await Promise.all([load(), refreshMeters()]);
     } finally {
       setBusy(null);

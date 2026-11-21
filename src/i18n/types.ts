@@ -1348,6 +1348,15 @@ export interface EntitlementsMessages {
   };
 }
 
+export interface GoalsMessages {
+  title: string;
+  description: string;
+  record: string;
+  recorded: string;
+  notSent: string;
+  alsoDocuments: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1382,6 +1391,7 @@ export interface Messages {
   account: AccountMessages;
   yourData: YourDataMessages;
   entitlements: EntitlementsMessages;
+  goals: GoalsMessages;
 }
 
 // For next-intl type inference
