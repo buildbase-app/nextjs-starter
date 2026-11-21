@@ -1282,6 +1282,28 @@ export interface AccountMessages {
   };
 }
 
+export interface YourDataMessages {
+  title: string;
+  description: string;
+  export: {
+    button: string;
+    working: string;
+  };
+  delete: {
+    button: string;
+    working: string;
+    areYouSure: string;
+    recent: string;
+    needsConfirm: string;
+    confirmNow: string;
+    confirmFirst: string;
+    scheduled: string;
+    scheduledNoDate: string;
+    ownsWorkspaces: string;
+  };
+  failed: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1314,6 +1336,7 @@ export interface Messages {
   audience: AudienceMessages;
   waitlist: WaitlistMessages;
   account: AccountMessages;
+  yourData: YourDataMessages;
 }
 
 // For next-intl type inference

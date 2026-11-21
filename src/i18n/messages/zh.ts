@@ -1338,6 +1338,31 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: '你的数据',
+    description:
+      '下载本应用和平台保存的所有关于你的数据，或在此处和平台上删除你的账户。',
+    export: {
+      button: '导出我的数据',
+      working: '正在准备…',
+    },
+    delete: {
+      button: '删除我的账户',
+      working: '正在删除…',
+      areYouSure: '确定删除你的账户吗？此操作无法撤销，并会结束你的会话。',
+      recent: '你最近登录过，现在就可以删除账户。',
+      needsConfirm:
+        '删除账户需要最近 10 分钟内的登录。系统会先请你确认是本人操作。',
+      confirmNow: '立即确认是本人',
+      confirmFirst:
+        '请先确认是本人。你会回到这里，然后再次点击“删除我的账户”。',
+      scheduled: '你的账户将于 {date} 删除。在此之前，登录即可取消。',
+      scheduledNoDate: '你的账户已安排删除。在此之前，登录即可取消。',
+      ownsWorkspaces:
+        '你仍拥有或付费的工作区中还有其他成员：{names}。请先移除其他成员并取消订阅，或先删除这些工作区。',
+    },
+    failed: '出了点问题，请重试。',
+  },
 };
 
 export default messages;

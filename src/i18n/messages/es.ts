@@ -1418,6 +1418,35 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: 'Tus datos',
+    description:
+      'Descarga todo lo que esta app y la plataforma guardan sobre ti, o elimina tu cuenta aquí y en la plataforma.',
+    export: {
+      button: 'Exportar mis datos',
+      working: 'Preparando…',
+    },
+    delete: {
+      button: 'Eliminar mi cuenta',
+      working: 'Eliminando…',
+      areYouSure:
+        '¿Eliminar tu cuenta? No se puede deshacer y cierra tu sesión.',
+      recent:
+        'Iniciaste sesión hace poco, así que puedes eliminar tu cuenta ahora.',
+      needsConfirm:
+        'Para eliminarla hace falta haber iniciado sesión en los últimos 10 minutos. Primero te pediremos que confirmes que eres tú.',
+      confirmNow: 'Confirmar que eres tú ahora',
+      confirmFirst:
+        'Primero confirma que eres tú. Volverás aquí; después pulsa de nuevo «Eliminar mi cuenta».',
+      scheduled:
+        'Tu cuenta se eliminará el {date}. Hasta entonces puedes cancelarlo iniciando sesión.',
+      scheduledNoDate:
+        'La eliminación de tu cuenta está programada. Hasta entonces puedes cancelarla iniciando sesión.',
+      ownsWorkspaces:
+        'Todavía eres dueño de espacios de trabajo con otros miembros, o pagas por ellos: {names}. Quita a los demás miembros y cancela la suscripción, o elimina primero esos espacios.',
+    },
+    failed: 'Algo salió mal. Inténtalo de nuevo.',
+  },
 };
 
 export default messages;

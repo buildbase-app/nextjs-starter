@@ -1422,6 +1422,35 @@ const messages: Messages = {
       },
     },
   },
+  yourData: {
+    title: 'Vos données',
+    description:
+      'Téléchargez tout ce que cette application et la plateforme conservent sur vous, ou supprimez votre compte ici et sur la plateforme.',
+    export: {
+      button: 'Exporter mes données',
+      working: 'Préparation…',
+    },
+    delete: {
+      button: 'Supprimer mon compte',
+      working: 'Suppression…',
+      areYouSure:
+        "Supprimer votre compte ? C'est irréversible, et votre session prendra fin.",
+      recent:
+        'Vous vous êtes connecté récemment : vous pouvez supprimer votre compte maintenant.',
+      needsConfirm:
+        "La suppression exige une connexion datant de moins de 10 minutes. On vous demandera d'abord de confirmer que c'est bien vous.",
+      confirmNow: "Confirmer que c'est vous maintenant",
+      confirmFirst:
+        "Confirmez d'abord que c'est bien vous. Vous reviendrez ici ; appuyez alors de nouveau sur « Supprimer mon compte ».",
+      scheduled:
+        "Votre compte sera supprimé le {date}. D'ici là, vous pouvez annuler en vous connectant.",
+      scheduledNoDate:
+        "La suppression de votre compte est programmée. D'ici là, vous pouvez l'annuler en vous connectant.",
+      ownsWorkspaces:
+        "Vous possédez ou payez encore des espaces de travail avec d'autres membres : {names}. Retirez les autres membres et résiliez l'abonnement, ou supprimez d'abord ces espaces.",
+    },
+    failed: "Une erreur s'est produite. Veuillez réessayer.",
+  },
 };
 
 export default messages;

@@ -1550,7 +1550,10 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     group: 'platform',
     href: '/dashboard/profile',
     source: {
-      app: ['src/app/api/user/export/route.ts'],
+      app: [
+        'src/components/account/your-data-card.tsx',
+        'src/app/api/user/export/route.ts',
+      ],
     },
     detect: {
       kind: 'action',
@@ -1624,7 +1627,20 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     group: 'platform',
     href: '/dashboard/profile',
     source: {
-      app: ['src/app/api/user/delete/route.ts'],
+      sdk: [
+        'WorkspaceApi.requestAccountDeletion()',
+        "useSaaSAuth().requireReverification()  // Confirm it's you",
+        "webhook 'user.deleted'",
+      ],
+      console: {
+        screen: '/dashboard/admin/users',
+        note: 'Deleting needs a sign-in from the last 10 minutes; the org may delay deletions so they can be cancelled.',
+      },
+      app: [
+        'src/components/account/your-data-card.tsx',
+        'src/app/api/user/delete/route.ts',
+        'src/lib/account/erase.ts',
+      ],
     },
     detect: {
       kind: 'manual',
