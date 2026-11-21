@@ -41,14 +41,14 @@ export default function ProfilePage() {
   const { user } = useSaaSAuth();
   const {
     attributes,
-    isLoading: attrsLoading,
+    loading: attrsLoading,
     updateAttribute,
-    refreshAttributes,
+    refetch: refreshAttributes,
   } = useUserAttributes();
   const {
     features,
-    isLoading: featuresLoading,
-    refreshFeatures,
+    loading: featuresLoading,
+    refetch: refreshFeatures,
   } = useUserFeatures();
 
   const [editKey, setEditKey] = useState('');

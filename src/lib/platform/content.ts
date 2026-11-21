@@ -69,6 +69,9 @@ const content = process.env.BUILDBASE_API_TOKEN
   ? createServerClient({
       serverUrl: process.env.NEXT_PUBLIC_BUILDBASE_SERVER_URL!,
       apiToken: process.env.BUILDBASE_API_TOKEN,
+      // Names this template in the `X-BuildBase-Client` header (beside the
+      // SDK version and runtime); it carries no user or org data.
+      source: 'nextjs-starter',
       ...withNextCache({ revalidate: 300 }),
     })
   : null;

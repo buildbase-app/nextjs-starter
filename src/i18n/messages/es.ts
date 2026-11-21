@@ -944,34 +944,6 @@ const messages: Messages = {
       description: 'Todas las últimas actualizaciones, mejoras y correcciones.',
     },
   },
-  cookieConsent: {
-    title: 'Usamos cookies',
-    descriptionBefore:
-      'Usamos cookies para mejorar tu experiencia, analizar el tráfico y personalizar el contenido. Puedes elegir qué cookies permitir. Lee nuestra',
-    policyLinkPrivacy: 'política de privacidad',
-    policyLinkCookie: 'política de cookies',
-    dismissAriaLabel: 'Descartar por ahora',
-    necessary: {
-      title: 'Necesarias',
-      description:
-        'Requeridas para el funcionamiento del sitio. No se pueden deshabilitar.',
-    },
-    analytics: {
-      title: 'Analíticas',
-      description:
-        'Nos ayudan a entender cómo los visitantes usan nuestro sitio.',
-    },
-    marketing: {
-      title: 'Marketing',
-      description:
-        'Se usan para mostrar anuncios relevantes y rastrear campañas.',
-    },
-    acceptAll: 'Aceptar todo',
-    rejectAll: 'Rechazar todo',
-    savePreferences: 'Guardar preferencias',
-    loads: 'Carga: {names}',
-    customize: 'Personalizar',
-  },
   inbox: {
     title: 'Bandeja de entrada',
     description:
