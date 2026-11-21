@@ -1340,6 +1340,8 @@ const messages: Messages = {
     addToCart: 'Añadir al carrito',
     added: 'Añadido a tu carrito.',
     viewCart: 'Carrito ({count})',
+    tier: 'Nivel',
+    per: { day: 'día', week: 'semana', month: 'mes', year: 'año' },
   },
   orders: {
     title: 'Pedidos',
@@ -1421,6 +1423,9 @@ const messages: Messages = {
       cta: 'Consigue Personal Pro',
       included: 'Tienes soporte prioritario',
     },
+  },
+  itemSubscriptions: {
+    title: 'Tus suscripciones',
   },
 };
 

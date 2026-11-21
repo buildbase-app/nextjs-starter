@@ -1324,6 +1324,8 @@ const messages: Messages = {
     addToCart: 'Add to cart',
     added: 'Added to your cart.',
     viewCart: 'Cart ({count})',
+    tier: 'Tier',
+    per: { day: 'day', week: 'week', month: 'month', year: 'year' },
   },
   orders: {
     title: 'Orders',
@@ -1405,6 +1407,9 @@ const messages: Messages = {
       cta: 'Get Personal Pro',
       included: 'Priority support is yours',
     },
+  },
+  itemSubscriptions: {
+    title: 'Your subscriptions',
   },
 };
 

@@ -377,6 +377,14 @@ export const de: TourText = {
         'Sieh dir die Bewertung und deinen Text am Artikel im Shop an.',
       ],
     },
+    'marketplace-subscribe': {
+      title: 'Bei einem Verkäufer abonnieren',
+      why: 'Verkäufer verkaufen auch Mitgliedschaften: ein Monatspreis mit Stufen, von Stripe verlängert, den der Käufer selbst ändern, kündigen oder fortsetzen kann.',
+      steps: [
+        'Wähle im Shop eine Stufe des monatlichen Coaching-Clubs und abonniere.',
+        'Ändere unter Bestellungen deine Stufe oder kündige zum Ende des Zeitraums.',
+      ],
+    },
     'record-usage': {
       title: 'Nutzung erfassen',
       why: 'Ihre App misst, was sie tut (ein erstelltes Dokument, ein verarbeitetes Video); der Plan sagt, wie viel enthalten ist.',

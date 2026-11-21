@@ -573,6 +573,27 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
     detect: { kind: 'manual' },
   },
+  {
+    id: 'marketplace-subscribe',
+    group: 'billing',
+    href: '/dashboard/shop',
+    source: {
+      sdk: [
+        '<BuyButton recurring />',
+        'useItemSubscriptions()',
+        '<HoldingSubscription subscription tiers />',
+      ],
+      console: {
+        screen: '/dashboard/billing/item-types',
+        note: 'Start an item type from the Membership starter: monthly or yearly prices, each variant a tier.',
+      },
+      app: [
+        'src/app/[locale]/dashboard/shop/page.tsx',
+        'src/components/orders/item-subscriptions.tsx',
+      ],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Usage and quotas ──
   {
     id: 'record-usage',

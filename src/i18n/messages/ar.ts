@@ -1302,6 +1302,8 @@ const messages: Messages = {
     addToCart: 'أضف إلى السلة',
     added: 'أُضيف إلى سلتك.',
     viewCart: 'السلة ({count})',
+    tier: 'المستوى',
+    per: { day: 'يوم', week: 'أسبوع', month: 'شهر', year: 'سنة' },
   },
   orders: {
     title: 'الطلبات',
@@ -1383,6 +1385,9 @@ const messages: Messages = {
       cta: 'احصل على Personal Pro',
       included: 'الدعم ذو الأولوية متاح لك',
     },
+  },
+  itemSubscriptions: {
+    title: 'اشتراكاتك',
   },
 };
 

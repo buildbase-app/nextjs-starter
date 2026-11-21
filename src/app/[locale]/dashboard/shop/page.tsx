@@ -113,7 +113,11 @@ function ItemCard({
 }) {
   const t = useTranslations('shop');
   const locale = useLocale();
-  const variant = item.variants[0];
+  // An item with several variants (a membership's tiers) lets the buyer
+  // pick one; the price and the button follow it.
+  const [variantId, setVariantId] = useState(item.variants[0]?.id);
+  const variant =
+    item.variants.find((v) => v.id === variantId) ?? item.variants[0];
   const price = variant?.prices.find((p) => !p.retired);
   const bookable = !!item.booking;
   const [slotStart, setSlotStart] = useState<string | null>(null);
@@ -136,13 +140,29 @@ function ItemCard({
       </CardHeader>
       <CardContent className="flex-1 space-y-2 text-sm">
         {item.summary && <p>{item.summary}</p>}
+        {item.variants.length > 1 && (
+          <label className="block space-y-1">
+            <span className="text-muted-foreground text-xs">{t('tier')}</span>
+            <select
+              value={variant?.id}
+              onChange={(e) => setVariantId(e.target.value)}
+              className="border-input bg-background focus-visible:ring-ring/50 block w-full rounded-md border px-3 py-2 text-sm outline-none focus-visible:ring-[3px]"
+            >
+              {item.variants.map((v) => (
+                <option key={v.id} value={v.id}>
+                  {v.label ?? v.id}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
         <ItemRating itemId={item._id} />
         {price && (
           <p className="font-medium">
             {price.mode === 'free'
               ? t('free')
               : formatMinorAmountIntl(amount, price.currency, locale)}
-            {price.recurring && ` / ${price.recurring.interval}`}
+            {price.recurring && ` / ${t(`per.${price.recurring.interval}`)}`}
           </p>
         )}
         {bookable && variant && (
