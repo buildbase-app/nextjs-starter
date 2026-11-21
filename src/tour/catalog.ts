@@ -1348,7 +1348,8 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     source: {
       sdk: [
         'useTracking().consent.manifest',
-        'consent.set({ analytics, marketing })',
+        '<CookieBanner />',
+        'openCookieBanner()',
         '<SaaSOSProvider tracking={{ consent: "auto" }}>',
       ],
       console: {
@@ -1357,6 +1358,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       },
       app: [
         'src/components/saas-provider.tsx',
+        'src/components/cookie-consent.tsx',
         'src/components/tracking/tracking-panel.tsx',
       ],
     },

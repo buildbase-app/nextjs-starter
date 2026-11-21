@@ -924,31 +924,6 @@ const messages: Messages = {
       description: 'جميع آخر التحديثات والتحسينات والإصلاحات.',
     },
   },
-  cookieConsent: {
-    title: 'نستخدم ملفات تعريف الارتباط',
-    descriptionBefore:
-      'نستخدم ملفات تعريف الارتباط لتحسين تجربتك وتحليل حركة المرور وتخصيص المحتوى. يمكنك اختيار ملفات تعريف الارتباط التي تسمح بها. اقرأ',
-    policyLinkPrivacy: 'سياسة الخصوصية',
-    policyLinkCookie: 'سياسة ملفات تعريف الارتباط',
-    dismissAriaLabel: 'تجاهل الآن',
-    necessary: {
-      title: 'ضروري',
-      description: 'مطلوب لعمل الموقع. لا يمكن تعطيله.',
-    },
-    analytics: {
-      title: 'تحليلات',
-      description: 'يساعدنا على فهم كيفية استخدام الزوار لموقعنا.',
-    },
-    marketing: {
-      title: 'تسويق',
-      description: 'يُستخدم لعرض إعلانات ذات صلة وتتبع الحملات.',
-    },
-    acceptAll: 'قبول الكل',
-    rejectAll: 'رفض الكل',
-    savePreferences: 'حفظ التفضيلات',
-    loads: 'يحمّل: {names}',
-    customize: 'تخصيص',
-  },
   inbox: {
     title: 'البريد الوارد',
     description:

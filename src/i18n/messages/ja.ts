@@ -932,32 +932,6 @@ const messages: Messages = {
       description: '最新のアップデート、改善、修正をすべてご覧ください。',
     },
   },
-  cookieConsent: {
-    title: 'Cookieを使用しています',
-    descriptionBefore:
-      '当サイトでは、ユーザー体験の向上、トラフィックの分析、コンテンツのパーソナライズのためにCookieを使用しています。許可するCookieを選択できます。',
-    policyLinkPrivacy: 'プライバシーポリシー',
-    policyLinkCookie: 'Cookieポリシー',
-    dismissAriaLabel: '今は閉じる',
-    necessary: {
-      title: '必要',
-      description: 'サイトの機能に必要です。無効にできません。',
-    },
-    analytics: {
-      title: 'アナリティクス',
-      description:
-        '訪問者がサイトをどのように使用しているかを把握するのに役立ちます。',
-    },
-    marketing: {
-      title: 'マーケティング',
-      description: '関連広告の配信とキャンペーンの追跡に使用されます。',
-    },
-    acceptAll: 'すべて承諾',
-    rejectAll: 'すべて拒否',
-    savePreferences: '設定を保存',
-    loads: '読み込み: {names}',
-    customize: 'カスタマイズ',
-  },
   inbox: {
     title: '受信箱',
     description:

@@ -932,31 +932,6 @@ const messages: Messages = {
       description: 'All the latest updates, improvements, and fixes.',
     },
   },
-  cookieConsent: {
-    title: 'We use cookies',
-    descriptionBefore:
-      'We use cookies to improve your experience, analyze traffic, and personalize content. You can choose which cookies to allow. Read our',
-    policyLinkPrivacy: 'privacy policy',
-    policyLinkCookie: 'cookie policy',
-    dismissAriaLabel: 'Dismiss for now',
-    necessary: {
-      title: 'Necessary',
-      description: 'Required for the site to function. Cannot be disabled.',
-    },
-    analytics: {
-      title: 'Analytics',
-      description: 'Help us understand how visitors use our site.',
-    },
-    marketing: {
-      title: 'Marketing',
-      description: 'Used to deliver relevant ads and track campaigns.',
-    },
-    acceptAll: 'Accept all',
-    rejectAll: 'Reject all',
-    savePreferences: 'Save preferences',
-    loads: 'Loads: {names}',
-    customize: 'Customize',
-  },
   inbox: {
     title: 'Inbox',
     description:

@@ -24,9 +24,8 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     // server-side against BuildBase rather than trusting anything the caller
     // sent us.
     const profile = await users.getProfile();
-    // The profile carries `id`; older responses carried `_id`. Reading only
-    // `_id` answered 401 to every real session.
-    const userId = profile?.id ?? profile?._id;
+    // The profile always carries `id` (`_id` is a deprecated alias).
+    const userId = profile?.id;
     if (!userId || !profile.email) return null;
     return { userId: String(userId), email: profile.email };
   } catch {
