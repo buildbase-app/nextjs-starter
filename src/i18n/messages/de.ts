@@ -1405,6 +1405,50 @@ const messages: Messages = {
       },
     },
   },
+  entitlements: {
+    title: 'Was dein Tarif enthält',
+    description:
+      'Per Slug gegen die Berechtigung des Servers geprüft: der Tarif plus jedes Add-on oder jede Zuteilung obendrauf. Nur ein ausdrückliches Nein sperrt.',
+    columns: {
+      slug: 'Slug',
+      kind: 'Art',
+      answer: 'Antwort',
+      detail: 'Details',
+      source: 'Herkunft',
+    },
+    kind: {
+      feature: 'Funktion',
+      limit: 'Limit',
+      quota: 'Kontingent',
+      unknown: 'Nicht im Tarif',
+    },
+    state: {
+      granted: 'Enthalten',
+      locked: 'Gesperrt',
+      unknown: 'Unbekannt, erlaubt',
+    },
+    detail: {
+      unlimited: 'Unbegrenzt',
+      quota: '{used} von {limit} genutzt, {remaining} übrig in diesem Zeitraum',
+      limit: '{used} von {limit}, Platz für {remaining} weitere',
+    },
+    source: {
+      plan: 'Der Tarif',
+      floor: 'Durch eine Zuteilung angehoben',
+      add: 'Tarif plus Add-on',
+      override: 'Vom Team festgelegt',
+      default: 'Standard',
+    },
+    pressure: {
+      nearing: 'Fast voll',
+      reached: 'Limit erreicht',
+    },
+    gate: {
+      title: 'Erweiterte Exporte hinter einer Sperre',
+      upgrade: 'Upgrade zum Exportieren',
+      included: 'In deinem Tarif enthalten',
+    },
+  },
 };
 
 export default messages;

@@ -1365,6 +1365,50 @@ const messages: Messages = {
       },
     },
   },
+  entitlements: {
+    title: 'ما تتضمنه خطتك',
+    description:
+      'يُتحقق منه بالمعرّف مقابل استحقاقات الخادم: الخطة، إضافةً إلى أي إضافة أو منحة فوقها. لا يُقفل إلا رفض صريح.',
+    columns: {
+      slug: 'المعرّف',
+      kind: 'النوع',
+      answer: 'الإجابة',
+      detail: 'التفاصيل',
+      source: 'المصدر',
+    },
+    kind: {
+      feature: 'ميزة',
+      limit: 'حد',
+      quota: 'حصة',
+      unknown: 'غير مذكور في الخطة',
+    },
+    state: {
+      granted: 'مضمّنة',
+      locked: 'مقفلة',
+      unknown: 'غير معروف، مسموح',
+    },
+    detail: {
+      unlimited: 'غير محدود',
+      quota: 'استُخدم {used} من {limit}، ويتبقى {remaining} في هذه الفترة',
+      limit: '{used} من {limit}، ويتسع لـ {remaining} أخرى',
+    },
+    source: {
+      plan: 'الخطة',
+      floor: 'رُفع بمنحة',
+      add: 'الخطة مع إضافة',
+      override: 'حدده الفريق',
+      default: 'افتراضي',
+    },
+    pressure: {
+      nearing: 'يقترب من الامتلاء',
+      reached: 'بلغ الحد',
+    },
+    gate: {
+      title: 'التصدير المتقدم خلف بوابة',
+      upgrade: 'رقِّ خطتك للتصدير',
+      included: 'مضمّن في خطتك',
+    },
+  },
 };
 
 export default messages;

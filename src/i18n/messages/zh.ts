@@ -1326,6 +1326,50 @@ const messages: Messages = {
       },
     },
   },
+  entitlements: {
+    title: '你的套餐包含什么',
+    description:
+      '按标识（slug）对照服务器的权益进行检查：套餐，加上其上的任何附加项或授予。只有明确拒绝才会锁定。',
+    columns: {
+      slug: '标识',
+      kind: '类型',
+      answer: '结果',
+      detail: '详情',
+      source: '来源',
+    },
+    kind: {
+      feature: '功能',
+      limit: '上限',
+      quota: '配额',
+      unknown: '套餐中没有',
+    },
+    state: {
+      granted: '已包含',
+      locked: '已锁定',
+      unknown: '未知，允许',
+    },
+    detail: {
+      unlimited: '无限制',
+      quota: '已用 {used}/{limit}，本周期剩余 {remaining}',
+      limit: '{used}/{limit}，还可增加 {remaining}',
+    },
+    source: {
+      plan: '套餐',
+      floor: '由授予提升',
+      add: '套餐加附加项',
+      override: '由团队设定',
+      default: '默认',
+    },
+    pressure: {
+      nearing: '接近上限',
+      reached: '已达上限',
+    },
+    gate: {
+      title: '高级导出，受权益控制',
+      upgrade: '升级以导出',
+      included: '已包含在你的套餐中',
+    },
+  },
 };
 
 export default messages;
