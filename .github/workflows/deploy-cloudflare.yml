@@ -11,6 +11,17 @@ name: Deploy to Cloudflare
 #
 # Runtime secrets (DATABASE_URL, SYSTEM_SECRET, BUILDBASE_*) live on the Worker
 # and are kept across deploys; they are not needed here.
+#
+# A fork or a copy of this starter: set your own public values as repository
+# variables (Settings → Secrets and variables → Actions → Variables):
+# CLOUDFLARE_ACCOUNT_ID, NEXT_PUBLIC_BUILDBASE_ORG_ID,
+# NEXT_PUBLIC_BUILDBASE_CLIENT_ID, NEXT_PUBLIC_SITE_URL, and optionally
+# NEXT_PUBLIC_BUILDBASE_REDIRECT_URL (defaults to the site URL) and
+# NEXT_PUBLIC_BUILDBASE_SERVER_URL. Only buildbase-app/nextjs-starter falls
+# back to the demo's values, so a copy never builds as the demo: until its
+# variables are set, the deploy is skipped. Change the Worker `name` and
+# `routes` in wrangler.jsonc too; the deploy stops while they still point at
+# demo.buildbase.app.
 
 on:
   push:
@@ -24,14 +35,15 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  CLOUDFLARE_ACCOUNT_ID: 0109f7bce7af42ac8a88104d324efe4d
+  # Repository variables first; the demo's own values only in the demo's repo.
+  CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID || (github.repository == 'buildbase-app/nextjs-starter' && '0109f7bce7af42ac8a88104d324efe4d' || '') }}
   # Public values, baked into the client bundle at build time.
-  NEXT_PUBLIC_BUILDBASE_SERVER_URL: https://api.console.buildbase.app
-  NEXT_PUBLIC_BUILDBASE_ORG_ID: 694e64a4e41ec4ca273256e9
-  NEXT_PUBLIC_BUILDBASE_CLIENT_ID: pxN8bJXoFDTIRotbEk2dBmS3cAKwnGeDGiNOXOGg
-  NEXT_PUBLIC_BUILDBASE_REDIRECT_URL: https://demo.buildbase.app
-  NEXT_PUBLIC_SITE_URL: https://demo.buildbase.app
-  SITE_URL: https://demo.buildbase.app
+  NEXT_PUBLIC_BUILDBASE_SERVER_URL: ${{ vars.NEXT_PUBLIC_BUILDBASE_SERVER_URL || 'https://api.console.buildbase.app' }}
+  NEXT_PUBLIC_BUILDBASE_ORG_ID: ${{ vars.NEXT_PUBLIC_BUILDBASE_ORG_ID || (github.repository == 'buildbase-app/nextjs-starter' && '694e64a4e41ec4ca273256e9' || '') }}
+  NEXT_PUBLIC_BUILDBASE_CLIENT_ID: ${{ vars.NEXT_PUBLIC_BUILDBASE_CLIENT_ID || (github.repository == 'buildbase-app/nextjs-starter' && 'pxN8bJXoFDTIRotbEk2dBmS3cAKwnGeDGiNOXOGg' || '') }}
+  NEXT_PUBLIC_BUILDBASE_REDIRECT_URL: ${{ vars.NEXT_PUBLIC_BUILDBASE_REDIRECT_URL || vars.NEXT_PUBLIC_SITE_URL || (github.repository == 'buildbase-app/nextjs-starter' && 'https://demo.buildbase.app' || '') }}
+  NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || (github.repository == 'buildbase-app/nextjs-starter' && 'https://demo.buildbase.app' || '') }}
+  SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || (github.repository == 'buildbase-app/nextjs-starter' && 'https://demo.buildbase.app' || '') }}
   NEXT_TELEMETRY_DISABLED: 1
   WRANGLER_SEND_METRICS: false
   # The build only prerenders; route modules need a signing secret to
@@ -45,17 +57,22 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://demo.buildbase.app
+      url: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://demo.buildbase.app' }}
 
     steps:
-      - name: Check for Cloudflare token
+      - name: Check the token and the public values
         id: token
         run: |
-          if [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+          missing=""
+          [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] || missing="$missing CLOUDFLARE_API_TOKEN (secret)"
+          for name in CLOUDFLARE_ACCOUNT_ID NEXT_PUBLIC_BUILDBASE_ORG_ID NEXT_PUBLIC_BUILDBASE_CLIENT_ID NEXT_PUBLIC_SITE_URL; do
+            [ -n "${!name}" ] || missing="$missing $name (variable)"
+          done
+          if [ -z "$missing" ]; then
             echo "present=true" >> "$GITHUB_OUTPUT"
           else
             echo "present=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::CLOUDFLARE_API_TOKEN is not set; skipping deploy."
+            echo "::notice::Skipping deploy; not set:$missing. See the top of this workflow."
           fi
 
       - name: Checkout code
@@ -68,6 +85,14 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+
+      - name: Check wrangler.jsonc is this copy's own
+        if: steps.token.outputs.present == 'true' && github.repository != 'buildbase-app/nextjs-starter'
+        run: |
+          if grep -Eq '"(pattern|name)": "demo(\.buildbase\.app|-buildbase-app)"' wrangler.jsonc; then
+            echo "::error::wrangler.jsonc still names the demo's Worker or route (demo-buildbase-app, demo.buildbase.app). Set your own name and routes before deploying."
+            exit 1
+          fi
 
       - name: Install dependencies
         if: steps.token.outputs.present == 'true'
@@ -87,7 +112,7 @@ jobs:
         if: steps.token.outputs.present == 'true'
         run: |
           for path in / "/api/health?deep=true"; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" -H "Cookie: NEXT_LOCALE=en" "https://demo.buildbase.app$path")
+            code=$(curl -s -o /dev/null -w "%{http_code}" -H "Cookie: NEXT_LOCALE=en" "$SITE_URL$path")
             echo "$path -> $code"
             [ "$code" = "200" ] || { echo "::error::$path returned $code"; exit 1; }
           done

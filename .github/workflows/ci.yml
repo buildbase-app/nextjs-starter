@@ -13,7 +13,9 @@ env:
   # it at import, so the build needs them. Public values, not secrets: the
   # build only prerenders; nothing here is used to sign in.
   NEXT_PUBLIC_BUILDBASE_SERVER_URL: https://api.console.buildbase.app
-  NEXT_PUBLIC_BUILDBASE_ORG_ID: 694e64a4e41ec4ca273256e9
+  # A copy builds with its own org id when it sets the repository variable;
+  # nothing CI builds is deployed, so the demo's id is only a placeholder.
+  NEXT_PUBLIC_BUILDBASE_ORG_ID: ${{ vars.NEXT_PUBLIC_BUILDBASE_ORG_ID || '694e64a4e41ec4ca273256e9' }}
   # The MCP stack needs a signing secret to construct. A throwaway one: CI
   # never serves a request, so nothing it signs is ever checked.
   SYSTEM_SECRET: ci-build-only-not-a-secret-0123456789abcdef
