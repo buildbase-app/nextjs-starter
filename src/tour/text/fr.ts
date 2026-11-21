@@ -401,7 +401,7 @@ export const fr: TourText = {
       title: 'Recharger automatiquement',
       why: "Un espace de travail à court de crédits s'arrête. La recharge automatique achète un pack avec la carte enregistrée avant que cela n'arrive, dans un plafond mensuel fixé par le client.",
       steps: [
-        'Ouvrez Crédits et trouvez « Recharge automatique ».',
+        'Ouvrez Crédits et appuyez sur « Configurer la recharge automatique ».',
         'Ajoutez une carte, choisissez un seuil et un pack, puis activez-la.',
       ],
     },
@@ -460,6 +460,14 @@ export const fr: TourText = {
       steps: [
         'Ouvrez Permissions et lisez les clés propres à l’organisation.',
         'Cette démo ajoute un rôle personnalisé « reviewer » qui ne peut que changer le statut d’un document.',
+      ],
+    },
+    'enterprise-sso': {
+      title: "Authentification unique pour l'entreprise d'un client",
+      why: "Les grands clients veulent que leurs équipes se connectent via leur propre fournisseur d'identité, avec synchronisation de l'annuaire et leurs propres règles. L'écran du SDK permet à l'administrateur de l'entreprise de tout configurer sans votre équipe.",
+      steps: [
+        'Ouvrez Entreprise.',
+        "Suivez la configuration, ou lisez pourquoi elle n'est pas encore disponible.",
       ],
     },
     'inbox-first-item': {

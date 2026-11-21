@@ -4,6 +4,7 @@ const messages: Messages = {
   common: {
     nav: {
       affiliates: 'Affiliates',
+      enterprise: 'Enterprise',
       billing: 'Billing',
       home: 'Home',
       dashboard: 'Dashboard',
@@ -1399,34 +1400,6 @@ const messages: Messages = {
       },
     },
   },
-  yourData: {
-    title: 'Your data',
-    description:
-      'Download everything this app and the platform hold about you, or delete your account here and on the platform.',
-    export: {
-      button: 'Export my data',
-      working: 'Preparing…',
-    },
-    delete: {
-      button: 'Delete my account',
-      working: 'Deleting…',
-      areYouSure:
-        'Delete your account? This cannot be undone, and it ends your session.',
-      recent: 'You signed in recently, so you can delete your account now.',
-      needsConfirm:
-        "Deleting needs a sign-in from the last 10 minutes. You will be asked to confirm it's you first.",
-      confirmNow: "Confirm it's you now",
-      confirmFirst:
-        "Confirm it's you first. You'll come back here; then press Delete my account again.",
-      scheduled:
-        'Your account will be deleted on {date}. Until then you can cancel by signing in.',
-      scheduledNoDate:
-        'Your account deletion is scheduled. Until then you can cancel by signing in.',
-      ownsWorkspaces:
-        'You still own or pay for workspaces with other members: {names}. Remove the other members and cancel the subscription, or delete those workspaces first.',
-    },
-    failed: 'Something went wrong. Please try again.',
-  },
   entitlements: {
     title: 'What your plan includes',
     description:
@@ -1500,48 +1473,6 @@ const messages: Messages = {
     failed: 'The hold could not be changed.',
     jobDescription: 'Demo job (held, then settled)',
   },
-  autoTopUp: {
-    title: 'Auto top-up',
-    on: 'On',
-    off: 'Off',
-    description:
-      'Buy a credit pack on the saved card whenever the balance falls under a threshold, at most a set number of times a month.',
-    loading: 'Loading the setting…',
-    unavailable: "Auto top-up isn't available for this workspace.",
-    paused: {
-      payment_failed:
-        'Paused: four payments in a row were declined. Fix the card, then resume.',
-      no_payment_method:
-        'Paused: there is no card to charge. Add one, then resume.',
-      monthly_cap:
-        "Paused: this month's top-ups reached the cap. It lifts on the 1st.",
-      dunning: 'Paused: the subscription has an unpaid invoice.',
-      currency_unavailable:
-        "Paused: the pack has no price in this workspace's currency. Choose another.",
-      package_unavailable:
-        'Paused: the pack is no longer on sale. Choose another.',
-      tax_requires_checkout:
-        "Paused: tax is collected, which a saved-card top-up can't do yet. Buy packs by hand.",
-      terms_changed:
-        "Paused: the pack's credits or price changed. Resuming agrees to the new terms.",
-      other: 'Paused ({reason}).',
-    },
-    resume: 'Resume',
-    threshold: 'When the balance falls under',
-    pack: 'Buy this pack',
-    packOption: '{name} ({credits} credits)',
-    monthlyCap: 'At most per month ({min}–{max})',
-    usage: '{used} of {cap} top-ups used this month.',
-    lastTopUp: 'Last top-up: {date}.',
-    card: 'Charges {brand} ending {last4}',
-    noCard: 'No card saved yet',
-    addCard: 'Add a card',
-    changeCard: 'Change card',
-    save: 'Save',
-    turnOn: 'Turn on',
-    turnOff: 'Turn off',
-    saved: 'Saved.',
-  },
   billingHub: {
     title: 'Billing',
     description:
@@ -1565,6 +1496,27 @@ const messages: Messages = {
     },
     inPage:
       "Card details and 3-D Secure open inside these screens, without leaving for Stripe's site.",
+  },
+  autoTopUp: {
+    title: 'Auto top-up',
+    description:
+      "Buy a credit pack on the saved card whenever the balance falls under a threshold, within a monthly cap. The SDK's credits screen has the setting, the card, and why it paused.",
+    open: 'Set up auto top-up',
+  },
+  yourData: {
+    title: 'Your data',
+    description:
+      'Download everything this app and the platform hold about you, or delete your account.',
+    export: {
+      button: 'Export my data',
+      working: 'Preparing…',
+    },
+    delete: {
+      button: 'Delete my account',
+      where:
+        "Opens the Security screen: it asks you to confirm it's you if your sign-in is older than 10 minutes, and this app erases its copy of you when the platform has deleted the account.",
+    },
+    failed: 'Something went wrong. Please try again.',
   },
   affiliates: {
     title: 'Affiliates',

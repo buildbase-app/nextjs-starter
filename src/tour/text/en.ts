@@ -363,7 +363,7 @@ export const en: TourText = {
       title: 'Top up automatically',
       why: 'A workspace that runs out of credits stops working. Auto top-up buys a pack on the saved card before that happens, within a monthly cap the customer sets.',
       steps: [
-        'Open Credits and find Auto top-up.',
+        'Open Credits and press Set up auto top-up.',
         'Add a card, pick a threshold and a pack, and turn it on.',
       ],
     },
@@ -422,6 +422,14 @@ export const en: TourText = {
       steps: [
         'Open Permissions and read the organization’s own keys.',
         'This demo adds a custom “reviewer” role that may change a document’s status and nothing else.',
+      ],
+    },
+    'enterprise-sso': {
+      title: "Single sign-on for a customer's company",
+      why: "Larger customers want their people to sign in through their own identity provider, with directory sync and their own rules. The SDK's screen lets the company's admin set that up without your team.",
+      steps: [
+        'Open Enterprise.',
+        "Follow the setup, or read why it isn't available yet.",
       ],
     },
     'inbox-first-item': {

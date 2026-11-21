@@ -79,6 +79,7 @@ type NavKey =
   | 'billing'
   | 'usage'
   | 'permissions'
+  | 'enterprise'
   | 'events'
   | 'profile'
   | 'security'
@@ -141,6 +142,7 @@ const sections: { key: SectionKey; items: NavItem[] }[] = [
     key: 'platform',
     items: [
       { navKey: 'permissions', url: '/dashboard/permissions', icon: Lock },
+      { navKey: 'enterprise', url: '/dashboard/enterprise', icon: Building2 },
       { navKey: 'events', url: '/dashboard/events', icon: Radio },
       { navKey: 'notifications', url: '/dashboard/notifications', icon: Bell },
       { navKey: 'settings', url: '/dashboard/settings', icon: Settings },

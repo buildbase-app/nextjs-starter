@@ -390,7 +390,7 @@ export const es: TourText = {
       title: 'Recarga automáticamente',
       why: 'Un espacio de trabajo que se queda sin créditos deja de funcionar. La recarga automática compra un paquete con la tarjeta guardada antes de que pase, dentro de un límite mensual que fija el cliente.',
       steps: [
-        'Abre Créditos y busca «Recarga automática».',
+        'Abre Créditos y pulsa «Configurar la recarga automática».',
         'Añade una tarjeta, elige un umbral y un paquete, y actívala.',
       ],
     },
@@ -449,6 +449,14 @@ export const es: TourText = {
       steps: [
         'Abre Permisos y lee las claves propias de la organización.',
         'Esta demo añade un rol personalizado “reviewer” que solo puede cambiar el estado de un documento.',
+      ],
+    },
+    'enterprise-sso': {
+      title: 'Inicio de sesión único para la empresa de un cliente',
+      why: 'Los clientes más grandes quieren que su gente inicie sesión con su propio proveedor de identidad, con sincronización de directorio y sus propias reglas. La pantalla del SDK permite al administrador de la empresa configurarlo sin tu equipo.',
+      steps: [
+        'Abre Empresa.',
+        'Sigue la configuración o lee por qué aún no está disponible.',
       ],
     },
     'inbox-first-item': {

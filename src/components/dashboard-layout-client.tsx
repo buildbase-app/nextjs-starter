@@ -13,6 +13,7 @@ import {
   NotificationBell,
   WhenPendingInvitations,
   PendingInvitations,
+  WorkspaceAccessRefused,
   GuestUpgrade,
 } from '@buildbase/sdk/react';
 import {
@@ -92,6 +93,10 @@ export function DashboardLayoutClient({
             >
               {/* An invited person sees what is waiting on every page, not
                   only on the empty workspace state. */}
+              {/* A company's refusal of this workspace (stricter rules, single
+                  sign-on required), in the server's words, with Confirm it's
+                  you or Sign in again. Renders nothing until one is heard. */}
+              <WorkspaceAccessRefused className="mb-6" />
               {/* A guest (continued without an account on the sign-in page)
                   keeps their work by creating an account: the SDK's own
                   form, which keeps their id and data. */}
