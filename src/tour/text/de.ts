@@ -393,6 +393,14 @@ export const de: TourText = {
         'Öffne die Bestellung unter Bestellungen, lade das Arbeitsbuch herunter und kopiere deinen Lizenzschlüssel.',
       ],
     },
+    'marketplace-gift': {
+      title: 'Einen Artikel verschenken',
+      why: 'Der Käufer bezahlt, der Empfänger bekommt eine E-Mail mit Link und nimmt das Geschenk in sein Konto oder ohne Konto an.',
+      steps: [
+        'Wähle im Shop beim Written plan review Als Geschenk senden und bezahle.',
+        'Öffne den Geschenklink aus der E-Mail des Empfängers und nimm es an.',
+      ],
+    },
     'record-usage': {
       title: 'Nutzung erfassen',
       why: 'Ihre App misst, was sie tut (ein erstelltes Dokument, ein verarbeitetes Video); der Plan sagt, wie viel enthalten ist.',

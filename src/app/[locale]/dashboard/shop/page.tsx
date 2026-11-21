@@ -22,6 +22,7 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { LAST_ORDER_KEY } from '@/lib/marketplace';
 import { ItemRating } from '@/components/reviews/item-rating';
+import { GiftForm } from '@/components/shop/gift-form';
 
 /**
  * The marketplace's catalog: every published item, from every seller, with
@@ -223,6 +224,20 @@ function ItemCard({
             {t('added')}
           </span>
         )}
+        {/* A one-time price can be a gift: a booking, a subscription or a
+            free claim cannot. */}
+        {variant &&
+          price &&
+          price.mode === 'fixed' &&
+          !price.recurring &&
+          !bookable && (
+            <GiftForm
+              itemId={item._id}
+              variantId={variant.id}
+              priceId={price.id}
+              successUrl={successUrl}
+            />
+          )}
       </CardFooter>
     </Card>
   );

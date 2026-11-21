@@ -1411,6 +1411,31 @@ const messages: Messages = {
   itemSubscriptions: {
     title: 'Your subscriptions',
   },
+  gifts: {
+    send: 'Send as a gift',
+    title: 'Who is it for?',
+    email: 'Their email',
+    name: 'Their name (optional)',
+    message: 'A note for them (optional)',
+    pay: 'Pay for the gift',
+    starting: 'Opening checkout…',
+    cancel: 'Cancel',
+    pageTitle: 'A gift for you',
+    noLink: 'This page opens a gift from the link in its email.',
+    loading: 'Opening your gift…',
+    fromName: 'A gift from {name}',
+    fromSomeone: 'A gift for you',
+    bySeller: 'from {seller}',
+    claimToAccount: 'Add it to my account',
+    claimAsGuest: 'Claim it without an account',
+    claiming: 'Claiming…',
+    signInHint:
+      'Sign in first to keep it in your account and see it in Orders.',
+    claimedToAccount: "It's in your account.",
+    openOrders: 'Open Orders',
+    claimedAsGuest: "It's yours. Here is what it gives you:",
+    claimedAt: 'Claimed on {date}',
+  },
 };
 
 export default messages;

@@ -1389,6 +1389,30 @@ const messages: Messages = {
   itemSubscriptions: {
     title: 'اشتراكاتك',
   },
+  gifts: {
+    send: 'أرسله هدية',
+    title: 'لمن الهدية؟',
+    email: 'بريده الإلكتروني',
+    name: 'اسمه (اختياري)',
+    message: 'رسالة له (اختياري)',
+    pay: 'ادفع ثمن الهدية',
+    starting: 'جارٍ فتح الدفع…',
+    cancel: 'إلغاء',
+    pageTitle: 'هدية لك',
+    noLink: 'تفتح هذه الصفحة هدية من الرابط الموجود في بريدها.',
+    loading: 'جارٍ فتح هديتك…',
+    fromName: 'هدية من {name}',
+    fromSomeone: 'هدية لك',
+    bySeller: 'من {seller}',
+    claimToAccount: 'أضفها إلى حسابي',
+    claimAsGuest: 'استلمها دون حساب',
+    claiming: 'جارٍ الاستلام…',
+    signInHint: 'سجّل الدخول أولًا لتحفظها في حسابك وتراها في الطلبات.',
+    claimedToAccount: 'أصبحت في حسابك.',
+    openOrders: 'افتح الطلبات',
+    claimedAsGuest: 'أصبحت لك. هذا ما تمنحك إياه:',
+    claimedAt: 'استُلمت في {date}',
+  },
 };
 
 export default messages;
