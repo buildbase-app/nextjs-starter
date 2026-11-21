@@ -139,11 +139,21 @@ function OrderDetail({ id }: { id: string }) {
       <CardContent className="space-y-4 text-sm">
         <ul className="space-y-1">
           {order.lines.map((line) => (
-            <li key={line.lineKey} className="flex justify-between">
-              <span>
-                {line.itemTitle} × {line.quantity}
-              </span>
-              <span>{fmtCents(line.total, order.currency)}</span>
+            <li key={line.lineKey} className="space-y-0.5">
+              <div className="flex justify-between gap-3">
+                <span>
+                  {line.itemTitle} × {line.quantity}
+                </span>
+                <span>{fmtCents(line.total, order.currency)}</span>
+              </div>
+              {/* What the seller has to do by hand: waiting, in progress or
+                  done, with their note to the buyer. */}
+              {line.fulfilment !== 'not_required' && (
+                <p className="text-muted-foreground text-xs">
+                  {t(`fulfilment.${line.fulfilment}`)}
+                  {line.fulfilmentNote ? ` · ${line.fulfilmentNote}` : ''}
+                </p>
+              )}
             </li>
           ))}
         </ul>

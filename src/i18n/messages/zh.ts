@@ -1278,6 +1278,12 @@ const messages: Messages = {
     yourOrder: '你的订单',
     total: '合计',
     whatYouGot: '你获得的内容',
+    fulfilment: {
+      due: '等待卖家处理',
+      in_progress: '卖家处理中',
+      fulfilled: '已交付',
+      returned: '已退货',
+    },
   },
   bookings: {
     title: '预约',

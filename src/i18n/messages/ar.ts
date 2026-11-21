@@ -1316,6 +1316,12 @@ const messages: Messages = {
     yourOrder: 'طلبك',
     total: 'الإجمالي',
     whatYouGot: 'ما حصلت عليه',
+    fulfilment: {
+      due: 'بانتظار البائع',
+      in_progress: 'البائع يعمل عليه',
+      fulfilled: 'تم التسليم',
+      returned: 'مُرتجع',
+    },
   },
   bookings: {
     title: 'الحجوزات',

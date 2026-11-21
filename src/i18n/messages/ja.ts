@@ -1346,6 +1346,12 @@ const messages: Messages = {
     yourOrder: 'ご注文',
     total: '合計',
     whatYouGot: '受け取ったもの',
+    fulfilment: {
+      due: '販売者の対応待ち',
+      in_progress: '販売者が対応中',
+      fulfilled: 'お届け済み',
+      returned: '返品済み',
+    },
   },
   bookings: {
     title: '予約',

@@ -80,7 +80,7 @@ export default function ShopPage() {
         </Card>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
           <ItemCard
             key={item._id}
@@ -131,7 +131,7 @@ function ItemCard({
 
   return (
     <Card
-      className={`flex flex-col ${bookable ? 'sm:col-span-2 lg:col-span-3' : ''}`}
+      className={`flex min-w-0 flex-col ${bookable ? 'sm:col-span-2 lg:col-span-3' : ''}`}
     >
       <CardHeader>
         <CardTitle className="text-base">{item.title}</CardTitle>

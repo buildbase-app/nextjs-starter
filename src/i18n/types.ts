@@ -1259,6 +1259,12 @@ export interface OrdersMessages {
   yourOrder: string;
   total: string;
   whatYouGot: string;
+  fulfilment: {
+    due: string;
+    in_progress: string;
+    fulfilled: string;
+    returned: string;
+  };
 }
 
 export interface BookingsMessages {
