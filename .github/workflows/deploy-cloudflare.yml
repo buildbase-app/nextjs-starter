@@ -1,0 +1,93 @@
+name: Deploy to Cloudflare
+
+# Builds the app with OpenNext and deploys the Worker in wrangler.jsonc
+# (demo-buildbase-app → demo.buildbase.app) on every push to main.
+#
+# Needs one repository secret: CLOUDFLARE_API_TOKEN (Settings → Secrets and
+# variables → Actions), with Workers Scripts: Edit, Account Settings: Read,
+# User Details: Read, Memberships: Read, plus Workers Routes: Edit and Zone:
+# Read on the zone serving the custom domain. Until it is set, this workflow
+# skips the deploy instead of failing.
+#
+# Runtime secrets (DATABASE_URL, SYSTEM_SECRET, BUILDBASE_*) live on the Worker
+# and are kept across deploys; they are not needed here.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time: a running deploy finishes, and a newer push replaces
+# one still waiting.
+concurrency:
+  group: deploy-cloudflare
+  cancel-in-progress: false
+
+env:
+  CLOUDFLARE_ACCOUNT_ID: 0109f7bce7af42ac8a88104d324efe4d
+  # Public values, baked into the client bundle at build time.
+  NEXT_PUBLIC_BUILDBASE_SERVER_URL: https://api.console.buildbase.app
+  NEXT_PUBLIC_BUILDBASE_ORG_ID: 694e64a4e41ec4ca273256e9
+  NEXT_PUBLIC_BUILDBASE_CLIENT_ID: pxN8bJXoFDTIRotbEk2dBmS3cAKwnGeDGiNOXOGg
+  NEXT_PUBLIC_BUILDBASE_REDIRECT_URL: https://demo.buildbase.app
+  NEXT_PUBLIC_SITE_URL: https://demo.buildbase.app
+  SITE_URL: https://demo.buildbase.app
+  NEXT_TELEMETRY_DISABLED: 1
+  WRANGLER_SEND_METRICS: false
+  # The build only prerenders; route modules need a signing secret to
+  # construct. The real SYSTEM_SECRET is the Worker's runtime secret.
+  SKIP_ENV_VALIDATION: true
+  SYSTEM_SECRET: build-only-not-used-at-runtime-0123456789abcdef
+
+jobs:
+  deploy:
+    name: Build and deploy Worker
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://demo.buildbase.app
+
+    steps:
+      - name: Check for Cloudflare token
+        id: token
+        run: |
+          if [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::CLOUDFLARE_API_TOKEN is not set; skipping deploy."
+          fi
+
+      - name: Checkout code
+        if: steps.token.outputs.present == 'true'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: steps.token.outputs.present == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        if: steps.token.outputs.present == 'true'
+        run: npm ci
+
+      - name: Build for Cloudflare Workers
+        if: steps.token.outputs.present == 'true'
+        run: npx opennextjs-cloudflare build
+
+      - name: Deploy
+        if: steps.token.outputs.present == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx opennextjs-cloudflare deploy
+
+      - name: Smoke test
+        if: steps.token.outputs.present == 'true'
+        run: |
+          for path in / "/api/health?deep=true"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -H "Cookie: NEXT_LOCALE=en" "https://demo.buildbase.app$path")
+            echo "$path -> $code"
+            [ "$code" = "200" ] || { echo "::error::$path returned $code"; exit 1; }
+          done

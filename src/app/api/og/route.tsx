@@ -3,7 +3,8 @@ import { type NextRequest } from 'next/server';
 import { locales, type Locale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
 
-export const runtime = 'edge';
+// Runs on the default Node.js runtime: the Cloudflare adapter (OpenNext)
+// does not support `runtime = 'edge'` routes, and Vercel serves either.
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);

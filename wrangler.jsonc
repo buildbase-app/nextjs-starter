@@ -1,0 +1,44 @@
+// Cloudflare Workers config. Used only when deploying to Cloudflare
+// (`npm run cf:deploy` or Workers Builds); Vercel and Docker ignore it.
+// See README → Deployment → Cloudflare.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // The Worker's name in your Cloudflare account. If you change it, change
+  // WORKER_SELF_REFERENCE's "service" below to match.
+  "name": "demo-buildbase-app",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-13",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    // Lets the Worker call itself for on-demand revalidation.
+    { "binding": "WORKER_SELF_REFERENCE", "service": "demo-buildbase-app" },
+  ],
+  // Serves the Worker on this hostname (zone must be in the same Cloudflare
+  // account). Change or remove it when deploying your own copy.
+  "routes": [{ "pattern": "demo.buildbase.app", "custom_domain": true }],
+  "upload_source_maps": true,
+  "observability": { "enabled": true },
+
+  // Hyperdrive pools Postgres connections at Cloudflare's edge. This id is the
+  // demo.buildbase.app deployment's; in your own account create one with
+  //   npx wrangler hyperdrive create my-db --connection-string="postgres://..."
+  // and paste its id, or delete this entry to connect with DATABASE_URL
+  // directly (src/lib/db.ts). localConnectionString is only used by local
+  // tooling (cf:preview, and the deploy step's emulator); it is never uploaded.
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "308d63e8ff284edf80aeef41d4f47220",
+      "localConnectionString": "postgresql://postgres:postgres@localhost:5432/buildbase",
+    },
+  ],
+
+  // Secrets (SYSTEM_SECRET, BUILDBASE_CLIENT_SECRET, DATABASE_URL, ...) are not
+  // kept here. Set them with `npx wrangler secret put NAME` or in the dashboard
+  // (Worker → Settings → Variables and Secrets), and put .env.example's
+  // NEXT_PUBLIC_* values in Workers Builds' build variables too.
+}

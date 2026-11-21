@@ -59,3 +59,10 @@ public/pagefind
 
 # content pulled at build time (npm run content:pull)
 .buildbase
+
+# cloudflare (OpenNext / wrangler)
+/.open-next
+/.wrangler
+.dev.vars*
+!.dev.vars.example
+cloudflare-env.d.ts
