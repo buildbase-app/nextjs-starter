@@ -367,6 +367,14 @@ export const es: TourText = {
         'Mira la valoración y tu texto en el artículo de la Tienda.',
       ],
     },
+    'marketplace-subscribe': {
+      title: 'Suscríbete a un vendedor',
+      why: 'Los vendedores también venden membresías: un precio mensual con niveles, renovado por Stripe, que el comprador puede cambiar, cancelar o reanudar.',
+      steps: [
+        'En la Tienda, elige un nivel del club de coaching mensual y suscríbete.',
+        'En Pedidos, cambia de nivel o cancela al final del periodo.',
+      ],
+    },
     'record-usage': {
       title: 'Registra uso',
       why: 'Tu app mide lo que hace (un documento creado, un vídeo procesado); el plan dice cuánto está incluido.',

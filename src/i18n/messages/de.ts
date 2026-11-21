@@ -1341,6 +1341,8 @@ const messages: Messages = {
     addToCart: 'In den Warenkorb',
     added: 'Zum Warenkorb hinzugefügt.',
     viewCart: 'Warenkorb ({count})',
+    tier: 'Stufe',
+    per: { day: 'Tag', week: 'Woche', month: 'Monat', year: 'Jahr' },
   },
   orders: {
     title: 'Bestellungen',
@@ -1423,6 +1425,9 @@ const messages: Messages = {
       cta: 'Personal Pro holen',
       included: 'Priority-Support gehört dir',
     },
+  },
+  itemSubscriptions: {
+    title: 'Deine Abos',
   },
 };
 

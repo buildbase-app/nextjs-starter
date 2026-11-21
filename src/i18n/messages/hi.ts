@@ -1325,6 +1325,8 @@ const messages: Messages = {
     addToCart: 'कार्ट में जोड़ें',
     added: 'आपके कार्ट में जोड़ा गया।',
     viewCart: 'कार्ट ({count})',
+    tier: 'स्तर',
+    per: { day: 'दिन', week: 'सप्ताह', month: 'महीना', year: 'साल' },
   },
   orders: {
     title: 'ऑर्डर',
@@ -1406,6 +1408,9 @@ const messages: Messages = {
       cta: 'Personal Pro लें',
       included: 'प्राथमिकता सहायता आपकी है',
     },
+  },
+  itemSubscriptions: {
+    title: 'आपकी सदस्यताएँ',
   },
 };
 

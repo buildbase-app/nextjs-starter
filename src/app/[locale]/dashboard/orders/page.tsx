@@ -22,6 +22,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { useLastOrderId } from '@/lib/marketplace';
 import { OrderReviews } from '@/components/reviews/order-reviews';
+import { ItemSubscriptions } from '@/components/orders/item-subscriptions';
 
 /**
  * What the signed-in person bought, read with the SDK's order hooks. Right
@@ -51,6 +52,8 @@ export default function OrdersPage() {
       </div>
 
       {openId && <OrderDetail id={openId} />}
+
+      <ItemSubscriptions />
 
       {error && (
         <p role="alert" className="text-sm text-red-700 dark:text-red-400">

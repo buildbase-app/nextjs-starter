@@ -348,6 +348,14 @@ export const en: TourText = {
         'See the rating and your words on the item in the Shop.',
       ],
     },
+    'marketplace-subscribe': {
+      title: 'Subscribe to a seller',
+      why: 'Sellers sell memberships too: a monthly price with tiers, renewed by Stripe, which the buyer can change, cancel or resume themselves.',
+      steps: [
+        'In the Shop, pick a tier of the Monthly coaching club and subscribe.',
+        "In Orders, change your tier or cancel it at the period's end.",
+      ],
+    },
     'record-usage': {
       title: 'Record usage',
       why: 'Your app meters what it does (a document created, a video processed); the plan says how much is included.',

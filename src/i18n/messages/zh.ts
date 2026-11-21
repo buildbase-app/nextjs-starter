@@ -1264,6 +1264,8 @@ const messages: Messages = {
     addToCart: '加入购物车',
     added: '已加入购物车。',
     viewCart: '购物车 ({count})',
+    tier: '档位',
+    per: { day: '天', week: '周', month: '月', year: '年' },
   },
   orders: {
     title: '订单',
@@ -1344,6 +1346,9 @@ const messages: Messages = {
       cta: '升级到 Personal Pro',
       included: '你享有优先支持',
     },
+  },
+  itemSubscriptions: {
+    title: '你的订阅',
   },
 };
 

@@ -378,6 +378,14 @@ export const fr: TourText = {
         "Retrouvez la note et votre texte sur l'article dans la Boutique.",
       ],
     },
+    'marketplace-subscribe': {
+      title: "S'abonner à un vendeur",
+      why: "Les vendeurs vendent aussi des abonnements : un prix mensuel avec des formules, renouvelé par Stripe, que l'acheteur peut changer, annuler ou reprendre lui-même.",
+      steps: [
+        'Dans la Boutique, choisissez une formule du club de coaching mensuel et abonnez-vous.',
+        'Dans Commandes, changez de formule ou annulez à la fin de la période.',
+      ],
+    },
     'record-usage': {
       title: 'Enregistrer de l’usage',
       why: 'Votre app mesure ce qu’elle fait (un document créé, une vidéo traitée) ; le plan dit ce qui est inclus.',

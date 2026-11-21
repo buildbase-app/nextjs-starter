@@ -1332,6 +1332,8 @@ const messages: Messages = {
     addToCart: 'カートに追加',
     added: 'カートに追加しました。',
     viewCart: 'カート ({count})',
+    tier: 'プラン',
+    per: { day: '日', week: '週', month: '月', year: '年' },
   },
   orders: {
     title: '注文',
@@ -1412,6 +1414,9 @@ const messages: Messages = {
       cta: 'Personal Pro にする',
       included: '優先サポートを利用できます',
     },
+  },
+  itemSubscriptions: {
+    title: 'あなたの定期購入',
   },
 };
 

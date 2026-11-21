@@ -1349,6 +1349,8 @@ const messages: Messages = {
     addToCart: 'Ajouter au panier',
     added: 'Ajouté à votre panier.',
     viewCart: 'Panier ({count})',
+    tier: 'Formule',
+    per: { day: 'jour', week: 'semaine', month: 'mois', year: 'an' },
   },
   orders: {
     title: 'Commandes',
@@ -1431,6 +1433,9 @@ const messages: Messages = {
       cta: 'Passer à Personal Pro',
       included: 'Le support prioritaire est à vous',
     },
+  },
+  itemSubscriptions: {
+    title: 'Vos abonnements',
   },
 };
 

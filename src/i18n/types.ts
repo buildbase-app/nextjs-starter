@@ -1239,6 +1239,13 @@ export interface ShopMessages {
   addToCart: string;
   added: string;
   viewCart: string;
+  tier: string;
+  per: {
+    day: string;
+    week: string;
+    month: string;
+    year: string;
+  };
 }
 
 export interface OrdersMessages {
@@ -1323,6 +1330,10 @@ export interface GatesMessages {
   };
 }
 
+export interface ItemSubscriptionsMessages {
+  title: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1363,6 +1374,7 @@ export interface Messages {
   cart: CartMessages;
   reviews: ReviewsMessages;
   gates: GatesMessages;
+  itemSubscriptions: ItemSubscriptionsMessages;
 }
 
 // For next-intl type inference
