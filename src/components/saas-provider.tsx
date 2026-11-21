@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { env } from '@/env';
 import { SaaSOSProvider, type SaaSOSProviderProps } from '@buildbase/sdk/react';
 import { loadStripe } from '@stripe/stripe-js';
-import { loadConnectAndInitialize } from '@stripe/connect-js';
+import { loadConnectAndInitialize } from '@stripe/connect-js/pure';
 import { captureReferral } from '@buildbase/sdk/tracking';
 import { useLocale } from 'next-intl';
 import { Locale } from '@/i18n/config';
