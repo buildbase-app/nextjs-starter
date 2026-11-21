@@ -416,6 +416,12 @@ const messages: Messages = {
     },
   },
   notifications: {
+    preferencesLink: {
+      title: '通知の設定',
+      description:
+        'どのイベントをメール、アプリ内、プッシュで受け取るかは、SDK の通知画面で設定します。',
+      open: '設定を開く',
+    },
     title: '通知',
     description: 'このアプリから通知を送り、どこに届くか確かめます',
     pushCard: {
@@ -535,6 +541,7 @@ const messages: Messages = {
     },
   },
   profile: {
+    editAccount: 'アカウントを編集',
     agents: {
       title: '接続済みエージェント',
       description:
@@ -580,6 +587,7 @@ const messages: Messages = {
     },
   },
   usage: {
+    openSettings: '設定の使用状況を開く',
     title: 'クォータ使用状況',
     description: 'リアルタイムクォータ消費',
     loading: 'クォータを読み込み中...',
@@ -658,6 +666,7 @@ const messages: Messages = {
     },
   },
   credits: {
+    openSettings: 'パック、自動チャージ、履歴',
     title: 'クレジット',
     description:
       'プレミアムアクションにクレジットを使用してください。ワークスペース設定でパッケージを管理できます。',
@@ -669,15 +678,6 @@ const messages: Messages = {
     noCredits:
       'クレジットが残っていません。プレミアム機能を引き続き使用するには追加購入してください。',
     buyMore: 'クレジットを購入',
-    packages: {
-      title: 'クレジットパッケージ',
-      loading: 'パッケージを読み込み中…',
-      error: 'パッケージの読み込みエラー。',
-      empty: 'まだクレジットパッケージが設定されていません。',
-      credits: 'クレジット',
-      validFor: '{days}日間有効',
-      buyNow: '今すぐ購入',
-    },
     testConsume: {
       title: 'クレジット消費テスト',
       description:
@@ -692,30 +692,6 @@ const messages: Messages = {
       title: 'クレジット残高が少ない',
       description:
         'クレジット残高が少なくなっています。中断を避けるために今すぐチャージしてください。',
-    },
-    expiring: {
-      title: 'まもなく期限切れのクレジット',
-      description: '今後30日以内に期限切れになるクレジット',
-      expiresIn: '{date}に期限切れ',
-      noExpiring: 'まもなく期限切れになるクレジットはありません',
-      days: '{count}クレジット',
-      loading: '読み込み中...',
-    },
-    transactions: {
-      title: '取引履歴',
-      description: '最近のクレジット追加・差引',
-      empty: 'まだ取引がありません',
-      loading: '読み込み中...',
-      columns: {
-        type: '種類',
-        amount: '金額',
-        balance: '取引後残高',
-        description: '説明',
-      },
-      types: {
-        credit: 'クレジット',
-        debit: 'デビット',
-      },
     },
   },
   errors: {
@@ -1233,23 +1209,6 @@ const messages: Messages = {
       open: 'ホストされた請求書を開く',
       pdf: 'PDFをダウンロード',
     },
-    preferences: {
-      title: 'あなたの通知設定',
-      description:
-        'イベントごとに、メールとプッシュのどちらで受け取るかを選べます。変更しないものはワークスペースの既定に従います。',
-      loading: '設定を読み込み中…',
-      empty:
-        'このワークスペースにはまだ通知イベントがありません。下から送信するとここに表示されます。',
-      failed: '設定を保存できませんでした。',
-      saved: '設定を保存しました。',
-      required:
-        'このイベントはこのワークスペースで必須のため、オフにできません。',
-      requiredBadge: '必須',
-      email: 'メール',
-      push: 'プッシュ',
-      useDefault: 'ワークスペースの既定を使う',
-      refresh: '更新',
-    },
     console: {
       title: 'テンプレートから始める',
       description:
@@ -1337,12 +1296,6 @@ const messages: Messages = {
     notOpen: 'この確保はすでに終了しています。期限切れか、精算済みです。',
     failed: '確保を変更できませんでした。',
     jobDescription: 'デモジョブ（確保して精算）',
-  },
-  autoTopUp: {
-    title: '自動チャージ',
-    description:
-      '残高がしきい値を下回るたびに、月間上限の範囲内で、保存済みのカードでクレジットパックを購入します。設定、カード、一時停止の理由は SDK のクレジット画面にあります。',
-    open: '自動チャージを設定',
   },
   yourData: {
     title: 'あなたのデータ',

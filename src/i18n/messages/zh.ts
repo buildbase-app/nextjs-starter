@@ -399,6 +399,12 @@ const messages: Messages = {
     },
   },
   notifications: {
+    preferencesLink: {
+      title: '你的通知偏好',
+      description:
+        '哪些事件通过邮件、应用内或推送通知你，由 SDK 的通知页面决定。',
+      open: '打开偏好设置',
+    },
     title: '通知',
     description: '从本应用发送一条通知，看看它落在哪里',
     pushCard: {
@@ -518,6 +524,7 @@ const messages: Messages = {
     },
   },
   profile: {
+    editAccount: '编辑你的账户',
     agents: {
       title: '已连接的智能体',
       description:
@@ -563,6 +570,7 @@ const messages: Messages = {
     },
   },
   usage: {
+    openSettings: '在设置中打开用量',
     title: '配额使用情况',
     description: '实时配额消耗',
     loading: '正在加载配额...',
@@ -638,6 +646,7 @@ const messages: Messages = {
     },
   },
   credits: {
+    openSettings: '套餐包、自动充值和记录',
     title: '积分',
     description: '使用积分进行高级操作。在工作区设置中管理套餐。',
     balance: '积分余额',
@@ -647,15 +656,6 @@ const messages: Messages = {
     choosePlan: '选择计划',
     noCredits: '您没有剩余积分。购买更多以继续使用高级功能。',
     buyMore: '购买积分',
-    packages: {
-      title: '积分套餐',
-      loading: '加载套餐中…',
-      error: '加载套餐失败。',
-      empty: '尚未配置积分套餐。',
-      credits: '积分',
-      validFor: '有效期{days}天',
-      buyNow: '立即购买',
-    },
     testConsume: {
       title: '测试积分消费',
       description: '使用这些按钮测试从余额中消费积分。',
@@ -667,30 +667,6 @@ const messages: Messages = {
     lowCredits: {
       title: '积分不足',
       description: '您的积分余额较低。请立即充值以避免中断。',
-    },
-    expiring: {
-      title: '即将到期的积分',
-      description: '未来30天内到期的积分',
-      expiresIn: '{date}到期',
-      noExpiring: '近期没有即将到期的积分',
-      days: '{count}积分',
-      loading: '加载中...',
-    },
-    transactions: {
-      title: '交易记录',
-      description: '最近的积分添加和扣除',
-      empty: '暂无交易记录',
-      loading: '加载中...',
-      columns: {
-        type: '类型',
-        amount: '金额',
-        balance: '交易后余额',
-        description: '描述',
-      },
-      types: {
-        credit: '充值',
-        debit: '扣除',
-      },
     },
   },
   errors: {
@@ -1171,21 +1147,6 @@ const messages: Messages = {
       open: '打开托管发票',
       pdf: '下载 PDF',
     },
-    preferences: {
-      title: '你的通知偏好',
-      description:
-        '为每个事件选择通过邮件还是推送通知你。未更改的项目沿用工作区默认设置。',
-      loading: '正在加载你的偏好…',
-      empty: '该工作区还没有通知事件。在下方发送一个，它就会出现在这里。',
-      failed: '无法保存你的偏好。',
-      saved: '偏好已保存。',
-      required: '此事件在该工作区为必需，无法关闭。',
-      requiredBadge: '必需',
-      email: '邮件',
-      push: '推送',
-      useDefault: '使用工作区默认设置',
-      refresh: '刷新',
-    },
     console: {
       title: '从模板开始',
       description:
@@ -1269,12 +1230,6 @@ const messages: Messages = {
     notOpen: '该预留已不再有效：已过期或已结算。',
     failed: '无法更改该预留。',
     jobDescription: '演示任务（先预留，后结算）',
-  },
-  autoTopUp: {
-    title: '自动充值',
-    description:
-      '每当余额低于阈值时，在每月上限内用已保存的卡购买积分包。设置、银行卡和暂停原因都在 SDK 的积分界面中。',
-    open: '设置自动充值',
   },
   yourData: {
     title: '你的数据',

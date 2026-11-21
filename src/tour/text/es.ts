@@ -410,14 +410,16 @@ export const es: TourText = {
       title: 'Recarga automáticamente',
       why: 'Un espacio de trabajo que se queda sin créditos deja de funcionar. La recarga automática compra un paquete con la tarjeta guardada antes de que pase, dentro de un límite mensual que fija el cliente.',
       steps: [
-        'Abre Créditos y pulsa «Configurar la recarga automática».',
+        'Abre Créditos en la configuración y configura la recarga automática.',
         'Añade una tarjeta, elige un umbral y un paquete, y actívala.',
       ],
     },
     'credit-transactions': {
       title: 'Lee las transacciones',
       why: 'Cada concesión, compra y gasto es una fila, con el bloque del que salió.',
-      steps: ['En Credits, baja hasta Transactions.'],
+      steps: [
+        'Abre Créditos en la configuración y lee las transacciones recientes.',
+      ],
     },
     'feature-off': {
       title: 'Mira una función desactivada',
@@ -519,15 +521,15 @@ export const es: TourText = {
       title: 'Desactiva un canal para ti',
       why: 'Cada miembro elige cómo se le interrumpe; el admin del espacio de trabajo fija los valores por defecto y puede marcar un evento como obligatorio.',
       steps: [
-        'Abre Notificaciones → Tus preferencias de notificación.',
-        'Desactiva el correo para un evento; envíalo de nuevo y verás que solo llega a la bandeja.',
+        'Abre Notificaciones en la configuración.',
+        'Desactiva el correo para un evento; envíalo de nuevo desde la página Notificaciones y comprueba que solo llega a la bandeja.',
       ],
     },
     'required-event': {
       title: 'Mira un evento obligatorio',
       why: 'Un admin puede hacer obligatorio un evento; los miembros no pueden desactivarlo.',
       steps: [
-        'Notificaciones → Tus preferencias de notificación: un evento obligatorio está bloqueado.',
+        'En Notificaciones, en la configuración, un evento obligatorio aparece bloqueado.',
       ],
     },
     'delivery-log': {

@@ -39,7 +39,7 @@ const DEMO_FEATURE_SLUGS = [
 
 export default function ProfilePage() {
   const t = useTranslations('profile');
-  const { user } = useSaaSAuth();
+  const { user, openWorkspaceSettings } = useSaaSAuth();
   const {
     attributes,
     loading: attrsLoading,
@@ -78,9 +78,19 @@ export default function ProfilePage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
-        <p className="text-muted-foreground">{t('description')}</p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('description')}</p>
+        </div>
+        {/* Name, photo, email and password are the SDK's own Account
+            screen; this page shows what the SDK gives a developer. */}
+        <Button
+          variant="outline"
+          onClick={() => openWorkspaceSettings('profile')}
+        >
+          {t('editAccount')}
+        </Button>
       </div>
 
       <Card>

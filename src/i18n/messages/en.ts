@@ -416,6 +416,12 @@ const messages: Messages = {
     },
   },
   notifications: {
+    preferencesLink: {
+      title: 'Your notification preferences',
+      description:
+        "Which events reach you by email, in the app or by push is the SDK's own Notifications screen.",
+      open: 'Open preferences',
+    },
     title: 'Notifications',
     description: 'Send a notification from this app and watch where it lands',
     pushCard: {
@@ -535,6 +541,7 @@ const messages: Messages = {
     },
   },
   profile: {
+    editAccount: 'Edit your account',
     agents: {
       title: 'Connected agents',
       description:
@@ -580,6 +587,7 @@ const messages: Messages = {
     },
   },
   usage: {
+    openSettings: 'Open Usage in settings',
     title: 'Quota Usage',
     description: 'Live quota consumption',
     loading: 'Loading quotas...',
@@ -656,6 +664,7 @@ const messages: Messages = {
     },
   },
   credits: {
+    openSettings: 'Packs, auto top-up and history',
     title: 'Credits',
     description:
       'Use credits for premium actions. Manage packages in workspace settings.',
@@ -667,15 +676,6 @@ const messages: Messages = {
     noCredits:
       'You have no credits remaining. Purchase more to continue using premium features.',
     buyMore: 'Buy Credits',
-    packages: {
-      title: 'Credit packages',
-      loading: 'Loading packages…',
-      error: 'Failed to load packages.',
-      empty: 'No credit packages configured yet.',
-      credits: 'credits',
-      validFor: 'Valid for {days} days',
-      buyNow: 'Buy now',
-    },
     testConsume: {
       title: 'Test Credit Consumption',
       description:
@@ -690,30 +690,6 @@ const messages: Messages = {
       title: 'Running low on credits',
       description:
         'Your credit balance is low. Top up now to avoid interruption.',
-    },
-    expiring: {
-      title: 'Expiring Credits',
-      description: 'Credits expiring in the next 30 days',
-      expiresIn: 'Expires {date}',
-      noExpiring: 'No credits expiring soon',
-      days: '{count} credits',
-      loading: 'Loading...',
-    },
-    transactions: {
-      title: 'Transaction History',
-      description: 'Recent credit additions and deductions',
-      empty: 'No transactions yet',
-      loading: 'Loading...',
-      columns: {
-        type: 'Type',
-        amount: 'Amount',
-        balance: 'Balance after',
-        description: 'Description',
-      },
-      types: {
-        credit: 'Credit',
-        debit: 'Debit',
-      },
     },
   },
   errors: {
@@ -1225,23 +1201,6 @@ const messages: Messages = {
       open: 'Open hosted invoice',
       pdf: 'Download PDF',
     },
-    preferences: {
-      title: 'Your notification preferences',
-      description:
-        'Choose, per event, whether it reaches you by email or push. Anything you leave alone follows the workspace default.',
-      loading: 'Loading your preferences…',
-      empty:
-        'This workspace has no notification events yet. Send one below and it appears here.',
-      failed: 'Your preferences could not be saved.',
-      saved: 'Preference saved.',
-      required:
-        'This event is required in this workspace and cannot be turned off.',
-      requiredBadge: 'Required',
-      email: 'Email',
-      push: 'Push',
-      useDefault: 'Use the workspace default',
-      refresh: 'Refresh',
-    },
     console: {
       title: 'Start from a template',
       description:
@@ -1329,12 +1288,6 @@ const messages: Messages = {
     notOpen: 'That hold is no longer open: it expired or was already settled.',
     failed: 'The hold could not be changed.',
     jobDescription: 'Demo job (held, then settled)',
-  },
-  autoTopUp: {
-    title: 'Auto top-up',
-    description:
-      "Buy a credit pack on the saved card whenever the balance falls under a threshold, within a monthly cap. The SDK's credits screen has the setting, the card, and why it paused.",
-    open: 'Set up auto top-up',
   },
   yourData: {
     title: 'Your data',

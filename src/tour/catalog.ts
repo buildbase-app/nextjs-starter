@@ -659,7 +659,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'auto-top-up',
     group: 'credits',
-    href: '/dashboard/credits',
+    href: '/dashboard?settings=credits',
     source: {
       sdk: [
         "openWorkspaceSettings('credits')  // its Auto top-up section",
@@ -676,7 +676,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'credit-transactions',
     group: 'credits',
-    href: '/dashboard/credits',
+    href: '/dashboard?settings=credits',
     source: {
       sdk: ['useCreditTransactions()', 'useExpiringCredits()'],
     },
@@ -900,7 +900,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'notification-preferences',
     group: 'notifications',
-    href: '/dashboard/notifications',
+    href: '/dashboard?settings=notifications',
     source: {
       sdk: [
         'openWorkspaceSettings("notifications")',
@@ -915,7 +915,7 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
   {
     id: 'required-event',
     group: 'notifications',
-    href: '/dashboard/notifications',
+    href: '/dashboard?settings=notifications',
     source: {
       sdk: ['updateNotificationPreferences({ required: true })'],
     },

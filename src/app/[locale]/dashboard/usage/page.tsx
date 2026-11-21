@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import {
+  useSaaSAuth,
   useSaaSWorkspaces,
   useAllQuotaUsage,
   useRecordUsage,
@@ -175,6 +176,7 @@ function RecordUsagePanel({ workspaceId }: { workspaceId: string }) {
 export default function UsagePage() {
   const t = useTranslations('usage');
   const { currentWorkspace } = useSaaSWorkspaces();
+  const { openWorkspaceSettings } = useSaaSAuth();
   const { quotas, loading, error } = useAllQuotaUsage(
     currentWorkspace?._id ?? ''
   );
@@ -183,9 +185,19 @@ export default function UsagePage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
-        <p className="text-muted-foreground">{t('description')}</p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('description')}</p>
+        </div>
+        {/* The SDK's own Usage screen; the cards below show its quota gates
+            (WhenQuotaThreshold, WhenQuotaOverage, WhenQuotaExhausted). */}
+        <Button
+          variant="outline"
+          onClick={() => openWorkspaceSettings('usage')}
+        >
+          {t('openSettings')}
+        </Button>
       </div>
 
       {loading && (

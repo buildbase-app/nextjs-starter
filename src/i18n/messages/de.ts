@@ -416,6 +416,12 @@ const messages: Messages = {
     },
   },
   notifications: {
+    preferencesLink: {
+      title: 'Deine Benachrichtigungseinstellungen',
+      description:
+        'Welche Ereignisse dich per E-Mail, in der App oder per Push erreichen, regelt der Bildschirm Benachrichtigungen des SDK.',
+      open: 'Einstellungen öffnen',
+    },
     title: 'Benachrichtigungen',
     description:
       'Senden Sie eine Benachrichtigung aus dieser App und sehen Sie, wo sie ankommt',
@@ -541,6 +547,7 @@ const messages: Messages = {
     },
   },
   profile: {
+    editAccount: 'Konto bearbeiten',
     agents: {
       title: 'Verbundene Agenten',
       description:
@@ -586,6 +593,7 @@ const messages: Messages = {
     },
   },
   usage: {
+    openSettings: 'Nutzung in den Einstellungen öffnen',
     title: 'Kontingentnutzung',
     description: 'Echtzeit-Kontingentverbrauch',
     loading: 'Kontingente werden geladen...',
@@ -664,6 +672,7 @@ const messages: Messages = {
     },
   },
   credits: {
+    openSettings: 'Pakete, automatisches Aufladen und Verlauf',
     title: 'Credits',
     description:
       'Verwenden Sie Credits für Premium-Aktionen. Verwalten Sie Pakete in den Arbeitsbereich-Einstellungen.',
@@ -675,15 +684,6 @@ const messages: Messages = {
     noCredits:
       'Sie haben keine Credits mehr. Kaufen Sie weitere, um weiterhin Premium-Funktionen zu nutzen.',
     buyMore: 'Credits kaufen',
-    packages: {
-      title: 'Credit-Pakete',
-      loading: 'Pakete werden geladen…',
-      error: 'Fehler beim Laden der Pakete.',
-      empty: 'Noch keine Credit-Pakete konfiguriert.',
-      credits: 'Credits',
-      validFor: 'Gültig für {days} Tage',
-      buyNow: 'Jetzt kaufen',
-    },
     testConsume: {
       title: 'Credit-Verbrauch testen',
       description:
@@ -698,30 +698,6 @@ const messages: Messages = {
       title: 'Wenige Credits',
       description:
         'Ihr Credit-Guthaben ist niedrig. Laden Sie es jetzt auf, um Unterbrechungen zu vermeiden.',
-    },
-    expiring: {
-      title: 'Bald ablaufende Credits',
-      description: 'Credits, die in den nächsten 30 Tagen ablaufen',
-      expiresIn: 'Läuft ab am {date}',
-      noExpiring: 'Keine Credits laufen bald ab',
-      days: '{count} Credits',
-      loading: 'Wird geladen...',
-    },
-    transactions: {
-      title: 'Transaktionsverlauf',
-      description: 'Aktuelle Credit-Hinzufügungen und -Abzüge',
-      empty: 'Noch keine Transaktionen',
-      loading: 'Wird geladen...',
-      columns: {
-        type: 'Typ',
-        amount: 'Betrag',
-        balance: 'Guthaben danach',
-        description: 'Beschreibung',
-      },
-      types: {
-        credit: 'Gutschrift',
-        debit: 'Abbuchung',
-      },
     },
   },
   errors: {
@@ -1241,23 +1217,6 @@ const messages: Messages = {
       open: 'Gehostete Rechnung öffnen',
       pdf: 'PDF herunterladen',
     },
-    preferences: {
-      title: 'Deine Benachrichtigungseinstellungen',
-      description:
-        'Wähle pro Ereignis, ob es dich per E-Mail oder Push erreicht. Was du nicht änderst, folgt der Workspace-Vorgabe.',
-      loading: 'Deine Einstellungen werden geladen…',
-      empty:
-        'Dieser Workspace hat noch keine Benachrichtigungsereignisse. Sende unten eines, dann erscheint es hier.',
-      failed: 'Deine Einstellungen konnten nicht gespeichert werden.',
-      saved: 'Einstellung gespeichert.',
-      required:
-        'Dieses Ereignis ist in diesem Workspace verpflichtend und kann nicht abgeschaltet werden.',
-      requiredBadge: 'Pflicht',
-      email: 'E-Mail',
-      push: 'Push',
-      useDefault: 'Workspace-Vorgabe verwenden',
-      refresh: 'Aktualisieren',
-    },
     console: {
       title: 'Mit einer Vorlage starten',
       description:
@@ -1346,12 +1305,6 @@ const messages: Messages = {
       'Diese Reservierung ist nicht mehr offen: sie ist abgelaufen oder wurde schon abgerechnet.',
     failed: 'Die Reservierung konnte nicht geändert werden.',
     jobDescription: 'Demo-Auftrag (reserviert, dann abgerechnet)',
-  },
-  autoTopUp: {
-    title: 'Automatisches Aufladen',
-    description:
-      'Kauf mit der gespeicherten Karte ein Credit-Paket, sobald das Guthaben unter einen Schwellenwert fällt, innerhalb eines monatlichen Limits. Der Credits-Bildschirm des SDK enthält die Einstellung, die Karte und den Grund einer Pause.',
-    open: 'Automatisches Aufladen einrichten',
   },
   yourData: {
     title: 'Deine Daten',

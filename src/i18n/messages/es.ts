@@ -416,6 +416,12 @@ const messages: Messages = {
     },
   },
   notifications: {
+    preferencesLink: {
+      title: 'Tus preferencias de notificación',
+      description:
+        'Qué eventos te llegan por correo, en la app o por push se decide en la pantalla Notificaciones del SDK.',
+      open: 'Abrir preferencias',
+    },
     title: 'Notificaciones',
     description: 'Envía una notificación desde esta app y mira dónde llega',
     pushCard: {
@@ -537,6 +543,7 @@ const messages: Messages = {
     },
   },
   profile: {
+    editAccount: 'Editar tu cuenta',
     agents: {
       title: 'Agentes conectados',
       description:
@@ -582,6 +589,7 @@ const messages: Messages = {
     },
   },
   usage: {
+    openSettings: 'Abrir Uso en la configuración',
     title: 'Uso de cuotas',
     description: 'Consumo de cuotas en tiempo real',
     loading: 'Cargando cuotas...',
@@ -659,6 +667,7 @@ const messages: Messages = {
     },
   },
   credits: {
+    openSettings: 'Paquetes, recarga automática e historial',
     title: 'Créditos',
     description:
       'Usa créditos para acciones premium. Gestiona paquetes en la configuración del espacio.',
@@ -670,15 +679,6 @@ const messages: Messages = {
     noCredits:
       'No tienes créditos restantes. Compra más para continuar usando funciones premium.',
     buyMore: 'Comprar créditos',
-    packages: {
-      title: 'Paquetes de créditos',
-      loading: 'Cargando paquetes…',
-      error: 'Error al cargar paquetes.',
-      empty: 'No hay paquetes de créditos configurados aún.',
-      credits: 'créditos',
-      validFor: 'Válido por {days} días',
-      buyNow: 'Comprar ahora',
-    },
     testConsume: {
       title: 'Probar consumo de créditos',
       description:
@@ -693,30 +693,6 @@ const messages: Messages = {
       title: 'Pocos créditos',
       description:
         'Tu saldo de créditos es bajo. Recárgalo ahora para evitar interrupciones.',
-    },
-    expiring: {
-      title: 'Créditos por vencer',
-      description: 'Créditos que vencen en los próximos 30 días',
-      expiresIn: 'Vence el {date}',
-      noExpiring: 'No hay créditos próximos a vencer',
-      days: '{count} créditos',
-      loading: 'Cargando...',
-    },
-    transactions: {
-      title: 'Historial de transacciones',
-      description: 'Adiciones y deducciones recientes de créditos',
-      empty: 'No hay transacciones aún',
-      loading: 'Cargando...',
-      columns: {
-        type: 'Tipo',
-        amount: 'Monto',
-        balance: 'Saldo después',
-        description: 'Descripción',
-      },
-      types: {
-        credit: 'Crédito',
-        debit: 'Débito',
-      },
     },
   },
   errors: {
@@ -1240,23 +1216,6 @@ const messages: Messages = {
       open: 'Abrir factura alojada',
       pdf: 'Descargar PDF',
     },
-    preferences: {
-      title: 'Tus preferencias de notificación',
-      description:
-        'Elige, por evento, si te llega por correo o push. Lo que no cambies sigue el valor del espacio de trabajo.',
-      loading: 'Cargando tus preferencias…',
-      empty:
-        'Este espacio de trabajo aún no tiene eventos de notificación. Envía uno abajo y aparecerá aquí.',
-      failed: 'No se pudieron guardar tus preferencias.',
-      saved: 'Preferencia guardada.',
-      required:
-        'Este evento es obligatorio en este espacio de trabajo y no se puede desactivar.',
-      requiredBadge: 'Obligatorio',
-      email: 'Correo',
-      push: 'Push',
-      useDefault: 'Usar el valor del espacio de trabajo',
-      refresh: 'Actualizar',
-    },
     console: {
       title: 'Empieza con una plantilla',
       description:
@@ -1345,12 +1304,6 @@ const messages: Messages = {
     notOpen: 'Esa reserva ya no está abierta: caducó o ya se liquidó.',
     failed: 'No se pudo cambiar la reserva.',
     jobDescription: 'Trabajo de demostración (reservado y luego liquidado)',
-  },
-  autoTopUp: {
-    title: 'Recarga automática',
-    description:
-      'Compra un paquete de créditos con la tarjeta guardada cuando el saldo baje de un umbral, dentro de un límite mensual. La pantalla de créditos del SDK tiene la configuración, la tarjeta y el motivo de una pausa.',
-    open: 'Configurar la recarga automática',
   },
   yourData: {
     title: 'Tus datos',
