@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import {
   useSaaSAuth,
+  useSaaSSettings,
   useSaaSWorkspaces,
   useSubscription,
   useTrialStatus,
@@ -52,7 +53,12 @@ export default function DashboardPage() {
     currentWorkspace?._id ?? ''
   );
   const { isTrialing, daysRemaining, trialEndsAt } = useTrialStatus();
-  const seatStatus = useSeatStatus(currentWorkspace ?? null);
+  // The organization's member ceiling, as the SDK's Members screen passes it:
+  // without it a workspace with no seat pricing reads as unlimited here.
+  const { settings } = useSaaSSettings();
+  const seatStatus = useSeatStatus(currentWorkspace ?? null, {
+    settingsMaxUsers: settings?.workspace?.maxWorkspaceUsers,
+  });
   // Stripe returns here after checkout. Fires `purchase` once for a checkout
   // that is in flight (same id as the subscription's bb_event_id); a no-op
   // on any other visit, and a refresh cannot count the sale twice.
