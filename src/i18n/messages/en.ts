@@ -1425,6 +1425,50 @@ const messages: Messages = {
     },
     failed: 'Something went wrong. Please try again.',
   },
+  entitlements: {
+    title: 'What your plan includes',
+    description:
+      "Checked by slug against the server's entitlement: the plan, plus any add-on or grant on top. Only an explicit no locks.",
+    columns: {
+      slug: 'Slug',
+      kind: 'Kind',
+      answer: 'Answer',
+      detail: 'Detail',
+      source: 'From',
+    },
+    kind: {
+      feature: 'Feature',
+      limit: 'Limit',
+      quota: 'Quota',
+      unknown: 'Not in the plan',
+    },
+    state: {
+      granted: 'Included',
+      locked: 'Locked',
+      unknown: 'Unknown, allowed',
+    },
+    detail: {
+      unlimited: 'Unlimited',
+      quota: '{used} of {limit} used, {remaining} left this period',
+      limit: '{used} of {limit}, room for {remaining} more',
+    },
+    source: {
+      plan: 'The plan',
+      floor: 'Raised by a grant',
+      add: 'Plan plus an add-on',
+      override: 'Set by the team',
+      default: 'Default',
+    },
+    pressure: {
+      nearing: 'Nearly full',
+      reached: 'Limit reached',
+    },
+    gate: {
+      title: 'Advanced exports, behind a gate',
+      upgrade: 'Upgrade to export',
+      included: 'Included in your plan',
+    },
+  },
 };
 
 export default messages;

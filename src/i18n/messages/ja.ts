@@ -1433,6 +1433,50 @@ const messages: Messages = {
     },
     failed: '問題が発生しました。もう一度お試しください。',
   },
+  entitlements: {
+    title: 'プランに含まれるもの',
+    description:
+      'サーバーの利用権限をスラッグで確認します。プランに加え、アドオンや付与分も含みます。明示的に拒否された場合のみロックされます。',
+    columns: {
+      slug: 'スラッグ',
+      kind: '種類',
+      answer: '回答',
+      detail: '詳細',
+      source: '出どころ',
+    },
+    kind: {
+      feature: '機能',
+      limit: '上限',
+      quota: 'クォータ',
+      unknown: 'プランにない',
+    },
+    state: {
+      granted: '含まれる',
+      locked: 'ロック',
+      unknown: '不明（許可）',
+    },
+    detail: {
+      unlimited: '無制限',
+      quota: '{limit} 件中 {used} 件使用、今期間の残り {remaining} 件',
+      limit: '{limit} 件中 {used} 件、あと {remaining} 件追加可能',
+    },
+    source: {
+      plan: 'プラン',
+      floor: '付与で引き上げ',
+      add: 'プラン＋アドオン',
+      override: 'チームが設定',
+      default: '既定',
+    },
+    pressure: {
+      nearing: '残りわずか',
+      reached: '上限に到達',
+    },
+    gate: {
+      title: '高度なエクスポート（ゲート付き）',
+      upgrade: 'アップグレードしてエクスポート',
+      included: 'プランに含まれています',
+    },
+  },
 };
 
 export default messages;

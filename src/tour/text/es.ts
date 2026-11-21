@@ -385,6 +385,14 @@ export const es: TourText = {
         'Abre Profile: las funciones que aparecen ahí son tuyas, no del espacio de trabajo.',
       ],
     },
+    'entitlement-check': {
+      title: 'Pregunta al plan por slug',
+      why: 'Bloquea según lo que incluye el plan, no según su nombre: los complementos y las concesiones también cuentan, y renombrar un plan no rompe nada.',
+      steps: [
+        'Abre Documentos y lee «Lo que incluye tu plan».',
+        'Cambia de plan y vuelve a mirar: las respuestas lo siguen.',
+      ],
+    },
     'permission-matrix': {
       title: 'Lee tu matriz de permisos',
       why: 'Lo que permite tu rol en este espacio de trabajo, resuelto por la plataforma.',

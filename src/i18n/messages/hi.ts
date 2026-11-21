@@ -1427,6 +1427,50 @@ const messages: Messages = {
     },
     failed: 'कुछ गलत हो गया। कृपया फिर से कोशिश करें।',
   },
+  entitlements: {
+    title: 'आपके प्लान में क्या शामिल है',
+    description:
+      'सर्वर के अधिकार (entitlement) से स्लग के हिसाब से जाँचा गया: प्लान, और उसके ऊपर कोई ऐड-ऑन या अनुदान। केवल स्पष्ट मना करने पर ही लॉक होता है।',
+    columns: {
+      slug: 'स्लग',
+      kind: 'प्रकार',
+      answer: 'उत्तर',
+      detail: 'विवरण',
+      source: 'स्रोत',
+    },
+    kind: {
+      feature: 'फ़ीचर',
+      limit: 'सीमा',
+      quota: 'कोटा',
+      unknown: 'प्लान में नहीं',
+    },
+    state: {
+      granted: 'शामिल',
+      locked: 'लॉक',
+      unknown: 'अज्ञात, अनुमति है',
+    },
+    detail: {
+      unlimited: 'असीमित',
+      quota: '{limit} में से {used} उपयोग हुए, इस अवधि में {remaining} बचे',
+      limit: '{limit} में से {used}, {remaining} और की जगह',
+    },
+    source: {
+      plan: 'प्लान',
+      floor: 'अनुदान से बढ़ाया गया',
+      add: 'प्लान और एक ऐड-ऑन',
+      override: 'टीम द्वारा तय',
+      default: 'डिफ़ॉल्ट',
+    },
+    pressure: {
+      nearing: 'लगभग भरा',
+      reached: 'सीमा पूरी',
+    },
+    gate: {
+      title: 'उन्नत निर्यात, एक गेट के पीछे',
+      upgrade: 'निर्यात के लिए अपग्रेड करें',
+      included: 'आपके प्लान में शामिल',
+    },
+  },
 };
 
 export default messages;

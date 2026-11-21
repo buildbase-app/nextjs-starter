@@ -1451,6 +1451,50 @@ const messages: Messages = {
     },
     failed: "Une erreur s'est produite. Veuillez réessayer.",
   },
+  entitlements: {
+    title: 'Ce que votre forfait inclut',
+    description:
+      'Vérifié par slug auprès des droits du serveur : le forfait, plus tout module ou attribution en sus. Seul un refus explicite verrouille.',
+    columns: {
+      slug: 'Slug',
+      kind: 'Type',
+      answer: 'Réponse',
+      detail: 'Détail',
+      source: 'Origine',
+    },
+    kind: {
+      feature: 'Fonction',
+      limit: 'Limite',
+      quota: 'Quota',
+      unknown: 'Absent du forfait',
+    },
+    state: {
+      granted: 'Inclus',
+      locked: 'Verrouillé',
+      unknown: 'Inconnu, autorisé',
+    },
+    detail: {
+      unlimited: 'Illimité',
+      quota: '{used} sur {limit} utilisés, {remaining} restants sur la période',
+      limit: '{used} sur {limit}, place pour {remaining} de plus',
+    },
+    source: {
+      plan: 'Le forfait',
+      floor: 'Relevé par une attribution',
+      add: 'Forfait plus un module',
+      override: "Fixé par l'équipe",
+      default: 'Par défaut',
+    },
+    pressure: {
+      nearing: 'Presque plein',
+      reached: 'Limite atteinte',
+    },
+    gate: {
+      title: 'Exports avancés, derrière une barrière',
+      upgrade: "Passer à l'offre supérieure pour exporter",
+      included: 'Inclus dans votre forfait',
+    },
+  },
 };
 
 export default messages;

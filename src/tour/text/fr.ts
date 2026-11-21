@@ -396,6 +396,14 @@ export const fr: TourText = {
         'Ouvrez Profil : les fonctionnalités listées là sont les vôtres, pas celles de l’espace de travail.',
       ],
     },
+    'entitlement-check': {
+      title: 'Interroger le forfait par slug',
+      why: 'Filtrez sur ce que le forfait inclut, pas sur son nom : les modules et les attributions comptent aussi, et renommer un forfait ne casse rien.',
+      steps: [
+        'Ouvrez Documents et lisez « Ce que votre forfait inclut ».',
+        'Changez de forfait puis regardez à nouveau : les réponses suivent.',
+      ],
+    },
     'permission-matrix': {
       title: 'Lire votre matrice de permissions',
       why: 'Ce que votre rôle dans cet espace de travail autorise, résolu par la plateforme.',

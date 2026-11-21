@@ -1447,6 +1447,50 @@ const messages: Messages = {
     },
     failed: 'Algo salió mal. Inténtalo de nuevo.',
   },
+  entitlements: {
+    title: 'Lo que incluye tu plan',
+    description:
+      'Se comprueba por slug con los derechos del servidor: el plan, más cualquier complemento o concesión encima. Solo un no explícito bloquea.',
+    columns: {
+      slug: 'Slug',
+      kind: 'Tipo',
+      answer: 'Respuesta',
+      detail: 'Detalle',
+      source: 'Origen',
+    },
+    kind: {
+      feature: 'Función',
+      limit: 'Límite',
+      quota: 'Cuota',
+      unknown: 'No está en el plan',
+    },
+    state: {
+      granted: 'Incluido',
+      locked: 'Bloqueado',
+      unknown: 'Desconocido, permitido',
+    },
+    detail: {
+      unlimited: 'Ilimitado',
+      quota: '{used} de {limit} usados, quedan {remaining} en este periodo',
+      limit: '{used} de {limit}, caben {remaining} más',
+    },
+    source: {
+      plan: 'El plan',
+      floor: 'Elevado por una concesión',
+      add: 'Plan más un complemento',
+      override: 'Fijado por el equipo',
+      default: 'Predeterminado',
+    },
+    pressure: {
+      nearing: 'Casi lleno',
+      reached: 'Límite alcanzado',
+    },
+    gate: {
+      title: 'Exportaciones avanzadas, tras una barrera',
+      upgrade: 'Mejora tu plan para exportar',
+      included: 'Incluido en tu plan',
+    },
+  },
 };
 
 export default messages;

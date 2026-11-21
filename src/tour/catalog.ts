@@ -615,6 +615,26 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       kind: 'manual',
     },
   },
+  {
+    id: 'entitlement-check',
+    group: 'features',
+    href: '/dashboard/documents',
+    source: {
+      sdk: [
+        "useEntitlement('advanced-exports')",
+        "useLimit('max-users', { current })",
+        '<WhenEntitled slug="advanced-exports">',
+      ],
+      console: {
+        screen: '/dashboard/admin/subscriptions/plans',
+        note: 'Features, limits and quotas by slug; each plan version says what it includes.',
+      },
+      app: ['src/components/billing/plan-entitlements-card.tsx'],
+    },
+    detect: {
+      kind: 'manual',
+    },
+  },
   // ── Permissions ──
   {
     id: 'permission-matrix',

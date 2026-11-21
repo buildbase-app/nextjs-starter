@@ -43,6 +43,7 @@ export const TASK_IDS = [
   'feature-off',
   'feature-on',
   'user-feature',
+  'entitlement-check',
   'permission-matrix',
   'forbidden-action',
   'custom-role',

@@ -1304,6 +1304,50 @@ export interface YourDataMessages {
   failed: string;
 }
 
+export interface EntitlementsMessages {
+  title: string;
+  description: string;
+  columns: {
+    slug: string;
+    kind: string;
+    answer: string;
+    detail: string;
+    source: string;
+  };
+  kind: {
+    feature: string;
+    limit: string;
+    quota: string;
+    unknown: string;
+  };
+  state: {
+    granted: string;
+    locked: string;
+    unknown: string;
+  };
+  detail: {
+    unlimited: string;
+    quota: string;
+    limit: string;
+  };
+  source: {
+    plan: string;
+    floor: string;
+    add: string;
+    override: string;
+    default: string;
+  };
+  pressure: {
+    nearing: string;
+    reached: string;
+  };
+  gate: {
+    title: string;
+    upgrade: string;
+    included: string;
+  };
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1337,6 +1381,7 @@ export interface Messages {
   waitlist: WaitlistMessages;
   account: AccountMessages;
   yourData: YourDataMessages;
+  entitlements: EntitlementsMessages;
 }
 
 // For next-intl type inference
