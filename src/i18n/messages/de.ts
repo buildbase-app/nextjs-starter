@@ -1405,6 +1405,25 @@ const messages: Messages = {
       },
     },
   },
+  creditHolds: {
+    title: 'Credits reservieren, später abrechnen',
+    description:
+      'Für Arbeit, deren Kosten erst danach feststehen: Reserviere eine Schätzung und rechne dann ab, was sie wirklich gekostet hat. Weniger gibt den Rest zurück; Abbrechen gibt alles frei.',
+    start: 'Auftrag starten ({amount} reservieren)',
+    held: '{amount} Credits reserviert bis {time}.',
+    finish: 'Abschließen: hat {cost} gekostet',
+    cancel: 'Auftrag abbrechen',
+    settled: '{settled} abgebucht; {returned} gingen zurück aufs Guthaben.',
+    settledExtra:
+      '{settled} abgebucht: die Arbeit kostete {extra} mehr als reserviert.',
+    released: 'Freigegeben: {returned} zurück aufs Guthaben.',
+    insufficient:
+      'Nicht genug Credits, um die Schätzung zu reservieren ({available} verfügbar).',
+    notOpen:
+      'Diese Reservierung ist nicht mehr offen: sie ist abgelaufen oder wurde schon abgerechnet.',
+    failed: 'Die Reservierung konnte nicht geändert werden.',
+    jobDescription: 'Demo-Auftrag (reserviert, dann abgerechnet)',
+  },
 };
 
 export default messages;

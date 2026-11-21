@@ -354,6 +354,14 @@ export const fr: TourText = {
         'Regardez le solde de la barre latérale et la ligne de mesure changer.',
       ],
     },
+    'credit-hold': {
+      title: 'Réserver des crédits pour un travail au coût inconnu',
+      why: "Une tâche d'IA ou un gros export coûte ce qu'il coûte : réservez d'abord une estimation pour que le solde ne soit pas dépassé, puis débitez le montant réel.",
+      steps: [
+        'Ouvrez Crédits et appuyez sur « Lancer une tâche ».',
+        'Terminez-la et voyez ce qui revient, ou annulez-la et voyez la réservation libérée.',
+      ],
+    },
     'credits-low': {
       title: 'Arriver à court',
       why: 'Un gate à un seuil, pour proposer une recharge avant que le solde soit épuisé.',

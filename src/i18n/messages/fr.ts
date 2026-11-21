@@ -1409,6 +1409,25 @@ const messages: Messages = {
       },
     },
   },
+  creditHolds: {
+    title: 'Réserver des crédits, régler ensuite',
+    description:
+      "Pour un travail dont le coût n'est connu qu'après coup : réservez une estimation, puis réglez ce qu'il a vraiment coûté. Moins rend le reste ; annuler libère tout.",
+    start: 'Lancer une tâche (réserver {amount})',
+    held: "{amount} crédits réservés jusqu'à {time}.",
+    finish: 'Terminer : elle a coûté {cost}',
+    cancel: 'Annuler la tâche',
+    settled: '{settled} débités ; {returned} sont revenus au solde.',
+    settledExtra:
+      '{settled} débités : le travail a coûté {extra} de plus que la réservation.',
+    released: 'Libéré : {returned} revenus au solde.',
+    insufficient:
+      "Pas assez de crédits pour réserver l'estimation ({available} disponibles).",
+    notOpen:
+      "Cette réservation n'est plus ouverte : elle a expiré ou a déjà été réglée.",
+    failed: "La réservation n'a pas pu être modifiée.",
+    jobDescription: 'Tâche de démonstration (réservée, puis réglée)',
+  },
 };
 
 export default messages;

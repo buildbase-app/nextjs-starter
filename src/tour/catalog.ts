@@ -531,6 +531,21 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     },
   },
   {
+    id: 'credit-hold',
+    group: 'credits',
+    href: '/dashboard/credits',
+    source: {
+      sdk: [
+        'useReserveCredits(workspaceId)',
+        'reserve({ amount, idempotencyKey })',
+        'settle(holdId, { amount })',
+        'release(holdId)',
+      ],
+      app: ['src/components/credits/credit-hold-card.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
+  {
     id: 'credits-low',
     group: 'credits',
     href: '/dashboard/documents',

@@ -37,6 +37,7 @@ export const TASK_IDS = [
   'usage-log',
   'see-balance',
   'spend-credits',
+  'credit-hold',
   'credits-low',
   'buy-credits',
   'credit-transactions',

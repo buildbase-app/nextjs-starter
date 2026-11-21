@@ -318,6 +318,14 @@ export const en: TourText = {
         'Watch the sidebar balance and the metering line change.',
       ],
     },
+    'credit-hold': {
+      title: 'Hold credits for work of unknown cost',
+      why: "An AI job or a large export costs what it costs: hold an estimate first so the balance can't be overspent, then charge the real amount.",
+      steps: [
+        'Open Credits and press Start a job.',
+        'Finish it and see what came back, or cancel it and see the hold released.',
+      ],
+    },
     'credits-low': {
       title: 'Run low',
       why: 'A gate at a threshold, so you can offer a top-up before it runs out.',
