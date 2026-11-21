@@ -38,6 +38,7 @@ yarn-error.log*
 .cursorrules
 .windsurfrules
 CLAUDE.md
+AGENTS.md
 
 # vercel
 .vercel
