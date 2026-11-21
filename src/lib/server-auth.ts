@@ -49,7 +49,7 @@ export async function getSessionContext(): Promise<SessionContext | null> {
     const profile = await bb.users.getProfile();
     return {
       sessionId: session.sessionId,
-      userId: profile.id ?? profile._id,
+      userId: profile.id,
       email: profile.email,
       name: profile.name,
       bb,
