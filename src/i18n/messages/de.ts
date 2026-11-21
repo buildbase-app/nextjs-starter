@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      cart: 'Warenkorb',
       bookings: 'Buchungen',
       orders: 'Bestellungen',
       shop: 'Shop',
@@ -1337,6 +1338,9 @@ const messages: Messages = {
     free: 'Kostenlos',
     notForSale: 'Derzeit nicht verkäuflich',
     pickTime: 'Zuerst eine Zeit wählen',
+    addToCart: 'In den Warenkorb',
+    added: 'Zum Warenkorb hinzugefügt.',
+    viewCart: 'Warenkorb ({count})',
   },
   orders: {
     title: 'Bestellungen',
@@ -1358,6 +1362,14 @@ const messages: Messages = {
     empty: 'Du hast noch keine Zeit gebucht.',
     browse: 'Eine Zeit im Shop buchen',
     loading: 'Deine Buchungen werden geladen…',
+  },
+  cart: {
+    title: 'Warenkorb',
+    description:
+      'Artikel von beliebigen Verkäufern, zusammen auf einer Stripe-Seite bezahlt. Jeder Verkäufer erhält seine eigene Bestellung.',
+    empty: 'Dein Warenkorb ist leer.',
+    browse: 'Zum Shop',
+    couponHint: 'Probiere den Code DEMO10 für 10 % Rabatt.',
   },
 };
 

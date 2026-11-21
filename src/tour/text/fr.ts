@@ -362,6 +362,14 @@ export const fr: TourText = {
         "Ouvrez Réservations pour l'ajouter à votre calendrier, l'annuler ou le déplacer.",
       ],
     },
+    'marketplace-cart': {
+      title: 'Payer un panier avec un code promo',
+      why: 'Les acheteurs paient des articles de plusieurs vendeurs sur une seule page Stripe, avec un code de réduction ; chaque vendeur reçoit sa propre commande.',
+      steps: [
+        'Dans la Boutique, ajoutez deux articles à votre panier.',
+        'Ouvrez le Panier, appliquez le code DEMO10 et payez.',
+      ],
+    },
     'record-usage': {
       title: 'Enregistrer de l’usage',
       why: 'Votre app mesure ce qu’elle fait (un document créé, une vidéo traitée) ; le plan dit ce qui est inclus.',

@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      cart: 'Cart',
       bookings: 'Bookings',
       orders: 'Orders',
       shop: 'Shop',
@@ -1320,6 +1321,9 @@ const messages: Messages = {
     free: 'Free',
     notForSale: 'Not for sale right now',
     pickTime: 'Pick a time first',
+    addToCart: 'Add to cart',
+    added: 'Added to your cart.',
+    viewCart: 'Cart ({count})',
   },
   orders: {
     title: 'Orders',
@@ -1340,6 +1344,14 @@ const messages: Messages = {
     empty: "You haven't booked a time yet.",
     browse: 'Book a time in the shop',
     loading: 'Loading your bookings…',
+  },
+  cart: {
+    title: 'Cart',
+    description:
+      'Items from any seller, paid together on one Stripe page. Each seller gets their own order.',
+    empty: 'Your cart is empty.',
+    browse: 'Browse the shop',
+    couponHint: 'Try the code DEMO10 for 10% off.',
   },
 };
 

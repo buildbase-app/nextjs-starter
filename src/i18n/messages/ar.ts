@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      cart: 'السلة',
       bookings: 'الحجوزات',
       orders: 'الطلبات',
       shop: 'المتجر',
@@ -1298,6 +1299,9 @@ const messages: Messages = {
     free: 'مجاني',
     notForSale: 'غير معروض للبيع حاليًا',
     pickTime: 'اختر وقتًا أولًا',
+    addToCart: 'أضف إلى السلة',
+    added: 'أُضيف إلى سلتك.',
+    viewCart: 'السلة ({count})',
   },
   orders: {
     title: 'الطلبات',
@@ -1318,6 +1322,14 @@ const messages: Messages = {
     empty: 'لم تحجز أي موعد بعد.',
     browse: 'احجز موعدًا من المتجر',
     loading: 'جارٍ تحميل حجوزاتك…',
+  },
+  cart: {
+    title: 'السلة',
+    description:
+      'منتجات من أي بائع، تُدفع معًا في صفحة Stripe واحدة. يحصل كل بائع على طلبه الخاص.',
+    empty: 'سلتك فارغة.',
+    browse: 'تصفح المتجر',
+    couponHint: 'جرّب الرمز DEMO10 للحصول على خصم 10%.',
   },
 };
 

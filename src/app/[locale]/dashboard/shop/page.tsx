@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import {
   BuyButton,
   SlotPicker,
+  useCart,
   formatMinorAmountIntl,
   usePublishedItems,
   type PublicItemView,
@@ -17,6 +18,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Link } from '@/i18n/routing';
+import { Button } from '@/components/ui/button';
 import { LAST_ORDER_KEY } from '@/lib/marketplace';
 
 /**
@@ -30,11 +33,16 @@ import { LAST_ORDER_KEY } from '@/lib/marketplace';
  * SDK's `<SlotPicker>` first: the open slots in the seller's zone and the
  * buyer's, and the picked start goes to `<BuyButton slotStart>`, which holds
  * the seat while Stripe's page is open. Bookings lists what was booked.
+ *
+ * Add to cart puts the item in the SDK's cart (`useCart`, kept in this
+ * browser); the Cart page checks several items out on one Stripe page, with a
+ * coupon code.
  */
 export default function ShopPage() {
   const t = useTranslations('shop');
   const locale = useLocale();
   const { items, loading, error } = usePublishedItems();
+  const cart = useCart();
   // Stripe sends the buyer to Orders, where the order waits for the payment.
   const [successUrl, setSuccessUrl] = useState<string>();
   useEffect(() => {
@@ -45,9 +53,16 @@ export default function ShopPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
-        <p className="text-muted-foreground">{t('description')}</p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('description')}</p>
+        </div>
+        <Button asChild variant="outline">
+          <Link href="/dashboard/cart">
+            {t('viewCart', { count: cart.lines.length })}
+          </Link>
+        </Button>
       </div>
 
       {error && (
@@ -65,7 +80,12 @@ export default function ShopPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
-          <ItemCard key={item._id} item={item} successUrl={successUrl} />
+          <ItemCard
+            key={item._id}
+            item={item}
+            successUrl={successUrl}
+            onAddToCart={cart.add}
+          />
         ))}
       </div>
     </div>
@@ -84,9 +104,11 @@ function rememberOrder(id: string) {
 function ItemCard({
   item,
   successUrl,
+  onAddToCart,
 }: {
   item: PublicItemView;
   successUrl?: string;
+  onAddToCart: ReturnType<typeof useCart>['add'];
 }) {
   const t = useTranslations('shop');
   const locale = useLocale();
@@ -94,6 +116,7 @@ function ItemCard({
   const price = variant?.prices.find((p) => !p.retired);
   const bookable = !!item.booking;
   const [slotStart, setSlotStart] = useState<string | null>(null);
+  const [added, setAdded] = useState(false);
 
   const amount =
     price?.mode === 'pwyw'
@@ -130,7 +153,7 @@ function ItemCard({
           />
         )}
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-wrap items-center gap-2">
         {variant && price ? (
           <BuyButton
             itemId={item._id}
@@ -147,6 +170,36 @@ function ItemCard({
           />
         ) : (
           <p className="text-muted-foreground text-sm">{t('notForSale')}</p>
+        )}
+        {variant && price && price.mode !== 'free' && !price.recurring && (
+          <Button
+            variant="outline"
+            onClick={() => {
+              // A bookable line gets its time in the cart (<CartSummary>
+              // shows a picker for it); the one picked here goes along.
+              onAddToCart({
+                itemId: item._id,
+                variantId: variant.id,
+                priceId: price.id,
+                quantity: 1,
+                amount: price.mode === 'pwyw' ? amount : undefined,
+                title: item.title,
+                unitAmount: amount,
+                currency: price.currency,
+                sellerName: item.seller.displayName,
+                bookable,
+                slotStart: bookable ? (slotStart ?? undefined) : undefined,
+              });
+              setAdded(true);
+            }}
+          >
+            {t('addToCart')}
+          </Button>
+        )}
+        {added && (
+          <span role="status" className="text-muted-foreground text-sm">
+            {t('added')}
+          </span>
         )}
       </CardFooter>
     </Card>

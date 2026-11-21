@@ -351,6 +351,14 @@ export const es: TourText = {
         'Abre Reservas para añadirla a tu calendario, cancelarla o cambiarla.',
       ],
     },
+    'marketplace-cart': {
+      title: 'Paga un carrito con cupón',
+      why: 'Los compradores pagan artículos de varios vendedores en una sola página de Stripe, con un código de descuento; cada vendedor recibe su propio pedido.',
+      steps: [
+        'En la Tienda, añade dos artículos a tu carrito.',
+        'Abre el Carrito, aplica el código DEMO10 y paga.',
+      ],
+    },
     'record-usage': {
       title: 'Registra uso',
       why: 'Tu app mide lo que hace (un documento creado, un vídeo procesado); el plan dice cuánto está incluido.',

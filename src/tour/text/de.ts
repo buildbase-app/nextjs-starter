@@ -361,6 +361,14 @@ export const de: TourText = {
         'Öffne Buchungen, um sie in deinen Kalender zu übernehmen, abzusagen oder zu verschieben.',
       ],
     },
+    'marketplace-cart': {
+      title: 'Einen Warenkorb mit Gutschein bezahlen',
+      why: 'Käufer bezahlen Artikel mehrerer Verkäufer auf einer Stripe-Seite, mit einem Rabattcode; jeder Verkäufer erhält trotzdem seine eigene Bestellung.',
+      steps: [
+        'Lege im Shop zwei Artikel in den Warenkorb.',
+        'Öffne den Warenkorb, löse den Code DEMO10 ein und bezahle.',
+      ],
+    },
     'record-usage': {
       title: 'Nutzung erfassen',
       why: 'Ihre App misst, was sie tut (ein erstelltes Dokument, ein verarbeitetes Video); der Plan sagt, wie viel enthalten ist.',

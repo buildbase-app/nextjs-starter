@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      cart: 'कार्ट',
       bookings: 'बुकिंग',
       orders: 'ऑर्डर',
       shop: 'दुकान',
@@ -1321,6 +1322,9 @@ const messages: Messages = {
     free: 'मुफ़्त',
     notForSale: 'अभी बिक्री के लिए नहीं',
     pickTime: 'पहले समय चुनें',
+    addToCart: 'कार्ट में जोड़ें',
+    added: 'आपके कार्ट में जोड़ा गया।',
+    viewCart: 'कार्ट ({count})',
   },
   orders: {
     title: 'ऑर्डर',
@@ -1341,6 +1345,14 @@ const messages: Messages = {
     empty: 'आपने अभी तक कोई समय बुक नहीं किया है।',
     browse: 'दुकान में समय बुक करें',
     loading: 'आपकी बुकिंग लोड हो रही है…',
+  },
+  cart: {
+    title: 'कार्ट',
+    description:
+      'किसी भी विक्रेता के आइटम, एक ही Stripe पेज पर एक साथ भुगतान। हर विक्रेता को उसका अपना ऑर्डर मिलता है।',
+    empty: 'आपका कार्ट खाली है।',
+    browse: 'दुकान देखें',
+    couponHint: '10% छूट के लिए कोड DEMO10 आज़माएँ।',
   },
 };
 
