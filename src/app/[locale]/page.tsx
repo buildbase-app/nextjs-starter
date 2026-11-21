@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomeHeader } from '@/components/home-header';
 import { HeroSection } from '@/components/marketing/hero-section';
 import { StatsSection } from '@/components/marketing/stats-section';
@@ -9,8 +9,15 @@ import { CreditStore } from '@/components/credit-store';
 import { CtaBanner } from '@/components/marketing/cta-banner';
 import { SiteFooter } from '@/components/site-footer';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('home');
+interface HomePageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home' });
 
   return {
     title: {
@@ -24,7 +31,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function HomePage() {
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
+  // Naming the locale lets the page be prerendered per locale (the layout's
+  // generateStaticParams) instead of rendered on every request from headers.
+  setRequestLocale(locale);
   const [t, tPricing, tStore] = await Promise.all([
     getTranslations('home'),
     getTranslations('pricing'),
