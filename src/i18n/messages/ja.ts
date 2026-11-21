@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'アフィリエイト',
       billing: '請求',
       home: 'ホーム',
       dashboard: 'ダッシュボード',
@@ -1572,6 +1573,11 @@ const messages: Messages = {
     },
     inPage:
       'カード情報の入力と 3-D セキュアは、Stripe のサイトに移動せずにこれらの画面内で開きます。',
+  },
+  affiliates: {
+    title: 'アフィリエイト',
+    description:
+      '招待リンクからプログラムに参加し、自分のリンクを共有して、獲得額を確認します。あなたのリンクから来た人が購入すると、あなたの成果になります。',
   },
 };
 

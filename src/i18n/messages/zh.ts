@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: '推广联盟',
       billing: '账单',
       home: '首页',
       dashboard: '仪表板',
@@ -1492,6 +1493,11 @@ const messages: Messages = {
     },
     inPage:
       '卡片信息和 3-D 安全验证会在这些界面内打开，无需跳转到 Stripe 网站。',
+  },
+  affiliates: {
+    title: '推广联盟',
+    description:
+      '通过邀请链接加入推广计划，分享你自己的链接，并查看你的收益。通过你的链接到来的人购买时，会计入你的名下。',
   },
 };
 

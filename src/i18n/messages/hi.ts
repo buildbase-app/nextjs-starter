@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'एफ़िलिएट',
       billing: 'बिलिंग',
       home: 'होम',
       dashboard: 'डैशबोर्ड',
@@ -1565,6 +1566,11 @@ const messages: Messages = {
     },
     inPage:
       'कार्ड विवरण और 3-D Secure इन्हीं स्क्रीनों में खुलते हैं, Stripe की साइट पर गए बिना।',
+  },
+  affiliates: {
+    title: 'एफ़िलिएट',
+    description:
+      'किसी प्रोग्राम के आमंत्रण लिंक से जुड़ें, अपना लिंक साझा करें, और देखें आपने कितना कमाया। आपके लिंक से आने वाला कोई भी व्यक्ति खरीदने पर आपके नाम गिना जाता है।',
   },
 };
 

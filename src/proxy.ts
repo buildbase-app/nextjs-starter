@@ -36,10 +36,11 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     // static.cloudflareinsights.com: Cloudflare Web Analytics, which
     // Cloudflare injects when the site is served through it (its beacon
     // reports to cloudflareinsights.com, covered by connect-src https:).
-    // js.stripe.com: Stripe.js, for the SDK's card dialog and 3-D Secure.
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://js.stripe.com",
-    // Stripe's card fields and 3-D Secure challenges are iframes.
-    "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
+    // js.stripe.com: Stripe.js, for the SDK's card dialog and 3-D Secure;
+    // connect-js.stripe.com: Connect.js, for seller and payout onboarding.
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://js.stripe.com https://connect-js.stripe.com",
+    // Stripe's card fields, 3-D Secure challenges and Connect screens are iframes.
+    "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://connect-js.stripe.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data:",

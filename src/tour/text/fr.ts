@@ -155,6 +155,14 @@ export const fr: TourText = {
         'Déconnectez une autre session, ou utilisez Se déconnecter partout.',
       ],
     },
+    'guest-upgrade': {
+      title: 'Essayer en invité, garder en compte',
+      why: "Laissez entrer les gens avant l'inscription : un invité travaille comme tout le monde, et créer un compte ensuite conserve son identifiant et tout ce qu'il a créé.",
+      steps: [
+        'Déconnectez-vous, puis continuez en invité sur la page de connexion (si la console autorise les invités).',
+        'Créez votre compte depuis la bannière du tableau de bord.',
+      ],
+    },
     'first-workspace': {
       title: 'Repérez votre premier espace de travail',
       why: 'Un espace de travail est le tenant : chaque plan, quota, solde de crédits et membre lui appartient. La plateforme a créé le vôtre à l’inscription.',
@@ -840,6 +848,14 @@ export const fr: TourText = {
       steps: [
         'Ouvrez Suivi et appuyez sur « Enregistrer un objectif ».',
         'Créez un document : cela enregistre aussi document_created.',
+      ],
+    },
+    'affiliate-program': {
+      title: "Rejoindre un programme d'affiliation",
+      why: 'Des clients qui amènent des clients : un affilié partage un lien, le SDK retient qui a envoyé chaque visiteur, et la vente lui est attribuée au paiement.',
+      steps: [
+        "Ouvrez le lien d'invitation d'un programme (Affiliés avec ?program=…) et rejoignez-le.",
+        'Partagez votre lien ; Affiliés montre les clics, les commissions et les versements.',
       ],
     },
     'tracking-console-tag': {

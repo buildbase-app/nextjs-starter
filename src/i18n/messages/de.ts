@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'Affiliates',
       billing: 'Abrechnung',
       home: 'Startseite',
       dashboard: 'Dashboard',
@@ -1587,6 +1588,11 @@ const messages: Messages = {
     },
     inPage:
       'Kartendaten und 3-D Secure öffnen sich in diesen Bildschirmen, ohne zur Stripe-Seite zu wechseln.',
+  },
+  affiliates: {
+    title: 'Affiliates',
+    description:
+      'Tritt einem Programm über seinen Einladungslink bei, teile deinen eigenen Link und sieh, was du verdient hast. Wer über deinen Link kommt, wird dir beim Kauf gutgeschrieben.',
   },
 };
 

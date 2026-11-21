@@ -9,6 +9,7 @@ export const TASK_IDS = [
   'add-passkey',
   'see-session',
   'sign-out-everywhere',
+  'guest-upgrade',
   'first-workspace',
   'create-workspace',
   'switch-workspace',
@@ -114,6 +115,7 @@ export const TASK_IDS = [
   'tracking-custom-event',
   'tracking-attribution',
   'tracking-goal',
+  'affiliate-program',
   'tracking-console-tag',
   // workflows
   'workflow-runs',

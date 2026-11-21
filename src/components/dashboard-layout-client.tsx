@@ -13,6 +13,7 @@ import {
   NotificationBell,
   WhenPendingInvitations,
   PendingInvitations,
+  GuestUpgrade,
 } from '@buildbase/sdk/react';
 import {
   SidebarProvider,
@@ -30,7 +31,7 @@ export function DashboardLayoutClient({
 }: {
   children: React.ReactNode;
 }) {
-  const { isAuthenticated, status } = useSaaSAuth();
+  const { isAuthenticated, status, user } = useSaaSAuth();
   const router = useRouter();
   const localeRouter = useLocaleRouter();
   // The sidebar is pinned by side, not by writing direction; in RTL it
@@ -91,6 +92,10 @@ export function DashboardLayoutClient({
             >
               {/* An invited person sees what is waiting on every page, not
                   only on the empty workspace state. */}
+              {/* A guest (continued without an account on the sign-in page)
+                  keeps their work by creating an account: the SDK's own
+                  form, which keeps their id and data. */}
+              {user?.isAnonymous && <GuestUpgrade className="mb-6" />}
               <WhenPendingInvitations>
                 <PendingInvitations className="mb-6" />
               </WhenPendingInvitations>

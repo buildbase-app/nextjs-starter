@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'الشركاء بالعمولة',
       billing: 'الفوترة',
       home: 'الرئيسية',
       dashboard: 'لوحة التحكم',
@@ -1541,6 +1542,11 @@ const messages: Messages = {
     },
     inPage:
       'تفتح بيانات البطاقة والتحقق ثلاثي الأبعاد داخل هذه الشاشات، دون مغادرة إلى موقع Stripe.',
+  },
+  affiliates: {
+    title: 'الشركاء بالعمولة',
+    description:
+      'انضم إلى برنامج من رابط دعوته، وشارك رابطك الخاص، وشاهد ما ربحته. أي شخص يصل عبر رابطك يُحتسب لك عند الشراء.',
   },
 };
 

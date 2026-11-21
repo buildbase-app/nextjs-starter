@@ -120,6 +120,20 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       kind: 'manual',
     },
   },
+  {
+    id: 'guest-upgrade',
+    group: 'start',
+    href: '/dashboard',
+    source: {
+      sdk: ['<GuestUpgrade />', 'useSaaSAuth().user.isAnonymous'],
+      console: {
+        screen: '/dashboard/admin/auth',
+        note: 'Turn on guest users: the sign-in page then offers to continue without an account.',
+      },
+      app: ['src/components/dashboard-layout-client.tsx'],
+    },
+    detect: { kind: 'manual' },
+  },
   // ── Workspaces ──
   {
     id: 'first-workspace',
@@ -1507,6 +1521,23 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
       ],
     },
     detect: { kind: 'action', action: 'tracking:goal' },
+  },
+  {
+    id: 'affiliate-program',
+    group: 'tracking',
+    href: '/dashboard/affiliates',
+    source: {
+      sdk: [
+        '<AffiliateJoin programId={id} />',
+        '<AffiliateDashboard />',
+        'captureReferral({ serverUrl, orgId })',
+      ],
+      app: [
+        'src/app/[locale]/dashboard/affiliates/page.tsx',
+        'src/components/saas-provider.tsx',
+      ],
+    },
+    detect: { kind: 'manual' },
   },
   {
     id: 'tracking-console-tag',

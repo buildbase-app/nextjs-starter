@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      affiliates: 'Affiliates',
       billing: 'Billing',
       home: 'Home',
       dashboard: 'Dashboard',
@@ -1564,6 +1565,11 @@ const messages: Messages = {
     },
     inPage:
       "Card details and 3-D Secure open inside these screens, without leaving for Stripe's site.",
+  },
+  affiliates: {
+    title: 'Affiliates',
+    description:
+      'Join a program from its invitation link, share your own link, and see what you earned. Anyone arriving on your link is credited to you when they buy.',
   },
 };
 
