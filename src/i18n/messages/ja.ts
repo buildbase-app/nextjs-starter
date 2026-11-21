@@ -1287,6 +1287,18 @@ const messages: Messages = {
         'BuildBaseコンソールで定義し、ロールごとに付与したキー（カスタムロールを含む）。ドキュメントはサーバー側でもこれを確認します。',
       empty:
         'この組織はまだ独自の権限を定義していません。npm run seed:org を実行するか、コンソールの Workspace settings → Permissions でキーを追加してください。',
+      permission: '権限',
+      inApp: 'アプリ',
+      backend: 'バックエンド',
+      allowed: '許可',
+      denied: '拒否',
+      tryIt: '試す',
+      codeOnly: 'このアプリのコードにのみあるため、ブラウザだけが確認します',
+      tried: {
+        allowed: '完了: バックエンドが許可しました',
+        refused: 'バックエンドが拒否しました',
+        error: '確認できませんでした',
+      },
     },
     security: {
       title: 'セキュリティ',

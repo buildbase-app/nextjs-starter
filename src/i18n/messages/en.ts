@@ -1280,6 +1280,18 @@ const messages: Messages = {
         'Keys defined in the BuildBase console and granted per role, custom roles included. Documents checks these on the server too.',
       empty:
         'This organization has not defined its own permissions yet. Run npm run seed:org, or add keys in the console under Workspace settings → Permissions.',
+      permission: 'Permission',
+      inApp: 'In the app',
+      backend: 'Your backend',
+      allowed: 'Allowed',
+      denied: 'Denied',
+      tryIt: 'Try it',
+      codeOnly: "Only in this app's code, so only the browser checks it",
+      tried: {
+        allowed: 'Done: your backend allowed it',
+        refused: 'Refused by your backend',
+        error: 'Could not check',
+      },
     },
     security: {
       title: 'Security',

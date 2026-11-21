@@ -1300,6 +1300,18 @@ const messages: Messages = {
         'In der BuildBase-Konsole definierte Schlüssel, pro Rolle vergeben, eigene Rollen eingeschlossen. Dokumente prüft sie auch auf dem Server.',
       empty:
         'Diese Organisation hat noch keine eigenen Berechtigungen definiert. Führe npm run seed:org aus oder lege Schlüssel in der Konsole unter Workspace settings → Permissions an.',
+      permission: 'Berechtigung',
+      inApp: 'In der App',
+      backend: 'Dein Backend',
+      allowed: 'Erlaubt',
+      denied: 'Verweigert',
+      tryIt: 'Ausprobieren',
+      codeOnly: 'Nur im Code dieser App, daher prüft nur der Browser',
+      tried: {
+        allowed: 'Erledigt: Dein Backend hat es erlaubt',
+        refused: 'Von deinem Backend abgelehnt',
+        error: 'Prüfung nicht möglich',
+      },
     },
     security: {
       title: 'Sicherheit',
