@@ -780,6 +780,14 @@ export const es: TourText = {
         'Lee la tarjeta de atribución.',
       ],
     },
+    'tracking-goal': {
+      title: 'Cuenta un objetivo',
+      why: 'Las páginas vistas dicen adónde fue la gente; los objetivos, qué hizo. Ambos llegan a la analítica de la consola y ambos respetan un no en el banner de cookies.',
+      steps: [
+        'Abre Seguimiento y pulsa «Registrar un objetivo».',
+        'Crea un documento: eso también registra document_created.',
+      ],
+    },
     'tracking-console-tag': {
       title: 'Mira la etiqueta en la consola',
       why: 'GA4, Meta, PostHog, Clarity y once más, cada una con una categoría de consentimiento y un texto de privacidad que la consola genera para tu política.',

@@ -747,6 +747,14 @@ export const en: TourText = {
         'Read the attribution card.',
       ],
     },
+    'tracking-goal': {
+      title: 'Count a goal',
+      why: "Page views say where people went; goals say what they did. Both land in the console's Analytics, and both respect a no in the cookie banner.",
+      steps: [
+        'Open Tracking and press Record a goal.',
+        'Create a document: that records document_created too.',
+      ],
+    },
     'tracking-console-tag': {
       title: 'See the tag in the console',
       why: 'GA4, Meta, PostHog, Clarity and eleven more, each with a consent category and a privacy text the console generates for your policy.',

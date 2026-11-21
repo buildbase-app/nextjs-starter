@@ -1398,6 +1398,23 @@ export const TOUR_TASKS: TourTaskDefinition[] = [
     detect: { kind: 'manual' },
   },
   {
+    id: 'tracking-goal',
+    group: 'tracking',
+    href: '/dashboard/tracking',
+    source: {
+      sdk: ["trackGoal('tour_goal', props)", "trackGoal('document_created')"],
+      console: {
+        screen: '/dashboard/admin/setting/analytics',
+        note: 'Open reports: goals sit beside pages, sources and locations. Nothing is counted for a visitor who refused analytics.',
+      },
+      app: [
+        'src/components/tracking/goals-card.tsx',
+        'src/components/documents/documents-workbench.tsx',
+      ],
+    },
+    detect: { kind: 'action', action: 'tracking:goal' },
+  },
+  {
     id: 'tracking-console-tag',
     group: 'tracking',
     source: {

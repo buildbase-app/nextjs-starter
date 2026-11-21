@@ -1326,6 +1326,15 @@ const messages: Messages = {
       },
     },
   },
+  goals: {
+    title: '网站分析目标',
+    description:
+      '在控制台的分析中，与页面浏览一起统计重要时刻。目标遵循 Cookie 横幅：拒绝后不会发送任何内容。',
+    record: '记录一个目标',
+    recorded: '已记录 {name} {count} 次。它会显示在控制台分析的“目标”中。',
+    notSent: '未发送：你在 Cookie 横幅中拒绝了分析。',
+    alsoDocuments: '每当你创建文档时，本应用也会记录 document_created。',
+  },
 };
 
 export default messages;

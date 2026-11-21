@@ -108,6 +108,7 @@ export const TASK_IDS = [
   'tracking-consent',
   'tracking-custom-event',
   'tracking-attribution',
+  'tracking-goal',
   'tracking-console-tag',
   // workflows
   'workflow-runs',

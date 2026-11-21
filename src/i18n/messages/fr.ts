@@ -1409,6 +1409,18 @@ const messages: Messages = {
       },
     },
   },
+  goals: {
+    title: "Objectifs d'analyse web",
+    description:
+      "Comptez les moments qui comptent, à côté des pages vues, dans l'Analytics de la console. Les objectifs suivent la bannière de cookies : après un refus, rien n'est envoyé.",
+    record: 'Enregistrer un objectif',
+    recorded:
+      "{name} enregistré {count, plural, one {une fois} other {# fois}}. Il apparaît dans l'Analytics de la console, sous Objectifs.",
+    notSent:
+      "Non envoyé : vous avez refusé l'analyse dans la bannière de cookies.",
+    alsoDocuments:
+      'Cette application enregistre aussi document_created chaque fois que vous créez un document.',
+  },
 };
 
 export default messages;

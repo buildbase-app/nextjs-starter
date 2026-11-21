@@ -1267,6 +1267,15 @@ export interface AccountMessages {
   };
 }
 
+export interface GoalsMessages {
+  title: string;
+  description: string;
+  record: string;
+  recorded: string;
+  notSent: string;
+  alsoDocuments: string;
+}
+
 export interface Messages {
   common: CommonMessages;
   home: HomeMessages;
@@ -1299,6 +1308,7 @@ export interface Messages {
   audience: AudienceMessages;
   waitlist: WaitlistMessages;
   account: AccountMessages;
+  goals: GoalsMessages;
 }
 
 // For next-intl type inference

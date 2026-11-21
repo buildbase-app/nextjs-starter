@@ -1405,6 +1405,17 @@ const messages: Messages = {
       },
     },
   },
+  goals: {
+    title: 'Web-Analytics-Ziele',
+    description:
+      'Zähle die Momente, auf die es ankommt, neben den Seitenaufrufen in den Analytics der Konsole. Ziele folgen dem Cookie-Banner: nach einem Nein wird nichts gesendet.',
+    record: 'Ziel erfassen',
+    recorded:
+      '{name} {count, plural, one {einmal} other {#-mal}} erfasst. Es erscheint in den Analytics der Konsole unter Ziele.',
+    notSent: 'Nicht gesendet: Du hast Analytics im Cookie-Banner abgelehnt.',
+    alsoDocuments:
+      'Diese App erfasst außerdem document_created, wenn du ein Dokument erstellst.',
+  },
 };
 
 export default messages;
