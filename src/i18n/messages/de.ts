@@ -1300,6 +1300,18 @@ const messages: Messages = {
         'In der BuildBase-Konsole definierte Schlüssel, pro Rolle vergeben, eigene Rollen eingeschlossen. Dokumente prüft sie auch auf dem Server.',
       empty:
         'Diese Organisation hat noch keine eigenen Berechtigungen definiert. Führe npm run seed:org aus oder lege Schlüssel in der Konsole unter Workspace settings → Permissions an.',
+      permission: 'Berechtigung',
+      inApp: 'In der App',
+      backend: 'Dein Backend',
+      allowed: 'Erlaubt',
+      denied: 'Verweigert',
+      tryIt: 'Ausprobieren',
+      codeOnly: 'Nur im Code dieser App, daher prüft nur der Browser',
+      tried: {
+        allowed: 'Erledigt: Dein Backend hat es erlaubt',
+        refused: 'Von deinem Backend abgelehnt',
+        error: 'Prüfung nicht möglich',
+      },
     },
     security: {
       title: 'Sicherheit',
@@ -1404,6 +1416,35 @@ const messages: Messages = {
         description: 'Über hundert E-Mail-Vorlagen, kostenlos in jedem Plan.',
       },
     },
+  },
+  yourData: {
+    title: 'Deine Daten',
+    description:
+      'Lade alles herunter, was diese App und die Plattform über dich speichern, oder lösche dein Konto hier und auf der Plattform.',
+    export: {
+      button: 'Meine Daten exportieren',
+      working: 'Wird vorbereitet…',
+    },
+    delete: {
+      button: 'Mein Konto löschen',
+      working: 'Wird gelöscht…',
+      areYouSure:
+        'Dein Konto löschen? Das lässt sich nicht rückgängig machen und beendet deine Sitzung.',
+      recent:
+        'Du hast dich vor Kurzem angemeldet und kannst dein Konto jetzt löschen.',
+      needsConfirm:
+        'Zum Löschen ist eine Anmeldung aus den letzten 10 Minuten nötig. Du wirst zuerst gebeten zu bestätigen, dass du es bist.',
+      confirmNow: 'Jetzt bestätigen, dass du es bist',
+      confirmFirst:
+        'Bestätige zuerst, dass du es bist. Du kommst hierher zurück; drück dann noch einmal auf „Mein Konto löschen“.',
+      scheduled:
+        'Dein Konto wird am {date} gelöscht. Bis dahin kannst du es mit einer Anmeldung abbrechen.',
+      scheduledNoDate:
+        'Die Löschung deines Kontos ist geplant. Bis dahin kannst du sie mit einer Anmeldung abbrechen.',
+      ownsWorkspaces:
+        'Dir gehören noch Arbeitsbereiche mit anderen Mitgliedern, oder du bezahlst für sie: {names}. Entferne die anderen Mitglieder und kündige das Abo, oder lösche diese Arbeitsbereiche zuerst.',
+    },
+    failed: 'Etwas ist schiefgelaufen. Bitte versuch es noch einmal.',
   },
   entitlements: {
     title: 'Was dein Tarif enthält',

@@ -1228,6 +1228,18 @@ const messages: Messages = {
         '在 BuildBase 控制台中定义并按角色授予的权限键，包括自定义角色。文档在服务器端也会检查它们。',
       empty:
         '该组织尚未定义自己的权限。运行 npm run seed:org，或在控制台的 Workspace settings → Permissions 中添加权限键。',
+      permission: '权限',
+      inApp: '应用内',
+      backend: '你的后端',
+      allowed: '允许',
+      denied: '拒绝',
+      tryIt: '试一试',
+      codeOnly: '仅存在于本应用代码中，因此只有浏览器会检查',
+      tried: {
+        allowed: '完成：后端已允许',
+        refused: '被后端拒绝',
+        error: '无法检查',
+      },
     },
     security: {
       title: '安全',
@@ -1325,6 +1337,31 @@ const messages: Messages = {
         description: '一百多个邮件模板，所有套餐均免费。',
       },
     },
+  },
+  yourData: {
+    title: '你的数据',
+    description:
+      '下载本应用和平台保存的所有关于你的数据，或在此处和平台上删除你的账户。',
+    export: {
+      button: '导出我的数据',
+      working: '正在准备…',
+    },
+    delete: {
+      button: '删除我的账户',
+      working: '正在删除…',
+      areYouSure: '确定删除你的账户吗？此操作无法撤销，并会结束你的会话。',
+      recent: '你最近登录过，现在就可以删除账户。',
+      needsConfirm:
+        '删除账户需要最近 10 分钟内的登录。系统会先请你确认是本人操作。',
+      confirmNow: '立即确认是本人',
+      confirmFirst:
+        '请先确认是本人。你会回到这里，然后再次点击“删除我的账户”。',
+      scheduled: '你的账户将于 {date} 删除。在此之前，登录即可取消。',
+      scheduledNoDate: '你的账户已安排删除。在此之前，登录即可取消。',
+      ownsWorkspaces:
+        '你仍拥有或付费的工作区中还有其他成员：{names}。请先移除其他成员并取消订阅，或先删除这些工作区。',
+    },
+    failed: '出了点问题，请重试。',
   },
   entitlements: {
     title: '你的套餐包含什么',
