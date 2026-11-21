@@ -137,6 +137,8 @@ npm run lint         # eslint
 npm run check        # lint + format check + typecheck
 npm run test         # vitest
 npm run test:e2e     # playwright (e2e/)
+npm run cf:preview   # build for Cloudflare Workers and run it locally in workerd
+npm run cf:deploy    # build for Cloudflare Workers and deploy with wrangler
 ```
 
 Husky runs eslint and prettier on staged files at commit time.
@@ -172,13 +174,63 @@ own and are worth keeping as examples of the SDK in use.
 
 ## Deployment
 
-Vercel: import the repo, set the variables above, point `DATABASE_URL` at a
-hosted Postgres and add the deployed URL to the OAuth client's redirect URLs.
-`NEXT_PUBLIC_*` values are baked into the bundle, so changing one needs a
-redeploy.
+The same code deploys to Vercel, Cloudflare Workers or Docker; nothing needs
+changing to switch. Wherever it runs:
 
-Docker: `docker compose up` builds the app and starts Postgres; the
-`POSTGRES_*` variables in `.env.example` configure the container.
+- Set the variables from `.env.example` and point `DATABASE_URL` at a hosted
+  Postgres. Several deployments can share one database.
+- `NEXT_PUBLIC_*` values are baked into the bundle at build time, so they must
+  be set where the build runs, and changing one needs a redeploy.
+- Add the deployed URL to the OAuth client's redirect URLs and set
+  `NEXT_PUBLIC_BUILDBASE_REDIRECT_URL`, `SITE_URL` and `NEXT_PUBLIC_SITE_URL`
+  to it.
+- The database schema is `prisma/schema.prisma`; apply it to a new database
+  with `npx prisma db push`.
+
+### Vercel
+
+Import the repo and set the variables. Vercel runs `npm run build`.
+
+### Cloudflare Workers
+
+Built with the [OpenNext adapter](https://opennext.js.org/cloudflare), configured
+in `wrangler.jsonc` and `open-next.config.ts` (Vercel and Docker ignore both).
+The Worker is about 6.5 MB gzipped, so it needs the Workers Paid plan
+(the free plan allows 3 MB).
+
+1. **Database (recommended: Hyperdrive).** Hyperdrive pools Postgres
+   connections at Cloudflare's edge. Create one with your database's direct
+   (non-pooled) connection string, then uncomment the `hyperdrive` entry in
+   `wrangler.jsonc` and paste its id:
+
+   ```bash
+   npx wrangler hyperdrive create nextjs-starter-db --connection-string="postgres://user:password@host:5432/db?sslmode=require"
+   ```
+
+   Without Hyperdrive the Worker connects with `DATABASE_URL` directly. Either
+   way, `src/lib/db.ts` opens a fresh client per request, as Workers require.
+
+2. **Deploy**, either:
+   - **From Git (Workers Builds):** in the Cloudflare dashboard, Workers &
+     Pages → Create → Import a repository. Build command
+     `npx opennextjs-cloudflare build`, deploy command
+     `npx opennextjs-cloudflare deploy`. Put every variable in _Build variables
+     and secrets_ (the build needs `NEXT_PUBLIC_*` and prerenders pages), and
+     the server-side ones in the Worker's _Variables and Secrets_ as well.
+   - **From your machine:** `npx wrangler login`, add each server secret with
+     `npx wrangler secret put NAME`, then run `npm run cf:deploy` with the
+     `NEXT_PUBLIC_*` values in `.env.local`.
+
+3. To try it locally first, put the server variables in `.dev.vars` (git
+   ignored) and run `npm run cf:preview`.
+
+Caching is off by default on Cloudflare: ISR and `revalidateTag` render fresh on
+each request. To cache, see the note in `open-next.config.ts`.
+
+### Docker
+
+`docker compose up` builds the app and starts Postgres; the `POSTGRES_*`
+variables in `.env.example` configure the container.
 
 ## License
 
