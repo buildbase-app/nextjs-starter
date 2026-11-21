@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      bookings: 'Bookings',
       orders: 'Orders',
       shop: 'Shop',
       affiliates: 'Affiliates',
@@ -1318,6 +1319,7 @@ const messages: Messages = {
     by: 'by {seller}',
     free: 'Free',
     notForSale: 'Not for sale right now',
+    pickTime: 'Pick a time first',
   },
   orders: {
     title: 'Orders',
@@ -1330,6 +1332,14 @@ const messages: Messages = {
     yourOrder: 'Your order',
     total: 'Total',
     whatYouGot: 'What you got',
+  },
+  bookings: {
+    title: 'Bookings',
+    description:
+      "The times you booked, with a calendar file for each. Cancel or move one within the seller's rules.",
+    empty: "You haven't booked a time yet.",
+    browse: 'Book a time in the shop',
+    loading: 'Loading your bookings…',
   },
 };
 

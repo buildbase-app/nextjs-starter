@@ -354,6 +354,14 @@ export const fr: TourText = {
         "Après paiement, Commandes affiche la commande et ce qu'elle vous a donné.",
       ],
     },
+    'marketplace-book': {
+      title: 'Réserver un créneau',
+      why: "Vendez un créneau du calendrier du vendeur : les créneaux libres dans le fuseau de l'acheteur, la place bloquée pendant le paiement et un fichier de calendrier une fois réservé.",
+      steps: [
+        "Dans la Boutique, choisissez un horaire pour l'appel de coaching de 30 minutes et payez.",
+        "Ouvrez Réservations pour l'ajouter à votre calendrier, l'annuler ou le déplacer.",
+      ],
+    },
     'record-usage': {
       title: 'Enregistrer de l’usage',
       why: 'Votre app mesure ce qu’elle fait (un document créé, une vidéo traitée) ; le plan dit ce qui est inclus.',

@@ -3,6 +3,7 @@
 
 export interface CommonMessages {
   nav: {
+    bookings: string;
     orders: string;
     shop: string;
     affiliates: string;
@@ -1233,6 +1234,7 @@ export interface ShopMessages {
   by: string;
   free: string;
   notForSale: string;
+  pickTime: string;
 }
 
 export interface OrdersMessages {
@@ -1246,6 +1248,14 @@ export interface OrdersMessages {
   yourOrder: string;
   total: string;
   whatYouGot: string;
+}
+
+export interface BookingsMessages {
+  title: string;
+  description: string;
+  empty: string;
+  browse: string;
+  loading: string;
 }
 
 export interface Messages {
@@ -1284,6 +1294,7 @@ export interface Messages {
   affiliates: AffiliatesMessages;
   shop: ShopMessages;
   orders: OrdersMessages;
+  bookings: BookingsMessages;
 }
 
 // For next-intl type inference

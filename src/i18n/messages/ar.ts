@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      bookings: 'الحجوزات',
       orders: 'الطلبات',
       shop: 'المتجر',
       affiliates: 'الشركاء بالعمولة',
@@ -1296,6 +1297,7 @@ const messages: Messages = {
     by: 'من {seller}',
     free: 'مجاني',
     notForSale: 'غير معروض للبيع حاليًا',
+    pickTime: 'اختر وقتًا أولًا',
   },
   orders: {
     title: 'الطلبات',
@@ -1308,6 +1310,14 @@ const messages: Messages = {
     yourOrder: 'طلبك',
     total: 'الإجمالي',
     whatYouGot: 'ما حصلت عليه',
+  },
+  bookings: {
+    title: 'الحجوزات',
+    description:
+      'المواعيد التي حجزتها، مع ملف تقويم لكل منها. ألغِ موعدًا أو انقله ضمن قواعد البائع.',
+    empty: 'لم تحجز أي موعد بعد.',
+    browse: 'احجز موعدًا من المتجر',
+    loading: 'جارٍ تحميل حجوزاتك…',
   },
 };
 

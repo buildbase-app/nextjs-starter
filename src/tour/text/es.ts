@@ -343,6 +343,14 @@ export const es: TourText = {
         'Tras pagar, Pedidos muestra el pedido y lo que te dio.',
       ],
     },
+    'marketplace-book': {
+      title: 'Reserva una hora',
+      why: 'Vende una hora del calendario del vendedor: huecos libres en la zona horaria del comprador, la plaza reservada mientras paga y un archivo de calendario al reservar.',
+      steps: [
+        'En la Tienda, elige una hora para la llamada de coaching de 30 minutos y paga.',
+        'Abre Reservas para añadirla a tu calendario, cancelarla o cambiarla.',
+      ],
+    },
     'record-usage': {
       title: 'Registra uso',
       why: 'Tu app mide lo que hace (un documento creado, un vídeo procesado); el plan dice cuánto está incluido.',

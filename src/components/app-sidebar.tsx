@@ -35,6 +35,7 @@ import {
   Workflow,
   PieChart,
   Inbox,
+  CalendarDays,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -76,6 +77,7 @@ type NavKey =
   | 'affiliates'
   | 'shop'
   | 'orders'
+  | 'bookings'
   | 'usage'
   | 'permissions'
   | 'events'
@@ -132,6 +134,7 @@ const sections: { key: SectionKey; items: NavItem[] }[] = [
       { navKey: 'affiliates', url: '/dashboard/affiliates', icon: Handshake },
       { navKey: 'shop', url: '/dashboard/shop', icon: Store },
       { navKey: 'orders', url: '/dashboard/orders', icon: Package },
+      { navKey: 'bookings', url: '/dashboard/bookings', icon: CalendarDays },
     ],
   },
   {

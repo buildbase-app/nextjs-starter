@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   BuyButton,
+  SlotPicker,
   formatMinorAmountIntl,
   usePublishedItems,
   type PublicItemView,
@@ -24,6 +25,11 @@ import { LAST_ORDER_KEY } from '@/lib/marketplace';
  * claims a free item at once), holds the stock while the buyer pays, sends
  * the affiliate referral `captureReferral()` kept, and shows any refusal in
  * the reader's language. Stripe sends the buyer to Orders afterwards.
+ *
+ * An item sold as a time on the seller's calendar (`item.booking`) shows the
+ * SDK's `<SlotPicker>` first: the open slots in the seller's zone and the
+ * buyer's, and the picked start goes to `<BuyButton slotStart>`, which holds
+ * the seat while Stripe's page is open. Bookings lists what was booked.
  */
 export default function ShopPage() {
   const t = useTranslations('shop');
@@ -86,6 +92,8 @@ function ItemCard({
   const locale = useLocale();
   const variant = item.variants[0];
   const price = variant?.prices.find((p) => !p.retired);
+  const bookable = !!item.booking;
+  const [slotStart, setSlotStart] = useState<string | null>(null);
 
   const amount =
     price?.mode === 'pwyw'
@@ -93,7 +101,9 @@ function ItemCard({
       : (price?.amount ?? 0);
 
   return (
-    <Card className="flex flex-col">
+    <Card
+      className={`flex flex-col ${bookable ? 'sm:col-span-2 lg:col-span-3' : ''}`}
+    >
       <CardHeader>
         <CardTitle className="text-base">{item.title}</CardTitle>
         <CardDescription>
@@ -110,6 +120,15 @@ function ItemCard({
             {price.recurring && ` / ${price.recurring.interval}`}
           </p>
         )}
+        {bookable && variant && (
+          <SlotPicker
+            itemId={item._id}
+            variantId={variant.id}
+            days={7}
+            value={slotStart}
+            onChange={setSlotStart}
+          />
+        )}
       </CardContent>
       <CardFooter>
         {variant && price ? (
@@ -120,6 +139,9 @@ function ItemCard({
             free={price.mode === 'free'}
             amount={price.mode === 'pwyw' ? amount : undefined}
             recurring={!!price.recurring}
+            slotStart={bookable ? (slotStart ?? undefined) : undefined}
+            disabled={bookable && !slotStart}
+            label={bookable && !slotStart ? t('pickTime') : undefined}
             successUrl={successUrl}
             onStarted={(start) => rememberOrder(start.order._id)}
           />

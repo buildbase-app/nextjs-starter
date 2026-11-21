@@ -3,6 +3,7 @@ import type { Messages } from '../types';
 const messages: Messages = {
   common: {
     nav: {
+      bookings: 'बुकिंग',
       orders: 'ऑर्डर',
       shop: 'दुकान',
       affiliates: 'एफ़िलिएट',
@@ -1319,6 +1320,7 @@ const messages: Messages = {
     by: '{seller} द्वारा',
     free: 'मुफ़्त',
     notForSale: 'अभी बिक्री के लिए नहीं',
+    pickTime: 'पहले समय चुनें',
   },
   orders: {
     title: 'ऑर्डर',
@@ -1331,6 +1333,14 @@ const messages: Messages = {
     yourOrder: 'आपका ऑर्डर',
     total: 'कुल',
     whatYouGot: 'आपको क्या मिला',
+  },
+  bookings: {
+    title: 'बुकिंग',
+    description:
+      'आपके बुक किए गए समय, हर एक के साथ कैलेंडर फ़ाइल। विक्रेता के नियमों के भीतर किसी को रद्द करें या बदलें।',
+    empty: 'आपने अभी तक कोई समय बुक नहीं किया है।',
+    browse: 'दुकान में समय बुक करें',
+    loading: 'आपकी बुकिंग लोड हो रही है…',
   },
 };
 
