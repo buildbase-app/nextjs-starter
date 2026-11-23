@@ -8,6 +8,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-link: var(--link);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -54,86 +58,172 @@
 }
 
 :root {
+  /* BuildBase brand: warm paper, ink, one hot accent (Plug Orange) and
+     cobalt for links and focus. Every text pair below is measured: ink on
+     paper 17.8:1, muted text on paper 6.7:1 (dark 7.5:1), links 6.3:1 (dark
+     8.5:1), ink on the orange 6.0:1. The orange itself reads 3.0:1 on paper,
+     so it is never text: fills with ink labels, marks, live indicators.
+     Keep it under ~5% of any screen (.claude/skills/buildbase-design). */
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0.985 0.004 91.4);
+  --foreground: oklch(0.188 0.009 84.6);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.188 0.009 84.6);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.45 0 0); /* WCAG AA compliant - 4.5:1 contrast */
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --success: oklch(0.518 0.16 145.071);
-  --success-foreground: oklch(0.985 0 0);
-  --warning: oklch(0.68 0.16 75.834);
-  --warning-foreground: oklch(0.145 0 0);
-  --info: oklch(0.546 0.245 262.881);
-  --info-foreground: oklch(0.985 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.55 0 0); /* Improved focus visibility */
-  --chart-1: oklch(0.646 0.222 41.116);
+  --popover-foreground: oklch(0.188 0.009 84.6);
+  --primary: oklch(0.188 0.009 84.6);
+  --primary-foreground: oklch(0.985 0.004 91.4);
+  --secondary: oklch(0.953 0.009 84.6);
+  --secondary-foreground: oklch(0.188 0.009 84.6);
+  --muted: oklch(0.953 0.009 84.6);
+  --muted-foreground: oklch(0.463 0.016 78.2);
+  --accent: oklch(0.935 0.012 84.6);
+  --accent-foreground: oklch(0.188 0.009 84.6);
+  --brand: oklch(0.683 0.21 38);
+  --brand-foreground: oklch(0.188 0.009 84.6);
+  --link: oklch(0.497 0.241 266.2);
+  --destructive: oklch(0.54 0.188 31.1);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.512 0.118 156.8);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.531 0.119 65.1);
+  --warning-foreground: oklch(1 0 0);
+  --info: oklch(0.497 0.241 266.2);
+  --info-foreground: oklch(1 0 0);
+  --border: oklch(0.908 0.015 84.6);
+  --input: oklch(0.87 0.016 84.6);
+  --ring: oklch(0.552 0.247 266);
+  --chart-1: oklch(0.683 0.21 38);
   --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-3: oklch(0.497 0.241 266.2);
   --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --chart-5: oklch(0.512 0.118 156.8);
+  --sidebar: oklch(0.972 0.006 88);
+  --sidebar-foreground: oklch(0.188 0.009 84.6);
+  --sidebar-primary: oklch(0.188 0.009 84.6);
+  --sidebar-primary-foreground: oklch(0.985 0.004 91.4);
+  --sidebar-accent: oklch(0.935 0.012 84.6);
+  --sidebar-accent-foreground: oklch(0.188 0.009 84.6);
+  --sidebar-border: oklch(0.908 0.015 84.6);
+  --sidebar-ring: oklch(0.552 0.247 266);
+  /* Motion: one easing family for the whole app (ease-out for things that
+     enter, in-out for things that move on screen). */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.75 0 0); /* WCAG AA compliant - 4.5:1 contrast */
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --success: oklch(0.648 0.2 145.071);
-  --success-foreground: oklch(0.145 0 0);
-  --warning: oklch(0.75 0.18 75.834);
-  --warning-foreground: oklch(0.145 0 0);
-  --info: oklch(0.646 0.222 262.881);
-  --info-foreground: oklch(0.145 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.65 0 0); /* Improved focus visibility */
-  --chart-1: oklch(0.488 0.243 264.376);
+  --background: oklch(0.164 0.004 84.6);
+  --foreground: oklch(0.956 0.01 87.5);
+  --card: oklch(0.201 0.007 78.2);
+  --card-foreground: oklch(0.956 0.01 87.5);
+  --popover: oklch(0.201 0.007 78.2);
+  --popover-foreground: oklch(0.956 0.01 87.5);
+  --primary: oklch(0.956 0.01 87.5);
+  --primary-foreground: oklch(0.164 0.004 84.6);
+  --secondary: oklch(0.241 0.009 75.2);
+  --secondary-foreground: oklch(0.956 0.01 87.5);
+  --muted: oklch(0.241 0.009 75.2);
+  --muted-foreground: oklch(0.711 0.02 83.1);
+  --accent: oklch(0.27 0.011 75);
+  --accent-foreground: oklch(0.956 0.01 87.5);
+  --brand: oklch(0.704 0.193 39.6);
+  --brand-foreground: oklch(0.164 0.004 84.6);
+  --link: oklch(0.748 0.129 270.8);
+  --destructive: oklch(0.731 0.166 30.3);
+  --destructive-foreground: oklch(0.164 0.004 84.6);
+  --success: oklch(0.752 0.152 158.7);
+  --success-foreground: oklch(0.164 0.004 84.6);
+  --warning: oklch(0.805 0.139 76.3);
+  --warning-foreground: oklch(0.164 0.004 84.6);
+  --info: oklch(0.748 0.129 270.8);
+  --info-foreground: oklch(0.164 0.004 84.6);
+  --border: oklch(0.279 0.011 73.5);
+  --input: oklch(0.32 0.012 73.5);
+  --ring: oklch(0.704 0.154 270.6);
+  --chart-1: oklch(0.704 0.193 39.6);
   --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-3: oklch(0.748 0.129 270.8);
+  --chart-4: oklch(0.805 0.139 76.3);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.65 0 0); /* Improved focus visibility */
+  --sidebar: oklch(0.185 0.006 80);
+  --sidebar-foreground: oklch(0.956 0.01 87.5);
+  --sidebar-primary: oklch(0.956 0.01 87.5);
+  --sidebar-primary-foreground: oklch(0.164 0.004 84.6);
+  --sidebar-accent: oklch(0.27 0.011 75);
+  --sidebar-accent-foreground: oklch(0.956 0.01 87.5);
+  --sidebar-border: oklch(0.279 0.011 73.5);
+  --sidebar-ring: oklch(0.704 0.154 270.6);
+}
+
+/* The SDK's own UI (settings, dialogs, the cookie banner) in the same brand.
+   The SDK reads HSL triplets on .saas-os-ui (sdk docs/THEMING.md); `html`
+   in each selector outranks the SDK stylesheet, which loads after this one.
+   Same colours as the tokens above, so its screens and ours read as one. */
+html .saas-os-ui {
+  --background: 45 33% 98%;
+  --foreground: 40 17% 7%;
+  --card: 0 0% 100%;
+  --card-foreground: 40 17% 7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 40 17% 7%;
+  --primary: 40 17% 7%;
+  --primary-foreground: 45 33% 98%;
+  --secondary: 40 26% 93%;
+  --secondary-foreground: 40 17% 7%;
+  --muted: 40 26% 93%;
+  --muted-foreground: 36 9% 34%;
+  --accent: 40 24% 90%;
+  --accent-foreground: 40 17% 7%;
+  --border: 40 22% 87%;
+  --input: 40 19% 82%;
+  --ring: 227 100% 59%;
+  --destructive: 7 75% 44%;
+  --destructive-foreground: 0 0% 100%;
+  --destructive-text: 7 75% 44%;
+  --success: 153 78% 27%;
+  --success-foreground: 0 0% 100%;
+  --success-text: 153 78% 27%;
+  --warning: 35 100% 30%;
+  --warning-foreground: 0 0% 100%;
+  --warning-text: 35 100% 30%;
+  --info: 229 81% 53%;
+  --info-foreground: 0 0% 100%;
+  --info-text: 229 81% 53%;
+  --radius: 0.625rem;
+}
+
+html.dark .saas-os-ui,
+html .saas-os-ui.dark {
+  --background: 40 11% 5%;
+  --foreground: 42 29% 93%;
+  --card: 36 12% 8%;
+  --card-foreground: 42 29% 93%;
+  --popover: 36 12% 8%;
+  --popover-foreground: 42 29% 93%;
+  --primary: 42 29% 93%;
+  --primary-foreground: 40 11% 5%;
+  --secondary: 34 11% 12%;
+  --secondary-foreground: 42 29% 93%;
+  --muted: 34 11% 12%;
+  --muted-foreground: 39 10% 62%;
+  --accent: 36 14% 15%;
+  --accent-foreground: 42 29% 93%;
+  --border: 33 11% 15%;
+  --input: 33 11% 20%;
+  --ring: 227 100% 74%;
+  --destructive: 8 100% 70%;
+  --destructive-foreground: 40 11% 5%;
+  --destructive-text: 8 100% 70%;
+  --success: 152 57% 52%;
+  --success-foreground: 40 11% 5%;
+  --success-text: 152 57% 52%;
+  --warning: 37 87% 62%;
+  --warning-foreground: 40 11% 5%;
+  --warning-text: 37 87% 62%;
+  --info: 227 100% 78%;
+  --info-foreground: 40 11% 5%;
+  --info-text: 227 100% 78%;
 }
 
 @layer base {
@@ -155,6 +245,155 @@
   }
   #saas-os-portal [id^='radix-'] {
     transform: none !important;
+  }
+}
+
+/* ── Marketing surface utilities ─────────────────────────────────────────
+   Hand-written rather than a library: the homepage ships no animation
+   runtime, so every effect below is CSS, and each one switches off under
+   prefers-reduced-motion. */
+
+/* Paper grain: a 2-4% noise over the page, so flat fills read as material
+   instead of a screen colour. An inline SVG, no request. */
+.grain {
+  position: relative;
+  isolation: isolate;
+}
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* No mix-blend-mode: blending a full-section layer costs a compositing pass
+   on every frame on phones, for a difference nobody sees at 5% opacity. */
+.dark .grain::after {
+  opacity: 0.07;
+  filter: invert(1);
+}
+
+/* The drafting grid behind a section: hairlines that fade out at the edges. */
+.drafting-grid {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 40%,
+    #000 30%,
+    transparent 75%
+  );
+}
+
+/* Figure captions: "Fig. 02 - The tour". Mono, tracked, numbered. */
+.fig-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scroll reveal, in CSS only (scroll-driven animations). Browsers without
+   animation-timeline, and anyone who prefers reduced motion, get the content
+   as it is: nothing starts hidden. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The hand-drawn underline under the hero's accent word draws itself once. */
+@media (prefers-reduced-motion: no-preference) {
+  .draw-in {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw-in 900ms var(--ease-out-quint) 350ms forwards;
+  }
+}
+@keyframes draw-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* A live indicator: the one place the orange moves. */
+@media (prefers-reduced-motion: no-preference) {
+  .live-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: live-ping 2.4s var(--ease-out-quint) infinite;
+  }
+}
+@keyframes live-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Content that a click swaps in (the hero's SDK demo): a short ease-out
+   entrance answering the visitor's action. @starting-style, no JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+  .demo-enter {
+    transition:
+      opacity 180ms var(--ease-out-quint),
+      transform 180ms var(--ease-out-quint);
+    @starting-style {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+  }
+}
+
+/* The tour map: hovering a column lifts its dots; finished tasks fill in
+   one after another when progress arrives (an answer to data, so short). */
+.tour-map-column:hover .tour-map-dot {
+  stroke: var(--foreground);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tour-map-dot {
+    transition:
+      fill 240ms var(--ease-out-quint) var(--delay, 0ms),
+      stroke 240ms var(--ease-out-quint);
+  }
+}
+
+/* A caret that blinks at the end of the typed line. */
+@media (prefers-reduced-motion: no-preference) {
+  .caret {
+    animation: caret 1.1s steps(1) infinite;
+  }
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
   }
 }
 

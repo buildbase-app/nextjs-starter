@@ -73,3 +73,6 @@ e2e/.auth/
 playwright-report/
 playwright-report-live/
 test-results/
+
+# Lighthouse CI reports (npm run score)
+/.lighthouseci/

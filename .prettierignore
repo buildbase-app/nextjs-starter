@@ -1,0 +1,7 @@
+# Skills vendored verbatim from upstream (see .claude/skills/README.md):
+# kept byte-for-byte so an update is a plain diff against the source.
+.claude/skills/frontend-design/
+.claude/skills/web-interface-guidelines/
+.claude/skills/emil-design-eng/
+.claude/skills/review-animations/
+.claude/skills/choreograph/

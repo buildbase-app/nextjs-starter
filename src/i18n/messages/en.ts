@@ -103,46 +103,138 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'Live demo · {count} tasks',
-      heading:
-        'Every BuildBase capability, <highlight>one task at a time</highlight>',
+      heading: 'Skip the part of SaaS every team rebuilds.',
+      listLabel: 'Already working in this app:',
+      checklist: [
+        'Sign-in',
+        'Workspaces',
+        'Teams',
+        'Billing',
+        'Usage limits',
+        'Credits',
+        'Notifications',
+        'Webhooks',
+        'Agent access',
+      ],
       description:
-        'A real app on the BuildBase SDK, with a guided tour: sign in and work through sign-up, workspaces, billing, usage, credits, notifications, agents and webhooks, each one showing where it comes from.',
-      signInToExplore: 'Sign in to explore',
-      openDashboard: 'Open Dashboard',
-      viewSource: 'View source',
-      builtWith: 'Built with',
+        'A real Next.js app on the BuildBase SDK. Sign in and work through {count} tasks; each one shows the hook, the console screen and the file in this repo behind it.',
+      start: 'Start the tour',
+      viewSource: 'Read the source',
+      cloneLabel: 'Clone command',
+      copy: 'Copy',
+      copied: 'Copied',
     },
-    stats: {
-      languages: {
-        label: 'Languages in this demo',
-        sublabel: 'switch with the header toggle',
-      },
-      tasks: {
-        label: 'Tasks in the tour',
-        sublabel: 'each one a capability to try',
-      },
-      groups: {
-        label: 'Groups',
-        sublabel: 'from sign-in to webhooks',
-      },
-      authCode: {
-        label: 'Lines of auth code',
-        sublabel: 'the SDK handles it all',
+    demo: {
+      heading: 'One call, one working feature',
+      description:
+        'Pick a step to see the SDK call and what it renders. Each one is a task in the tour.',
+      tablist: 'SDK examples',
+      preview: 'What the call renders',
+      tryIt: 'Try it in the tour',
+      steps: {
+        signIn: {
+          label: 'Sign in',
+          result: 'Signed in',
+          detail: 'Session on this device',
+        },
+        workspace: {
+          label: 'Workspace',
+          result: 'Workspace created',
+          detail: '{count, plural, one {# member} other {# members}}',
+        },
+        plan: {
+          label: 'Subscribe',
+          result: 'Plan active',
+          detail: 'Renews every month',
+        },
+        credits: {
+          label: 'Credits',
+          result: '1 credit spent',
+          detail: '{count, plural, one {# credit left} other {# credits left}}',
+        },
+        notify: {
+          label: 'Notify',
+          result: 'New comment on your document',
+          detail: 'Delivered to inbox, email and push',
+        },
       },
     },
+    tourMap: {
+      label: 'Every dot is a task in the tour, one column per group.',
+      signedOut: 'Sign in and they fill in as you finish them.',
+      progress:
+        '{done, plural, =0 {None of the {total} tasks done yet} one {# of {total} tasks done} other {# of {total} tasks done}}',
+      share: 'Share your progress',
+      shared: 'Link copied',
+      pageDescription:
+        'One dot per task in the BuildBase tour, filled where it is done. Start your own and see how far you get.',
+      pageCta: 'Start your own tour',
+    },
+    agentLane: {
+      heading: 'Your users and their agents, through the same rules',
+      description:
+        'A person in the app and Claude over MCP each create a document. Both go through one service, so both count against the plan’s quota and spend a credit.',
+      play: 'Run both',
+      replay: 'Run again',
+      human: 'In the app',
+      agent: 'Over MCP, as the same person',
+      humanAction: 'Clicks New document',
+      agentAction: 'Calls a tool with the documents:write scope',
+      created: 'Draft created',
+      credits: 'Credits',
+      quota: 'Documents this period',
+      source: 'Read the tool',
+      tryIt: 'Connect an agent in the tour',
+      status:
+        '{who}: draft created. {credits} credits left, {used} documents this period.',
+    },
+    webhook: {
+      heading: 'Watch one upgrade reach your database',
+      description:
+        'When a customer changes plan, BuildBase tells your server. This is the path the event takes in this app, step by step.',
+      play: 'Play the upgrade',
+      replay: 'Play again',
+      retry: 'Send it again',
+      retried: 'Delivered again: same row, no duplicate.',
+      source: 'Read the handler',
+      tryIt: 'Try it in the tour',
+      status: 'Step {step} of {total}: {title}',
+      stages: {
+        click: {
+          title: 'A customer upgrades',
+          body: 'Starter to Team, from the plan picker.',
+        },
+        send: {
+          title: 'BuildBase signs and sends it',
+          body: 'An HMAC-SHA256 signature over the timestamp and the body.',
+        },
+        verify: {
+          title: 'Your server checks it',
+          body: 'parseWebhookEvent turns away a bad signature, or anything older than five minutes.',
+        },
+        store: {
+          title: 'One row in Postgres',
+          body: 'Keyed by a hash of the body, so a retry lands on the same row.',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'Prompt for your coding agent',
+    },
+    facts:
+      '<n>{tasks}</n> tasks in <n>{groups}</n> groups, in <n>{languages}</n> languages, and <n>0</n> lines of auth code written by hand.',
     cta: {
-      heading: 'Ready to see it all working?',
+      heading: 'Clone it, or click through it first.',
       description:
-        'Sign in to open the full dashboard — try switching workspaces, consuming credits, sending a push notification, and switching between all 8 languages.',
-      signIn: 'Sign in & explore',
-      openDashboard: 'Open Dashboard',
+        'The app is open source. Every screen on this page is in the repo, wired to the same SDK you would install.',
+      signIn: 'Start the tour',
       howBuilt: "How it's built",
     },
     meta: {
-      title: 'My App',
-      description: 'My Next.js application with shadcn/ui and theme support',
-      tagline: 'Build something amazing',
+      title: 'BuildBase Demo: a live SaaS app on the BuildBase SDK',
+      description:
+        'Sign in and try auth, workspaces, billing, credits, notifications, webhooks and AI agent access in a working Next.js app. Every screen is open source.',
+      tagline: 'Every SaaS capability, one task at a time.',
     },
   },
   dashboard: {

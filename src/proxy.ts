@@ -29,7 +29,20 @@ function buildbaseConnectSources(): string[] {
   }
 }
 
-function addSecurityHeaders(response: NextResponse): NextResponse {
+/**
+ * Whether the browser reached this site over HTTPS. Behind a proxy (Vercel,
+ * Cloudflare) the URL the app sees can be http, so the forwarded header wins.
+ */
+function servedOverHttps(request: NextRequest): boolean {
+  const forwarded = request.headers.get('x-forwarded-proto');
+  if (forwarded) return forwarded.split(',')[0].trim() === 'https';
+  return request.nextUrl.protocol === 'https:';
+}
+
+function addSecurityHeaders(
+  response: NextResponse,
+  https: boolean
+): NextResponse {
   const cspDirectives = [
     "default-src 'self'",
     // 'unsafe-eval' required for Contentlayer MDX runtime.
@@ -49,11 +62,11 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-    // Only where the site is served over HTTPS: in development it would
-    // rewrite every http://localhost API call to https and break them.
-    ...(process.env.NODE_ENV === 'production'
-      ? ['upgrade-insecure-requests']
-      : []),
+    // Only where the site is served over HTTPS. Keyed on NODE_ENV it also
+    // fired for `next start` on http://localhost, where the browser then
+    // asked https://localhost for every script and the page never hydrated
+    // (and Lighthouse or Playwright against a production build saw a dead page).
+    ...(https ? ['upgrade-insecure-requests'] : []),
   ];
 
   response.headers.set('Content-Security-Policy', cspDirectives.join('; '));
@@ -65,10 +78,12 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     'Permissions-Policy',
     'camera=(), microphone=(), geolocation=(), interest-cohort=()'
   );
-  response.headers.set(
-    'Strict-Transport-Security',
-    'max-age=31536000; includeSubDomains; preload'
-  );
+  if (https) {
+    response.headers.set(
+      'Strict-Transport-Security',
+      'max-age=31536000; includeSubDomains; preload'
+    );
+  }
 
   return response;
 }
@@ -137,7 +152,7 @@ export function proxy(request: NextRequest): NextResponse {
   );
 
   // Add security headers to the response
-  return addSecurityHeaders(response);
+  return addSecurityHeaders(response, servedOverHttps(request));
 }
 
 export const config = {
@@ -148,8 +163,9 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - sitemap.xml and robots.txt (SEO files)
-     * - public folder assets
+     * - public folder assets (images, fonts, the share-image fonts, and
+     *   pagefind/, the blog search index built after `next build`)
      */
-    '/((?!_next/static|_next/image|favicon.ico|push-sw\\.js|sitemap\\.xml|sitemap-\\d+\\.xml|robots\\.txt|llms\\.txt|llms-full\\.txt|openapi\\.json|\\.well-known/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|push-sw\\.js|sitemap\\.xml|sitemap-\\d+\\.xml|robots\\.txt|llms\\.txt|llms-full\\.txt|openapi\\.json|\\.well-known/|og-fonts/|pagefind/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|ttf|woff2?)$).*)',
   ],
 };

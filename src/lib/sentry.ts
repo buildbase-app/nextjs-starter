@@ -64,8 +64,13 @@ export async function captureError(
 }
 
 /**
- * Synchronous version for error boundaries (can't use async in useEffect cleanup)
- * Falls back to console.error if Sentry not available
+ * For error boundaries, which cannot await: reports in the background and
+ * returns at once. Falls back to console.error if Sentry is not available.
+ *
+ * A dynamic import, not `require()`: a static require is resolved by the
+ * bundler into the boundary's own chunk, and the boundaries render on every
+ * page, so the whole Sentry SDK (about 270 KB compressed) shipped to every
+ * visitor even with Sentry switched off. Now it loads on the first error.
  */
 export function captureErrorSync(
   error: unknown,
@@ -79,17 +84,16 @@ export function captureErrorSync(
     return;
   }
 
-  // Dynamic require for sync usage
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const Sentry = require('@sentry/nextjs');
-    Sentry.captureException(error, {
-      tags: context?.tags,
-      extra: context?.extra,
+  import('@sentry/nextjs')
+    .then((Sentry) => {
+      Sentry.captureException(error, {
+        tags: context?.tags,
+        extra: context?.extra,
+      });
+    })
+    .catch(() => {
+      console.error('[Error]', error, context);
     });
-  } catch {
-    console.error('[Error]', error, context);
-  }
 }
 
 /**

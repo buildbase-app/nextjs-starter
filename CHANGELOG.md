@@ -9,11 +9,91 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- A redesigned home page in the BuildBase brand: a hero that crosses off the
+  SaaS parts every team rebuilds, an interactive SDK panel whose code lines
+  come from the tour catalog, the facts as one sentence, the whole tour as a
+  numbered index, and a close with the clone command. CSS-only motion, each
+  effect with a reduced-motion path; no animation runtime added.
+- "Your users and their agents, through the same rules": a person in the
+  app and their agent over MCP (`create_document`, scope `documents:write`)
+  each create a document through `src/lib/documents/service.ts`, and the
+  shared counters show both spend a credit and a unit of the `documents`
+  quota.
+- "Watch one upgrade reach your database": a playable webhook flow on the
+  home page, from the click to the row, with the handler's real names
+  (`subscription.upgraded`, the HMAC-SHA256 signature, `parseWebhookEvent`,
+  `WebhookEvent`). "Send it again" shows a retry landing on the same row.
+- A prompt to paste into a coding agent beside the clone command
+  (`agentPrompt` in `src/config/site.ts`).
+- The tour as a map on the home page: one column per group, one dot per
+  task; signed in, the tasks you have finished fill in, with a count.
+- Share your tour progress: signed in, the map offers "Share your
+  progress", a link to `/tour/progress?d=...` whose card image draws your
+  map (`/api/og/tour`). The code is one bit per task (22 characters, no
+  account id, nothing looked up); the page is `noindex`.
+- `?step=credits` (or `signIn`, `workspace`, `plan`, `notify`) opens the
+  hero's SDK panel on that step, and picking a step updates the address, so
+  a moment can be shared.
+- Brand tokens (paper, ink, Plug Orange, cobalt) in light and dark, applied to
+  the SDK's own screens too (`.saas-os-ui`), and Instrument Serif as the
+  display face, served from this site.
+- Design skills for coding agents in `.claude/skills/`: `buildbase-design`
+  (this repo's brief, including which libraries may be added under their
+  licences) and vendored `frontend-design`, `web-interface-guidelines`,
+  `emil-design-eng`, `choreograph` and `review-animations`.
+- Scores: `npm run test:a11y` (axe, WCAG 2.2 AA, light and dark),
+  `npm run score` / `score:desktop` (Lighthouse CI) and a `Scores` workflow on
+  pull requests.
+- `SiteShell`: the blog, changelog, pricing, privacy and terms pages now have
+  the site header, footer and a `<main>` landmark (they had none).
+
+### Changed
+
+- Playwright 1.65 (from 1.58), which supports Ubuntu 26.04: the Scores
+  workflow runs on `ubuntu-latest` again, and `e2e-signed-in.yml`, which
+  installs Chromium the same way, can too.
+
+### Added (earlier)
+
 - Sentry error monitoring integration with session replay
 - Global error boundary (`src/app/global-error.tsx`)
 - Sentry utility functions (`src/lib/sentry.ts`)
 - Deploys to Cloudflare Workers (OpenNext) as well as Vercel and Docker, with a
   GitHub Actions deploy on push to `main` once `CLOUDFLARE_API_TOKEN` is set.
+
+### Fixed
+
+- Share images in Hindi, Japanese, Chinese and Arabic: the cards now draw
+  with self-hosted subsets in `public/og-fonts` (Noto Sans, Noto Sans
+  Devanagari, Noto Sans JP, Noto Sans SC, Cairo; OFL, licence files beside
+  them), made by `npm run og:fonts`. Before, next/og fetched fonts from
+  Google at render time for those scripts, and the Arabic card failed
+  outright (Noto Sans Arabic's tables are beyond the renderer, hence Cairo).
+  A font the renderer rejects now falls back to the default font instead of
+  failing the response; tests render every locale's subsets and fail when a
+  message gains a character the subset lacks.
+- The proxy matched `/pagefind/*`, so the blog search index 404'd in
+  production and the search found nothing; it and `/og-fonts/*` (and font
+  files) are now served as static assets.
+
+- The home page's title and description were "My App" and "My Next.js
+  application with shadcn/ui and theme support" in all eight languages; the
+  share image said "My App" too.
+- Stripe.js loaded on every page (and set a third-party cookie) because the
+  main `@stripe/stripe-js` entry injects it on import; the pure entry loads it
+  when a checkout needs it.
+- Sentry's SDK (~270 KB compressed) shipped to every visitor even with Sentry
+  off: the error boundaries' helper used a static `require`.
+- `upgrade-insecure-requests` and HSTS were sent whenever `NODE_ENV` was
+  production, so `next start` on http://localhost never hydrated; they now
+  follow the request's protocol.
+- Every blog visit from a Mac failed hydration (React #418): the search
+  button read `navigator` during render.
+- Pricing rendered skeletons and then shifted (CLS 0.16); the server's plans
+  are now in the HTML.
+- Accessibility: unlabelled currency selects, skipped heading levels (pricing
+  cards, footer columns), a header that overflowed a 360px phone while the
+  session loaded, and a missing author avatar (404).
 
 ### Changed
 

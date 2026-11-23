@@ -1,53 +1,62 @@
-'use client';
-
-import { ArrowRight } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
-import {
-  WhenAuthenticated,
-  WhenUnauthenticated,
-  useSaaSAuth,
-} from '@buildbase/sdk/react';
+import { agentPrompt, cloneCommand } from '@/config/site';
+import { CopyCommand } from './copy-command';
 
-function SignInButton({ label }: { label: string }) {
-  const { signIn } = useSaaSAuth();
-  return (
-    <Button size="lg" className="gap-2 px-8" onClick={() => signIn()}>
-      {label}
-      <ArrowRight className="h-4 w-4" />
-    </Button>
-  );
-}
-
-export function CtaBanner() {
-  const t = useTranslations('home');
+/**
+ * The close: the two ways to take the app, said plainly. No gradient box;
+ * the display face and the drafting grid carry it.
+ */
+export async function CtaBanner() {
+  const [t, tHero, tAgent] = await Promise.all([
+    getTranslations('home.cta'),
+    getTranslations('home.hero'),
+    getTranslations('home.agentPrompt'),
+  ]);
 
   return (
-    <section className="w-full px-6 py-20">
-      <div className="from-primary/10 via-primary/5 border-primary/20 mx-auto max-w-4xl rounded-2xl border bg-gradient-to-br to-transparent px-8 py-16 text-center">
-        <h2 className="text-foreground text-3xl font-bold tracking-tight md:text-4xl">
-          {t('cta.heading')}
+    <section className="grain relative w-full overflow-hidden border-t">
+      <div
+        aria-hidden
+        className="drafting-grid pointer-events-none absolute inset-0 -z-10 opacity-60"
+      />
+      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+        <h2 className="font-display text-foreground max-w-[18ch] text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.01em] text-balance">
+          {t('heading')}
         </h2>
-        <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-lg">
-          {t('cta.description')}
+        <p className="text-muted-foreground mt-6 max-w-xl text-lg text-pretty">
+          {t('description')}
         </p>
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <WhenUnauthenticated>
-            <SignInButton label={t('cta.signIn')} />
-          </WhenUnauthenticated>
-          <WhenAuthenticated>
-            <Button size="lg" className="gap-2 px-8" asChild>
-              <Link href="/dashboard">
-                {t('cta.openDashboard')}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </WhenAuthenticated>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/blog">{t('cta.howBuilt')}</Link>
+        <div className="mt-10 flex flex-wrap items-center gap-3">
+          <Button size="lg" className="h-11 px-6 text-[15px]" asChild>
+            <Link href="/dashboard/tour">{t('signIn')}</Link>
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="h-11 px-5 text-[15px]"
+            asChild
+          >
+            <Link href="/blog">{t('howBuilt')}</Link>
           </Button>
         </div>
+        <CopyCommand
+          className="mt-6 w-full sm:w-fit sm:max-w-full"
+          command={cloneCommand}
+          label={tHero('cloneLabel')}
+          copyLabel={tHero('copy')}
+          copiedLabel={tHero('copied')}
+        />
+        <p className="text-muted-foreground mt-8 text-sm">{tAgent('label')}</p>
+        <CopyCommand
+          prompt
+          className="mt-2 max-w-2xl"
+          command={agentPrompt}
+          label={tAgent('label')}
+          copyLabel={tHero('copy')}
+          copiedLabel={tHero('copied')}
+        />
       </div>
     </section>
   );

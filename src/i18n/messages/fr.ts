@@ -103,47 +103,140 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'Démo en direct · {count} tâches',
-      heading:
-        'Chaque capacité de BuildBase, <highlight>une tâche à la fois</highlight>',
+      heading: 'Passez la partie du SaaS que chaque équipe reconstruit.',
+      listLabel: 'Déjà en place dans cette app :',
+      checklist: [
+        'Connexion',
+        'Espaces de travail',
+        'Équipes',
+        'Facturation',
+        'Limites d’usage',
+        'Crédits',
+        'Notifications',
+        'Webhooks',
+        'Accès des agents',
+      ],
       description:
-        "Connectez-vous pour voir l'authentification, les espaces de travail multi-tenant, la facturation de crédits, les notifications push et l'i18n en 8 langues — propulsé par le BuildBase SDK.",
-      signInToExplore: 'Se connecter pour explorer',
-      openDashboard: 'Ouvrir le tableau de bord',
-      viewSource: 'Voir le code source',
-      builtWith: 'Construit avec',
+        'Une vraie app Next.js sur le SDK BuildBase. Connectez-vous et parcourez {count} tâches ; chacune montre le hook, l’écran de la console et le fichier de ce dépôt qui la font fonctionner.',
+      start: 'Commencer la visite',
+      viewSource: 'Lire le code',
+      cloneLabel: 'Commande de clonage',
+      copy: 'Copier',
+      copied: 'Copié',
     },
-    stats: {
-      languages: {
-        label: 'Langues dans cette démo',
-        sublabel: "changez avec le sélecteur dans l'en-tête",
-      },
-      tasks: {
-        label: 'Tâches de la visite',
-        sublabel: 'chacune une capacité à essayer',
-      },
-      groups: {
-        label: 'Groupes',
-        sublabel: 'de la connexion aux webhooks',
-      },
-      authCode: {
-        label: "Lignes de code d'auth",
-        sublabel: 'le SDK gère tout',
+    demo: {
+      heading: 'Un appel, une fonctionnalité qui marche',
+      description:
+        'Choisissez une étape pour voir l’appel du SDK et ce qu’il affiche. Chacune est une tâche de la visite.',
+      tablist: 'Exemples du SDK',
+      preview: 'Ce que l’appel affiche',
+      tryIt: 'L’essayer dans la visite',
+      steps: {
+        signIn: {
+          label: 'Connexion',
+          result: 'Connecté',
+          detail: 'Session sur cet appareil',
+        },
+        workspace: {
+          label: 'Espace',
+          result: 'Espace créé',
+          detail: '{count, plural, one {# membre} other {# membres}}',
+        },
+        plan: {
+          label: 'S’abonner',
+          result: 'Offre active',
+          detail: 'Renouvelée chaque mois',
+        },
+        credits: {
+          label: 'Crédits',
+          result: '1 crédit utilisé',
+          detail:
+            '{count, plural, one {# crédit restant} other {# crédits restants}}',
+        },
+        notify: {
+          label: 'Notifier',
+          result: 'Nouveau commentaire sur votre document',
+          detail: 'Livré dans la boîte, par e-mail et en push',
+        },
       },
     },
+    tourMap: {
+      label: 'Chaque point est une tâche de la visite, une colonne par groupe.',
+      signedOut:
+        'Connectez-vous et ils se remplissent à mesure que vous les terminez.',
+      progress:
+        '{done, plural, =0 {Aucune des {total} tâches terminée pour l’instant} one {# tâche sur {total} terminée} other {# tâches sur {total} terminées}}',
+      share: 'Partager votre progression',
+      shared: 'Lien copié',
+      pageDescription:
+        'Un point par tâche de la visite BuildBase, plein quand elle est faite. Lancez la vôtre et voyez jusqu’où vous allez.',
+      pageCta: 'Commencer votre visite',
+    },
+    agentLane: {
+      heading: 'Vos utilisateurs et leurs agents, avec les mêmes règles',
+      description:
+        'Une personne dans l’app et Claude via MCP créent chacun un document. Les deux passent par le même service : les deux comptent dans le quota de l’offre et dépensent un crédit.',
+      play: 'Lancer les deux',
+      replay: 'Relancer',
+      human: 'Dans l’app',
+      agent: 'Via MCP, en tant que la même personne',
+      humanAction: 'Clique sur Nouveau document',
+      agentAction: 'Appelle un outil avec le scope documents:write',
+      created: 'Brouillon créé',
+      credits: 'Crédits',
+      quota: 'Documents sur la période',
+      source: 'Lire l’outil',
+      tryIt: 'Connecter un agent dans la visite',
+      status:
+        '{who} : brouillon créé. {credits} crédits restants, {used} documents sur la période.',
+    },
+    webhook: {
+      heading: 'Regardez une mise à niveau arriver dans votre base',
+      description:
+        'Quand un client change d’offre, BuildBase prévient votre serveur. Voici le chemin de l’événement dans cette app, étape par étape.',
+      play: 'Lancer la mise à niveau',
+      replay: 'Relancer',
+      retry: 'Le renvoyer',
+      retried: 'Livré de nouveau : même ligne, aucun doublon.',
+      source: 'Lire le handler',
+      tryIt: 'L’essayer dans la visite',
+      status: 'Étape {step} sur {total} : {title}',
+      stages: {
+        click: {
+          title: 'Un client passe à l’offre supérieure',
+          body: 'De Starter à Team, depuis le choix d’offre.',
+        },
+        send: {
+          title: 'BuildBase le signe et l’envoie',
+          body: 'Une signature HMAC-SHA256 sur l’horodatage et le corps.',
+        },
+        verify: {
+          title: 'Votre serveur le vérifie',
+          body: 'parseWebhookEvent refuse une mauvaise signature, ou tout ce qui a plus de cinq minutes.',
+        },
+        store: {
+          title: 'Une ligne dans Postgres',
+          body: 'La clé est un hash du corps : une nouvelle tentative retombe sur la même ligne.',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'Prompt pour votre agent de code',
+    },
+    facts:
+      '<n>{tasks}</n> tâches en <n>{groups}</n> groupes, en <n>{languages}</n> langues, et <n>0</n> ligne de code d’authentification écrite à la main.',
     cta: {
-      heading: 'Prêt à voir tout fonctionner ?',
+      heading: 'Clonez-la, ou parcourez-la d’abord.',
       description:
-        "Connectez-vous pour ouvrir le tableau de bord complet — essayez de changer d'espace de travail, de consommer des crédits, d'envoyer une notification push et de basculer entre les 8 langues.",
-      signIn: 'Se connecter et explorer',
-      openDashboard: 'Ouvrir le tableau de bord',
+        'L’app est open source. Chaque écran de cette page est dans le dépôt, branché sur le même SDK que vous installeriez.',
+      signIn: 'Commencer la visite',
       howBuilt: "Comment c'est construit",
     },
     meta: {
-      title: 'Mon Application',
+      title: 'Démo BuildBase : une vraie app SaaS sur le SDK BuildBase',
       description:
-        'Une vraie app sur le SDK BuildBase, avec une visite guidée : connectez-vous et parcourez inscription, espaces de travail, facturation, usage, crédits, notifications, agents et webhooks, chacun montrant d’où il vient.',
-      tagline: 'Construisez quelque chose de remarquable',
+        'Connectez-vous et essayez l’authentification, les espaces de travail, la facturation, les crédits, les notifications, les webhooks et l’accès des agents IA dans une app Next.js qui tourne. Chaque écran est open source.',
+      tagline: 'Chaque fonctionnalité SaaS, une tâche à la fois.',
     },
   },
   dashboard: {

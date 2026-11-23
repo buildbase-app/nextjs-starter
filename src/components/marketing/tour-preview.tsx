@@ -1,13 +1,17 @@
 import { getLocale, getTranslations } from 'next-intl/server';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { tourGroups, tourTasks } from '@/tour/text';
+import { TourMap } from './tour-map';
+import { TASK_ORDER } from '@/tour/share';
 
 /**
- * The tour, read before signing in: every group and every task title, so a
- * person evaluating BuildBase sees the whole surface up front. Content is
- * the catalog's English; only the chrome is translated.
+ * The tour, read before signing in: every group and every task, as a
+ * numbered index (the tour is a sequence, so the numbers carry meaning).
+ * Each group is a native <details>, so the whole list is in the HTML for
+ * readers and crawlers, opens with the keyboard and needs no JavaScript.
+ * Content is the catalog's text; only the chrome is translated.
  */
 export async function TourPreview() {
   const [t, locale] = await Promise.all([getTranslations('tour'), getLocale()]);
@@ -15,66 +19,79 @@ export async function TourPreview() {
   const tasks = tourTasks(locale);
 
   return (
-    <section id="tour" className="w-full max-w-6xl scroll-mt-20 px-6 py-20">
-      <div className="mb-10 text-center">
-        <h2 className="text-foreground text-3xl font-bold tracking-tight text-balance">
-          {t('homeTitle')}
-        </h2>
-        <p className="text-muted-foreground mx-auto mt-3 max-w-2xl text-lg text-pretty">
-          {t('homeSubtitle', {
-            total: tasks.length,
-            groups: groups.length,
+    <section id="tour" className="w-full scroll-mt-20 border-b">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-28">
+            <h2 className="text-foreground text-4xl font-semibold tracking-[-0.03em] text-balance md:text-5xl">
+              {t('homeTitle')}
+            </h2>
+            <p className="text-muted-foreground mt-4 max-w-md text-lg text-pretty">
+              {t('homeSubtitle', {
+                total: tasks.length,
+                groups: groups.length,
+              })}
+            </p>
+            <Button asChild size="lg" className="mt-8 h-11 px-6">
+              <Link href="/dashboard/tour">{t('homeCta')}</Link>
+            </Button>
+            <TourMap
+              total={tasks.length}
+              order={TASK_ORDER}
+              columns={groups.map((group) => ({
+                id: group.id,
+                title: group.title,
+                taskIds: tasks
+                  .filter((task) => task.group === group.id)
+                  .map((task) => task.id),
+              }))}
+            />
+          </div>
+        </div>
+
+        <ol className="border-t lg:col-span-8">
+          {groups.map((group, i) => {
+            const groupTasks = tasks.filter((task) => task.group === group.id);
+            return (
+              <li key={group.id} className="border-b">
+                <details className="group/row">
+                  <summary className="hover:bg-muted/60 focus-visible:ring-ring flex cursor-pointer list-none items-baseline gap-4 rounded-sm px-2 py-4 transition-colors focus-visible:ring-2 focus-visible:outline-none md:gap-6 [&::-webkit-details-marker]:hidden">
+                    <span className="text-muted-foreground w-6 shrink-0 font-mono text-xs tabular-nums">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="text-foreground block font-medium md:text-lg">
+                        {group.title}
+                      </span>
+                      <span className="text-muted-foreground mt-0.5 block text-sm text-pretty">
+                        {group.summary}
+                      </span>
+                    </span>
+                    <span className="text-muted-foreground shrink-0 font-mono text-xs tabular-nums">
+                      {groupTasks.length}
+                    </span>
+                    <ChevronDown
+                      aria-hidden
+                      className="text-muted-foreground size-4 shrink-0 translate-y-0.5 transition-transform duration-200 group-open/row:rotate-180"
+                    />
+                  </summary>
+                  <ul className="grid gap-x-8 gap-y-1 px-2 ps-12 pt-1 pb-5 sm:grid-cols-2 md:ps-14">
+                    {groupTasks.map((task) => (
+                      <li key={task.id}>
+                        <Link
+                          href={`/dashboard/tour?task=${task.id}`}
+                          className="text-foreground hover:text-link block py-1 text-sm leading-snug underline-offset-4 hover:underline"
+                        >
+                          {task.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              </li>
+            );
           })}
-        </p>
-      </div>
-
-      <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {groups.map((group, i) => {
-          const groupTasks = tasks.filter((task) => task.group === group.id);
-          return (
-            <li
-              key={group.id}
-              className="bg-card flex flex-col rounded-xl border p-5"
-            >
-              <div className="mb-3 flex items-baseline gap-2">
-                <span className="text-muted-foreground font-mono text-xs tabular-nums">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="font-semibold">{group.title}</h3>
-                <span className="text-muted-foreground ml-auto text-xs tabular-nums">
-                  {groupTasks.length}
-                </span>
-              </div>
-              <p className="text-muted-foreground mb-4 text-sm">
-                {group.summary}
-              </p>
-              <ul className="space-y-1.5">
-                {groupTasks.map((task) => (
-                  <li
-                    key={task.id}
-                    className="flex items-start gap-2 text-sm leading-snug"
-                  >
-                    <CheckCircle2 className="text-muted-foreground/40 mt-0.5 h-3.5 w-3.5 shrink-0" />
-                    <Link
-                      href={`/dashboard/tour?task=${task.id}`}
-                      className="hover:text-primary"
-                    >
-                      {task.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          );
-        })}
-      </ol>
-
-      <div className="mt-10 text-center">
-        <Button asChild size="lg">
-          <Link href="/dashboard/tour">
-            {t('homeCta')} <ArrowRight className="ml-1 h-4 w-4" />
-          </Link>
-        </Button>
+        </ol>
       </div>
     </section>
   );

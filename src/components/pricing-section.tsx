@@ -55,6 +55,8 @@ interface PricingSectionProps {
   description?: string | null;
   /** Include JSON-LD structured data (Product + SoftwareApplication). Defaults to true. */
   includeJsonLd?: boolean;
+  /** `h1` when the section is the page (/pricing), `h2` inside another page. */
+  headingLevel?: 'h1' | 'h2';
 }
 
 /**
@@ -80,7 +82,9 @@ export async function PricingSection({
   title = 'Pricing',
   description = 'Choose the plan that fits your needs',
   includeJsonLd = true,
+  headingLevel = 'h2',
 }: PricingSectionProps) {
+  const Heading = headingLevel;
   const data = await fetchPlansData(slug);
 
   const plans = data?.plans ?? [];
@@ -145,20 +149,38 @@ export async function PricingSection({
 
       {/* Optional heading */}
       {title !== null ? (
-        <div className="mb-10 text-center">
+        <div className="mb-10">
           {title ? (
-            <h2 className="text-foreground text-3xl font-bold tracking-tight md:text-4xl">
+            <Heading
+              className={
+                headingLevel === 'h1'
+                  ? 'text-foreground text-[clamp(2.5rem,6vw,4.5rem)] leading-[1] font-semibold tracking-[-0.04em] text-balance'
+                  : 'text-foreground text-3xl font-semibold tracking-[-0.03em] md:text-4xl'
+              }
+            >
               {title}
-            </h2>
+            </Heading>
           ) : null}
           {description ? (
-            <p className="text-muted-foreground mt-3 text-lg">{description}</p>
+            <p
+              className={
+                headingLevel === 'h1'
+                  ? 'text-muted-foreground mt-5 max-w-2xl text-xl text-pretty'
+                  : 'text-muted-foreground mt-3 max-w-2xl text-lg text-pretty'
+              }
+            >
+              {description}
+            </p>
           ) : null}
         </div>
       ) : null}
 
       {/* Interactive client component */}
-      <PricingPlans slug={slug} />
+      <PricingPlans
+        slug={slug}
+        initialData={data}
+        planHeadingLevel={headingLevel === 'h1' ? 2 : 3}
+      />
     </section>
   );
 }

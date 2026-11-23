@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo/json-ld';
 import { seoConfig } from '@/config/seo';
 import './globals.css';
@@ -12,6 +12,17 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+// The display face for marketing headlines (`font-display`). OFL, and
+// next/font serves it from this site, so no visitor's browser asks Google
+// for it. One weight, both styles: the italic carries the accent word.
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  weight: '400',
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -67,7 +78,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} h-screen w-screen antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-screen w-screen antialiased`}
       >
         {children}
       </body>

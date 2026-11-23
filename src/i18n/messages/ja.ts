@@ -103,45 +103,137 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'ライブデモ · {count}タスク',
-      heading: 'BuildBaseのすべての機能を、<highlight>ひとつずつ</highlight>',
+      heading: 'どのチームも作り直す SaaS の部分は、もう作らなくていい。',
+      listLabel: 'このアプリで動いているもの：',
+      checklist: [
+        'サインイン',
+        'ワークスペース',
+        'チーム',
+        '課金',
+        '利用上限',
+        'クレジット',
+        '通知',
+        'Webhook',
+        'エージェント連携',
+      ],
       description:
-        'BuildBase SDKで作られた実際のアプリとガイド付きツアー。サインインして、登録、ワークスペース、請求、使用量、クレジット、通知、エージェント、Webhookを順に試し、それぞれの出どころを確認できます。',
-      signInToExplore: 'サインインして探索',
-      openDashboard: 'ダッシュボードを開く',
-      viewSource: 'ソースを見る',
-      builtWith: '使用技術',
+        'BuildBase SDK で動く本物の Next.js アプリです。サインインして {count} 個のタスクを進めると、それぞれの裏にあるフック、コンソール画面、このリポジトリのファイルがわかります。',
+      start: 'ツアーを始める',
+      viewSource: 'ソースを読む',
+      cloneLabel: 'クローン用コマンド',
+      copy: 'コピー',
+      copied: 'コピーしました',
     },
-    stats: {
-      languages: {
-        label: 'このデモの言語数',
-        sublabel: 'ヘッダーのトグルで切り替え',
-      },
-      tasks: {
-        label: 'ツアーのタスク',
-        sublabel: 'それぞれが試せる機能',
-      },
-      groups: {
-        label: 'グループ',
-        sublabel: 'サインインからWebhookまで',
-      },
-      authCode: {
-        label: '認証コードの行数',
-        sublabel: 'SDKがすべて処理',
+    demo: {
+      heading: '呼び出しひとつで、動く機能ひとつ',
+      description:
+        'ステップを選ぶと、SDK の呼び出しと表示結果が見られます。どれもツアーのタスクです。',
+      tablist: 'SDK の例',
+      preview: '呼び出しの表示結果',
+      tryIt: 'ツアーで試す',
+      steps: {
+        signIn: {
+          label: 'サインイン',
+          result: 'サインイン済み',
+          detail: 'このデバイスのセッション',
+        },
+        workspace: {
+          label: 'ワークスペース',
+          result: 'ワークスペースを作成',
+          detail: '{count, plural, other {メンバー # 人}}',
+        },
+        plan: {
+          label: '購読',
+          result: 'プランが有効',
+          detail: '毎月更新',
+        },
+        credits: {
+          label: 'クレジット',
+          result: '1 クレジットを消費',
+          detail: '{count, plural, other {残り # クレジット}}',
+        },
+        notify: {
+          label: '通知',
+          result: 'ドキュメントに新しいコメント',
+          detail: '受信箱、メール、プッシュに配信',
+        },
       },
     },
+    tourMap: {
+      label: '点のひとつひとつがツアーのタスクで、列はグループごとです。',
+      signedOut: 'サインインすると、終えたタスクから埋まっていきます。',
+      progress: '{done, plural, other {{total} 個中 # 個のタスクが完了}}',
+      share: '進捗をシェア',
+      shared: 'リンクをコピーしました',
+      pageDescription:
+        'BuildBase ツアーのタスクごとに 1 つの点、完了したものは塗りつぶされています。あなたも始めて、どこまで進めるか試してみましょう。',
+      pageCta: '自分のツアーを始める',
+    },
+    agentLane: {
+      heading: 'ユーザーもそのエージェントも、同じルールで',
+      description:
+        'アプリの中の人と MCP 経由の Claude が、それぞれドキュメントを作成します。どちらも同じサービスを通るので、プランの上限に数えられ、クレジットを 1 消費します。',
+      play: '両方を実行',
+      replay: 'もう一度実行',
+      human: 'アプリで',
+      agent: 'MCP 経由で、同じ人として',
+      humanAction: '「新規ドキュメント」をクリック',
+      agentAction: 'documents:write スコープでツールを呼び出す',
+      created: '下書きを作成',
+      credits: 'クレジット',
+      quota: '今期のドキュメント',
+      source: 'ツールを読む',
+      tryIt: 'ツアーでエージェントを接続',
+      status:
+        '{who}：下書きを作成。残り {credits} クレジット、今期 {used} 件。',
+    },
+    webhook: {
+      heading: 'プラン変更がデータベースに届くまで',
+      description:
+        '顧客がプランを変えると、BuildBase があなたのサーバーに知らせます。このアプリでイベントがたどる道筋を一歩ずつ見られます。',
+      play: 'アップグレードを再生',
+      replay: 'もう一度再生',
+      retry: 'もう一度送る',
+      retried: '再配信：同じ行のまま、重複なし。',
+      source: 'ハンドラーを読む',
+      tryIt: 'ツアーで試す',
+      status: 'ステップ {step}/{total}：{title}',
+      stages: {
+        click: {
+          title: '顧客がアップグレード',
+          body: 'プラン選択から Starter を Team に。',
+        },
+        send: {
+          title: 'BuildBase が署名して送信',
+          body: 'タイムスタンプと本文に対する HMAC-SHA256 署名。',
+        },
+        verify: {
+          title: 'サーバーが検証',
+          body: 'parseWebhookEvent は不正な署名や 5 分より古いものを拒否します。',
+        },
+        store: {
+          title: 'Postgres に 1 行',
+          body: 'キーは本文のハッシュなので、再送されても同じ行に入ります。',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'コーディングエージェント用のプロンプト',
+    },
+    facts:
+      '<n>{groups}</n> グループに <n>{tasks}</n> 個のタスク、<n>{languages}</n> 言語対応、手書きの認証コードは <n>0</n> 行。',
     cta: {
-      heading: 'すべての動作を確認する準備ができましたか？',
+      heading: 'クローンするか、まず触ってみるか。',
       description:
-        'サインインしてフルダッシュボードを開き、ワークスペースの切り替え、クレジット消費、プッシュ通知の送信、8言語の切り替えを試してみてください。',
-      signIn: 'サインインして探索',
-      openDashboard: 'ダッシュボードを開く',
+        'アプリはオープンソースです。このページの画面はすべてリポジトリにあり、あなたがインストールするのと同じ SDK につながっています。',
+      signIn: 'ツアーを始める',
       howBuilt: '構築方法',
     },
     meta: {
-      title: 'マイアプリ',
-      description: 'shadcn/uiとテーマサポートを備えたNext.jsアプリ',
-      tagline: '素晴らしいものを作ろう',
+      title: 'BuildBase デモ：BuildBase SDK で動く本物の SaaS アプリ',
+      description:
+        'サインインして、認証、ワークスペース、課金、クレジット、通知、Webhook、AI エージェント連携を実際に動く Next.js アプリで試せます。すべての画面はオープンソースです。',
+      tagline: 'SaaS のすべての機能を、ひとつずつ。',
     },
   },
   dashboard: {

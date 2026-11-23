@@ -7,7 +7,8 @@ tour of everything BuildBase gives it.
 
 Live demo: https://demo.buildbase.app
 
-The tour is 67 tasks in 13 groups: sign up, create a second workspace, invite
+The tour is 122 tasks in 22 groups (the home page counts them from
+`src/tour/catalog.ts`): sign up, create a second workspace, invite
 someone by email, subscribe with a test card, hit a quota, spend credits,
 switch a feature flag, send yourself a notification, connect Claude over MCP,
 watch a webhook land in Postgres, export your data. You can read the whole
@@ -137,11 +138,49 @@ npm run lint         # eslint
 npm run check        # lint + format check + typecheck
 npm run test         # vitest
 npm run test:e2e     # playwright (e2e/)
+npm run test:a11y    # axe, WCAG 2.2 AA, public pages in light and dark
+npm run score        # Lighthouse CI on a production build, mobile
+npm run score:desktop
 npm run cf:preview   # build for Cloudflare Workers and run it locally in workerd
 npm run cf:deploy    # build for Cloudflare Workers and deploy with wrangler
 ```
 
 Husky runs eslint and prettier on staged files at commit time.
+
+## Design, skills and scores
+
+The public pages use the BuildBase brand as tokens in
+`src/app/globals.css`: warm paper, ink, one hot accent (Plug Orange, never
+used as text) and cobalt for links and focus, in light and dark. The same
+colours re-skin the SDK's own screens through the `.saas-os-ui` block at the
+end of that file. Change a colour there, not in a component.
+
+`.claude/skills/` holds the design skills a coding agent (Claude Code) loads
+when it works on the UI. Start with `buildbase-design`, the brief for this
+repo: tokens, type, the motion rules, what counts as done, and which UI,
+motion and 3D libraries may be added under their licences. The others are
+vendored from Anthropic, Vercel and Emil Kowalski under their own licences;
+`.claude/skills/README.md` lists the sources.
+
+Scores are part of done. After `npm run build`:
+
+```bash
+npm run test:a11y      # axe on six pages, light and dark, plus a 360px check
+npm run score          # Lighthouse CI, mobile: five pages, three runs each
+npm run score:desktop
+```
+
+Accessibility, Best Practices and SEO must be 100 and CLS under 0.1 on every
+page; Performance is reported as a warning until the SDK lazy-loads its
+screens ([saas-os/sdk#390](https://github.com/saas-os/sdk/issues/390)). Set
+`CHROME_PATH` to a Chrome or Chromium binary if Playwright's own is not
+installed; `PLAYWRIGHT_BASE_URL` and `LHCI_BASE_URL` point both at a server
+you already started. The `Scores` workflow runs all three on every pull
+request and keeps the reports as an artifact.
+
+Share images (`/api/og`, `/api/og/tour`) draw Hindi, Japanese, Chinese and
+Arabic with font subsets in `public/og-fonts`. After changing those locales'
+messages, run `npm run og:fonts`; a test fails until you do.
 
 ## Languages
 

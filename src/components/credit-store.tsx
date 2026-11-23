@@ -30,6 +30,7 @@ function PackageSkeleton() {
 
 export function CreditStore() {
   const t = useTranslations('creditStore');
+  const tPricing = useTranslations('pricing');
   const [currency, setCurrency] = useState<string>('usd');
   const { isAuthenticated } = useSaaSAuth();
   const router = useRouter();
@@ -104,6 +105,7 @@ export function CreditStore() {
             {availableCurrencies.length > 1 && (
               <div className="mb-6 flex justify-end">
                 <select
+                  aria-label={tPricing('currency')}
                   value={activeCurrency}
                   onChange={(e) => setCurrency(e.target.value)}
                   className="border-border bg-muted focus:ring-ring rounded-lg border px-3 py-2 text-sm font-medium uppercase focus:ring-2 focus:outline-none"
@@ -133,7 +135,13 @@ export function CreditStore() {
                   >
                     <CardHeader>
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-lg">{pkg.name}</CardTitle>
+                        <CardTitle
+                          role="heading"
+                          aria-level={3}
+                          className="text-lg"
+                        >
+                          {pkg.name}
+                        </CardTitle>
                         <Badge variant="secondary" className="gap-1">
                           <Coins className="h-3 w-3" />
                           {pkg.creditAmount.toLocaleString()}
@@ -164,6 +172,7 @@ export function CreditStore() {
                       </div>
 
                       <Button
+                        variant="outline"
                         className="w-full"
                         onClick={() => {
                           if (isAuthenticated) {

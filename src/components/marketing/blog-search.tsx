@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 import { useTranslations } from 'next-intl';
 import { Search, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -28,8 +34,25 @@ interface PagefindInstance {
  * and serves a lightweight client-side search index from `/pagefind/`.
  * This component lazy-loads the Pagefind JS bundle on first interaction.
  */
+const noSubscription = () => () => {};
+
+/**
+ * Whether to label the shortcut ⌘K. Read through useSyncExternalStore so the
+ * server's answer ("Ctrl+K") is used for hydration and the browser's after
+ * it: reading navigator during render made every visit from a Mac fail
+ * hydration (React #418) on the blog index.
+ */
+function useIsApplePlatform(): boolean {
+  return useSyncExternalStore(
+    noSubscription,
+    () => /Mac|iPhone|iPad/.test(navigator.userAgent),
+    () => false
+  );
+}
+
 export function BlogSearch() {
   const t = useTranslations('blog');
+  const isApple = useIsApplePlatform();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<PagefindResult[]>([]);
@@ -132,10 +155,7 @@ export function BlogSearch() {
         <Search className="size-4" />
         <span>{t('search.trigger')}</span>
         <kbd className="bg-muted text-muted-foreground ml-2 hidden rounded px-1.5 py-0.5 font-mono text-xs sm:inline-block">
-          {typeof navigator !== 'undefined' &&
-          /Mac|iPhone|iPad/.test(navigator.userAgent)
-            ? '⌘K'
-            : 'Ctrl+K'}
+          {isApple ? '⌘K' : 'Ctrl+K'}
         </kbd>
       </button>
 

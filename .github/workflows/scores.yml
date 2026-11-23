@@ -1,0 +1,88 @@
+name: Scores - Lighthouse and accessibility
+
+# Builds the app for production and scores its public pages:
+# - axe (WCAG 2.2 AA) on six pages, light and dark, plus a 360px overflow check
+# - Lighthouse CI, mobile and desktop, five pages, three runs each
+# Thresholds live in lighthouserc.cjs and e2e/a11y.spec.ts. Reports are
+# attached to the run as an artifact; nothing is uploaded anywhere else.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: scores-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SKIP_ENV_VALIDATION: true
+  # Public values, not secrets: the build prerenders and the pages call the
+  # hosted platform's public endpoints. Nothing here signs anyone in.
+  NEXT_PUBLIC_BUILDBASE_SERVER_URL: https://api.console.buildbase.app
+  NEXT_PUBLIC_BUILDBASE_ORG_ID: ${{ vars.NEXT_PUBLIC_BUILDBASE_ORG_ID || '694e64a4e41ec4ca273256e9' }}
+  NEXT_PUBLIC_BUILDBASE_CLIENT_ID: ${{ vars.NEXT_PUBLIC_BUILDBASE_CLIENT_ID || 'ci-score-only' }}
+  NEXT_PUBLIC_BUILDBASE_REDIRECT_URL: http://localhost:3000/api/auth/callback
+  SITE_URL: http://localhost:3000
+  NEXT_PUBLIC_SITE_URL: http://localhost:3000
+  SYSTEM_SECRET: ci-build-only-not-a-secret-0123456789abcdef
+  LHCI_BASE_URL: http://localhost:3000
+  PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+jobs:
+  scores:
+    name: Lighthouse + axe
+    # ubuntu-latest is 26.04, which Playwright supports from 1.65 (1.58
+    # refused to install Chromium there).
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Start the production server
+        id: server
+        run: |
+          npm run start > server.log 2>&1 &
+          npx --yes wait-on@8.0.3 --timeout 120000 http://localhost:3000
+
+      # Each check runs only once the server is up, but all of them run even
+      # when an earlier one fails, so one run reports every score.
+      - name: Accessibility (axe, WCAG 2.2 AA)
+        if: ${{ !cancelled() && steps.server.outcome == 'success' }}
+        run: npm run test:a11y -- --reporter=line
+
+      - name: Lighthouse, mobile
+        if: ${{ !cancelled() && steps.server.outcome == 'success' }}
+        run: npm run score
+
+      - name: Lighthouse, desktop
+        if: ${{ !cancelled() && steps.server.outcome == 'success' }}
+        run: |
+          mv .lighthouseci .lighthouseci-mobile || true
+          npm run score:desktop
+
+      - name: Keep the reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-and-axe
+          path: |
+            .lighthouseci-mobile/
+            .lighthouseci/
+            test-results/
+            server.log
+          retention-days: 14

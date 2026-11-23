@@ -1,52 +1,29 @@
 import { getTranslations } from 'next-intl/server';
+import { locales } from '@/i18n/config';
 import { TOUR_GROUP_IDS, TOUR_TASKS } from '@/tour/catalog';
 
+/**
+ * The demo's numbers as one sentence rather than a row of stat tiles: each
+ * number is counted from the code (the catalog, the locale list), never
+ * typed by hand, so the line cannot go stale.
+ */
 export async function StatsSection() {
   const t = await getTranslations('home');
 
-  const STATS = [
-    {
-      value: '8',
-      label: t('stats.languages.label'),
-      sublabel: t('stats.languages.sublabel'),
-    },
-    {
-      value: String(TOUR_TASKS.length),
-      label: t('stats.tasks.label'),
-      sublabel: t('stats.tasks.sublabel'),
-    },
-    {
-      value: String(TOUR_GROUP_IDS.length),
-      label: t('stats.groups.label'),
-      sublabel: t('stats.groups.sublabel'),
-    },
-    {
-      value: '0',
-      label: t('stats.authCode.label'),
-      sublabel: t('stats.authCode.sublabel'),
-    },
-  ];
-
   return (
-    <section className="border-border/50 w-full border-y">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y md:grid-cols-4 md:divide-y-0">
-        {STATS.map((stat) => (
-          <div
-            key={stat.label}
-            className="flex flex-col items-center gap-1 px-8 py-10 text-center"
-          >
-            <span className="text-primary text-3xl font-bold tracking-tight md:text-4xl">
-              {stat.value}
+    <section className="w-full border-b">
+      <p className="text-muted-foreground mx-auto max-w-7xl px-6 py-10 text-lg leading-relaxed text-pretty md:py-12 md:text-2xl md:leading-snug">
+        {t.rich('facts', {
+          tasks: TOUR_TASKS.length,
+          groups: TOUR_GROUP_IDS.length,
+          languages: locales.length,
+          n: (chunks) => (
+            <span className="font-display text-foreground text-[1.3em] leading-none tabular-nums">
+              {chunks}
             </span>
-            <span className="text-foreground text-sm font-semibold">
-              {stat.label}
-            </span>
-            <span className="text-muted-foreground text-xs">
-              {stat.sublabel}
-            </span>
-          </div>
-        ))}
-      </div>
+          ),
+        })}
+      </p>
     </section>
   );
 }

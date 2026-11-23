@@ -103,46 +103,140 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'Live-Demo · {count} Aufgaben',
-      heading:
-        'Jede BuildBase-Fähigkeit, <highlight>eine Aufgabe nach der anderen</highlight>',
+      heading: 'Überspringen Sie den Teil von SaaS, den jedes Team neu baut.',
+      listLabel: 'In dieser App schon fertig:',
+      checklist: [
+        'Anmeldung',
+        'Workspaces',
+        'Teams',
+        'Abrechnung',
+        'Nutzungslimits',
+        'Credits',
+        'Benachrichtigungen',
+        'Webhooks',
+        'Agentenzugriff',
+      ],
       description:
-        'Eine echte App auf dem BuildBase SDK, mit geführter Tour: anmelden und Registrierung, Workspaces, Abrechnung, Nutzung, Credits, Benachrichtigungen, Agenten und Webhooks durchgehen, jeweils mit Herkunft.',
-      signInToExplore: 'Anmelden und erkunden',
-      openDashboard: 'Dashboard öffnen',
-      viewSource: 'Quellcode ansehen',
-      builtWith: 'Erstellt mit',
+        'Eine echte Next.js-App auf dem BuildBase SDK. Melden Sie sich an und arbeiten Sie {count} Aufgaben durch; jede zeigt den Hook, den Console-Bildschirm und die Datei in diesem Repo dahinter.',
+      start: 'Tour starten',
+      viewSource: 'Quellcode lesen',
+      cloneLabel: 'Klon-Befehl',
+      copy: 'Kopieren',
+      copied: 'Kopiert',
     },
-    stats: {
-      languages: {
-        label: 'Sprachen in dieser Demo',
-        sublabel: 'mit dem Header-Schalter wechseln',
-      },
-      tasks: {
-        label: 'Aufgaben der Tour',
-        sublabel: 'jede eine Fähigkeit zum Ausprobieren',
-      },
-      groups: {
-        label: 'Gruppen',
-        sublabel: 'von der Anmeldung bis zu Webhooks',
-      },
-      authCode: {
-        label: 'Zeilen Auth-Code',
-        sublabel: 'das SDK erledigt alles',
+    demo: {
+      heading: 'Ein Aufruf, eine fertige Funktion',
+      description:
+        'Wählen Sie einen Schritt, um den SDK-Aufruf und sein Ergebnis zu sehen. Jeder ist eine Aufgabe der Tour.',
+      tablist: 'SDK-Beispiele',
+      preview: 'Was der Aufruf rendert',
+      tryIt: 'In der Tour ausprobieren',
+      steps: {
+        signIn: {
+          label: 'Anmelden',
+          result: 'Angemeldet',
+          detail: 'Sitzung auf diesem Gerät',
+        },
+        workspace: {
+          label: 'Workspace',
+          result: 'Workspace erstellt',
+          detail: '{count, plural, one {# Mitglied} other {# Mitglieder}}',
+        },
+        plan: {
+          label: 'Abonnieren',
+          result: 'Plan aktiv',
+          detail: 'Verlängert sich monatlich',
+        },
+        credits: {
+          label: 'Credits',
+          result: '1 Credit verbraucht',
+          detail:
+            '{count, plural, one {# Credit übrig} other {# Credits übrig}}',
+        },
+        notify: {
+          label: 'Benachrichtigen',
+          result: 'Neuer Kommentar zu Ihrem Dokument',
+          detail: 'Zugestellt an Posteingang, E-Mail und Push',
+        },
       },
     },
+    tourMap: {
+      label: 'Jeder Punkt ist eine Aufgabe der Tour, eine Spalte pro Gruppe.',
+      signedOut:
+        'Melden Sie sich an, und sie füllen sich, sobald Sie sie erledigen.',
+      progress:
+        '{done, plural, =0 {Noch keine der {total} Aufgaben erledigt} one {# von {total} Aufgaben erledigt} other {# von {total} Aufgaben erledigt}}',
+      share: 'Fortschritt teilen',
+      shared: 'Link kopiert',
+      pageDescription:
+        'Ein Punkt pro Aufgabe der BuildBase-Tour, gefüllt, wo sie erledigt ist. Starten Sie Ihre eigene und sehen Sie, wie weit Sie kommen.',
+      pageCta: 'Eigene Tour starten',
+    },
+    agentLane: {
+      heading: 'Ihre Nutzer und ihre Agenten, nach denselben Regeln',
+      description:
+        'Eine Person in der App und Claude über MCP erstellen je ein Dokument. Beide laufen durch denselben Dienst, zählen also gegen das Kontingent des Plans und verbrauchen einen Credit.',
+      play: 'Beide ausführen',
+      replay: 'Erneut ausführen',
+      human: 'In der App',
+      agent: 'Über MCP, als dieselbe Person',
+      humanAction: 'Klickt auf Neues Dokument',
+      agentAction: 'Ruft ein Tool mit dem Scope documents:write auf',
+      created: 'Entwurf erstellt',
+      credits: 'Credits',
+      quota: 'Dokumente in diesem Zeitraum',
+      source: 'Das Tool lesen',
+      tryIt: 'In der Tour einen Agenten verbinden',
+      status:
+        '{who}: Entwurf erstellt. {credits} Credits übrig, {used} Dokumente in diesem Zeitraum.',
+    },
+    webhook: {
+      heading: 'Sehen Sie zu, wie ein Upgrade in Ihrer Datenbank ankommt',
+      description:
+        'Wechselt ein Kunde den Plan, benachrichtigt BuildBase Ihren Server. So läuft das Ereignis in dieser App, Schritt für Schritt.',
+      play: 'Upgrade abspielen',
+      replay: 'Noch einmal abspielen',
+      retry: 'Erneut senden',
+      retried: 'Erneut zugestellt: dieselbe Zeile, kein Duplikat.',
+      source: 'Den Handler lesen',
+      tryIt: 'In der Tour ausprobieren',
+      status: 'Schritt {step} von {total}: {title}',
+      stages: {
+        click: {
+          title: 'Ein Kunde macht ein Upgrade',
+          body: 'Von Starter auf Team, in der Planauswahl.',
+        },
+        send: {
+          title: 'BuildBase signiert und sendet es',
+          body: 'Eine HMAC-SHA256-Signatur über Zeitstempel und Inhalt.',
+        },
+        verify: {
+          title: 'Ihr Server prüft es',
+          body: 'parseWebhookEvent weist eine falsche Signatur ab oder alles, was älter als fünf Minuten ist.',
+        },
+        store: {
+          title: 'Eine Zeile in Postgres',
+          body: 'Der Schlüssel ist ein Hash des Inhalts, daher landet ein erneuter Versuch in derselben Zeile.',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'Prompt für Ihren Coding-Agenten',
+    },
+    facts:
+      '<n>{tasks}</n> Aufgaben in <n>{groups}</n> Gruppen, in <n>{languages}</n> Sprachen, und <n>0</n> Zeilen selbst geschriebener Auth-Code.',
     cta: {
-      heading: 'Bereit, alles in Aktion zu sehen?',
+      heading: 'Klonen Sie es, oder klicken Sie es erst durch.',
       description:
-        'Melde dich an, um das vollständige Dashboard zu öffnen — wechsle Arbeitsbereiche, verbrauche Guthaben, sende eine Push-Benachrichtigung und schalte zwischen allen 8 Sprachen.',
-      signIn: 'Anmelden und erkunden',
-      openDashboard: 'Dashboard öffnen',
+        'Die App ist Open Source. Jeder Bildschirm auf dieser Seite liegt im Repo, verbunden mit demselben SDK, das Sie installieren würden.',
+      signIn: 'Tour starten',
       howBuilt: 'Wie es gebaut wurde',
     },
     meta: {
-      title: 'Meine App',
-      description: 'Meine Next.js-App mit shadcn/ui und Theme-Unterstützung',
-      tagline: 'Baue etwas Großartiges',
+      title: 'BuildBase Demo: eine echte SaaS-App auf dem BuildBase SDK',
+      description:
+        'Melden Sie sich an und testen Sie Anmeldung, Workspaces, Abrechnung, Credits, Benachrichtigungen, Webhooks und KI-Agenten in einer laufenden Next.js-App. Jeder Bildschirm ist Open Source.',
+      tagline: 'Jede SaaS-Funktion, eine Aufgabe nach der anderen.',
     },
   },
   dashboard: {

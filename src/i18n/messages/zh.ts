@@ -103,45 +103,136 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: '在线演示 · {count} 项任务',
-      heading: 'BuildBase 的每一项能力，<highlight>逐项体验</highlight>',
+      heading: '每个团队都在重造的 SaaS 部分，你可以跳过。',
+      listLabel: '这个应用里已经能用：',
+      checklist: [
+        '登录',
+        '工作区',
+        '团队',
+        '计费',
+        '用量上限',
+        '积分',
+        '通知',
+        'Webhook',
+        '智能体接入',
+      ],
       description:
-        '基于 BuildBase SDK 的真实应用，配有引导式导览：登录后依次体验注册、工作区、计费、用量、积分、通知、代理和 Webhook，每一项都说明它来自哪里。',
-      signInToExplore: '登录探索',
-      openDashboard: '打开仪表板',
-      viewSource: '查看源码',
-      builtWith: '使用技术',
+        '一个基于 BuildBase SDK 的真实 Next.js 应用。登录后完成 {count} 个任务，每个任务都会展示背后的 Hook、控制台页面和本仓库中的文件。',
+      start: '开始导览',
+      viewSource: '阅读源码',
+      cloneLabel: '克隆命令',
+      copy: '复制',
+      copied: '已复制',
     },
-    stats: {
-      languages: {
-        label: '本演示支持的语言数',
-        sublabel: '使用标题切换器切换',
-      },
-      tasks: {
-        label: '导览任务',
-        sublabel: '每一项都是可尝试的能力',
-      },
-      groups: {
-        label: '分组',
-        sublabel: '从登录到 Webhook',
-      },
-      authCode: {
-        label: '认证代码行数',
-        sublabel: 'SDK 全部处理',
+    demo: {
+      heading: '一次调用，一个可用的功能',
+      description:
+        '选择一个步骤，查看 SDK 调用及其渲染结果。每一步都是导览中的一个任务。',
+      tablist: 'SDK 示例',
+      preview: '调用的渲染结果',
+      tryIt: '在导览中试试',
+      steps: {
+        signIn: {
+          label: '登录',
+          result: '已登录',
+          detail: '此设备上的会话',
+        },
+        workspace: {
+          label: '工作区',
+          result: '工作区已创建',
+          detail: '{count, plural, other {# 名成员}}',
+        },
+        plan: {
+          label: '订阅',
+          result: '套餐已生效',
+          detail: '每月续订',
+        },
+        credits: {
+          label: '积分',
+          result: '已消耗 1 积分',
+          detail: '{count, plural, other {剩余 # 积分}}',
+        },
+        notify: {
+          label: '通知',
+          result: '你的文档有新评论',
+          detail: '已送达收件箱、邮件和推送',
+        },
       },
     },
+    tourMap: {
+      label: '每个点都是导览中的一个任务，每列是一个分组。',
+      signedOut: '登录后，完成的任务会逐个点亮。',
+      progress: '{done, plural, other {已完成 {total} 个任务中的 # 个}}',
+      share: '分享你的进度',
+      shared: '链接已复制',
+      pageDescription:
+        'BuildBase 导览中每个任务一个点，完成的会被填满。开始你自己的导览，看看能走多远。',
+      pageCta: '开始你的导览',
+    },
+    agentLane: {
+      heading: '你的用户和他们的智能体，遵守同样的规则',
+      description:
+        '应用里的人和通过 MCP 的 Claude 各创建一个文档。两者走同一个服务，所以都计入套餐配额，并各消耗一个积分。',
+      play: '同时运行',
+      replay: '再运行一次',
+      human: '在应用中',
+      agent: '通过 MCP，以同一个人的身份',
+      humanAction: '点击“新建文档”',
+      agentAction: '以 documents:write 权限调用工具',
+      created: '草稿已创建',
+      credits: '积分',
+      quota: '本周期文档数',
+      source: '阅读工具代码',
+      tryIt: '在导览中连接智能体',
+      status: '{who}：草稿已创建。剩余 {credits} 积分，本周期 {used} 个文档。',
+    },
+    webhook: {
+      heading: '看一次升级如何到达你的数据库',
+      description:
+        '客户更换套餐时，BuildBase 会通知你的服务器。下面一步步展示事件在这个应用中的路径。',
+      play: '播放升级',
+      replay: '再播放一次',
+      retry: '再发送一次',
+      retried: '再次送达：同一行，没有重复。',
+      source: '阅读处理程序',
+      tryIt: '在导览中试试',
+      status: '第 {step} 步，共 {total} 步：{title}',
+      stages: {
+        click: {
+          title: '客户升级',
+          body: '在套餐选择中从 Starter 升到 Team。',
+        },
+        send: {
+          title: 'BuildBase 签名并发送',
+          body: '对时间戳和正文计算 HMAC-SHA256 签名。',
+        },
+        verify: {
+          title: '你的服务器校验',
+          body: 'parseWebhookEvent 会拒绝错误的签名，以及超过五分钟的请求。',
+        },
+        store: {
+          title: 'Postgres 中的一行',
+          body: '主键是正文的哈希，所以重试会落在同一行。',
+        },
+      },
+    },
+    agentPrompt: {
+      label: '给你的编码智能体的提示词',
+    },
+    facts:
+      '<n>{groups}</n> 组共 <n>{tasks}</n> 个任务，支持 <n>{languages}</n> 种语言，手写认证代码 <n>0</n> 行。',
     cta: {
-      heading: '准备好看到一切正常运行了吗？',
+      heading: '克隆它，或者先点一遍。',
       description:
-        '登录以打开完整仪表板 — 尝试切换工作区、消费积分、发送推送通知并在所有8种语言之间切换。',
-      signIn: '登录并探索',
-      openDashboard: '打开仪表板',
+        '这个应用是开源的。本页的每个界面都在仓库里，连接的正是你会安装的同一个 SDK。',
+      signIn: '开始导览',
       howBuilt: '如何构建的',
     },
     meta: {
-      title: '我的应用',
-      description: '我的 Next.js 应用程序，支持 shadcn/ui 和主题',
-      tagline: '构建令人惊叹的东西',
+      title: 'BuildBase 演示：基于 BuildBase SDK 的真实 SaaS 应用',
+      description:
+        '登录后即可在运行中的 Next.js 应用里体验认证、工作区、计费、积分、通知、Webhook 和 AI 智能体接入。每个页面都开源。',
+      tagline: '每一项 SaaS 能力，一次一个任务。',
     },
   },
   dashboard: {

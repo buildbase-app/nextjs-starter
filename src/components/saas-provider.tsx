@@ -4,7 +4,9 @@ import { ApiVersion, type EventType, type EventData } from '@buildbase/sdk';
 import React, { useEffect } from 'react';
 import { env } from '@/env';
 import { SaaSOSProvider, type SaaSOSProviderProps } from '@buildbase/sdk/react';
-import { loadStripe } from '@stripe/stripe-js';
+// The pure entry: the main one injects Stripe.js on import, on every page,
+// which sets Stripe's third-party cookie before anyone opens a checkout.
+import { loadStripe } from '@stripe/stripe-js/pure';
 import { loadConnectAndInitialize } from '@stripe/connect-js/pure';
 import { captureReferral } from '@buildbase/sdk/tracking';
 import { useLocale } from 'next-intl';

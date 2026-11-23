@@ -110,25 +110,88 @@ export interface HomeFeature {
 export interface HomeMessages {
   title: string;
   hero: {
-    badge: string;
+    heading: string;
+    listLabel: string;
+    /** The parts of a SaaS the hero crosses off, in display order. */
+    checklist: string[];
+    description: string;
+    start: string;
+    viewSource: string;
+    cloneLabel: string;
+    copy: string;
+    copied: string;
+  };
+  demo: {
     heading: string;
     description: string;
-    signInToExplore: string;
-    openDashboard: string;
-    viewSource: string;
-    builtWith: string;
+    tablist: string;
+    preview: string;
+    tryIt: string;
+    steps: {
+      signIn: { label: string; result: string; detail: string };
+      workspace: { label: string; result: string; detail: string };
+      plan: { label: string; result: string; detail: string };
+      credits: { label: string; result: string; detail: string };
+      notify: { label: string; result: string; detail: string };
+    };
   };
-  stats: {
-    languages: { label: string; sublabel: string };
-    tasks: { label: string; sublabel: string };
-    groups: { label: string; sublabel: string };
-    authCode: { label: string; sublabel: string };
+  /** The tour's dot map: one dot per task, one column per group. */
+  tourMap: {
+    label: string;
+    signedOut: string;
+    /** ICU: {done} plural, {total}. */
+    progress: string;
+    share: string;
+    shared: string;
+    pageDescription: string;
+    pageCta: string;
   };
+  /** A person and their agent creating a document through one service. */
+  agentLane: {
+    heading: string;
+    description: string;
+    play: string;
+    replay: string;
+    human: string;
+    agent: string;
+    humanAction: string;
+    agentAction: string;
+    created: string;
+    credits: string;
+    quota: string;
+    source: string;
+    tryIt: string;
+    /** Live region: {who}, {credits}, {used}. */
+    status: string;
+  };
+  /** The playable webhook flow: one upgrade from click to database row. */
+  webhook: {
+    heading: string;
+    description: string;
+    play: string;
+    replay: string;
+    retry: string;
+    retried: string;
+    source: string;
+    tryIt: string;
+    /** For the live region: {step}, {total}, {title}. */
+    status: string;
+    stages: {
+      click: { title: string; body: string };
+      send: { title: string; body: string };
+      verify: { title: string; body: string };
+      store: { title: string; body: string };
+    };
+  };
+  agentPrompt: {
+    label: string;
+  };
+  /** One sentence of facts; numbers are wrapped in <n>…</n>. */
+  facts: string;
   cta: {
     heading: string;
     description: string;
     signIn: string;
-    openDashboard: string;
     howBuilt: string;
   };
   meta: {

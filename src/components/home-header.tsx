@@ -1,6 +1,5 @@
 'use client';
 
-import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { RepoLink } from '@/components/repo-link';
 import { Button } from '@/components/ui/button';
@@ -18,10 +17,15 @@ function AuthButton() {
   const t = useTranslations('common');
 
   if (status === 'loading' || status === 'authenticating' || isLoading) {
+    // Same footprint as the Sign In button it turns into: a wider
+    // "Loading..." label pushed the header off a 360px phone until the
+    // session check finished, then jumped back.
     return (
-      <Button variant="outline" disabled>
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        {t('buttons.loading')}
+      <Button disabled aria-busy="true">
+        <span className="sr-only">{t('buttons.loading')}</span>
+        <span aria-hidden className="opacity-60">
+          {t('buttons.signIn')}
+        </span>
       </Button>
     );
   }
@@ -59,31 +63,39 @@ export function HomeHeader({ title }: HomeHeaderProps) {
   };
 
   return (
-    <header className="bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex items-center justify-between border-b px-6 py-4 backdrop-blur-md">
-      <div className="flex items-center gap-8">
-        <Link
-          href="/"
-          className="text-foreground text-xl font-bold tracking-tight"
-        >
-          {title}
-        </Link>
-        <nav className="hidden items-center gap-1 md:flex">
-          {NAV_HREFS.map((href) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-muted-foreground hover:text-foreground rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
-            >
-              {NAV_LINK_KEYS[href]}
-            </Link>
-          ))}
-        </nav>
-      </div>
-      <div className="flex items-center gap-2">
-        <RepoLink label={t('footer.links.github')} />
-        <LanguageSwitcher />
-        <ThemeToggle />
-        <AuthButton />
+    <header className="bg-background/85 supports-[backdrop-filter]:bg-background/70 sticky top-0 z-50 border-b backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3.5 sm:gap-4 sm:px-6">
+        <div className="flex items-center gap-8">
+          <Link
+            href="/"
+            className="text-foreground flex items-center gap-2.5 text-base font-semibold tracking-[-0.02em] whitespace-nowrap sm:text-lg"
+          >
+            <span
+              aria-hidden
+              className="bg-brand inline-block size-3 rounded-[3px]"
+            />
+            {title}
+          </Link>
+          <nav className="hidden items-center gap-1 md:flex">
+            {NAV_HREFS.map((href) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-muted-foreground hover:text-foreground rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
+              >
+                {NAV_LINK_KEYS[href]}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="hidden sm:contents">
+            <RepoLink label={t('footer.links.github')} />
+          </span>
+          <LanguageSwitcher />
+          <ThemeToggle />
+          <AuthButton />
+        </div>
       </div>
     </header>
   );
