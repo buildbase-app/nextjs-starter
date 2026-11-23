@@ -397,6 +397,17 @@ html .saas-os-ui.dark {
   }
 }
 
+/* Syntax highlighting in posts (rehype-pretty-code, two themes): each token
+   carries both colours; the theme class picks one. */
+code[data-theme*=' '],
+code[data-theme*=' '] span {
+  color: var(--shiki-light);
+}
+.dark code[data-theme*=' '],
+.dark code[data-theme*=' '] span {
+  color: var(--shiki-dark);
+}
+
 /* Heading anchor links — visible on hover */
 .heading-anchor {
   text-decoration: none;

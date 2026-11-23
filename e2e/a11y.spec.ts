@@ -14,6 +14,8 @@ const PAGES = [
   '/',
   '/pricing',
   '/blog',
+  // A post: code blocks, heading anchors and links in running text.
+  '/blog/going-global-with-i18n',
   '/changelog',
   '/help',
   '/waitlist',

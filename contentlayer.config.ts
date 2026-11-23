@@ -220,7 +220,10 @@ export const ChangelogEntry = defineDocumentType(() => ({
 // -----------------------------------------------------------------------------
 
 const prettyCodeOptions: PrettyCodeOptions = {
-  theme: 'github-dark-default',
+  // Both themes: a dark-only theme on the site's light surface left pale
+  // tokens on near-white (unreadable). Each token carries --shiki-light and
+  // --shiki-dark; globals.css picks one by the theme class.
+  theme: { light: 'github-light-default', dark: 'github-dark-default' },
   keepBackground: false,
   defaultLang: 'plaintext',
 };
