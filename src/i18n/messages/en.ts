@@ -170,6 +170,24 @@ const messages: Messages = {
         'One dot per task in the BuildBase tour, filled where it is done. Start your own and see how far you get.',
       pageCta: 'Start your own tour',
     },
+    agentLane: {
+      heading: 'Your users and their agents, through the same rules',
+      description:
+        'A person in the app and Claude over MCP each create a document. Both go through one service, so both count against the plan’s quota and spend a credit.',
+      play: 'Run both',
+      replay: 'Run again',
+      human: 'In the app',
+      agent: 'Over MCP, as the same person',
+      humanAction: 'Clicks New document',
+      agentAction: 'Calls a tool with the documents:write scope',
+      created: 'Draft created',
+      credits: 'Credits',
+      quota: 'Documents this period',
+      source: 'Read the tool',
+      tryIt: 'Connect an agent in the tour',
+      status:
+        '{who}: draft created. {credits} credits left, {used} documents this period.',
+    },
     webhook: {
       heading: 'Watch one upgrade reach your database',
       description:

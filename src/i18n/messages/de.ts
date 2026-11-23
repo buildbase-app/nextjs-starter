@@ -172,6 +172,24 @@ const messages: Messages = {
         'Ein Punkt pro Aufgabe der BuildBase-Tour, gefüllt, wo sie erledigt ist. Starten Sie Ihre eigene und sehen Sie, wie weit Sie kommen.',
       pageCta: 'Eigene Tour starten',
     },
+    agentLane: {
+      heading: 'Ihre Nutzer und ihre Agenten, nach denselben Regeln',
+      description:
+        'Eine Person in der App und Claude über MCP erstellen je ein Dokument. Beide laufen durch denselben Dienst, zählen also gegen das Kontingent des Plans und verbrauchen einen Credit.',
+      play: 'Beide ausführen',
+      replay: 'Erneut ausführen',
+      human: 'In der App',
+      agent: 'Über MCP, als dieselbe Person',
+      humanAction: 'Klickt auf Neues Dokument',
+      agentAction: 'Ruft ein Tool mit dem Scope documents:write auf',
+      created: 'Entwurf erstellt',
+      credits: 'Credits',
+      quota: 'Dokumente in diesem Zeitraum',
+      source: 'Das Tool lesen',
+      tryIt: 'In der Tour einen Agenten verbinden',
+      status:
+        '{who}: Entwurf erstellt. {credits} Credits übrig, {used} Dokumente in diesem Zeitraum.',
+    },
     webhook: {
       heading: 'Sehen Sie zu, wie ein Upgrade in Ihrer Datenbank ankommt',
       description:

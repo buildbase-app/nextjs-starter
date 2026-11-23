@@ -171,6 +171,24 @@ const messages: Messages = {
         'Un punto por tarea del recorrido de BuildBase, relleno donde está hecha. Empieza el tuyo y mira hasta dónde llegas.',
       pageCta: 'Empieza tu recorrido',
     },
+    agentLane: {
+      heading: 'Tus usuarios y sus agentes, con las mismas reglas',
+      description:
+        'Una persona en la app y Claude por MCP crean cada uno un documento. Ambos pasan por el mismo servicio, así que ambos cuentan contra la cuota del plan y gastan un crédito.',
+      play: 'Ejecutar ambos',
+      replay: 'Ejecutar de nuevo',
+      human: 'En la app',
+      agent: 'Por MCP, como la misma persona',
+      humanAction: 'Pulsa Nuevo documento',
+      agentAction: 'Llama a una herramienta con el permiso documents:write',
+      created: 'Borrador creado',
+      credits: 'Créditos',
+      quota: 'Documentos este periodo',
+      source: 'Leer la herramienta',
+      tryIt: 'Conecta un agente en el recorrido',
+      status:
+        '{who}: borrador creado. Quedan {credits} créditos, {used} documentos este periodo.',
+    },
     webhook: {
       heading: 'Mira cómo una mejora de plan llega a tu base de datos',
       description:

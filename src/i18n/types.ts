@@ -146,6 +146,24 @@ export interface HomeMessages {
     pageDescription: string;
     pageCta: string;
   };
+  /** A person and their agent creating a document through one service. */
+  agentLane: {
+    heading: string;
+    description: string;
+    play: string;
+    replay: string;
+    human: string;
+    agent: string;
+    humanAction: string;
+    agentAction: string;
+    created: string;
+    credits: string;
+    quota: string;
+    source: string;
+    tryIt: string;
+    /** Live region: {who}, {credits}, {used}. */
+    status: string;
+  };
   /** The playable webhook flow: one upgrade from click to database row. */
   webhook: {
     heading: string;

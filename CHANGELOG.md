@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   come from the tour catalog, the facts as one sentence, the whole tour as a
   numbered index, and a close with the clone command. CSS-only motion, each
   effect with a reduced-motion path; no animation runtime added.
+- "Your users and their agents, through the same rules": a person in the
+  app and their agent over MCP (`create_document`, scope `documents:write`)
+  each create a document through `src/lib/documents/service.ts`, and the
+  shared counters show both spend a credit and a unit of the `documents`
+  quota.
 - "Watch one upgrade reach your database": a playable webhook flow on the
   home page, from the click to the row, with the handler's real names
   (`subscription.upgraded`, the HMAC-SHA256 signature, `parseWebhookEvent`,

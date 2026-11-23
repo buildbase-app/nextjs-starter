@@ -172,6 +172,24 @@ const messages: Messages = {
         'Un point par tâche de la visite BuildBase, plein quand elle est faite. Lancez la vôtre et voyez jusqu’où vous allez.',
       pageCta: 'Commencer votre visite',
     },
+    agentLane: {
+      heading: 'Vos utilisateurs et leurs agents, avec les mêmes règles',
+      description:
+        'Une personne dans l’app et Claude via MCP créent chacun un document. Les deux passent par le même service : les deux comptent dans le quota de l’offre et dépensent un crédit.',
+      play: 'Lancer les deux',
+      replay: 'Relancer',
+      human: 'Dans l’app',
+      agent: 'Via MCP, en tant que la même personne',
+      humanAction: 'Clique sur Nouveau document',
+      agentAction: 'Appelle un outil avec le scope documents:write',
+      created: 'Brouillon créé',
+      credits: 'Crédits',
+      quota: 'Documents sur la période',
+      source: 'Lire l’outil',
+      tryIt: 'Connecter un agent dans la visite',
+      status:
+        '{who} : brouillon créé. {credits} crédits restants, {used} documents sur la période.',
+    },
     webhook: {
       heading: 'Regardez une mise à niveau arriver dans votre base',
       description:

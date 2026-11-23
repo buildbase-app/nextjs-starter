@@ -5,6 +5,7 @@ import { HeroSection } from '@/components/marketing/hero-section';
 import { StatsSection } from '@/components/marketing/stats-section';
 import { TourPreview } from '@/components/marketing/tour-preview';
 import { WebhookFlow } from '@/components/marketing/webhook-flow';
+import { AgentLane } from '@/components/marketing/agent-lane';
 import { PricingSection } from '@/components/pricing-section';
 import { CreditStore } from '@/components/credit-store';
 import { CtaBanner } from '@/components/marketing/cta-banner';
@@ -51,6 +52,7 @@ export default async function HomePage({ params }: HomePageProps) {
         <HeroSection />
         <StatsSection />
         <TourPreview />
+        <AgentLane />
         <WebhookFlow />
         <div className="w-full max-w-7xl px-6 py-20 md:py-28">
           <PricingSection

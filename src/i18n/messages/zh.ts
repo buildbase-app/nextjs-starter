@@ -169,6 +169,23 @@ const messages: Messages = {
         'BuildBase 导览中每个任务一个点，完成的会被填满。开始你自己的导览，看看能走多远。',
       pageCta: '开始你的导览',
     },
+    agentLane: {
+      heading: '你的用户和他们的智能体，遵守同样的规则',
+      description:
+        '应用里的人和通过 MCP 的 Claude 各创建一个文档。两者走同一个服务，所以都计入套餐配额，并各消耗一个积分。',
+      play: '同时运行',
+      replay: '再运行一次',
+      human: '在应用中',
+      agent: '通过 MCP，以同一个人的身份',
+      humanAction: '点击“新建文档”',
+      agentAction: '以 documents:write 权限调用工具',
+      created: '草稿已创建',
+      credits: '积分',
+      quota: '本周期文档数',
+      source: '阅读工具代码',
+      tryIt: '在导览中连接智能体',
+      status: '{who}：草稿已创建。剩余 {credits} 积分，本周期 {used} 个文档。',
+    },
     webhook: {
       heading: '看一次升级如何到达你的数据库',
       description:

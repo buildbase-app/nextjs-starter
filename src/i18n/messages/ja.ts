@@ -169,6 +169,24 @@ const messages: Messages = {
         'BuildBase ツアーのタスクごとに 1 つの点、完了したものは塗りつぶされています。あなたも始めて、どこまで進めるか試してみましょう。',
       pageCta: '自分のツアーを始める',
     },
+    agentLane: {
+      heading: 'ユーザーもそのエージェントも、同じルールで',
+      description:
+        'アプリの中の人と MCP 経由の Claude が、それぞれドキュメントを作成します。どちらも同じサービスを通るので、プランの上限に数えられ、クレジットを 1 消費します。',
+      play: '両方を実行',
+      replay: 'もう一度実行',
+      human: 'アプリで',
+      agent: 'MCP 経由で、同じ人として',
+      humanAction: '「新規ドキュメント」をクリック',
+      agentAction: 'documents:write スコープでツールを呼び出す',
+      created: '下書きを作成',
+      credits: 'クレジット',
+      quota: '今期のドキュメント',
+      source: 'ツールを読む',
+      tryIt: 'ツアーでエージェントを接続',
+      status:
+        '{who}：下書きを作成。残り {credits} クレジット、今期 {used} 件。',
+    },
     webhook: {
       heading: 'プラン変更がデータベースに届くまで',
       description:
