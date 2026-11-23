@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+// Set to test a server that is already running (a production build in the
+// scores workflow, a preview deploy): no dev server is started then.
+const externalBaseUrl = process.env.PLAYWRIGHT_BASE_URL;
+
 export default defineConfig({
   testDir: './e2e',
   // Signed-in tests against a deployed app run with playwright.live.config.ts.
@@ -10,13 +14,20 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: externalBaseUrl ?? 'http://localhost:3000',
     trace: 'on-first-retry',
   },
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        // A Chrome or Chromium already on the machine (the same variable
+        // Lighthouse CI reads), instead of Playwright's own download.
+        ...(process.env.CHROME_PATH
+          ? { launchOptions: { executablePath: process.env.CHROME_PATH } }
+          : {}),
+      },
     },
     {
       name: 'firefox',
@@ -27,9 +38,11 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: externalBaseUrl
+    ? undefined
+    : {
+        command: 'npm run dev',
+        url: 'http://localhost:3000',
+        reuseExistingServer: !process.env.CI,
+      },
 });
