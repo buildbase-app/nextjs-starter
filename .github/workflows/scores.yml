@@ -32,7 +32,9 @@ env:
 jobs:
   scores:
     name: Lighthouse + axe
-    runs-on: ubuntu-latest
+    # Not ubuntu-latest: that is 26.04 now, where the pinned Playwright
+    # (1.58) refuses to install Chromium. Move on with a Playwright bump.
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
 
     steps:
@@ -52,19 +54,23 @@ jobs:
         run: npm run build
 
       - name: Start the production server
+        id: server
         run: |
           npm run start > server.log 2>&1 &
           npx --yes wait-on@8.0.3 --timeout 120000 http://localhost:3000
 
+      # Each check runs only once the server is up, but all of them run even
+      # when an earlier one fails, so one run reports every score.
       - name: Accessibility (axe, WCAG 2.2 AA)
+        if: ${{ !cancelled() && steps.server.outcome == 'success' }}
         run: npm run test:a11y -- --reporter=line
 
       - name: Lighthouse, mobile
-        if: always()
+        if: ${{ !cancelled() && steps.server.outcome == 'success' }}
         run: npm run score
 
       - name: Lighthouse, desktop
-        if: always()
+        if: ${{ !cancelled() && steps.server.outcome == 'success' }}
         run: |
           mv .lighthouseci .lighthouseci-mobile || true
           npm run score:desktop
