@@ -160,6 +160,13 @@ const messages: Messages = {
         },
       },
     },
+    tourMap: {
+      label: 'Chaque point est une tâche de la visite, une colonne par groupe.',
+      signedOut:
+        'Connectez-vous et ils se remplissent à mesure que vous les terminez.',
+      progress:
+        '{done, plural, =0 {Aucune des {total} tâches terminée pour l’instant} one {# tâche sur {total} terminée} other {# tâches sur {total} terminées}}',
+    },
     facts:
       '<n>{tasks}</n> tâches en <n>{groups}</n> groupes, en <n>{languages}</n> langues, et <n>0</n> ligne de code d’authentification écrite à la main.',
     cta: {

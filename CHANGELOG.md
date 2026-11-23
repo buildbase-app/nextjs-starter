@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   come from the tour catalog, the facts as one sentence, the whole tour as a
   numbered index, and a close with the clone command. CSS-only motion, each
   effect with a reduced-motion path; no animation runtime added.
+- The tour as a map on the home page: one column per group, one dot per
+  task; signed in, the tasks you have finished fill in, with a count.
+- `?step=credits` (or `signIn`, `workspace`, `plan`, `notify`) opens the
+  hero's SDK panel on that step, and picking a step updates the address, so
+  a moment can be shared.
 - Brand tokens (paper, ink, Plug Orange, cobalt) in light and dark, applied to
   the SDK's own screens too (`.saas-os-ui`), and Instrument Serif as the
   display face, served from this site.

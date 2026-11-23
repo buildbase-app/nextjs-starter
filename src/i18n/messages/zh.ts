@@ -159,6 +159,11 @@ const messages: Messages = {
         },
       },
     },
+    tourMap: {
+      label: '每个点都是导览中的一个任务，每列是一个分组。',
+      signedOut: '登录后，完成的任务会逐个点亮。',
+      progress: '{done, plural, other {已完成 {total} 个任务中的 # 个}}',
+    },
     facts:
       '<n>{groups}</n> 组共 <n>{tasks}</n> 个任务，支持 <n>{languages}</n> 种语言，手写认证代码 <n>0</n> 行。',
     cta: {

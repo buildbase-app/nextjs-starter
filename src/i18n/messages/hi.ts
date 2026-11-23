@@ -159,6 +159,12 @@ const messages: Messages = {
         },
       },
     },
+    tourMap: {
+      label: 'हर बिंदु टूर का एक काम है, हर समूह का एक कॉलम।',
+      signedOut: 'साइन इन करें और काम पूरे होते ही ये भरते जाएँगे।',
+      progress:
+        '{done, plural, =0 {{total} में से अभी कोई काम पूरा नहीं} one {{total} में से # काम पूरा} other {{total} में से # काम पूरे}}',
+    },
     facts:
       '<n>{groups}</n> समूहों में <n>{tasks}</n> काम, <n>{languages}</n> भाषाओं में, और हाथ से लिखा ऑथ कोड: <n>0</n> लाइनें।',
     cta: {

@@ -161,6 +161,12 @@ const messages: Messages = {
         },
       },
     },
+    tourMap: {
+      label: 'كل نقطة مهمة في الجولة، وكل عمود مجموعة.',
+      signedOut: 'سجّل الدخول وستمتلئ كلما أنهيتها.',
+      progress:
+        '{done, plural, zero {لم تُنجز أي مهمة من {total} بعد} one {أُنجزت مهمة واحدة من {total}} two {أُنجزت مهمتان من {total}} few {أُنجزت # مهام من {total}} many {أُنجزت # مهمة من {total}} other {أُنجزت # مهمة من {total}}}',
+    },
     facts:
       '<n>{tasks}</n> مهمة في <n>{groups}</n> مجموعة، بـ <n>{languages}</n> لغات، و<n>0</n> سطر من شيفرة المصادقة مكتوب يدويًا.',
     cta: {

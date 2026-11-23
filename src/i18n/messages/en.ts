@@ -159,6 +159,12 @@ const messages: Messages = {
         },
       },
     },
+    tourMap: {
+      label: 'Every dot is a task in the tour, one column per group.',
+      signedOut: 'Sign in and they fill in as you finish them.',
+      progress:
+        '{done, plural, =0 {None of the {total} tasks done yet} one {# of {total} tasks done} other {# of {total} tasks done}}',
+    },
     facts:
       '<n>{tasks}</n> tasks in <n>{groups}</n> groups, in <n>{languages}</n> languages, and <n>0</n> lines of auth code written by hand.',
     cta: {

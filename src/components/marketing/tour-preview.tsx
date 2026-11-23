@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { tourGroups, tourTasks } from '@/tour/text';
+import { TourMap } from './tour-map';
 
 /**
  * The tour, read before signing in: every group and every task, as a
@@ -33,6 +34,16 @@ export async function TourPreview() {
             <Button asChild size="lg" className="mt-8 h-11 px-6">
               <Link href="/dashboard/tour">{t('homeCta')}</Link>
             </Button>
+            <TourMap
+              total={tasks.length}
+              columns={groups.map((group) => ({
+                id: group.id,
+                title: group.title,
+                taskIds: tasks
+                  .filter((task) => task.group === group.id)
+                  .map((task) => task.id),
+              }))}
+            />
           </div>
         </div>
 

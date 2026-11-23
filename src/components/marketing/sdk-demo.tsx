@@ -1,10 +1,18 @@
 'use client';
 
-import { useId, useRef, useState, type KeyboardEvent } from 'react';
+import {
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type KeyboardEvent,
+} from 'react';
 import { useTranslations } from 'next-intl';
 import { Bell, Building2, Coins, CreditCard, UserRound } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
+
+const noSubscription = () => () => {};
 
 /** One step of the demo: a tour task and the SDK calls it is built on. */
 export interface SdkDemoStep {
@@ -122,10 +130,30 @@ function Preview({ step }: { step: SdkDemoStep['key'] }) {
  */
 export function SdkDemo({ steps }: { steps: SdkDemoStep[] }) {
   const t = useTranslations('home.demo');
-  const [active, setActive] = useState(0);
+  // ?step=credits opens the panel on that step, so a moment can be shared.
+  // Read through useSyncExternalStore: the server (and hydration) render
+  // step 1, the browser's address takes over right after. A click is the
+  // visitor's own choice and wins from then on.
+  const fromUrl = useSyncExternalStore(
+    noSubscription,
+    () => new URLSearchParams(window.location.search).get('step'),
+    () => null
+  );
+  const [chosen, setChosen] = useState<number | null>(null);
+  const linked = steps.findIndex((s) => s.key === fromUrl);
+  const active = chosen ?? (linked >= 0 ? linked : 0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const id = useId();
   const step = steps[active];
+
+  // Written back with replaceState: no history entry per click, no
+  // navigation.
+  function select(index: number) {
+    setChosen(index);
+    const url = new URL(window.location.href);
+    url.searchParams.set('step', steps[index].key);
+    window.history.replaceState(window.history.state, '', url);
+  }
 
   function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     const rtl = getComputedStyle(event.currentTarget).direction === 'rtl';
@@ -139,7 +167,7 @@ export function SdkDemo({ steps }: { steps: SdkDemoStep[] }) {
     else if (event.key === 'End') index = steps.length - 1;
     else return;
     event.preventDefault();
-    setActive(index);
+    select(index);
     tabs.current[index]?.focus();
   }
 
@@ -172,7 +200,7 @@ export function SdkDemo({ steps }: { steps: SdkDemoStep[] }) {
             aria-selected={i === active}
             aria-controls={`${id}-panel`}
             tabIndex={i === active ? 0 : -1}
-            onClick={() => setActive(i)}
+            onClick={() => select(i)}
             className={cn(
               'focus-visible:ring-ring inline-flex h-9 shrink-0 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:outline-none',
               i === active

@@ -159,6 +159,11 @@ const messages: Messages = {
         },
       },
     },
+    tourMap: {
+      label: '点のひとつひとつがツアーのタスクで、列はグループごとです。',
+      signedOut: 'サインインすると、終えたタスクから埋まっていきます。',
+      progress: '{done, plural, other {{total} 個中 # 個のタスクが完了}}',
+    },
     facts:
       '<n>{groups}</n> グループに <n>{tasks}</n> 個のタスク、<n>{languages}</n> 言語対応、手書きの認証コードは <n>0</n> 行。',
     cta: {

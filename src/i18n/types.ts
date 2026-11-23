@@ -135,6 +135,13 @@ export interface HomeMessages {
       notify: { label: string; result: string; detail: string };
     };
   };
+  /** The tour's dot map: one dot per task, one column per group. */
+  tourMap: {
+    label: string;
+    signedOut: string;
+    /** ICU: {done} plural, {total}. */
+    progress: string;
+  };
   /** One sentence of facts; numbers are wrapped in <n>…</n>. */
   facts: string;
   cta: {

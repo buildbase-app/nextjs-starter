@@ -160,6 +160,13 @@ const messages: Messages = {
         },
       },
     },
+    tourMap: {
+      label: 'Jeder Punkt ist eine Aufgabe der Tour, eine Spalte pro Gruppe.',
+      signedOut:
+        'Melden Sie sich an, und sie füllen sich, sobald Sie sie erledigen.',
+      progress:
+        '{done, plural, =0 {Noch keine der {total} Aufgaben erledigt} one {# von {total} Aufgaben erledigt} other {# von {total} Aufgaben erledigt}}',
+    },
     facts:
       '<n>{tasks}</n> Aufgaben in <n>{groups}</n> Gruppen, in <n>{languages}</n> Sprachen, und <n>0</n> Zeilen selbst geschriebener Auth-Code.',
     cta: {

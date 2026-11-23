@@ -372,6 +372,19 @@ html .saas-os-ui.dark {
   }
 }
 
+/* The tour map: hovering a column lifts its dots; finished tasks fill in
+   one after another when progress arrives (an answer to data, so short). */
+.tour-map-column:hover .tour-map-dot {
+  stroke: var(--foreground);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tour-map-dot {
+    transition:
+      fill 240ms var(--ease-out-quint) var(--delay, 0ms),
+      stroke 240ms var(--ease-out-quint);
+  }
+}
+
 /* A caret that blinks at the end of the typed line. */
 @media (prefers-reduced-motion: no-preference) {
   .caret {
