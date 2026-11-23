@@ -11,6 +11,11 @@ interface CopyCommandProps {
   copyLabel: string;
   copiedLabel: string;
   className?: string;
+  /**
+   * A prompt for a coding agent rather than a shell command: no `$`, and the
+   * text wraps instead of being cut to one line.
+   */
+  prompt?: boolean;
 }
 
 /**
@@ -24,6 +29,7 @@ export function CopyCommand({
   copyLabel,
   copiedLabel,
   className,
+  prompt = false,
 }: CopyCommandProps) {
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -50,16 +56,22 @@ export function CopyCommand({
   return (
     <div
       className={cn(
-        'bg-card flex max-w-full items-center gap-3 rounded-lg border py-1.5 ps-4 pe-1.5 font-mono text-sm',
+        'bg-card flex max-w-full gap-3 rounded-lg border py-1.5 ps-4 pe-1.5 font-mono text-sm',
+        prompt ? 'items-start' : 'items-center',
         className
       )}
     >
-      <span aria-hidden className="text-muted-foreground select-none">
-        $
-      </span>
+      {prompt ? null : (
+        <span aria-hidden className="text-muted-foreground select-none">
+          $
+        </span>
+      )}
       <code
         aria-label={label}
-        className="min-w-0 flex-1 truncate select-all"
+        className={cn(
+          'min-w-0 flex-1 select-all',
+          prompt ? 'py-1.5 leading-relaxed whitespace-normal' : 'truncate'
+        )}
         dir="ltr"
       >
         {command}

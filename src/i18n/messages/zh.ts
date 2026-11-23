@@ -164,6 +164,39 @@ const messages: Messages = {
       signedOut: '登录后，完成的任务会逐个点亮。',
       progress: '{done, plural, other {已完成 {total} 个任务中的 # 个}}',
     },
+    webhook: {
+      heading: '看一次升级如何到达你的数据库',
+      description:
+        '客户更换套餐时，BuildBase 会通知你的服务器。下面一步步展示事件在这个应用中的路径。',
+      play: '播放升级',
+      replay: '再播放一次',
+      retry: '再发送一次',
+      retried: '再次送达：同一行，没有重复。',
+      source: '阅读处理程序',
+      tryIt: '在导览中试试',
+      status: '第 {step} 步，共 {total} 步：{title}',
+      stages: {
+        click: {
+          title: '客户升级',
+          body: '在套餐选择中从 Starter 升到 Team。',
+        },
+        send: {
+          title: 'BuildBase 签名并发送',
+          body: '对时间戳和正文计算 HMAC-SHA256 签名。',
+        },
+        verify: {
+          title: '你的服务器校验',
+          body: 'parseWebhookEvent 会拒绝错误的签名，以及超过五分钟的请求。',
+        },
+        store: {
+          title: 'Postgres 中的一行',
+          body: '主键是正文的哈希，所以重试会落在同一行。',
+        },
+      },
+    },
+    agentPrompt: {
+      label: '给你的编码智能体的提示词',
+    },
     facts:
       '<n>{groups}</n> 组共 <n>{tasks}</n> 个任务，支持 <n>{languages}</n> 种语言，手写认证代码 <n>0</n> 行。',
     cta: {

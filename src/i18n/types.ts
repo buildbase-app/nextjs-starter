@@ -142,6 +142,28 @@ export interface HomeMessages {
     /** ICU: {done} plural, {total}. */
     progress: string;
   };
+  /** The playable webhook flow: one upgrade from click to database row. */
+  webhook: {
+    heading: string;
+    description: string;
+    play: string;
+    replay: string;
+    retry: string;
+    retried: string;
+    source: string;
+    tryIt: string;
+    /** For the live region: {step}, {total}, {title}. */
+    status: string;
+    stages: {
+      click: { title: string; body: string };
+      send: { title: string; body: string };
+      verify: { title: string; body: string };
+      store: { title: string; body: string };
+    };
+  };
+  agentPrompt: {
+    label: string;
+  };
   /** One sentence of facts; numbers are wrapped in <n>…</n>. */
   facts: string;
   cta: {

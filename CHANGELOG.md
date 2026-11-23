@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   come from the tour catalog, the facts as one sentence, the whole tour as a
   numbered index, and a close with the clone command. CSS-only motion, each
   effect with a reduced-motion path; no animation runtime added.
+- "Watch one upgrade reach your database": a playable webhook flow on the
+  home page, from the click to the row, with the handler's real names
+  (`subscription.upgraded`, the HMAC-SHA256 signature, `parseWebhookEvent`,
+  `WebhookEvent`). "Send it again" shows a retry landing on the same row.
+- A prompt to paste into a coding agent beside the clone command
+  (`agentPrompt` in `src/config/site.ts`).
 - The tour as a map on the home page: one column per group, one dot per
   task; signed in, the tasks you have finished fill in, with a count.
 - `?step=credits` (or `signIn`, `workspace`, `plan`, `notify`) opens the

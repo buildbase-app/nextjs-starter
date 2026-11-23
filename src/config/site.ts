@@ -29,6 +29,12 @@ export const siteConfig = {
   },
 } as const;
 
+/**
+ * What a visitor pastes into a coding agent (Claude Code, Cursor...) to take
+ * the app home: English, as agents read it, and only steps that exist here.
+ */
+export const agentPrompt = `Clone ${siteConfig.repo} and connect it to my BuildBase organization by following its README. Before changing any UI, read .claude/skills/buildbase-design/SKILL.md and follow it.`;
+
 /** The command a visitor runs to take the app home. */
 export const cloneCommand = `git clone ${siteConfig.repo}.git`;
 

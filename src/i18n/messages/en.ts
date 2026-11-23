@@ -165,6 +165,39 @@ const messages: Messages = {
       progress:
         '{done, plural, =0 {None of the {total} tasks done yet} one {# of {total} tasks done} other {# of {total} tasks done}}',
     },
+    webhook: {
+      heading: 'Watch one upgrade reach your database',
+      description:
+        'When a customer changes plan, BuildBase tells your server. This is the path the event takes in this app, step by step.',
+      play: 'Play the upgrade',
+      replay: 'Play again',
+      retry: 'Send it again',
+      retried: 'Delivered again: same row, no duplicate.',
+      source: 'Read the handler',
+      tryIt: 'Try it in the tour',
+      status: 'Step {step} of {total}: {title}',
+      stages: {
+        click: {
+          title: 'A customer upgrades',
+          body: 'Starter to Team, from the plan picker.',
+        },
+        send: {
+          title: 'BuildBase signs and sends it',
+          body: 'An HMAC-SHA256 signature over the timestamp and the body.',
+        },
+        verify: {
+          title: 'Your server checks it',
+          body: 'parseWebhookEvent turns away a bad signature, or anything older than five minutes.',
+        },
+        store: {
+          title: 'One row in Postgres',
+          body: 'Keyed by a hash of the body, so a retry lands on the same row.',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'Prompt for your coding agent',
+    },
     facts:
       '<n>{tasks}</n> tasks in <n>{groups}</n> groups, in <n>{languages}</n> languages, and <n>0</n> lines of auth code written by hand.',
     cta: {

@@ -164,6 +164,39 @@ const messages: Messages = {
       signedOut: 'サインインすると、終えたタスクから埋まっていきます。',
       progress: '{done, plural, other {{total} 個中 # 個のタスクが完了}}',
     },
+    webhook: {
+      heading: 'プラン変更がデータベースに届くまで',
+      description:
+        '顧客がプランを変えると、BuildBase があなたのサーバーに知らせます。このアプリでイベントがたどる道筋を一歩ずつ見られます。',
+      play: 'アップグレードを再生',
+      replay: 'もう一度再生',
+      retry: 'もう一度送る',
+      retried: '再配信：同じ行のまま、重複なし。',
+      source: 'ハンドラーを読む',
+      tryIt: 'ツアーで試す',
+      status: 'ステップ {step}/{total}：{title}',
+      stages: {
+        click: {
+          title: '顧客がアップグレード',
+          body: 'プラン選択から Starter を Team に。',
+        },
+        send: {
+          title: 'BuildBase が署名して送信',
+          body: 'タイムスタンプと本文に対する HMAC-SHA256 署名。',
+        },
+        verify: {
+          title: 'サーバーが検証',
+          body: 'parseWebhookEvent は不正な署名や 5 分より古いものを拒否します。',
+        },
+        store: {
+          title: 'Postgres に 1 行',
+          body: 'キーは本文のハッシュなので、再送されても同じ行に入ります。',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'コーディングエージェント用のプロンプト',
+    },
     facts:
       '<n>{groups}</n> グループに <n>{tasks}</n> 個のタスク、<n>{languages}</n> 言語対応、手書きの認証コードは <n>0</n> 行。',
     cta: {

@@ -167,6 +167,39 @@ const messages: Messages = {
       progress:
         '{done, plural, =0 {Aucune des {total} tâches terminée pour l’instant} one {# tâche sur {total} terminée} other {# tâches sur {total} terminées}}',
     },
+    webhook: {
+      heading: 'Regardez une mise à niveau arriver dans votre base',
+      description:
+        'Quand un client change d’offre, BuildBase prévient votre serveur. Voici le chemin de l’événement dans cette app, étape par étape.',
+      play: 'Lancer la mise à niveau',
+      replay: 'Relancer',
+      retry: 'Le renvoyer',
+      retried: 'Livré de nouveau : même ligne, aucun doublon.',
+      source: 'Lire le handler',
+      tryIt: 'L’essayer dans la visite',
+      status: 'Étape {step} sur {total} : {title}',
+      stages: {
+        click: {
+          title: 'Un client passe à l’offre supérieure',
+          body: 'De Starter à Team, depuis le choix d’offre.',
+        },
+        send: {
+          title: 'BuildBase le signe et l’envoie',
+          body: 'Une signature HMAC-SHA256 sur l’horodatage et le corps.',
+        },
+        verify: {
+          title: 'Votre serveur le vérifie',
+          body: 'parseWebhookEvent refuse une mauvaise signature, ou tout ce qui a plus de cinq minutes.',
+        },
+        store: {
+          title: 'Une ligne dans Postgres',
+          body: 'La clé est un hash du corps : une nouvelle tentative retombe sur la même ligne.',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'Prompt pour votre agent de code',
+    },
     facts:
       '<n>{tasks}</n> tâches en <n>{groups}</n> groupes, en <n>{languages}</n> langues, et <n>0</n> ligne de code d’authentification écrite à la main.',
     cta: {

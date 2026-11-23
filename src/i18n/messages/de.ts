@@ -167,6 +167,39 @@ const messages: Messages = {
       progress:
         '{done, plural, =0 {Noch keine der {total} Aufgaben erledigt} one {# von {total} Aufgaben erledigt} other {# von {total} Aufgaben erledigt}}',
     },
+    webhook: {
+      heading: 'Sehen Sie zu, wie ein Upgrade in Ihrer Datenbank ankommt',
+      description:
+        'Wechselt ein Kunde den Plan, benachrichtigt BuildBase Ihren Server. So läuft das Ereignis in dieser App, Schritt für Schritt.',
+      play: 'Upgrade abspielen',
+      replay: 'Noch einmal abspielen',
+      retry: 'Erneut senden',
+      retried: 'Erneut zugestellt: dieselbe Zeile, kein Duplikat.',
+      source: 'Den Handler lesen',
+      tryIt: 'In der Tour ausprobieren',
+      status: 'Schritt {step} von {total}: {title}',
+      stages: {
+        click: {
+          title: 'Ein Kunde macht ein Upgrade',
+          body: 'Von Starter auf Team, in der Planauswahl.',
+        },
+        send: {
+          title: 'BuildBase signiert und sendet es',
+          body: 'Eine HMAC-SHA256-Signatur über Zeitstempel und Inhalt.',
+        },
+        verify: {
+          title: 'Ihr Server prüft es',
+          body: 'parseWebhookEvent weist eine falsche Signatur ab oder alles, was älter als fünf Minuten ist.',
+        },
+        store: {
+          title: 'Eine Zeile in Postgres',
+          body: 'Der Schlüssel ist ein Hash des Inhalts, daher landet ein erneuter Versuch in derselben Zeile.',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'Prompt für Ihren Coding-Agenten',
+    },
     facts:
       '<n>{tasks}</n> Aufgaben in <n>{groups}</n> Gruppen, in <n>{languages}</n> Sprachen, und <n>0</n> Zeilen selbst geschriebener Auth-Code.',
     cta: {

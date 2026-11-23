@@ -166,6 +166,39 @@ const messages: Messages = {
       progress:
         '{done, plural, =0 {Aún no has completado ninguna de las {total} tareas} one {# de {total} tareas completada} other {# de {total} tareas completadas}}',
     },
+    webhook: {
+      heading: 'Mira cómo una mejora de plan llega a tu base de datos',
+      description:
+        'Cuando un cliente cambia de plan, BuildBase avisa a tu servidor. Este es el camino que sigue el evento en esta app, paso a paso.',
+      play: 'Reproducir la mejora',
+      replay: 'Reproducir de nuevo',
+      retry: 'Enviarlo otra vez',
+      retried: 'Entregado otra vez: la misma fila, sin duplicado.',
+      source: 'Leer el handler',
+      tryIt: 'Pruébalo en el recorrido',
+      status: 'Paso {step} de {total}: {title}',
+      stages: {
+        click: {
+          title: 'Un cliente mejora su plan',
+          body: 'De Starter a Team, desde el selector de planes.',
+        },
+        send: {
+          title: 'BuildBase lo firma y lo envía',
+          body: 'Una firma HMAC-SHA256 sobre la marca de tiempo y el cuerpo.',
+        },
+        verify: {
+          title: 'Tu servidor lo comprueba',
+          body: 'parseWebhookEvent rechaza una firma incorrecta o cualquier cosa de más de cinco minutos.',
+        },
+        store: {
+          title: 'Una fila en Postgres',
+          body: 'La clave es un hash del cuerpo, así que un reintento cae en la misma fila.',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'Prompt para tu agente de código',
+    },
     facts:
       '<n>{tasks}</n> tareas en <n>{groups}</n> grupos, en <n>{languages}</n> idiomas, y <n>0</n> líneas de código de autenticación escritas a mano.',
     cta: {

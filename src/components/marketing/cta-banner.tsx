@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
-import { cloneCommand } from '@/config/site';
+import { agentPrompt, cloneCommand } from '@/config/site';
 import { CopyCommand } from './copy-command';
 
 /**
@@ -9,9 +9,10 @@ import { CopyCommand } from './copy-command';
  * the display face and the drafting grid carry it.
  */
 export async function CtaBanner() {
-  const [t, tHero] = await Promise.all([
+  const [t, tHero, tAgent] = await Promise.all([
     getTranslations('home.cta'),
     getTranslations('home.hero'),
+    getTranslations('home.agentPrompt'),
   ]);
 
   return (
@@ -44,6 +45,15 @@ export async function CtaBanner() {
           className="mt-6 w-full sm:w-fit sm:max-w-full"
           command={cloneCommand}
           label={tHero('cloneLabel')}
+          copyLabel={tHero('copy')}
+          copiedLabel={tHero('copied')}
+        />
+        <p className="text-muted-foreground mt-8 text-sm">{tAgent('label')}</p>
+        <CopyCommand
+          prompt
+          className="mt-2 max-w-2xl"
+          command={agentPrompt}
+          label={tAgent('label')}
           copyLabel={tHero('copy')}
           copiedLabel={tHero('copied')}
         />

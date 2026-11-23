@@ -167,6 +167,39 @@ const messages: Messages = {
       progress:
         '{done, plural, zero {لم تُنجز أي مهمة من {total} بعد} one {أُنجزت مهمة واحدة من {total}} two {أُنجزت مهمتان من {total}} few {أُنجزت # مهام من {total}} many {أُنجزت # مهمة من {total}} other {أُنجزت # مهمة من {total}}}',
     },
+    webhook: {
+      heading: 'شاهد ترقية واحدة تصل إلى قاعدة بياناتك',
+      description:
+        'حين يغيّر عميل خطته، يُبلغ BuildBase خادمك. هذا هو مسار الحدث في هذا التطبيق، خطوة بخطوة.',
+      play: 'شغّل الترقية',
+      replay: 'شغّلها مجددًا',
+      retry: 'أرسلها مرة أخرى',
+      retried: 'وصلت مرة أخرى: الصف نفسه، بلا تكرار.',
+      source: 'اقرأ المعالج',
+      tryIt: 'جرّبها في الجولة',
+      status: 'الخطوة {step} من {total}: {title}',
+      stages: {
+        click: {
+          title: 'عميل يرقّي خطته',
+          body: 'من Starter إلى Team، من منتقي الخطط.',
+        },
+        send: {
+          title: 'يوقّعها BuildBase ويرسلها',
+          body: 'توقيع HMAC-SHA256 على الطابع الزمني والمحتوى.',
+        },
+        verify: {
+          title: 'خادمك يتحقق منها',
+          body: 'يرفض parseWebhookEvent التوقيع الخاطئ، أو أي شيء أقدم من خمس دقائق.',
+        },
+        store: {
+          title: 'صف واحد في Postgres',
+          body: 'المفتاح تجزئة للمحتوى، فتصل إعادة المحاولة إلى الصف نفسه.',
+        },
+      },
+    },
+    agentPrompt: {
+      label: 'موجّه لوكيل البرمجة لديك',
+    },
     facts:
       '<n>{tasks}</n> مهمة في <n>{groups}</n> مجموعة، بـ <n>{languages}</n> لغات، و<n>0</n> سطر من شيفرة المصادقة مكتوب يدويًا.',
     cta: {
