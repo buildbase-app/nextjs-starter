@@ -4,6 +4,7 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { tourGroups, tourTasks } from '@/tour/text';
 import { TourMap } from './tour-map';
+import { TASK_ORDER } from '@/tour/share';
 
 /**
  * The tour, read before signing in: every group and every task, as a
@@ -36,6 +37,7 @@ export async function TourPreview() {
             </Button>
             <TourMap
               total={tasks.length}
+              order={TASK_ORDER}
               columns={groups.map((group) => ({
                 id: group.id,
                 title: group.title,

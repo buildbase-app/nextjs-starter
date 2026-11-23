@@ -1,8 +1,12 @@
 'use client';
 
 import { useEffect, useState, type CSSProperties } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { Share2 } from 'lucide-react';
 import { useSaaSAuth } from '@buildbase/sdk/react';
+import { Button } from '@/components/ui/button';
+import { defaultLocale } from '@/i18n/config';
+import { encodeProgressCode } from '@/tour/share-code';
 
 export interface TourMapColumn {
   id: string;
@@ -28,28 +32,59 @@ const R = 3.5; // dot radius, px
 export function TourMap({
   columns,
   total,
+  order,
+  shared,
+  className = 'mt-12',
+  scale = 1,
 }: {
   columns: TourMapColumn[];
   total: number;
+  /** Every task id in catalog order: the bit order of a share link. */
+  order: readonly string[];
+  /** A shared snapshot to draw as is: no fetch, no share button. */
+  shared?: readonly string[];
+  className?: string;
+  /** Drawn size; the share page shows the map at 2x. */
+  scale?: number;
 }) {
   const t = useTranslations('home.tourMap');
+  const locale = useLocale();
   const { isAuthenticated } = useSaaSAuth();
-  const [done, setDone] = useState<Set<string> | null>(null);
+  const [fetched, setFetched] = useState<Set<string> | null>(null);
+  const [copied, setCopied] = useState(false);
+  const done = shared ? new Set(shared) : fetched;
 
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (shared || !isAuthenticated) return;
     const controller = new AbortController();
     fetch('/api/tour', { signal: controller.signal })
       .then((res) => (res.ok ? res.json() : null))
       .then((body: { progress?: { taskId: string }[] } | null) => {
         if (body?.progress)
-          setDone(new Set(body.progress.map((row) => row.taskId)));
+          setFetched(new Set(body.progress.map((row) => row.taskId)));
       })
       .catch(() => {
         // Progress is a bonus here; the map still reads without it.
       });
     return () => controller.abort();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, shared]);
+
+  async function share() {
+    if (!done) return;
+    const prefix = locale === defaultLocale ? '' : `/${locale}`;
+    const url = `${window.location.origin}${prefix}/tour/progress?d=${encodeProgressCode(done, order)}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ url, title: caption });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Dismissed share sheet or blocked clipboard: nothing to undo.
+    }
+  }
 
   const tallest = Math.max(...columns.map((c) => c.taskIds.length));
   const width = columns.length * GAP;
@@ -64,17 +99,17 @@ export function TourMap({
     ? t('progress', { done: doneCount, total })
     : t('signedOut');
 
-  let order = 0;
+  let filled = 0;
 
   return (
-    <figure className="mt-12">
+    <figure className={className}>
       <svg
         role="img"
         aria-label={`${t('label')} ${caption}`}
         viewBox={`0 0 ${width} ${height}`}
-        width={width}
-        height={height}
-        className="max-w-full overflow-visible"
+        width={width * scale}
+        height={height * scale}
+        className="h-auto max-w-full overflow-visible"
       >
         {columns.map((column, x) => (
           <g key={column.id} className="tour-map-column">
@@ -89,7 +124,7 @@ export function TourMap({
             />
             {column.taskIds.map((id, y) => {
               const isDone = done?.has(id) ?? false;
-              const index = isDone ? order++ : 0;
+              const index = isDone ? filled++ : 0;
               return (
                 <circle
                   key={id}
@@ -120,6 +155,20 @@ export function TourMap({
         </span>{' '}
         {t('label')}
       </figcaption>
+      {!shared && done && doneCount > 0 ? (
+        <Button
+          variant="outline"
+          size="sm"
+          className="mt-4 gap-2"
+          onClick={share}
+        >
+          <Share2 aria-hidden className="size-3.5" />
+          {copied ? t('shared') : t('share')}
+        </Button>
+      ) : null}
+      <span role="status" aria-live="polite" className="sr-only">
+        {copied ? t('shared') : ''}
+      </span>
     </figure>
   );
 }

@@ -166,6 +166,11 @@ const messages: Messages = {
         'Connectez-vous et ils se remplissent à mesure que vous les terminez.',
       progress:
         '{done, plural, =0 {Aucune des {total} tâches terminée pour l’instant} one {# tâche sur {total} terminée} other {# tâches sur {total} terminées}}',
+      share: 'Partager votre progression',
+      shared: 'Lien copié',
+      pageDescription:
+        'Un point par tâche de la visite BuildBase, plein quand elle est faite. Lancez la vôtre et voyez jusqu’où vous allez.',
+      pageCta: 'Commencer votre visite',
     },
     webhook: {
       heading: 'Regardez une mise à niveau arriver dans votre base',

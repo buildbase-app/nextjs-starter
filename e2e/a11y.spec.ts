@@ -10,7 +10,16 @@ import { expect, test } from '@playwright/test';
  * axe finds roughly half of real accessibility problems. Keyboard order,
  * focus after a dialog closes and screen-reader wording still need a person.
  */
-const PAGES = ['/', '/pricing', '/blog', '/changelog', '/help', '/waitlist'];
+const PAGES = [
+  '/',
+  '/pricing',
+  '/blog',
+  '/changelog',
+  '/help',
+  '/waitlist',
+  // A shared tour snapshot (some tasks filled in).
+  '/tour/progress?d=27Zt27YBAAAAAAAAAAAAAA',
+];
 
 /**
  * Violations inside @buildbase/sdk components, each with the SDK issue that

@@ -166,6 +166,11 @@ const messages: Messages = {
       signedOut: 'سجّل الدخول وستمتلئ كلما أنهيتها.',
       progress:
         '{done, plural, zero {لم تُنجز أي مهمة من {total} بعد} one {أُنجزت مهمة واحدة من {total}} two {أُنجزت مهمتان من {total}} few {أُنجزت # مهام من {total}} many {أُنجزت # مهمة من {total}} other {أُنجزت # مهمة من {total}}}',
+      share: 'شارك تقدّمك',
+      shared: 'تم نسخ الرابط',
+      pageDescription:
+        'نقطة لكل مهمة في جولة BuildBase، ممتلئة حيث أُنجزت. ابدأ جولتك وشاهد إلى أين تصل.',
+      pageCta: 'ابدأ جولتك',
     },
     webhook: {
       heading: 'شاهد ترقية واحدة تصل إلى قاعدة بياناتك',

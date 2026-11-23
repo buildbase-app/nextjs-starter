@@ -163,6 +163,11 @@ const messages: Messages = {
       label: '每个点都是导览中的一个任务，每列是一个分组。',
       signedOut: '登录后，完成的任务会逐个点亮。',
       progress: '{done, plural, other {已完成 {total} 个任务中的 # 个}}',
+      share: '分享你的进度',
+      shared: '链接已复制',
+      pageDescription:
+        'BuildBase 导览中每个任务一个点，完成的会被填满。开始你自己的导览，看看能走多远。',
+      pageCta: '开始你的导览',
     },
     webhook: {
       heading: '看一次升级如何到达你的数据库',

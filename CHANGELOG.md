@@ -22,6 +22,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (`agentPrompt` in `src/config/site.ts`).
 - The tour as a map on the home page: one column per group, one dot per
   task; signed in, the tasks you have finished fill in, with a count.
+- Share your tour progress: signed in, the map offers "Share your
+  progress", a link to `/tour/progress?d=...` whose card image draws your
+  map (`/api/og/tour`). The code is one bit per task (22 characters, no
+  account id, nothing looked up); the page is `noindex`.
 - `?step=credits` (or `signIn`, `workspace`, `plan`, `notify`) opens the
   hero's SDK panel on that step, and picking a step updates the address, so
   a moment can be shared.

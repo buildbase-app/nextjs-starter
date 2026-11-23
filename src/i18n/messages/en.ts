@@ -164,6 +164,11 @@ const messages: Messages = {
       signedOut: 'Sign in and they fill in as you finish them.',
       progress:
         '{done, plural, =0 {None of the {total} tasks done yet} one {# of {total} tasks done} other {# of {total} tasks done}}',
+      share: 'Share your progress',
+      shared: 'Link copied',
+      pageDescription:
+        'One dot per task in the BuildBase tour, filled where it is done. Start your own and see how far you get.',
+      pageCta: 'Start your own tour',
     },
     webhook: {
       heading: 'Watch one upgrade reach your database',

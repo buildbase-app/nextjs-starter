@@ -141,6 +141,10 @@ export interface HomeMessages {
     signedOut: string;
     /** ICU: {done} plural, {total}. */
     progress: string;
+    share: string;
+    shared: string;
+    pageDescription: string;
+    pageCta: string;
   };
   /** The playable webhook flow: one upgrade from click to database row. */
   webhook: {

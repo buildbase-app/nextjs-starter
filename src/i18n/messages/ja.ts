@@ -163,6 +163,11 @@ const messages: Messages = {
       label: '点のひとつひとつがツアーのタスクで、列はグループごとです。',
       signedOut: 'サインインすると、終えたタスクから埋まっていきます。',
       progress: '{done, plural, other {{total} 個中 # 個のタスクが完了}}',
+      share: '進捗をシェア',
+      shared: 'リンクをコピーしました',
+      pageDescription:
+        'BuildBase ツアーのタスクごとに 1 つの点、完了したものは塗りつぶされています。あなたも始めて、どこまで進めるか試してみましょう。',
+      pageCta: '自分のツアーを始める',
     },
     webhook: {
       heading: 'プラン変更がデータベースに届くまで',

@@ -165,6 +165,11 @@ const messages: Messages = {
       signedOut: 'Inicia sesión y se irán llenando a medida que las completes.',
       progress:
         '{done, plural, =0 {Aún no has completado ninguna de las {total} tareas} one {# de {total} tareas completada} other {# de {total} tareas completadas}}',
+      share: 'Compartir tu progreso',
+      shared: 'Enlace copiado',
+      pageDescription:
+        'Un punto por tarea del recorrido de BuildBase, relleno donde está hecha. Empieza el tuyo y mira hasta dónde llegas.',
+      pageCta: 'Empieza tu recorrido',
     },
     webhook: {
       heading: 'Mira cómo una mejora de plan llega a tu base de datos',

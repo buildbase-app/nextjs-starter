@@ -166,6 +166,11 @@ const messages: Messages = {
         'Melden Sie sich an, und sie füllen sich, sobald Sie sie erledigen.',
       progress:
         '{done, plural, =0 {Noch keine der {total} Aufgaben erledigt} one {# von {total} Aufgaben erledigt} other {# von {total} Aufgaben erledigt}}',
+      share: 'Fortschritt teilen',
+      shared: 'Link kopiert',
+      pageDescription:
+        'Ein Punkt pro Aufgabe der BuildBase-Tour, gefüllt, wo sie erledigt ist. Starten Sie Ihre eigene und sehen Sie, wie weit Sie kommen.',
+      pageCta: 'Eigene Tour starten',
     },
     webhook: {
       heading: 'Sehen Sie zu, wie ein Upgrade in Ihrer Datenbank ankommt',
