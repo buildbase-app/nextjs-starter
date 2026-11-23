@@ -20,7 +20,7 @@ export function CodeBlock({ code, children, ...props }: CodeBlockProps) {
     <div className="group relative my-6">
       <pre
         {...props}
-        className="bg-muted border-border overflow-x-auto rounded-md border p-4 font-mono text-sm leading-relaxed [&>code]:border-0 [&>code]:bg-transparent [&>code]:p-0"
+        className="bg-card border-border overflow-x-auto rounded-md border p-4 font-mono text-sm leading-relaxed [&>code]:border-0 [&>code]:bg-transparent [&>code]:p-0"
       >
         {children}
       </pre>

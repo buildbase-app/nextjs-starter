@@ -63,6 +63,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Blog posts: code blocks were a dark syntax theme on a light surface and
+  could not be read; they now follow the site's theme (light and dark) on a
+  white card. Section headings no longer render as underlined links, and
+  links in posts use the link colour.
+
 - Share images in Hindi, Japanese, Chinese and Arabic: the cards now draw
   with self-hosted subsets in `public/og-fonts` (Noto Sans, Noto Sans
   Devanagari, Noto Sans JP, Noto Sans SC, Cairo; OFL, licence files beside

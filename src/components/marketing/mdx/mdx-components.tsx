@@ -66,6 +66,15 @@ export const mdxComponents: MDXComponents = {
     />
   ),
   a: ({ href, children, ...rest }: ComponentPropsWithoutRef<'a'>) => {
+    // A heading's own anchor (rehype-autolink-headings wraps the heading in
+    // it): keep its class, so it reads as a heading, not an underlined link.
+    if (rest.className?.includes('heading-anchor')) {
+      return (
+        <a {...rest} href={href}>
+          {children}
+        </a>
+      );
+    }
     if (isExternal(href)) {
       return (
         <a
@@ -73,7 +82,7 @@ export const mdxComponents: MDXComponents = {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary underline underline-offset-4 hover:no-underline"
+          className="text-link underline underline-offset-4 hover:no-underline"
         >
           {children}
         </a>
@@ -82,7 +91,7 @@ export const mdxComponents: MDXComponents = {
     return (
       <Link
         href={href ?? '#'}
-        className="text-primary underline underline-offset-4 hover:no-underline"
+        className="text-link underline underline-offset-4 hover:no-underline"
       >
         {children}
       </Link>
