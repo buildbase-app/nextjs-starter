@@ -6,7 +6,7 @@ each of the others.
 
 | Skill                      | Source                                                                                                       | Licence                                         | Copied at             |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- | --------------------- |
-| `buildbase-design`         | This repo                                                                                                    | MIT (the repo's)                                | -                     |
+| `buildbase-design`         | This repo                                                                                                    | MIT (`LICENSE`, a copy of the repo's)           | -                     |
 | `frontend-design`          | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/frontend-design)                   | Apache-2.0 (`LICENSE.txt`)                      | `e4bb5d9`, 2026-11-16 |
 | `web-interface-guidelines` | [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) `command.md` | MIT (`LICENSE`); frontmatter changed, rules not | `434b7f9`, 2026-10-05 |
 | `emil-design-eng`          | [emilkowalski/skills](https://github.com/emilkowalski/skills)                                                | MIT (`LICENSE`)                                 | `64eb3de`, 2026-11-15 |
