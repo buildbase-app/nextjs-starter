@@ -1,8 +1,8 @@
-import { ImageResponse } from 'next/og';
 import { type NextRequest } from 'next/server';
 import { locales, type Locale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
 import { siteConfig } from '@/config/site';
+import { ogFontsFor, renderOgImage } from './fonts';
 
 // Runs on the default Node.js runtime: the Cloudflare adapter (OpenNext)
 // does not support `runtime = 'edge'` routes, and Vercel serves either.
@@ -29,7 +29,9 @@ export async function GET(request: NextRequest) {
     messages[validLocale]?.home.meta.tagline || messages.en.home.meta.tagline;
   const host = new URL(siteConfig.url || 'https://demo.buildbase.app').host;
 
-  return new ImageResponse(
+  const fonts = await ogFontsFor(validLocale, new URL(request.url).origin);
+
+  return renderOgImage(
     <div
       style={{
         height: '100%',
@@ -114,9 +116,9 @@ export async function GET(request: NextRequest) {
         <span style={{ color: INK }}>{host}</span>
       </div>
     </div>,
-    {
-      width: 1200,
-      height: 630,
-    }
+    { width: 1200, height: 630 },
+    // Hindi, Japanese, Chinese and Arabic need their own script's font;
+    // the other locales keep next/og's default.
+    fonts
   );
 }

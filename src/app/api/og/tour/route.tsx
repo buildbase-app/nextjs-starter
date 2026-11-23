@@ -1,10 +1,10 @@
-import { ImageResponse } from 'next/og';
 import { type NextRequest } from 'next/server';
 import { createTranslator } from 'next-intl';
 import { locales, type Locale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
 import { siteConfig } from '@/config/site';
 import { TASK_ORDER, decodeProgress, tourColumns } from '@/tour/share';
+import { ogFontsFor, renderOgImage } from '../fonts';
 
 // Same values as the tokens in globals.css: an image has no CSS variables.
 const PAPER = '#FBFAF7';
@@ -34,7 +34,9 @@ export async function GET(request: NextRequest) {
   });
   const title = t('progress', { done: done.size, total: TASK_ORDER.length });
 
-  return new ImageResponse(
+  const fonts = await ogFontsFor(locale, new URL(request.url).origin);
+
+  return renderOgImage(
     <div
       style={{
         height: '100%',
@@ -114,6 +116,9 @@ export async function GET(request: NextRequest) {
         ))}
       </div>
     </div>,
-    { width: 1200, height: 630 }
+    { width: 1200, height: 630 },
+    // Hindi, Japanese, Chinese and Arabic need their own script's font;
+    // the other locales keep next/og's default.
+    fonts
   );
 }

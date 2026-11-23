@@ -178,6 +178,10 @@ installed; `PLAYWRIGHT_BASE_URL` and `LHCI_BASE_URL` point both at a server
 you already started. The `Scores` workflow runs all three on every pull
 request and keeps the reports as an artifact.
 
+Share images (`/api/og`, `/api/og/tour`) draw Hindi, Japanese, Chinese and
+Arabic with font subsets in `public/og-fonts`. After changing those locales'
+messages, run `npm run og:fonts`; a test fails until you do.
+
 ## Languages
 
 The app and the SDK's own screens ship in eight languages: English, Hindi,

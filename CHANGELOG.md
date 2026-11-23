@@ -47,6 +47,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SiteShell`: the blog, changelog, pricing, privacy and terms pages now have
   the site header, footer and a `<main>` landmark (they had none).
 
+### Changed
+
+- Playwright 1.65 (from 1.58), which supports Ubuntu 26.04: the Scores
+  workflow runs on `ubuntu-latest` again, and `e2e-signed-in.yml`, which
+  installs Chromium the same way, can too.
+
 ### Added (earlier)
 
 - Sentry error monitoring integration with session replay
@@ -56,6 +62,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   GitHub Actions deploy on push to `main` once `CLOUDFLARE_API_TOKEN` is set.
 
 ### Fixed
+
+- Share images in Hindi, Japanese, Chinese and Arabic: the cards now draw
+  with self-hosted subsets in `public/og-fonts` (Noto Sans, Noto Sans
+  Devanagari, Noto Sans JP, Noto Sans SC, Cairo; OFL, licence files beside
+  them), made by `npm run og:fonts`. Before, next/og fetched fonts from
+  Google at render time for those scripts, and the Arabic card failed
+  outright (Noto Sans Arabic's tables are beyond the renderer, hence Cairo).
+  A font the renderer rejects now falls back to the default font instead of
+  failing the response; tests render every locale's subsets and fail when a
+  message gains a character the subset lacks.
+- The proxy matched `/pagefind/*`, so the blog search index 404'd in
+  production and the search found nothing; it and `/og-fonts/*` (and font
+  files) are now served as static assets.
 
 - The home page's title and description were "My App" and "My Next.js
   application with shadcn/ui and theme support" in all eight languages; the

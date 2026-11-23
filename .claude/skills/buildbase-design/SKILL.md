@@ -112,6 +112,11 @@ What moved the scores here, so you do not undo it:
   the skip link has a target. Footer column titles are `h2`; never skip a
   heading level.
 
+- Share images use self-hosted font subsets for hi, ja, zh and ar
+  (`public/og-fonts`, `npm run og:fonts`); Arabic is Cairo because next/og
+  cannot parse Noto Sans Arabic. Never let next/og fall back to fetching a
+  font at render time.
+
 Known ceiling: `@buildbase/sdk/react` evaluates ~1.7 MB of JS on every page
 (its screens are not lazy-loaded yet), which holds mobile Performance in the
 80s and makes the SDK's client-only cookie banner the LCP on short pages.
