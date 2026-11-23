@@ -32,9 +32,9 @@ env:
 jobs:
   scores:
     name: Lighthouse + axe
-    # Not ubuntu-latest: that is 26.04 now, where the pinned Playwright
-    # (1.58) refuses to install Chromium. Move on with a Playwright bump.
-    runs-on: ubuntu-24.04
+    # ubuntu-latest is 26.04, which Playwright supports from 1.65 (1.58
+    # refused to install Chromium there).
+    runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:

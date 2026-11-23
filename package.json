@@ -28,6 +28,7 @@
     "prepare": "husky",
     "check:tour": "node scripts/check-tour-sources.mjs",
     "content:pull": "node scripts/pull-content.mjs",
+    "og:fonts": "node scripts/og-fonts.mjs",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
@@ -82,7 +83,7 @@
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
     "@next/bundle-analyzer": "^16.4.6",
-    "@playwright/test": "^1.58.2",
+    "@playwright/test": "^1.65.0",
     "@tailwindcss/postcss": "^4",
     "@tanstack/react-query-devtools": "^5.95.2",
     "@testing-library/jest-dom": "^6.9.1",
