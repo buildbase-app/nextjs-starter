@@ -103,45 +103,76 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: '在线演示 · {count} 项任务',
-      heading: 'BuildBase 的每一项能力，<highlight>逐项体验</highlight>',
+      heading: '每个团队都在重造的 SaaS 部分，你可以跳过。',
+      listLabel: '这个应用里已经能用：',
+      checklist: [
+        '登录',
+        '工作区',
+        '团队',
+        '计费',
+        '用量上限',
+        '积分',
+        '通知',
+        'Webhook',
+        '智能体接入',
+      ],
       description:
-        '基于 BuildBase SDK 的真实应用，配有引导式导览：登录后依次体验注册、工作区、计费、用量、积分、通知、代理和 Webhook，每一项都说明它来自哪里。',
-      signInToExplore: '登录探索',
-      openDashboard: '打开仪表板',
-      viewSource: '查看源码',
-      builtWith: '使用技术',
+        '一个基于 BuildBase SDK 的真实 Next.js 应用。登录后完成 {count} 个任务，每个任务都会展示背后的 Hook、控制台页面和本仓库中的文件。',
+      start: '开始导览',
+      viewSource: '阅读源码',
+      cloneLabel: '克隆命令',
+      copy: '复制',
+      copied: '已复制',
     },
-    stats: {
-      languages: {
-        label: '本演示支持的语言数',
-        sublabel: '使用标题切换器切换',
-      },
-      tasks: {
-        label: '导览任务',
-        sublabel: '每一项都是可尝试的能力',
-      },
-      groups: {
-        label: '分组',
-        sublabel: '从登录到 Webhook',
-      },
-      authCode: {
-        label: '认证代码行数',
-        sublabel: 'SDK 全部处理',
+    demo: {
+      heading: '一次调用，一个可用的功能',
+      description:
+        '选择一个步骤，查看 SDK 调用及其渲染结果。每一步都是导览中的一个任务。',
+      tablist: 'SDK 示例',
+      preview: '调用的渲染结果',
+      tryIt: '在导览中试试',
+      steps: {
+        signIn: {
+          label: '登录',
+          result: '已登录',
+          detail: '此设备上的会话',
+        },
+        workspace: {
+          label: '工作区',
+          result: '工作区已创建',
+          detail: '{count, plural, other {# 名成员}}',
+        },
+        plan: {
+          label: '订阅',
+          result: '套餐已生效',
+          detail: '每月续订',
+        },
+        credits: {
+          label: '积分',
+          result: '已消耗 1 积分',
+          detail: '{count, plural, other {剩余 # 积分}}',
+        },
+        notify: {
+          label: '通知',
+          result: '你的文档有新评论',
+          detail: '已送达收件箱、邮件和推送',
+        },
       },
     },
+    facts:
+      '<n>{groups}</n> 组共 <n>{tasks}</n> 个任务，支持 <n>{languages}</n> 种语言，手写认证代码 <n>0</n> 行。',
     cta: {
-      heading: '准备好看到一切正常运行了吗？',
+      heading: '克隆它，或者先点一遍。',
       description:
-        '登录以打开完整仪表板 — 尝试切换工作区、消费积分、发送推送通知并在所有8种语言之间切换。',
-      signIn: '登录并探索',
-      openDashboard: '打开仪表板',
+        '这个应用是开源的。本页的每个界面都在仓库里，连接的正是你会安装的同一个 SDK。',
+      signIn: '开始导览',
       howBuilt: '如何构建的',
     },
     meta: {
-      title: '我的应用',
-      description: '我的 Next.js 应用程序，支持 shadcn/ui 和主题',
-      tagline: '构建令人惊叹的东西',
+      title: 'BuildBase 演示：基于 BuildBase SDK 的真实 SaaS 应用',
+      description:
+        '登录后即可在运行中的 Next.js 应用里体验认证、工作区、计费、积分、通知、Webhook 和 AI 智能体接入。每个页面都开源。',
+      tagline: '每一项 SaaS 能力，一次一个任务。',
     },
   },
   dashboard: {

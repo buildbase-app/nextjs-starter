@@ -103,46 +103,77 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'Demo en vivo · {count} tareas',
-      heading:
-        'Cada capacidad de BuildBase, <highlight>una tarea a la vez</highlight>',
+      heading: 'Sáltate la parte del SaaS que todo equipo vuelve a construir.',
+      listLabel: 'Ya funciona en esta app:',
+      checklist: [
+        'Inicio de sesión',
+        'Espacios de trabajo',
+        'Equipos',
+        'Facturación',
+        'Límites de uso',
+        'Créditos',
+        'Notificaciones',
+        'Webhooks',
+        'Acceso para agentes',
+      ],
       description:
-        'Una app real sobre el SDK de BuildBase, con un recorrido guiado: inicia sesión y prueba registro, espacios de trabajo, facturación, uso, créditos, notificaciones, agentes y webhooks, cada uno mostrando de dónde viene.',
-      signInToExplore: 'Iniciar sesión para explorar',
-      openDashboard: 'Abrir panel',
-      viewSource: 'Ver código',
-      builtWith: 'Construido con',
+        'Una app Next.js real sobre el SDK de BuildBase. Inicia sesión y completa {count} tareas; cada una muestra el hook, la pantalla de la consola y el archivo de este repo que hay detrás.',
+      start: 'Empezar el recorrido',
+      viewSource: 'Leer el código',
+      cloneLabel: 'Comando para clonar',
+      copy: 'Copiar',
+      copied: 'Copiado',
     },
-    stats: {
-      languages: {
-        label: 'Idiomas en esta demo',
-        sublabel: 'cambia con el selector del encabezado',
-      },
-      tasks: {
-        label: 'Tareas del recorrido',
-        sublabel: 'cada una una capacidad que probar',
-      },
-      groups: {
-        label: 'Grupos',
-        sublabel: 'del inicio de sesión a los webhooks',
-      },
-      authCode: {
-        label: 'Líneas de código de auth',
-        sublabel: 'el SDK lo maneja todo',
+    demo: {
+      heading: 'Una llamada, una función funcionando',
+      description:
+        'Elige un paso para ver la llamada del SDK y lo que muestra. Cada uno es una tarea del recorrido.',
+      tablist: 'Ejemplos del SDK',
+      preview: 'Lo que muestra la llamada',
+      tryIt: 'Pruébalo en el recorrido',
+      steps: {
+        signIn: {
+          label: 'Iniciar sesión',
+          result: 'Sesión iniciada',
+          detail: 'Sesión en este dispositivo',
+        },
+        workspace: {
+          label: 'Espacio',
+          result: 'Espacio creado',
+          detail: '{count, plural, one {# miembro} other {# miembros}}',
+        },
+        plan: {
+          label: 'Suscribirse',
+          result: 'Plan activo',
+          detail: 'Se renueva cada mes',
+        },
+        credits: {
+          label: 'Créditos',
+          result: '1 crédito gastado',
+          detail:
+            '{count, plural, one {Queda # crédito} other {Quedan # créditos}}',
+        },
+        notify: {
+          label: 'Notificar',
+          result: 'Nuevo comentario en tu documento',
+          detail: 'Entregado en bandeja, correo y push',
+        },
       },
     },
+    facts:
+      '<n>{tasks}</n> tareas en <n>{groups}</n> grupos, en <n>{languages}</n> idiomas, y <n>0</n> líneas de código de autenticación escritas a mano.',
     cta: {
-      heading: '¿Listo para verlo todo en acción?',
+      heading: 'Clónalo, o recórrelo primero.',
       description:
-        'Inicia sesión para abrir el panel completo — prueba cambiar espacios de trabajo, consumir créditos, enviar una notificación push y cambiar entre los 8 idiomas.',
-      signIn: 'Iniciar sesión y explorar',
-      openDashboard: 'Abrir panel',
+        'La app es de código abierto. Cada pantalla de esta página está en el repo, conectada al mismo SDK que instalarías.',
+      signIn: 'Empezar el recorrido',
       howBuilt: 'Cómo está construido',
     },
     meta: {
-      title: 'Mi App',
-      description: 'Mi aplicación Next.js con shadcn/ui y soporte de temas',
-      tagline: 'Construye algo increíble',
+      title: 'Demo de BuildBase: una app SaaS real sobre el SDK de BuildBase',
+      description:
+        'Inicia sesión y prueba autenticación, espacios de trabajo, facturación, créditos, notificaciones, webhooks y acceso para agentes de IA en una app Next.js en marcha. Cada pantalla es de código abierto.',
+      tagline: 'Cada capacidad SaaS, una tarea a la vez.',
     },
   },
   dashboard: {

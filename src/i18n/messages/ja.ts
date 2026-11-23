@@ -103,45 +103,76 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'ライブデモ · {count}タスク',
-      heading: 'BuildBaseのすべての機能を、<highlight>ひとつずつ</highlight>',
+      heading: 'どのチームも作り直す SaaS の部分は、もう作らなくていい。',
+      listLabel: 'このアプリで動いているもの：',
+      checklist: [
+        'サインイン',
+        'ワークスペース',
+        'チーム',
+        '課金',
+        '利用上限',
+        'クレジット',
+        '通知',
+        'Webhook',
+        'エージェント連携',
+      ],
       description:
-        'BuildBase SDKで作られた実際のアプリとガイド付きツアー。サインインして、登録、ワークスペース、請求、使用量、クレジット、通知、エージェント、Webhookを順に試し、それぞれの出どころを確認できます。',
-      signInToExplore: 'サインインして探索',
-      openDashboard: 'ダッシュボードを開く',
-      viewSource: 'ソースを見る',
-      builtWith: '使用技術',
+        'BuildBase SDK で動く本物の Next.js アプリです。サインインして {count} 個のタスクを進めると、それぞれの裏にあるフック、コンソール画面、このリポジトリのファイルがわかります。',
+      start: 'ツアーを始める',
+      viewSource: 'ソースを読む',
+      cloneLabel: 'クローン用コマンド',
+      copy: 'コピー',
+      copied: 'コピーしました',
     },
-    stats: {
-      languages: {
-        label: 'このデモの言語数',
-        sublabel: 'ヘッダーのトグルで切り替え',
-      },
-      tasks: {
-        label: 'ツアーのタスク',
-        sublabel: 'それぞれが試せる機能',
-      },
-      groups: {
-        label: 'グループ',
-        sublabel: 'サインインからWebhookまで',
-      },
-      authCode: {
-        label: '認証コードの行数',
-        sublabel: 'SDKがすべて処理',
+    demo: {
+      heading: '呼び出しひとつで、動く機能ひとつ',
+      description:
+        'ステップを選ぶと、SDK の呼び出しと表示結果が見られます。どれもツアーのタスクです。',
+      tablist: 'SDK の例',
+      preview: '呼び出しの表示結果',
+      tryIt: 'ツアーで試す',
+      steps: {
+        signIn: {
+          label: 'サインイン',
+          result: 'サインイン済み',
+          detail: 'このデバイスのセッション',
+        },
+        workspace: {
+          label: 'ワークスペース',
+          result: 'ワークスペースを作成',
+          detail: '{count, plural, other {メンバー # 人}}',
+        },
+        plan: {
+          label: '購読',
+          result: 'プランが有効',
+          detail: '毎月更新',
+        },
+        credits: {
+          label: 'クレジット',
+          result: '1 クレジットを消費',
+          detail: '{count, plural, other {残り # クレジット}}',
+        },
+        notify: {
+          label: '通知',
+          result: 'ドキュメントに新しいコメント',
+          detail: '受信箱、メール、プッシュに配信',
+        },
       },
     },
+    facts:
+      '<n>{groups}</n> グループに <n>{tasks}</n> 個のタスク、<n>{languages}</n> 言語対応、手書きの認証コードは <n>0</n> 行。',
     cta: {
-      heading: 'すべての動作を確認する準備ができましたか？',
+      heading: 'クローンするか、まず触ってみるか。',
       description:
-        'サインインしてフルダッシュボードを開き、ワークスペースの切り替え、クレジット消費、プッシュ通知の送信、8言語の切り替えを試してみてください。',
-      signIn: 'サインインして探索',
-      openDashboard: 'ダッシュボードを開く',
+        'アプリはオープンソースです。このページの画面はすべてリポジトリにあり、あなたがインストールするのと同じ SDK につながっています。',
+      signIn: 'ツアーを始める',
       howBuilt: '構築方法',
     },
     meta: {
-      title: 'マイアプリ',
-      description: 'shadcn/uiとテーマサポートを備えたNext.jsアプリ',
-      tagline: '素晴らしいものを作ろう',
+      title: 'BuildBase デモ：BuildBase SDK で動く本物の SaaS アプリ',
+      description:
+        'サインインして、認証、ワークスペース、課金、クレジット、通知、Webhook、AI エージェント連携を実際に動く Next.js アプリで試せます。すべての画面はオープンソースです。',
+      tagline: 'SaaS のすべての機能を、ひとつずつ。',
     },
   },
   dashboard: {

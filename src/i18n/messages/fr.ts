@@ -103,47 +103,77 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'Démo en direct · {count} tâches',
-      heading:
-        'Chaque capacité de BuildBase, <highlight>une tâche à la fois</highlight>',
+      heading: 'Passez la partie du SaaS que chaque équipe reconstruit.',
+      listLabel: 'Déjà en place dans cette app :',
+      checklist: [
+        'Connexion',
+        'Espaces de travail',
+        'Équipes',
+        'Facturation',
+        'Limites d’usage',
+        'Crédits',
+        'Notifications',
+        'Webhooks',
+        'Accès des agents',
+      ],
       description:
-        "Connectez-vous pour voir l'authentification, les espaces de travail multi-tenant, la facturation de crédits, les notifications push et l'i18n en 8 langues — propulsé par le BuildBase SDK.",
-      signInToExplore: 'Se connecter pour explorer',
-      openDashboard: 'Ouvrir le tableau de bord',
-      viewSource: 'Voir le code source',
-      builtWith: 'Construit avec',
+        'Une vraie app Next.js sur le SDK BuildBase. Connectez-vous et parcourez {count} tâches ; chacune montre le hook, l’écran de la console et le fichier de ce dépôt qui la font fonctionner.',
+      start: 'Commencer la visite',
+      viewSource: 'Lire le code',
+      cloneLabel: 'Commande de clonage',
+      copy: 'Copier',
+      copied: 'Copié',
     },
-    stats: {
-      languages: {
-        label: 'Langues dans cette démo',
-        sublabel: "changez avec le sélecteur dans l'en-tête",
-      },
-      tasks: {
-        label: 'Tâches de la visite',
-        sublabel: 'chacune une capacité à essayer',
-      },
-      groups: {
-        label: 'Groupes',
-        sublabel: 'de la connexion aux webhooks',
-      },
-      authCode: {
-        label: "Lignes de code d'auth",
-        sublabel: 'le SDK gère tout',
+    demo: {
+      heading: 'Un appel, une fonctionnalité qui marche',
+      description:
+        'Choisissez une étape pour voir l’appel du SDK et ce qu’il affiche. Chacune est une tâche de la visite.',
+      tablist: 'Exemples du SDK',
+      preview: 'Ce que l’appel affiche',
+      tryIt: 'L’essayer dans la visite',
+      steps: {
+        signIn: {
+          label: 'Connexion',
+          result: 'Connecté',
+          detail: 'Session sur cet appareil',
+        },
+        workspace: {
+          label: 'Espace',
+          result: 'Espace créé',
+          detail: '{count, plural, one {# membre} other {# membres}}',
+        },
+        plan: {
+          label: 'S’abonner',
+          result: 'Offre active',
+          detail: 'Renouvelée chaque mois',
+        },
+        credits: {
+          label: 'Crédits',
+          result: '1 crédit utilisé',
+          detail:
+            '{count, plural, one {# crédit restant} other {# crédits restants}}',
+        },
+        notify: {
+          label: 'Notifier',
+          result: 'Nouveau commentaire sur votre document',
+          detail: 'Livré dans la boîte, par e-mail et en push',
+        },
       },
     },
+    facts:
+      '<n>{tasks}</n> tâches en <n>{groups}</n> groupes, en <n>{languages}</n> langues, et <n>0</n> ligne de code d’authentification écrite à la main.',
     cta: {
-      heading: 'Prêt à voir tout fonctionner ?',
+      heading: 'Clonez-la, ou parcourez-la d’abord.',
       description:
-        "Connectez-vous pour ouvrir le tableau de bord complet — essayez de changer d'espace de travail, de consommer des crédits, d'envoyer une notification push et de basculer entre les 8 langues.",
-      signIn: 'Se connecter et explorer',
-      openDashboard: 'Ouvrir le tableau de bord',
+        'L’app est open source. Chaque écran de cette page est dans le dépôt, branché sur le même SDK que vous installeriez.',
+      signIn: 'Commencer la visite',
       howBuilt: "Comment c'est construit",
     },
     meta: {
-      title: 'Mon Application',
+      title: 'Démo BuildBase : une vraie app SaaS sur le SDK BuildBase',
       description:
-        'Une vraie app sur le SDK BuildBase, avec une visite guidée : connectez-vous et parcourez inscription, espaces de travail, facturation, usage, crédits, notifications, agents et webhooks, chacun montrant d’où il vient.',
-      tagline: 'Construisez quelque chose de remarquable',
+        'Connectez-vous et essayez l’authentification, les espaces de travail, la facturation, les crédits, les notifications, les webhooks et l’accès des agents IA dans une app Next.js qui tourne. Chaque écran est open source.',
+      tagline: 'Chaque fonctionnalité SaaS, une tâche à la fois.',
     },
   },
   dashboard: {

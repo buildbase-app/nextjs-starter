@@ -42,7 +42,7 @@ export async function SiteFooter({ title }: SiteFooterProps) {
 
   return (
     <footer className="border-border/50 bg-background w-full border-t">
-      <div className="mx-auto max-w-6xl px-6 py-12">
+      <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-10 md:grid-cols-4">
           {/* Brand column */}
           <div className="col-span-1 flex flex-col gap-4">
@@ -60,9 +60,9 @@ export async function SiteFooter({ title }: SiteFooterProps) {
           {/* Link columns */}
           {footerLinks.map(({ section, links }) => (
             <div key={section} className="flex flex-col gap-3">
-              <h3 className="text-foreground text-sm font-semibold">
+              <h2 className="text-foreground text-sm font-semibold">
                 {section}
-              </h3>
+              </h2>
               <ul className="flex flex-col gap-2">
                 {links.map((link) => (
                   <li key={link.href}>

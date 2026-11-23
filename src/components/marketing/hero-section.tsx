@@ -1,111 +1,129 @@
-'use client';
-
-import { ArrowRight } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
+import type { CSSProperties } from 'react';
 import { GitHubIcon } from '@/components/icons/brand';
-import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Link } from '@/i18n/routing';
-import { siteConfig } from '@/config/site';
+import { cloneCommand, siteConfig } from '@/config/site';
 import { TOUR_TASKS } from '@/tour/catalog';
-import {
-  WhenAuthenticated,
-  WhenUnauthenticated,
-  useSaaSAuth,
-} from '@buildbase/sdk/react';
+import { CopyCommand } from './copy-command';
+import { SdkDemo, type SdkDemoStep } from './sdk-demo';
 
-const TECH_STACK = [
-  { name: 'Next.js 16', icon: '▲' },
-  { name: 'TypeScript', icon: 'TS' },
-  { name: 'Tailwind CSS', icon: '✦' },
-  { name: 'shadcn/ui', icon: '◈' },
-  { name: 'Prisma', icon: '⬡' },
-  { name: 'BuildBase SDK', icon: '⬢' },
-] as const;
+/** The tour tasks the hero's demo walks through, in order. */
+const DEMO_STEPS: { key: SdkDemoStep['key']; taskId: string }[] = [
+  { key: 'signIn', taskId: 'sign-up' },
+  { key: 'workspace', taskId: 'create-workspace' },
+  { key: 'plan', taskId: 'subscribe' },
+  { key: 'credits', taskId: 'spend-credits' },
+  { key: 'notify', taskId: 'send-notification' },
+];
 
-function SignInCta({ label }: { label: string }) {
-  const { signIn } = useSaaSAuth();
+function demoSteps(): SdkDemoStep[] {
+  return DEMO_STEPS.map(({ key, taskId }) => {
+    const task = TOUR_TASKS.find((t) => t.id === taskId);
+    if (!task) throw new Error(`Hero demo: no tour task "${taskId}"`);
+    const calls = task.source.sdk?.slice(0, 2) ?? [];
+    if (calls.length === 0)
+      throw new Error(`Hero demo: tour task "${taskId}" names no SDK call`);
+    return { key, taskId, calls };
+  });
+}
+
+/**
+ * A hand-drawn strike through each item: the one orchestrated moment on the
+ * page. Each line draws in turn on load (`.draw-in`, CSS only); with reduced
+ * motion they are simply there. Mirrored in RTL so it draws from the start
+ * of the line.
+ */
+function Strike({ index }: { index: number }) {
   return (
-    <Button size="lg" className="gap-2 px-8" onClick={() => signIn()}>
-      {label}
-      <ArrowRight className="h-4 w-4" />
-    </Button>
+    <svg
+      aria-hidden
+      viewBox="0 0 100 10"
+      preserveAspectRatio="none"
+      className="text-brand pointer-events-none absolute start-[-3%] top-[54%] h-[0.32em] w-[106%] -translate-y-1/2 overflow-visible rtl:-scale-x-100"
+    >
+      <path
+        d="M1 6.2C18 3.4 33 7.6 51 4.9S84 5.6 99 3.6"
+        pathLength={1}
+        fill="none"
+        stroke="currentColor"
+        // In viewBox units: the box is stretched to each word's width, but
+        // its height is a fixed share of the font size, so the line keeps
+        // one weight. (non-scaling-stroke would break pathLength drawing.)
+        strokeWidth={2.4}
+        strokeLinecap="round"
+        className="draw-in"
+        style={{ animationDelay: `${420 + index * 110}ms` } as CSSProperties}
+      />
+    </svg>
   );
 }
 
-export function HeroSection() {
-  const t = useTranslations('home');
+export async function HeroSection() {
+  const t = await getTranslations('home.hero');
+  const checklist = t.raw('checklist') as string[];
 
   return (
-    <section className="relative flex flex-col items-center gap-8 px-6 py-20 text-center md:py-32">
-      {/* Background gradient blob */}
+    <section className="grain relative w-full overflow-hidden border-b">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden"
-      >
-        <div className="bg-primary/10 h-[500px] w-[800px] rounded-full blur-3xl" />
-      </div>
+        className="drafting-grid pointer-events-none absolute inset-0 -z-10 opacity-70"
+      />
+      <div className="mx-auto grid w-full max-w-7xl gap-14 px-6 pt-14 pb-20 md:pt-24 lg:grid-cols-12 lg:gap-10 lg:pb-28">
+        <div className="min-w-0 lg:col-span-7">
+          <h1 className="text-foreground max-w-[13ch] text-[clamp(2.6rem,6.6vw,5.5rem)] leading-[0.98] font-semibold tracking-[-0.045em] text-balance">
+            {t('heading')}
+          </h1>
 
-      {/* Eyebrow badge */}
-      <Badge
-        variant="secondary"
-        className="gap-1.5 px-3 py-1 text-xs font-medium"
-      >
-        <span className="bg-primary h-1.5 w-1.5 animate-pulse rounded-full" />
-        {t('hero.badge', { count: TOUR_TASKS.length })}
-      </Badge>
+          <p className="text-muted-foreground mt-10 text-sm">
+            {t('listLabel')}
+          </p>
+          <ul className="font-display text-foreground mt-2 flex max-w-2xl flex-wrap gap-x-6 gap-y-0.5 text-[clamp(1.65rem,3.3vw,2.6rem)] leading-[1.25]">
+            {checklist.map((item, i) => (
+              <li key={item} className="relative whitespace-nowrap">
+                {item}
+                <Strike index={i} />
+              </li>
+            ))}
+          </ul>
 
-      {/* Headline */}
-      <h1 className="text-foreground max-w-3xl text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-        {t.rich('hero.heading', {
-          highlight: (chunks) => (
-            <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
-              {chunks}
-            </span>
-          ),
-        })}
-      </h1>
+          <p className="text-muted-foreground mt-10 max-w-xl text-lg leading-relaxed text-pretty">
+            {t('description', { count: TOUR_TASKS.length })}
+          </p>
 
-      {/* Subheadline */}
-      <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed md:text-xl">
-        {t('hero.description')}
-      </p>
-
-      {/* CTAs */}
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <WhenUnauthenticated>
-          <SignInCta label={t('hero.signInToExplore')} />
-        </WhenUnauthenticated>
-        <WhenAuthenticated>
-          <Button size="lg" className="gap-2 px-8" asChild>
-            <Link href="/dashboard">
-              {t('hero.openDashboard')}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
-        </WhenAuthenticated>
-        <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
-          <a href={siteConfig.repo} target="_blank" rel="noopener noreferrer">
-            <GitHubIcon className="h-4 w-4" />
-            {t('hero.viewSource')}
-          </a>
-        </Button>
-      </div>
-
-      {/* Tech stack */}
-      <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-        <span className="text-muted-foreground text-xs tracking-widest uppercase">
-          {t('hero.builtWith')}
-        </span>
-        {TECH_STACK.map((tech) => (
-          <div
-            key={tech.name}
-            className="border-border bg-background/60 flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium"
-          >
-            <span className="text-primary font-mono text-xs">{tech.icon}</span>
-            {tech.name}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Button size="lg" className="h-11 px-6 text-[15px]" asChild>
+              <Link href="/dashboard/tour">{t('start')}</Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-11 gap-2 px-5 text-[15px]"
+              asChild
+            >
+              <a
+                href={siteConfig.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitHubIcon className="size-4" />
+                {t('viewSource')}
+              </a>
+            </Button>
           </div>
-        ))}
+
+          <CopyCommand
+            className="mt-6 w-full sm:w-fit sm:max-w-full"
+            command={cloneCommand}
+            label={t('cloneLabel')}
+            copyLabel={t('copy')}
+            copiedLabel={t('copied')}
+          />
+        </div>
+
+        <div className="min-w-0 lg:col-span-5 lg:pt-3">
+          <SdkDemo steps={demoSteps()} />
+        </div>
       </div>
     </section>
   );

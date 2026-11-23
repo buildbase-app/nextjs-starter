@@ -9,11 +9,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- A redesigned home page in the BuildBase brand: a hero that crosses off the
+  SaaS parts every team rebuilds, an interactive SDK panel whose code lines
+  come from the tour catalog, the facts as one sentence, the whole tour as a
+  numbered index, and a close with the clone command. CSS-only motion, each
+  effect with a reduced-motion path; no animation runtime added.
+- Brand tokens (paper, ink, Plug Orange, cobalt) in light and dark, applied to
+  the SDK's own screens too (`.saas-os-ui`), and Instrument Serif as the
+  display face, served from this site.
+- Design skills for coding agents in `.claude/skills/`: `buildbase-design`
+  (this repo's brief, including which libraries may be added under their
+  licences) and vendored `frontend-design`, `web-interface-guidelines`,
+  `emil-design-eng`, `choreograph` and `review-animations`.
+- Scores: `npm run test:a11y` (axe, WCAG 2.2 AA, light and dark),
+  `npm run score` / `score:desktop` (Lighthouse CI) and a `Scores` workflow on
+  pull requests.
+- `SiteShell`: the blog, changelog, pricing, privacy and terms pages now have
+  the site header, footer and a `<main>` landmark (they had none).
+
+### Added (earlier)
+
 - Sentry error monitoring integration with session replay
 - Global error boundary (`src/app/global-error.tsx`)
 - Sentry utility functions (`src/lib/sentry.ts`)
 - Deploys to Cloudflare Workers (OpenNext) as well as Vercel and Docker, with a
   GitHub Actions deploy on push to `main` once `CLOUDFLARE_API_TOKEN` is set.
+
+### Fixed
+
+- The home page's title and description were "My App" and "My Next.js
+  application with shadcn/ui and theme support" in all eight languages; the
+  share image said "My App" too.
+- Stripe.js loaded on every page (and set a third-party cookie) because the
+  main `@stripe/stripe-js` entry injects it on import; the pure entry loads it
+  when a checkout needs it.
+- Sentry's SDK (~270 KB compressed) shipped to every visitor even with Sentry
+  off: the error boundaries' helper used a static `require`.
+- `upgrade-insecure-requests` and HSTS were sent whenever `NODE_ENV` was
+  production, so `next start` on http://localhost never hydrated; they now
+  follow the request's protocol.
+- Every blog visit from a Mac failed hydration (React #418): the search
+  button read `navigator` during render.
+- Pricing rendered skeletons and then shifted (CLS 0.16); the server's plans
+  are now in the HTML.
+- Accessibility: unlabelled currency selects, skipped heading levels (pricing
+  cards, footer columns), a header that overflowed a 360px phone while the
+  session loaded, and a missing author avatar (404).
 
 ### Changed
 

@@ -50,18 +50,18 @@ export default async function HomePage({ params }: HomePageProps) {
         <HeroSection />
         <StatsSection />
         <TourPreview />
-        <div className="w-full max-w-6xl px-6 py-20">
+        <div className="w-full max-w-7xl px-6 py-20 md:py-28">
           <PricingSection
             title={tPricing('title')}
             description={tPricing('subtitle')}
           />
         </div>
-        <section className="w-full max-w-5xl px-6 pb-20">
-          <div className="mb-8 text-center">
-            <h3 className="text-foreground text-3xl font-bold tracking-tight">
+        <section className="w-full max-w-7xl px-6 pb-20 md:pb-28">
+          <div className="mb-8">
+            <h2 className="text-foreground text-3xl font-semibold tracking-[-0.03em] md:text-4xl">
               {tStore('title')}
-            </h3>
-            <p className="text-muted-foreground mt-2 text-lg">
+            </h2>
+            <p className="text-muted-foreground mt-3 max-w-2xl text-lg text-pretty">
               {tStore('subtitle')}
             </p>
           </div>

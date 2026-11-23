@@ -110,25 +110,37 @@ export interface HomeFeature {
 export interface HomeMessages {
   title: string;
   hero: {
-    badge: string;
+    heading: string;
+    listLabel: string;
+    /** The parts of a SaaS the hero crosses off, in display order. */
+    checklist: string[];
+    description: string;
+    start: string;
+    viewSource: string;
+    cloneLabel: string;
+    copy: string;
+    copied: string;
+  };
+  demo: {
     heading: string;
     description: string;
-    signInToExplore: string;
-    openDashboard: string;
-    viewSource: string;
-    builtWith: string;
+    tablist: string;
+    preview: string;
+    tryIt: string;
+    steps: {
+      signIn: { label: string; result: string; detail: string };
+      workspace: { label: string; result: string; detail: string };
+      plan: { label: string; result: string; detail: string };
+      credits: { label: string; result: string; detail: string };
+      notify: { label: string; result: string; detail: string };
+    };
   };
-  stats: {
-    languages: { label: string; sublabel: string };
-    tasks: { label: string; sublabel: string };
-    groups: { label: string; sublabel: string };
-    authCode: { label: string; sublabel: string };
-  };
+  /** One sentence of facts; numbers are wrapped in <n>…</n>. */
+  facts: string;
   cta: {
     heading: string;
     description: string;
     signIn: string;
-    openDashboard: string;
     howBuilt: string;
   };
   meta: {

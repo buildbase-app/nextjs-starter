@@ -21,6 +21,7 @@ import {
   type Locale,
 } from '@/i18n/config';
 import { siteUrl } from '@/env';
+import { PUBLIC_CLIENT_NAMESPACES } from '@/i18n/public-namespaces';
 import '@buildbase/sdk/css';
 
 const baseUrl = siteUrl;
@@ -113,7 +114,15 @@ export default async function LocaleLayout({
   // Cloudflare, where MDX cannot be evaluated at request time).
   setRequestLocale(locale);
 
-  const messages = await getMessages();
+  // Only what public client components read (see PUBLIC_CLIENT_NAMESPACES);
+  // the dashboard layout provides the full catalog to its own subtree.
+  const allMessages = await getMessages();
+  const messages = Object.fromEntries(
+    PUBLIC_CLIENT_NAMESPACES.filter((ns) => ns in allMessages).map((ns) => [
+      ns,
+      allMessages[ns],
+    ])
+  );
   const isRtl = isRtlLocale(locale as Locale);
 
   return (

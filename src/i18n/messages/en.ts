@@ -103,46 +103,76 @@ const messages: Messages = {
   home: {
     title: 'BuildBase Demo',
     hero: {
-      badge: 'Live demo · {count} tasks',
-      heading:
-        'Every BuildBase capability, <highlight>one task at a time</highlight>',
+      heading: 'Skip the part of SaaS every team rebuilds.',
+      listLabel: 'Already working in this app:',
+      checklist: [
+        'Sign-in',
+        'Workspaces',
+        'Teams',
+        'Billing',
+        'Usage limits',
+        'Credits',
+        'Notifications',
+        'Webhooks',
+        'Agent access',
+      ],
       description:
-        'A real app on the BuildBase SDK, with a guided tour: sign in and work through sign-up, workspaces, billing, usage, credits, notifications, agents and webhooks, each one showing where it comes from.',
-      signInToExplore: 'Sign in to explore',
-      openDashboard: 'Open Dashboard',
-      viewSource: 'View source',
-      builtWith: 'Built with',
+        'A real Next.js app on the BuildBase SDK. Sign in and work through {count} tasks; each one shows the hook, the console screen and the file in this repo behind it.',
+      start: 'Start the tour',
+      viewSource: 'Read the source',
+      cloneLabel: 'Clone command',
+      copy: 'Copy',
+      copied: 'Copied',
     },
-    stats: {
-      languages: {
-        label: 'Languages in this demo',
-        sublabel: 'switch with the header toggle',
-      },
-      tasks: {
-        label: 'Tasks in the tour',
-        sublabel: 'each one a capability to try',
-      },
-      groups: {
-        label: 'Groups',
-        sublabel: 'from sign-in to webhooks',
-      },
-      authCode: {
-        label: 'Lines of auth code',
-        sublabel: 'the SDK handles it all',
+    demo: {
+      heading: 'One call, one working feature',
+      description:
+        'Pick a step to see the SDK call and what it renders. Each one is a task in the tour.',
+      tablist: 'SDK examples',
+      preview: 'What the call renders',
+      tryIt: 'Try it in the tour',
+      steps: {
+        signIn: {
+          label: 'Sign in',
+          result: 'Signed in',
+          detail: 'Session on this device',
+        },
+        workspace: {
+          label: 'Workspace',
+          result: 'Workspace created',
+          detail: '{count, plural, one {# member} other {# members}}',
+        },
+        plan: {
+          label: 'Subscribe',
+          result: 'Plan active',
+          detail: 'Renews every month',
+        },
+        credits: {
+          label: 'Credits',
+          result: '1 credit spent',
+          detail: '{count, plural, one {# credit left} other {# credits left}}',
+        },
+        notify: {
+          label: 'Notify',
+          result: 'New comment on your document',
+          detail: 'Delivered to inbox, email and push',
+        },
       },
     },
+    facts:
+      '<n>{tasks}</n> tasks in <n>{groups}</n> groups, in <n>{languages}</n> languages, and <n>0</n> lines of auth code written by hand.',
     cta: {
-      heading: 'Ready to see it all working?',
+      heading: 'Clone it, or click through it first.',
       description:
-        'Sign in to open the full dashboard — try switching workspaces, consuming credits, sending a push notification, and switching between all 8 languages.',
-      signIn: 'Sign in & explore',
-      openDashboard: 'Open Dashboard',
+        'The app is open source. Every screen on this page is in the repo, wired to the same SDK you would install.',
+      signIn: 'Start the tour',
       howBuilt: "How it's built",
     },
     meta: {
-      title: 'My App',
-      description: 'My Next.js application with shadcn/ui and theme support',
-      tagline: 'Build something amazing',
+      title: 'BuildBase Demo: a live SaaS app on the BuildBase SDK',
+      description:
+        'Sign in and try auth, workspaces, billing, credits, notifications, webhooks and AI agent access in a working Next.js app. Every screen is open source.',
+      tagline: 'Every SaaS capability, one task at a time.',
     },
   },
   dashboard: {
