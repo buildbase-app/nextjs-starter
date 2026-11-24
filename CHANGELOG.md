@@ -102,9 +102,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `@buildbase/sdk` 1.8.0 (from 0.0.78). The deprecated hook keys
-  (`isLoading`, `refreshAttributes`, `refreshFeatures`) and the profile's `_id`
-  are replaced by `loading`, `refetch` and `id`.
+- `@buildbase/sdk` 1.9.0, still pinned exactly (from 0.0.78, by way of
+  1.8.0). The deprecated hook keys (`isLoading`, `refreshAttributes`,
+  `refreshFeatures`) and the profile's `_id` are replaced by `loading`,
+  `refetch` and `id`. 1.9.0 is a minor release on 1.8.0 and needed no code
+  change: `@buildbase/sdk/react` now ships one file per module, so the client
+  bundles keep only what the app imports. Its two flagged behaviour changes
+  (`SellerHome` shows seller stats, `SellerBookings` lists booking requests)
+  are in components this app does not render; `<HoldingKeys>` on the orders
+  and gift pages now also says when a seller turned a key off and how many
+  seats a key covers.
 - The cookie banner is the SDK's `CookieBanner`; the answer lives in the
   `bb_consent` cookie, so visitors who answered the old banner are asked once
   more. `openCookieBanner()` reopens it from the Tracking page.
